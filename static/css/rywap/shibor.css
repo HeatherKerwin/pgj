@@ -1,0 +1,49 @@
+/*选择时间*/
+.time{
+    width: 90% !important;
+    height: 40px;
+    line-height: 30px;
+    padding: 5px 10px;
+    border: solid 1px #d9d9d9;
+    border-radius: 3px;
+    margin: 10px 5%;
+    font-size: 14px;
+}
+.leftday , .rightday {
+    width: 25px;
+    height: 25px;
+}
+/*shibor*/
+.shibor{}
+/*上方标签*/
+.shibor_top{
+    height: 50px;
+    font-size: 16px;
+    line-height: 40px;
+    padding: 5px 10px;
+    text-align: center;
+    color: #ffffff;
+    background: #D43C33;
+}
+
+/**/
+ul.shibor_con{
+    font-size: 14px;
+    height: auto;
+}
+ul.shibor_con li{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    border-bottom: solid 1px #d9d9d9;
+}
+.shiborIcon1{
+    width: 18px;
+    height: 12px;
+    margin-right: 5px;
+}
+.shiborIcon2{
+    width: 16px;
+    height: 13px;
+    margin-right: 5px;
+}

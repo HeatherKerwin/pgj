@@ -1,0 +1,11 @@
+.time1 li {
+    background: url("https://img.utiexian.com/website/homepage/prli.png") no-repeat 90px 30px;
+}
+.bp11 { background: url("https://img.utiexian.com/website/homepage/prb-1.png") no-repeat 90px 30px;}
+.bp22 { background: url("https://img.utiexian.com/website/homepage/prot.png") no-repeat 90px 30px;}
+
+/*单选radio鼠标触碰样式*/
+ul.QueryCheckbox li label:hover{
+    background: #e84c3d;
+    color: #ffffff;
+}

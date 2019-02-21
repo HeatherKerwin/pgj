@@ -1,0 +1,217 @@
+ 企业审核 */
+
+/* 上传审核内容 */
+.reviewUpload {
+  line-height: 30px;
+}
+.reviewUpload .UploadTip{
+  color: #e84c3d;
+  padding: 10px 0;
+}
+.reviewUploadRow {
+  padding-bottom: 20px;
+}
+.reviewUpload .reviewUploadRow .imgLabel {
+  color: #999;
+  padding-top: 5px;
+  padding-left: 6px;
+}
+.reviewUpload .reviewUploadRow .uploadImgRow {
+  width: 100%;
+  overflow: hidden;
+  padding: 10px 10px 10px 140px;
+  box-sizing: border-box;
+}
+.reviewUpload .reviewUploadRow .uploadImgRow .uploadText ,
+.reviewUpload .reviewUploadRow .uploadImgRow .uploadImg {
+  float: left;
+  width: 210px;
+  min-height: 136px;
+  border: none;
+  margin-right: 25px;
+  text-align: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+.reviewUpload .reviewUploadRow .uploadImgRow .uploadText input,
+.reviewUpload .reviewUploadRow .uploadImgRow .uploadImg input{
+  width: 0;
+  height: 0;
+  display: none;
+}
+.reviewUpload .reviewUploadRow .uploadImgRow .uploadText img ,
+.reviewUpload .reviewUploadRow .uploadImgRow .uploadImg img {
+  width: 100%;
+  height: auto;
+  max-height: 136px;
+  box-shadow: 1px 2px 5px #e8e8e8;
+}
+.reviewUpload .reviewUploadRow .uploadImgRow .uploadText p.fileName ,
+.reviewUpload .reviewUploadRow .uploadImgRow .uploadImg p.fileName {
+  padding-top: 10px;
+}
+.reviewUpload .reviewUploadRow .uploadImgRow .uploadText-Del{
+  display: inline-block;
+  text-align: center;
+  padding: 5px 0;
+  font-size: 12px;
+  color: #1e83ff;
+  text-decoration: none;
+  padding: 30px 15px;
+  cursor: pointer;
+}
+.reviewUpload .reviewUploadRow .uploadImgRow .uploadText-Del:hover {
+    color: #ffc62e;
+}
+.reviewUpload .reviewUploadRow .uploadTextTip ,
+.reviewUpload .reviewUploadRow .uploadImgTip {
+  padding-left: 80px;
+  color: #999;
+}
+.reviewUpload .reviewUploadRow .uploadInp {
+  padding-top: 10px;
+  padding-left: 50px;
+  vertical-align: text-bottom;
+}
+.reviewUpload .reviewUploadRow .uploadInp label {}
+.reviewUpload .reviewUploadRow .uploadInp input {
+  width: 270px;
+  height: 30px;
+  line-height: 27px;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+.reviewUpload .reviewUploadRow .uploadInp input::-webkit-input-placeholder {
+   color: #d8d8d8;
+   font-size: 13px;
+}
+
+.uploadUser {
+  vertical-align: middle;
+}
+.uploadUser label {
+
+}
+.uploadUser input {
+  width: 275px;
+  height: 40px;
+  line-height: 38px;
+  border: 1px solid #e0e0e0;
+  padding: 0 10px;
+  text-overflow: inherit;
+  margin-right: 20px;
+}
+
+.uploadBtn {
+  text-align: center;
+  margin-top: 30px;
+}
+.uploadBtn button {
+  width: 175px;
+  height: 40px;
+  line-height: 38px;
+}
+
+/* 上传审核内容 end */
+
+/* 审核中 */
+
+/* 审核中 end */
+
+/* 审核结果 */
+
+/* 审核结果 end */
+.reviewResult {}
+.reviewResult .resultLabel {
+  width: 100%;
+  font-size: 14px;
+  color: #2d2d2d;
+  padding: 10px 0 20px;
+}
+.reviewResult .resultCon {
+  width: 100%;
+  height: auto;
+}
+.reviewing .resultLoading ,
+.reviewResult .resultCon .resultLoading {
+  text-align: center;
+}
+.reviewing .resultLoading div ,
+.reviewResult .resultCon .resultLoading div {
+  display: inline-block;
+  min-width: 120px;
+  margin: 0 auto;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 37px;
+  overflow: hidden;
+}
+.reviewing .resultLoading #loadingIcon ,
+.reviewResult .resultCon .resultLoading #loadingIcon {
+  float: left;
+  width: 37px;
+  height: 37px;
+  margin-right: 10px;
+}
+.reviewing .resultLoading #loadingTitle ,
+.reviewResult .resultCon .resultLoading #loadingTitle {
+  float: left;
+}
+/*  */
+/* 上传的内容 */
+.shenheResultCon{
+  width: 100%;
+  padding: 50px 130px 10px;
+  box-sizing: border-box;
+}
+.shenheResultCon .resultList{
+  overflow: hidden;
+}
+.shenheResultCon .resultItem{
+  float: left;
+  width: 50%;
+  line-height: 30px;
+  padding: 20px 0;
+}
+.shenheResultCon .resultItem .resultItemLabel ,
+.shenheResultCon .resultItem .resultItemImg {
+  float: left;
+}
+.shenheResultCon .resultItem .resultItemLabel {
+  min-width: 160px;
+}
+.resultItem .resultItemLabel > p:nth-child(2) {
+  font-size: 12px;
+  line-height: 14px;
+}
+.shenheResultCon .resultItem .resultItemImg {
+  width: 60px;
+  height: 45px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+.shenheResultCon .resultItem .resultItemImg img {
+  width: 100%;
+  height: 100%;
+}
+.shenheResultCon .result-user {
+  padding: 0;
+}
+.shenheResultCon .result-user > div {
+  margin: 10px 0;
+}
+/* 上传的内容 end */
+.resultBtn {
+  margin-top: 30px;
+}
+.resultBtn button{
+  display: block;
+  width: 225px;
+  height: 45px;
+  margin: 0 auto;
+}
+
+/* 企业审核 end */
+

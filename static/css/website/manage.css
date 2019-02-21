@@ -1,0 +1,21 @@
+/*选择条件选radio鼠标触碰样式*/
+ul.MGcheckbox li label:hover{
+    background: #e84c3d;
+    color: #ffffff;
+}
+
+/*订单选择机构-radio*/
+input[type=radio].choseJG{
+    width: 25px;
+    height: 25px;
+    background: url("https://img.utiexian.com/website/discount/choseJG.png") no-repeat center;
+    background-size: 100%;
+    background-position: 0 -26px;
+}
+input[type=radio].choseJG:checked {
+    width: 25px;
+    height: 25px;
+    background: url("https://img.utiexian.com/website/discount/choseJG.png") center no-repeat;
+    background-size: 100%;
+    background-position: 0 0;
+}

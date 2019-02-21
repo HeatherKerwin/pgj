@@ -1,0 +1,248 @@
+@charset "utf-8";
+*,
+::before,
+::after{
+    margin: 0;
+    padding: 0;
+
+    /*清除移动端默认的 点击高亮效果*/
+    -webkit-tap-highlight-color: transparent;
+    /*设置所有的都是以边框开始计算宽度 百分比*/
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+html,body{background:#eeeeee;color:#2d2d2d;font-size:62.5%;-webkit-user-select:none;-webkit-tap-highlight-color: rgba(0,0,0,0);-webkit-tap-highlight-color:transparent;-webkit-user-select:none;-webkit-touch-callout:none;-webkit-touch-callout:none;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {margin:0;padding:0;}
+body,button,input,select,textarea {font:14px \5b8b\4f53,'Helvetica Neue',Arial,'Liberation Sans',FreeSans,'Hiragino Sans GB',sans-serif\"Microsoft YaHei"\"微软雅黑";line-height:20px;}
+h1{font-size:24px;}
+h2{font-size:22px;}
+h3{font-size:18px;}
+@media only screen and (min-width:360px) {
+    h1{font-size:28px;}
+    h2{font-size:26px;}
+    h3{font-size:22px;}
+    body,button,input,select,textarea {font-size:18px;line-height:26px;}
+}
+h1,h2,h3,h4,h5,h6 {font-weight:normal;}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {-webkit-text-size-adjust:none;}/*阻止旋转屏幕时自动调整字体大小*/
+textarea{resize:none;}
+/*取消按钮在inphone上的默认样式*/
+input[type=button]{-webkit-appearance:none;outline:none}
+input::-webkit-input-placeholder{color:#bfbfbf;}
+textarea::-webkit-input-placeholder{color:#bfbfbf;}
+input::-webkit-input-speech-button {display:none}
+input{  outline:none !important;  -webkit-appearance:none !important;  appearance:none !important;  }
+select{appearance:none;  -moz-appearance:none;  -webkit-appearance:none;}
+table {border-collapse:collapse;border-spacing:0;}
+th {text-align:inherit;}
+fieldset,img {border:none;}
+abbr,acronym {border:none;font-variant:normal;}
+del {text-decoration:line-through;}
+ol,ul {list-style:none;}
+caption,th {text-align:left;}
+sub,sup {font-size:75%;line-height:0;position:relative;vertical-align:baseline;}
+sup {top:-0.5em;}
+sub {bottom:-0.25em;}
+ins,a,a:hover {text-decoration:none;}
+a{color: #2d2d2d;}
+a:focus,*:focus {outline:none;}
+.clearfix:before,.clearfix:after {content:"";display:table;}
+.clearfix:after {clear:both;overflow:hidden;}
+.clearfix {zoom:1;}
+.clear {clear:both;display:block;font-size:0;height:0;line-height:0;overflow:hidden;}
+.bnone{border: 0px !important;}
+.hide {display:none;}
+.block {display:block;}
+.bold{font-weight: bold}
+.outL{white-space:normal;word-break:break-all;width:100px;}
+.outH{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+/*布局*/
+.fl{float:left;display:inline;}
+.fr{float:right;display:inline;}
+.cb{clear:both;}
+.cl{clear:left;}
+.cr{clear:right;}
+.rel{position:relative;}
+.abs{position:absolute;}
+.tac{text-align:center;}
+.tal{text-align:left;}
+.tar{text-align:right;}
+.dib{display:inline-block;}
+.vab{vertical-align:bottom;}
+.vam{vertical-align:middle;}
+.vat{vertical-align:top;}
+/*网格*/
+.box{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;height:100%;text-align:center;padding:5px 0;}
+.grid,.wrap,.grid:after,.wrap:after,.grid:before,.wrap:before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+.grid{*zoom:1}
+.grid:before,.grid:after{display:table;content:"";line-height:0}
+.grid:after{clear:both}
+.grid{list-style-type:none;padding:0;margin:0}
+.grid>.grid{clear:none;float:left;margin:0 !important}
+.wrap{float:left;width:100%}
+/*网格*/
+/*flex*/
+.col{height:100%;display:-webkit-box;-webkit-box-orient:vertical;display:flex;display:-webkit-flex;flex-direction:column;}
+.row{display:-webkit-flex;display:flex;-webkit-flex-wrap:wrap;flex-wrap:wrap;flex-direction:wrap;display:-webkit-box;-webkit-box-orient:horizontal;-webkit-box-lines:multiple;width:100%;height:auto;margin:auto;}
+.flex1{-webkit-box-flex:1;-webkit-flex:1;flex:1;}
+.flex2{-webkit-box-flex:2;-webkit-flex:2;flex:2;}
+.flex3{-webkit-box-flex:3;-webkit-flex:3;flex:3;}
+/*flex*/
+/*容器*/
+.wrapper{position:absolute;top:0;right:0;bottom:0;left:0;padding:0px 0px 50px;overflow:auto;margin-top:84px;-webkit-overflow-scrolling:touch;}
+/*头尾*/
+header,footer{position:fixed;right:0;left:0;z-index:1;text-align:center;background:#fff;}
+footer{bottom:0;}
+
+/*背景色*/
+.bcwhite{background:#ffffff;}
+.bcred{background:#d43c33;}
+
+/*字体颜色*/
+.cwhite{color: #ffffff;}
+.cblack{color: #2d2d2d;}
+.cred{color: #d43c33;}
+.cblue{color: #00aaf3;}
+.cgray{color: #929292}
+
+/*字体大小*/
+.font10{font-size: 10px;}
+.font12{font-size: 12px;}
+.font14{font-size: 14px;}
+.font16{font-size: 16px;}
+.font18{font-size: 18px;}
+.font24{font-size: 24px;}
+
+/*文本缩进*/
+.txi{
+    text-indent: 32px;
+}
+
+/*边框*/
+.br{border-right: solid 1px #d8d8d8;}
+
+/*宽度*/
+.w100p{width:100%}
+.w20p{width:20%;}
+.w50{width: 50px !important;  }
+.w100{width: 100px !important;  }
+.w110{width: 110px !important;  }
+.w200{width: 200px !important;  }
+/*高度*/
+.h90{height: 100px !important;}
+
+/*边距*/
+.mt10{margin-top: 10px !important;}
+.mb10{margin-bottom: 10px !important;}
+.mt44{margin-top: 44px !important;}/*中间容器距离顶部高度*/
+.mr10{margin-right: 10px !important;}
+.m5{margin:5px;}
+.p0{padding: 0 !important;}
+.p10{padding:10px;}
+.pt5{padding-top:5px;}
+
+/*输入框*/
+.Int{
+    width: 100%;
+    border: none;
+    height: 30px;
+    line-height: 30px;
+    text-indent: 10px;
+}
+
+/*按钮*/
+.Btn{
+    display: block;
+    width: 100%;
+    height: 36px;
+    margin: 0;
+    padding: 0 16px;
+}
+.Btn input{
+    width: 100%;
+    height: 36px;
+    font-size: 16px;
+    text-align: center;
+    line-height: 36px;
+    color: #ffffff;
+    background: #d43c33;
+    border: solid 1px #d43c33;
+    border-radius: 3px;
+}
+/*radio*/
+.radioIcon1 {
+    width: 20px;
+    height: 20px;
+    float: left;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 2px;
+    background-image: url(https://img.utiexian.com/rywap/common/radio1.png);
+    background-repeat: no-repeat;
+    background-position: 0px 0;
+}
+.radioIcon2 {
+    width: 20px;
+    height: 20px;
+    float: left;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 2px;
+    background-image: url(https://img.utiexian.com/rywap/common/radio2.png);
+    background-repeat: no-repeat;
+    background-position: 0px 0;
+}
+.radioclass {
+    opacity: 0;
+    cursor: pointer;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+}
+.onRadio {
+    background-position: 0 -20px;
+}
+/*checkbox*/
+.checkIcon {
+    width: 20px;
+    height: 20px;
+    float: left;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 2px;
+    text-align: center;
+    background-image: url(https://img.utiexian.com/rywap/common/chosebox.png);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+.onCheck {
+    background-position: 0 -20px;
+}
+.checkclass {
+    opacity: 0;
+    cursor: pointer;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+}
+
+/*表单错误提示*/
+.promptIcon-toast{
+    position: fixed;
+    z-index: 101;
+    top: 50%;
+    left: 50%;
+    width: 220px;
+    min-height: 54px;
+    background: rgba(0,0,0,0.7);
+    border: none;
+    border-radius: 3px;
+    color: #ffffff;
+    line-height: 20px;
+    font-size: 17px;
+    text-align: center;
+    overflow: hidden;
+    padding: 15px 10px;
+    margin-left: -110px;
+    margin-top: -27px;
+}

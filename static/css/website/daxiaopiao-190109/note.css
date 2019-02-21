@@ -1,0 +1,121 @@
+@charset "UTF-8";
+/**
+ *
+ * @authors Your Name (you@example.org)
+ * @date    2019-01-23 17:50:17
+ * @version $Id$ note.css 01
+ */
+.noteWarp {
+  width: 100%;
+  min-height: 500px;
+  margin-top: 20px;
+}
+.noteTab{
+  display: block;
+  float: left;
+  width: 290px;
+  height: 100%;
+  margin-right: 13px;
+  background: #fff;
+  border-radius: 3px;
+  padding: 20px;
+  box-shadow: 3px 5px 10px rgba(6 , 0 , 1 , 0.04);
+  box-sizing: border-box;
+}
+
+.noteCon {
+  float: left;
+  width: calc(100% - 303px);
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 3px 5px 10px rgba(6 , 0 , 1 , 0.04);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.note-table {
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+}
+.note-table td ,
+.note-table th ,
+.note-table table {
+  line-height: 48px;
+  text-align: center;
+  border: 0.5px solid #e0e0e0;
+  box-sizing: border-box;
+  border-collapse: collapse;
+}
+.note-table table {
+  word-wrap: break-word; word-break: break-all;
+}
+.note-table table ,
+.note-table table tr {
+  width: 100%;
+  overflow: hidden;
+}
+.note-table table thead {
+  background: #fafafa;
+}
+.note-table table thead tr th ,
+.note-table table tbody tr td {
+  min-width: 80px;
+  /*max-width: 160px;*/
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.note-table table tbody tr .click:hover {
+  color: #ffc62e !important;
+  cursor: pointer;
+}
+
+/* dapiao */
+#dapiao > .note-table table > thead tr th:nth-child(2) ,
+#dapiao > .note-table table > tbody tr td:nth-child(2) {
+  max-width: 150px !important;
+}
+#dapiao > .note-table table thead tr th:nth-child(-n+5):nth-child(n+3) ,
+#dapiao > .note-table table tbody tr td:nth-child(-n+5):nth-child(n+3) {
+  width: 100px !important;
+}
+/* dapiao */
+
+/* xiaopiao */
+#xiaopiao {
+  padding-right: 15px;
+}
+#xiaopiao > .note-table > table ,
+#xiaopiao > .note-table > .noteList .noteItem {
+  margin-bottom: 10px;
+  box-shadow: 3px 5px 10px rgba(6 , 0 , 1 , 0.04);
+}
+#xiaopiao > .note-table > .noteList .noteItem {
+  position: relative;
+}
+#xiaopiao > .note-table > .noteList .noteItem:hover {
+  background: #fafafa;
+}
+
+#xiaopiao > .note-table > .noteList .noteItem .itemTabel {
+  padding: 15px 60px;
+  border: 0.5px solid #e0e0e0;
+  opacity: 0.7;
+}
+#xiaopiao > .note-table > .noteList .noteItem .itemTabel > table thead tr th ,
+#xiaopiao > .note-table > .noteList .noteItem .itemTabel > table tbody tr td {
+  min-width: 120px !important;
+  max-width: 120px !important;
+}
+
+#xiaopiao .noteList .noteItem .noteItemIcon {
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  width: 10px;
+  height: 20px;
+  background: url('https://img.utiexian.com/website/daxiaopiao-img/review/zhankai.png');
+  background-repeat: no-repeat;
+  cursor: pointer;
+}

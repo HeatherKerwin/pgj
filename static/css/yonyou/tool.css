@@ -1,0 +1,128 @@
+/*工具模块通用样式*/
+.toolWrap{
+    background: #ffffff;
+    min-height: 500px;
+}
+/*工具-标题*/
+.toolWrap .toolTitle{
+    background: #efeded;
+    font-size: 30px;
+    height: 70px;
+    line-height: 80px;
+    padding-left: 30px;
+    font-weight: 500;
+}
+/*工具-内容*/
+.toolWrap .toolCon{
+    width: 100%;
+    border: 1px solid #e0e0e0;
+    box-sizing: border-box;
+
+}
+/*工具-顶部重要现实信息*/
+.toolCon .toolTop{
+    font-size: 20px;
+    height: 60px;
+    line-height: 60px;
+    background: #f4f4f4;
+    font-weight: 500;
+}
+.toolCon .toolTop:after{
+    clear: both;
+    display: block;
+}
+.toolCon .toolTop .topDiv{
+    float: left;
+    width: 50%;
+    text-align: center;
+    color: #2d2d2d;
+}
+.toolCon .toolTop .topDiv label{
+    width: 160px;
+}
+.toolCon .toolTop .topDiv span{
+    color: #e84c3d;
+}
+
+/*工具-输入表单*/
+.toolWrap .toolCon .toolForm{
+    border-top: 1px solid #e0e0e0;
+}
+.toolCon .toolForm ul{
+    overflow: hidden;
+    padding: 10px 80px;
+}
+.toolCon .toolForm ul li{
+    float: left;
+    position: relative;
+    width: 50%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    margin: 20px 0px;
+}
+.toolCon .toolForm ul li label{
+    position: absolute;
+    left: 0px;
+    top: 0;
+    width: 100px;
+    display: block;
+}
+.toolCon .toolForm ul li input{
+    position: absolute;
+    left: 100px;
+    top: 0;
+    width: 240px;
+    height: 36px;
+}
+.toolCon .toolForm ul li select{
+    position: absolute;
+    left: 100px;
+    top: 0;
+    width: 240px;
+    height: 36px;
+    padding-right: 40px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    background: url(https://img.utiexian.com/yonyou/common/select245.png) center no-repeat;
+    background-size: 100% 100%;
+}
+.toolCon .toolForm ul li .unit{
+    position: absolute;
+    left: 350px;
+    top: 0;
+}
+.toolCon .toolForm ul li .riliIcon{
+    position: absolute;
+    left: 350px;
+    top: 3px;
+    width: 30px;
+    height: 27px;
+    background: url("https://img.utiexian.com/yonyou/common/rili.png") center no-repeat;
+    background-size: 30px 27px;
+    cursor: pointer;
+}
+
+/*工具-底部操作模块*/
+.toolWrap .toolFooter{
+    overflow: hidden;
+    padding-bottom: 50px;
+}
+
+.toolWrap .toolFooter a{
+    float: left;
+    display: block;
+    width: 210px;
+    height: 50px;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    line-height: 50px;
+    text-align: center;
+    background: #e84c3d;
+}
+.toolWrap .toolFooter a.grayBtn{
+    background: #f2f2f2;
+    color: #2d2d2d;
+}
+

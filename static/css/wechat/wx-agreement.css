@@ -1,0 +1,26 @@
+/*声明的内容开始*/
+.prefix,.content{
+    width:7.5rem;
+    padding: 0.3rem;
+    background: white;
+    border-top:solid .01rem #dedede;
+    border-bottom:solid .01rem #dedede;
+    margin-top: .3rem;
+    font-size: .3rem;
+}
+h5{
+    font-size: .35rem;
+    margin-bottom: .3rem;
+    text-align: left;
+}
+p{
+    text-indent:.7rem ;
+    font-size: .3rem;
+    text-align: justify;
+    line-height: .56rem;
+    word-break: break-all;
+}
+p#date{
+    text-align: right;
+}
+/*声明的内容结束*/

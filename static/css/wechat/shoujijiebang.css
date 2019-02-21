@@ -1,0 +1,105 @@
+﻿/*已绑定内容开始*/
+.content{
+    width:7.5rem;
+    height: 1.2rem;
+    background: white;
+    margin: 0.3rem auto;
+    border-bottom: solid 0.01rem #cecece;
+    border-top: solid 0.01rem #cecece;
+}
+.left{
+    font-size: 0.3rem;
+    float:left;
+    line-height: 1.3rem;
+    margin-left: 0.2rem;
+}
+#in{
+    font-size: 0.3rem;
+    float:left;
+    line-height: 1.3rem;
+    margin-left: 0.56rem;
+
+}
+#right{
+    font-size: 0.3rem;
+    /*width:0.6rem;*/
+    float:right;
+    line-height: 1.3rem;
+    margin-right: .25rem;
+    color: blue;
+}
+.right-icon{
+    width:0.8rem;
+    height:0.8rem;
+    float:right;
+    margin-right: .25rem;
+    margin-top:0.2rem;
+    background: url(https://img.utiexian.com/wechat/common/advance.png) no-repeat center; 
+    background-size: 100%; 
+}
+/*已绑定内容结束*/
+a{
+    text-decoration: none;
+}
+/*退出按钮开始*/
+#btn{
+    width: 7.1rem;
+    height: .80rem;
+    border-radius: .06rem;
+    background: #d43c33;
+    border: none;
+    color: #fff;
+    font-size: .3rem;
+    margin: 0 auto;
+}
+/*退出按钮结束*/
+/*阴影弹框开始*/
+#mask{
+    width:7.5rem;
+    height:13.34rem;
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    top:0;
+    display: none;
+}
+.bg{
+    width:5.88rem;
+    height: 3.26rem;
+    background: white;
+    border-radius: 0.05rem 0.05rem 0.05rem 0.05rem;
+    font-family: 'STHeiti', 'Microsoft YaHei', Helvetica, Arial, sans-serif;
+    font-size: .3rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -2.94rem;
+    margin-top: -1.63rem;
+}
+.bg_unbundling{
+    font-size: .3rem;
+    padding: 0.2rem 0;
+    border-bottom: 1px solid #dedede;
+}
+.bg_quit{
+    padding: 0.3rem 0.8rem;
+    margin: 0 auto;
+    font-size: 0.3rem;
+    text-align: left;
+    line-height: 0.5rem;
+    border-bottom: 1px solid #dedede;
+}
+
+#no,#sure{
+    width:50%;
+    font-size: 0.3rem;
+    padding: 0.2rem 0 ;
+    font-family: 'STHeiti', 'Microsoft YaHei', Helvetica, Arial, sans-serif;
+    float: left;
+    background: #ffffff;
+}
+#sure{
+    color: red;
+    border-left: 1px solid #dedede;
+
+}
+/*阴影弹框结束*/

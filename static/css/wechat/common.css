@@ -1,0 +1,254 @@
+﻿@charset "utf-8";
+/* CSS Document */
+*{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: none;
+	vertical-align: top;
+	box-sizing: border-box;
+}
+body {
+	margin: 0px;
+	padding: 0px;
+	font-family:Helvetica,"Microsoft YaHei", Arial, Helvetica, sans-serif;
+	background-color: #f0f0f0;
+	-webkit-text-size-adjust: none
+}
+ul, li {
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+img {
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+    max-width: 100%;
+}
+form {
+	margin: 0px;
+	padding: 0px;
+}
+
+a, div, header, span {
+  -webkit-tap-highlight-color: rgba(255,255,255,0);
+}
+a{text-decoration: none}
+input{
+	-webkit-appearance: none;
+}
+.mobile {
+	background-color: #f0f0f0;
+	min-width: 320px;
+}
+.w {
+	background-color: #FFFFFF;
+	float: left;
+	min-width: 320px;
+	width: 100%;
+	margin-top: 1%;
+	margin-bottom: 1%;
+}
+
+/*页面加载*/
+#preloader {position:fixed;z-index:2500;top:0;left:0;right:0;bottom:0;background-color:#fff; z-index:999999; }
+#status {
+	position:fixed;
+	z-index:999999;
+	width:250px;
+	height:250px;
+	position:absolute;
+	left:50%;
+	top:50%;
+	background-size:32px 32px;
+	margin-top: -125px;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: -115px;
+}
+#status p{top:70%;}
+.center-text{
+	text-align:center;
+	background-image: url(https://img.utiexian.com/wechat/common/logo.png);
+	background-repeat: no-repeat;
+	background-position: center top;
+	height: 120px;
+	width: 120px;
+	margin-left: 50px;
+}
+.center-text span {
+	font-size: 14px;
+	color: #999999;
+	position: relative;
+	top: 170px;
+}
+
+/*header*/
+.header{
+	height:44px;
+	background:#1a191f;
+	position: relative;
+	z-index: 10;
+}
+.new-a-back {
+	height: 40px;
+	position: absolute;
+	width: 45px;
+}
+.new-a-back span {
+	/*background:url(https://img.utiexian.com/wechat/icon_fh.png) no-repeat 0px 0px / 18px 18px;*/
+	display:block;
+	height: 35px;
+	text-indent:17px;
+	width: 50px;
+	color:#FFF;
+	font-size:14px;
+	padding-top: 8px;
+	margin-left: -10px;
+}
+.new-a-back span img {
+	width: 25px;
+}
+/*header text*/
+.header h2 {
+	color: #fff;
+	font-size: 16px;
+	font-weight: normal;
+	height: 44px;
+	line-height: 44px;
+	text-align: center;
+	font-weight:bold;
+}
+.header .header_right {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+.header .header_right img {
+	height: 25px;
+}
+.head_right {
+	position: absolute;
+	top: 15px;
+	right: 10px;
+}
+.head_right a   {
+	color:#FFFFFF;
+	font-size:12px;
+	padding-top:5px;
+	text-decoration: none;
+}
+
+.search {
+	margin-top: 4%;
+	margin-bottom: 10px;
+}
+.search_input {
+	width: 84%;
+	margin: 0px 8%;
+	padding-top: 12px;
+	padding-right: 0px;
+	padding-bottom: 10px;
+	padding-left: 40px;
+	border: 1px solid #d8d8d8;
+	border-radius: 5px;
+	outline: none;
+	font-size: 13px;
+	color: #666666;
+	background-image: url(https://img.utiexian.com/wechat/common/search.png);
+	background-repeat: no-repeat;
+	background-position: 10px center;
+	background-size: 20px;
+}
+
+/*公用基础样式*/
+.w50{width: 50px}
+.w60{width: 60px}
+.w80{width: 80px}
+.w100{width: 100px}
+
+.h30{height: 30px}
+.h50{height: 50px}
+
+
+.lh30{line-height: 30px}
+.lh50{line-height: 50px}
+
+.mt2{margin-top: 2%}
+.ml10{margin-left: 10px}
+.mr10{margin-right: 10px}
+.mb10{margin-bottom: 10px}
+
+.mt-10{margin-top: -10px}
+.pb10{padding-bottom: 10px}
+
+.fl{float: left !important;}
+.fr{float: right !important;}
+.tx-c{text-align: center !important;}
+.b_none{border: 0 !important;}
+.clear{clear: both}
+.clear:after{
+	content: '';
+	height: 0;
+	width:0;
+	display: block;
+	clear: both;
+	visibility: hidden;
+}
+.none{display: none}
+
+.color_red {
+	/*font-weight: bold;*/
+	color: #e84c3d;
+}
+.color_blue {
+	/*font-weight: bold;*/
+	color: #2b27f4;
+}
+.color_gray {
+	/*font-weight: bold;*/
+	color: #929292;
+}
+
+/* 日历图标 */
+.rili{
+	width: 30px;
+	height: 30px;
+	margin-top: 10px
+}
+
+/*yanhuifang*/
+.bgd{
+	width:7.5rem;
+	margin: 0 auto;
+	text-align: center;
+}
+.call{
+	display: block;
+	width: 7.1rem;
+	color:white;
+	font-size: 0.36rem;
+	line-height: 0.88rem;
+}
+.status{
+	width:0.2rem;
+	margin-top: 0.27rem;
+	float: left;
+	margin-left: 0.2rem;
+}
+.clear:after{
+	content: '';
+	height: 0;
+	width:0;
+	display: block;
+	clear: both;
+	visibility: hidden;
+}
+/*yanhuifang*/

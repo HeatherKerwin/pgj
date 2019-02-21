@@ -1,0 +1,340 @@
+﻿@charset "utf-8";
+/* CSS Document */
+/*列表行*/
+.form_nav_list {
+	border-top-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-left-style: solid;
+	border-top-color: #EBEBEB;
+	border-left-color: #EBEBEB;
+}
+.form_nav_list  li {
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #EBEBEB;
+	border-bottom-color: #EBEBEB;
+	height: 50px;
+}
+
+/*标签名字*/
+.form_nav_list .list_nav_name {
+	float: left;
+	width: 80px;
+	margin-left: 4%;
+	line-height: 50px;
+	font-size: 15px;
+}
+/*标签内容*/
+.form_nav_list .list_nav_test {
+	font-size: 15px;
+	color: #666666;
+	line-height: 50px;
+	float: right;
+}
+.form_nav_list .list_nav_test i {
+	color: #D43C33;
+	font-style: normal;
+}
+
+/*标签单位*/
+.form_nav_list .list_nav_unit{
+	float: left;
+	line-height: 50px;
+	color: #666666;
+	margin-left: 1%;
+}
+/*文字注释*/
+.form_nav_list .list_nav_notes {
+	margin-left: 4%;
+	margin-right: 1.5%;
+	line-height: 20px;
+	font-size: 12px;
+}
+/*红色按钮*/
+.list_nav_buttonRed {
+	height: 40px;
+	background: #D43C33;
+	color: #ffffff;
+	border: 0;
+	border-radius: 5px;
+	line-height: 40px;
+	font-size: 20px;
+}
+.list_nav_buttonRed:active {
+	background: #e84c3d;
+}
+.list_nav_button1{
+	width: 84%;
+	margin: 10px 8%;
+}
+.list_nav_button2{
+	width: 40%;
+	margin: 10px 5%;
+}
+/*灰色按钮*/
+.list_nav_buttonGray {
+	height: 40px;
+	background: none;
+	color: #85878a;
+	border: 1px solid #85878a;
+	border-radius: 5px;
+	line-height: 40px;
+	font-size: 20px;
+}
+.list_nav_buttonGray:active {
+	background: #D7D7D7;
+}
+/*输入框*/
+.form_nav_list .list_nav_input {
+	float: left;
+	margin-left: 1.5%;
+	margin-top: 7px;
+	padding: 0;
+	line-height: 36px;
+	height: 36px;
+	background: none;
+	border: 0;
+	border-radius: 0;
+	color: #252525;
+	font-size: 15px;
+	text-indent: 5px;
+}
+.form_nav_list .list_nav_inputTime {
+	float: left;
+	margin-top: 10px;
+	margin-left: 1.5%;
+	padding: 0;
+	line-height: 30px;
+	text-align: center;
+	height: 30px;
+	background: none;
+	border: 1px solid #85878a;
+	border-radius: 3px;
+	color: #252525;
+	font-size: 15px;
+}
+/*单选按钮*/
+.form_nav_list .list_nav_radio {
+	float: left;
+}
+.form_nav_list .list_nav_radio li {
+	float: left;
+	border: none;
+}
+.form_nav_list .list_nav_radio li label{
+	float: left;
+	width: 60px;
+	height: 30px;
+	color: #000;
+	font-size: 15px;
+	line-height: 30px;
+	text-align: center;
+	margin-top: 10px;
+	margin-left: 1.5%;
+	background: #fff;
+	border: 1px solid;
+	border-color: #85878a;
+	border-radius: 3px;
+}
+.form_nav_list .list_nav_radio li .checked{
+	color: #fff;
+	background: #e84c3d;
+	border-color: #e84c3d;
+}
+
+/*下拉框选择前*/
+.form_nav_list .list_nav_select1 {
+	width: 92px;
+	height:30px;
+	/*去除基础样式*/
+	appearance:none;
+	-moz-appearance:none;
+	-webkit-appearance:none;
+	/*去除基础样式*/
+	border:1px solid #85878a;
+	background: url("https://img.utiexian.com/wechat/common/select1.png") no-repeat;
+	background-size: 100% auto;
+	background-position: 0 0;
+	font-size:15px;
+	color:#333333;
+	text-align: center;
+	text-indent: 15px;
+	border-radius:3px;
+	margin-top: 10px;
+}
+/*下拉框选择时*/
+.form_nav_list .list_nav_select1:focus {
+	background: url("https://img.utiexian.com/wechat/common/select1.png") no-repeat;
+	background-size: 100% auto;
+	background-position: 0 -30px;
+}
+/*下拉框选择后*/
+.form_nav_list .list_nav_select1:after {
+	background: url("https://img.utiexian.com/wechat/common/select1.png") no-repeat;
+	background-size: 100% auto;
+	background-position: 0 0;
+}
+
+/*背书加减*/
+.form_nav_list .list_nav_endorse{
+	float: left;
+	width: 110px;
+	height: 30px;
+	background: url("https://img.utiexian.com/wechat/recite/endorse.png") no-repeat center;
+	background-size: 100% auto;
+	margin-top: 10px;
+}
+.form_nav_list .list_nav_endorse input{
+	width: 50px;
+	border: 0;
+	text-align: center;
+	line-height: 28px;
+	background: none;
+}
+.form_nav_list .list_nav_endorse .reduce{
+	width: 30px;
+	height: 30px;
+}
+.form_nav_list .list_nav_endorse .reduce .jian{
+	width: 15px;
+	margin-top: 14px;
+	margin-left: 7px;
+}
+.form_nav_list .list_nav_endorse .add{
+	width: 30px;
+	height: 30px;
+}
+.form_nav_list .list_nav_endorse .add .jia{
+	width: 15px;
+	margin-top: 8px;
+	margin-left: 7px;
+}
+
+/*上传图片*/
+.form_nav_list .list_nav_upload{
+	width: 100%;
+	height: 185px;
+	border: 0;
+	padding-top: 5px;
+	background: #ffffff;
+}
+.list_nav_upload .upload img.photo{
+	width: 181px;
+	height: 180px;
+	border: 0;
+}
+.list_nav_upload .upload{
+	position: absolute;
+	width: 181px;
+	height: 180px;
+	margin-left: 5%;
+	background: url("https://img.utiexian.com/wechat/common/upload.jpg") no-repeat center;
+	background-size: 100% auto;
+	border: 0;
+}
+.upload a.upload-photo{
+	display: block;
+	width: 181px;;
+	height: 180px;;
+	overflow: hidden;
+	position:absolute;
+	top:0;
+}
+
+/*协议复选按钮*/
+.TXchecked {
+	width: 13px;
+	height: 13px;
+	cursor: pointer;
+	text-align: center;
+	margin-top: 3px;
+	margin-right: 5px;
+	background-image: url(https://img.utiexian.com/wechat/common/checkbox.png);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+}
+.on_check {
+	background-position: 0 -14px;
+}
+.radioclass {
+	opacity: 0;
+	cursor: pointer;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+}/*协议复选按钮*/
+
+
+.form_nav_interest{
+	float: left;
+	min-width: 320px;
+	width: 100%;
+	margin-top: 1.5%;
+	margin-bottom: 1.5%;
+}
+.interest{
+	width: 49.5%;
+	font-size: 15px;
+	text-align: center;
+}
+.interest_name{
+	line-height: 30px;
+}
+.interest_maney{
+	color: #ff0000;
+}
+
+/*联行号下拉框选择前*/
+.form_nav_list .list_nav_select2 {
+	width: 164px;
+	height:30px;
+	/*去除基础样式*/
+	appearance:none;
+	-moz-appearance:none;
+	-webkit-appearance:none;
+	/*去除基础样式*/
+	border: none;
+	/*border:1px solid #85878a;*/
+	background: url("https://img.utiexian.com/wechat/common/select2.png") no-repeat;
+	background-size: 100% auto;
+	background-position: 0 0;
+	font-size:15px;
+	color:#333333;
+	text-align: center;
+	text-indent: 10px;
+	border-radius:3px;
+	margin-top: 10px;
+	padding-right: 34px;
+}
+/*下拉框选择时*/
+.form_nav_list .list_nav_select2:focus {
+	background: url("https://img.utiexian.com/wechat/common/select2.png") no-repeat;
+	background-size: 100% auto;
+	background-position: 0 -30px;
+}
+/*下拉框选择后*/
+.form_nav_list .list_nav_select2:after {
+	background: url("https://img.utiexian.com/wechat/common/select2.png") no-repeat;
+	background-size: 100% auto;
+	background-position: 0 0;
+}
+
+
+/*查询*/
+.chaxun{
+	padding: 0 4%;
+}
+.chaxun ul{
+	padding: 10px 0 1.5% 0;
+}
+.chaxun ul li{
+	float: left;
+	padding: 5px 10px;
+	margin-left: 1.5%;
+	margin-bottom: 10px;
+	color: #85878a;
+	border: 1px dashed #85878a;
+	border-radius: 3px;
+}

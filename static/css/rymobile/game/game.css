@@ -1,0 +1,344 @@
+@charset "utf-8";
+a {
+	text-decoration: none;
+	color: transparent;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent;
+}
+a:focus {
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent;
+}
+html, body {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background: #811117;
+	font-size: 12px;
+}
+body:before {
+	content: '';
+	display: block;
+	height: 1px;
+	overflow: hidden;
+	margin: 0 0 -1px;
+}
+img {
+	width: 100%;
+	height: auto;
+}
+.wrapper {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	max-width: 640px;
+	margin: 0 auto;
+	background: url("https://img.utiexian.com/rymobile/game/bg.jpg") repeat-x;
+	background-size: 100% auto;
+}
+@-webkit-keyframes zindexAN { 0% {
+opacity: 1;
+}
+}
+/***** start *****/
+.s1 {
+	background: url("https://img.utiexian.com/rymobile/game/ks.jpg")no-repeat;
+	background-size: 100% auto;
+	position:absolute;
+	top:0px;
+	padding-bottom:1000px
+}
+.s1 h1 {
+	width: 100%;
+	background: url("https://img.utiexian.com/rymobile/game/s1-0.png") no-repeat;
+	background-size: 100% auto;
+	position:relative;
+	top:30px;
+	margin:-30px auto 0
+}
+.s1 div {
+	width: 86%;
+	padding: 1em;
+	margin: 3px auto 0;
+	background: rgba(255,255,255,0.2);
+	color: #FFF;
+	line-height: 1.2em;
+	position: relative;
+}
+.s1 div h4 {
+	font-size: 1.2em;
+	margin-bottom: .5em;
+	text-align: center;
+}
+.s1 div p {
+	padding-left: .6em;
+	font-size: 0.9em;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+.s1 div p em {
+	float: left;
+	width: 5em;
+	margin-left: -1em;
+}
+.s1 menu {
+	text-align: center;
+	margin-top:80%;
+}
+.s1 menu a {}
+.btn1 {
+	display: inline-block;
+	overflow: hidden;
+	width: 56%;
+	height:100%;
+	display: block;
+	margin: 0 auto;
+	line-height: 1.5em;
+	text-align: center;
+	font-size: 3em;
+	color: #0b8;
+	text-shadow: -1px -1px 0px rgba(0,0,0,0.45);
+	background: url("https://img.utiexian.com/rymobile/game/kssq.png") no-repeat;
+	background-size: 100% 100%;
+}
+.s1 footer {
+	text-align: center;
+	color: #FFF;
+	font-size: 0.7em;
+}
+.s1 h1 { -webkit-animation: startAN1 0.3s backwards; }
+.s1 menu { -webkit-animation: startAN1 0.3s 0.15s backwards; }
+@-webkit-keyframes startAN1 { 0% {
+-webkit-transform: scale(1.5);
+opacity: 0;
+}
+ 100% {
+-webkit-transform: scale(1);
+opacity: 1;
+}
+}
+.s1 div { -webkit-animation: startAN2 0.5s 0.3s backwards; }
+@-webkit-keyframes startAN2 { 0% {
+-webkit-transform: translateY(50px);
+opacity: 0;
+}
+ 100% {
+-webkit-transform: translateY(0px);
+opacity: 1;
+}
+}
+/***** game *****/
+.s2 { }
+.s2 h4 {
+	width: 200px;
+	height: 50px;
+	margin: 5px auto 0;
+	z-index: 10;
+}
+.s2 h5 {
+	margin: 0 auto;
+	width: 144px;
+	height: 67px;
+	overflow: hidden;
+	background: url("https://img.utiexian.com/rymobile/game/s2-1.png") no-repeat;
+	background-size: 100% auto;
+	text-align: center;
+	color: #f42;
+	font-weight: 100;
+	font-size: 1.5em;
+	line-height: 38px;
+	position:relative;
+	z-index:100;
+}
+.s2 h5 span {
+	display: block;
+	margin: -4px 0 0;
+	padding-left: 30px;
+	white-space: nowrap;
+}
+.s2 h6 {
+	text-align: center;
+	color: rgba(255,255,255,0.8);
+	font-weight: 100;
+	font-size: 1.2em;
+	line-height: 1.2em;
+}
+.s2 h6 sup {
+	display: block;
+	overflow: hidden;
+	width: 24px;
+	height: 22px;
+	margin: 0 auto;
+	background: url("https://img.utiexian.com/rymobile/game/s2-2.png") no-repeat center 0;
+	background-size: 100% auto;
+	opacity: 0.6;
+}
+.s2 dl {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	-webkit-animation: zindexAN 1s infinite;
+}
+.s2 dt, .s2 dd {
+	position: absolute;
+	top: 120px;
+	left: 0;
+	width: 100%;
+	height: 90%;
+}
+.s2 dt {
+	z-index: 2;
+	background: url("https://img.utiexian.com/rymobile/game/s2-3.png") no-repeat center bottom;
+	background-size: 100% auto;
+	bottom: -1px;
+	-webkit-animation: zindexAN 1s infinite;
+}
+.s2 dd { z-index: 1; }
+.s2 dd q, .s2 dt span {
+	display: block;
+	margin: 0 auto ;
+	height: 100%;
+	width: 100%;
+}
+.s2 dd q {
+	position: absolute;
+	left: 0;
+}
+.s2 h6 sup { -webkit-animation: arrowAN 0.7s infinite linear; }
+@-webkit-keyframes arrowAN { 0% {
+-webkit-transform: translateY(8px);
+opacity: 0;
+}
+ 40% {
+-webkit-transform: translateY(0px);
+opacity: 0.6;
+}
+ 80% {
+-webkit-transform: translateY(-8px);
+opacity: 0;
+}
+ 100% {
+-webkit-transform: translateY(-8px);
+opacity: 0;
+}
+}
+/***** result *****/
+.s3 { }
+.s3 dl {
+	position: relative;
+	text-align: center;
+}
+.s3 dt {
+	z-index: 1;
+	-webkit-animation: zindexAN 1s infinite;
+}
+.s3 dt span {
+	position: relative;
+	top:-20px;
+	margin:60px 20% -95px 38%;
+	display: block;
+	width: 144px;
+	height: 30px;
+	overflow: hidden;
+	background: url("https://img.utiexian.com/rymobile/game/s3-1.png") no-repeat;
+	background-size: 100% auto;
+	text-align: center;
+	color: #f42;
+	font-weight: bold;
+	font-size: 1.5em;
+	line-height: 28px;
+	text-indent: 20px;
+}
+.j50 {
+	width: 100%;
+	height: 70%;
+}
+
+.s3 menu { text-align: center; }
+.s3 menu a {
+	display: inline-block;
+	text-align: center;
+	color: #fff;
+	margin: 1em 15px 0;
+}
+.s3 menu a:before {
+	content: '';
+	display: block;
+	height: 43px;
+	background: url("https://img.utiexian.com/rymobile/game/s3-4.png") no-repeat center 0;
+	background-size: 43px auto;
+	margin-bottom: 3px;
+}
+.s3 menu .an2:before { background-position: center -51px; }
+.s3 menu .an3:before { background-position: center -101px; }
+.s3 h5, .s3 h6 {
+	text-align: center;
+	margin: 1.5em auto;
+}
+.btn3, .btn4 {
+	display: inline-block;
+	overflow: hidden;
+	width: 117px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	font-size: 1.4em;
+	color: #0b8;
+	text-shadow: -1px -1px 0px rgba(0,0,0,0.45);
+	background: url("https://img.utiexian.com/rymobile/game/btn1.png") no-repeat;
+	background-size: 100% auto;
+}
+.btn4 {
+	background-image: url("https://img.utiexian.com/rymobile/game/btn2.png");
+	color: #fff;
+	text-shadow: -1px -1px 0px rgba(0,0,0,0.25);
+}
+
+*/@-webkit-keyframes rayAN { 0% {
+-webkit-transform: translateX(0px);
+opacity: 1;
+}
+ 100% {
+-webkit-transform: translateX(130px);
+opacity: 0;
+}
+}
+.share {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.7);
+}
+.share img {
+	width: 70%;
+	float: right;
+}
+
+/*****iphone4修正*****/
+@media screen and (max-width:320px) and (max-height:480px) and (-webkit-device-pixel-ratio : 2) {
+.s1 h1 { margin-top: -30px; }
+.s1 menu a {
+	display: inline-block;
+	margin: 12px 5px;
+}
+.s2 h5 { margin-top: 15px; }
+.s3 dl { margin-top: -30px; }
+.s3 menu { margin: -10px 0; }
+.s5 h3 {
+	padding-top: 12px;
+	margin-bottom: -60px;
+}
+.s5 dl { padding-top: 12px; }
+.s5 dt, .s5 dd { padding: 3px 0 1px; }
+.s6 h3 { margin: 20px auto 10px; }
+.s7 h3 { margin: 5px auto -10px; }
+.s7 form { margin: 3px 0 12px; }
+}

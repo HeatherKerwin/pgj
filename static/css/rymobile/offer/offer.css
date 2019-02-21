@@ -1,0 +1,124 @@
+/*@charset "utf-8";*/
+/* CSS Document */
+html {
+	font-size:62.5%;/*10 ÷ 16 × 100% = 62.5%*/
+}
+body {
+	margin: 0px;
+	padding: 0px;
+	font-family:Helvetica, "Microsoft YaHei", Arial, Helvetica, sans-serif;
+	background-color: #fff;
+	-webkit-text-size-adjust: none ;
+	font-size:1.4rem;/*1.4 × 10px = 14px */
+	color:#2D2D2D;
+}
+.fl{float:left;}
+/*header*/
+.header{
+	height:4rem;
+	background:#d43c33;
+	z-index: 10;
+}
+.new-a-back {
+	height: 4rem;
+	position: absolute;
+	width: 4rem;
+}
+.new-a-back span {
+	background:url() no-repeat 0px 0px / 18px 18px;
+	display:block;
+	height: 3.5rem;
+	text-indent:1.7rem;
+	width: 5rem;
+	color:#FFF;
+	padding-top: .8rem;
+	margin-left: -1rem;
+}
+.new-a-back span img {
+	width: 2.5rem;
+}
+.header h2 {
+	color: #fff;
+	font-size: 1.6rem;
+	font-weight: normal;
+	height: 4rem;
+	line-height: 4rem;
+	text-align: center;
+	font-weight:bold;
+}
+
+.offer_con{
+	margin: 2rem 3%;
+	text-align:center;
+}
+
+.offer_title{
+	font-size: 1.6rem;
+	margin-top: 2rem;
+}
+
+table.offer_form{
+	width:100%;
+	font-size:1.4rem;
+	text-align: center;
+	border: #E7E7E7 .1rem solid;
+	border-collapse: collapse;
+	margin-top: 1.5rem;
+}
+table.offer_form tr{
+	width:100%;
+	height: 3rem;
+	line-height:3rem;
+}
+table.offer_form tr td{
+	width:12%;
+}
+.border_b{
+	border-bottom: .1rem #E7E7E7 solid;
+}
+.border_r{
+	border-right: .1rem #E7E7E7 solid;
+}
+
+/*登录*/
+.login_t{
+	margin:4rem 4%;
+}
+/*输入*/
+.phone , .captcha{
+	border-bottom:#E7E7E7 .1rem solid;
+	margin-top:1rem;
+	height:3rem;
+	line-height:3rem;
+	padding-bottom:.5rem;
+}
+.phone input , .captcha input{
+	border:0;
+	background:none;
+	height:3rem;
+	line-height:3rem;
+}
+.w_40{width:40%;}
+.w_50{width:50%;}
+.w_20{width:20%;}
+.yzm_t{
+	width:8rem;
+}
+.yzm{
+	background:#D43C33;
+	color:#FFFFFF;
+	border-radius:.4rem;
+	padding:.7rem ;
+}
+
+input.offer_btn{
+	width: 90%;
+	margin:1rem 5% 5rem;
+	background: #D43C33;
+	height: 3.3rem;
+	line-height: 3.3rem;
+	font-size: 2rem;
+	color: #FFFFFF;
+	border-radius: .5rem;
+	border: none;
+}

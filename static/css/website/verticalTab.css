@@ -1,0 +1,46 @@
+@charset "UTF-8";
+/**
+ *
+ * @authors Your Name (you@example.org)
+ * @date    2019-01-23 16:41:46
+ * @version $Id$: verticalTab.css 01;
+ */
+.verticalTab {
+
+}
+.verticalTab input.verticalTabBtn {
+  display: none;
+}
+.verticalTab a {
+  display: block;
+  width: 250px;
+  height: 50px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  vertical-align: middle;
+  margin-top: 20px;
+}
+.verticalTab a:hover label,
+.verticalTab a.checked label{
+  font-weight: bold;
+  background: #f05344;
+  border: 0.5px solid #d43c33;
+  box-shadow: 3px 3px 8px #d43c33;
+  color: #fafafa;
+}
+.verticalTab a label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: 50px;
+  background: #fff;
+  color: #999999;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 0.5px solid #e0e0e0;
+  box-shadow: 2px 2px 3px #e0e0e0;
+  cursor: pointer;
+  box-sizing: border-box;
+}

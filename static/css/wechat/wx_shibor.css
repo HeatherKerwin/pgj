@@ -1,0 +1,99 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{background: #FFFFFF;}
+/*shibor*/
+/*选择时间*/
+.chose_time{
+	margin: 2% 4%;
+	height: 40px;
+	border: #E7E7E7 solid 1px;
+	border-radius: 5px;
+}
+.chose_time .left{
+	float: left;
+	width: 30%;
+}
+.chose_time .right{
+	float: right;
+	width: 30%;
+}
+/*选择时间按钮*/
+img.leftday , img.rightday{
+	width: 30px;
+	height:auto;
+	margin: 5px;
+}
+/*时间显示*/
+.chose_time .dayshow{
+	float: left;
+	width: 40%;
+	font-size: 20px;
+	line-height: 40px;
+	text-align: center;
+}
+
+
+/*shibor*/
+.shibor{
+	margin: 2% 0;
+}
+.shibor_top{
+	height: 40px;
+	line-height: 40px;
+	background: #D43C33;
+	color: #FFFFFF;
+	font-size: 16px;
+	text-align: center;
+}
+ul.shibor_nav{
+	height: auto;
+}
+ul.shibor_nav li{
+	height: 40px;
+	line-height: 40px;
+	font-size: 15px;
+	border-bottom: #E7E7E7 solid 1px;
+	text-align: center;
+}
+/*col*/
+.shibor_col{
+	float: left;
+	width: 33.3%;
+}
+.termDiv {
+	width: 40%;
+	float: left;
+}
+/*期限图标*/
+img.termIcon {
+	width: 22px;
+	height: 14px;
+	margin: 12px 0;
+}
+.termText {
+	float: left;
+	width: 60%;
+	text-align: left;
+}
+/*涨跌图标*/
+ .changeDiv{
+	width: 50%;
+	float: left;
+}
+img.changeIcon{
+	float: right;
+	width: 18px;
+	height: 14px;
+	margin-top: 13px;
+	margin-right: 10px;
+}
+.changeText{
+	float: left;
+	width: 50%;
+	text-align: left;
+}
+
+.text_c1{
+	color: #7790fe;
+}

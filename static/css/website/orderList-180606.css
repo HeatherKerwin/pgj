@@ -1,0 +1,313 @@
+/*搜索*/
+.searchCon{
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 35px;
+}
+.searchCon ul , .searchCon .searchRow{
+    overflow: hidden;
+}
+.searchCon ul li{
+    padding: 5px 0;
+    overflow: hidden;
+}
+.searchCon ul li:after , .searchCon ul li .searchDate:after ,.searchCon .searchRow:after ,.searchCon .searchRow .searchCol:after{
+    clear: both;
+    height: 0;
+}
+.searchCon .searchRow .searchCol{
+    float: left;
+    margin-right: 15px;
+}
+.searchCon ul li .searchTitle{
+    float: left;
+    display: block;
+    width: 80px;
+    font-weight: 600;
+}
+.searchCon .searchRow .searchCol .searchTitle{
+    float: left;
+    display: block;
+    width: 90px;
+    font-weight: 600;
+    text-align: center;
+}
+/*搜索-贴现时间*/
+.searchCon .searchRow .searchCol .searchDate , .searchCon .searchRow .searchCol .searchDate label, .searchCon .searchRow .searchCol .searchDate span{
+    float: left;
+}
+.searchCon .searchRow .searchCol .searchDate span{
+    margin: 0 5px;
+}
+.searchCon .searchRow .searchCol .searchDate label{
+    width: 125px;
+    position: relative;
+    cursor: pointer;
+}
+.searchCon .searchRow .searchCol .searchDate label input[name=searchDate]{
+    position: relative;
+    background: #ffffff;
+    width: 90px;
+    height: 26px;
+    line-height: 26px;
+    border: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+.searchCon .searchRow .searchCol .searchDate label img{
+    width: 30px;
+    height: 27px;
+    position: absolute;
+    right: 0px;
+    top: 5px;
+}
+/*搜索-票据金额*/
+.searchCon .searchRow .searchCol .searchMoney , .searchCon .searchRow .searchCol .searchMoney label , .searchCon .searchRow .searchCol .searchMoney span ,.searchCon .searchRow .searchCol.searchMoney .searchBtn{
+    float: left;
+    display: block;
+}
+.searchCon .searchRow .searchCol .searchMoney label input[type=number]{
+    width: 90px;
+    margin: 0 5px;
+    height: 26px;
+    line-height: 26px;
+    border: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+.searchCon .searchRow .searchCol button{
+    width: 100px;
+    height: 34px;
+    border: 0px;
+    border-radius: 5px;
+    text-align: center;
+    margin-left: 10px;
+}
+.searchCon .searchRow .searchCol button.searchBtn{
+    color: #ffffff;
+    background: #e84c3d;
+}
+.searchCon .searchRow .searchCol button.clearBtn{
+    color: #e84c3d;
+    background: #ffffff;
+    border: 1px solid #e84c3d;
+    box-sizing: border-box;
+}
+/*new end*/
+
+
+/*订单列表样式*/
+.orderList{
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 1px 1px #ddd;
+    box-sizing: border-box;
+}
+.orderList-md{
+    width: 1200px;
+}
+.orderList-sm{
+    width: 1000px;
+}
+.orderList-md .orderList_con ul.listLabel ,
+.orderList-md .orderDetailCon .detailHead,
+.orderList-md .detailHead .ticketType ,
+.orderList-md .detailHead .detailHead_con
+{
+    height: 43px;
+    line-height: 43px;
+}
+.orderList-sm .orderList_con ul.listLabel ,
+.orderList-sm .orderDetailCon .detailHead,
+.orderList-sm .detailHead .ticketType ,
+.orderList-sm .detailHead .detailHead_con {
+    height: 37px;
+    line-height: 37px;
+}
+
+.orderList .orderList_con{
+    padding: 20px;
+}
+/*订单标签*/
+.orderList .orderList_con ul.listLabel{
+    overflow: hidden;
+    font-size: 15px;
+    color: #717583;
+    text-align: center;
+    background: #faf7f7;
+    border: 0.5px solid #e0e0e0;
+    box-sizing: border-box;
+}
+.orderList .orderList_con ul.listLabel:after{
+    clear: both;
+    height: 0px;
+}
+.orderList .orderList_con ul.listLabel li{
+    float: left;
+}
+
+/*订单详情列表*/
+.orderList .orderList_con ul.orderList_show{
+    position: relative;
+    width: 100%;
+    height: auto;
+    font-size: 15px;
+    color: #666666;
+    border: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
+/*回头票*/
+.orderList .orderList_con ul.orderList_show li .returnTicket{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    margin: auto;
+    width: 160px;
+    height: 132px;
+    background: url("https://img.utiexian.com/website/paperMarket/returnTicket.png") center no-repeat;
+    background-size: 100% 100%;
+}
+
+/*头部下单信息*/
+.orderList .orderList_con ul.orderList_show li .orderDetailCon .detailHead{
+    position: relative;
+    display: block;
+    width: 100%;
+    background: #f9f9f9;
+    border-bottom: 1px solid #e0e0e0;
+    box-sizing: border-box;
+}
+/*订单属性-电票*/
+.orderList .orderList_con ul.orderList_show li .orderDetailCon .detailHead .ticketType{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.orderList .orderList_con ul.orderList_show li .orderDetailCon .detailHead .ticketType img{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+/*下单信息*/
+.detailHead .detailHead_con{
+    position: absolute;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+}
+.detailHead .detailHead_con:after , .detailHead .detailHead_con .detailHead_right:after{
+    clear: both;
+    height: 0;
+}
+.detailHead .detailHead_con .detailHead_left{
+    margin-left: 30px;
+}
+.detailHead .detailHead_con .detailHead_right{
+    margin-right: 40px;
+    font-size: 13px;
+}
+.detailHead .detailHead_con .detailHead_left , .detailHead .detailHead_con .detailHead_right div{
+    float: left;
+}
+.detailHead .detailHead_con .detailHead_right div:first-child{
+    font-weight: bold;
+    color: #e84c3d;
+    font-size: 16px;
+}
+.detailHead .detailHead_con .detailHead_right{
+    float: right;
+    overflow: hidden;
+    height: 37px;
+}
+.detailHead .detailHead_con .detailHead_right div{
+    margin-left: 10px;
+}
+.detailHead .detailHead_con .detailHead_right div img{
+    top: 5px;
+    position: relative;
+    margin-right: 5px;
+}
+/*头部下单信息end*/
+
+/*订单详细信息*/
+.orderList .orderList_con ul.orderList_show li .orderDetailCon .detailCon{
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+.orderDetailCon .detailCon .detailInformation {
+    height: 100px;
+    margin: 6px 0px ;
+    padding-right: 5px;
+    box-sizing: border-box;
+    border-right: 1px dashed #e0e0e0;
+}
+.orderList-md  .orderDetailCon .detailCon .detailInformation {
+    width: 956px;
+}
+.orderList-sm  .orderDetailCon .detailCon .detailInformation {
+    width: 810px;
+}
+.orderList-md .orderDetailCon .detailCon .operation{
+    width: 200px;
+}
+.orderList-sm .orderDetailCon .detailCon .operation{
+    width: 140px;
+}
+.orderDetailCon .detailCon .operation a{
+    display: block;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 5px;
+    background: #ffffff;
+    text-align: center;
+    margin: 15px auto;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.orderDetailCon .detailCon .operation a:hover{
+    box-shadow: 1px 1px 1px #999;
+}
+.orderDetailCon .detailCon .operation a.redBtn{
+    border: 1px solid #e84c3d;
+    color: #e84c3d;
+}
+.orderDetailCon .detailCon .operation a.grayBtn{
+    border: 1px solid #e0e0e0;
+    color: #666666;
+}
+.orderDetailCon .detailCon .detailInformation , .orderDetailCon .detailCon .operation{
+    float: left;
+}
+.orderDetailCon .detailCon .detailInformation .ticketsValue{
+    width: 100%;
+    overflow: hidden;
+    height: 50px;
+    line-height: 50px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.orderDetailCon .detailCon .detailInformation .ticketsValue:after{
+    clear: both;
+    height: 0;
+}
+.orderDetailCon .detailCon .detailInformation .ticketsValue div{
+    float: left;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 15px;
+}
+.orderDetailCon .detailCon .detailInformation .remarks{
+    height: 50px;
+    line-height: 50px;
+    padding: 0px 20px;
+}

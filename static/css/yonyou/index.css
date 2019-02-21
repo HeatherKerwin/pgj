@@ -1,0 +1,260 @@
+*{margin:0;padding:0;}
+
+body{
+    background: #efeded;
+    font-family:Microsoft YaHei;
+    color: #2d2d2d;
+}
+ol,ul {list-style:none}
+a{text-decoration:none}
+a.blue:hover{color: #97baff;}
+a, button ,select{
+    cursor: pointer;
+}
+input, button, select, textarea {
+    outline: none;/*去掉chrome浏览器自带的点击input框出现边框情况*/
+    -webkit-appearance: button;/*使元素标签看起来像个按钮样式，意思定义了按钮样式*/
+    -webkit-appearance: none;/*去掉按钮样式*/
+    border: none;/*去掉圆角*/
+}
+input:focus { outline: none; } /*控制聚焦时不出现蓝色边框*/
+textarea{resize:none}
+input[type=text] ,input[type=number] ,input[type=date]{
+    font-size: 14px;
+    padding: 8px 5px;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    box-sizing: border-box;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+input[type="number"]{
+    -moz-appearance: textfield;
+}
+input[type=button] , button{
+    font-size: 14px;
+    padding: 8px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+select{
+    text-indent: 10px;
+}
+
+/*常用单个样式*/
+.ce84c3d{color: #e84c3d !important}
+.cD43C33{color: #D43C33 !important}
+.cbfbfbf{color: #bfbfbf !important}
+.c049e5b{color: #049e5b !important}
+
+/*订单表格不同票据标签栏宽度*/
+.w70{width: 70px} /*商票：背书、保证金*/
+.w80{width: 80px}
+.w90{width: 90px} /*银纸票：背书、计息天数、保证金*/
+.w100{width: 100px} /*商票：票面金额*/
+.w120{width: 120px} /*银电票：票面金额、保证金*/
+.w140{width: 140px} /*票面金额*/
+.w150{width: 150px} /*银纸票：到期日期*/
+.w220{width: 220px} /*票据订单号*/
+.w200{width: 200px} /*商票：承兑企业*/
+.w210{width: 210px} /*商票：商票订单号*/
+.w308{width: 308px} /*票据特征*/
+
+/*容器居中*/
+.wrap{
+    width: 1200px;
+    height: auto;
+    min-height: 700px;
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    z-index: 2;
+    margin-left: -600px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    display: block;
+}
+.wrap:after{
+    clear: both;
+    display: block;
+}
+
+/*左侧容器*/
+.leftCon{
+    float: left;
+    position: relative;
+    width: 200px;
+    min-height: 700px;
+    box-shadow: 0 1px 1px #ddd;
+    box-sizing: border-box;
+    background: #f9f9f9;
+}
+/*银、纸票tab*/
+.leftCon ul.typeTab{
+    width: 160px;
+    height: auto;
+    margin: 20px;
+    background: #f9f9f9;
+}
+.leftCon ul.typeTab li{
+    width: 160px;
+    height: 40px;
+    margin: 10px 0;
+}
+.leftCon ul.typeTab li a{
+    width: 100%;
+    height: 100%;
+    color: #2d2d2d;
+    background: #FFFFFF;
+    border: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    border-radius: 1px;
+    text-align: center;
+    line-height: 40px;
+    display: block;
+}
+.leftCon ul.typeTab li a label{
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: pointer;
+}
+.leftCon ul.typeTab li:hover a{
+    color: #FFFFFF;
+    background: #e84c3d;
+    border: 1px solid #e84c3d;
+    box-shadow: 1px 1px 1px #D43C33;
+}
+.leftCon ul.typeTab li a.checked{
+    color: #FFFFFF;
+    background: #e84c3d;
+    border: 1px solid #e84c3d;
+    box-shadow: 1px 1px 1px #D43C33;
+}
+/*右侧容器*/
+.rightCon{
+    width: 1000px;
+    float: left;
+    position: relative;
+}
+
+/*订单-横栏选择tab*/
+ul.orderTab{
+    height: auto;
+    background: #ffffff;
+    overflow: hidden;
+    border-bottom: 1px solid #e0e0e0;
+    box-sizing: border-box;
+}
+ul.orderTab:after{
+    content: '';
+    display: block;
+    clear: both;
+    height: 0px;
+}
+ul.orderTab li{
+    float: left;
+    display: block;
+    width: 150px;
+    height: 50px;
+}
+ul.orderTab li:last-child a{
+    border-right: 0px;
+}
+ul.orderTab li a{
+    font-size: 18px;
+    height: 50px;
+    line-height: 48px;
+    text-align: center;
+    border-right: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    color: #2d2d2d;
+    display: block;
+}
+ul.orderTab li a:hover{
+    color: #e84c3d;
+    border-bottom: 2px solid #e84c3d;
+    display: block;
+}
+ul.orderTab li a.checked{
+    color: #e84c3d;
+    border-bottom: 2px solid #e84c3d;
+    display: block;
+}
+ul.orderTab li a label{
+    display: block;
+    cursor: pointer;
+}
+ul.orderTab li a label input[type=radio].orderTabBtn{
+    display: none;
+}
+
+/*右边距-虚线*/
+.RrightLine {
+    background: url(https://img.utiexian.com/website/img/Rright.png) right;
+    background-repeat: repeat-y;
+    background-size: auto;
+}
+/*下边距-虚线*/
+.BottomLine {
+    background: url(https://img.utiexian.com/website/img/xuxian.png) bottom no-repeat;
+    background-size: 100% auto;
+}
+
+
+/*图标单选按钮*/
+
+/*图标单选按钮end*/
+input[type=radio].ryRadio{
+    width: 14px;
+    height: 14px;
+    background: url("https://img.utiexian.com/yonyou/common/radioIcon.png") no-repeat;
+    background-position: 0px -14px;
+}
+input[type=radio].ryRadio:checked{
+    background-position: 0px 0px;
+}
+
+/*---文字单选按钮---*/
+ul.ryRadioCheckd{
+    float: left;
+    line-height: 27px;
+    padding-top: 10px;
+}
+ul.ryRadioCheckd li{
+    float: left;
+    display: block;
+    overflow: hidden;
+    width: 56px !important;
+    height: 27px;
+    margin-right: 20px;
+}
+ul.ryRadioCheckd li input[type=radio]{
+    display: none;
+}
+ul.ryRadioCheckd li label{
+    float: left;
+    display: block;
+    width: 56px;
+    height: 27px;
+    color: #2d2d2d;
+    line-height: 27px;
+    text-align: center;
+    border-radius: 3px;
+    border: 0px;
+    background: #ffffff;
+    cursor: pointer;
+}
+/*鼠标滑过效果*/
+ul.ryRadioCheckd li label:hover{
+    background: #fabcb6;
+    color: #ffffff;
+}
+/*鼠标点击选中效果*/
+ul.ryRadioCheckd li label.checked{
+    background: #e84c3d;
+    color: #ffffff;
+}
+/*---文字单选按钮---*/

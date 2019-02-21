@@ -1,0 +1,117 @@
+.reviewTab {
+  width: 100%;
+  min-height: 165px;
+}
+.reviewTab div {
+  float: left;
+  width: 290px;
+  height: 165px;
+  border: none;
+  border-radius: 3px;
+  background: #fff;
+  box-shadow: 3px 5px 10px rgba(6 , 0 , 1 , 0.04);
+  padding: 35px 0;
+  box-sizing: border-box;
+  margin-right: 13px;
+  text-align: center;
+  cursor: pointer;
+}
+.reviewTab div:hover {
+  background: #fafafa;
+  border: 1px solid #f9f9f9;
+}
+.reviewTab div:hover img {
+/*  animation: shake 1s;
+  -o-animation: shake 1s;
+  -webkit-animation: shake 1s;
+  -moz-animation: shake 1s;*/
+  /*color: #ddd;*/
+
+   animation: shake 2.5s .15s linear infinite;
+  -moz-animation: shake 2.5s .15s linear infinite; /* Firefox */
+  -webkit-animation: shake 2.5s .15s linear infinite; /* Safari and Chrome */
+  -o-animation: shake 2.5s .15s linear infinite; /* Opera */
+}
+@keyframes shake {
+    10% {
+      transform: rotate(15deg);
+    }
+    20% {
+      transform: rotate(-10deg);
+    }
+    30% {
+      transform: rotate(5deg);
+    }
+    40% {
+      transform: rotate(-5deg);
+    }
+    50%,100% {
+      transform: rotate(0deg);
+    }
+}
+@-o-keyframes shake {
+    /* Opera */
+    10% {
+      transform: rotate(15deg);
+    }
+    20% {
+      transform: rotate(-10deg);
+    }
+    30% {
+      transform: rotate(5deg);
+    }
+    40% {
+      transform: rotate(-5deg);
+    }
+    50%,100% {
+      transform: rotate(0deg);
+    }
+}
+@-webkit-keyframes shake {
+    /* Safari 和 Chrome */
+    10% {
+      transform: rotate(15deg);
+    }
+    20% {
+      transform: rotate(-10deg);
+    }
+    30% {
+      transform: rotate(5deg);
+    }
+    40% {
+      transform: rotate(-5deg);
+    }
+    50%,100% {
+      transform: rotate(0deg);
+    }
+}
+@-moz-keyframes shake {
+    /* Firefox */
+    10% {
+      transform: rotate(15deg);
+    }
+    20% {
+      transform: rotate(-10deg);
+    }
+    30% {
+      transform: rotate(5deg);
+    }
+    40% {
+      transform: rotate(-5deg);
+    }
+    50%,100% {
+      transform: rotate(0deg);
+    }
+}
+
+.reviewTab div:last-child {
+  margin-right: 0;
+}
+.reviewTab div img {
+  width: 68px;
+  height: 68px;
+  background: none;
+}
+.reviewTab div p {
+  font-size: 18px;
+}

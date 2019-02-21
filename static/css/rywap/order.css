@@ -1,0 +1,131 @@
+/*贴现订单列表*/
+ul.orderList{
+    width: 100%;
+    height: auto;
+}
+ul.orderList li{
+    width: 100%;
+    font-size: 15px;
+    padding: 10px 16px;
+    background: #ffffff;
+    margin-bottom: 10px;
+}
+
+/*上方订单信息*/
+ul.orderList li .ordertop{
+    width: 100%;
+    height: 22px;
+    line-height: 22px;
+    margin-bottom: 9px;
+    clear: left;
+}
+.ordertop img.orderIcon{
+    float: left;
+    width: 22px;
+    height: 22px;
+    margin-right: 6px;
+}
+
+/*订单信息*/
+ul.orderList li .orderCon {
+    width: 100%;
+    background: #ffffff;
+    border: solid 1px #d9d9d9;
+    border-radius: 3px;
+    padding-left: 10px;
+}
+/*订单信息*/
+.orderCon .orderCon1{
+    width: 100%;
+    padding: 10px 10px 5px 0px;
+    border-bottom: dashed 1px #d9d9d9;
+}
+.orderCon1 ul li{
+    padding: 0px !important;
+    border-right: dashed 1px #d9d9d9;
+}
+.orderCon1 ul li:last-child{
+    border-right: none;
+}
+.orderCon1 ul li:nth-child(2){
+    padding: 0 7px !important;
+}
+.orderCon1 ul li .orderTitle{
+    color: #717583;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+/*备注*/
+.orderCon  .orderCon2{
+    padding: 10px 0;
+}
+/*机构信息*/
+.orderCon .orderCon3{
+    border-top: dashed 1px #d9d9d9;
+    padding: 6px 10px 6px 0;
+}
+.orderCon3 ul li{
+    height: 50px;
+    line-height: 25px;
+    padding: 0px !important;
+    margin-bottom: 0px !important;
+}
+.orderCon3 ul li:first-child{
+    border-right: solid 1px #d9d9d9;
+}
+.orderCon3 ul li .biaoqian{
+    float: left;
+    width: 40px;
+    font-size: 12px;
+    line-height: 15px;
+    color: #00aaf3;
+    border: solid 1px #00aaf3;
+    border-radius: 3px;
+    margin-right: 5px;
+    text-align: center;
+    margin-top: 10px;
+}
+.orderCon3 ul li a.orderTel{
+    width: 30px;
+    height: 30px;
+    margin: 10px 20px;
+    display: block;
+}
+a.orderTel img{
+    width: 30px;
+    height: 30px;
+}
+/*机构数*/
+.orderCon .orderCon4 .jigou{
+    display: block;
+    height: 35px;
+    line-height: 35px;
+    border-top: dashed 1px #d9d9d9;
+}
+.orderCon .orderCon4 .jigou img{
+    width: 10px;
+    height: 13px;
+    margin: 10px;
+}
+
+/*下方订单操作*/
+ul.orderList li .orderBtm{
+    height: 26px;
+    margin-top: 10px;
+}
+.orderBtm a input[type=button]{
+    width: 100px;
+    height: 26px;
+    color: #2d2d2d;
+    line-height: 26px;
+    margin-right: 10px;
+    border-radius: 3px;
+    border: solid 1px #85878a;
+    background: #ffffff;
+    text-align: center;
+}
+.orderBtm input[type=button].red{
+    color: #ffffff;
+    border: solid 1px #d43c33;
+    background: #d43c33;
+}

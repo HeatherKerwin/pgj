@@ -1,0 +1,65 @@
+/*��ѯ�鸴�?*/
+.form_nav_list .list_nav_select2 {
+    width: 138px;
+    height:30px;
+    /*ȥ�����ʽ*/
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    /*ȥ�����ʽ*/
+    border:1px solid #85878a;
+    background: url("https://img.utiexian.com/wechat/common/select2.png") no-repeat;
+    background-size: 100% auto;
+    background-position: 0 0;
+    font-size:15px;
+    color:#333333;
+    text-align: center;
+    text-indent: 10px;
+    border-radius:3px;
+    margin-top: 10px;
+    margin-left: 1.5%;
+}
+/*������ѡ��ʱ*/
+.form_nav_list .list_nav_select2:focus {
+    background: url("https://img.utiexian.com/wechat/common/select2.png") no-repeat;
+    background-size: 100% auto;
+    background-position: 0 -30px;
+}
+/*������ѡ���*/
+.form_nav_list .list_nav_select2:after {
+    background: url("https://img.utiexian.com/wechat/common/select2.png") no-repeat;
+    background-size: 100% auto;
+    background-position: 0 0;
+}
+
+/*��ԃ����б�*/
+.query-list{
+    min-width: 320px;
+    width: 100%;
+    margin-top: 10px;
+}
+.query-list  li {
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-top-color: #EBEBEB;
+    border-bottom-color: #EBEBEB;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+}
+.query-list  li .query-list-top{
+    height: 100px;
+    line-height: 30px;
+    font-size: 15px;
+    padding: 5px 4%;
+}
+.query-list  li .query-list-bottom{
+    height: 50px;
+    font-size: 15px;
+    line-height: 49px;
+    padding: 0 4% ;
+    border-top: 1px solid #EBEBEB;
+}
+
+.ml15{margin-left: 1.5%}

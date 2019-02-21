@@ -1,0 +1,36 @@
+body {
+  color: #666;
+  font-size: 14px;
+  background: #fafafa;
+}
+
+.text-success{
+  color: #28a745!important;
+}
+.text-danger {
+    color: #dc3545!important;
+}
+.text-primary {
+    color: #778ffd!important;
+}
+
+input[type="text"].inp-warning:focus ,
+textarea.inp-warning:focus {
+  border: 1px solid #ffc62e !important;
+  caret-color: #ffc62e !important;
+}
+input[type="text"]:focus::-webkit-input-placeholder {
+  display: none;
+}
+
+button.dangerBtn {
+  border: 1px solid #e84c3d;
+  background: #e84c3d;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 1px 2px 5px #d43c33;
+  cursor: pointer;
+}
+button.dangerBtn:hover {
+  box-shadow: 3px 5px 10px #ff7366;
+}

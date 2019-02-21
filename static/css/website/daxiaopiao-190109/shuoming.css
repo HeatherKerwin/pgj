@@ -1,0 +1,54 @@
+.liucheng {
+  width: 100%;
+  height: 150px;
+  background: #fff url('https://img.utiexian.com/website/daxiaopiao-img/liuchengBG.png') center no-repeat;
+  background-size: 1200px auto;
+  border-radius: 3px;
+  box-shadow: 1px 10px 10px rgba(6, 0, 1, 0.04);
+  padding: 50px 0 ;
+  margin-top: 20px;
+  line-height: 50px;
+  box-sizing: border-box;
+}
+.liucheng > div.liuchengTitle {
+  float: left;
+  height: 100%;
+  font-size: 18px;
+  color: #fff;
+  padding-left: 20px;
+}
+.liucheng > div.liuchengCon {
+  float: right;
+  width: 960px;
+  height: 100%;
+  font-size: 18px;
+  color: #666666;
+  margin-right: 50px;
+}
+.liucheng > div.liuchengCon > div {
+  float: left;
+  width: 25%;
+  height: 100%;
+}
+.liucheng > div.liuchengCon > div span {
+  display: inline-block;
+  font-size: 48px;
+  color: #d6d6d6;
+  margin-right: 15px;
+  vertical-align: middle;
+}
+
+.shuoming {
+
+}
+.shuoming h2 {
+  text-align: center;
+  font-size: 18px;
+  color: #2d2d2d;
+  line-height: 40px;
+  margin-bottom: 20px;
+}
+.shuoming p{
+  font-size: 16px;
+  line-height: 28px;
+}

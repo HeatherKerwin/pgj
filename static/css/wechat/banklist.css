@@ -1,0 +1,38 @@
+@charset "utf-8";
+/* CSS Document */
+.banklist-div{
+    padding: 10px 2%;
+    min-width: 320px;
+}
+.banklist-laber{
+    height: 40px;
+    line-height: 40px;
+    background: #ffffff;
+    text-indent: 2%;
+    border-bottom: 1px solid #d8d8d8;
+}
+.banklist-div ul.banklist-nav{
+}
+.banklist-div ul.banklist-nav li{
+    font-size: 15px;
+    background: #fff;
+    padding: 1.5% 2%;
+    margin-bottom: 10px;
+}
+.bank-row{
+    width: 100%;
+    line-height: 30px;
+}
+.bank-row .bank-name{
+    line-height: 30px;
+}
+.bank-row .bank-text{
+    line-height: 30px;
+    margin-left: 2%;
+}
+.bank-row a.bank-tel{
+    color: #2a27f4;
+}
+.bank-row a:hover.bank-tel{
+    color: #2623ca;
+}

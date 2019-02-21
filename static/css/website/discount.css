@@ -1,0 +1,68 @@
+@charset"utf-8";
+/*tab银票、商票、批量*/
+.TXtab li:hover{
+    color: #d43c33;
+}
+
+/*协议复选按钮*/
+.TXchecked {
+    width: 13px;
+    height: 13px;
+    cursor: pointer;
+    text-align: center;
+    background-image: url("https://img.utiexian.com/common/others/checkbox.png");
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+.on_check {
+    background-position: 0 -14px;
+}
+.radioclass {
+    opacity: 0;
+    cursor: pointer;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+}/*协议复选按钮*/
+
+/*单选radio鼠标触碰样式*/
+ul.TXcheckbox li label:hover{
+    background: #e84c3d;
+    color: #ffffff;
+}
+
+/*背书加减*/
+.TXjj1{
+    background: url("https://img.utiexian.com/website/discount/jiajian1.png") no-repeat center;
+    background-size: 100% auto;
+}
+
+/*右侧悬浮框*/
+.TXclose{
+    background: url("https://img.utiexian.com/website/discount/close1.png") center no-repeat;
+    background-size: 100%;
+}
+
+/*选择地址*/
+.chose{
+    background: url("https://img.utiexian.com/website/discount/place.png") center no-repeat;
+    background-size: 100%;
+}
+
+/*选择地址鼠标移动触发*/
+ul.bcwhite li:hover {
+    font-size: 16px;
+}
+/*.新建地址*/
+.up{
+    background: url("https://img.utiexian.com/website/discount/up.png") center no-repeat;
+    background-size: 100% 100%;
+}
+.down{
+    background: url("https://img.utiexian.com/website/discount/down.png") center no-repeat;
+    background-size: 100% 100%;
+}
+
+.answer{
+    background: url("https://img.utiexian.com/website/discount/answer.png") center no-repeat;
+    background-size: 100% 100%;
+}

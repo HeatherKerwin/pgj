@@ -1,0 +1,33 @@
+@charset"utf-8";
+
+
+/*定位图标*/
+.position{
+    background: url("https://img.utiexian.com/website/receive/position.png") center no-repeat;
+    background-size: auto;
+}
+
+
+/*价格微调加减*/
+.TXjj2{
+background: url("https://img.utiexian.com/website/receive/jiajian2.png") no-repeat center;
+background-size: 100% auto;
+}
+.TXjj3{
+	width: 200px;
+background: url("https://img.utiexian.com/website/receive/jiajian1.png") no-repeat center;
+background-size: 100% 100%;
+}
+
+.select1{
+    /*背景图*/
+    background: url("https://img.utiexian.com/website/receive/select1.png") no-repeat;
+    /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+    padding-right: 14px;
+}
+.select2{
+    /*背景图*/
+    background: url("https://img.utiexian.com/website/receive/select2.png") no-repeat;
+    /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+    padding-right: 35px;
+}

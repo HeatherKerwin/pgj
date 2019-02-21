@@ -1,0 +1,94 @@
+/** Stage container **/
+
+.connected-carousels .stage {
+	width:100%;
+	height: 500px;
+	margin: 0 auto;
+	position: relative;
+	top:0;
+}
+.connected-carousels .photo-credits {
+	position: absolute;
+	right: 15px;
+	bottom: 0;
+	font-size: 13px;
+	color: #fff;
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.85);
+	opacity: .66;
+}
+.connected-carousels .photo-credits a { color: #fff; }
+/** Navigation container **/
+
+.connected-carousels .navigation {
+	width: 605px;
+	top:410px;
+	left:100px;
+	position: relative;
+	z-index: 1002
+}
+/** Shared carousel styles **/
+
+.connected-carousels .carousel {
+	overflow: hidden;
+	position: relative;
+}
+.connected-carousels .carousel ul {
+	/*width: 20000em;*/
+	position: relative;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.connected-carousels .carousel li { float: left; }
+/** Stage carousel specific styles **/
+
+.connected-carousels .carousel-stage {
+	height: 500px;
+}
+/** Navigation carousel specific styles **/
+
+.connected-carousels .carousel-navigation {
+	height: 65px;
+	width: 463px;
+	background: rgba(0,0,0,0.4);
+	margin-left: 70px;
+}
+.connected-carousels .carousel-navigation li { cursor: pointer; }
+.connected-carousels .carousel-navigation li img {
+	width: 86px;
+	display: block;
+	margin-top:6px;
+}
+.connected-carousels .carousel-navigation li.active img {
+	border: 5px solid #d43c33;
+	border-radius: 5px;
+	margin-top: 3px;
+}
+/** Stage carousel controls **/
+.connected-carousels .stageMap{
+	position:relative;
+	top: 0;
+	width: 1000px;
+	margin: -90px auto 0;
+	z-index:10000;
+}
+.connected-carousels .prev-stage{
+	display: block;
+	background:url("https://img.utiexian.com/website/t_img/banner/arrow-left.png");
+	position: relative;
+	top: 5px;
+	width: 34px;
+	height: 51px;
+}
+.connected-carousels .next-stage {
+	display: block;
+	background:url("https://img.utiexian.com/website/t_img/banner/arrow-right.png");
+	position: relative;
+	top: 5px;
+    left: 535px;
+	width: 34px;
+	height: 51px;
+}
+.connected-carousels .prev-stage { left: 0; }
+.connected-carousels .next-stage { right: 0; }
+

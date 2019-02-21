@@ -1,0 +1,116 @@
+@charset "utf-8";
+/* CSS Document */
+a{display: block}
+.account{
+	width: 100%;
+	height: auto;
+	margin: 0.5rem 0;
+}
+.account img{
+	width: 100%;
+	height: auto;
+}
+.register1{
+	width: 80%;
+	height: 3.5rem;
+	margin: 1rem 10%;
+	border: 1px solid #2d2d2d;
+	border-radius: 0.3rem;
+}
+.register1 input[type="tel"]{
+	width: 66%;
+	height: 3.5rem;
+	font-size: 2.4rem;
+	line-height: 3.5rem;
+	border: 0;
+	background: none;
+	margin-left: 4%;
+}
+.register1 input[type="button"]{
+	width: 30%;
+	height: 3.5rem;
+	background: #f84040;
+	border-radius: 0 0.3rem 0.3rem 0;
+	border: 0;
+	color: #fff;
+	font-size: 2.8rem;
+}
+
+/*为什么选择票据管家*/
+.why{
+	width: 100%;
+	margin-top: 2em;
+}
+.why img{
+	width:100%;
+	height:auto;
+}
+.why_title{
+	width: 50%;
+	font-size: 3rem;
+	line-height: 3rem;
+	color: #f84040;
+	text-align: center;
+}
+
+.xian{
+	width: 25%;
+	height: 0.1rem;
+	background:url("https://img.utiexian.com/rymobile/xian.png") repeat-x;
+	background-size: auto 100%;
+	margin-top: 1.8rem;
+}
+.money{
+	width: 100%;
+	margin: 4% 0;
+}
+.money_title{
+	font-size: 2.8rem;
+	color: #2d2d2d;
+	text-align: center;
+}
+.money_show{
+	font-size: 4.4rem;
+	color:#f84040;
+	text-align: center;
+	margin-top: 2%;
+}
+.total ,.month{
+	width: 50%;
+}
+
+/*立即注册*/
+.register_btn1{
+	width: 80%;
+	height: 3.6rem;
+	margin: 0.5rem 10%;
+	background: #2d2d2d;
+	border:0;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 2.4rem;
+	line-height: 3.6rem;
+	box-shadow: 0.1rem 0.1rem 0.1rem #000;
+}
+
+.copyright{
+	font-size: 2rem;
+	line-height: 2.4rem;
+	color: #868686;
+	text-align: center;
+	margin-bottom: 4%;
+}
+
+/*更多*/
+.more{
+	width: 80%;
+	margin: 1rem 10%;
+	height: 3.6rem;
+	text-align: center;
+	line-height: 3.6rem;
+	font-size: 2.2rem;
+	color: #ffffff;
+	background: #2d2d2d;
+	border-radius: 0.3rem;
+	box-shadow: 0.1rem 0.1rem 0.1rem #000;
+}

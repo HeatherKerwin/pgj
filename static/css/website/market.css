@@ -1,0 +1,10 @@
+@charset"utf-8";
+
+/*tab市场信息*/
+.SCXXtab li label:hover{
+    color: #d43c33;
+}
+/*最后一条信息列表无底边*/
+ul.SCXXlist li:last-child{background: none}
+/*多行文本末尾添加...*/
+.item-desc::after {content: " ... "; bottom:5px;right:  3px;position: absolute;background-color:#fff;}

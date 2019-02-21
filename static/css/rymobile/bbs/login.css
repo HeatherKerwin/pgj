@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* CSS Document */
+
+.login_password{
+	width: 5%;
+	height: 3.4rem;
+	margin: .3rem 3.3%;
+	text-align: center;
+}
+.password_icon{
+	background: url("https://img.utiexian.com/common/others/password.png") center no-repeat;
+	background-size: 100% auto;
+}
+.login_password input{
+	width: 70%;
+	background: none;
+	border: 0;
+	font-size: 3rem;
+	line-height: 4rem;
+}

@@ -1,0 +1,25 @@
+/*问题答案背景框*/
+.problemBG{
+    background: url("https://img.utiexian.com/website/help/problemBG.png") center no-repeat;
+    background-size: 100% 100%;
+}
+/*联系客服头部背景*/
+.contactTop{
+    background: #ffffff url("https://img.utiexian.com/website/help/contactTop.png") right no-repeat;
+    background-size: auto 100%;
+}
+/*企业认证*/
+.BNS{
+    background: #ffffff url("https://img.utiexian.com/website/help/BNS.png") center no-repeat;
+    background-size: auto 100%;
+}
+/*机构认证*/
+.ORG{
+    background: #ffffff url("https://img.utiexian.com/website/help/ORG.png") center no-repeat;
+    background-size: auto 100%;
+}
+/* 票据管理使用指引*/
+.guideBG{
+    background: #ffffff url("https://img.utiexian.com/website/help/guide.png") center no-repeat;
+    background-size: auto 100%;
+}

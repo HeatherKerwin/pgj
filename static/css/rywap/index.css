@@ -1,0 +1,89 @@
+
+/*功能选择*/
+.choseIcon{
+    height: 104px;
+}
+.choseIcon ul{
+    font-size: 12px;
+    line-height: 16px;
+}
+.choseIcon ul li img{
+    margin: 19px auto 0;
+    width: 54px;
+    height: 54px;
+    vertical-align:middle;
+}
+.choseIcon ul li div{
+    margin-top: 5px;
+}
+
+/*banner*/
+.banner{
+    width: 100%;
+    height: auto;
+    margin: 10px 0 0;
+    padding: 0;
+}
+.banner img{
+    width: 100%;
+    height: auto;
+}
+
+/*公告栏*/
+.gonggao{
+    height: 126px;
+    margin-top: 10px;
+    background: #ffffff url("https://img.utiexian.com/rywap/index/gonggaolan-bg.png") top left no-repeat;
+    background-size: 45px 45px;
+}
+.allMoneyDiv , .dianpiaoDiv{
+    width: 50%;
+}
+.allMoneyDiv{
+    border-right: solid 1px #eeeeee;
+}
+/*总金额*/
+.allMoneyTitle , .dianpiaoTitle , .zhipiaoTitle{
+    margin-top: 16px;
+}
+.allMoney{
+    margin-top: 30px;
+}
+/*500万以上买断电票*/
+/*月利率*/
+.yuelilvTitle{
+    font-size: 11px;
+    line-height: 26px;
+}
+.yuelilv{
+    font-size: 13px;
+    line-height: 16px;
+}
+
+/*50万以下纸票*/
+/*月利率*/
+.nianlilvTitle{
+    font-size: 11px;
+    line-height: 26px;
+}
+.nianlilv{
+    font-size: 13px;
+    line-height: 16px;
+}
+
+/*票据指数*/
+/*标签*/
+.titleIcon{
+    height: 20px;
+    margin: 0px 8px 10px;
+}
+.titleIcon img{
+    height: 20px;
+    width: auto;
+    margin-top: -3px;
+}
+/*日历图*/
+img.rilitu{
+    width: 100%;
+    height: auto;
+}

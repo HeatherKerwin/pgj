@@ -1,0 +1,187 @@
+/*右侧红包鼠标效果*/
+.rightIcon {
+    position: fixed;
+    right: 5px;
+    top: 250px;
+    z-index: 200;
+    width:84px;
+    height:64px;
+    transition:width 1s, height 1s;
+    -moz-transition:width 1s, height 1s, -moz-transform 1s; /* Firefox 4 */
+    -webkit-transition:width 1s, height 1s, -webkit-transform 1s; /* Safari and Chrome */
+    -o-transition:width 1s, height 1s, -o-transform 1s; /* Opera */
+}
+.rightIcon:hover {
+    width:105px;
+    height:80px;
+    transform:rotateY(180deg);
+    -moz-transform:rotateY(180deg); /* Firefox 4 */
+    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+    -o-transform:rotateY(180deg); /* Opera */
+}
+
+/*弹窗背景淡入*/
+#redWindow
+{
+    animation:myfirst 1s;
+    -moz-animation:fade-in 1s;
+    -webkit-animation:fade-in 1s;
+    -o-animation:fade-in 1s;
+}
+@keyframes fade-in {
+    0% {opacity: 0;}
+    40% {opacity: 0;}
+    100% {opacity: 1;}
+}
+@-webkit-keyframes fade-in {
+    0% {opacity: 0;}
+    40% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+/*新手专享红包鼠标效果*/
+#redWindow .openRed {
+    transition:width 1s, height 1s;
+    -moz-transition:width 1s, height 1s, -moz-transform 1s; /* Firefox 4 */
+    -webkit-transition:width 1s, height 1s, -webkit-transform 1s; /* Safari and Chrome */
+    -o-transition:width 1s, height 1s, -o-transform 1s; /* Opera */
+}
+#redWindow .openRed:hover {
+    transform:scale(0.9,0.9);
+    -moz-transform:scale(0.9,0.9); /* Firefox 4 */
+    -webkit-transform:scale(0.9,0.9); /* Safari and Chrome */
+    -o-transform:scale(0.9,0.9); /* Opera */
+}
+
+/*展开红包列表滚动条*/
+#scroll-1 {
+    overflow: auto;
+}
+#scroll-1::-webkit-scrollbar {
+    width:10px;
+    height:10px;
+}
+#scroll-1::-webkit-scrollbar-button    {
+    background-color:#d9cb9f;
+}
+#scroll-1::-webkit-scrollbar-track-piece {
+    background: #d9cb9f;
+}
+#scroll-1::-webkit-scrollbar-thumb{
+    background:#fbde86;
+    border-radius:3px;
+}
+#scroll-1::-webkit-scrollbar-corner {
+    background:#feedb9;
+}
+/*红包右侧锯齿边框*/
+#redWindow .rbDashed{
+    position:relative;
+    width:30%;
+    height:100%;
+    display:inline-block;
+    border-radius: 3px 0 0 3px;
+}
+#redWindow .rbDashed:after{
+    content: "";
+    position: absolute;
+    top: -20px;
+    display: block;
+    width:10px;
+    height: 100%;
+    margin-top: 20px;
+    background-size: 20px 10px;
+}
+#redWindow .rbDashed:after{
+    right: -10px;
+    background-color: #fc4d42;
+    background-position: 100% 15%;
+    background-image: linear-gradient(-45deg, #fff 25%, transparent 25%, transparent),
+    linear-gradient(-135deg, #fff 25%, transparent 25%, transparent),
+    linear-gradient(-45deg, transparent 75%, #fff 75%),
+    linear-gradient(-135deg, transparent 75%, #fff 75%);
+}
+/* 选择红包鼠标效果  */
+#redWindow .cpH:hover{
+    border: 1px solid #fc4d42;
+    box-shadow: 2px 3px 3px #555;
+}
+
+/*关闭按钮鼠标效果*/
+#redWindow .closeBtn:hover{
+    animation: myfirst;/*动画名称*/
+    animation-duration: 1.5s;/*动画持续时间*/
+    -webkit-animation:myfirst 1.5s;/*针对webkit内核*/
+}
+@keyframes myfirst
+{
+    10% {
+        transform: rotate(15deg);
+    }
+    20% {
+        transform: rotate(-10deg);
+    }
+    30% {
+        transform: rotate(5deg);
+    }
+    40% {
+        transform: rotate(-5deg);
+    }
+    50%,100% {
+        transform: rotate(0deg);
+    }
+}
+@-moz-keyframes myfirst /* Firefox */
+{
+    10% {
+        transform: rotate(15deg);
+    }
+    20% {
+        transform: rotate(-10deg);
+    }
+    30% {
+        transform: rotate(5deg);
+    }
+    40% {
+        transform: rotate(-5deg);
+    }
+    50%,100% {
+        transform: rotate(0deg);
+    }
+}
+@-webkit-keyframes myfirst /* Safari and Chrome */
+{
+    10% {
+        transform: rotate(15deg);
+    }
+    20% {
+        transform: rotate(-10deg);
+    }
+    30% {
+        transform: rotate(5deg);
+    }
+    40% {
+        transform: rotate(-5deg);
+    }
+    50%,100% {
+        transform: rotate(0deg);
+    }
+}
+@-o-keyframes myfirst /* Opera */
+{
+    10% {
+        transform: rotate(15deg);
+    }
+    20% {
+        transform: rotate(-10deg);
+    }
+    30% {
+        transform: rotate(5deg);
+    }
+    40% {
+        transform: rotate(-5deg);
+    }
+    50%,100% {
+        transform: rotate(0deg);
+    }
+}

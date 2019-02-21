@@ -1,0 +1,50 @@
+@CHARSET "UTF-8";
+@media all and (min-width:721px) {
+    html { font-size: 62.5% }
+}
+@media all and (max-width:720px) {
+    html { font-size: 62.5% }
+}
+@media all and (max-width:640px) {
+    html { font-size: 55.556% }
+}
+@media all and (max-width:540px) {
+    html { font-size: 46.875% }
+}
+@media all and (max-width:480px) {
+    html { font-size: 41.667% }
+}
+@media all and (max-width:432px) {
+    html { font-size: 37.5% }
+}
+@media all and (max-width:414px) {
+    html { font-size: 35.9375% }
+}
+@media all and (max-width:400px) {
+    html { font-size: 34.722% }
+}
+@media all and (max-width:360px) {
+    html { font-size: 31.25% }
+}
+@media all and (max-width:340px) {
+    html { font-size: 29.514% }
+}
+@media all and (max-width:320px) {
+    html { font-size: 27.778% }
+}
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, del, dfn, em, img, ins, kbd, q, samp, small, strong, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, table, tbody, tfoot, thead, tr, th, td, article, aside, footer, header, nav, section {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0
+}
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(35,167,217,.5)
+}
+body {
+    font-family: roboto, \65B9\6B63\5170\4EAD\7EA4\9ED1\7B80\4F53, \5FAE\8F6F\96C5\9ED1, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    word-wrap: break-word;
+}
+ol, ul { list-style: none }

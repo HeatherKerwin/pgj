@@ -1,0 +1,279 @@
+/* flex布局 */
+.flex{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+}
+/*行内元素*/
+.flex-row{
+  display: inline-flex;
+}
+/*定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。*/
+.flex-grow-0{
+  flex-grow: 0;
+}
+.flex-col-none {
+  flex: none;
+}
+.flex-col-auto {
+  flex: auto;
+}
+.flex-col-24 {
+  flex: 2.4;
+  -webkit-flex: 2.4;
+}
+.flex-col-1 {
+  flex: 1;
+  -webkit-flex: 1;
+}
+.flex-col-2 {
+  flex: 2;
+  -webkit-flex: 2;
+}
+.flex-col-3 {
+  flex: 3;
+  -webkit-flex: 3;
+}
+.flex-col-4 {
+  flex: 4;
+  -webkit-flex: 4;
+}
+.flex-col-5 {
+  flex: 5;
+  -webkit-flex: 5;
+}
+.flex-col-6 {
+  flex: 6;
+  -webkit-flex: 6;
+}
+.flex-col-7 {
+  flex: 7;
+  -webkit-flex: 7;
+}
+.flex-col-8 {
+  flex: 8;
+  -webkit-flex: 8;
+}
+.flex-col-9 {
+  flex: 9;
+  -webkit-flex: 9;
+}
+.flex-col-10 {
+  flex: 10;
+  -webkit-flex: 10;
+}
+.flex-col-11 {
+  flex: 11;
+  -webkit-flex: 11;
+}
+.flex-col-12 {
+  flex: 12;
+  -webkit-flex: 12;
+}
+
+/*水平向右*/
+.flex-direction-row{
+  flex-direction: row;
+  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
+
+  flex-direction: row;
+}
+/*水平向左*/
+.flex-direction-row-reverse{
+  flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse;
+  -webkit-flex-direction: row-reverse;
+
+  flex-direction: row-reverse;
+}
+/*垂直向下*/
+.flex-direction-column{
+  flex-direction: column;
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+
+  flex-direction: column;
+}
+/*垂直向上*/
+.flex-direction-column-reverse{
+  flex-direction: column-reverse;
+  -ms-flex-direction: column-reverse;
+  -webkit-flex-direction: column-reverse;
+
+  flex-direction: column-reverse;
+}
+
+/*不换行*/
+.flex-nowrap{
+  -ms-flex-wrap: nowrap ;
+  -webkit-flex-wrap:  nowrap;
+  -moz-flex-wrap: nowrap ;
+  -o-flex-wrap:  nowrap;
+
+  flex-wrap: nowrap;
+}
+/*换行，第一行在上方*/
+.flex-wrap{
+  -ms-flex-wrap: wrap ;
+  -webkit-flex-wrap:  wrap;
+  -moz-flex-wrap: wrap ;
+  -o-flex-wrap:  wrap;
+
+  flex-wrap: wrap;
+}
+/*换行，第一行在下方*/
+.flex-wrap-reverse{
+  -ms-flex-wrap: wrap-reverse ;
+  -webkit-flex-wrap:  wrap-reverse;
+  -moz-flex-wrap: wrap-reverse ;
+  -o-flex-wrap:  wrap-reverse;
+
+  flex-wrap: wrap-reverse;
+}
+
+/*水平对齐方式*/
+/*左对齐*/
+.flex-justify-start {
+  -webkit-justify-content: flex-start;
+  -moz-justify-content: flex-start;
+  -ms-justify-content: flex-start;
+  -o-justify-content: flex-start;
+
+  justify-content: flex-start;
+}
+/*右对齐*/
+.flex-justify-end {
+  -webkit-justify-content: flex-end;
+  -moz-justify-content: flex-end;
+  -ms-justify-content: flex-end;
+  -o-justify-content: flex-end;
+
+  justify-content: flex-end;
+}
+/*居中*/
+.flex-justify-center {
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+
+  justify-content: center;
+}
+/*两端对齐，项目之间的间隔都相等*/
+.flex-justify-space-between {
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  -o-justify-content: space-between;
+
+  justify-content: space-between;
+}
+/*每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍*/
+.flex-justify-space-around {
+  -webkit-justify-content: space-around;
+  -moz-justify-content: space-around;
+  -ms-justify-content: space-around;
+  -o-justify-content: space-around;
+
+  justify-content: space-around;
+}
+
+/*垂直对齐方式-项目在交叉轴上如何对齐（单一集合）*/
+/*顶对齐*/
+.flex-alignItems-start {
+  -moz-align-items: flex-start;
+  -ms-align-items: flex-start;
+  -o-align-items: flex-start;
+
+  align-items: flex-start;
+}
+/*底部对齐*/
+.flex-alignItems-end {
+  -moz-align-items: flex-end;
+  -ms-align-items: flex-end;
+  -o-align-items: flex-end;
+
+  align-items: flex-end;
+}
+/*居中*/
+.flex-alignItems-center {
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+
+  align-items: center;
+}
+/*项目的第一行文字的基线对齐*/
+.flex-alignItems-baseline {
+  -moz-align-items: baseline;
+  -ms-align-items: baseline;
+  -o-align-items: baseline;
+
+  align-items: baseline;
+}
+/*默认值，如果项目未设置高度或设为auto，将占满整个容器的高度*/
+.flex-alignItems-stretch {
+  -moz-align-items: stretch;
+  -ms-align-items: stretch;
+  -o-align-items: stretch;
+
+  align-items: stretch;
+}
+
+/*垂直对齐方式-多根轴线的对齐方式（多个集合）*/
+/*顶部（置顶）*/
+.flex-align-start {
+  align-content: flex-start;
+}
+/*底部（置地）*/
+.flex-align-end {
+  align-content: flex-end;
+}
+/*居中*/
+.flex-align-center {
+  align-content: center;
+}
+/*与交叉轴两端对齐，轴线之间的间隔平均分布*/
+.flex-align-space-between {
+  align-content: space-between;
+}
+/*每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍*/
+.flex-align-space-around {
+  align-content: space-around;
+}
+/*（默认值）轴线占满整个交叉轴*/
+.flex-align-content-stretch {
+  align-content: stretch;
+}
+
+/*指定单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性（针对单一集合里面的某一个元素）*/
+/*顶对齐*/
+.flex-align-self-start {
+  align-self: flex-start;
+}
+/*底对齐*/
+.flex-align-self-end {
+  align-self: flex-end;
+}
+/*居中*/
+.flex-align-self-center {
+  align-self: center;
+}
+/*项目的第一行文字的基线对齐*/
+.flex-align-self-baseline {
+  align-self: baseline;
+}
+/*默认值-占满整个容器的高度*/
+.flex-align-self-stretch {
+  align-self: stretch;
+}
+
+.flex-textOverflow {
+  width: 98%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

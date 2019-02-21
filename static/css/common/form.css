@@ -1,0 +1,84 @@
+.formGroup{
+    padding: 20px 10px;
+}
+
+.formGroup .formItem{
+    padding: 10px 0;
+    clear: both;
+    overflow: hidden;
+    font-size: inherit;
+    line-height: inherit;
+}
+.formGroup .formItem label,
+.formGroup .formItem input,
+.formGroup .formItem textarea,
+.formGroup .formItem select,
+.formGroup .formItem .formUnit{
+    float: left;
+    display: inline-block;
+    outline: none;
+    font-size: inherit;
+    line-height: inherit;
+}
+.formGroup .formItem label,
+.formGroup .formItem .formUnit{
+    padding: 6px 0;
+}
+.formGroup .formItem .formUnit{
+    margin-left: 6px;
+}
+.formGroup .formItem label.labelRadio{
+    min-width: 20px;
+    padding: 6px;
+    line-height: 20px;
+}
+.formGroup .formItem label.labelRadio input[type=radio],
+.formGroup .formItem label.labelRadio input[type=checkbox]{
+    padding: 0;
+    min-width: 14px;
+    width: 14px;
+    height: 14px;
+    margin: 3px 5px;
+}
+
+.formGroup .formItem input,
+.formGroup .formItem textarea,
+.formGroup .formItem select{
+    padding: 6px 12px;
+    min-width: 100px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.formGroup .formItem textarea,
+.formGroup .formItem input{
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+}
+.formGroup .formItem input::value{
+    color: inherit;
+}
+.formGroup .formItem input[readonly]{
+    background: none;
+    border: none;
+}
+
+.formGroup .formItem button,
+.formGroup .formItem input[type=button]{
+    display: block;
+    border: 1px solid #d73627 ;
+    background: #e84c3d;
+    border-radius: 3px;
+    color: white;
+    padding: 10px 25px;
+    font-size: inherit;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    margin-top: 30px;
+}
+.formGroup .formItem button:disabled,
+.formGroup .formItem input[type=button]:disabled{
+    border: 1px solid #e0e0e0 ;
+    background: #dfdfdf;
+}

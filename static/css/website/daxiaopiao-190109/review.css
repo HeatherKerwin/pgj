@@ -1,0 +1,47 @@
+.reviewWarp {
+  position: relative;
+  width: 1200px;
+  height: auto;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.reviewWarp .reviewCon{
+  width: 100%;
+  min-height: 500px;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 1px 10px 10px rgba(6, 0, 1, 0.04);
+  padding: 35px 55px;
+  box-sizing: border-box;
+  margin-top: 20px;
+}
+
+.reviewSidebar {
+  position: absolute;
+  right: -80px;
+  top: 400px;
+  width: 66px;
+  height: 66px;
+  background: #fff;
+  border-radius: 3px;
+  color: #1e83ff;
+  padding: 16px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.reviewSidebar p {
+  font-size: 16px;
+  text-align: center;
+  vertical-align: middle;
+}
+.reviewSidebar:hover {
+  background: #ffc62e;
+  color: #fff;
+  box-shadow: 3px 5px 10px rgba(255 , 198 , 46 , 0.6);
+}
+
+
+.maskTop .maskCloseIcon{
+  font-size: 34px !important;
+}

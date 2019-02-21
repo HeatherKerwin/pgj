@@ -1,0 +1,44 @@
+
+/*.bgd{
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+}*/
+/*拨打电话开始*/
+.phone{
+    width:5.88rem;
+    height: 2.6rem;
+    margin:3.5rem auto;
+    border-radius: 0.05rem 0.05rem 0.05rem 0.05rem ;
+    box-shadow: 3px 3px 3px #b8bcbf;
+    background: #ffffff;;
+}
+/*客服电话*/
+.p1{
+    font-size: 0.3rem;
+    padding: 0.56rem 0;
+    border-bottom: 1px solid #dedede;
+}
+
+/*左按钮*/
+/*a{
+    text-decoration: none;
+    color: red;
+
+       }*/
+.left,.right{
+    width:50%;
+    float: left;
+    font-size: 0.3rem;
+    padding:0.32rem 0;
+}
+/*右按钮*/
+.left{
+    /*display: block;*/
+    color: red;
+    border-right:1px solid #dedede;
+
+}
+.left a{
+    text-decoration: none;
+    color: red;
+}

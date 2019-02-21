@@ -1,0 +1,12 @@
+/* #dapiao .note-table table thead tr th ,
+#dapiao .note-table table tbody tr td {
+  min-width: 80px;
+}
+#dapiao .note-table table thead tr th:nth-child(2) ,
+#dapiao .note-table table tbody tr td:nth-child(2) {
+  width: 180px !important;
+}
+#dapiao .note-table table thead tr th:nth-child(-n+5):nth-child(n+3) ,
+#dapiao .note-table table tbody tr td:nth-child(-n+5):nth-child(n+3) {
+  width: 100px;
+} */

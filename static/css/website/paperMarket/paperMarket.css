@@ -1,0 +1,375 @@
+/*搜索区域*/
+.paperSearch{
+    padding: 20px 35px 0px;
+    background: white;
+    line-height: 45px;
+    margin-top: 35px;
+}
+.paperSearch h2{
+    font-size: 20px;
+}
+/*已筛选条件*/
+.selected{
+    height: 45px;
+    border-bottom: 1px solid #eeeeee;
+}
+.selected label{
+    width: 85px;
+    display: inline-block;
+}
+.selected a{
+    display: inline-block;
+    color: #e84c3d;
+    margin-right: 25px;
+    cursor: pointer;
+}
+/*删除*/
+.selected a span.closeIcon{
+    display: inline-block;
+    background: url("https://img.utiexian.com/website/homepage/opinionclose.png") center no-repeat;
+    background-size: 100%;
+    width: 12px;
+    height: 12px;
+    margin-left: 5px;
+}
+/*选择搜索条件*/
+ul.selectDiv{
+    width: 100%;
+    display: inline-block;
+}
+ul.selectDiv li.selectRow{
+    height: 45px;
+    font-size: 16px;
+    border-bottom: 1px dashed #eeeeee;
+}
+ul.selectDiv li.selectRow:last-child{
+    border-bottom: none;
+}
+ul.selectDiv span.title{
+    width: 75px;
+    color: #999999;
+    display: inline-block;
+ }
+ul.RadioDiv{
+    display: inline-block;
+}
+ul.RadioDiv li{
+    display: inline-block;
+}
+ul.RadioDiv li label{
+    margin: 0 5px;
+}
+ul.RadioDiv li label input[type=checkbox] , ul.RadioDiv li label input[type=radio]{
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    vertical-align: initial;
+    background: url("https://img.utiexian.com/common/others/radio2.png") no-repeat center;
+    background-position: 0 -12px;
+}
+ul.RadioDiv li label input[type=checkbox]:checked , ul.RadioDiv li label input[type=radio]:checked{
+    background: url("https://img.utiexian.com/common/others/radio2.png") no-repeat center;
+    background-position: 0 0px;
+}
+
+/*自定义选择区间*/
+.custom{
+    display: -webkit-inline-box;
+    height: 45px;
+}
+.custom .numberDiv{
+    display: inline-block;
+    width: 88px;
+    height: 28px;
+    font-size: 14px;
+    color: #c3c5c4;
+    line-height: 28px;
+    border: 1px solid #eeeeee;
+    background: none;
+    margin: 7px;
+}
+.custom .numberDiv input[type=number]{
+    display: inline-block;
+    width: 65px;
+    height: 28px;
+    text-indent: 5px;
+    border: none;
+    background: none;
+    margin-right: 5px;
+}
+.custom button{
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    color: white;
+    background: #e84c3d;
+    border: 1px solid #e84c3d;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/*票据展示列表*/
+.paperList{
+    width: 100%;
+    min-height: 350px;
+    margin-top: 27px;
+}
+ul.paperList{
+    width: 1200px;
+    height: auto;
+}
+/*单个票据信息展示*/
+ul.paperList li.paperCon {
+    position: relative;
+    display: inline-block;
+    width: 275px;
+    height: 272px;
+    margin-right: 28px;
+    margin-bottom: 25px;
+    z-index: 1;
+    cursor: pointer;
+    background: rgba(255,255,255,1);
+    -webkit-transition: -webkit-transform ease-out 0.1s, box-shadow 0.2s;
+    -moz-transition: -moz-transform ease-out 0.1s, box-shadow 0.2s;
+    transition: transform ease-out 0.1s, box-shadow 0.2s;
+}
+ul.paperList li.paperCon:nth-child(4) , ul.paperList li.paperCon:nth-child(8) , ul.paperList li.paperCon:nth-child(16){
+    margin-right: 0px;
+}
+ul.paperList li.paperCon:before {
+    text-transform: none;
+    display: block;
+}
+ul.paperList li.paperCon:after {
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: '';
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    top: 0;
+    left: 0;
+    padding: 0;
+    z-index: -1;
+}
+
+ul.paperList li.paperCon:hover {
+    box-shadow: 0px 1px 1px 3px rgba(0,0,0,0.06);
+    -webkit-transform: scale(0.98);
+    -moz-transform: scale(0.98);
+    -ms-transform: scale(0.98);
+    transform: scale(0.98);
+}
+
+
+/*右上角票据属性标志*/
+.icon{
+    width: 38px;
+    height: 27px;
+    overflow: hidden;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 15px;
+    line-height: 23px;
+    color: white;
+    text-indent: 19px;
+}
+/*银票背景标志*/
+.redIcon{
+    background-image: url("https://img.utiexian.com/website/paperMarket/redIcon.png");
+}
+/*商票背景标志*/
+.VioletIcon{
+    background-image: url("https://img.utiexian.com/website/paperMarket/VioletIcon.png");
+}
+/*跨平台*/
+.iconText{
+    width: 65px !important;
+    height: 24px !important;
+    line-height: 20px;
+    right: 10px !important;
+    background: url("https://img.utiexian.com/website/paperMarket/crossPlatform.png") no-repeat;
+    color: white;
+    text-indent: 0px;
+    text-align: center;
+}
+
+/*主要票据信息展示*/
+.showCon{
+    padding: 0 15px;
+}
+/*票据特征*/
+.showCon .title{
+    padding: 0 10px;
+    font-size: 13px;
+    padding: 15px 0;
+    border-bottom: 1px dashed #eeeeee;
+}
+/*票据属性*/
+.showCon .title span.type1{
+    border-radius: 5px;
+    padding: 4px 15px;
+}
+/*纸票*/
+.showCon .title span.dian{
+    color: #e84c3d;
+    border: 1px solid #e84c3d;
+}
+/*电票*/
+.showCon .title span.zhi{
+    color: #778ffd;
+    border: 1px solid #778ffd;
+}
+
+/*承兑行类型*/
+.showCon .title span.type2{
+    font-size: 10px;
+    border-radius: 5px;
+    padding: 4px 5px;
+    margin-left: 5px;
+}
+/*国股*/
+.showCon .title span.guogu{
+    color: #f3a50f;
+    border: 1px solid #f3a50f;
+}
+/*农商*/
+.showCon .title span.nongshang{
+    color: #62d793;
+    border: 1px solid #62d793;
+}
+/*城商*/
+.showCon .title span.chengshang{
+    color: #bb61d3;
+    border: 1px solid #bb61d3;
+}
+/*外资*/
+.showCon .title span.waizi{
+    color: #ef832b;
+    border: 1px solid #ef832b;
+}
+/*村镇*/
+.showCon .title span.cunzhen{
+    color: #6284f2;
+    border: 1px solid #6284f2;
+}
+/*农信*/
+.showCon .title span.nongxin{
+    color: #fcd753;
+    border: 1px solid #fcd753;
+}
+/*大商*/
+.showCon .title span.dashang{
+    color: #80c269;
+    border: 1px solid #80c269;
+}
+/*小商*/
+.showCon .title span.xiaoshang{
+    color: #fb6523;
+    border: 1px solid #fb6523;
+}
+/*其他 */
+.showCon .title span.other{
+    color: #e268d8;
+    border: 1px solid #e268d8;
+}
+
+/*详细信息展示*/
+.showCon ul.paperShow li{
+    font-size: 12px;
+    line-height: 30px;
+    color: #2d2d2d;
+}
+.showCon ul.paperShow li:hover{
+    font-size: 12px;
+    line-height: 30px;
+    color: #2d2d2d;
+}
+.showCon ul.paperShow li label{
+    color: #999999;
+}
+.showCon ul.paperShow li span{
+    color: #d43c33;
+}
+
+/*按钮*/
+.showCon a.paperBtn{
+    position: relative;
+    display: block;
+    font-size: 16px;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    margin-top: 12px;
+    border-radius: 5px;
+    background: white;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+.showCon a.paperBtn:hover{
+    color: white;
+    transition: background 0.6s ease-out;
+}
+.showCon a.paperBtn:after {
+    content: "";
+    background: #fff;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+    margin: auto;
+    border-radius: 50%;
+    transform: scale(1);
+    transition: all 0.75s ease-in-out;
+}
+.showCon a.paperBtn:active:after {
+    transform: scale(0);
+    opacity: 1;
+    transition: 0s;
+}
+/*我要报价*/
+.showCon a.offerBtn{
+    color: #e84c3d;
+    border: 1px solid #e84c3d;
+}
+.showCon a.offerBtn:hover{
+    background: #e84c3d;
+    box-shadow: #e84c3d;
+}
+/*交易中*/
+.showCon a.transactionBtn{
+    color: #12bd46;
+    border: 1px solid #12bd46;
+}
+.showCon a.transactionBtn:hover{
+    background: #14ce4d;
+    box-shadow: #12bd46;
+}
+/*我要报价*/
+.showCon a.offerBtn{
+    color: #e84c3d;
+    border: 1px solid #e84c3d;
+}
+.showCon a.offerBtn:hover{
+    background: #e84c3d;
+    box-shadow: #d43c33;
+}
+/*交易完成*/
+.showCon a.SuccessBtn{
+    color: #c3c5c4;
+    border: 1px solid #c3c5c4;
+}
+.showCon a.SuccessBtn:hover{
+    background: #c3c5c4;
+    box-shadow: #c3c5c4;
+}

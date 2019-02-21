@@ -1,0 +1,88 @@
+@charset "UTF-8";
+/**
+ *
+ * @authors BB
+ * @date    2019-01-25 14:55:04
+ * @version $Id$ noteDetail.css 01
+ */
+
+.noteDetailCon {
+  width: 100%;
+  min-height: 500px;
+  margin-top: 20px;
+  background: #fff;
+  box-shadow: 3px 5px 10px rgba(6 , 0 , 1 , 0.04);
+}
+.noteDetailCon .detailTitle {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  color: #636363;
+  font-size: 16px;
+  line-height: 40px;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+.noteDetailCon .detailTitle a {
+  position: absolute;
+  display: block;
+  top: 10px;
+  right: 20px;
+}
+.noteDetailCon .detailCon {
+  width: 100%;
+  padding: 20px 50px ;
+  box-sizing: border-box;
+}
+.noteDetailCon .detailCon .detailTable {
+  width: 770px;
+  height: auto;
+}
+.noteDetailCon .detailCon .detailTable table {
+  width: 100%;
+}
+.detailTable table td ,
+.detailTable table th ,
+.detailTable table {
+  line-height: 48px;
+  text-align: center;
+  border: 0.5px solid #e0e0e0;
+  box-sizing: border-box;
+  border-collapse: collapse;
+}
+.detailTable table thead {
+  background: #fafafa;
+}
+.click:hover {
+  color: #ffc62e !important;
+  cursor: pointer;
+}
+
+
+.noteDetailCon .detailCon .detailResult {
+  width: 100%;
+}
+.detailCon .detailResult .resultLabel {
+  color: #666666;
+  font-size: 16px;
+  vertical-align: middle;
+  margin: 40px 15px 0;
+}
+.detailCon .detailResult .resultLabel:before {
+  content: '';
+  width: 0;
+  height: 18px;
+  border-left: 3px solid #e84c3d;
+  margin-right: 8px;
+}
+
+.detailCon .detailResult .resultTishi {
+  /*text-align: center;*/
+  padding: 50px 100px 30px;
+}
+.detailCon .detailResult .resultTishi img ,
+.detailCon .detailResult .resultTishi span {
+  display: inline-block;
+  vertical-align: middle;
+}
