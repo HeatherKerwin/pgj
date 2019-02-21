@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+      http://www.springframework.org/schema/context  
+      http://www.springframework.org/schema/context/spring-context-3.1.xsd  
+      http://www.springframework.org/schema/mvc  
+      http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+      
+       <context:annotation-config /> 
+	<!-- 注解扫描包 -->
+	  <context:component-scan base-package="com.ry.ryapp.controller">
+	    <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	  </context:component-scan> 	  	
+
+	<!-- 开启mvc注解 -->
+	<mvc:annotation-driven />
+
+	<!-- 对模型视图添加前后缀 -->
+    <bean id="freemarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath">
+			<value>/WEB-INF/freemarker/</value>
+		</property> 
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="template_update_delay">1</prop>
+				<prop key="defaultEncoding">utf-8</prop>
+				<prop key="classic_compatible">true</prop> 
+                <prop key="date_format">yyyy-MM-dd</prop>
+				<prop key="time_format">HH:mm:Ss</prop>
+				<prop key="number_format">#</prop>
+			</props>
+		</property>
+		<property name="freemarkerVariables">
+             <map>
+ 				<entry key="absoluteInclude" value-ref="includeFunction"/> 
+             </map>
+        </property>
+	</bean>
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="cache" value="true"/>
+        <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
+        <property name="suffix" value=".ftl"/>
+        <property name="exposeRequestAttributes" value="true"/>
+        <property name="exposeSessionAttributes" value="true"/>
+        <property name="exposeSpringMacroHelpers" value="true"/>
+        <property name="allowSessionOverride" value="true"/>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+		<property name="requestContextAttribute" value="rc"/>
+    </bean>
+    
+    <bean id="multipartResolver"  
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+        <property name="maxUploadSize">  
+            <value>10485760</value>  
+        </property>  
+    </bean>     	
+	
+	<!--拦截器 -->
+	<mvc:interceptors>
+		<!--多个拦截器,顺序执行 -->
+		<!-- 登陆认证拦截器 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/login/"/>
+			<mvc:mapping path="/app/login/new"/>
+			<mvc:mapping path="/app/quicklogin/"/>
+			<mvc:mapping path="/app/quicklogin/new"/>
+			<bean class="com.ry.ryapp.interceptors.LoginInterceptor" />				
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/app/xunjia2"/>
+			<bean class="com.ry.ryapp.interceptors.XunjiaInterceptor" />				
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/app/tiexian2"/>
+			<bean class="com.ry.ryapp.interceptors.TiexianInterceptor" />				
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/app/newsdetail/"/>
+			<bean class="com.ry.ryapp.interceptors.NewsInterceptor" />				
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/app/lianhang/"/>
+			<mvc:mapping path="/app/getLianhang/"/>
+			<bean class="com.ry.ryapp.interceptors.LianhangInterceptor" />				
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/app/gongcui/"/>
+			<bean class="com.ry.ryapp.interceptors.GongcuiInterceptor" />				
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/app/piaojujiangtangdetail/"/>
+			<bean class="com.ry.ryapp.interceptors.PiaojujiangtangInterceptor" />				
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/app/zhangbuadd/"/>                             <!-- ?  -->
+			<bean class="com.ry.ryapp.interceptors.JizhangInterceptor" />				
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/app/zhangbulist/"/>                            <!-- ?  -->
+			<bean class="com.ry.ryapp.interceptors.ZhangbuInterceptor" />				
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/app/update/"/>
+			<bean class="com.ry.ryapp.interceptors.MemberInterceptor" />				
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/app/shibor/"/>
+			<bean class="com.ry.ryapp.interceptors.ShiborInterceptor" />				
+		</mvc:interceptor>
+		<!-- 注册拦截器  -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/register/new"/>
+			<bean class="com.ry.ryapp.interceptors.ZhuceInterceptor" />				
+		</mvc:interceptor>
+		<!-- 密码重置拦截器  -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/updatepwd/"/>
+			<bean class="com.ry.ryapp.interceptors.ChongzhimimaInterceptor" />				
+		</mvc:interceptor>
+		<!-- 选择角色拦截器  -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/org/save2"/> 							<!-- ?  -->
+			<bean class="com.ry.ryapp.interceptors.XuanzejiaoseInterceptor" />				
+		</mvc:interceptor>
+		<!-- 角色认证拦截器  -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/org/info/save"/>
+			<bean class="com.ry.ryapp.interceptors.JiaoserenzhengInterceptor" />				
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/app/discountrecord2/list"/>
+			<mvc:mapping path="/app/distributeOrder/list"/>
+			<bean class="com.ry.ryapp.interceptors.DingdanzhongxinInterceptor" />				
+		</mvc:interceptor>
+		
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/zhangbu/editpiaoju/"/>
+			<bean class="com.ry.ryapp.interceptors.BianjipiaojuInterceptor" />				
+		</mvc:interceptor>
+		<!-- 票据提醒 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/noticerecord/save"/>
+			<mvc:mapping path="/zhangbu/piaojuremindlist"/>
+			<bean class="com.ry.ryapp.interceptors.PiaojutixingInterceptor" />				
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/zhangbu/piaojulist"/>
+			<bean class="com.ry.ryapp.interceptors.GaojisousuoInterceptor" />				
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/app/zhangbu/tongji"/>
+			<bean class="com.ry.ryapp.interceptors.TongjiInterceptor" />				
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/zhangbu/sendmail/"/>
+			<bean class="com.ry.ryapp.interceptors.TongjioutInterceptor" />				
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/app/newlist/"/>
+			<bean class="com.ry.ryapp.interceptors.ShichangxinxiInterceptor" />				
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/app/inquiryReply/inqueryReplyList"/>
+			<bean class="com.ry.ryapp.interceptors.MychaxunchafuInterceptor" />				
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/app/inquiryReply/inqueryReplyDeatil"/>
+			<bean class="com.ry.ryapp.interceptors.FukuanInterceptor" />				
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/app/member/get"/>
+			<bean class="com.ry.ryapp.interceptors.TuijianrenInterceptor" />				
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/app/discountrecord2/update/finish"/>
+			<bean class="com.ry.ryapp.interceptors.QuerenwuwuInterceptor" />				
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/app/distributeOrder/noReceive/push"/>
+			<bean class="com.ry.ryapp.interceptors.YouwuInterceptor" />				
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/app/message/discountrecord2"/>
+			<mvc:mapping path="/app/message/preferentialInfo"/>
+			<mvc:mapping path="/app/message/systemnews"/>
+			<bean class="com.ry.ryapp.interceptors.DingdanInterceptor" />				
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/app/hongbaolist/"/>
+			<bean class="com.ry.ryapp.interceptors.HongbaoInterceptor" />				
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/app/update"/>
+			<bean class="com.ry.ryapp.interceptors.WanshanxinxiInterceptor" />				
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/app/inquiryReply/save"/>
+			<bean class="com.ry.ryapp.interceptors.ChaxunchafuInterceptor" />				
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/app/searchMyInfoById"/>
+			<bean class="com.ry.ryapp.interceptors.SearchMyInterceptor" />				
+		</mvc:interceptor>
+		<!-- 重新计算拦截器  -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/price/get/order/record"/>
+			<bean class="com.ry.ryapp.interceptors.OrderCostInterceptor" />				
+		</mvc:interceptor>
+		<!-- 我的订单拦截器  -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/discountrecord2/inner"/>
+			<bean class="com.ry.ryapp.interceptors.DiscountInnerInterceptor" />				
+		</mvc:interceptor>
+		<!-- 取消订单 拦截器  -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/discountrecord2/update"/>
+			<bean class="com.ry.ryapp.interceptors.CanelOrderInterceptor" />				
+		</mvc:interceptor>
+		<!-- 保存图片拦截器  -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/discountrecord2/get/img"/>
+			<bean class="com.ry.ryapp.interceptors.DiscountSaveImgInterceptor" />				
+		</mvc:interceptor>
+		<!-- 联系承兑方拦截器  -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/distributeOrder/get"/>
+			<bean class="com.ry.ryapp.interceptors.DistributeOrderInterceptor" />				
+		</mvc:interceptor>
+		<!-- 发红包拦截器  -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/discountrecord2/get"/>
+			<bean class="com.ry.ryapp.interceptors.DiscountHongBaoInterceptor" />				
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/app/headpic"/>
+			<bean class="com.ry.ryapp.interceptors.TouxiangshangchuanInterceptor" />				
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/zhangbu/index/"/>
+			<bean class="com.ry.ryapp.interceptors.ZhangbuInterceptor" />				
+		</mvc:interceptor>
+		<!-- 计算器拦截器  -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/reexcel/price"/>
+			<bean class="com.ry.ryapp.interceptors.JisuanqiInterceptor" />				
+		</mvc:interceptor>
+		<!-- 意见反馈  -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/message/"/>
+			<bean class="com.ry.ryapp.interceptors.YiJianBackInterceptor" />				
+		</mvc:interceptor>
+		<!-- 历史价格走势  -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/jiagezoushi/"/>
+			<bean class="com.ry.ryapp.interceptors.JGHisPriceZouShiInterceptor" />				
+		</mvc:interceptor>
+		<!-- 重新设置交易城市  -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/org/check/searchCityByOrgId"/>
+			<bean class="com.ry.ryapp.interceptors.SetCityResInterceptor" />				
+		</mvc:interceptor>
+		<!-- 拒绝订单  --><!-- 准备验票  -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/distributeOrder/update/state"/>
+			<bean class="com.ry.ryapp.interceptors.RefOrderInterceptor" />				
+		</mvc:interceptor>
+		<!-- 保证金  -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/baojinlist"/><!-- 企业 -->
+			<mvc:mapping path="/app/distributeOrder/jigoubaozhengjin"/><!-- 机构 -->
+			<bean class="com.ry.ryapp.interceptors.BondInterceptor" />				
+		</mvc:interceptor>
+		<!-- 绑定  -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/bind/third/"/>
+			<bean class="com.ry.ryapp.interceptors.BindInterceptor" />				
+		</mvc:interceptor>
+		<!-- 第三方登录 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/loginthird/"/>
+			<bean class="com.ry.ryapp.interceptors.ThridLoginInterceptor" />				
+		</mvc:interceptor>
+		<!-- 机构上传付款凭证 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/distributeOrder/update/img"/>
+			<bean class="com.ry.ryapp.interceptors.OrgSavePayVoucherInterceptor" />				
+		</mvc:interceptor>
+		<!-- 发表评价企业 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/discountrecord/comments/save"/>
+			<bean class="com.ry.ryapp.interceptors.CommonSaveInterceptor" />				
+		</mvc:interceptor>
+		<!-- 企信查询 -->
+		<mvc:interceptor>
+			<mvc:mapping path="QXCXURL"/>
+			<bean class="com.ry.ryapp.interceptors.QiYinInterceptor" />				
+		</mvc:interceptor>
+		<!-- 票据指数 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/kxiantu/"/>
+			<bean class="com.ry.ryapp.interceptors.BillIndexInterceptor" />				
+		</mvc:interceptor>
+		<!-- 联系客服 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/callcustomer"/>
+			<bean class="com.ry.ryapp.interceptors.CallCustomerInterceptor" />				
+		</mvc:interceptor>
+		<!-- 联系报价方 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/quotation"/>
+			<bean class="com.ry.ryapp.interceptors.QuotationInterceptor" />				
+		</mvc:interceptor>
+		<!-- 联行号电话拨打 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/contactnumber"/>
+			<bean class="com.ry.ryapp.interceptors.ContactNumberInterceptor" />				
+		</mvc:interceptor>
+		<!-- 退出登录 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/loginout"/>
+			<bean class="com.ry.ryapp.interceptors.LoginOutInterceptor" />				
+		</mvc:interceptor>
+		<!-- 拨打电话 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/callmember"/>
+			<bean class="com.ry.ryapp.interceptors.CallMemberInterceptor" />				
+		</mvc:interceptor>
+		<!-- 记一笔票据 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/zhangbu/addpiaoju/"/>
+			<bean class="com.ry.ryapp.interceptors.JiyibiInterceptor" />				
+		</mvc:interceptor>
+		<!-- 设置交易城市 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/org/save/orgcity"/>
+			<bean class="com.ry.ryapp.interceptors.OrgCityInterceptor"/>				
+		</mvc:interceptor>
+		<!-- 机构拒绝订单 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/distributeOrder/update/state/tominus2"/>
+			<bean class="com.ry.ryapp.interceptors.RefusedInterceptor"/>				
+		</mvc:interceptor>
+		<!-- 银票订单付款 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/tiexian2/payrecord/save/before"/>
+			<bean class="com.ry.ryapp.interceptors.NodePaymentInterceptor"/>				
+		</mvc:interceptor>
+		<!-- 商票订单 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/discountrecordsp/tiexian"/>
+			<bean class="com.ry.ryapp.interceptors.ShangpiaoDingDanInterceptor"/>				
+		</mvc:interceptor>
+		<!-- 企业商票取消订单 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/discountrecordsp/cancel"/>
+			<bean class="com.ry.ryapp.interceptors.ShangpiaoQuXiaoDingDanDInterceptor"/>				
+		</mvc:interceptor>
+		<!-- 批量订单 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/discountrecordpl/tiexian"/>
+			<bean class="com.ry.ryapp.interceptors.PiLiangDingDanInterceptor"/>				
+		</mvc:interceptor>
+		<!-- 企业批量订单取消 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/discountrecordpl/cancel"/>
+			<bean class="com.ry.ryapp.interceptors.PiLiangQuXiaoDingDanInterceptor"/>				
+		</mvc:interceptor>
+		<!-- 贴现地址 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/address/save"/>
+			<bean class="com.ry.ryapp.interceptors.AddressInterceptor"/>				
+		</mvc:interceptor>
+		<!-- 机构查看评论 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/distributeOrder/comments/get"/>
+			<bean class="com.ry.ryapp.interceptors.ChaKanPingLunInterceptor"/>				
+		</mvc:interceptor>
+		<!-- 机构银票报价 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/price/save2"/>
+			<bean class="com.ry.ryapp.interceptors.YinPiaoBaoJiaInterceptor"/>				
+		</mvc:interceptor>
+		<!-- 机构银票报价 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/requirementsp/save"/>
+			<bean class="com.ry.ryapp.interceptors.ShangPiaoBaoJiaInterceptor"/>				
+		</mvc:interceptor>
+		<!-- 票据指数 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/billquota/getdata"/>
+			<bean class="com.ry.ryapp.interceptors.PiaoJuZhiShuInterceptor"/>				
+		</mvc:interceptor>
+		<!-- 机构批量取消订单 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/distributeorderpl/cancel"/>
+			<bean class="com.ry.ryapp.interceptors.JiGouPiLiangQuXiaoDingDanInterceptor"/>				
+		</mvc:interceptor>
+		<!-- 机构银票取消订单 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/distributeOrder/cancel"/>
+			<bean class="com.ry.ryapp.interceptors.JiGouYinPiaoQuXiaoDingDanInterceptor"/>				
+		</mvc:interceptor>
+		<!-- 机构商票取消订单 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/distributeordersp/cancel"/>
+			<bean class="com.ry.ryapp.interceptors.JiGouShangpiaoQuXiaoDingDanInterceptor"/>				
+		</mvc:interceptor>
+		<!-- 价格对比拦截 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/discountrecord/getPriceContrast"/>
+			<bean class="com.ry.ryapp.interceptors.PriceContrastInterceptor"/>				
+		</mvc:interceptor>
+		<!-- app银票接单 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/distributeOrder/accept"/>
+			<bean class="com.ry.ryapp.interceptors.DistributeorderAccept"/>				
+		</mvc:interceptor>
+		<!-- app商票接单 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/distributeordersp/accept"/>
+			<bean class="com.ry.ryapp.interceptors.DistributeordesprAccept"/>				
+		</mvc:interceptor>
+		<!-- app批量接单 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/distributeorderpl/accept"/>
+			<bean class="com.ry.ryapp.interceptors.DistributeorderplAccept"/>				
+		</mvc:interceptor>
+		<!-- app积分下单 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/app/mall/order"/>
+			<bean class="com.ry.ryapp.interceptors.MallOrderAccept"/>				
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- 启动 Spring json转换 -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.StringHttpMessageConverter" />
+				<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>application/json;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+</beans>  

@@ -1,0 +1,25 @@
+/*问题答案背景框*/
+.problemBG{
+    background: url("../images/help/problemBG.png") center no-repeat;
+    background-size: 100% 100%;
+}
+/*联系客服头部背景*/
+.contactTop{
+    background: #ffffff url("../images/help/contactTop.png") right no-repeat;
+    background-size: auto 100%;
+}
+/*企业认证*/
+.BNS{
+    background: #ffffff url("../images/help/BNS.png") center no-repeat;
+    background-size: auto 100%;
+}
+/*机构认证*/
+.ORG{
+    background: #ffffff url("../images/help/ORG.png") center no-repeat;
+    background-size: auto 100%;
+}
+/* 票据管理使用指引*/
+.guideBG{
+    background: #ffffff url("../images/help/guide.png") center no-repeat;
+    background-size: auto 100%;
+}

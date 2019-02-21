@@ -1,0 +1,79 @@
+[#import "/common/main.html" as main]
+[#include "/common/setting.html"]
+[@main.body title='票据管家-新闻中心']
+
+[@main.pager/]
+<style>
+.authorization{
+	padding: 1rem;
+    height: 100%;
+    overflow-y: hidden;
+    color: #595959;
+    font-size: 1rem;
+    text-indent: 2rem;
+    line-height: 1.2rem;
+}
+.authorization h1{
+	font-size: 1.3rem;
+	line-height: 1.6rem;
+	font-weight: bold;
+	text-align: center;
+}
+.authorization h2{
+	font-size: 1.1rem;
+}
+.authorization p{
+	margin: 0.6rem 0;
+}
+.authorization p span{
+	border-bottom: 0.1rem #5f5b5a solid;
+	padding: 0 0.6rem;
+}
+</style>
+<div class="authorization">
+	<!-- 企业授权委托书 -->
+	<h1>企业授权委托书</h1>
+	<p>致：	兴业数字金融服务（上海）股份有限公司（执剑人票据见证代管系统运营方，以下简称“兴业数金”）；及上海票管家金融服务有限公司</p>
+	<p>抄送：兴业银行股份有限公司</p>
+	<p>兴业数金为兴业银行集团旗下控股子公司，是兴业银行集团面向中小银行、非银行金融机构、中小企业提供金融信息云服务的最主要平台，同时也是集团探索开展互联网金融业务的最主要平台。</p>
+	<p>兹授权我公司员工<span class="contactName"></span>先生/小姐，性别<span class="">xxx</span>，身份证号码 <span class="agentCertNo">xxx</span>，任职部门<span class="">xxx</span>，职务<span class="">xxx</span>，手机号码 <span class="contactMobile">xxx</span>，为平台交易员，代表我公司在票据管家平台负责注册所需账户及提供我公司多个账户、发布交易需求、电子合同签署等业务指令操作；</p>
+	<p>同时授权我公司员工<span class="contactName"></span>先生/小姐，性别<span class="">xxx</span> ，身份证号码<span class="agentCertNo">xxx</span>，任职部门<span class="">xxx</span>，职务<span class="">xxx</span>，手机号码<span class="contactMobile">xxx</span>，为资金经办人，代表我公司使用兴业数金“执剑人”见证代管系统，负责办理我公司提供多个账户的资金查询、划转、账户提款等资金和财务指令操作。</p>
+	<p>我单位接受上海票管家金融服务有限公司、兴业数金、兴业银行及任何相关方为我单位联合提供的票据见证、资金代管、资金汇划、电子合同签署及存证、数字签名等服务，我单位无条件不可撤销地委托并授权兴业数金以其名义在兴业银行开立“票据流转资金专户”，专项用于我单位在执剑人票据见证代管系统中票据业务项下流转资金的代管、划转等事项；我单位无条件不可撤销地同意并接受兴业数金及相关方为我单位提供的数字证书发放、电子合同在线签署及存证等综合服务。</p>
+	<p>我公司同意并授权兴业数金与上海票管家金融服务有限公司协助办理相关手续，授权有效期与我公司在上海票管家金融服务有限公司注册的账户之有效期限相同或以另行书面变更授权为准。上述员工在上海票管家金融服务有限公司和兴业数金“执剑人”票据见证代管系统以及电子合同签署等进行的所有操作行为均已经取得我公司书面授权，所有操作行为均视为我公司操作行为，由此产生的所有经济和法律风险均由我公司自行承担，与上海票管家金融服务有限公司、兴业数金及任何相关方无关。</p>
+	<p>本授权书自我公司签章之日起生效，在上海票管家金融服务有限公司、兴业数金及兴业银行等未收妥我公司变更被授权员工的书面授权书之前或我公司在 上海票管家金融服务有限公司注册的账户无效、被注销之前持续有效。</p>
+	<p>我公司已经知悉并无条件、不可撤销地同意：</p>
+	<p>根据上海票管家金融服务有限公司公布已经我公司同意的业务操作流程规定，任一操作环节完成之时起须在 30 分钟内完成下一操作环节，若我公司超过 30 分钟未在上海票管家金融服务有限公司或兴业数金“执剑人”票据见证代管系统完成下一操作环节的，我公司充分授权同意并认可上海票管家金融服务有限公司、兴业数金及兴业银行任一方或者多方基于票据状态与资金代管实际情况进行后续操作处理，直至交易结束。由此产生的全部经济和法律结果均由我公司全部承担，与进行后续操作的 上海票管家金融服务有限公司、兴业数金及任何相关第三方无关。</p>
+	<p>特别声明：本授权书原件一份，兴业数金、上海票管家金融服务有限公司或兴业银行任一方持有的扫描件与原件均具有同等法律效力。</p>
+	<br>
+	<p>特此授权。</p>
+	<br><br><br>
+	<p style="text-align: right;">法定代表人签字或盖章：</p>
+	<br><br><br><br>
+	<p style="text-align: right;">公司名称：       （公司公章）</p>
+	<br><br><br><br>
+	<p style="text-align: right;">${.now?string("yyyy年MM月dd日")}</p>
+	
+	<!-- 单位授权书 -->
+	<h1>单位授权书</h1>
+	<h2>致：兴业银行股份有限公司上海分行</h2>
+	<p>我公司无条件不可撤销地授权兴业数字金融服务（上海）股份有限公司（以下简称“兴业数金”）以及贵行有权查询我公司名下通过票据管家平台生成订单中电子商业汇票系统中各类电子票据基本信息、票据交易流转信息、交易明细等信息，并将上述信息根据业务需要进行复制、转储和使用。由此产生的相关法律责任均由我公司承担。</p>
+	<p>抄送：兴业数字金融服务（上海）股份有限公司</p>
+	<br>
+	<p>特此授权。</p>
+	<br><br><br>
+	<p style="text-align: right;">公司名称：（公司公章）</p>
+	<br><br><br>
+	<p style="text-align: right;">法定代表人签字或盖章：</p>
+	<br><br><br><br>
+	<p style="text-align: right;">${.now?string("yyyy年MM月dd日")}</p>
+</div>
+[/@main.body]
+<script>
+	var data = '${data}';
+	var params = JSON.parse(data);
+	var cib = params.data.cib;
+	
+	$(".contactName").html(cib.contactName);
+	$(".agentCertNo").html(cib.agentCertNo);
+	$(".contactMobile").html(cib.contactMobile);
+</script>

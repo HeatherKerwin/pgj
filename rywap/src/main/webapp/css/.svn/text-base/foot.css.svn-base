@@ -1,0 +1,14 @@
+.footer{
+    padding: 15px 25px;
+    font-size: 14px;
+    line-height: 20px;
+    border-top: solid 1px #cdcbcb;
+    border-top: solid 1px #cdcbcb;
+}
+.footer ul li{
+    border-right: solid 1px #c5c5c5;
+}
+.footer ul li:last-child{
+    border-right: none;
+}
+.footer ul li a{color: #868686;}

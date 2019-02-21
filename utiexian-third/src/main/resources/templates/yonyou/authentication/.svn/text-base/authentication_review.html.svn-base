@@ -1,0 +1,428 @@
+[#import "/common/main.html" as main]
+[#include "/common/setting.html"]
+[@main.body title='云票据-开户管理-审核中']
+<link rel="stylesheet" href="${basePath}/css/yonyou/authentication.css">
+<link rel="stylesheet" href="${basePath}/css/yonyou/mask.css">
+<script type="text/javascript" src="${basePath}/js/yonyou/toggle.js"></script>
+
+<!-- 头部 -->
+<div class="head">
+    <div class="headWrap">
+        <a class="logo" href="http://www.yonyou.com/" target="_blank">
+            <img src="${basePath}/images/yonyou/logo.png" alt="yonyou">
+        </a>
+        <ul class="menu">
+            <li><a href="${basePath}/yonyou/index">首页</a></li>
+            <li><a href="${basePath}/yonyou/ypDiscount">出票</a></li>
+            <li><a href="${basePath}/yonyou/inquiry">询价</a></li>
+            <li><a href="${basePath}/yonyou/calculator">计算器</a></li>
+            <li><a href="${basePath}/yonyou/authentication" class="ce84c3d">开户管理</a></li>
+            <li><a href="${basePath}/yonyou/ypOrderList">订单中心</a></li>
+        </ul>
+    </div>
+</div>
+<!-- 头部end -->
+
+<div class="wrap authenticationWrap">
+    <!--top-->
+    <div class="authenticationTop">
+        <label>开户管理</label>
+    </div>
+    
+    <!--开户进程-->
+    <div class="authenticationType">
+        <ul>
+            <li><img src="${basePath}/images/yonyou/authentication/type1.png" width="180" height="52" alt="申请开户"></li>
+            <li><img src="${basePath}/images/yonyou/authentication/type22.png" width="180" height="52" alt="审核"></li>
+            <li><img src="${basePath}/images/yonyou/authentication/type3.png" width="55" height="52" alt="完成开户"></li>
+        </ul>
+    </div>
+
+    <!--上传证件-->
+    <div class="uploadCon">
+        <div class="uploadTitle">
+            <label for="">证件上传：</label>
+            <span class="modifiable" style="display: none">（可修改）</span>
+        </div>
+        <!--上传-->
+        <ul class="uploadImg">
+            <li>
+                <label for="fileToUpload">
+                    <input type="file" id="fileToUpload">
+                    <img src="${basePath}/images/yonyou/authentication/upload1.png" alt="身份证正面">
+                </label>
+            </li>
+            <li>
+                <label for="fileToUpload1">
+                    <input type="file" id="fileToUpload1">
+                    <img src="${basePath}/images/yonyou/authentication/upload2.png" alt="身份证反面">
+                </label>
+            </li>
+            <li>
+                <label for="fileToUpload2">
+                    <input type="file" id="fileToUpload2">
+                    <img src="${basePath}/images/yonyou/authentication/upload3.png" alt="营业执照">
+                </label>
+            </li>
+        </ul>
+    </div>
+    <!--证件识别中-->
+    <div class="loading" style="display: none">
+        <img src="${basePath}/images/yonyou/discount/recogniseLoad.gif" alt="loading">
+    </div>
+    <!--上传证件end-->
+
+    <!--开户信息-->
+    <div class="authenticationCon">
+        <p class="modifiable" style="display: none">请认真核对以下信息，如信息有误请手动修改</p>
+        <!--左侧-->
+        <div class="toggleList">
+
+            <!--企业经办人-->
+            <div class="agentList">
+                <div class="agentTitle">
+                    企业经办人
+                </div>
+                <ul class="agentDiv">
+                    <li>
+                        <label for="name">经办人姓名：</label>
+                        <input type="text" id="name" placeholder="请填写开户经办人姓名">
+                    </li>
+                    <li>
+                        <label for="phone">手机号：</label>
+                        <input type="text" id="phone" placeholder="请输入经办人手机号">
+                    </li>
+                    <li>
+                        <label for="IdCard">身份证号：</label>
+                        <input type="text" id="IdCard" maxlength='25' placeholder="请输入经办人身份证号">
+                    </li>
+                    <li>
+                        <label for="email">邮箱号：</label>
+                        <input type="text" id="email" maxlength='60' placeholder="请输入经办人邮箱号">
+                    </li>
+                </ul>
+            </div>
+
+            <!--企业法人营业执照-->
+            <div class="prependCon">
+                <!--标签title-->
+                <div class="toggleTop">
+                    <label>企业法人营业执照</label>
+                    <img class="toggleIcon" src="${basePath}/images/yonyou/authentication/down.png" alt="">
+                </div>
+                <!--内容-->
+                <div class="toggleCon" style="display: block">
+                    <ul class="accountDiv">
+                        <li>
+                            <label for="company">公司名称：</label>
+                            <input type="text" id="company" maxlength="60" placeholder="请输入公司名称">
+                        </li>
+                        <li>
+                            <label for="regNum">注册号：</label>
+                            <input type="text" id="regNum" maxlength="18" placeholder="请输入营业执照上的统一社会信用代码">
+                        </li>
+                        <li>
+                            <label for="bizLicenceType">公司类型：</label>
+                            <input type="text" id="bizLicenceType" maxlength='25' placeholder="请输入营业执照上公司类型">
+                        </li>
+                        <li>
+                            <label for="bizLicenceAddr">住所：</label>
+                            <input type="text" id="bizLicenceAddr" maxlength='60' placeholder="请输入营业执照上的住所">
+                        </li>
+                        <li>
+                            <label for="bizLicenceFoundedDate">成立日期：</label>
+                            <input type="text" id="bizLicenceFoundedDate" placeholder="请输入营业执照上的成立日期（格式：xxxx-xx-xx）">
+                        </li>
+                        <li>
+                            <label for="bizLicenceLegalName">法人姓名：</label>
+                            <input type="text" id="bizLicenceLegalName" maxlength='10' placeholder="请输入营业执照上的法定代表人">
+                        </li>
+                        <li>
+                            <label for="legalCertNo">身份证号：</label>
+                            <input type="text" id="legalCertNo" placeholder="请输入营业执照上的法定代表人身份证">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 银行信息-->
+            <div class="prependCon">
+                <!--标签title-->
+                <div class="toggleTop">
+                    <label>银行信息</label>
+                    <img class="toggleIcon" src="${basePath}/images/yonyou/authentication/down.png" alt="">
+                </div>
+                <!--内容-->
+                <div class="toggleCon" style="display: block">
+                    <ul class="accountDiv">
+                        <li>
+                            <label for="bankstr">开户行行号：</label>
+                            <input type="text" id="bankstr" placeholder="请选择开户行行号">
+                        </li>
+                        <li>
+                            <label for="bankAcctAcctNo">账号：</label>
+                            <input type="text" id="bankAcctAcctNo" maxlength="25" placeholder="请填写对应的卡号">
+                        </li>
+                        <li>
+                            <label for="bankAcctAcctName">账户名：</label>
+                            <input type="text" id="bankAcctAcctName" placeholder="请填写对应的账户名">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <!--左侧end-->
+
+        <!--右侧-->
+        <div class="toggleList">
+            <!-- 其他-->
+            <div class="prependCon">
+                <!--标签title-->
+                <div class="toggleTop">
+                    <label>其他</label>
+                    <img class="toggleIcon" src="${basePath}/images/yonyou/authentication/down.png" alt="">
+                </div>
+                <!--内容-->
+                <div class="toggleCon" style="display: block">
+                    <ul class="accountDiv">
+                        <li>
+                            <!--财务-->
+                            <div class="childrenCon">
+                                <!--标签title-->
+                                <div class="toggleTop">
+                                    <label>财务</label>
+                                    <img class="toggleIcon" src="${basePath}/images/yonyou/authentication/down.png" alt="">
+                                </div>
+                                <!--内容-->
+                                <div class="toggleCon" style="display: block">
+                                    <ul class="accountDiv">
+                                        <li>
+                                            <label for="treasurerName">姓名：</label>
+                                            <input type="text" id="treasurerName" maxlength='10' placeholder="请输入财务姓名">
+                                        </li>
+                                        <li>
+                                            <label for="treasurerCertNo">身份证号：</label>
+                                            <input type="text" id="treasurerCertNo" placeholder="请输入财务身份证号码">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <!--机构信用代码证-->
+                            <div class="childrenCon">
+                                <!--标签title-->
+                                <div class="toggleTop">
+                                    <label>机构信用代码证</label>
+                                    <img class="toggleIcon" src="${basePath}/images/yonyou/authentication/down.png" alt="">
+                                </div>
+                                <!--内容-->
+                                <div class="toggleCon" style="display: block">
+                                    <ul class="accountDiv">
+                                        <li>
+                                            <label for="orgCreditCodeCertCode">代码：</label>
+                                            <input type="text" id="orgCreditCodeCertCode" placeholder="请输入代码（选填）">
+                                        </li>
+                                        <li>
+                                            <label for="orgCreditCodeCertName">名称：</label>
+                                            <input type="text" id="orgCreditCodeCertName" placeholder="请输入公司名称（选填）">
+                                        </li>
+                                        <li>
+                                            <label for="orgCreditCodeCertAddr">地址：</label>
+                                            <input type="text" id="orgCreditCodeCertAddr" placeholder="请输入机构信用代码的地址（选填）">
+                                        </li>
+                                        <li>
+                                            <label for="orgCreditCodeCertExpiredDate">有效期：</label>
+                                            <input type="text" id="orgCreditCodeCertExpiredDate" placeholder="请输入有效期（选填）">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <!--开户许可证-->
+                            <div class="childrenCon">
+                                <!--标签title-->
+                                <div class="toggleTop">
+                                    <label>开户许可证</label>
+                                    <img class="toggleIcon" src="${basePath}/images/yonyou/authentication/down.png" alt="">
+                                </div>
+                                <!--内容-->
+                                <div class="toggleCon" style="display: block">
+                                    <ul class="accountDiv">
+                                        <li>
+                                            <label for="acctPermitNo">编码：</label>
+                                            <input type="text" id="acctPermitNo" placeholder="请输入开户许可证编号（选填）">
+                                        </li>
+                                        <li>
+                                            <label for="acctPermitPermitNo">核准号：</label>
+                                            <input type="text" id="acctPermitPermitNo" placeholder="请输入开户许可证核准号（选填）">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <!--开户许可证-->
+                            <div class="childrenCon">
+                                <!--标签title-->
+                                <div class="toggleTop">
+                                    <label>税务登记处</label>
+                                    <img class="toggleIcon" src="${basePath}/images/yonyou/authentication/down.png" alt="">
+                                </div>
+                                <!--内容-->
+                                <div class="toggleCon" style="display: block">
+                                    <ul class="accountDiv">
+                                        <li>
+                                            <label for="taxCertGovTaxNo">国税字号：</label>
+                                            <input type="text" id="taxCertGovTaxNo">
+                                        </li>
+                                        <li>
+                                            <label for="taxCertLocalTaxNo">地税字号：</label>
+                                            <input type="text" id="taxCertLocalTaxNo">
+                                        </li>
+                                        <li>
+                                            <label for="taxCertName">纳税人名称：</label>
+                                            <input type="text" id="taxCertName">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <!-- 组织机构代码证-->
+                            <div class="childrenCon">
+                                <!--标签title-->
+                                <div class="toggleTop">
+                                    <label> 组织机构代码证</label>
+                                    <img class="toggleIcon" src="${basePath}/images/yonyou/authentication/down.png" alt="">
+                                </div>
+                                <!--内容-->
+                                <div class="toggleCon" style="display: block">
+                                    <ul class="accountDiv">
+                                        <li>
+                                            <label for="">代码：</label>
+                                            <input type="text" id="">
+                                        </li>
+                                        <li>
+                                            <label for="">机构名称：</label>
+                                            <input type="text" id="">
+                                        </li>
+                                        <li>
+                                            <label for="">机构类型：</label>
+                                            <input type="text" id="">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--右侧end-->
+
+        <!--操作按钮-->
+        <div class="authenticationFoot">
+            <p>*以上信息若为空，平台将保存为“-”并传给兴业数金。</p>
+            <a href="#" id="updateBtn" style="display: block">修改</a>
+            <a href="#" id="saveBtn" style="display: none">保存</a>
+        </div>
+        <!--操作按钮end-->
+    </div>
+    <!--开户信息end-->
+
+
+</div>
+
+<!--弹窗-->
+<div class="maskWindow" id="maskWindow" style="display: none">
+    <div class="maskBg"></div>
+    <div class="maskWrap maskWrapSmall">
+        <!--top-->
+        <div class="maskTop">
+            <!--弹窗名称-->
+            <div id="title" class="maskTitle">温馨提示</div>
+            <!--关闭按钮-->
+            <a class="maskClose">
+                <img src="${basePath}/images/yonyou/common/closeIcon.png" alt="关闭">
+            </a>
+        </div>
+        <!--top end-->
+
+        <!--内容容器-->
+        <div class="maskCon">
+            <!--上传图片有问题-->
+            <div class="maskDiv" style="display: none" id="imgAlertWindow">
+                <p class="maskMessage">图片不清晰，原素1、原素2 识别度较低，是否更换图片，重新识别？</p>
+            </div>
+            <!--上传图片有问题end-->
+        </div>
+        <!--内容容器end-->
+
+        <!--弹窗底部操作-->
+        <div class="maskFooter" id="maskFooter" style="display: none">
+            <!--上传图片有问题-->
+            <div id="imgAlertFooter" style="display: none">
+                <a href="#" onclick="return false" class="flatBtn">使用原图</a>
+                <a href="#" onclick="return false" class="flatBtn">重新上传</a>
+            </div>
+            <!--上传图片有问题end-->
+
+        </div>
+        <!--弹窗底部操作end-->
+
+    </div>
+</div>
+
+<!-- 这里是测试链接，用后删除 -->
+<div style="position: absolute;z-index: 100;color: #d43c33;margin: 200px;">
+<a href="${basePath}/yonyou/authentication_appraisal">小额鉴定</a><br><br>
+</div>
+<!-- 这里是测试链接，用后删除end -->
+
+<script>
+    $(document).ready(function () {
+
+        /*初始输入框不可编辑*/
+        $("input").attr('readonly','readonly');
+    });
+
+    /*关闭所有弹窗*/
+    $(".maskClose , .closeBtn").click(function(){
+        $("#maskWindow").fadeOut(500); /*内容区域*/
+        $("#imgAlertWindow").fadeOut(500); /*内容区域*/
+
+        $("#maskFooter").fadeOut(500); /*底部按钮区域*/
+        $("#imgAlertFooter").fadeOut(500); /*底部按钮区域*/
+
+    });
+
+    /*-----打开弹窗-----*/
+    /*上传图片有问题*/
+    $("#fileToUpload").click(function () {
+        $("#maskWindow").fadeIn(500); /*内容区域*/
+        $("#imgAlertWindow").fadeIn(500); /*内容区域*/
+
+        $("#maskFooter").fadeIn(500); /*底部按钮区域*/
+        $("#imgAlertFooter").fadeIn(500); /*底部按钮区域*/
+
+        $(".loading").show(500); /*识别中*/
+    });
+
+    /*修改审核信息*/
+    $("#updateBtn").click(function () {
+        $("input").removeAttr("readonly"); /*审核信息可编辑*/
+        $(".modifiable").show(100); /*图片、信息可修改提示*/
+
+        $("#updateBtn").hide(100);
+        $("#saveBtn").show(100);
+    });
+    
+    /* 保存修改  */
+    $("#saveBtn").click(function () {
+    	window.open("${basePath}/yonyou/authentication_success"); 
+    });
+</script>
+[/@main.body]

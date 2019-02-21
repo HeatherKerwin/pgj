@@ -1,0 +1,101 @@
+[#include "/common/setting.html"]
+[#macro body title='票管家官方网站']
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-
+
+transitional.dtd">	
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+	<head lang="en">
+	    <title>${title}</title>
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+	    <link rel="shortcut icon" href="${basePath}/images/logo.png"/>
+	    <link rel="shortcut icon" href="${basePath}/images/yonyou/icon.png"/>
+	    
+	    <link rel="stylesheet" type="text/css" href="${basePath}/css/main.css"/>
+	    <link rel="stylesheet" href="${basePath}/css/yonyou/index.css"/>
+		<link rel="stylesheet" href="${basePath}/css/yonyou/header.css"/>
+	    
+	    <script type="text/javascript" src="${basePath}/js/yonyou/jquery-1.8.3.min.js"></script>
+	</head>
+	<body style="background:#f5f5f5">
+		[#nested/]
+	</body>
+<script type="text/javascript">
+/**
+ * 跳转页面，并根据url传递参数
+ */
+function _OPENPAGE_FORM(map){
+	var tempForm = document.createElement("form");
+	tempForm.action="${basePath}/open/page";
+	tempForm.method="post";
+	tempForm.id="_OPENPAGE_FORM";
+	document.body.appendChild(tempForm);
+	
+	var array = map.keySet();
+	for(var i in array) {
+	 	var tempInput = document.createElement("input");
+    	tempInput.type="hidden";
+    	tempInput.name=array[i];
+    	tempInput.value=map.get(array[i]);
+    	tempForm.appendChild(tempInput);
+	}
+	tempForm.submit();
+}
+</script>
+<script src="https://s22.cnzz.com/z_stat.php?id=1274187431&web_id=1274187431" language="JavaScript"></script>
+</html>
+[/#macro]
+
+<!-- 这是头部 -->
+[#macro header currentmenu='1']
+<div class="head">
+    <div class="headWrap">
+        <a class="logo" href="http://www.yonyou.com/" target="_blank">
+            <img src="${basePath}/images/yonyou/logo.png" alt="yonyou">
+        </a>
+        [#if member??]
+	        <ul class="menu">
+	        	<li><a href="${basePath}/yonyou/page/index" class="[#if currentmenu=='1']ce84c3d[/#if]">首页</a></li>
+	            <li><a href="${basePath}/yonyou/page/discountrecord" class="[#if currentmenu=='2']ce84c3d[/#if]">出票</a></li>
+	            <li><a href="${basePath}/yonyou/page/inquiry" class="[#if currentmenu=='3']ce84c3d[/#if]">询价</a></li>
+	            <li><a href="${basePath}/yonyou/page/calculator" class="[#if currentmenu=='4']ce84c3d[/#if]">计算器</a></li>
+	            <li><a href="${basePath}/yonyou/page/authentication_success" class="[#if currentmenu=='5']ce84c3d[/#if]">开户管理</a></li>
+	            <li><a href="${basePath}/yonyou/page/order/list" class="[#if currentmenu=='6']ce84c3d[/#if]">订单中心</a></li>
+	            <li><a href="${basePath}/yonyou/page/account" class="[#if currentmenu=='7']ce84c3d[/#if]">我的钱包</a></li>
+	            <li><a href="${basePath}/yonyou/page/index?SAMLRequest=true&service=${basePath}/yonyou/page/index" class="">退出</a></li>
+	        </ul>
+        [#else]
+        	<ul class="menu">
+	        	<li><a href="${basePath}/yonyou/page/index" class="[#if currentmenu=='1']ce84c3d[/#if]">首页</a></li>
+	        	<li><a href="${basePath}/yonyou/page/main" class="">登录</a></li>
+	        </ul>
+        [/#if]
+    </div>
+</div>
+[/#macro]
+
+<!-- 这是贴现左侧 -->
+[#macro left remark="1"]
+<!--银票、商票tab-->
+<div class="leftCon">
+    <ul class="typeTab">
+        <li>
+            <a href="${basePath}/yonyou/page/discountrecord" class="[#if remark=='1']checked[/#if]">
+                <label for="ypTab"><input type="radio" name="" id="ypTab" class="typeTabBtn" checked="[#if remark=='1']checked[/#if]">银票</label>
+            </a>
+        </li>
+        <li>
+            <a href="${basePath}/yonyou/page/discountrecordsp" class="[#if remark=='2']checked[/#if]">
+                <label for="spTab"><input type="radio" name="" id="spTab" class="typeTabBtn" checked="[#if remark=='2']checked[/#if]">商票</label>
+            </a>
+        </li>
+    </ul>
+</div>
+[/#macro]
+
+[#macro pager desc='这是引入分页插件']
+	<link rel="stylesheet" type="text/css" href="${basePath}/js/ajaxPager/page.css"/>
+	<script type="text/javascript" src="${basePath}/js/handlebars.js"></script>
+	<script type="text/javascript" src="${basePath}/js/ajaxPager/js-extend.js"></script>
+	<script type="text/javascript" src="${basePath}/js/ajaxPager/jquery-ajax-pager.js"></script>
+[/#macro]

@@ -1,0 +1,96 @@
+﻿
+/* 公用分页父级容器 */
+.pagerCon{
+	width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+/* 公用分页父级容器end */
+
+#pager {
+	width:auto;
+	float: right;
+    padding: 0px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+#pager span {
+    display: block;
+    float: left;
+    padding: 0.3em 0.8em;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size:small;
+}
+
+#pager span.current {
+    background: #e84c3d;
+    color: #fff;
+    border: solid 1px #e84c3d;
+}
+
+#pager span.disenable {
+    color: #717583;
+    border-color: #717583;
+    background: #fff;
+    border: solid 1px #e84c3d;
+}
+
+#pager span.text {
+    padding: 0.3em 0;
+    color: #717583;
+}
+
+#pager a {
+    display: block;
+    float: left;
+    padding: 0.3em 0.8em;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    text-decoration: none;
+    border: solid 1px #e84c3d;
+    color: #15B;
+    font-size:small;
+}
+
+#pager a:hover {
+    border: solid 1px #e84c3d;
+    color: #e84c3d;
+}
+
+#pager input[type=text] {
+    border: solid 1px #e84c3d;
+    width: 22px;
+    height: 19px;
+    line-height: 19px;
+    float: left;
+    padding: 0.3em 0.8em;
+	margin-right: 5px;
+	margin-bottom: 5px;
+    text-align: center;
+}
+
+#pager button {
+    cursor: pointer;
+    border: solid 1px #e84c3d;
+    width: 50px;
+    font-size: 14px;
+    height: 29px;
+    line-height: 29px;
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 5px;
+ 	padding: 0.3em 0.8em;
+    color: #404040;
+    background: white;
+}
+
+#pager button:hover {
+    border: solid 1px #e84c3d;
+    color: #e84c3d;
+}
+
+#pager span.my-ellipsis {
+    padding:0em 0.2em;
+}

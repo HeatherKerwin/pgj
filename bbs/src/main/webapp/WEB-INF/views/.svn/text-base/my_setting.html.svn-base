@@ -1,0 +1,84 @@
+#include("./common/header.html", {title:"基本信息"})
+#include("./common/right.html")
+#include("./common/my_menu.html")
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column calendar-viewer">
+			<form id="avatar_form" class="form-horizontal" role="form">
+				<div class="form-group ml0 mr0">
+					<div class="col-sm-1"></div>
+					#if(cosname!=null && cosname.current!=null)
+						<strong class="pull-left col-sm-11">欢迎我们的${cosname.current.name ?! '票据大大'}来到票据管家社区哦</strong>
+					#else
+						<strong class="pull-left col-sm-11">欢迎来到票据管家社区哦</strong>
+					#end
+				</div>
+				<div class="form-group ml0 mr0">
+					<label for="login_name" class="col-sm-2 control-label">用户名：</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="login_name" name="login_name" value="${profile.username}" placeholder="输入你的用户名" autocomplete="off"/>
+					</div>
+				</div>
+				<div class="form-group ml0 mr0">
+					<label for="nick_name" class="col-sm-2 control-label">昵称：</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="nick_name" name="nick_name" value="${profile.nick_name}" placeholder="输入你的昵称" autocomplete="off"/>
+					</div>
+				</div>
+				<div class="form-group ml0 mr0" style="vertical-align:middle">
+					<label for="inputPassword2" class="col-sm-2 control-label">头像：</label>
+					<div class="col-sm-10">
+                		<input type="hidden" id="user_avatar" value=""/>
+                    	<img id="upload_img" alt="${profile.username}" src="${profile.avatar}" width="73" height="73" onclick="doUpload()" style="cursor: pointer;" class="img-circle"/>
+                    	<input type="file" name="fileUpload" class="fileUpload ladda-button" data-style="zoom-out" accept="image/png,image/jpg,image/jpeg" style="display: none;"/>
+                	</div>
+				</div>
+				<div class="form-group ml0 mr0">
+					<div class="col-sm-offset-2 col-sm-4">
+						<button type="button" class="btn btn-default btn-danger btn-block submit ladda-button" data-style="zoom-out">保存</button>
+						<a data-myset="set-pjax" href="${base_url('/my/setting/info')}" style="float: right;">完善更多资料得积分&gt;&gt;</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+#include("./common/footer.html") 
+<script type="text/javascript" src="${staticPath}/js/bbs/jquery.liteuploader.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".fileUpload").liteUploader({
+	    script: "${base_url('/uploadimg')}",
+	    params: {type:'avatar'},
+	    rules: {
+	        allowedFileTypes: "image/jpeg,image/png,image/jpeg",
+	        maxSize: 512000
+		}
+	}).on("lu:success", function (e, data) {
+		  if(data){
+		  	$("#upload_img").attr('src', data.url);
+			$("#user_avatar").val(data.savepath);
+		  }
+	}).on("lu:errors", function (e, data) {
+		if(data && data.length > 0){
+			var item = data[0];
+			if(item && item.errors && item.errors.length > 0){
+				var err = item.errors[0];
+				if(err.type == 'size'){
+					alertError("图片大小超出限制,请重新上传");				
+				}
+			}
+		}
+	});
+	
+	$(".fileUpload").change(function () {
+	    $(this).data("liteUploader").startUpload();
+	});
+});
+//上传方法
+function doUpload() {
+	$(".fileUpload").click();
+}
+</script>
+</body>
+</html>

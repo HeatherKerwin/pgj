@@ -1,0 +1,50 @@
+/*查询查复订单列表*/
+ul.queryList{
+    width: 100%;
+}
+ul.queryList li{
+    font-size: 14px;
+    background: #ffffff;
+    border-bottom: solid 1px #d8d8d8;
+    margin-bottom: 10px;
+}
+/*查询查复订单展示*/
+ul.queryList li .queryData{
+    display: block;
+    padding: 8px 20px;
+
+}
+ul.queryList li .queryData ul li{
+    height: 20px;
+    line-height: 20px;
+    clear: left;
+    border-bottom: none;
+    margin-bottom: 0px;
+}
+/*订单操作*/
+ul.queryList li .queryEdit{
+    height: 40px;
+    border-top: solid 1px #d8d8d8;
+}
+.queryEdit a{
+    display: block;
+}
+.queryEdit a input{
+    font-size: 13px;
+    height: 26px;
+    line-height: 26px;
+    border-radius: 3px;
+    padding: 0 7px;
+    margin-top: 7px;
+    margin-right: 10px;
+}
+.queryEdit a input.whiteBtn{
+    background: #ffffff;
+    color: #2d2d2d;
+    border: solid 1px #85878a;
+}
+.queryEdit a input.redBtn{
+    background: #d43c33;
+    color: #ffffff;
+    border: solid 1px #d43c33;
+}

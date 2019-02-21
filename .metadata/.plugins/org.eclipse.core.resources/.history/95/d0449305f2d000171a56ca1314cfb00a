@@ -1,0 +1,82 @@
+[#import "/common/main.ftl" as main]
+[#include "/common/setting.ftl"]
+[@main.body title='票管家']
+<link rel="stylesheet" type="text/css" href="https://static.utiexian.com/css/common/flex.css"/>
+[@main.header currentmenu='2'/]
+
+<!--订单大厅 -->
+<div class="flex flex-direction-column mt25 w1200 bc bcwhite">
+    <img src="https://img.utiexian.com/website/discount/dingdandating.png" alt="" class="w ha">
+    <!--没有订单-->
+    <div class="flex mt25 w1200 bc bcwhite h500 flex-justify-center flex-alignItems-center">
+        <div class="flex-row">
+            <img src="https://img.utiexian.com/website/discount/noOrder.png" alt="" width="140" height="179">
+        </div>
+    </div>
+    <!--有订单-->
+    <div class="flex flex-direction-column bc pl25 pr25 pb25">
+        <div class="w flex-row flex-direction-column mt30">
+
+
+
+
+        </div>
+
+    </div>
+</div>
+
+<!--弹窗-->
+<div class="w h pf bc05 zi10 top none" id="maskWindow">
+    <div class="flex flex-alignItems-center flex-justify-center w h">
+        <div class="flex-row flex-direction-column w590 bcwhite bae0e0e0 br3 pb20">
+            <div class="flex-row bbe0e0e0 flex-justify-space-between flex-alignItems-center h57 lh57 pl20 pr20">
+                <!--弹窗名称-->
+                <div>添加绑定对公账户</div>
+                <!--关闭按钮-->
+                <lable for="closeIcon" id="closeBtn">
+                    <img src="https://img.utiexian.com/website/PJGJ/authentication/closeIcon.png" alt="关闭">
+                    <button id="closeIcon" class="oln none"></button>
+                </lable>
+            </div>
+            <!--弹窗内容-->
+            <div class="pl20 pr20">
+                <!--选择机构-->
+                <div class="flex-row flex-direction-column w lh30 none" id="selectionWindow">
+                    <div class="flex-row pl105 mt40">
+                        公司名称：<span>收到订单多多多</span>
+                    </div>
+                    <div class="flex-row pl105">
+                        您是否指定该机构？
+                    </div>
+                    <!--按钮操作-->
+                    <div class="flex-row flex-direction-row-reverse lh30 mt30">
+                        <input type="button" value="确定" class="w90 h35 ba bad43c33 bcd43c33 cwhite br3 mr20">
+                        <input type="button" value="取消" class="w90 h35 ba bae0e0e0 bcf2f2f2 c2d2d2d br3 mr20">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>	      
+[@main.footer/]
+[/@main.body]
+<script type="text/javascript">
+	$(document).ready(function() {
+	   
+	});
+	//关闭按钮
+	$("#closeBtn").click(function(){
+	    $("#maskWindow").addClass("none");
+	    $("#endorseWindow").addClass("none"); //背书
+	    $("#selectionWindow").addClass("none"); //选择机构
+	    $("#appealWindow").addClass("none"); //申诉
+	    $("#cancelWindow").addClass("none"); //取消
+	});
+	//选择机构
+	$("#selectionBtn").click(function(){
+	    $("#maskWindow").removeClass("none");
+	    $("#selectionWindow").removeClass("none");
+	});
+</script>

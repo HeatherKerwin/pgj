@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;statement.ftl&apos; to &apos;tool.ftl&apos;&#x0D;&#x0A;- Original project: &apos;rywap&apos;&#x0D;&#x0A;- Destination element: &apos;tool.ftl&apos;&#x0D;&#x0A;- Original element: &apos;statement.ftl&apos;" description="Copy file" element1="src/main/webapp/WEB-INF/freemarker/statement.ftl" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1516348155888" target="/rywap/src/main/webapp/WEB-INF/freemarker/tool.ftl" units="0" version="1.0"/>
+</session>

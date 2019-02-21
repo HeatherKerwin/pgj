@@ -1,0 +1,638 @@
+.detailWarp{
+    background: #ffffff;
+    box-shadow: 1px 2px 1px #ddd;
+}
+
+/*容器*/
+.detailContainer{
+    padding: 25px 20px;
+}
+
+/*------ 详情头部信息 ------*/
+.detailHead{
+    position: relative;
+    height: 27px;
+    border-bottom: 1px solid #e0e0e0;
+}
+/*左侧*/
+.detailHead .detailTitle{
+    position: absolute;
+    left: 0px;
+    height: 27px;
+    line-height: 27px;
+}
+.detailHead .detailTitle:after{
+    clear: both;
+}
+/*左侧-标题*/
+.detailHead .detailTitle h2 {
+    display: inline-block;
+    float: left;
+    font-size: 18px;
+    font-weight: 600;
+}
+/*左侧-定位*/
+.detailHead .detailTitle .detailLocation {
+    display: inline-block;
+    float: left;
+    margin-left: 30px;
+}
+.detailHead .detailTitle .detailLocation img{
+    position: relative;
+    top: 1px;
+    margin-right: 4px;
+}
+/*右侧-日期*/
+.detailHead .detailDate{
+    position: absolute;
+    right: 0px;
+    font-size: 16px;
+    color: #717583;
+}
+/*------ 详情头部信息end ------*/
+
+/*订单详情容器*/
+.detailContent{
+    width: 100%;
+}
+
+/*------ 基本信息 ------*/
+.detailContent .detailBasic{
+    margin-top: 10px;
+    border: 1px solid #e0e0e0;
+    font-size: 15px;
+    position: relative;
+}
+.detailContent .detailBasic div:last-child{
+    border-bottom: 0px !important;
+}
+.detailContent .detailBasic ul.showTitle{
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background: #f9f9f9;
+    color: #717583;
+    border-bottom: 1px solid #e0e0e0;
+    box-sizing: border-box;
+}
+.detailContent .detailBasic ul.showTitle:after{
+    clear: both;
+}
+.detailContent .detailBasic ul.showTitle li{
+    display: inline-block;
+    float: left;
+}
+/*基本信息-左侧*/
+.detailBasic .showMain{
+    height: auto;
+    overflow: hidden;
+    border-bottom: 1px solid #e0e0e0;
+}
+.detailBasic .showMain:after{
+    clear: both;
+}
+.detailBasic .showMain .showLeft{
+    width: 650px;
+    float: left;
+}
+.detailBasic .showMain .showLeft ul.showLeftTop{
+    width: 100%;
+    height: 45px;
+    padding: 5px 0px;
+    line-height: 45px;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+.showLeft ul.showLeftTop:after{
+    clear: both;
+}
+.showLeft ul.showLeftTop li{
+    display: block;
+    float: left;
+    position: relative;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+/*下载合同图标*/
+.showLeft ul.showLeftTop li a.download{
+    position: absolute;
+    top: 12px;
+    right: 2px;
+    display: block;
+    width: 18px;
+    height: 18px;
+    background: url("/images/yonyou/common/down.png") center no-repeat;
+    background-size: 18px 18px;
+    cursor: pointer;
+}
+
+.showLeft .showLeftBottom{
+    height: auto;
+    padding: 10px   ;
+    overflow: hidden;
+}
+.showLeft .showLeftBottom:after{
+    clear: both;
+    display: block;
+    height: 0;
+}
+/*基本信息-左侧-票据的相关日期信息*/
+.showLeft .showLeftBottom .showDate{
+    width: 210px;
+    float: left;
+    display: inline-block;
+    line-height: 30px;
+}
+/*基本信息-左侧-备注*/
+.showLeft .showLeftBottom .showNote{
+    width: 400px;
+    float: left;
+    padding: 5px 0 5px 15px ;
+}
+
+/*基本信息-右侧*/
+.detailBasic .showMain ul.showright{
+    width: 308px;
+    float: right;
+}
+.detailBasic .showMain ul.showright:after{
+    clear: both;
+}
+/*基本信息-右侧-票据特征*/
+.detailBasic .showMain ul.showRight li{
+    width: 90px;
+    height: 35px;
+    float: left;
+    display: inline-block;
+    border: 1.5px solid #00a5f2;
+    color: #00a5f2;
+    border-radius: 5px;
+    line-height: 35px;
+    text-align: center;
+    margin: 10px 30px;
+}
+
+/*回头票标志*/
+.detailBasic .ticketReturn{
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    width: 160px;
+    height: 132px;
+    margin-left: -80px;
+}
+.detailBasic .ticketReturn img{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+/*------ 基本信息end ------*/
+
+/*------ 效率/评分信息 ------*/
+.ScoreDiv{
+    line-height: 40px;
+    padding: 0px;
+    overflow: hidden;
+    font-size: 14px;
+    border: 1px solid #e0e0e0;
+    margin-top: 10px;
+}
+.ScoreDiv1{
+    cursor:pointer;
+}
+.ScoreDiv1:hover{
+    background:#f4f9fd;
+}
+.ScoreDiv:after{
+    clear: both;
+    display: block;
+}
+.ScoreDiv .scoreLabel{
+    float: left;
+    width: 90px;
+    color: #717583;
+    text-align: center;
+    box-sizing: border-box;
+    border-right: 1px solid #e0e0e0;
+}
+.ScoreDiv .scoreLabel:last-child{
+    border-right: 0px;
+}
+.ScoreDiv .scoreLabel p:first-child{
+    border-bottom: 1px solid #e0e0e0;
+}
+.ScoreDiv .scoreLabel p:last-child{
+    color: #2d2d2d;
+    font-weight: 600;
+}
+.ScoreDiv .entScore{
+    width: 388px;
+}
+.ScoreDiv .entScore ul{
+    width: 100%;
+    overflow: hidden;
+    color: #2d2d2d;
+}
+.ScoreDiv .entScore ul:after{
+    clear: both;
+    height: 0;
+}
+.ScoreDiv .entScore ul li{
+    float: left;
+    width: 33.33%;
+    display: inline-block;
+    font-weight: 600;
+}
+.ScoreDiv .entScore ul li span{
+    color: #717583;
+    font-weight: 400;
+}
+/*------ 效率/评分信息end ------*/
+
+/*------ 小模块标题 ------*/
+.detailContent .modulTitle{
+    height: 27px;
+    line-height: 27px;
+    font-weight: 600;
+    border-bottom: 1px solid #e0e0e0;
+}
+/*------ 小模块标题end ------*/
+
+/*------ 效率/评分信息 ------*/
+.detailContent .ticketPar{
+    margin-top: 20px;
+}
+.ticketPar .ticketParCon{
+    margin-top: 10px;
+    border: 1px solid #e0e0e0;
+}
+.ticketPar .ticketParTitle{
+    width: 100%;
+    height: 50px;
+    background: #f9f9f9;
+    line-height: 50px;
+    color: #717583;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+.ticketPar ul.ticketParImg{
+    height: auto;
+    overflow: hidden;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.ticketPar ul.ticketParImg:after{
+    clear: both;
+    display: block;
+}
+.ticketPar ul.ticketParImg li{
+    float: left;
+    display: inline-block;
+    margin: 20px 38px;
+    border: 1px solid #ddd;
+    box-shadow: 1px 1px 1px #ddd;
+}
+.ticketPar ul.ticketParImg li a{
+    display: block;
+    width: 400px;
+    height: 300px;
+}
+.ticketPar ul.ticketParImg li a img{
+    width: 100%;
+    height: 100%;
+}
+.ticketPar .ticketParNotes{
+    height: 50px;
+    padding: 0 20px;
+    background: #f9f9f9;
+    line-height: 50px;
+    color: #717583;
+}
+/*------ 效率/评分信息end ------*/
+
+/*------ 资方信息 ------*/
+.orgInformation{
+    width: 960px;
+    border: solid #e0e0e0;
+    border-width: 0px 1px;
+    box-sizing: border-box;
+}
+.orgInformation .orgRow{
+    overflow: hidden;
+}
+.orgInformation .orgRow:after{
+    clear: both;
+    height: 0;
+}
+.orgInformation .orgRow .orgCol{
+    float: left;
+    width: 319px;
+    height: 34px;
+    font-size: 15px;
+    line-height: 34px;
+    text-indent: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.orgInformation .orgRow .orgCol span{
+}
+/*------ 资方信息end ------*/
+
+/*------ 我的报价 ------*/
+.detailContent .myOffer{
+    margin-top: 20px;
+}
+.detailContent .myOffer .myOfferForm{
+    width: 100%;
+    margin-top: 10px;
+    border: 1px solid #e0e0e0;
+}
+/*我的报价-各属性名*/
+.myOffer .myOfferForm ul.myOffer_FormTitle{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background: #f9f9f9;
+    color: #717583;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: center;
+    overflow: hidden;
+}
+.myOffer ul.myOffer_FormTitle:after{
+    clear: both;
+}
+.myOffer ul.myOffer_FormTitle li{
+    float: left;
+    display: inline-block;
+    width: 20%;
+}
+/*我的报价-各属性值*/
+.myOffer .myOfferForm ul.myOffer_FormCon{
+    overflow: hidden;
+    padding: 5px 0px;
+    line-height: 40px;
+    text-align: center;
+}
+.myOffer .myOfferForm ul.myOffer_FormCon:after{
+    clear: both;
+}
+ul.myOffer_FormCon li{
+    float: left;
+    display: inline-block;
+    width: 20%;
+}
+ul.myOffer_FormCon li span{
+    margin-right: 5px;
+}
+ul.myOffer_FormCon li span input[type=number]{
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    text-indent: 8px;
+    border: 1px solid #e0e0e0;
+}
+/*报价价格*/
+.myOffer .ticketPay{
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    margin-top: 10px;
+}
+.myOffer .ticketPay:after{
+    clear: both;
+}
+/*左侧-支付信息*/
+.myOffer .ticketPay ul.PayList{
+    float: left;
+    padding: 20px 20px;
+    border-right: 1px solid #e0e0e0;
+}
+.myOffer .ticketPay ul.PayList li{
+    line-height: 35px;
+}
+.ticketPay ul.PayList li label{
+    width: 120px;
+}
+.ticketPay ul.PayList li span{
+    margin-right: 5px;
+}
+.ticketPay ul.PayList li a{
+    color: #3366cc;
+    margin-right: 5px;
+}
+/*需要跳转的a*/
+.ticketPay ul.PayList li a.link{
+    color: #3366cc;
+    text-decoration:underline;
+}
+/*使用红包*/
+.ticketPay ul.PayList li .coupon{
+    display: inline;
+    color: #e84c3d;
+    vertical-align: inherit;
+}
+.ticketPay ul.PayList li .coupon img{
+    position: relative;
+    top: 2px;
+    width: 15px;
+    height: 16px;
+}
+/*会员*/
+.ticketPay ul.PayList li .member{
+    display: inline;
+    color: #e84c3d;
+}
+.ticketPay ul.PayList li .member img{
+    position: relative;
+    top: 1px;
+    width: 23px;
+    height: 15px;
+}
+/*右侧-票面*/
+.myOffer .ticketPay .ticketPay_Par{
+    float: left;
+    width: 705px;
+}
+.ticketPay .ticketPay_Par .parTitle{
+    height: 35px;
+    line-height: 35px;
+    background: #f9f9f9;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+.ticketPay .ticketPay_Par ul{
+    overflow: hidden;
+}
+.ticketPay .ticketPay_Par ul li{
+    float: left;
+    display: inline-block;
+    margin: 10px 25px;
+}
+.ticketPay .ticketPay_Par ul li img{
+    width: 300px;
+    height: 155px;
+}
+/*------ 我的报价end ------*/
+
+
+/*------ 底部操作模块 ------*/
+.detailContainer .detailFooter{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    margin-top: 20px;
+}
+/*左侧*/
+.detailFooter .footerLeft{
+    float: left;
+    padding-left: 20px;
+}
+/*左侧-倒计时*/
+.detailFooter .footerLeft .countDown{
+    float: left;
+    vertical-align: inherit;
+}
+.footerLeft .countDown img{
+    width: auto;
+    height: 20px;
+    position: relative;
+    top: 3px;
+    margin-right: 3px;
+}
+.footerLeft .countDown span{
+    color: #e84c3d;
+}
+/*具体订单状态*/
+.detailFooter .footerLeft .orderType{
+    float: left;
+    display: block;
+    margin-left: 10px;
+    color: #717583;
+}
+
+/*右侧*/
+.detailFooter .footerRight{
+    float: right;
+}
+/*右侧-操作按钮*/
+/*右侧-操作按钮*/
+.detailFooter .footerRight ul{
+    float: left;
+    overflow: hidden;
+}
+.footerRight ul li{
+    float: left;
+    display: inline-block;
+    margin-right: 20px;
+}
+.footerRight ul li span{
+    color: #e84c3d;
+}
+/*右侧-操作按钮*/
+/*直角按钮*/
+.detailFooter .footerRight a{
+    float: right;
+    display: block;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+.detailFooter .footerRight a.flatBtn{
+    width: 150px;
+    height: 50px;
+    background: #e84c3d;
+    color: #FFFFFF;
+}
+.detailFooter .footerRight a.flatBtn:hover{
+    background: #e84c3d;
+}
+/*线框圆角角按钮*/
+.detailFooter .footerRight a.lineBtn{
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    background: none;
+    font-size: 14px;
+    color: #e84c3d;
+    border: 1px solid #e84c3d;
+    border-radius: 4px;
+    margin: 10px;
+}
+.detailFooter .footerRight a.lineBtn:hover{
+    background: #e84c3d;
+    color: #ffffff;
+    box-shadow: 0px 1px 1px #000;
+}
+/*------ 底部操作模块end ------*/
+
+/*评价弹窗*/
+#evaluateWindow{
+    overflow: hidden;
+}
+/*票据信息*/
+#evaluateWindow ul.evaluateTop{
+    margin: 5px 0px;
+    padding: 5px 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}
+#evaluateWindow ul.evaluateTop li{
+    width: 100%;
+    margin: 5px 0px;
+    font-size: 14px;
+    overflow: hidden;
+}
+#evaluateWindow ul.evaluateTop li:after{
+    clear: both;
+    height: 0px;
+}
+#evaluateWindow ul.evaluateTop li div{
+    float: left;
+    margin-right: 10px;
+}
+#evaluateWindow ul.evaluateTop li div#comment_type{
+    padding: 3px 6px;
+    color: #e84c3d;
+    font-size: 12px;
+    line-height: 12px;
+    border: 1px solid #e84c3d;
+    border-radius: 5px;
+}
+/*具体评价*/
+#evaluateWindow p{
+    margin: 10px 0px 5px;
+}
+#evaluateWindow textarea{
+    width: 545px;
+    height: 100px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 5px;
+}
+#evaluateWindow ul.evaluateItem li{
+    width: 100%;
+    height: 25px;
+    overflow: hidden;
+    margin: 5px 0px;
+}
+#evaluateWindow ul.evaluateItem li:after{
+    clear: both;
+    height: 0px;
+}
+#evaluateWindow ul.evaluateItem li .evaluateLabel{
+    float: left;
+    width: 80px;
+    line-height: 25px;
+}
+#evaluateWindow ul.evaluateItem li .evaluateChose{
+    float: left;
+    overflow: hidden;
+}
+#evaluateWindow ul.evaluateItem li label{
+    display: block;
+    float: left;
+    margin: 0px 5px;
+}

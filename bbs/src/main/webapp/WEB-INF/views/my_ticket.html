@@ -1,0 +1,114 @@
+#include("./common/header.html", {title:"我的奖励"})
+#include("./common/right.html")
+#include("./common/my_menu.html")
+<script type="text/javascript" src="${staticPath}/js/common/jquery.qrcode.min.js?ver=${version}"></script>
+<div class="container">
+	<div class="row">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="col-md-12 column calendar-viewer">
+					#if(has_ticket!=null && has_ticket!=0)
+					<div class="jumbotron text-center pt20 pb20">
+						<p style="margin: 0">
+							恭喜您注册票管家社区，票管家送您抽奖券，立即抽奖吧！${myInvitationCode}
+						<a class="btn btn-primary btn-danger" href="${base_url('/my/ticket/use')}">立即抽奖（${has_ticket}）</a>
+						</p>
+					</div>
+					#end
+					<div class="col-md-12 column">
+						<div class="col-sm-offset-2 col-md-3">
+							<div class="caption text-center">
+								<h3><strong>转发集赞拿奖品</strong></h3>
+								<div id="code" class="mt30 mb20"></div>
+								<p class="text-left">扫描上方二维码并分享至朋友圈，集齐30个赞发送给我们的公众号（微信搜索票管家助手），即可获得价值 100元的时尚北极熊白充电宝或超高速3.0金属U盘一个。</p>
+								<p><strong>300个名额，先到先得，送完为止。</strong></p>
+							</div>
+						</div>
+						<div class="col-sm-offset-2 col-md-3">
+							<div class="caption text-center">
+								<h3><strong>邀请好友抽大奖</strong></h3>
+								<div id="code_invitation" class="mt30 mb20"></div>
+								<p class="text-left">邀请3位好友注册成功并点进票据管家社区即可获得一张抽奖券。奖品丰厚，iPhone 7 Plus等你拿。</p>
+								<p><strong>您还需邀请 ${need_invitation} 位好友，赶紧分享吧！</strong></p>
+							</div>
+							<p style="color:gray;font-size:9px;">*奖品每周五发放。</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 column table-responsive">
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr align="center">
+								<th>
+									奖品名称
+								</th>
+								<th>
+									获奖时间
+								</th>
+								<th>
+									奖品状态
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							#if(awards!=null && awards.size() != 0)
+								#for(award : awards)
+								<tr>
+									<td>
+										${award.goods}
+									</td>
+									<td>
+										${datespan(award.create_time,"yyyy-MM-dd")}
+									</td>
+									<td>
+										#if(award.genre==0)
+											#if(award.name==null || award.name=='')
+												<a href="${base_url('/my/award/') + award.id}" class="btn btn-danger btn-outline btn-sm mr5" type="button">领取</a>
+											#elseif(award.state==0)
+												待处理
+											#elseif(award.state==1)
+												已处理
+											#elseif(award.state==2)
+												无效
+											#end
+										#elseif(award.genre==1)
+											#if(award.state==0)
+												待处理
+											#elseif(award.state==1)
+												已处理
+											#elseif(award.state==2)
+												无效
+											#end
+										#end
+									</td>
+								</tr>
+								#end
+							#else
+								<tr>
+									<td colspan="3" align="center">
+										暂无记录
+									</td>
+								</tr>
+							#end
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+#include("./common/footer.html") 
+</body>
+<script type="text/javascript">
+$("#code").qrcode({
+	width: 150,
+	height:150,
+	text: "${site_url}"
+});
+$("#code_invitation").qrcode({
+	width: 150,
+	height:150,
+	text: "${code_invitation}"
+});
+</script>
+</html>

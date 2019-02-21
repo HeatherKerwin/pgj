@@ -1,0 +1,28 @@
+.successCon{
+    height: auto;
+    background: #ffffff;
+    text-align: center;
+    padding-bottom: 30px;
+}
+.successCon img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.successCon p{
+    font-size: 18px;
+    color: #717583;
+    margin: 20px 0px;
+}
+.successCon a{
+    display: block;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #ffffff;
+    background: #e84c3d;
+    border-radius: 5px;
+    border: 0px;
+    margin: 0px auto;
+}

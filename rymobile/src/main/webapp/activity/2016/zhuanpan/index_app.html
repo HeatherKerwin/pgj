@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+<head>
+	<title>票据管家送奖品</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no,target-densitydpi=device-dpi, ">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="stylesheet" type="text/css" href="https://static.utiexian.com/css/rymobile/zhuanpan/logistic.css">
+	<script type="text/javascript" src="https://static.utiexian.com/js/common/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="https://static.utiexian.com/js/rymobile/zhuanpan/zhuanpan.js"></script>
+</head>
+
+<body style="background:#e03322">
+	<div style="background: url(https://img.utiexian.com/rymobile/zhuanpan/appn.jpg) no-repeat center;background-size: 100% 100%;" >
+		<div class="head w_100" style="padding-top:10%">
+			<div class="head_l w_10 fl">
+				<img src="">
+			</div>
+			<div class="head_r w_80 fl fs_12">
+				&nbsp;
+			</div>
+			<div class="w_10 fl">
+				&nbsp;
+			</div>
+		</div>
+		<div class="clear">
+		</div>
+		<div class="row w_100 lh_20 pt_35 ">
+			<div class="w_5 fl">
+			&nbsp;
+			</div>
+			<div class="w_25  fl">
+				手机号码
+			</div>
+			<div class="w_2 fl">&nbsp;
+			</div>
+			<div class="w_60  fl">
+				<input type="text" id="mobile" class="txt_input" placeholder="请输入手机号码">
+			</div>
+			<div class="w_5 fl">
+			&nbsp;
+			</div>
+		</div>
+		<div class="clear">
+		</div>
+		<div class="row w_100">
+			<div class="w_5 fl">&nbsp;
+			</div>
+			<div class="w_25  fl">
+				验&nbsp;证&nbsp;码&nbsp;
+			</div>
+			<div class="w_2 fl">&nbsp;
+			</div>
+			<div class="w_30  fl">
+				<input type="text" id="code" class="txt_input" placeholder="输入验证码">
+			</div>
+			<div class="w_2 fl">&nbsp;
+			</div>
+			<div class="w_30 fl">
+				<span class="msgs w_90 ma fs_09 mt_25 lh_20 my-yzm">
+					获取验证码
+				</span>
+			</div>
+			<div class="w_5 fl">&nbsp;
+			</div>
+		</div>
+		<div class="clear">
+		</div>
+		<div class="btn mt_20" style="padding-bottom:10%">
+			<input class="t-t3" onclick="login(this);" type="button" value="立即参与抽奖" style="color:#FF0000;">
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+//获取短信验证码
+var validCode = true;
+$(".msgs").click (function() {
+	var mobile = $("#mobile").val();
+	var time=60;
+	var code=$(this);
+	if (validCode) {
+		validCode=false;
+		code.addClass("msgs1");
+		if(!checkMobile(mobile)){
+			alert("手机号码不正确!");
+			code.removeClass("msgs1");
+			validCode = true;
+			return;
+		}
+		$.ajax({
+			url:"../../../app/sendcodezp.htm",
+			type:"post",
+			data:{"mobile":mobile},
+			dataType:"json",
+			success:function(data){
+				var result = eval(data);
+				if(result.response=="failed"){
+					alert(result.msg);
+					code.removeClass("msgs1");
+					validCode = true;
+				}else{
+					var t=setInterval(function(){
+						time--;
+						code.html(time+"秒");
+						if (time==0) {
+							clearInterval(t);
+							code.html("重新获取");
+							validCode=true;
+							code.removeClass("msgs1");
+						}
+					},1000);
+				}
+			}
+		});
+	}
+});
+
+function checkMobile(str) {
+	var telReg = !!str.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/);
+	return telReg;
+}
+
+function login(tag){//表单请求
+	var mobile = $("#mobile").val();
+	var code = $("#code").val();
+	if(mobile==null || mobile.trim()=="" || !checkMobile(mobile.trim())){
+		alert("请输入正确的手机号！");
+		return false;
+	}
+	if(code==null || code.trim()==""){
+		alert("请输入验证码！");
+		return false;
+	}
+	
+	$(tag).attr({"disabled":"disabled"});
+	$.ajax({
+		url:"../../../app/quicklogin.htm",
+		type:"post",
+		data:{"mobile":mobile,"code":code,"hezuo":a_id},
+		dataType:"json",
+		success:function(data){
+			var result = eval(data);
+			if(result.response=="success"){//注册成功（登录）
+				var sip = getParam("sip");
+				if(sip!=null && sip.trim()=="online"){
+					localStorage["memberId"] = result.data;
+					window.location.href='luckDraw_app.html';
+				}else{
+					localStorage["memberId"] = result.data;
+					window.location.href='ewm_app.html';
+				}
+			}else{
+				$(tag).removeAttr("disabled");
+				alert(result.msg);
+			}
+		},error:function(){
+			$(tag).removeAttr("disabled");
+			alert("请求异常");
+		}
+	});	
+}
+
+/**
+ * 获取地址栏参数
+ */
+function getParam(paramName){
+	var paramValue = "";
+	var isFound = false;
+	if (this.location.search.indexOf("?") ==0&&this.location.search.indexOf("=")>1){
+		var arrSource = unescape(this.location.search).substring(1,this.location.search.length).split("&");
+		var i = 0;
+	    while (i < arrSource.length &&!isFound){
+	        if (arrSource[i].indexOf("=") >0){
+	             if (arrSource[i].split("=")[0].toLowerCase()==paramName.toLowerCase()){
+	                paramValue = arrSource[i].split("=")[1];
+	                isFound = true;
+	             }
+	        }
+	        i++;
+	    }  
+	}
+	return paramValue;
+}
+</script>
+</html>

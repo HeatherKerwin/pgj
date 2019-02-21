@@ -1,0 +1,44 @@
+#include("./common/header.html", {title:"我参与的帖子"})
+#include("./common/right.html")
+#include("./common/my_menu.html")
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column p30" style="background: #fdfdfd">
+			#if(null == commentPage.results || commentPage.results.size() == 0)
+			<div class="alert alert-info alert-dismissable">
+				您还木有参与评论呢 <i class="twa twa-lg twa-sparkles"></i>
+			</div>
+			#else
+				#for(comment:commentPage.results)
+					<div class="list-group">
+						<div class="list-group-item clearfix mb20" style="background: #fff">
+							<div class="col-md-9">
+								<h4 class="list-group-item-heading">
+									<span>${timespan(comment.reply_time)} 回复了 ${comment.reply_nick_name ?! comment.reply_name} 创建的帖子</span>
+									<a href="${base_url('/topic/') + comment.tid}">${comment.title}</a>
+								</h4>
+								<p class="list-group-item-text">
+									${comment.content}
+								</p>
+							</div>
+						</div>
+					</div>
+				#end
+				
+				#if(commentPage.totalPage > 1)
+				<ul class="pager">
+					#if(commentPage.page > 1)
+					<li class="pull-left"><a data-myset="set-pjax" href="${base_url('/my/topic/comment?p=') + commentPage.prev_page}">上一页</a></li>
+					#end
+					#if(commentPage.totalPage > 1 && commentPage.page != commentPage.totalPage)
+					<li class="pull-right"><a data-myset="set-pjax" href="${base_url('/my/topic/comment?p=') + commentPage.next_page}">下一页</a></li>
+					#end
+				</ul>
+				#end
+		#end
+		</div>
+	</div>
+</div>
+#include("./common/footer.html") 
+</body>
+</html>

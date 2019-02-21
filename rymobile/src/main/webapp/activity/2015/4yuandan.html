@@ -1,0 +1,225 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,  user-scalable=0;" name="viewport" />
+<title>小票首单立减，红包任性抢！</title>
+<script type="text/javascript">
+//window.location.href = "https://app.utiexian.com/down.html";
+</script>
+<script type="text/javascript" src="https://static.utiexian.com/js/common/jquery-1.8.3.min.js"></script>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, "Arial Black", "微软雅黑", "宋体";
+	font-size:1em;
+}
+.bjt {
+	position:absolute;
+	width:100%;
+	height:100%;
+	z-index:-1;
+}
+.bj {
+	position: absolute;
+	top: 36%;
+	left: 5%;
+	width: 90%;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+.cd-form {
+	padding: 1em;
+}
+.cd-form .fieldset {
+	position: relative;
+	margin: 1em 0;
+}
+.cd-form .fieldset:first-child {
+	margin-top: 0;
+}
+.cd-form .fieldset:last-child {
+	margin-bottom: 0;
+}
+.cd-form input {
+	margin: 0;
+	padding: 0;
+	border-radius: 0.25em;
+}
+.cd-form input.full-width {
+	width: 80%;
+}
+.cd-form input.full-width2 {
+	width: 90%;
+}
+.cd-form input.full-width3 {
+	width: 35%;
+	float: left;
+	margin-left: 5%;
+}
+.cd-form input.full-width4 {
+	margin-right: 5%;
+	float: left;
+}
+.clear {
+	clear: both;
+}
+.cd-form input.has-padding {
+	padding: 0.4em 5%;
+}
+.cd-form input.has-border {
+	border: 0.1em solid #d2d8d8;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	-o-appearance: none;
+	appearance: none;
+}
+.cd-form input.has-border:focus {
+	border-color: #343642;
+	box-shadow: 0 0 5px rgba(52, 54, 66, 0.1);
+	outline: none;
+}
+.cd-form input.has-error {
+	border: 0.1em solid #d76666;
+}
+.cd-form input[type=button] {
+	padding: 0.6em 0;
+	cursor: pointer;
+	background: #FC0;
+	color: #903;
+	font-weight: bold;
+	border: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	-o-appearance: none;
+	appearance: none;
+}
+
+</style>
+
+<script type="text/javascript">
+$(function(){
+	$("#codebtn").removeAttr("disabled");
+	var url = window.location.href;
+	$.ajax({
+		url:"../../activity/tongji.htm",
+		type:"post",
+		data:{"url":url,"hezuo":"4"},
+		dataType:"text",
+		success:function(data){
+			
+		}
+	});
+});
+//验证手机号码
+function checkMobile(str) {
+	var telReg = !!str.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/);
+	//如果手机号码不能通过验证
+	return telReg;
+}
+
+//验证密码 必须为数字或者字母 长度大于5
+function checkPwd(str) {	
+	var telReg = !!str.match(/^[A-Za-z0-9]+$/);
+	//如果手机号码不能通过验证
+	return telReg;
+}
+function update_p(num,t) {		
+    if(num == t) {
+        document.getElementById("codebtn").value =" 重新发送 ";
+        document.getElementById("codebtn").disabled="";
+    }
+    else {
+        printnr = t-num;
+       // document.myform.phone.value =  printnr +"s重新发送";
+		document.getElementById("codebtn").value =printnr +"s重新发送";
+    }
+}
+function sendmsg(t){		
+	document.getElementById("codebtn").disabled="disabled";
+	var mobile = $("#mobile").val();
+	if(!checkMobile(mobile)){
+		alert("手机号码不正确!");
+		document.getElementById("codebtn").disabled="";
+		return;
+	} else {
+		$.ajax({
+			url:"../../activity/sendcode.htm",
+			type:"post",
+			data:{"mobile":mobile},
+			dataType:"text",
+			success:function(data){
+				if(data=="error"){				
+					alert("发送失败，请稍后...");
+				} else if(data == "registered") {
+					alert("您已是注册用户");
+					window.location.href = "https://app.utiexian.com/down.html";
+				}
+			}
+		});	
+		for(i=1;i<=t;i++) {
+			window.setTimeout("update_p(" + i + ","+t+")", i * 1000);
+		}
+	}
+		
+}
+
+function reg() {
+	var mobile = $("#mobile").val();
+	if(!checkMobile(mobile)){
+		alert("手机号码不正确!");
+		return;
+	} else {
+		var code = $("#code").val();
+		 var reg = /^\d{3,4}$/;
+         if (code) {
+        	 var url = window.location.href;
+     		$.ajax({
+     			url:"../../activity/register.htm",
+     			type:"post",
+     			data:{"mobile":mobile,"code":code,"hezuo":"4","url":url},
+     			dataType:"text",
+     			success:function(data){
+     				if(data=="success"){
+     					window.location.href = "https://app.utiexian.com/down.html";				
+     				} else if(data == "registered") {
+     					alert("您已是注册用户");
+     					window.location.href = "https://app.utiexian.com/down.html";
+     				} else{
+     					alert(data);	
+     				}
+     			}
+     		});	
+         }else{                 
+        	 alert("请输入验证码!");
+         }
+	}
+	
+}
+</script>
+<div id='wx_pic' style='margin:0 auto;display:none;'>
+<img src="https://img.utiexian.com/rymobile/hb.png" />
+</div>
+</head>
+
+<body>
+<div > <img src="https://img.utiexian.com/rymobile/zc.png" style="position:fixed;" height="100%" width="100%"> </div>
+<div class="bj"> <!-- 注册表单 -->
+  <form class="cd-form " action="../../activity/register.htm" style="text-align:center; color:#CCC;">
+    <p class="fieldset"> 认证手机，贴现即享优惠！ </p>
+    <p class="fieldset">
+      <input class="full-width has-padding has-border" id="mobile" type="text" placeholder="输入手机号">      
+    </p>
+    <p class="fieldset"  style="">
+      <input class="full-width3 has-padding has-border" id="code" type="text" placeholder="输入验证码">
+      <input class="full-width3 has-padding has-border" id="codebtn" style="background: #e97370;" onclick="sendmsg(60);" type="button" value="点击获取" placeholder="点击获取">
+    <div class="clear"></div>
+    <p class="fieldset">
+      <input class="full-width2" type="button" onclick="reg()" value="马上贴现">
+    </p>
+  </form>
+</div>
+</body>
+</html>

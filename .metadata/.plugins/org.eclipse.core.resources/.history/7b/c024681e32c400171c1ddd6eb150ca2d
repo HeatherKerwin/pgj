@@ -1,0 +1,981 @@
+[#import "/common/main.ftl" as main]
+[#include "/common/setting.ftl"]
+[@main.body title='票管家']
+[@main.header currentmenu='3'/]
+
+<!-- 
+	提高百度地图所在的层级
+ -->
+<style>
+.tangram-suggestion-main  {
+    z-index: 13;
+}
+</style>
+
+<!--贴现地址-->
+<div class="w1200 ha bc mt20 mb20">
+    <!--左侧菜单-->
+    [@main.left remark='1' /]
+    <!--右侧内容 -->
+    <div class="fl w997 ha pb20 bcwhite bae0e0e0">
+        <div class="w997 h34 lh34 f14 bcfaf7f7">
+            <div class="fl ml10">认证信息</div>
+        </div>
+        <!--银票订单-->
+        <!--订单tab-->
+        <ul class="h52 f16 c2d2d2d lh50 bte0e0e0 bbe0e0e0 tc bcwhite rzTab">
+            <li class="w250 lh50 fl bre0e0e0 bbd43c33">
+                <input type="radio" name="rzTab" id="rzTab1" value="1" class="none"><a href="#" class="cd43c33"><label for="rzTab1" class="dsb rzTab1">持票企业认证</label></a>
+            </li>
+            <li class="w250 lh50 fl bre0e0e0">
+                <input type="radio" name="rzTab" id="rzTab2" value="2" class="none"><a href="#" class="c2d2d2d"><label for="rzTab2" class="dsb rzTab1">贴现机构认证</label></a>
+            </li>
+        </ul>
+        <!--持票企业认证-->
+        <div class="bns_qiye">
+        <div class="h640 mt30 ml20 f14 BNSdiv1" id="">
+            <div class="bns_tishi"><span id="bns_tishi" style="color:red"></span></div>
+            <div class="w h34 lh34 mt30">
+                <div class="fl w150 fb">姓名：</div>
+                <input type="text" id="bns_name" class="validate[required] fl w312 h34 bae0e0e0 ti10" placeholder="请输入您的姓名">
+            </div>
+            <div class="w h34 lh34 mt10">
+                <div class="fl w150 fb">企业名称12121：</div>
+                <input type="text" id="bns_qiye" class="validate[required] fl w312 h34 bae0e0e0 ti10" placeholder="请输入您的企业名称x">
+            </div>
+            <div class="w h34 lh34 mt10">
+                <div class="fl w150 fb">企业地址：</div>
+                <input type="text" id="bns_address" class="validate[required] fl w312 h34 bae0e0e0 ti10" placeholder="请输入您的姓名请输入您的企业地址">
+            </div>
+            <div class="w h34 lh34 mt10">
+                <div class="fl w150 fb">联系方式：</div>
+                <input type="text" id="bns_phone" class="validate[required],validate[custom[phone]] fl w312 h34 bae0e0e0 ti10" placeholder="请输入您的联系方式">
+            </div>
+            <div class="w h34 lh34 mt10">
+                <div class="fl w150 fb">营业执照号码<span class="f12">（选填）</span>：</div>
+                <input type="text" id="bns_haoma" maxlength="18" class="fl w312 h34 bae0e0e0 ti10" placeholder="请输入您的营业执照号码">
+            </div>
+            <div class="cb"></div>
+            <input type="button" id="bns_baocun" class="w246 h34 f14 lh34 bce84c3d cwhite tv br5 b0 mt30 ml150 f14" value="保存">
+        </div>
+        <!--贴现企业认证，已认证-->
+        <div class="h640 mt30 ml20 f14 none BNSdiv2" id="">
+        	<div class="bns_xstishi" ><span id="bns_xstishi" style="color:red"></span></div>
+        	<div class="mt30 ml30">
+                <div class="fl w129 fb">姓名：</div>
+                <div class="fl" id="bns_xsname"></div>
+                <div class="cb"></div>
+            </div>
+            <div class="mt20 ml30">
+                <div class="fl w129 fb">企业名称：</div>
+                <div class="fl" id="bns_xsqiye"></div>
+                <div class="cb"></div>
+            </div>
+            <div class="ha mt20 ml30">
+                <div class="fl w129 fb">企业地址：</div>
+                <div class="fl w440" id="bns_xsaddress"></div>
+                <div class="cb"></div>
+            </div>
+            <div class="mt20 ml30">
+                <div class="fl w129 fb">联系方式：</div>
+                <div class="fl" id="bns_xsphone"></div>
+                <div class="cb"></div>
+            </div>
+            <div class="mt20 ml30 mb30">
+                <div class="fl w129 fb">营业执照号码：</div>
+                <div class="fl" id="bns_xshaoma"></div>
+                <div class="cb"></div>
+            </div>
+        </div>
+        </div>
+        <!--贴现机构认证-->
+        <div class="h640 mt30 ml20 f14 none ORGdiv " id="">
+            <!--未认证第一步-->
+            <div id="org_diyibu" class="">
+            	<input value="0" id="live" type="hidden">
+                <div class="f14" id="org_tishi1" style="color:red">当前处于未认证状态，请填写一下资料：</div>
+                <div class="mt30 f14">第一步，请认证您的交易城市：</div>
+                <div class="mt30 fb f18" id="org_citytishi">您暂未设置贴现交易城市。</div>
+                <ul class="f14 lh48 none" id="content1"></ul>
+                <input type="button" id="addcity" class="addcity w246 h34 lh34 bce84c3d b0 br5 cwhite tc mt30 ml150 f14" value="添加交易城市">
+                <a class="f14 ml400 mt20 c3366cc dsb cp" id="next">下一步</a>
+            </div>
+            <!--未认证第二步-->
+            <div id="org_dierbu" class="none">
+                <div class="" style="color:red">当前处于未认证状态，请填写一下资料：</div>
+                <div class="w h34 lh34 mt30">
+                    <div class="fl w150 fb">姓名：</div>
+                    <input type="text" id="org_name" class="validate[required] fl w312 h34 bae0e0e0 ti10" placeholder="请输入您的姓名">
+                </div>
+                <div class="w h34 lh34 mt10">
+                    <div class="fl w150 fb">企业名称：</div>
+                    <input type="text" id="org_qiye" class="validate[required] fl w312 h34 bae0e0e0 ti10" placeholder="请输入您的企业名称x">
+                </div>
+                <div class="w h34 lh34 mt10">
+                    <div class="fl w150 fb">企业地址：</div>
+                    <input type="text" id="org_address" class="validate[required] fl w312 h34 bae0e0e0 ti10" placeholder="请输入您的姓名请输入您的企业地址">
+                </div>
+                <div class="w h34 lh34 mt10">
+                    <div class="fl w150 fb">联系方式：</div>
+                    <input type="text" id="org_phone" class="validate[required],validate[custom[phone]] fl w312 h34 bae0e0e0 ti10" placeholder="请输入您的联系方式">
+                </div>
+                <div class="w h34 lh34 mt10">
+                    <div class="fl w150 fb">邮箱：</div>
+                    <input type="text" id="org_email" class="validate[required],validate[custom[email]] fl w312 h34 bae0e0e0 ti10" placeholder="请输入您的邮箱">
+                </div>
+                <div class="w h34 ml150 mt10">例：abc@hotmail.com</div>
+                <div class="w h34 lh34 mt10">
+                    <div class="fl w150 fb">营业执照号码<span class="f12">（选填）</span>：</div>
+                    <input type="text" id="org_haoma" maxlength="18" class="fl w312 h34 bae0e0e0 ti10" placeholder="请输入您的营业执照号码">
+                </div>
+                <div class="cb"></div>
+                <input type="button" id="org_baocun" class="w246 h34 lh34 bce84c3d cwhite tv br5 b0 mt30 ml150 f14" value="保存">
+                <a class="f14 ml400 mt20 c3366cc dsb cp" id="back">返回上一步</a>
+            </div>
+            <!--已认证-->
+            <div class="none" id="org_renzheng">
+                <div class="fb f18" id="org_tishi2" style="color:red">您已是认证账户</div>
+                <div class="fb lh180 mt30 mb13 bbe0e0e0">
+                    确认贴现地址
+                </div>
+                <ul class="f14 lh48" id="content"></ul>
+                <input type="button" class="w246 h34 f14 lh34 bce84c3d cwhite tv br5 b0 mt30 addcity" value="新增交易城市">
+                <div class="fb lh180 mt30 bbe0e0e0">
+                    您的机构信息
+                </div>
+                <div class="w h34 mt30">
+                    <div class="fl w100 fb">姓名：</div>
+                    <div class="fl" id="org_news_name"></div>
+                </div>
+                <div class="w h34 mt10">
+                    <div class="fl w100 fb">企业名称：</div>
+                    <div class="fl" id="org_news_qiye"></div>
+                </div>
+                <div class="w h34 mt10">
+                    <div class="fl w100 fb">企业地址：</div>
+                    <div class="fl" id="org_news_address"></div>
+                </div>
+                <div class="w h34 mt10">
+                    <div class="fl w100 fb">联系方式：</div>
+                    <div class="fl" id="org_news_phone"></div>
+                </div>
+                <div class="w h34 mt10">
+                    <div class="fl w100 fb">邮箱：</div>
+                    <div class="fl" id="org_news_email"></div>
+                </div>
+                <div class="w h34 mt10">
+                    <div class="fl w100 fb">营业执照号码：</div>
+                    <div class="fl" id="org_news_haoma"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cb"></div>
+</div>
+  [@main.right /]
+
+<div class="w h pf bc05 zi10 top none" id="window">
+    <div class="w758 h608 bcfc4d42 br5 mt_5 l_50 ml-385 pr zi11">
+        <!--关闭按钮-->
+        <div class="w37 h37 pa t-15 r-15 zi13 redClose"></div>
+
+        <div class="w750 h600 pr t4 l4 bcf5f5f5 zi12">
+            <!--确认认证信息-->
+            <div class="pr t50 l50 none" id="org_authentication">
+            	<div class="f18 fb mt20">编辑此贴现地址：</div>
+            	<div class="w mt25">
+                    <div class="fl tl w85 lh27">我的位置：</div> 
+                    <input type="text" onblur="myToCity();" placeholder="请输入关键字，例如东方明" id="tjaddress" class="validate[required] w238 h27 lh27 bae0e0e0 ti8">
+                	<div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
+                </div>
+            	<div class="w mt20">
+                    <div class="fl tl w85 lh27">详细地址：</div>
+                    <input type="text" id="tjother" maxlength="140" placeholder="请输入您的详细地址" class="w491 h27 lh27 bae0e0e0 ti8">
+                </div>
+                <div class="w mt20">
+                    <div class="fl tl w85 lh27">交易城市：</div>
+                    <select id="initcity" class="w320 h40 select320 ti10"></select>
+                </div>
+                <div class="w400 h230 bae0e0e0 ml100 mt20" id="pcmap"></div>
+                <div class="cb"></div>
+                <input id="tjlon" type="hidden">
+                <input id="tjlat" type="hidden">
+                <input id="tjid" type="hidden">
+                <input type="button" id="baocunCity" class="w268 h44 bc lh45 b0 cwhite bcfc4d42 br5 f18 tc ml190 mt30" value="保存">
+            </div>
+            <!--新建地址 -->
+            <div class="pr t50 l70 none" id="bns_authentication">
+                <div class="f18 cd43c33">一旦提交后将不可更改，请确认以下信息：</div>
+                <div class="w612 bae0e0e0 bcwhite mt35 lh24">
+                    <div class="mt30 ml30">
+                        <div class="fl w129 fb">姓名：</div>
+                        <div class="fl" id="bns_qrname"></div>
+                        <div class="cb"></div>
+                    </div>
+                    <div class="mt20 ml30">
+                        <div class="fl w129 fb">企业名称：</div>
+                        <div class="fl" id="bns_qrqiye"></div>
+                        <div class="cb"></div>
+                    </div>
+                    <div class="ha mt20 ml30">
+                        <div class="fl w129 fb">企业地址：</div>
+                        <div class="fl w440" id="bns_qraddress"></div>
+                        <div class="cb"></div>
+                    </div>
+                    <div class="mt20 ml30">
+                        <div class="fl w129 fb">联系方式：</div>
+                        <div class="fl" id="bns_qrphone"></div>
+                        <div class="cb"></div>
+                    </div>
+                    <div class="mt20 ml30 mb30">
+                        <div class="fl w129 fb">营业执照号码：</div>
+                        <div class="fl" id="bns_qrhaoma"></div>
+                        <div class="cb"></div>
+                    </div>
+                </div>
+                <div class="lh45 mt35">
+                    <input type="button" id="bns_retreat" class="fl w268 h44 b0 br5 bcfc4d42 cwhite f18 ml20" value="返回修改">
+                    <input type="button" id="bns_confirm" class="fl w268 h44 b0 br5 bcfc4d42 cwhite f18 ml30" value="确认">
+                </div>
+                <div class="cb"></div>
+            </div>
+            
+            <!--ORG确认信息的页面 -->
+            <div class="pr t50 l70 none" id="org_authentication1">
+                <div class="f18 cd43c33">一旦提交后将不可更改，请确认以下信息：</div>
+                <div class="w612 bae0e0e0 bcwhite mt35 lh24">
+                    <div class="mt30 ml30">
+                        <div class="fl w129 fb">姓名：</div>
+                        <div class="fl" id="org_qrname"></div>
+                        <div class="cb"></div>
+                    </div>
+                    <div class="mt20 ml30">
+                        <div class="fl w129 fb">企业名称：</div>
+                        <div class="fl" id="org_qrqiye"></div>
+                        <div class="cb"></div>
+                    </div>
+                    <div class="ha mt20 ml30">
+                        <div class="fl w129 fb">企业地址：</div>
+                        <div class="fl w440" id="org_qraddress"></div>
+                        <div class="cb"></div>
+                    </div>
+                    <div class="mt20 ml30">
+                        <div class="fl w129 fb">联系方式：</div>
+                        <div class="fl" id="org_qrphone"></div>
+                        <div class="cb"></div>
+                    </div>
+                    <div class="mt20 ml30">
+                        <div class="fl w129 fb">邮箱：</div>
+                        <div class="fl" id="org_qremail"></div>
+                        <div class="cb"></div>
+                    </div>
+                    <div class="mt20 ml30 mb30">
+                        <div class="fl w129 fb">营业执照号码：</div>
+                        <div class="fl" id="org_qrhaoma"></div>
+                        <div class="cb"></div>
+                    </div>
+                </div>
+                <div class="lh45 mt35">
+                    <input type="button" id="org_retreat" class="fl w268 h44 b0 br5 bcfc4d42 cwhite f18 ml20" value="返回修改">
+                    <input type="button" id="org_confirm" class="fl w268 h44 b0 br5 bcfc4d42 cwhite f18 ml30" value="确认">
+                </div>
+                <div class="cb"></div>
+            </div>
+            <!--提交成功-->
+            <div class="pr top h600 bcwhite none" id="org_success">
+                <div class="w577 pr t50 bc">
+                    <div class="w577 f24 lh48">感谢您提交认证资料，与此同时我们发送了一份<span class="fb">《报价方合作银行承诺函》</span>到您的邮箱中，请查看并按照邮件要求回复我们。</div>
+                    <div class="f24 mt30">我们收到您的邮件后，将在<span class="fb">1-3</span>个工作日内给您回复。</div>
+                    <div class="f18 mt30 cd43c33">温馨提示：审核未通过的用户，无法报价和接单，请尽快按照要求回复邮件，以免影响您的使用。</div>
+                    <div class="w268 bc">
+                        <input type="button" id="org_queren" class="w268 h44 lh45 b0 br5 bcfc4d42 cwhite f18 tc mt80" value="确认">
+                    </div>
+                </div>
+            </div>
+            <!--提交成功-->
+            <div class="pr t125 none" id="bns_success">
+                <div class="tc f24 lh48">感谢您提交认证资料，<br>我们将在1-3个工作日内给您回复</div>
+                <div class="f18 mt30 cd43c33">温馨提示：审核未通过的用户，只有三次报价收票机会，请尽快按照要求回复邮件，以免影响您的使用。</div>
+                <div class="w268 bc">
+                    <input type="button" id="bns_queren" class="w268 h44 lh45 b0 br5 bcfc4d42 cwhite f18 tc mt100" value="确认">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cb"></div>
+</div>
+
+[@main.footer/]
+[/@main.body]
+
+<script type="text/javascript" src="${comPath}/handlebars.js"></script>
+<script type="text/javascript" src="${jsPath}/map.js"></script>
+
+<script type="text/x-handlebars-template" id="DISCOUNTRECORD">
+{{#each data}}
+	 <li class="bbe0e0e0 h48 numaddress">
+         <img src="${image_url}/website/receive/position.png" width="9" height="14" class="fl mt16">
+         <p class="fl ml6">{{address}}{{other}}</p>
+         <a href="javascript:void(0);" data-id="{{id}}" data-num="1" class="fl c3366cc ml100 BIANJI">编辑</a>
+         <img src="${image_url}/website/img/Rright1.png" width="1" height="16" class="fl ml10 mr10 mt16">
+         <a href="javascript:void(0);" data-id="{{id}}" data-num="2" class="fl c3366cc del">删除</a>
+     </li>
+{{/each}}
+</script>
+
+
+<script>
+
+	$(function(){
+		loadData();
+	})
+	
+	/**
+	* BNS点击保存后，显示确认信息
+	*/
+	$("#bns_baocun").click(function(){
+		
+		if(!$("#bns_name").validationEngine("validate")){
+			$("#bns_name").focus();
+			return ;
+		}
+		if(!$("#bns_qiye").validationEngine("validate")){
+			$("#bns_qiye").focus();
+			return ;
+		}
+		if(!$("#bns_address").validationEngine("validate")){
+			$("#bns_address").focus();
+			return ;
+		}
+		if(!$("#bns_phone").validationEngine("validate")){
+			$("#bns_phone").focus();
+			return ;
+		}
+		
+		$("#window").removeClass("none");
+		$("#bns_authentication").removeClass("none");
+		
+		$("#bns_qrname").text($.trim($("#bns_name").val()));
+		$("#bns_qrqiye").text($.trim($("#bns_qiye").val()));
+		$("#bns_qraddress").text($.trim($("#bns_address").val()));
+		$("#bns_qrphone").text($.trim($("#bns_phone").val()));
+		$("#bns_qrhaoma").text($.trim($("#bns_haoma").val()));
+	});
+	
+	/**
+	* BNS点击返回后，到填写信息页面
+	*/
+	$("#bns_retreat").click(function(){
+		$("#window").addClass("none");
+		$("#bns_authentication").addClass("none");
+	});
+	
+	/**
+	* ORG点击保存后，显示确认信息
+	*/
+	$("#org_baocun").click(function(){
+		
+		if(!$("#org_name").validationEngine("validate")){
+			$("#org_name").focus();
+			return ;
+		}
+		if(!$("#org_qiye").validationEngine("validate")){
+			$("#org_qiye").focus();
+			return ;
+		}
+		if(!$("#org_address").validationEngine("validate")){
+			$("#org_address").focus();
+			return ;
+		}
+		if(!$("#org_email").validationEngine("validate")){
+			$("#org_email").focus();
+			return ;
+		}
+		if(!$("#org_phone").validationEngine("validate")){
+			$("#org_phone").focus();
+			return ;
+		}
+		$("#org_qrname").text($.trim($("#org_name").val()));
+		$("#org_qrqiye").text($.trim($("#org_qiye").val()));
+		$("#org_qraddress").text($.trim($("#org_address").val()));
+		$("#org_qremail").text($.trim($("#org_email").val()));
+		$("#org_qrphone").text($.trim($("#org_phone").val()));
+		$("#org_qrhaoma").text($.trim($("#org_haoma").val()));
+		
+		$("#window").removeClass("none");
+		$("#org_authentication1").removeClass("none");
+	});
+	
+	/**
+	* ORG点击返回后，到填写信息页面
+	*/
+	$("#org_retreat").click(function(){
+		$("#window").addClass("none");
+		$("#org_authentication").addClass("none");
+	});
+	
+	/**
+	* BNS点击确认后，像数据库保存数据
+	*/
+	$("#bns_confirm").click(function(){
+		if($("#bns_confirm").attr("disabled")){
+			return;
+		}
+		var name = $.trim($("#bns_name").val());
+		var company = $.trim($("#bns_qiye").val());
+		var address = $.trim($("#bns_address").val());
+		var phone = $.trim($("#bns_phone").val());
+		var bl_number = $.trim($("#bns_haoma").val());
+		$("#bns_confirm").attr("disabled","disabled");//按钮禁用
+		$.ajax({
+	 		type: "POST",
+	      	url: "${basePath}/bisicmessage/info/save",
+	      	data: {name:name,company:company,address:address,phone:phone,blNumber:bl_number,type:0},
+	      	dataType:"json",
+	      	success:function(data){
+	          	if(data.response == "success"){
+	          		wwwPath = "${basePath}";
+	        		actionLog(wwwPath,"action92");//企业认证统计
+	          		$("#bns_success").removeClass("none");
+	          		$("#bns_authentication").addClass("none");
+	          	}else{
+	          		$("#window").addClass("none");
+	          		$("#bns_confirm").removeAttr("disabled");//按钮启用
+	          	}
+	     	}
+	 	 });
+	});
+	
+	/**
+	* 机构关闭成功提示
+	*/
+	$("#org_queren").click(function(){
+		$("#org_success").addClass("none");
+		$("#window").addClass("none");
+		redClose();
+		getCitylist();
+	});
+	
+	/**
+	* 企业关闭成功提示
+	*/
+	$("#bns_queren").click(function(){
+		$("#bns_success").addClass("none");
+		$("#window").addClass("none");
+		redClose();
+		getCitylist();
+	});
+	
+	/**
+	* ORG点击确认后，像数据库保存数据
+	*/
+	$("#org_confirm").click(function(){
+		if($("#org_confirm").attr("disabled")){
+			return;
+		}
+		var name = $.trim($("#org_name").val());
+		var company = $.trim($("#org_qiye").val());
+		var address = $.trim($("#org_address").val());
+		var phone = $.trim($("#org_phone").val());
+		var email = $.trim($("#org_email").val());
+		var bl_number = $("#org_haoma").val();
+		$("#org_confirm").attr("disabled","disabled");//按钮禁用
+		$.ajax({
+	 		type: "POST",
+	      	url: "${basePath}/bisicmessage/info/save",
+	      	data: {name:name,company:company,address:address,phone:phone,email:email,blNumber:bl_number,type:1},
+	      	dataType:"json",
+	      	success:function(data){
+	          	if(data.response == "success"){
+	          		wwwPath = "${basePath}";
+	        		actionLog(wwwPath,"action_92");//机构认证统计
+	          		$("#org_success").removeClass("none");
+	          		$("#org_authentication1").addClass("none");
+	          	}else{
+	          		$("#window").addClass("none");
+	          		$("#org_confirm").removeAttr("disabled");//按钮启用
+	          	}
+	     	}
+	 	 });
+	});
+	
+	/**
+	* 机构到第二步，第一步 隐藏
+	*/
+	$("#next").click(function(){
+		if($(".numaddress").length == 0){
+			alert("交易城市不能为空，请填写交易城市");
+			return ;
+		}
+		$("#org_diyibu").addClass("none");
+		$("#org_dierbu").removeClass("none");
+	});
+	
+	/**
+	* 机构到第二步，第一步 隐藏
+	*/
+	$("#back").click(function(){
+		$("#org_dierbu").addClass("none");
+		$("#org_diyibu").removeClass("none");
+	});
+	
+	/**
+	*  点击关闭符号，关闭所有 应该隐藏的页面
+	*/
+	$(".redClose").click(function(){
+		redClose();
+	});
+	
+	/**
+	* 关闭所有的弹出
+	*/
+	function redClose(){
+		$("#window").addClass("none");
+		$("#bns_success").addClass("none");
+		$("#org_success").addClass("none");
+		$("#bns_authentication").addClass("none");
+		$("#org_authentication").addClass("none");
+		$("#org_authentication1").addClass("none");
+	};
+	
+	/**
+	* 添加交易城市，数据填写完成保存
+	*/
+	$("#baocunCity").click(function(){
+		var name = $("#tjname").val();
+		var other = $("#tjother").val();
+		var address = $("#tjaddress").val();
+		var city_id = $("#initcity").val();
+		var longitude = $("#tjlon").val();
+		var latitude = $("#tjlat").val();
+		var id = $("#tjid").val();
+		if(!$("#tjaddress").validationEngine("validate")){
+			$("#tjaddress").focus();
+			return ;
+		}
+		if(address=="" || $.trim(address).length == 0){
+			alert("请填写你的交易地址");
+			return ;
+		}
+		if($.trim(longitude).length==0 || $.trim(latitude).length==0){
+			alert("贴现地址不全，请补充完整");
+			return ;
+		}
+		$.ajax({
+	 		type: "POST",
+	      	url: "${basePath}/bisicmessage/save/orgcity",
+	      	data: {other:other,address:address,cityId:city_id,longitude:longitude,latitude:latitude,id:id},
+	      	dataType:"json",
+	      	success:function(data){
+	          	if(data.response == "success"){
+	          		getCitylist();
+	          		redClose();
+	          	}else{
+	          		alert(data.msg);
+	          	}
+	     	}
+		 });
+		
+	});
+	
+	/**
+	*  判断该城市是否可以删除或者修改
+	**/
+    function judgeUpdateCity(){
+    	var id = $(this).attr("data-id");
+    	var num = $(this).attr("data-num");
+    	$.ajax({
+	 		type: "POST",
+	      	url: "${basePath}/bisicmessage/judge/updateCity",
+	      	data: {id:id},
+	      	dataType:"json",
+	      	success:function(data){
+	          	if (data.response == 'success') {
+	                if(num == 1){
+	                     alert("该城市已经报价，无法修改.");    
+	                }else if(num == 2){
+	                     alert("该城市已经报价，无法删除.");    
+	                }else{
+	                }
+	             }else{
+	                if(num == 1){
+	                    editCity(id);
+	                }else if(num == 2){
+	                	delcity(id);
+	                }else{
+	                }
+	             }
+	     	}
+		 });
+    }
+	
+	
+	/**
+	* 编辑交易城市
+	*/
+	function editcity(id){
+		$.ajax({
+	 		type: "POST",
+	      	url: "${basePath}/bisicmessage/getcity",
+	      	data: {id:id},
+	      	dataType:"json",
+	      	success:function(data){
+	          	if(data.response == "success"){
+	        		$("#tjname").val(data.data.name);
+	        		$("#tjaddress").val(data.data.address);
+	        		$("#tjother").val(data.data.other);
+	        		$("#tjid").val(data.data.id);
+	        		$("#tjlon").val(data.data.longitude);
+	        		$("#tjlat").val(data.data.latitude);
+	        		var p= data.data.cityId;
+	        		$("#initcity option[value='"+p+"']").attr("selected","selected");
+	        		
+	        		$("#window").removeClass("none");
+	        		$("#org_authentication").removeClass("none");
+	          	}
+	     	}
+		 });
+	};
+	
+	/**
+	* 删除交易城市
+	*/
+	function delcity(id){
+		$.ajax({
+	 		type: "POST",
+	      	url: "${basePath}/bisicmessage/del/orgcity",
+	      	data: {id:id},
+	      	dataType:"json",
+	      	success:function(data){
+	          	if(data.response == "success"){
+	          		getCitylist();
+	          	}
+	     	}
+		 });
+	};
+	
+	/**
+	* 初始化地图的城市选择
+	*/
+	function initCity(){
+		$.ajax({
+	 		type: "POST",
+	      	url: "${basePath}/bisicmessage/init/city",
+	      	data: {},
+	      	dataType:"json",
+	      	success:function(data){
+	          	if(data.response == "success"){
+	          		var phtml = "";
+	                for(var i=0;i<data.c.length;i++){
+	                    var provice = data.c[i];
+	                    phtml += "<option value='"+provice.id+"'>"+provice.name+"</option>";
+	                }
+	                $("#initcity").html(phtml);
+	          	}
+	     	}
+	 	 });
+	};
+	
+	/**
+	* 页面初始化加载数据，判断是否认证过(企业)
+	*/
+	function loadData(){
+		$.ajax({
+	 		type: "POST",
+	      	url: "${basePath}/bisicmessage/getorg",
+	      	data: {},
+	      	dataType:"json",
+	      	success:function(data){
+	          	if(data.response == "success"){
+	          		$(".BNSdiv2").removeClass("none");
+	          		$(".BNSdiv1").addClass("none");
+	          		$("#bns_xsname").text(data.data.name);
+	          		$("#bns_xsqiye").text(data.data.company);
+	          		$("#bns_xsaddress").text(data.data.address);
+	          		$("#bns_xsphone").text(data.data.phone);
+	          		$("#bns_xsemail").text(data.data.email);
+	          		$("#bns_xshaoma").text(data.data.bl_number);
+	          		if(data.data.state == 1){
+	          			$("#bns_xstishi").text("我们正在审核您提供的认证资料，1-3个工作日内给您回复，请耐心等待...");
+	          		}else if(data.data.state == 2){
+	          			$("#bns_xstishi").text("已认证：");
+	          		}else if(data.data.state == 3){
+	          			$("#bns_tishi").text("您暂未通过认证，请重新填写以下资料：");
+	          			$(".BNSdiv2").addClass("none");
+		          		$(".BNSdiv1").removeClass("none");
+	          		}else{
+	          			$("#bns_tishi").text("当前处于未认证状态，请填写一下资料：");
+	          			$(".BNSdiv2").addClass("none");
+		          		$(".BNSdiv1").removeClass("none");
+	          		}
+	          	}else{
+	          		$("#bns_tishi").text("当前处于未认证状态，请填写一下资料：");
+	          	}
+	     	}
+	 	 });
+	};
+	
+//      选择tab
+        $(".rzTab1").click(function () {
+        	$(".rzTab li").children("a").children("label").addClass("c2d2d2d").removeClass('cd43c33');
+        	$(".rzTab li").removeClass("bbd43c33");
+        	$(".rzTab li").children("label").removeClass("f20");
+            $(this).parent().prev().attr("checked",true) ;
+            $(this).parents("li").addClass("bbd43c33");
+            $(this).parents("li").children("a").children("label").removeClass("c2d2d2d").addClass('cd43c33');
+            if($(this).parent().prev().val()=="2"){
+                $(".bns_qiye").addClass("none");
+                $(".ORGdiv").removeClass("none");
+                getCitylist();
+            }else{
+                $(".bns_qiye").removeClass("none");
+                $(".ORGdiv").addClass("none");
+            }
+        });
+    
+    /**
+    * 机构查询交易城市列表(初始化机构)
+    */
+    function getCitylist(){
+    	$.ajax({
+	 		type: "POST",
+	      	url: "${basePath}/bisicmessage/check/searchcitybyorgId",
+	      	data: {},
+	      	dataType:"json",
+	      	success:function(data){
+	          	if(data.state == "info_success"){//有城市未认证
+	          		$("#org_citytishi").addClass("none");
+	          		$("#content1").removeClass("none");
+	          		
+	          		var source = $("#DISCOUNTRECORD").html();
+			        var template = Handlebars.compile(source);
+			        var html = template(data);
+			        $("#content1").html(html);
+			        initCity();
+			        var zhi = $("#live").val();
+			        if(zhi == 0){
+			        	$(".del").live("click",judgeUpdateCity);
+			        	$(".BIANJI").live("click",judgeUpdateCity);
+			        	$("#live").val(2)
+			        };
+			        $("#org_tishi1").text("当前处于未认证状态，请填写一下资料：");
+	          	}else if(data.state == "success"){//有城市且认证
+	          		if(data.info.state ==1 ){
+	          			$("#org_tishi2").text("我们正在审核您提供的认证资料，1-3个工作日内给您回复，请耐心等待...");
+	          			$("#org_diyibu").addClass("none");
+	          			$("#org_dierbu").addClass("none");
+		          		$("#org_renzheng").removeClass("none");
+		          		var source = $("#DISCOUNTRECORD").html();
+				        var template = Handlebars.compile(source);
+				        var html = template(data);
+				        $("#content").html(html);
+	          		}else if (data.info.state ==2 ){
+	          			$("#org_tishi2").text("已认证");
+	          			$("#org_diyibu").addClass("none");
+	          			$("#org_dierbu").addClass("none");
+		          		$("#org_renzheng").removeClass("none");
+		          		var source = $("#DISCOUNTRECORD").html();
+				        var template = Handlebars.compile(source);
+				        var html = template(data);
+				        $("#content").html(html);
+	          		}else if(data.info.state == 3){
+	          			$("#org_tishi1").text("认证未通过，请重新认证");
+	          			$("#org_citytishi").addClass("none");
+		          		$("#content1").removeClass("none");
+		          		var source = $("#DISCOUNTRECORD").html();
+				        var template = Handlebars.compile(source);
+				        var html = template(data);
+				        $("#content1").html(html);
+	          		}
+			        
+			        $("#org_news_name").text(data.info.name);
+			        $("#org_news_qiye").text(data.info.company);
+			        $("#org_news_address").text(data.info.address);
+			        $("#org_news_phone").text(data.info.phone);
+			        $("#org_news_email").text(data.info.email);
+			        $("#org_news_haoma").text(data.info.bl_number);
+			        initCity();
+			        var zhi = $("#live").val();
+			        if(zhi == 0){
+			        	$(".del").live("click",judgeUpdateCity);
+			        	$(".BIANJI").live("click",judgeUpdateCity);
+			        	$("#live").val(2)
+			        };
+			        
+	          	}else{
+	          		alert(data.msg);
+	          	}
+	     	}
+	 	 });
+    };
+    
+    /**
+    * 添加交易城市
+    */
+    $(".addcity").click(function(){
+		if($(".numaddress").length == 10 || $(".numaddress").length > 10){
+			alert("交易城市已经有10个，不能在添加");
+			return ;
+		}
+		var p= 107;//默认城市为上海
+		$("#initcity option[value='"+p+"']").attr("selected","selected");
+		
+    	$("#window").removeClass("none");
+		$("#org_authentication").removeClass("none");
+    });
+    
+</script>
+
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=RZNGEivCrVHp06sXAM6rxlquUSOLB3xx&s=1"></script>
+
+<script type="text/javascript">
+	//主要是地图的处理
+	var top_left_control = new BMap.ScaleControl({anchor: BMAP_ANCHOR_BOTTOM_LEFT});// 左上角，添加比例尺
+	var top_left_navigation = new BMap.NavigationControl();  //左上角，添加默认缩放平移控件
+	var map = null;
+		map = new BMap.Map("pcmap");
+		var longitude = "121.506854";//经度
+		var latitude = "31.2408";//纬度
+		var point = new BMap.Point(longitude,latitude);
+		map.centerAndZoom(point,13);
+		var geolocation = new BMap.Geolocation();
+		geolocation.getCurrentPosition(function(r){
+			if(this.getStatus() == BMAP_STATUS_SUCCESS){
+				var mk = new BMap.Marker(r.point);
+				map.addOverlay(mk);
+				map.panTo(r.point);
+				setLngLat(r.point);
+			}else {
+				alert('failed'+this.getStatus());
+			}
+		},{enableHighAccuracy: true});
+		
+		map.enableScrollWheelZoom(true);
+		map.disableDoubleClickZoom(true);
+		map.addEventListener("click", addMarker);
+		add_control();
+		
+	/**
+	 * 添加控件和比例尺
+	 */
+	function add_control(){
+		map.addControl(top_left_control);        
+		map.addControl(top_left_navigation);     
+	}
+
+	/**
+	 * 设置标记
+	 */
+	function addMarker(e){
+		map.clearOverlays();
+		
+		var point = new BMap.Point(e.point.lng, e.point.lat);
+		var marker = new BMap.Marker(point);
+		map.addOverlay(marker);
+		setLngLat(e.point);
+		var gc = new BMap.Geocoder();
+		gc.getLocation(point, function(rs){
+		var addComp = rs.addressComponents;
+			$("#tjaddress").val(addComp.province + addComp.city + addComp.district +  addComp.street + addComp.streetNumber);
+		});
+	}
+
+	/**
+	 * 设置经纬度
+	 */
+	function setLngLat(point){
+		longitude = point.lng;//经度
+		latitude = point.lat;//纬度
+		$("#tjlon").val(longitude);
+		$("#tjlat").val(latitude);
+	}
+
+	/**
+	 * 城市定位
+	 */
+	function myToCity(){
+		map.clearOverlays();
+		var city = document.getElementById("tjaddress").value;
+		if(city != ""){
+			map.centerAndZoom(city,13);//用城市名设置地图中心点
+		}
+		var geocoder = new BMap.Geocoder();  
+		//获取起始地址经纬度  
+		geocoder.getPoint(city,  function(point){  
+            if(point){  
+                longitude = point.lng;  
+                latitude = point.lat;
+                var new_point = new BMap.Point(longitude,latitude);
+                var marker = new BMap.Marker(new_point);//创建标注
+                map.addOverlay(marker);//将标注添加到地图中
+                setLngLat(new_point);
+            }  
+		});  
+	 }
+
+
+
+	//建立一个自动完成的对象
+	var ac = new BMap.Autocomplete({
+		"input" : "tjaddress",
+		"location" : map
+	});
+
+	ac.addEventListener("onhighlight", function(e) {//鼠标放在下拉列表上的事件
+		var str = "";
+		var _value = e.fromitem.value;
+		
+		var value = "";
+		if (e.fromitem.index > -1) {
+			value = _value.province + _value.city + _value.district + _value.street + _value.business;
+		}
+		str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+		value = "";
+		if (e.toitem.index > -1) {
+			_value = e.toitem.value;
+			value = _value.province + _value.city + _value.district + _value.street + _value.business;
+		}
+		str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+		G("searchResultPanel").innerHTML = str;
+	});
+
+	var myValue;
+	ac.addEventListener("onconfirm", function(e) {//鼠标点击下拉列表后的事件
+		var _value = e.item.value;
+		myValue = _value.province + _value.city + _value.district + _value.street + _value.business;
+		$("#tjaddress").val(myValue);
+		myToCity();
+	});
+
+	function setPlace(){
+		map.clearOverlays();//清除地图上所有覆盖物
+		function myFun(){
+			var pp = local.getResults().getPoi(0).point;//获取第一个智能搜索的结果
+			map.centerAndZoom(pp, 13);
+			map.addOverlay(new BMap.Marker(pp));//添加标注
+			setLngLat(pp);
+		}
+		var local = new BMap.LocalSearch(map, {//智能搜索
+			onSearchComplete: myFun
+		});
+		local.search(myValue);
+	}
+
+	function G(id) {
+		return document.getElementById(id);
+	}
+
+	//用经纬度设置地图中心点
+	function myToLngLat(){
+		if(document.getElementById("yclon").value != "" && document.getElementById("yclat").value != ""){
+			map.clearOverlays();
+			var new_point = new BMap.Point(document.getElementById("longitude").value,document.getElementById("latitude").value);
+			map.centerAndZoom(new_point,13);
+			var marker = new BMap.Marker(new_point);//创建标注
+			map.addOverlay(marker);//将标注添加到地图中
+			map.panTo(new_point); 
+			map.setCenter(new_point);
+		}
+	}
+</script>
+

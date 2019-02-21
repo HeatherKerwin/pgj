@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:context="http://www.springframework.org/schema/context"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	    
+	    <!-- =====================日常任务job========================== -->
+	    <bean id="crawlerTaskQtzJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+	        <property name="targetObject">  
+            	<ref bean="crawlerTask"/>  
+	        </property>  
+ 	        <property name="targetMethod"> 
+	 	         <!-- 要执行的方法名称 -->  
+	            <value>shibor</value>  
+	        </property>  
+	    </bean> 
+	   
+	    <!-- ======================== 调度触发器 ======================== -->  
+	  	<bean id="crawlerTaskCronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	        <property name="jobDetail" ref="crawlerTaskQtzJob"></property>  
+	        <!-- 每 天10点钟触发一次   -->
+	        <property name="cronExpression" value="0 30 11 ? * *"></property>
+	    </bean>  
+	   <!-- =====================日常任务job========================== -->
+	    <bean id="coopDataTaskQtzJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+	        <property name="targetObject">  
+            	<ref bean="emailTask"/>  
+	        </property>  
+ 	        <property name="targetMethod"> 
+	 	         <!-- 要执行的方法名称 -->  
+	            <value>cooperation</value>  
+	        </property>  
+	    </bean> 
+	   
+	    <!-- ======================== 调度触发器 ======================== -->  
+	  	<bean id="coopDataTaskCronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	        <property name="jobDetail" ref="coopDataTaskQtzJob"></property>  
+	        <!-- 每 天10点钟触发一次   -->
+	        <property name="cronExpression" value="0 0 1 ? * *"></property>
+	    </bean>  
+	    
+	    <!-- =====================销售数据统计日常任务job========================== -->
+	    <bean id="saleDataTaskQtzJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+	        <property name="targetObject">  
+            	<ref bean="emailTask"/>  
+	        </property>  
+ 	        <property name="targetMethod"> 
+	 	         <!-- 要执行的方法名称 -->  
+	            <value>saleData</value>  
+	        </property>  
+	    </bean> 
+	   
+	    <!-- ======================== 调度触发器 ======================== -->  
+	  	<bean id="saleDataTaskCronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	        <property name="jobDetail" ref="saleDataTaskQtzJob"></property>  
+	        <!-- 每 天18点钟触发一次   -->
+	        <property name="cronExpression" value="0 30 17 * * ?"></property>
+	    </bean>  
+	    
+	    
+	     
+	    <!-- =====================日常任务job========================== -->
+	    <bean id="hongbaoTaskQtzJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+	        <property name="targetObject">  
+            	<ref bean="hongbaoTask"/>  
+	        </property>  
+ 	        <property name="targetMethod"> 
+	 	         <!-- 要执行的方法名称 -->  
+	            <value>setFlag</value>
+	        </property>  
+	    </bean> 
+	   
+	    <!-- ======================== 调度触发器 ======================== -->  
+	  	<bean id="hongbaoTaskCronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	        <property name="jobDetail" ref="hongbaoTaskQtzJob"></property>  	                
+	        <property name="cronExpression" value="0 50 23 ? * *"></property>
+	        	        
+	    </bean>  
+	    
+	    
+	    <!-- ======================== 调度工厂 ======================== -->  
+	    <bean id="SpringJobSchedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+	        <property name="triggers">  
+	            <list>   
+	                <ref bean="crawlerTaskCronTriggerBean"/>  
+	                <ref bean="coopDataTaskCronTriggerBean"/>  
+	                <ref bean="saleDataTaskCronTriggerBean"/>  
+	                <ref bean="hongbaoTaskCronTriggerBean"/>  
+	                <ref bean="accountrecordStateChangeTrigger"/>
+	              <!--  <ref bean="dataananChangeDayJobDetailTrigger"/>  
+	                <ref bean="dataananChangeWeekJobDetailTrigger"/> 
+	                <ref bean="dataananChangeMonthJobDetailTrigger"/>   
+	                <ref bean="dataananChangeHourJobDetailTrigger"/>  
+	                 <ref bean="backupDisImgTaskTrigger"/> -->  
+	                <ref bean="inquiryReplyJyhTaskTrigger"/>  
+	                <!-- <ref bean="backupHistorypriceTaskTrigger"/> -->  
+	                <ref bean="piaojuRemindTaskTrigger"/>  
+	                <ref bean="noticerecordRemindTaskTrigger"/>  
+	                <ref bean="keyWordCountTaskTrigger"/>
+	                <!-- <ref bean="systemBJTaskTrigger"/> -->
+	                
+	                <ref bean="hezuoTaskDetailTrigger"/>
+	                <ref bean="newsCrawlerTaskDetailTrigger"/>
+	                <ref bean="staticTaskDetailTrigger"/>
+	                <ref bean="MemberTaskDetailTrigger"/>
+	                
+	                <ref bean="huoyueTaskDetailTrigger"/>
+	                <ref bean="bill99TaskDetailTrigger"/>
+	                
+	                <ref bean="huoyue2TaskDetailTrigger"/>
+	                <ref bean="yunyingTaskDetailTrigger"/>
+	                
+	                <ref bean="gongcuiTaskDetailTrigger"/>
+	                <ref bean="priceTaskDetailTrigger"/>
+	                <ref bean="actionTaskDetailTrigger"/>
+	                
+	                <ref bean="udeskLogTaskDetailTrigger"/>
+	                <ref bean="customerReportTaskDetailTrigger"/>
+	                <ref bean="customerServiceTaskDetailTrigger"/>
+	            </list>  
+	        </property>  
+	    </bean> 
+	    
+	    <!-- ========================递推统计定时任务发送配置====================== -->
+    	<bean id="MemberTaskDetailTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	        <property name="jobDetail" ref="MemberTaskDetail"/>  
+	        <property name="cronExpression" value="30 57 0 ? * 2"/><!-- 每周周一 1:00:00钟触发一次 -->
+		</bean>
+		
+		<bean id="MemberTaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">   
+	        <property name="targetObject" ref="MemberTask"/>  
+	        <property name="targetMethod" value="execute"/>  
+	        <property name="concurrent" value="false"/>
+	        <!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->  
+		</bean>
+		
+		<bean id="MemberTask" class="com.ry.rycms.task.MumberTask"/> 
+    
+    
+    	<!-- ========================票据状态变更定时任务配置====================== -->
+    	<bean id="accountrecordStateChangeTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	        <property name="jobDetail" ref="accountrecordJobDetail"/>  
+	        <property name="cronExpression" value="0 30 23 * * ?"/><!-- 每隔1分钟触发一次 -->  
+		</bean>
+		
+		<bean id="accountrecordJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">   
+	        <property name="targetObject" ref="orderStateChangeTask"/>  
+	        <property name="targetMethod" value="execute"/>  
+	        <property name="concurrent" value="false"/>
+	        <!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->  
+		</bean>
+		
+		<bean id="orderStateChangeTask" class="com.ry.rycms.task.OrderStateChangeTask"/> 
+		
+		<!-- ========================数据分析系统定时任务配置====================== -->
+		<!-- 日 ，想分析12日数据，就在第12日执行，系统执行时间得保证在20点到24点之间闭区间，【20，24】-->
+		<bean id="dataananChangeDayJobDetailTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	        <property name="jobDetail" ref="dataananChangeDayJobDetail"/>  
+	        <property name="cronExpression" value="0 30 23 * * ?"/> 
+		</bean> 
+		
+		<bean id="dataananChangeDayJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">   
+	        <property name="targetObject" ref="dataananChangeTask"/>  
+	        <property name="targetMethod" value="executeDay"/>  
+	        <property name="concurrent" value="false"/>
+	        <!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->  
+		</bean>
+		<!-- 周 ，想分析12周数据，就在第12周执行，系统执行时间得保证在20点到24点之间闭区间，【20，24】-->
+		<bean id="dataananChangeWeekJobDetailTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	        <property name="jobDetail" ref="dataananChangeWeekJobDetail"/>  
+	        <property name="cronExpression" value="0 35 23 * * ?"/> 
+		</bean> 
+		
+		<bean id="dataananChangeWeekJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">   
+	        <property name="targetObject" ref="dataananChangeTask"/>  
+	        <property name="targetMethod" value="executeWeek"/>  
+	        <property name="concurrent" value="false"/>
+	        <!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->  
+		</bean>
+		
+		<!-- 月，想分析1月数据，就在第1月执行，系统执行时间得保证在20点到24点之间闭区间，【20，24】 -->
+		<bean id="dataananChangeMonthJobDetailTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	        <property name="jobDetail" ref="dataananChangeMonthJobDetail"/>  
+	        <property name="cronExpression" value="0 40 23 * * ?"/> 
+		</bean> 
+		
+		<bean id="dataananChangeMonthJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">   
+	        <property name="targetObject" ref="dataananChangeTask"/>  
+	        <property name="targetMethod" value="executeMonth"/>  
+	        <property name="concurrent" value="false"/>
+	        <!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->  
+		</bean>
+		
+		<!-- 时 ,如果需要分析15点的数据，则时间得控制带16点执行，且分钟得在【50，59】之间-->
+		<bean id="dataananChangeHourJobDetailTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	        <property name="jobDetail" ref="dataananChangeHourJobDetail"/>  
+	        <!-- <property name="cronExpression" value="*/30 * * * * ?"/>  -->
+	        <property name="cronExpression" value="0 58 */1 * * ?"/>
+		</bean> 
+		
+		<bean id="dataananChangeHourJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">   
+	        <property name="targetObject" ref="dataananChangeTask"/>  
+	        <property name="targetMethod" value="executeHour"/>  
+	        <property name="concurrent" value="false"/>
+	        <!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->  
+		</bean>
+		
+		<bean id="dataananChangeTask" class="com.ry.rycms.task.DataananChangeTask"/> 
+		
+		<!-- ========================备份贴现订单图片====================== -->
+    	<bean id="backupDisImgTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	        <property name="jobDetail" ref="backupDisImgTaskDetail"/>  
+	        <property name="cronExpression" value="0 0 23 ? * SUN"/><!-- 每周日23点触发一次 -->  
+		</bean>
+		
+		<bean id="backupDisImgTaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">   
+	        <property name="targetObject" ref="backupDisImgTask"/>  
+	        <property name="targetMethod" value="execute"/>  
+	        <property name="concurrent" value="false"/>
+	        <!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->  
+		</bean>
+		
+		<bean id="backupDisImgTask" class="com.ry.rycms.task.BackupDisImgTask"/> 
+	
+		<!-- ========================修改支付宝交易号====================== -->
+		<bean id="inquiryReplyJyhTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+			<property name="jobDetail" ref="inquiryReplyJyhTaskDetail"/>
+			<property name="cronExpression" value="0 55 23 ? * *"/><!-- 每 天23:59:00钟触发一次 -->
+		</bean>
+		
+		<bean id="inquiryReplyJyhTaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+			<property name="targetObject" ref="inquiryReplyJyhTask"/>
+			<property name="targetMethod" value="execute"/>  
+	        <property name="concurrent" value="false"/>
+		</bean>
+		
+		<bean id="inquiryReplyJyhTask" class="com.ry.rycms.task.InquiryReplyJyhTask"/>
+		
+		<!-- ========================每天10:30/14:30/16:30 三个时间点备份historyprice当日的报价====================== -->
+		<!-- <bean id="backupHistorypriceTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+			<property name="jobDetail" ref="backupHistorypriceTaskDetail" />
+			<property name="cronExpression" value="0 30 10-17 ? * *" /> 
+		</bean>
+		
+		<bean id="backupHistorypriceTaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+			<property name="targetObject" ref="backupHistorypriceTask" />
+			<property name="targetMethod" value="execute" />
+			<property name="concurrent" value="false" />
+		</bean>
+		
+		<bean id="backupHistorypriceTask" class="com.ry.rycms.task.BackupHistorypriceTask"></bean> -->
+		
+		<!-- ========================每天查询三天后会到期的票据,copy到systeminfo中====================== -->
+		<bean id="piaojuRemindTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+			<property name="jobDetail" ref="piaojuRemindTaskDetail"/>
+			<property name="cronExpression" value="0 45 23 ? * *" /> <!-- 每天23:45触发 -->
+		</bean>
+		
+		<bean id="piaojuRemindTaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+			<property name="targetObject" ref="piaojuRemindTask" />
+			<property name="targetMethod" value="execute" />
+			<property name="concurrent" value="false" />
+		</bean>
+		
+		<bean id="piaojuRemindTask" class="com.ry.rycms.task.PiaojuRemindTask"></bean>
+		
+		<!-- ========================查询三天后要提醒的数据,copy到systeminfo中====================== -->
+		
+		<bean id="noticerecordRemindTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+			<property name="jobDetail" ref="noticerecordRemindTaskDetail"/>
+			<property name="cronExpression" value="0 48 23 ? * *" /> <!-- 每天23:48触发 -->
+		</bean>
+		
+		<bean id="noticerecordRemindTaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+			<property name="targetObject" ref="noticerecordRemindTask" />
+			<property name="targetMethod" value="execute"/>
+			<property name="concurrent" value="false"/>
+		</bean>
+		
+		<bean id="noticerecordRemindTask" class="com.ry.rycms.task.NoticerecordRemindTask"></bean>
+		
+		<!-- ========================定时查询百度推广关键字（统计）====================== -->
+		
+		<bean id="keyWordCountTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+			<property name="jobDetail" ref="keyWordCountTaskDetail"/>
+			<property name="cronExpression" value="0 38 23 * * ?" /> <!-- 每天23:38触发 -->
+		</bean>
+		
+		<bean id="keyWordCountTaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+			<property name="targetObject" ref="keyWordCountTask" />
+			<property name="targetMethod" value="execute"/>
+			<property name="concurrent" value="false"/>
+		</bean>
+		
+		<bean id="keyWordCountTask" class="com.ry.rycms.task.KeyWordCountTask"></bean>
+		
+		<!-- ========================系统报价====================== -->
+		
+		<bean id="systemBJTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+			<property name="jobDetail" ref="systemBJTaskDetail"/>
+			<property name="cronExpression" value="0 31 * * * ?" /> <!-- 每小时31分触发 -->
+		</bean>
+		
+		<bean id="systemBJTaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+			<property name="targetObject" ref="systemBJTask" />
+			<property name="targetMethod" value="execute"/>
+			<property name="concurrent" value="false"/>
+		</bean>
+		
+		<bean id="systemBJTask" class="com.ry.rycms.task.SystemBJTask"></bean>
+		
+		<!-- ========================渠道定时发送任务配置====================== -->
+    	<bean id="hezuoTaskDetailTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	        <property name="jobDetail" ref="hezuoTaskDetail"/>  
+	        <property name="cronExpression" value="0 30 1 * * ?"/><!-- 每 天1:30:00钟触发一次 -->
+		</bean>
+		
+		<bean id="hezuoTaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">   
+	        <property name="targetObject" ref="hezuoTask"/>  
+	        <property name="targetMethod" value="execute"/>  
+	        <property name="concurrent" value="false"/>
+	        <!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->  
+		</bean>
+		
+		<bean id="hezuoTask" class="com.ry.rycms.task.HezuoTask"/>
+		
+		<!-- ===================================网站新闻爬虫================================ -->
+    	<bean id="newsCrawlerTaskDetailTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+			<property name="jobDetail" ref="newsCrawlerTaskDetail"/>
+			<property name="cronExpression" value="0 0/120 9-17 * * ?"/><!-- 每 天（13到17点）两个小时爬虫一次 -->
+		</bean>
+    	<bean id="newsCrawlerTaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+			<property name="targetObject" ref="newsCrawlerTask"/>
+			<property name="targetMethod" value="execute"/>
+			<property name="concurrent" value="false"/>
+		</bean>
+    	<bean id="newsCrawlerTask" class="com.ry.rycms.task.NewsCrawlerTask"/>
+    	
+    	<!-- ========================定时生成PC端首页静态页面====================== -->
+    	<bean id="staticTaskDetailTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	        <property name="jobDetail" ref="staticTaskDetail"/>  
+	        <property name="cronExpression" value="0 0/5 * * * ?"/><!-- 每5分钟触发一次 -->
+		</bean>
+		
+		<bean id="staticTaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">   
+	        <property name="targetObject" ref="staticTask"/>  
+	        <property name="targetMethod" value="execute"/>  
+	        <property name="concurrent" value="false"/>
+	        <!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->  
+		</bean>
+		
+		<bean id="staticTask" class="com.ry.rycms.task.StaticTask"/>
+		
+		<!-- ========================定时生成销售数据（上月注册人活跃数等,每月的4号凌晨2：00[0 0 2 4 * ?]）====================== -->
+    	<bean id="huoyueTaskDetailTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	        <property name="jobDetail" ref="huoyueTaskDetail"/>
+	        <property name="cronExpression" value="0 0 2 4 * ?"/>
+		</bean>
+		<bean id="huoyueTaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">   
+	        <property name="targetObject" ref="huoyueTask"/>  
+	        <property name="targetMethod" value="execute"/>  
+	        <property name="concurrent" value="false"/>
+	        <!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->  
+		</bean>
+		<bean id="huoyueTask" class="com.ry.rycms.task.HuoyueTask"/>
+		
+		<!-- ========================定时快钱退款（每天凌晨3点）====================== -->
+    	<bean id="bill99TaskDetailTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	        <property name="jobDetail" ref="bill99TaskDetail"/>
+	        <property name="cronExpression" value="0 0 3 * * ?"/>
+		</bean>
+		<bean id="bill99TaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">   
+	        <property name="targetObject" ref="bill99Task"/>  
+	        <property name="targetMethod" value="execute"/>  
+	        <property name="concurrent" value="false"/>
+	        <!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->  
+		</bean>
+		<bean id="bill99Task" class="com.ry.rycms.task.Bill99Task"/>
+		
+		
+		<!-- ========================定时生成销售数据（上月注册人活跃数等,每月的1号凌晨2：00[0 0 2 1 * ?]）====================== -->
+    	<bean id="huoyue2TaskDetailTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	        <property name="jobDetail" ref="huoyue2TaskDetail"/>
+	        <property name="cronExpression" value="0 0 2 1 * ?"/>
+		</bean>
+		<bean id="huoyue2TaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">   
+	        <property name="targetObject" ref="huoyue2Task"/>  
+	        <property name="targetMethod" value="execute"/>  
+	        <property name="concurrent" value="false"/>
+	        <!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->  
+		</bean>
+		<bean id="huoyue2Task" class="com.ry.rycms.task.Huoyue2Task"/>
+		
+		<!-- ========================定时发送邮件（洪宁：神马搜狗等渠道注册用户）运营数据统计（每周的周一凌晨2：00）每两周，在程序里面判断====================== -->
+    	<bean id="yunyingTaskDetailTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	        <property name="jobDetail" ref="yunyingTaskDetail"/>
+	        <property name="cronExpression" value="30 55 0 ? * 2"/><!-- 每周周一 00:55:30钟触发一次 -->
+		</bean>
+		<bean id="yunyingTaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">   
+	        <property name="targetObject" ref="yunyingTask"/>  
+	        <property name="targetMethod" value="execute"/>  
+	        <property name="concurrent" value="false"/>
+	        <!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->  
+		</bean>
+		<bean id="yunyingTask" class="com.ry.rycms.task.YunyingTask"/>
+		
+		<!-- ========================定时检测平台报价预警（每天11执行点）====================== -->
+    	<bean id="priceTaskDetailTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	        <property name="jobDetail" ref="priceTaskDetail"/>
+	        <property name="cronExpression" value="0 0 11 * * ?"/>
+		</bean>
+		<bean id="priceTaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">   
+	        <property name="targetObject" ref="priceTask"/>  
+	        <property name="targetMethod" value="execute"/>  
+	        <property name="concurrent" value="false"/>
+	        <!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->  
+		</bean>
+		<bean id="priceTask" class="com.ry.rycms.task.PriceTask"/>
+		
+		<!-- ===========================定时爬取公催内容============================ -->
+    	<bean id="gongcuiTaskDetailTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	        <property name="jobDetail" ref="gongcuiTaskDetail"/>
+	        <property name="cronExpression" value="00 12 10 ? * *"/><!-- 每天早上9点钟触发一次 -->
+		</bean>
+		<bean id="gongcuiTaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">   
+	        <property name="targetObject" ref="gongcuiTask"/>  
+	        <property name="targetMethod" value="execute"/>  
+	        <property name="concurrent" value="false"/>
+	        <!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->  
+		</bean>
+		<bean id="gongcuiTask" class="com.ry.rycms.task.GongcuiTask"/>
+		
+		<!-- ===========================定时下载UDESK录音文件============================ -->
+    	<bean id="udeskLogTaskDetailTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	        <property name="jobDetail" ref="udeskLogTaskDetail"/>
+	        <property name="cronExpression" value="0 10 1 * * ?"/><!-- 每天1:10:00钟触发一次 -->
+		</bean>
+		<bean id="udeskLogTaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"> 
+	        <property name="targetObject" ref="udeskLogTask"/>
+	        <property name="targetMethod" value="execute"/>
+	        <property name="concurrent" value="false"/>
+		</bean>
+		<bean id="udeskLogTask" class="com.ry.rycms.task.UdeskLogTask"/>
+		
+		<!-- 定时添加积分-->
+    	<bean id="actionTaskDetailTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	        <property name="jobDetail" ref="actionTaskDetail"/>
+	        <property name="cronExpression" value="00 50 23 ? * *"/><!-- 每天晚上11.50点钟触发一次 -->
+		</bean>
+		<bean id="actionTaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">   
+	        <property name="targetObject" ref="actionTask"/>  
+	        <property name="targetMethod" value="execute"/>  
+	        <property name="concurrent" value="false"/>
+	        <!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->  
+		</bean>
+		<bean id="actionTask" class="com.ry.rycms.task.ActionTask"/> 
+		
+		<!-- 定时转化用户的归属状态-->
+    	<bean id="customerReportTaskDetailTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	        <property name="jobDetail" ref="customerReportTaskDetail"/>
+	        <property name="cronExpression" value="00 57 23 ? * *"/><!-- 每天晚上11.57点钟触发一次 -->
+		</bean>
+		<bean id="customerReportTaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">   
+	        <property name="targetObject" ref="customerReportTask"/>  
+	        <property name="targetMethod" value="execute"/>  
+	        <property name="concurrent" value="false"/>
+	        <!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->  
+		</bean>
+		<bean id="customerReportTask" class="com.ry.rycms.task.CustomerReportTask"/>
+		
+		<!-- 定时平均分配客户归属-->
+    	<bean id="customerServiceTaskDetailTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+	        <property name="jobDetail" ref="customerServiceTaskDetail"/>
+	        <property name="cronExpression" value="0 0/10 9-18 * * ?"/><!-- 每10分钟触发一次 -->
+		</bean>
+		<bean id="customerServiceTaskDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">   
+	        <property name="targetObject" ref="customerServiceTask"/>  
+	        <property name="targetMethod" value="execute"/>  
+	        <property name="concurrent" value="false"/>
+	        <!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->  
+		</bean>
+		<bean id="customerServiceTask" class="com.ry.rycms.task.CustomerServiceTask"/>
+</beans>

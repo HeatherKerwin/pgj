@@ -1,0 +1,704 @@
+.rightCon{
+    width: 960px;
+    padding: 20px;
+    background: #ffffff;
+}
+/*出票进程*/
+.process{
+    margin-top: 30px;
+    text-align: center;
+}
+.process ul{
+    width: 480px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.process ul:after{
+    clear: both;
+    height: 0;
+}
+.process ul li{
+    float: left;
+    display: block;
+    width: 160px;
+}
+.process ul li p{
+    color: #CCCCCC;
+}
+
+/*确认订单信息*/
+h2{
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+/**/
+.payCon{
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    padding: 10px 15px 20px;
+    overflow: hidden;
+}
+.payCon:after{
+    clear: both;
+    height: 0;
+}
+
+/*左侧-支付信息*/
+.payCon .payConLeft{
+    float: left;
+    width: 490px;
+}
+/*选择支付银行卡*/
+.payCon .payConLeft ul.bankList{
+    overflow: hidden;
+}
+.payCon .payConLeft ul.bankList:after{
+    clear: both;
+    height: 0px;
+}
+.payCon .payConLeft ul.bankList li{
+    float: left;
+    width: 230px;
+    height: 60px;
+    margin: 6px;
+    cursor: pointer;
+}
+.payCon .payConLeft ul.bankList li:after{
+    clear: both;
+    height: 0px;
+}
+.payCon .payConLeft ul.bankList li:hover label{
+    box-shadow: 0px 0px 2px #e84c3d;
+}
+.payCon .payConLeft ul.bankList li input[type=radio]{
+    float: left;
+    margin-top: 24px;
+    margin-right: 10px;
+}
+.payCon .payConLeft ul.bankList li label{
+    float: left;
+    width: 200px;
+    height: 60px;
+    font-size: 12px;
+    line-height: 30px;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+}
+.payCon .payConLeft ul.bankList li label.checked{ /* 选中银行卡 */
+    box-shadow: 0px 0px 2px #e84c3d;
+}
+.payCon .payConLeft ul.bankList li label .bankTitle{
+    height: 30px;
+    padding-left: 10px;
+    background: #f9f9f9;
+    border-bottom: 1px solid #e0e0e0;
+}
+.payCon .payConLeft ul.bankList li label .bankbCard{
+    height: 30px;
+    padding: 0 10px;
+    font-size: 12px;
+    color: #717583;
+}
+.payCon .payConLeft ul.bankList li label .bankbCard div:first-child{
+    float: left;
+}
+.payCon .payConLeft ul.bankList li label .bankbCard div:last-child{
+    float: right;
+}
+
+/*选择支付银行卡end*/
+
+/*添加新银行卡*/
+.payCon .payConLeft .addbank label{
+    width: 200px;
+    height: auto;
+    display: block;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    text-align: center;
+    padding: 12px 0px;
+    cursor: pointer;
+    margin: 10px 30px;
+}
+/*添加新卡表单*/
+.payCon .payConLeft .addItem {
+    width: 440px;
+    border: 1px solid #e0e0e0;
+    background: #ffffff;
+    padding: 10px;
+}
+/*申请绑卡*/
+/*完成绑卡*/
+ul.finishBank, ul.applyBank{
+    height: auto;
+}
+ul.finishBank li , ul.applyBank li{
+    line-height: 30px;
+    margin: 10px 0px;
+}
+ul.applyBank li input[type=button]{
+    width: 260px;
+    height: 32px;
+    line-height: 32px;
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    padding: 0px;
+    display: block;
+}
+ul.finishBank li input[type=number] , ul.applyBank li input[type=text] ,ul.applyBank li input[type=number]{
+    width: 260px;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid #e0e0e0;
+    margin-right: 10px;
+}
+ul.finishBank li p , ul.applyBank li p{
+    font-size: 14px;
+    line-height: 20px;
+    color: #e84c3d;
+    margin: 0px 5px;
+}
+ul.finishBank li a ,ul.applyBank li a{
+    width: 120px;
+    height: 32px;
+    display: block;
+    font-size: 14px;
+    line-height: 32px;
+    text-align: center;
+    color: #ffffff;
+    background: #e84c3d;
+    border-radius: 5px;
+    margin: 10px auto;
+}
+ul.finishBank li a.gray{
+    background: #f9f9f9;
+    color: #2d2d2d;
+    border: 1px solid #e0e0e0;
+}
+/*添加新银行卡end*/
+
+
+/*---出票-支付---*/
+ul.payList{
+    font-size: 15px;
+    margin-top: 30px;
+}
+ul.payList li{
+    height: 27px;
+    line-height: 27px;
+    margin: 6px 0px;
+}
+ul.payList li:after{
+    clear: both;
+    height: 0;
+}
+
+ul.payList li .payTitile{
+    float: left;
+    width: 120px;
+}
+
+/*保证金*/
+ul.payList li .deposit{
+    float: left;
+    margin-right: 10px;
+}
+
+/*会员免费*/
+ul.payList li .member{
+    float: left;
+}
+
+/*会员*/
+.Vip{
+    color: #e84c3d;
+    float: left;
+    margin-right: 10px;
+}
+
+/*红包-价格*/
+ul.payList li .coupon{
+    float: left;
+}
+ul.payList li .coupon img{
+    width: 15px;
+    height: 16px;
+}
+ul.payList li .coupon span{}
+
+/*红包-无红包*/
+ul.payList li .noCoupon{
+    float: left;
+    color: #bfbfbf;
+    margin-right: 10px;
+}
+/*红包-使用红包*/
+ul.payList li .haveCoupon{
+    float: left;
+    cursor: pointer;
+    display: block;
+}
+ul.payList li .haveCoupon img{
+    width: 15px;
+    height: 16px;
+    margin-right: 2px;
+}
+ul.payList li .haveCoupon span{
+    color: #e84c3d;
+    text-decoration: underline;
+}
+
+/*可点击的a*/
+ul.payList li a.link{
+    float: left;
+    color: #3366cc;
+    text-decoration: underline;
+}
+/*不可点击的a*/
+ul.payList li a.nolLink{
+    float: left;
+    color: #7a7a7a;
+}
+
+/*是否指定机构*/
+ul.payList li:last-child{
+    margin-top: 10px;
+}
+ul.payList li ul.ryRadioCheckd{
+    float: left;
+    margin-right: 15px;
+    padding: 0px;
+}
+ul.payList li ul.ryRadioCheckd li{
+    margin: 2px 5px;
+}
+ul.payList li .search{
+    float: left;
+    position: relative;
+    width: 200px;
+    height: 30px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}
+ul.payList li .search input{
+    width: 170px;
+    border: 0px;
+    height: 30px;
+    line-height: 30px;
+}
+ul.payList li .search a{
+    position: absolute;
+    top: 0px;
+    z-index: 1;
+    right: 0px;
+    width: 30px;
+    height: 30px;
+    border-radius: 0px 5px 5px 0px;
+    border-left: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    background: #f9f9f9 url(/images/yonyou/discount/search.png) center no-repeat;
+    background-size: 17px 18px;
+}
+/*---出票-支付end---*/
+
+/*右侧-票面*/
+.picpath{
+    float: left;
+    width: 436px;
+    height: 100%;
+    text-align: center;
+    border-left: 1px double #e0e0e0;
+}
+.picpath p{
+    float: left;
+    margin: 10px 15px;
+    color: #7a7a7a;
+}
+.picpath img{
+    float: left;
+    width: auto;
+    max-width: 80%;
+    height: 170px;
+    margin-top: 10px;
+}
+/*票面end*/
+
+/*搜索指定机构*/
+/*未搜索到机构*/
+.nocompany{
+    width: 100%;
+    height: 300px;
+    border: 1px solid #e0e0e0;
+    border-top: 0px;
+    text-align: center;
+}
+.nocompany img{
+    width: 206px;
+    height: 173px;
+    margin-top: 50px;
+}
+
+/*----搜索到的机构列表----*/
+.companyCon{
+    width: 100%;
+    border: 1px solid #e0e0e0;
+    border-top: 0px;
+}
+/*机构列表标签*/
+.companyCon ul.companyList li.companyListShow:hover{
+    box-shadow: 0px 0px 1px #e84c3d;
+}
+.companyCon ul.companyList li.checked{
+    box-shadow: 0px 0px 1px #e84c3d;
+}
+.companyCon ul.companyList li.companyListShow ul.companyTitle{
+    height: 50px;
+    background: #f9f9f9;
+    color: #717583;
+    text-align: center;
+    font-size: 14px;
+    line-height: 50px;
+    border-bottom: 1px solid #e0e0e0;
+}
+/* .companyCon ul.companyList li.companyListShow:last-child label{
+    border-bottom: 0px;
+} */
+.companyCon ul.companyList li.companyListShow ul.companyTitle:after{
+    clear: both;
+    height: 0px;
+}
+.companyCon ul.companyList li.companyListShow ul.companyTitle li{
+    float: left;
+}
+/*出票-指定机构-机构信息标签宽度*/
+.w310{width: 310px} /*机构名称*/
+.w200{width: 200px} /*联系人*/
+.w450{width: 450px} /*评分*/
+
+/*选择机构-列表*/
+.companyCon ul.companyList li.companyListShow label{
+    width: 100%;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border-bottom: 1px solid #e0e0e0;
+}
+.companyCon ul.companyList li.companyListShow label:after{
+    clear: left;
+    height: 0px;
+}
+/*机构信息表格*/
+.companyCon ul.companyList li.companyListShow label .companyForm{
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    line-height: 40px;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+.companyCon ul.companyList li.companyListShow label .companyForm:after{
+    clear: both;
+}
+/*表格-左侧内容*/
+.companyCon ul.companyList li.companyListShow label .companyForm ul.leftForm{
+    float: left;
+    width: 510px;
+}
+.companyCon ul.companyList li.companyListShow label .companyForm ul.leftForm li{
+    float: left;
+}
+/*表格-右侧内容*/
+.companyCon ul.companyList li.companyListShow label .companyForm ul.rightForm{
+    float: left;
+    width: 450px;
+}
+.companyCon ul.companyList li.companyListShow label .companyForm ul.rightForm li{
+    float: left;
+    width: 150px;
+}
+
+/*选择机构-右下角单选框*/
+.companyCon ul.companyList li.companyListShow label .choseJG{
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    background: url("/images/yonyou/discount/choseJG.png") center no-repeat;
+    background-position: 0 -25px;
+}
+.companyCon ul.companyList li.companyListShow:hover label .choseJG{
+    background-position: 0 0;
+}
+/*----搜索到的机构列表end----*/
+
+/*----选择已机构----*/
+.selectOrg{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    border-top: 0px;
+    box-sizing: border-box;
+}
+.selectOrg:after{
+    clear: both;
+    height: 0px;
+}
+.selectOrg .OrgLeft{
+    float: left;
+    width: 498px;
+}
+.selectOrg .OrgLeft label{
+    float: left;
+    width: 229px;
+    margin: 0 10px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+
+}
+/*右侧评分*/
+.selectOrg .OrgRight{
+    float: left;
+    width: 460px;
+}
+.selectOrg .OrgRight label{
+    float: left;
+    color: #717583;
+    width: 70px;
+}
+.selectOrg .OrgRight ul{
+    width: 390px;
+    float: left;
+}
+.selectOrg .OrgRight ul li{
+    float: left;
+    width: 130px;
+    text-align: center;
+}
+/*----选择已机构end----*/
+
+/*--- 底部操作 ---*/
+.companyFoot{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    margin-top: 25px;
+}
+.companyFoot .balance{
+    float: left;
+}
+.companyFoot .payment{
+    float: right;
+}
+.companyFoot .balance label, .companyFoot .payment label{
+    float: left;
+    margin: 0px 5px 0px 10px;
+}
+.companyFoot .balance .value , .companyFoot .payment .value{
+    float: left;
+    color: #e84c3d;
+    margin-right: 25px;
+}
+.companyFoot .payment .value{
+    font-size: 17px;
+    font-weight: 600;
+}
+.companyFoot a.companyBtn{
+    float: right;
+    width: 120px;
+    height: 50px;
+    font-size: 18px;
+    text-align: center;
+    color: #ffffff;
+    background: #e84c3d;
+    border: 0px;
+}
+.companyFoot a.companyBtn:hover{
+    box-shadow: 1px 2px 2px #000;
+}
+/*--- 底部操作end ---*/
+
+
+/*---------弹窗--------*/
+/*----使用红包弹窗----*/
+.maskDiv ul.couponList{
+    height: auto;
+    overflow: auto;
+}
+.maskDiv ul.couponList li{
+    width: 240px;
+    height: 80px;
+    float: left;
+    overflow: hidden;
+    margin: 10px 15px;
+    border: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.maskDiv ul.couponList li:after{
+    clear: both;
+    height: 0px;
+}
+.maskDiv ul.couponList li:hover{
+    border: 1px solid #e84c3d;
+    box-shadow: 1px 2px 1px #e84c3d;
+}
+.maskDiv ul.couponList li .couponLeft{
+    float: left;
+    width: 90px;
+    height: 80px;
+    background: #fc4d42;
+    text-align: center;
+}
+/*红包金额*/
+.maskDiv ul.couponList li .couponLeft .couponMoney{
+    font-size: 20px;
+    color: #ffffff;
+    margin-top: 5px;
+}
+.maskDiv ul.couponList li .couponLeft .couponMoney span{
+    font-size: 30px;
+}
+/*使用条件*/
+.maskDiv ul.couponList li .couponLeft .requirement{
+    width: 70px;
+    height: 22px;
+    font-size: 12px;
+    line-height: 22px;
+    color: #e84c3d;
+    background: #ffffff;
+    border-radius: 3px;
+    margin: 6px 10px;
+}
+.maskDiv ul.couponList li .couponRight{
+    float: left;
+    padding-left: 20px;
+    line-height: 30px;
+}
+/*红包类型*/
+.maskDiv ul.couponList li .couponRight .couponType{
+    font-size: 14px;
+    margin-top: 10px;
+}
+/*有效期*/
+.maskDiv ul.couponList li .couponRight .couponTime{
+    font-size: 10px;
+    color: #7d7d7d;
+}
+/*红包右侧锯齿边框*/
+.rbDashed{
+    position:relative;
+    width:30%;
+    height:100%;
+    display:inline-block;
+    border-radius: 3px 0 0 3px;
+}
+.rbDashed:after{
+    content: "";
+    position: absolute;
+    top: -20px;
+    display: block;
+    width:10px;
+    height: 100%;
+    margin-top: 20px;
+    background-size: 20px 10px;
+}
+.rbDashed:after{
+    right: -10px;
+    background-color: #fc4d42;
+    background-position: 100% 15%;
+    background-image: linear-gradient(-45deg, #fff 25%, transparent 25%, transparent),
+    linear-gradient(-135deg, #fff 25%, transparent 25%, transparent),
+    linear-gradient(-45deg, transparent 75%, #fff 75%),
+    linear-gradient(-135deg, transparent 75%, #fff 75%);
+}
+/*----使用红包end----*/
+
+/*----搜索开户行名称----*/
+.bankWindow .searchBank{
+    overflow: hidden;
+}
+.bankWindow .searchBank:after{
+    clear: both;
+    height: 0px;
+}
+/*搜索框*/
+.bankWindow .searchBank input[type=text]{
+    float: left;
+    width: 240px;
+    height: 30px;
+    border-radius: 0;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    text-align: center;
+    padding: 0px;
+    margin-right: 10px;
+}
+/*搜索按钮*/
+.bankWindow .searchBank a{
+    float: left;
+    display: block;
+    width: 100px;
+    height: 30px;
+    font-size: 14px;
+    line-height: 30px;
+    text-align: center;
+    color: #ffffff;
+    border-radius: 5px;
+    background: #e84c3d;
+}
+/*未搜到*/
+.bankWindow p{
+    font-size: 16px;
+    line-height: 30px;
+    text-align: center;
+    color: #717583;
+    margin: 30px 0 20px;
+}
+/*开户行列表*/
+.bankWindow ul.searchBankList{
+    width: 100%;
+    height: auto;
+    border: 1px solid #e0e0e0;
+    margin: 20px 0;
+}
+.bankWindow ul.searchBankList li{
+    display: block;
+    padding: 0 10px;
+    height: 30px;
+    font-size: 16px;
+    line-height: 30px;
+    border-bottom: 1px solid #e0e0e0;
+    overflow: hidden;
+    cursor: pointer;
+}
+.bankWindow ul.searchBankList li:after{
+    clear: both;
+    height: 0px;
+}
+.bankWindow ul.searchBankList li:last-child{
+    border-bottom: 0px;
+}
+.bankWindow ul.searchBankList li .searchBankName{
+    float: left;
+}
+.bankWindow ul.searchBankList li .searchBankPlace{
+    float: right;
+}
+/*----搜索开户行名称end----*/
+
+/*----------弹窗end---------*/

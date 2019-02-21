@@ -1,0 +1,3 @@
+[#assign basePath = 'http://test.utiexian.com:3030']
+[#assign websitePath = 'http://192.168.1.40:8888/website']
+[#assign bootPic = 'http://192.168.1.161:8081']

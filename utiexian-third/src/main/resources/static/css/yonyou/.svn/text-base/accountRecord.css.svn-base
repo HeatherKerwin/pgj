@@ -1,0 +1,67 @@
+/*交易记录*/
+.rightCon{
+    background: #ffffff;
+    min-height: 700px;
+}
+.Record{
+    margin: 20px;
+    height: auto;
+    color: #2d2d2d;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+    box-sizing: border-box;
+}
+/*记录标签*/
+.Record ul.recordTitle{
+    width: 100%;
+    height: auto;
+    font-size: 16%;
+    line-height: 40px;
+    background: #f9f9f9;
+    border-bottom: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.Record ul.recordTitle:after{
+    clear: both;
+    height: 0px;
+}
+.Record ul.recordTitle li{
+    float: left;
+    width: 25%;
+    float: left;
+    border-right: 1px solid #e0e0e0;
+    box-sizing: border-box;
+}
+.Record ul.recordTitle li:last-child{
+    border-right: 0px;
+}
+
+
+/*记录列表*/
+.Record ul.recordList{
+    width: 100%;
+    font-size: 14px;
+    line-height: 34px;
+}
+.Record ul.recordList li{
+    overflow: hidden;
+    border-bottom: 1px solid #e0e0e0;
+    box-sizing: border-box;
+}
+.Record ul.recordList li:last-child{
+    border-bottom: 0px;
+}
+.Record ul.recordList li:after{
+    clear: both;
+    height: 0px;
+}
+.Record ul.recordList li div{
+    width: 25%;
+    float: left;
+    border-right: 1px solid #e0e0e0;
+    box-sizing: border-box;
+}
+.Record ul.recordList li div:last-child{
+    border-right: 0px;
+}

@@ -1,0 +1,218 @@
+[#import "/common/main.html" as main]
+[#include "/common/setting.html"]
+[@main.body title='云票据-开户管理-小额鉴定']
+<link rel="stylesheet" href="${basePath}/css/yonyou/authentication.css">
+<link rel="stylesheet" href="${basePath}/css/yonyou/mask.css">
+<link rel="stylesheet" href="${basePath}/css/yonyou/contract.css">
+
+<!-- 头部 -->
+<div class="head">
+    <div class="headWrap">authentication_appraisal
+        <a class="logo" href="http://www.yonyou.com/" target="_blank">
+            <img src="${basePath}/images/yonyou/logo.png" alt="yonyou">
+        </a>
+        <ul class="menu">
+            <li><a href="${basePath}/yonyou/index">首页</a></li>
+            <li><a href="${basePath}/yonyou/ypDiscount">出票</a></li>
+            <li><a href="${basePath}/yonyou/inquiry">询价</a></li>
+            <li><a href="${basePath}/yonyou/calculator">计算器</a></li>
+            <li><a href="${basePath}/yonyou/authentication" class="ce84c3d">开户管理</a></li>
+            <li><a href="${basePath}/yonyou/ypOrderList">订单中心</a></li>
+        </ul>
+    </div>
+</div>
+<!-- 头部end -->
+
+<div class="wrap authenticationWrap">
+    <!--top-->
+    <div class="authenticationTop">
+        <label>开户管理</label>
+        <a href="#" class="contractBtn">开户合同</a>
+    </div>
+    
+    <!--开户进程-->
+    <div class="authenticationType">
+        <ul>
+            <li><img src="${basePath}/images/yonyou/authentication/type1.png" width="180" height="52" alt="申请开户"></li>
+            <li><img src="${basePath}/images/yonyou/authentication/type22.png" width="180" height="52" alt="审核"></li>
+            <li><img src="${basePath}/images/yonyou/authentication/type33.png" width="55" height="52" alt="完成开户"></li>
+        </ul>
+    </div>
+
+
+    <!--账户绑定-->
+    <div class="bind authenticationItem">
+        <ul>
+            <li>
+                <label for="">户名：</label>
+                <div class="itemValue"></div>
+            </li>
+            <li>
+                <label for="">帐号：</label>
+                <div class="itemValue">00</div>
+            </li>
+            <li>
+                <label for="">金额：</label>
+                <input type="number" id="" placeholder="请填写该银行卡收到的小额款项">
+                <div class="itemUnit">元</div>
+            </li>
+            <li>
+                <p>客服已帮您提交开户申请，关联银行账号里会收到一笔小额款项，将收到的金额填写上，最后点击“完成开户”，即可完成开户。</p>
+            </li>
+            <li>
+                <a href="#" class="gray successBtn">完成开户</a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<!--弹窗-->
+<div class="maskWindow" id="maskWindow" style="display: none">
+    <div class="maskBg"></div>
+    <div class="maskWrap maskWrapSmall">
+        <!--top-->
+        <div class="maskTop">
+            <!--弹窗名称-->
+            <div id="title" class="maskTitle">温馨提示</div>
+            <!--关闭按钮-->
+            <a class="maskClose">
+                <img src="${basePath}/images/yonyou/common/closeIcon.png" alt="关闭">
+            </a>
+        </div>
+        <!--top end-->
+
+        <!--内容容器-->
+        <div class="maskCon">
+            <!--开户声明-->
+            <div class="maskDiv" style="display: none" id="sendEmailWindow">
+                <ul class="maskForm">
+                    <li>
+                        <label for="email">发送合同至您的邮箱</label>
+                        <input type="email" id="email" maxlength="30" placeholder="请输入经办人邮箱号" style="width: 300px">
+                    </li>
+                </ul>
+            </div>
+            <!--开户合同-->
+            
+            <!--开户合同-->
+            <div class="maskDiv" style="display: none" id="instructionWindow">
+				<div class="contractWindow">
+                    <h2>附件：企业授权委托书</h2>
+                    <h3>致：兴业数字金融服务（上海）股份有限公司（执剑人票据见证代管系统运营方，以下简称“兴业数金”）；及上海票管家金融服务有限公司</h3>
+                    <h3>抄送：兴业银行股份有限公司</h3>
+                    <p>兴业数金为兴业银行集团旗下控股子公司，是兴业银行集团面向中小银行、非银行金融机构、中小企业提供金融信息云服务的最主要平台，同时也是集团探索开展互联网金融业务的最主要平台。</p>
+                    <p>兹授权我公司员工_______先生/小姐，性别__，身份证号码__________________，任职部门_______________，职务_______________，手机号码___________，为平台交易员，代表我公司在票据管家平台负责注册所需账户及提供我公司多个账户、发布交易需求、电子合同签署等业务指令操作；</p>
+                    <p>同时授权我公司员工_______先生/小姐，性别__，身份证号码__________________，任职部门_______________，职务_______________	，手机号码___________，为资金经办人，代表我公司使用兴业数金“执剑人”见证代管系统，负责办理我公司提供多个账户的资金查询、划转、账户提款等资金和财务指令操作。</p>
+                    <p>我单位接受上海票管家金融服务有限公司、兴业数金、兴业银行及任何相关方为我单位联合提供的票据见证、资金代管、资金汇划、电子合同签署及存证、数字签名等服务，我单位无条件不可撤销地委托并授权兴业数金以其名义在兴业银行开立“票据流转资金专户”，专项用于我单位在执剑人票据见证代管系统中票据业务项下流转资金的代管、划转等事项；我单位无条件不可撤销地同意并接受兴业数金及相关方为我单位提供的数字证书发放、电子合同在线签署及存证等综合服务。我公司同意并授权兴业数金与上海票管家金融服务有限公司协助办理相关手续，授权有效期与我公司在上海票管家金融服务有限公司注册的账户之有效期限相同或以另行书面变更授权为准。上述员工在上海票管家金融服务有限公司和兴业数金“执剑人”票据见证代管系统以及电子合同签署等进行的所有操作行为均已经取得我公司书面授权，所有操作行为均视为我公司操作行为，由此产生的所有经济和法律风险均由我公司自行承担，与上海票管家金融服务有限公司、兴业数金及任何相关方无关。</p>
+                    <p>本授权书自我公司签章之日起生效，在上海票管家金融服务有限公司、兴业数金及兴业银行等未收妥我公司变更被授权员工的书面授权书之前或我公司在 上海票管家金融服务有限公司注册的账户无效、被注销之前持续有效。</p>
+                    <p>我公司已经知悉并无条件、不可撤销地同意：</p>
+                    <p>根据上海票管家金融服务有限公司公布已经我公司同意的业务操作流程规定，任一操作环节完成之时起须在 30 分钟内完成下一操作环节，若我公司超过 30 分钟未在上海票管家金融服务有限公司或兴业数金“执剑人”票据见证代管系统完成下一操作环节的，我公司充分授权同意并认可上海票管家金融服务有限公司、兴业数金及兴业银行任一方或者多方基于票据状态与资金代管实际情况进行后续操作处理，直至交易结束。由此产生的全部经济和法律结果均由我公司全部承担，与进行后续操作的 上海票管家金融服务有限公司、兴业数金及任何相关第三方无关。</p>
+                    <p>特别声明：本授权书原件一份，兴业数金、上海票管家金融服务有限公司或兴业银行任一方持有的扫描件与原件均具有同等法律效力。</p>
+                    <p>特此授权。</p>
+                    <p class="footer">法定代表人签字或盖章：</p>
+                    <p class="footer">公司名称：       （公司公章）</p>
+                    <p class="footer">_____年_____月_____日</p>
+
+                    <br><br>
+
+                    <h2>单位授权书</h2>
+                    <h3>致：兴业银行股份有限公司上海分行</h3>
+
+                    <p>我公司无条件不可撤销地授权兴业数字金融服务（上海）股份有限公司（以下简称“兴业数金”）以及贵行有权查询我公司名下通过票据管家平台生成订单中电子商业汇票系统中各类电子票据基本信息、票据交易流转信息、交易明细等信息，并将上述信息根据业务需要进行复制、转储和使用。由此产生的相关法律责任均由我公司承担。</p>
+
+                    <p>抄送：兴业数字金融服务（上海）股份有限公司</p>
+
+                    <p>特此授权。</p>
+
+                    <p class="footer">公司名称：</p>
+                    <br><br>
+                    <p class="footer">（公司公章）</p>
+                    <br><br>
+                    <p class="footer">法定代表人签字或盖章：</p>
+                    <br><br><br><br>
+                    <p class="footer">_____年_____月	_____日</p>
+                </div>
+				
+				<p class="ce84c3d">以上授权书我已阅读并愿意签署同意。</p>
+            </div>
+            <!--开户合同-->
+        </div>
+        <!--内容容器end-->
+
+        <!--弹窗底部操作-->
+        <div class="maskFooter" id="maskFooter" style="display: none">
+            <!--开户声明-->
+            <div id="sendEmailFooter" style="display: none">
+                <a href="#" onclick="sendEmail();" class="flatBtn">发送</a>
+            </div>
+            <!--开户声明end-->
+
+			<!--委托书-->
+            <div id="instructionFooter" style="display: none">
+                <a href="#" class="flatBtn closeBtn">取消</a>
+                <a href="#" class="flatBtn instructionBtn">签署同意</a>
+            </div>
+            <!--委托书end-->
+        </div>
+        <!--弹窗底部操作end-->
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+    });
+
+    /*关闭所有弹窗*/
+    $(".maskClose , .closeBtn").click(function(){
+        $("#maskWindow").fadeOut(500); /*内容区域*/
+        $("#contractWindow").fadeOut(500); /*开户合同*/
+        $("#instructionWindow").fadeOut(500); /*委托书*/
+
+        $("#maskFooter").fadeOut(500); /*底部按钮区域*/
+        $("#selectionFooter").fadeOut(500); /*开户合同*/
+        $("#instructionFooter").fadeOut(500); /*委托书*/
+
+    });
+
+    /*-----打开弹窗-----*/
+    //开户合同
+    $(".contractBtn").click(function(){
+        $("#maskWindow").fadeIn(500);
+        $("#sendEmailWindow").fadeIn(500); /*开户合同*/
+        $("#maskFooter").fadeIn(500);
+        $("#sendEmailFooter").fadeIn(500); /*开户合同*/
+        $("#title").html("开户合同");
+    });
+    
+   // 发送开户合同
+   function sendEmail(){
+	   $("#maskWindow").fadeOut(500);
+       $("#sendEmailWindow").fadeOut(500); /*开户合同*/
+       $("#maskFooter").fadeOut(500);
+       $("#sendEmailFooter").fadeOut(500); /*开户合同*/
+   }
+    
+  // 完成开户-弹出委托书
+    $(".successBtn").click(function(){
+        $("#maskWindow").fadeIn(500);
+        $("#instructionWindow").fadeIn(500); /*委托书*/
+        $("#maskFooter").fadeIn(500);
+        $("#instructionFooter").fadeIn(500); /*委托书*/
+        $("#title").html("小额鉴定成功，请签署授权委托书完成开户");
+    });
+  
+  /* 签署同意 */
+  $(".instructionBtn").click(function(){
+      $("#maskWindow").fadeOut(500); /*内容区域*/
+      $("#instructionWindow").fadeOut(500); /*委托书*/
+
+      $("#maskFooter").fadeOut(500); /*底部按钮区域*/
+      $("#instructionFooter").fadeOut(500); /*委托书*/
+
+  });
+</script>
+[/@main.body]

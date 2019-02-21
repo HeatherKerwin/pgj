@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no,target-densitydpi=device-dpi, ">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>恭喜您，保存成功</title>
+	<link rel="stylesheet" type="text/css" href="https://static.utiexian.com/css/rymobile/zhuanpan/logistic.css">
+	<script type="text/javascript" src="https://static.utiexian.com/js/rymobile/zhuanpan/zhuanpan.js"></script>
+</head>
+
+<body style="background:#df3121">
+	<div style="background: url(https://img.utiexian.com/rymobile/zhuanpan/nzj.png) no-repeat center;background-size: 100% 100%;" >
+		<div class="head w_100" style="padding-top:15%">
+			<div class="head_l w_10 fl">
+				&nbsp;
+			</div>
+			<div class="head_r w_80 fl fs_12">
+				物流信息保存成功
+			</div>
+			<div class="w_10 fl">
+				&nbsp;
+			</div>
+		</div>
+		<div class="clear">
+		</div>
+		<div class="row w_100 lh_20 mt_15 tc">
+			<div class="w_3 fl">
+				&nbsp;
+			</div>
+			<div class="w_94 fl fs_12">
+				奖品将在1-3个工作日内寄出
+			</div>
+			<div class="w_3 fl">
+				&nbsp;
+			</div>
+		</div>
+		<div class="clear">
+		</div>
+		<div class="row w_100 lh_20 mt_10 tc">
+			<div class="w_5 fl">
+				&nbsp;
+			</div>
+			<div class="w_90 fl fs_12">
+				请耐心等待
+			</div>
+			<div class="w_5 fl">
+				&nbsp;
+			</div>
+		</div>
+		<div class="clear">
+		</div>
+		<div class="btn mt_10" style=" padding-bottom:10%">
+			<input class="t-t3" onclick="javascript:window.location.href='https://app.utiexian.com/down.html'" type="button" type="button" value="下载体验App" style="color:#FF0000;">
+		</div>
+	</div>
+</body>
+</html>

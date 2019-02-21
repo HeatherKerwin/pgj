@@ -1,0 +1,66 @@
+#include("./common/header.html", {title:"我收藏的帖子"})
+#include("./common/right.html")
+#include("./common/my_menu.html")
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column p30" style="background: #fdfdfd">
+			#if(null == topicPage || null == topicPage.results || topicPage.results.size() == 0)
+			<div class="alert alert-info alert-dismissable">
+				您还木有收藏帖子呢 <i class="twa twa-lg twa-sparkles"></i>
+			</div>
+			#else
+				#for(topic : topicPage.results)
+					<div class="list-group">
+						<div class="list-group-item clearfix mb20" style="background: #fff">
+							<div class="col-md-9">
+								<h4 class="list-group-item-heading">
+									<a href="${base_url('/topic/') + topic.tid}">
+										<strong class="mr5">
+											#if(topic.is_essence == 1)
+												<font class="my_is_essence">${topic.title}</font>
+											#else
+												${topic.title}
+											#end
+											#if(topic.has_pic)
+												<img src="${imgPath}/bbs/pic.png" class="my_has_pic ml2">
+											#end
+											#if(topic.attach_type!=null)
+												<img src="${imgPath}/bbs/add.png" class="my_has_pic ml2" title="帖子内含附加内容">
+											#end
+										</strong>
+									</a>
+								</h4>
+								<p>
+									<a class="span_link no-hand" href="javascript:void(0);" style="cursor:default;"><span class="eyeIcon"></span>查看 ${topic.views}</a>
+									<a class="span_link no-hand" href="javascript:void(0);" style="cursor:default;"><span class="commentIcon"></span>评论 ${topic.comments}</a>
+									<a class="span_link no-hand" href="javascript:void(0);" style="cursor:default;"><span class="thumbsIcon"></span>点赞 ${topic.loves}</a>
+									<a class="span_link no-hand" href="javascript:void(0);" style="cursor:default;"><span>${timespan(topic.update_time)}&nbsp;•&nbsp;发布</span></a>
+								</p>
+							</div>
+							<div class="pull-right">
+								<a class="btn" data-myset="set-pjax" href="${base_url('/go/') + topic.node_slug}">
+									<button type="button" class="btn">
+										${topic.node_name}								
+									</button>
+								</a>
+							</div>
+						</div>
+					</div>
+				#end
+					#if(topicPage.totalPage > 1)
+					<ul class="pager">
+						#if(topicPage.page > 1)
+						<li class="pull-left"><a data-myset="set-pjax" href="${base_url('/my/topic?p=') + topicPage.prev_page}">上一页</a></li>
+						#end
+						#if(topicPage.totalPage > 1 && topicPage.page != topicPage.totalPage)
+						<li class="pull-right"><a data-myset="set-pjax" href="${base_url('/my/topic?p=') + topicPage.next_page}">下一页</a></li>
+						#end
+					</ul>
+					#end
+			#end
+		</div>
+	</div>
+</div>
+#include("./common/footer.html") 
+</body>
+</html>

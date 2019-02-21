@@ -1,0 +1,83 @@
+﻿
+/**pager**/
+#pager {
+	width:auto;
+	float: right;
+    padding: 0px;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+    #pager span {
+        display: block;
+        float: left;
+        padding: 0.3em 0.8em;
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }
+
+        #pager span.current {
+            background: #26B;
+            color: #fff;
+            border: solid 1px #AAE;
+        }
+
+        #pager span.disenable {
+            color: #999;
+            border-color: #999;
+            background: #fff;
+            border: solid 1px #AAE;
+        }
+
+        #pager span.text {
+            padding: 0.3em 0;
+            color: #999999;
+        }
+
+    #pager a {
+        display: block;
+        float: left;
+        padding: 0.3em 0.8em;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        text-decoration: none;
+        border: solid 1px #AAE;
+        color: #15B;
+    }
+
+        #pager a:hover {
+            border: solid 1px #26B;
+            color: #26B;
+        }
+
+    #pager input[type=text] {
+        border: solid 1px #AAE;
+        width: 22px;
+        height: 19px;
+        line-height: 19px;
+        float: left;
+        padding: 0.3em 0.8em;
+	    margin-right: 5px;
+	    margin-bottom: 5px;
+        text-align: center;
+    }
+
+    #pager button {
+        cursor: pointer;
+        border: solid 1px #AAE;
+        width: 50px;
+        font-size: 14px;
+        height: 29px;
+        line-height: 29px;
+        float: left;
+        margin-right: 5px;
+        margin-bottom: 5px;
+/*         padding: 0.3em 0.8em; */
+        color: #404040;
+        background: white;
+    }
+
+        #pager button:hover {
+            border: solid 1px #26B;
+            color: #26B;
+        }

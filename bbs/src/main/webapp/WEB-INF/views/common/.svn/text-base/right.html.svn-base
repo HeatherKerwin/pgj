@@ -1,0 +1,126 @@
+<div class="rightDIV hidden-xs hidden-sm">
+    <!-- 右侧浮动 开始 -->
+    <!--APP二维码 -->
+    <div id="moquu_wshare" class="moquu_wshare">
+        <a href="javascript:void(0);">
+            <div class="moquu_wshareh">
+            </div>
+        </a>
+    </div>
+    <!--微信 -->
+    <div id="moquu_wxin" class="moquu_wxin">
+        <a href="javascript:void(0);">
+            <div class="moquu_wxinh">
+            </div>
+        </a>
+    </div>
+    <!--首页 -->
+    <div id="moquu_wmaps">
+        <a href="https://www.utiexian.com" class='moquu_wmaps'>
+        </a>
+    </div>
+	<!--收藏 -->
+    <div id="moquu_collection">
+        <a href="#" class='moquu_collection' rel="sidebar" onclick="join_favorite(window.location,document.title);">
+        </a>
+    </div>
+    <!--返回顶部 -->
+    <a id="moquu_top" href="javascript:void(0);">
+    </a>
+</div>
+<nav class="visible-xs-block visible-sm-block sm_right" >
+    <a href="https://app.utiexian.com/down.html" data-toggle="popover" data-placement="bottom" data-trigger="hover">
+        <img src="https://img.utiexian.com/common/right/right7.png" />
+    </a>
+    <a id="weixin" href="#modal-container-340238" role="button" data-toggle="modal">
+        <img src="https://img.utiexian.com/common/right/right8.png" />
+    </a>
+    <a href="https://bbs.utiexian.com/" data-toggle="popover" data-placement="bottom" data-trigger="hover">
+        <img src="https://img.utiexian.com/common/right/right9.png" />
+    </a>
+    <a href="#" data-toggle="popover" data-placement="bottom" data-trigger="hover"  onclick="join();">
+        <img src="https://img.utiexian.com/common/right/right10.png" />
+    </a>
+    <a href="javascript:void(0);" data-toggle="popover" data-placement="bottom" data-trigger="hover" id="moquu_top2">
+        <img src="https://img.utiexian.com/common/right/right011.png" />
+    </a>
+</nav>
+<div class="row clearfix">
+	<div class="col-md-12 column">
+		<div class="modal fade" id="modal-container-340238" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+						<h4 class="modal-title" id="myModalLabel">
+							票管家微信公众号
+						</h4>
+					</div>
+					<div class="modal-body">
+						微信搜索“<strong>票管家助手</strong>”<br>或直接搜索微信号“<strong>piaojuguanjiazhushou</strong>”<br>关注票管家官方微信。
+					</div>
+					<div class="modal-footer">
+						 <button type="button" class="btn btn-danger" data-dismiss="modal">确认</button>
+					</div>
+				</div>
+				
+			</div>
+			
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+//加入收藏
+function join_favorite(siteUrl, siteName){
+		//判断浏览器是否支持document.all         
+	if(document.all){ 
+	//如果支持则用external方式加入收藏夹                       
+		try {
+			window.external.addFavorite(siteUrl, siteName);
+		} catch (e) {
+		    alert("本浏览器不支持该操作，请使用Ctrl+D快捷键进行添加操作!");    
+		}
+	} else if (window.sidebar) {
+		//如果支持window.sidebar，则用下列方式加入收藏夹  (火狐)  
+		window.sidebar.addPanel(siteName, siteUrl, "");
+	} else if (/Chrome/.test(window.navigator.userAgent)) {//基于chrome内核的浏览器不支持收藏，360，chrome
+		alert("该浏览器不支持该操作，请使用Ctrl+D快捷键进行添加操作!");
+	} else {
+		alert("你的浏览器不支持该操作，请使用Ctrl+D快捷键进行添加操作!");
+	}
+}
+
+function join(){//手机端加入收藏，暂时不支持该功能
+	alert("请手动添加收藏!");
+}
+//返回顶部
+function b() {
+    h1 = $(window).height(),
+        t1 = $(document).scrollTop(),
+        t1 > h1 ? $("#moquu_top").show() : $("#moquu_top").hide()
+}
+$(document).ready(function() {
+    b(),
+        $("#moquu_top").click(function() {
+            $(document).scrollTop(0)
+        })
+}),
+$(window).scroll(function() {
+    b()
+});
+function c() {
+    h2 = $(window).height(),
+        t2 = $(document).scrollTop(),
+        t2 > h2 ? $("#moquu_top2").show() : $("#moquu_top2").hide()
+}
+$(document).ready(function() {
+    c(),
+        $("#moquu_top2").click(function() {
+            $(document).scrollTop(0)
+        })
+}),
+$(window).scroll(function() {
+    c()
+});
+</script>

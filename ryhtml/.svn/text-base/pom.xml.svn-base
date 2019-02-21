@@ -1,0 +1,56 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.ry</groupId>
+  <artifactId>ryhtml</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <properties>  
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> 
+        <spring.version>3.2.3.RELEASE</spring.version>
+		<hibernate.version>4.2.5.Final</hibernate.version>
+		<junit.version>4.11</junit.version> 
+    </properties>  
+    
+    <dependencies><!-- 这个元素描述了所有与当前项目相关的依赖 -->  
+	 		 <dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>2.6</version>
+			</dependency>
+			<!-- freemarker  -->
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.20</version>
+		</dependency>
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>1.2.17</version>
+			</dependency>
+		
+  </dependencies>
+  
+	<distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>发布版本仓库</name>
+            <url>http://192.168.1.40:8081/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>快照版本仓库</name>
+            <url>http://192.168.1.40:8081/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>

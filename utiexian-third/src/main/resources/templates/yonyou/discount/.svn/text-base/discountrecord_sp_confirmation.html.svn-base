@@ -1,0 +1,1084 @@
+[#import "/common/main.html" as main]
+[#include "/common/setting.html"]
+[@main.body title='云票据-银票确认订单']
+<link rel="stylesheet" href="${basePath}/css/yonyou/discountConfirmation.css">
+<link rel="stylesheet" href="${basePath}/css/yonyou/mask.css">
+<link rel="stylesheet" href="${basePath}/css/validationEngine.jquery.css">
+<link rel="stylesheet" href="${basePath}/css/template.css">
+<link rel="stylesheet" href="${basePath}/js/ajaxPager/page.css">
+
+<script type="text/javascript" src="${basePath}/js/yonyou/tab.js"></script>
+<script type="text/javascript" src="${basePath}/js/yonyou/radio.js"></script>
+<script type="text/javascript" src="${basePath}/js/handlebars.js"></script>
+<script type="text/javascript" src="${basePath}/js/ajaxPager/jquery-ajax-pager.js"></script>
+<script type="text/javascript" src="${basePath}/js/ajaxPager/js-extend.js"></script>
+<script type="text/javascript" src="${basePath}/js/jquery.validationEngine-zh_CN.js"></script>
+<script type="text/javascript" src="${basePath}/js/jquery.validationEngine.js"></script>
+<script type="text/javascript" src="${basePath}/js/enum.js"></script>
+<script type="text/javascript" src="${basePath}/js/map.js"></script>
+
+<!-- 头部 -->
+[@main.header currentmenu='2'/]
+<!-- 头部end -->
+
+<div class="wrap">
+   [@main.left remark='2'/]
+
+    <!--订单列表-->
+    <div class="rightCon">
+
+        <!--出票进程-->
+        <div class="process">
+            <ul>
+                <li>
+                    <img src="${basePath}/images/yonyou/discount/state13.png" width="165" height="30">
+                    <p class="c3366cc">确认订单</p>
+                </li>
+                <li>
+                    <img src="${basePath}/images/yonyou/discount/state21.png" width="165" height="30">
+                    <p>交易跟踪</p>
+                </li>
+                <li>
+                    <img src="${basePath}/images/yonyou/discount/state31.png" width="165" height="30">
+                    <p>交易评价</p>
+                </li>
+            </ul>
+        </div>
+
+        <!--确认订单信息-->
+        <div>
+            <!--title-->
+            <h2>确认订单信息</h2>
+
+            <div class="payCon">
+
+                <!--左侧-银行卡、支付信息-->
+                <div class="payConLeft">
+                    <!--选择支付银行卡-列表-->
+                    <ul class="bankList" style="display" id="content1"></ul>
+
+                    <!-- add添加新卡 -->
+                    <div class="addbank" id="addbank" style="display: none">
+                        <label for="bank_add">
+                            <input type="button" id="bank_add" style="display: none">
+                            <img src="https://img.utiexian.com/website/discount/jia1.png" alt="bank_add" width="30" height="30">
+                        </label>
+                    </div>
+
+                    <!-- add_item -->
+                    <div class="addItem" style="display: none" id="bindingBankWindow">
+                        <!--申请绑卡-->
+                        <ul class="applyBank" style="display: none" id="applyBankWindow">
+                            <li>
+                                <input type="button" value="请选择开户行" class="bankBtn" readonly id="bankstr">
+                                <input type="hidden" id="bankAcctBankNo"/>
+                                <input type="hidden" id="bankAcctCnapsCode"/>
+                                <input type="hidden" id="bankAcctBankBranch"/>
+                            </li>
+                            <li>
+                                <input type="text" placeholder="请输入对公账户账号" maxlength="18" id="bankAcctAcctNo" class="validate[required]">
+                            </li>
+                            <li>
+                                <input type="text" placeholder="请输入账户名" id="bankAcctAcctName" maxlength="60" class="validate[required]">
+                            </li>
+                            <li>
+                                <p>*请添加常用账户，绑定对公银行账户不超过四个。每次贴现时，需要选择贴现票据的最后一手背书银行账号，该账号同时也是本次贴现交易的收款账号！</p>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" id="bindingBank">申请绑卡</a>
+                            </li>
+                        </ul>
+                        <!--完成绑卡-->
+                        <ul class="finishBank" style="display: none" id="finishBankWindow">
+                            <li>
+                                <label for="">户名：<span class="bankAcctAcctNo"></span></label>
+                            </li>
+                            <li>
+                                <label for="">账号：<span class="bankAcctAcctName"></span></label>
+                            </li>
+                            <li>
+                                <input type="number" placeholder="请填写该银行卡收到的小额款项" class="validate[required]" id="appraisalFee" class="">元
+                            </li>
+                            <li>
+                                <p>已提交开户申请，申请绑定的银行账号里会收到一笔小额款项，将收到的金额填写上，最后点击“完成绑卡”，即可完成绑卡。</p>
+                            </li>
+                            <li>
+                                <!--小额款项未输入了不可点击（灰色）-->
+                                <a href="javascript:void(0)" class="gray bindBtn" id="confirmAppraisalNo">完成绑卡</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!--修改版180116-->
+
+                    <!--支付-->
+                    <ul class="payList">
+                        <li>
+                            <div class="payTitile">保证金：</div>
+                            <div class="deposit"><span id="deposit"></span>元</div>
+                            <a class="link depositExplain" href="javascript:void(0)">（交易完成后退回）</a>
+                        </li>
+
+                        <li>
+                            <div class="payTitile">撮合服务费：</div>
+                            <div class="Vip">
+                                <span class="fee noVip" style="display: none"></span>
+                                <span class="fee isVip" style="display: none ;text-decoration:line-through;"></span>
+                                元
+                            </div>
+                            <a class="nolLink noVip" style="display: none">（票管家收取）</a>
+                            <div class="member isVip" style="display: none">
+                                <img src="${basePath}/images/yonyou/common/yearVpIcon.png" alt="会员免费"> 会员免费
+                            </div>
+                        </li>
+
+                        <li id="needCoupon" style="display: none">
+                            <div class="payTitile">红包：</div>
+                            <div class="noCoupon" style="display: none">无可用红包</div>
+                            <div class="haveCoupon" id="openCoupon" style="display: none">
+                                <img src="${basePath}/images/yonyou/common/redPacketsIcon.png" alt="使用红包">
+                                <span id="couponNum"></span>
+                            </div>
+                            <a class="link" href="javascript:void(0)">（成为会员享优惠）</a>
+                        </li>
+
+                        <li>
+                            <div class="payTitile">是否指定机构：</div>
+                            <ul class="ryRadioCheckd">
+                                <li>
+                                    <input class="ryRadio" type="radio" name="jigou" value="0" id="jigou1">
+                                    <label class="acceptTime_opt_css" for="jigou1">是</label>
+                                </li>
+                                <li>
+                                    <input class="ryRadio" type="radio" name="jigou" value="1" id="jigou2" checked>
+                                    <label class="checked acceptTime_opt_css" for="jigou2">否</label>
+                                </li>
+                            </ul>
+                            <div class="search" style="display: none">
+                                <input type="text" id="company" placeholder="请输入机构名称进行搜索">
+                                <a href="javascript:void(0)" onclick="loadCompany()"></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!--票面-->
+                <div class="picpath" style="display: none">
+                    <p>票面：</p>
+                    <img src="https://img.utiexian.com/website/discount/noMechanism.png" alt="票面展示" id="picpath" width="410" height="170" class="ml35">
+                </div>
+            </div>
+
+            <!--指定机构列表-->
+            <!-- 搜索结果列表-可进行选择 -->
+            <!-- 未搜索到 -->
+            <div class="nocompany" style="display: none">
+                <img src="https://img.utiexian.com/website/discount/noMechanism.png">
+            </div>
+
+            <!-- 有搜索到 -->
+            <div class="companyCon" style="display: none">
+                <ul class="companyList"></ul>
+                <!-- 分页 -->
+                <div class="pagerCon pager" style="display: none;">
+					<div id="pager"></div>
+				</div>
+            </div>
+
+            <!-- 选中的结果 -->
+            <div class="selectOrg" style="display: none">
+                <div class="OrgLeft">
+                    <label class="c717583">机构名称：<span class="cblack" id="selectcompany"></span></label>
+                    <label class="c717583">联系人：<span class="cblack" id="name"></span></label>
+                </div>
+                <div class="OrgRight">
+                    <label>评分：</label>
+                    <ul>
+                        <li>价格真实：<span id="price"></span></li>
+                        <li>服务态度：<span id="service"></span></li>
+                        <li>确认效率：<span id="speed"></span></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <!--底部操作-->
+        <div class="companyFoot">
+            <div class="balance">
+                <label>钱包余额：</label>
+                <div class="value"><span id="money"></span>元</div>
+            </div>
+            <a href="javascript:void(0)" id="confirm" class="companyBtn">确认订单</a>
+            <div class="payment">
+                <label class="mr10">实付：</label>
+                <div class="value"><span class="actualPay"></span>元</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--弹窗-->
+<div class="maskWindow" id="maskWindow" style="display: none">
+    <div class="maskBg"></div>
+    <div class="maskWrap maskWrapSmall">
+        <!--top-->
+        <div class="maskTop">
+            <!--弹窗名称-->
+            <div id="title" class="maskTitle">温馨提示</div>
+            <!--关闭按钮-->
+            <a class="maskClose">
+                <img src="${basePath}/images/yonyou/common/closeIcon.png" alt="关闭">
+
+                <!-- 不使用红包 -->
+                <span class="closeBtn" style="display: none">不使用红包</span>
+            </a>
+        </div>
+        <!--内容容器-->
+        <div class="maskCon">
+            <!--不同的弹窗内容-->
+
+            <!--选择机构-->
+            <div class="maskDiv" style="display: none" id="selectionWindow">
+                <ul class="maskForm">
+                    <li>
+                        <label>公司名称：</label>
+                        <span id="confirm_company"></span>
+                        <span id="selectId" style="display: none"></span>
+                    </li>
+                </ul>
+                <p>您是否指定该机构作为唯一接单机构？</p>
+            </div>
+
+            <!--开户行名称-->
+            <div class="maskDiv bankWindow" style="display: none" id="bankWindow">
+                <div class="searchBank">
+                    <input type="text" id="bank_branch" maxlength="25" placeholder="请输入分支行号或分支行关键词">
+                    <a href="#" onclick="loadBank();">搜索</a>
+                </div>
+                <p id="promptStr" style="display: none">暂无查询结果,您可以尝试更改查询条件搜索。</p>
+                <ul id="banks" class="searchBankList" style="display: none">
+                    
+                </ul>
+            </div>
+
+            <!-- 保证金说明 -->
+            <div class="maskDiv" style="display: none" id="depositExplain">
+                <p class="maskMessage">为了保证交易双方的安全，票据管家将对贴现的双方收取履约保证金。若交易顺利完成，保证金返还双方账户，若交易过程中出现违约行为，保证金将作为补偿，退还至未违约方账户。</p>
+                <p class="maskMessage">当您进行精准报价时收取的保证金，若出票方未选择您作为交易对象，该保证金在票方选择其他资方后马上返还。</p>
+            </div>
+
+            <!--使用红包-->
+            <div class="maskDiv" style="display: none;height: 400px;overflow-y: scroll;" id="couponWindow">
+                <ul class="couponList">
+                </ul>
+            </div>
+            <!--支付，充值-->
+            <div class="maskDiv recharge" style="display: none" id="rechargeWindow">
+                <ul class="maskForm1">
+                    <li>
+                        <label>共计：</label>
+                        <div class="FormValue"><span class="actualPay"></span>元</div>
+                    </li>
+                    <li>
+                        <label>钱包余额：</label>
+                        <div class="FormValue"><span class="money"></span>元</div>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+
+        <!--弹窗底部操作-->
+        <div class="maskFooter" id="maskFooter" style="display: none">
+            <!--选择机构-->
+            <div id="selectionFooter" style="display: none">
+                <a href="javascript:void(0)" class="flatBtn discountBtn">确定</a>
+                <a href="javascript:void(0)" class="flatBtn grayBtn closeBtn">取消</a>
+            </div>
+            <!--选择机构end-->
+
+            <!--开户行名称-->
+            <div id="bankFooter" style="display: none">
+                <a href="javascript:void(0)" class="flatBtn nextPage" onclick="nextPage();" style="display: none" id="">下一页</a>
+                <a href="javascript:void(0)" class="flatBtn prevPage" onclick="prevPage();" style="display: none" id="">上一页</a>
+            </div>
+            <!--开户行名称end-->
+
+            <!--支付，充值-->
+            <div id="rechargeFooter" style="display: none">
+                <a href="javascript:void(0)" class="flatBtn" style="display: none" id="discountSuccess">确认支付</a>
+                <a href="javascript:void(0)" class="flatBtn" style="display: none" id="recharge">余额不足，去充值</a>
+            </div>
+            <!--支付，充值end-->
+        </div>
+    </div>
+</div>
+<input type="hidden" id="vAcctAcctNo" name="vAcctAcctNo">
+<input type="hidden" id="discId" value="${discId}" name="discId">
+<input type="hidden" value="" id="selectOrgId">
+<input type="hidden" id="couponId" name="couponId">
+<script type="text/x-handlebars-template" id="BANK">
+{{#each data}}
+	<li onclick="selectBank('{{vAcctAcctNo}}')">
+		<input type="radio" name="bank_list" id="bank_{{vAcctAcctNo}}" class="ryRadio">
+		<label for="bank_{{vAcctAcctNo}}" class="bankvAcctAcctNo" id="b_{{vAcctAcctNo}}">
+			<div class="bankTitle">
+				{{toBankNameHide bankAcctAcctName}}
+			</div>
+			<div class="bankbCard f14 c717583">
+				<div>{{toBankNoHide bankAcctAcctNo}}</div>
+				<div>{{toBankBranchHide bankAcctBankBranch}}</div>
+			</div>
+		</label>
+	</li>
+{{/each}}
+</script>
+<script type="text/x-handlebars-template" id="COUPON">
+{{#each coupon}}
+	<li onclick="selectCoupon({{id}},{{money}});">
+		<div class="couponLeft rbDashed">
+			<div class="couponMoney">¥<span class="f30">{{money}}</span></div>
+			<div class="requirement">满<span>20</span>元可用</div>
+		</div>
+		<div class="couponRight">
+			<div class="couponType">{{toCouponType couponType}}</div>
+			<div class="couponTime"><span>{{formatDate endDate}}</span>到期</div>
+		</div>
+	</li>
+{{/each}}
+</script>
+<script type="text/x-handlebars-template" id="COMPANY">
+{{#each list}}
+	 <li class="companyListShow" onclick="selectionBtn('{{id}}')">
+		<ul class="companyTitle">
+			<li class="w310">机构名称</li>
+			<li class="w200">联系人</li>
+			<li class="w450">评分</li>
+		</ul>
+		<label for="choseJG" class="selectionBtn">
+			<div class="companyForm">
+				<ul class="leftForm">
+					<li class="w310 RrightLine">
+						<span id="company{{id}}">{{company}}</span>
+					</li>
+					<li class="w200 RrightLine">
+						<span id="name{{id}}">{{name}}({{mobile}})</span>
+					</li>
+				</ul>
+				<ul class="rightForm">
+					<li>价格真实：<span id="price{{id}}">{{toNum price}}</span></li>
+					<li>服务态度：<span id="service{{id}}">{{toNum service}}</span></li>
+					<li>确认效率：<span id="speed{{id}}">{{toNum speed}}</span></li>
+				</ul>
+			</div>
+			<!--选择机构-右下角单选框-->
+			<div class="choseJG">
+				<input id="org_id{{id}}" type="hidden" value="{{org_id}}">
+				<input type="radio" name="choseJG" id="choseJG{{id}}" class="choseJGBtn">
+			</div>
+		</label>
+	</li>
+{{/each}}
+</script>
+<script>
+/* 
+ *银行卡号的隐藏
+ */
+Handlebars.registerHelper('toBankNoHide', function(bankAcctAcctNo, options) {
+	var a = bankAcctAcctNo.substring(0,4);
+	var b = bankAcctAcctNo.length - 3;
+	var c = bankAcctAcctNo.substring(b);
+	return a + "***" + c;
+});
+
+/* 
+ *公司名称的隐藏
+ */
+Handlebars.registerHelper('toBankNameHide', function(bankAcctAcctName, options) {
+	var a = bankAcctAcctName.length;
+	if(a > 13){
+		var b = bankAcctAcctNo.substring(0,13);
+		return b + "...";
+	}else{
+		return bankAcctAcctName;
+	}
+});
+
+/* 
+ *银行支行名称的隐藏
+ */
+Handlebars.registerHelper('toBankBranchHide', function(toBankBranchHide, options) {
+	var a = toBankBranchHide.length;
+	if(a > 6){
+		var b = toBankBranchHide.substring(0,5);
+		return b + "...";
+	}else{
+		return toBankBranchHide;
+	}
+});
+
+/**
+* 红包类型格式化
+*/
+Handlebars.registerHelper('toCouponType', function(couponType,options) {
+    if(couponType=='GENERAL'){
+        return "交易通用红包";
+    }else if(couponType=='DISC'){
+        return "贴现红包";
+    }else if(couponType=='DIST'){
+        return "接单红包";
+    }else if(couponType=='INQUIRYREPLY'){
+        return "查询查复红包";
+    }
+});
+
+/**
+*	时间格式化
+*/
+Handlebars.registerHelper('formatDate', function(num, options) {
+    if(num!=null){
+        num = num.replace(/-/g, "/");
+        var d = new Date(num);
+        return d.format('yyyy-MM-dd');
+    }else{
+        return "--";
+    }
+});
+
+/* 
+ * 展示评价
+ */
+Handlebars.registerHelper('toNum', function(num, options) {
+	if(num != null && num != "" && num != "--"){
+		return (num*1).toFixed(2);;
+	}else{
+		return "--";
+	}
+});
+
+	var memberId = ${member.id};//1;
+    
+    $(function(){
+    	getDiscoutnInfo();//加载订单的基本信息
+    });
+    /**
+     * 是否进行机构搜索（是否指定机构）
+     * 0 ：搜索 1：不搜索
+     */
+    $("input[name='jigou']").click(function(){
+        if($(this).val() == 0){
+            $(".search").show(); /*机构搜索框*/
+        }else{
+            $(".search").hide();
+
+            $(".nocompany").hide(); /*机构搜索结果*/
+            $(".companyList").hide(); /*搜索到的机构列表*/
+            $(".selectOrg").hide(); /*已选中机构*/
+            $(".pager").hide();
+        }
+    });
+
+    /*关闭所有弹窗*/
+    $(".maskClose , .closeBtn").click(function(){
+        $("#maskWindow").fadeOut(500); /*内容区域*/
+        $("#selectionWindow").fadeOut(500); /*确认选择该机构*/
+        $("#bankWindow").fadeOut(500); /*开户行名称*/
+        $("#depositExplain").fadeOut(500); /*保证金说明*/
+        $("#couponWindow").fadeOut(500); /*使用红包*/
+        $("#rechargeWindow").fadeOut(500); /*支付，充值*/
+
+        $("#maskFooter").fadeOut(500); /*底部按钮区域*/
+        $("#selectionFooter").fadeOut(500); /*确认选择该机构*/
+        $("#bankFooter").fadeOut(500); /*开户行名称*/
+        $("#rechargeFooter").fadeOut(500); /*支付，充值*/
+        $("#banks").fadeOut(500); /*开户行行号*/
+    });
+
+    /*-----打开弹窗-----*/
+    //确定选择机构
+    $(".discountBtn").click(function(){
+        $("#maskWindow").fadeOut(500);
+        $("#selectionWindow").fadeOut(500); /*确认选择该机构*/
+        $("#maskFooter").fadeOut(500);
+        $("#selectionFooter").fadeOut(500); /*确认选择该机构按钮*/
+
+        $(".nocompany").hide(); /*无结果*/
+        $(".companyCon").hide(); /*机构列表*/
+        $(".selectOrg").show(); /*已选择机构*/
+        
+        var id = $("#selectId").html();
+		var company = $("#company"+id).html();
+		var name = $("#name"+id).html();
+		var price = $("#price"+id).html();
+		var service = $("#service"+id).html();
+		var speed = $("#speed"+id).html();
+		var orgId = $("#org_id"+id).val();
+		
+	    $("#content").html("");
+		$("#pager").html("");
+		$(".pager").hide("none");
+		
+		$("#selectOrgId").val(orgId);
+		$("#selectcompany").html(company);
+		$("#name").html(name);
+		$("#price").html(price);
+		$("#service").html(service);
+		$("#speed").html(speed);
+
+        $(".choseJG").css('background-position','0 -25px');
+        $(this).parents("ul.companyList li").removeClass("checked");
+    });
+
+    /**
+     * 弹出绑定账户信息
+     */
+    $("#bank_add").click(function(){
+        $("#bindingBankWindow").fadeIn(500);
+        $("#applyBankWindow").fadeIn(500); /*申请绑卡*/
+        $("#title").html("添加银行账户");
+    });
+    /**
+     * 提交申请绑卡
+     */
+    $("#bindingBank").click(function(){
+    	if(!$("#bankAcctAcctNo").validationEngine("validate")){
+			setTimeout(function(){$(".formError").hide();},2000);
+			$("#bankAcctAcctNo").focus();
+			return ;
+		}
+    	if(!$("#bankAcctAcctName").validationEngine("validate")){
+    		setTimeout(function(){$(".formError").hide();},2000);
+			$("#bankAcctAcctName").focus();
+			return ;
+		}
+    	var bankAcctBankNo = $("#bankAcctBankNo").val();
+    	var bankAcctCnapsCode = $("#bankAcctCnapsCode").val();
+    	var bankAcctBankBranch = $("#bankAcctBankBranch").val();
+    	var bankAcctAcctNo = $("#bankAcctAcctNo").val();
+    	var bankAcctAcctName = $("#bankAcctAcctName").val();
+    	if(bankAcctBankBranch == null || bankAcctBankBranch == ""){
+    		alert("请选择一家支行");
+    		return ;
+    	}
+
+    	$.ajax({
+    		url:'${basePath}/yonyou/cibbank/save',
+    		type:"POST",
+    		data:{memberId:memberId,type:0,bankAcctBankNo:bankAcctBankNo,bankAcctCnapsCode:bankAcctCnapsCode,bankAcctBankBranch:bankAcctBankBranch,
+				bankAcctAcctNo:bankAcctAcctNo,bankAcctAcctName:bankAcctAcctName},
+    		dataType:"json",
+    		success:function(data){
+    			if(data.response == 'success'){
+    				if(data.data != null && data.data.error_msg != null){
+    					alert(data.data.error_msg);
+    				}else if(data.data.data != null && data.data.data.return_msg != null){
+    					alert(data.data.return_msg);
+    				}else{
+    			        $("#bindingBankWindow").fadeIn(500);
+    			        $("#applyBankWindow").fadeOut(100); /*申请绑卡*/
+    			        $("#finishBankWindow").fadeIn(500); /*完成绑卡*/
+    					
+    					$(".bankAcctAcctNo").html(bankAcctAcctNo);
+    					$(".bankAcctAcctName").html(bankAcctAcctName);
+    					$("#cibBankId").val(data.data.cibBankId);
+    				}
+    			}else{
+    				alert(data.msg);
+    			}
+    		}
+    	});
+    });
+    
+    /**
+     * 提交小额鉴定	
+     */
+     $("#confirmAppraisal").click(function(){
+     	var appraisalFee = $("#appraisalFee").val();
+     	var cibBankId = $("#cibBankId").val();
+     	if(!$("#appraisalFee").validationEngine("validate")){
+			setTimeout(function(){$(".formError").hide();},2000);
+			$("#appraisalFee").focus();
+			return ;
+		}
+     	
+     	$.ajax({
+	   		url:'${basePath}/yonyou/cibbank/authenticate',
+	   		type:"POST",
+	   		data:{memberId:memberId,cibBankId:cibBankId,amt:appraisalFee},
+	   		dataType:"json",
+	   		success:function(data){
+	   			if(data.response == 'success'){
+					$("#bindingBankWindow").fadeOut(500);
+     		        $("#applyBankWindow").fadeOut(100); /*申请绑卡*/
+
+     		        $("#finishBankWindow").fadeOut(500); /*完成绑卡*/
+     		        $("#content1").fadeIn(500); /*展示银行卡列表*/
+     				
+     				$("#bankAcctBankNo").val("");
+     		    	$("#bankAcctCnapsCode").val("");
+     		    	$("#bankAcctBankBranch").val("");
+     		    	$("#bankAcctAcctNo").val("");
+     		    	$("#bankAcctAcctName").val("");
+     		    	$("#bankstr").val("");
+     		    	
+     		    	loadBindingBank();
+     				loadBankCount();
+	   			}else{
+	     				alert(data.msg);
+	     			}
+	   		}
+     	});
+     });
+    
+    /**
+     * 打开银行卡支行的弹窗
+     */
+    $(".bankBtn").click(function(){
+        $("#maskWindow").fadeIn(500);
+        $("#bankWindow").fadeIn(500);
+        $("#title").html("选择开户行");
+    });
+    
+    /**
+     * 选定开户行之后赋值
+     */
+    function choseBank(i){
+        $("#maskWindow").fadeOut(500);
+        $("#bankWindow").fadeOut(500);
+        $("#banks").fadeOut(500);
+        $(".nextPage").hide();
+        $(".prevPage").hide();
+        
+        $("#bankstr").val(banks[i].bank_branch+"("+banks[i].cnaps_code+")");
+    	$("#bankAcctBankNo").val(banks[i].bank_no);
+    	$("#bankAcctCnapsCode").val(banks[i].cnaps_code);
+    	$("#bankAcctBankBranch").val(banks[i].bank_branch);
+    };
+
+    //确定订单-弹出支付
+    $(".companyBtn").click(function(){
+    	var money = $("#money").html();
+		var deposit = $("#deposit").html();
+		
+		if(parseInt(money) < parseInt(deposit)){
+			$("#recharge").show(); /*充值按钮*/
+		}else{
+			$("#discountSuccess").show(); /*确认按钮*/
+		}
+		  
+		$("#rechargeFooter").fadeIn(500); /*支付，充值按钮*/
+		$("#rechargeWindow").fadeIn(500); /*支付，充值*/
+        $("#maskWindow").fadeIn(500);
+        $("#maskFooter").fadeIn(500);
+        $("#title").html("确认订单");
+    });
+    
+    /**
+     * 确认订单
+     */
+    $("#discountSuccess").click(function(){
+    	var jigou = $("input:radio[name='jigou']:checked").val();
+		var selectOrgId = $("#selectOrgId").val();
+		if(jigou == 0){
+			if($.trim(selectOrgId).length == 0){
+				alert("请选择要指定的机构");
+				return ;
+			}
+		}
+		var discId = $("#discId").val();
+		
+		var params = {id:discId,selectOrgId:selectOrgId,memberId:memberId};
+		
+		var couponId = $("#couponId").val();
+		if(couponId != null && couponId != ""){//红包
+			params.couponId = couponId;
+		}
+		var vAcctAcctNo = $("#vAcctAcctNo").val();
+		if(vAcctAcctNo == null || vAcctAcctNo == ""){
+			alert("请选择一家收款账户");
+			return ;
+		}else{
+			params.vAcctAcctNo=vAcctAcctNo;
+		}
+		
+		$.ajax({
+    		url:'${basePath}/yonyou/discountrecordsp/update',
+    		type:"POST",
+    		data:params,
+    		dataType:"json",
+    		success:function(data){
+    			if(data.response == 'success'){
+    		        $("#maskWindow").fadeOut(500);
+    		        $("#rechargeWindow").fadeOut(500); /*支付，充值*/
+    		        $("#maskFooter").fadeOut(500);
+    		        $("#rechargeFooter").fadeOut(500); /*支付，充值按钮*/
+    		        
+    		        $("#discountSuccess").hide(); /*确认按钮*/
+    		        var map = new Map();
+	     			map.put("_PAGE", "/yonyou/discount/success");//必传
+	     			map.put("ym", "2");//类型
+	     			_OPENPAGE_FORM(map);
+    			}else{
+    				alert(data.msg);
+    			}
+    		}
+    	});
+    });
+    
+    /**
+     * 充值钱包余额
+     */
+    $("#recharge").click(function(){
+        $("#maskWindow").fadeOut(500);
+        $("#rechargeWindow").fadeOut(500); /*支付，充值*/
+        $("#maskFooter").fadeOut(500);
+        $("#rechargeFooter").fadeOut(500); /*支付，充值按钮*/
+        window.location.href = "${basePath}/yonyou/page/account"
+    });
+
+    /**
+     * 保证金说明的弹窗
+     */
+    $(".depositExplain").click(function(){
+        $("#maskWindow").fadeIn(500); /*内容区域*/
+        $("#depositExplain").fadeIn(500); /*保证金说明*/
+        $("#title").html("保证金说明");
+    });
+
+    /**
+     * 打开红包弹窗
+     */
+    $("#openCoupon").click(function(){
+        $("#maskWindow").fadeIn(500); /*内容区域*/
+        $("#couponWindow").fadeIn(500); /*使用红包*/
+        $("#title").html("选择红包");
+    });
+    
+    /**
+     * 选择要使用的红包
+     */
+    function selectCoupon(id,money){
+    	$("#couponId").val(id);
+		$("#couponNum").html("-"+money);
+		$(".actualPay").html(parseInt(parseInt($("#deposit").html())+parseInt($(".fee").html())-parseInt(money)));
+    	
+        $("#maskWindow").fadeOut(500); /*内容区域*/
+        $("#couponWindow").fadeOut(500); /*使用红包*/
+    };
+
+	/**
+	* 加载银行账户
+	*/
+	function loadBindingBank(){
+		$.ajax({
+    		url:'${basePath}/yonyou/cibbank/list',
+    		type:"POST",
+    		data:{memberId:memberId,type:0,status:1},
+    		dataType:"json",
+    		success:function(data){
+    			if(data.response == 'success'){
+    				var source = $("#BANK").html();
+    		        var template = Handlebars.compile(source);
+    		        var html = template(data);
+    		        $("#content1").html(html);
+    			}else{
+    				alert(data.msg);
+    			}
+    		}
+    	});
+	};
+	
+	/**
+	* 获取已经绑定的开户数量
+	*/
+	function loadBankCount(){
+		$.ajax({
+    		url:'${basePath}/yonyou/cibbank/list',
+    		type:"POST",
+    		data:{memberId:memberId,type:0},
+    		dataType:"json",
+    		success:function(data){
+    			if(data.response == 'success'){
+    				var count = data.data.length;
+    				if(count < 4){
+    					$("#addbank").show();
+    				}
+    			}else{
+    				alert(data.msg);
+    			}
+    		}
+    	});
+	};
+	
+    /**
+    * 选择收款的账户
+    */
+    function selectBank(vAcctAcctNo){
+    	$("#vAcctAcctNo").val(vAcctAcctNo);
+    	$(".bankvAcctAcctNo").removeClass("checked");
+    	$("#b_"+vAcctAcctNo).addClass("checked");
+    };
+    
+    var pageIndex = 1; 
+	var pageSize = 10;
+	var bankList = [];
+    /**
+     * 加载查询数据
+     */
+    function loadBank(){
+    	var bankBranch = $("#bank_branch").val();
+    	$.ajax({
+    		url:'${basePath}/yonyou/cib/query/back',
+    		type:"POST",
+    		data:{bank_branch:bankBranch,memberId:memberId},
+    		dataType:"json",
+    		success:function(data){
+    			pageIndex = 1;
+        		bankList = data.data.banks;
+        		var html = "";
+        		if(typeof(data.data.return_msg)!="undefined"){
+        			alert(data.data.return_msg+"，请联系客服");
+        		}else{
+        			if(typeof(data.data.banks)!="undefined"){
+            			if(data.data.banks.length > 10){
+            				for(var i=0;i<10;i++){
+                				banks[i] = bankList[((pageIndex-1)*pageSize)+i];
+                				html += "<li onclick='choseBank("+i+");'>";
+                                html += "<div class='searchBankName'>"+banks[i].cnaps_code+"</div>";
+                                html += "<div class='searchBankPlace'>"+banks[i].bank_branch+"</div>";
+                                html += "</li>";
+                			}
+            				$(".nextPage").show();
+            			}else{
+            				for(var i=0;i<data.data.banks.length;i++){
+                				banks[i] = bankList[((pageIndex-1)*pageSize)+i];
+                				html += "<li onclick='choseBank("+i+");'>";
+                                html += "<div class='searchBankName'>"+banks[i].cnaps_code+"</div>";
+                                html += "<div class='searchBankPlace'>"+banks[i].bank_branch+"</div>";
+                                html += "</li>";
+                			}
+            			}
+            			
+            			$("#banks").html("");
+                		$("#banks").append(html);
+                		$("#banks").fadeIn(500);
+                		$("#bankFooter").fadeIn(500);
+                		$("#maskFooter").fadeIn(500);
+                		$("#promptStr").hide();
+                		$(".prevPage").hide();
+            		}else{
+            			$("#banks").html("");
+            			$("#promptStr").fadeIn(500);
+            		}
+        		}
+    		},
+    	});
+    };
+    
+    /**
+     * 上一页
+     */
+    function prevPage(){
+    	if(pageIndex <= 2) $(".prevPage").hide();
+    	if((bankList.length/pageSize-1) < pageIndex)$(".nextPage").show();
+    	pageIndex = (pageIndex-1) < 1 ? pageIndex:pageIndex-1;
+    	var html = "";
+    	$("#banks").html("");
+   		for(var i=0;i<10;i++){
+       		banks[i] = bankList[((pageIndex-1)*pageSize)+i];
+       		html += "<li onclick='choseBank("+i+");'>";
+            html += "<div class='searchBankName'>"+banks[i].cnaps_code+"</div>";
+            html += "<div class='searchBankPlace'>"+banks[i].bank_branch+"</div>";
+            html += "</li>";
+       	}
+    	$("#banks").append(html);
+    };
+
+    /**
+    * 下一页
+    */
+    function nextPage(){
+    	if(pageIndex ==1) $(".prevPage").show();
+    	if((bankList.length/pageSize) <= (pageIndex+1))$(".nextPage").hide();
+   
+    	var html = "";
+    	$("#banks").html("");
+    	if((pageIndex+1) > (bankList.length/pageSize)){
+    		for(var i=0;i<(bankList.length-pageSize*pageIndex);i++){
+        		banks[i] = bankList[(pageIndex*pageSize)+i];
+        		html += "<li onclick='choseBank("+i+");'>";
+                html += "<div class='searchBankName'>"+banks[i].cnaps_code+"</div>";
+                html += "<div class='searchBankPlace'>"+banks[i].bank_branch+"</div>";
+                html += "</li>";
+        	}
+    	}else{
+    		for(var i=0;i<10;i++){
+        		banks[i] = bankList[(pageIndex*pageSize)+i];
+        		html += "<li onclick='choseBank("+i+");'>";
+                html += "<div class='searchBankName'>"+banks[i].cnaps_code+"</div>";
+                html += "<div class='searchBankPlace'>"+banks[i].bank_branch+"</div>";
+                html += "</li>";
+        	}
+    	}
+    	$("#banks").append(html);
+    	pageIndex = (pageIndex+1) > (bankList.length/pageSize) ? pageIndex:pageIndex+1;
+    };
+    
+    /**
+	* 加载数据
+	*/
+	function getDiscoutnInfo(){
+		var discId = $("#discId").val();
+		$.ajax({
+    		url:'${basePath}/yonyou/discountrecordsp/get',
+    		type:"POST",
+    		data:{id:discId},
+    		dataType:"json",
+    		success:function(data){
+    			if(data.response == 'success'){
+    				var data = data.data;
+    				console.log(data);
+    				var account = data.account;
+    				
+    				$("#money").html(account.money);
+    				$(".money").html(account.money);
+    				$("#deposit").html(data.deposit);
+
+    				if(account.money < data.deposit){
+    					$(".codeBtn").addClass("none");
+    				}else{
+    					$("#discountSuccess").removeAttr("disabled");//按钮启用
+    				}
+    				
+    				if(data.picpath != null && data.picpath != ''){
+    					$("#picpath").attr("src","${bootPic}/"+data.picpath);
+    				}else{
+    					$(".picpath").addClass("none");
+    					$("#frame").removeClass("Rright");
+    				}
+    				$("#type1").val(data.type1);
+
+   					loadBindingBank();//加载对公账户
+   			    	loadBankCount();//是否可以添加对公账户
+   			    	loadVip();//加载会员信息
+    			}else{
+    				alert(data.msg);
+    			}
+    		}
+    	});
+	};
+	
+	 /**
+	* 加载用户是否为会员
+	*/
+	function loadVip(){
+		$.ajax({
+    		url:'${basePath}/yonyou/vipmember/get/by/memberid',
+    		type:"POST",
+    		data:{memberId:memberId,vipType:0},
+    		dataType:"json",
+    		success:function(data){
+    			if(data.response == 'success'){
+    				$(".fee").html(parseInt(data.data.fee));
+        			if(data.data.vipMember != null){
+        				$(".isVip").show();
+        				$("#fee").html(parseInt(data.data.fee));
+        				$(".actualPay").html(parseInt($("#deposit").html()));
+        			}else{
+        				$(".noVip").show();
+        				$("#needCoupon").show();
+        				$(".actualPay").html(parseInt($("#deposit").html())+parseInt(data.data.fee));
+        				if(data.data.coupon != null){
+        					if(data.data.coupon.length >0){
+        						$(".haveCoupon").show();
+            	        		$("#couponNum").html(data.data.coupon.length+"个可用红包");
+            	        		var source = $("#COUPON").html();
+            		            var template = Handlebars.compile(source);
+            		            var html = template(data.data);
+            		            $(".couponList").html(html);
+        					}else{
+        						$(".noCoupon").show();
+        					}
+        				}else{
+        					$(".noCoupon").show();
+        				}
+        			}
+    			}else{
+    				alert(data.msg);
+    			}
+    		}
+    	});
+	};
+	
+	/**
+	* 获取机构内容,加载数据
+	*/
+	function loadCompany(){
+		var company = $("#company").val();
+		var data = {company:company,removeMemberId:memberId};
+		$(".selectOrg").hide();
+		$(".companyList").html("");
+		$("#pager").html("");
+		var pageIndex = 1;//分页
+	    $("#pager").sjAjaxPager({
+	        url: "${basePath}/yonyou/orginfo/search",
+	        pageIndex:pageIndex,
+	        pageSize:5,
+	        myTotalType:"data.data.total",
+	        searchParam: data,
+	        beforeSend: function () {
+	        },success: function (data) {
+	        	console.log(data);
+	        	if(data.data.list.length >0){
+	        		$(".nocompany").hide();
+	        		$(".companyCon").show();
+	        		$(".companyList").show();
+	        		$(".pager").show();
+	        		var source = $("#COMPANY").html();
+		            var template = Handlebars.compile(source);
+		            var html = template(data.data);
+		            $(".companyList").html(html);
+	        	}else{
+	        		$(".nocompany").show();
+	        		$(".companyCon").hide();
+	        		$(".pager").hide();
+	        	}
+	        },complete: function(){
+	        },error:function(data){
+				alert("出现异常");
+	        }
+	    });
+	};
+	
+	/**
+	*选择机构
+	*/
+	function selectionBtn(id){
+		$("#selectId").html(id);
+		var company = $("#company"+id).html();
+		$("#confirm_company").html(company);
+		
+		$("#maskWindow").fadeIn(500);
+        $("#selectionWindow").fadeIn(500); /*确认选择该机构*/
+        $("#maskFooter").fadeIn(500);
+        $("#selectionFooter").fadeIn(500); /*确认选择该机构按钮*/
+        $("#title").html("选择机构");
+	};
+	
+	/**
+	* 跳转页面
+	*/
+	$("#spTab").click(function(){
+		location.href = "${basePath}/yonyou/page/discountrecordsp";
+	});
+	/**
+	* 跳转页面
+	*/
+	$("#ypTab").click(function(){
+		location.href = "${basePath}/yonyou/page/discountrecord";
+	});
+</script>
+[/@main.body]

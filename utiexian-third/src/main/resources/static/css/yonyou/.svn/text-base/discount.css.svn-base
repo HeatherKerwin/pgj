@@ -1,0 +1,198 @@
+/*贴现出票容器*/
+.discountCon{
+    box-shadow: 0 1px 1px #ddd;
+    background: #ffffff;
+    font-size: 14px;
+    color: #2d2d2d;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+/*票据图片识别*/
+.discountCon .recognise{
+    margin: 0px 30px 5px;
+}
+.discountCon .recognise p{
+    font-size: 16px;
+}
+.discountCon .recognise p span{
+    color: #e84c3d;
+}
+.discountCon .recognise .uploadImg{
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.discountCon .recognise .uploadImg label{
+    width: 240px;
+    height: 150px;
+    display: block;
+    cursor: pointer;
+    margin: 20px 0px;
+}
+.discountCon .recognise .uploadImg label img{
+    width: 240px;
+    height: 150px;
+    display: block;
+}
+
+/*票据图片识别中，请等待*/
+.discountCon .recogniseLoad{
+    padding: 5px 30px;
+    height: 300px;
+    background: #ffffff;
+    text-align: center;
+    border-top: 1px dashed #e0e0e0;
+}
+
+/*贴现表单*/
+.formCon{
+    width: 100%;
+    border-top: 1px dashed #e0e0e0;
+    padding-top: 20px;
+}
+.formCon p{
+    margin-left: 20px;
+    color: #e84c3d;
+    font-size: 16px;
+}
+ul.discountForm{
+    padding: 5px 30px;
+}
+ul.discountForm li{
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    overflow: hidden;
+}
+ul.discountForm li:after{
+    content: '';
+    clear: both;
+    height: 0;
+}
+/*标签title*/
+ul.discountForm li .discountTitle{
+    width: 100px;
+    font-weight: bold;
+    float: left;
+}
+/*输入框*/
+ul.discountForm li input{
+    float: left;
+    width: 130px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #e0e0e0;
+    margin-top: 7px;
+    box-sizing: border-box;
+}
+/*显示文本*/
+ul.discountForm li p{
+    float: left;
+}
+ul.discountForm li input[type=button]{
+    float: left;
+    display: block;
+    width: 80px;
+    height: 30px;
+    color: #ffffff;
+    line-height: 30px;
+    margin-left: 30px;
+    background: #e84c3d;
+    border: 0px;
+    border-radius: 3px;
+    text-align: center;
+    padding: 0px;
+}
+/*背书手数加减*/
+ul.discountForm li .endorseNum{
+    float: left;
+    display: block;
+    width: 110px;
+    height: 30px;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    margin-top: 5px;
+}
+ul.discountForm li .endorseNum a.reduce{  /*背书-减*/
+    width: 20px;
+    height: 20px;
+    float: left;
+    display: block;
+    background: url("/images/yonyou/discount/jian.png") no-repeat;
+    background-size: 100%;
+    margin: 5px;
+}
+ul.discountForm li .endorseNum input[type=number]{ /*背书-显示数字*/
+    width: 50px;
+    height: 30px;
+    background: none;
+    border: solid #e0e0e0;
+    border-width: 0px 1px ;
+    border-radius: 0px;
+    margin: 0px;
+    text-align: center;
+}
+ul.discountForm li .endorseNum a.add{ /*背书-加*/
+    width: 20px;
+    height: 20px;
+    float: left;
+    display: block;
+    background: url("/images/yonyou/discount/jia.png") no-repeat;
+    background-size: 100%;
+    margin: 5px;
+}
+/*文本域*/
+ul.discountForm li.remarks{
+    height: 120px;
+}
+ul.discountForm li.remarks textarea{
+    float: left;
+    width: 500px;
+    height: 80px;
+    border: 1px solid #e0e0e0;
+    background: none;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+/*单位*/
+ul.discountForm li .unit{
+    float: left;
+    margin-left: 10px;
+}
+/*日历小图标*/
+ul.discountForm li .riliIcon{
+    float: left;
+    width: 30px;
+    height: 27px;
+    background: url("/images/yonyou/common/rili.png") center no-repeat;
+    background-size: 30px 27px;
+    margin-top: 8px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/**/
+.discountFoot{
+    width: 100%;
+    height: 45px;
+    background: #f9f9f9;
+    border: solid #e0e0e0;
+    border-width: 1px 0px;
+    margin-top: 20px;
+}
+.discountFoot a{
+    float: right;
+    display: block;
+    width: 160px;
+    font-size: 18px;
+    line-height: 45px;
+    background: #e84c3d;
+    color: #ffffff;
+    border: 0px;
+    text-align: center;
+}
+.discountFoot a:hover{
+    box-shadow: 1px 2px 2px #000;
+}
+/**/

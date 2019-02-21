@@ -1,0 +1,111 @@
+.cityDiv{
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+/*城市选择*/
+.container {
+    width: 100%;
+    background: rgba(0,0,0,0.7);
+    padding: 10px;
+    overflow: auto;
+}
+
+/*热门城市*/
+ul.hot{
+    background: #ffffff;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    flex-direction: wrap;
+    -webkit-box-orient: horizontal;
+    -webkit-box-lines: multiple;
+    width: 100%;
+    height: auto;
+    margin: auto;
+    border-bottom: 1px solid #e0e0e0;
+}
+ul.hot li.hotPlace{
+    padding: 6px 15px;
+    border: 1px solid #D43C33;
+    border-radius: 3px;
+    margin: 6px;
+    background: #ffffff;
+}
+/*ABC字母索引表*/
+.letter {
+    width:12px;
+    overflow: hidden;
+    line-height: 14px;
+    font-size: 12px;
+    position: fixed;
+    z-index: 101;
+    bottom:10px;
+    right:16px;
+    text-align: center;
+}
+.letter ul {
+    list-style-type: none;
+}
+.letter ul li a {
+    text-decoration: none;
+    color: #D43C33;
+}
+
+/*city*/
+.city {
+    width: 100%;
+    overflow: hidden;
+    padding:0;
+    background: #ffffff;
+}
+.city-list {
+    width: 100%;
+    font-size: 14px;
+    padding-right: 25px;
+    overflow: hidden;
+}
+.city-list .city-letter {
+    font-weight: bold;
+    display: inline-block;
+    padding:10px 0 10px 10px;
+    border-bottom: 1px solid #e0e0e0;
+    width: 100%;
+}
+.city-list p {
+    width: 100%;
+    padding:10px 0 10px 10px;
+    border-bottom: 1px solid #e0e0e0;
+    cursor: pointer;
+}
+
+/*搜索输入框*/
+/*.search-int{
+    width: 100%;
+    height: 50px;
+    padding: 10px 8%;
+    background: #ffffff;
+}
+.search-int input{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #e0e0e0;;
+    border-radius: 3px;
+    text-indent: 10px;
+}*/
+/*搜索下拉提示*/
+/*.sc-div{*/
+    /*width:84%;*/
+    /*margin: -22px 8% 0;*/
+    /*position: fixed;*/
+    /*line-height: 30px;*/
+    /*background: #f3f3f3;*/
+    /*text-indent: 10px;*/
+    /*z-index: 100;*/
+    /*border-bottom-left-radius: 3px;*/
+    /*border-bottom-right-radius: 3px;*/
+/*}*/

@@ -1,0 +1,146 @@
+
+.accountCon{
+    padding: 20px 50px;
+    box-shadow: 0px 0px 1px #ddd;
+}
+.accountCon .accountTitle{
+    font-size: 16px;
+}
+.accountCon .accountAlert{
+    font-size: 12px;
+    padding: 0px;
+    margin: 10px 0px !important;
+}
+.accountCon a.discountBtn{
+    width: 120px;
+    height: 32px;
+    display: block;
+    font-size: 14px;
+    line-height: 32px;
+    text-align: center;
+    color: #ffffff;
+    background: #e84c3d;
+    border-radius: 5px;
+    margin-top: 25px;
+    margin-left: 100px;
+}
+/*选择支付银行卡*/
+ul.bankList{
+    overflow: hidden;
+}
+ul.bankList:after{
+    clear: both;
+    height: 0px;
+}
+ul.bankList li{
+    float: left;
+    width: 270px;
+    height: 60px;
+    margin: 6px;
+    cursor: pointer;
+}
+ul.bankList li:after{
+    clear: both;
+    height: 0px;
+}
+ul.bankList li label{
+    float: left;
+    width: 270px;
+    height: 60px;
+    font-size: 12px;
+    line-height: 30px;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+}
+ul.bankList li label .bankTitle{
+    height: 30px;
+    padding-left: 10px;
+    background: #f9f9f9;
+    border-bottom: 1px solid #e0e0e0;
+}
+ul.bankList li label .bankbCard{
+    height: 30px;
+    padding: 0 10px;
+    font-size: 12px;
+    color: #717583;
+}
+ul.bankList li label .bankbCard div:first-child{
+    float: left;
+}
+ul.bankList li label .bankbCard div:last-child{
+    float: right;
+}
+
+/*选择支付银行卡end*/
+
+/*添加新银行卡*/
+.addbank label{
+    width: 270px;
+    height: auto;
+    display: block;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    text-align: center;
+    padding: 12px 0px;
+    cursor: pointer;
+    margin: 10px 6px;
+}
+/*添加新卡表单*/
+.addItem {
+    width: auto;
+    border: 1px solid #e0e0e0;
+    background: #ffffff;
+    padding: 10px;
+}
+/*申请绑卡*/
+/*完成绑卡*/
+ul.finishBank, ul.applyBank{
+    height: auto;
+}
+ul.finishBank li , ul.applyBank li{
+    line-height: 30px;
+    margin: 10px 0px;
+}
+ul.applyBank li input[type=button]{
+    width: 260px;
+    height: 32px;
+    line-height: 32px;
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    padding: 0px;
+    display: block;
+}
+ul.finishBank li input[type=number] , ul.applyBank li input[type=text] ,ul.applyBank li input[type=number]{
+    width: 260px;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid #e0e0e0;
+    margin-right: 10px;
+}
+ul.finishBank li p , ul.applyBank li p{
+    font-size: 12px;
+    line-height: 20px;
+    color: #e84c3d;
+    margin: 0px 5px;
+}
+ul.finishBank li a ,ul.applyBank li a{
+    width: 120px;
+    height: 32px;
+    display: block;
+    font-size: 14px;
+    line-height: 32px;
+    text-align: center;
+    color: #ffffff;
+    background: #e84c3d;
+    border-radius: 5px;
+    margin: 10px auto;
+}
+ul.finishBank li a.gray{
+    background: #f9f9f9;
+    color: #2d2d2d;
+    border: 1px solid #e0e0e0;
+}
+/*添加新银行卡end*/

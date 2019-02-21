@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>website</display-name>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.ico</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.html</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.png</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.css</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.gif</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.jpg</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.js</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.swf</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.xml</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.txt</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.pdf</url-pattern>
+	</servlet-mapping>
+	<!-- spring hibernate -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:conf/spring.xml,classpath:conf/spring-hibernate.xml</param-value>
+	</context-param>
+	<!-- openSessionInView配置 -->
+	<filter>
+		<filter-name>openSessionInViewFilter</filter-name>
+		<filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
+		<init-param>
+			<param-name>singleSession</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<!--spring mvc 配置 -->
+	<servlet>
+		<servlet-name>springMVC</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:conf/spring-mvc.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>springMVC</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- encodeing -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+
+	<!-- encoding filter for jsp page -->
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>login</filter-name>
+		<filter-class>com.utiexian.website.filter.LoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>login</filter-name>
+		<url-pattern>/discountorder/*</url-pattern>
+		<url-pattern>/discountordersp/*</url-pattern>
+		<url-pattern>/discountorderpl/*</url-pattern>
+		<url-pattern>/discountrecord/*</url-pattern>
+		<url-pattern>/discountrecordsp/*</url-pattern>
+		<url-pattern>/discountrecordpl/*</url-pattern>
+		<url-pattern>/distributeorder/*</url-pattern>
+		<url-pattern>/distributeordersp/*</url-pattern>
+		<url-pattern>/distributeorderpl/*</url-pattern>
+		<url-pattern>/hall/*</url-pattern>
+		<url-pattern>/zhangbu/*</url-pattern>
+		<url-pattern>/price/*</url-pattern>
+		<url-pattern>/requirementsp/*</url-pattern>
+		<url-pattern>/inquiryreply/*</url-pattern>
+		<url-pattern>/bisicmessage/*</url-pattern>
+		<url-pattern>/systeminfo/*</url-pattern>
+		<url-pattern>/jd/*</url-pattern>
+		<url-pattern>/bank/sizeticket/*</url-pattern>
+		<url-pattern>/bigsmall/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>Cross</filter-name>
+		<filter-class>com.utiexian.website.filter.CrossFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Cross</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.utiexian.website.listener.SiteServletContentListener</listener-class>
+	</listener>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>

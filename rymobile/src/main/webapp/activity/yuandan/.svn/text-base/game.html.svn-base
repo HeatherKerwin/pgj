@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+		<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="apple-touch-fullscreen" content="yes">
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+		<meta http-equiv="expires" content="-1">
+		<title>
+			数钱数到手抽筋，新年提钱出发，抢票据管家红包
+		</title>
+		<div id='fx-img' style='margin:0 auto;display:none;'><img src="https://img.utiexian.com/rymobile/game/icon.png" /></div>
+		<link rel="stylesheet" type="text/css" href='https://static.utiexian.com/css/rymobile/game/reset.css' />
+					<script type="text/javascript" src='https://static.utiexian.com/js/rymobile/game/zepto.1.14.mon.cudtom.js'>
+</script>
+		<script type="text/javascript" src='https://static.utiexian.com/js/rymobile/game/createjs.js'>
+</script>
+		<script type="text/javascript" src='https://static.utiexian.com/js/rymobile/game/sound.js?r=3'>
+</script>
+		<style>
+/*loading*/
+html, body {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	/*background: #934;*/
+	font-size: 12px;
+}
+.wrapper {
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	max-width: 640px;
+	margin: 0 auto;
+}
+.asset, .wrapper section, .cx { display: none; }
+.loading {
+	height: 9999px;
+	background: #d30;
+}
+.loading center {
+	position: absolute;
+	top: 45%;
+	left: 0;
+	width: 100%;
+}
+.loading var, .loading sub {
+	display: block;
+	width: 48px;
+	height: 48px;
+	margin: 0 auto;
+	overflow: hidden;
+	color: #fdd;
+	line-height: 48px;
+}
+.loading sub {
+	-webkit-animation: loadAN 1s infinite linear;
+	margin-top: -48px;
+	background: url(https://img.utiexian.com/rymobile/game/loading.png) no-repeat;
+	background-size: 100% auto;
+}
+ @-webkit-keyframes loadAN { 0% {
+-webkit-transform: rotate(0);
+}
+ 100% {
+-webkit-transform: rotate(360deg);
+}
+}
+</style>
+		<script>
+			/*loading*/
+			$(function(){
+				var progress=0;
+				$(".asset img").on('load',function(){
+					$(this).addClass('loaded');
+					progress=parseInt($(".asset .loaded").size()/$(".asset img").size()*100);
+					$(".loading var").text(progress+'%');
+					if(progress==100){
+						$("img").each(function(id, el){ $(el).attr('data-src') && $(el).attr('src', $(el).attr('data-src')).removeAttr('data-src') })
+						$('head').append('<link rel="stylesheet" type="text/css" href="https://static.utiexian.com/css/rymobile/game/game.css?r='+Math.random()+'" />');
+						var oScript= document.createElement("script"); 
+						oScript.type = "text/javascript";
+						oScript.src="https://static.utiexian.com/js/rymobile/game/common.js?r="+Math.random();
+						document.getElementsByTagName('HEAD').item(0).appendChild(oScript);
+					}
+				})
+				$(".asset img").each(function(id, el){ $(el).attr('data-src') && $(el).attr('src', $(el).attr('data-src')).removeAttr('data-src') })
+				
+			})
+		</script>
+		</head>
+
+		<body ontouchmove="event.preventDefault()">
+	<div class="wrapper">
+				<div class="asset">
+			<img data-src="https://img.utiexian.com/rymobile/game/hdjp.png" />
+			<img data-src="https://img.utiexian.com/rymobile/game/ks.jpg" />
+			<img data-src="https://img.utiexian.com/rymobile/game/kssq.png" />
+			<img data-src="https://img.utiexian.com/rymobile/game/pjgj.png" />
+			<img data-src="https://img.utiexian.com/rymobile/game/s2-1.png" />
+			<img data-src="https://img.utiexian.com/rymobile/game/s2-2.png" />
+			<img data-src="https://img.utiexian.com/rymobile/game/s2-3.png" />
+			<img data-src="https://img.utiexian.com/rymobile/game/s2-4.png" />
+			<img data-src="https://img.utiexian.com/rymobile/game/s3-1.png" />
+			<img data-src="https://img.utiexian.com/rymobile/game/s3--2.jpg" />
+			<img data-src="https://img.utiexian.com/rymobile/game/s3-4.png" />
+			<img data-src="https://img.utiexian.com/rymobile/game/share.png" />
+		</div>
+				<div class="loading">
+			<center>
+						<var>0%</var>
+						<sub>
+				</sub>
+					</center>
+		</div>
+				<section class="s1">
+			<h1>
+						<img class="s1-2" data-src="https://img.utiexian.com/rymobile/game/hdjp.png" onClick="jiangpin()"  />
+					</h1>
+			
+			<menu>
+						<a href="javascript:" class="btn1">
+					开始数钱
+				</a>
+					</menu>
+					<div>
+						<h4>
+					票据管家-数钱游戏
+				</h4>
+						<p>
+					<em>
+							活动说明：
+							</em>
+					在15秒内，尽情数钱吧!
+				</p>
+						<p>
+					<em>
+							兑奖说明：
+							</em>
+					票据贴现礼包请至票据管家APP兑换，下单立减
+				</p>
+						<p>
+					<em>
+							活动奖品：
+							</em>
+					票据管家现金兑换券、现金红包；
+				</p>
+						<p>
+					<em>
+							活动时间：
+							</em>
+					2016年1月11日00：00-2016年1月31日00：00；
+				</p>
+						<p>
+					<em>
+							主办方：
+							</em>
+					本次活动主办方为票管家金服；
+				</p>
+						<footer>票管家金服在法律允许的范围内拥有活动解释权</footer>
+					</div>
+		</section>
+				
+				<!--s2-->
+				<section class="s2">
+			<h4>
+						<img data-src="https://img.utiexian.com/rymobile/game/pjgj.png" />
+					</h4>
+			<h5>
+						<span>
+				倒计时<var>0</var>＂
+				</span>
+						<span>
+				<var>0000</var> 万元
+				</span>
+					</h5>
+			<h6>
+						<sup>
+				</sup>
+						<em>
+				向上滑动
+				&nbsp;
+				即可数钱
+				</em>
+					</h6>
+			<dl>
+						<dt>
+							<span>
+							</span>
+				</dt>
+						<dd>
+					<q>
+							<img data-src="https://img.utiexian.com/rymobile/game/s2-4.png" />
+							</q>
+				</dd>
+					</dl>
+		</section>
+				<!--s3-->
+				<section class="s3">
+			<dl>
+						<dt>
+					<span>
+							000000 万元
+							</span>
+					<img class="j50" data-src="https://img.utiexian.com/rymobile/game/s3--2.jpg"/>
+				</dt>
+					</dl>
+			<menu>
+						<a href="javascript:" class="an1">
+					再玩一次
+				</a>
+						<a href="javascript:" class="an3">
+					我要分享
+				</a>
+					</menu>
+			<h6>
+						<a href="../2015/4yuandan.html" class="btn3">
+					立即贴现
+				</a>
+						<a href="../../hongbao/2015/yuandan.html" class="btn4">
+					抢红包
+				</a>
+					</h6>
+		</section>
+				<section class="share">
+			<center>
+						<img data-src="https://img.utiexian.com/rymobile/game/share.png" />
+					</center>
+		</section>
+			</div>
+
+<script type="text/javascript" >
+	
+</script>
+</body>
+</html>

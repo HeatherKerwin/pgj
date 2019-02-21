@@ -1,0 +1,208 @@
+[#import "/common/main.html" as main]
+[#include "/common/setting.html"]
+[@main.body title='云票据-交易记录']
+<link rel="stylesheet" href="${basePath}/css/yonyou/accountRecord.css">
+<link rel="stylesheet" href="${basePath}/css/template.css">
+
+<script type="text/javascript" src="${basePath}/js/yonyou/tab.js"></script>
+
+<!-- 头部 -->
+[@main.header currentmenu='7'/]
+<!-- 头部end -->
+
+<div class="wrap">
+    <!--充值记录、提现记录tab-->
+    <div class="leftCon">
+        <ul class="typeTab">
+            <li>
+                <a href="#" class="checked">
+                    <label for="czTab"><input type="radio" name="depositTab" id="czTab" value="1" class="typeTabBtn" checked="checked">充值记录</label>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <label for="txTab"><input type="radio" name="depositTab" id="txTab" value="2" class="typeTabBtn">提现记录</label>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!--订单列表-->
+    <div class="rightCon">
+        <div class="Record">
+            <!--标签-->
+            <ul class="czRecord recordTitle">
+                <li>充值金额</li>
+                <li>充值方式</li>
+                <li>充值结果</li>
+                <li>操作时间</li>
+            </ul>
+            <ul id="content1" class="czRecord recordList">
+	          
+            </ul>
+
+            <!--记录列表-->
+            <ul class="txRecord recordTitle" style="display: none">
+            	<li>提现金额</li>
+                <li>提现方式</li>
+                <li>提现结果</li>
+                <li>操作时间</li>
+            </ul>
+            <ul id="content2" class="txRecord recordList" style="display: none">
+	            
+            </ul>
+        </div>
+        <div  id="pager"></div>
+    </div>
+</div>
+
+[/@main.body]
+<link rel="stylesheet" type="text/css" href="${basePath}/js/ajaxPager/page.css"/>
+<script type="text/javascript" src="${basePath}/js/handlebars.js"></script>
+<script type="text/javascript" src="${basePath}/js/ajaxPager/jquery-ajax-pager.js"></script>
+<script type="text/javascript" src="${basePath}/js/ajaxPager/js-extend.js"></script>
+<script type="text/x-handlebars-template" id="CZRECORD">
+{{#each list}}
+	    <li>
+            <div>{{money}}元</div>
+            <div>{{toWay way}}</div>
+            <div class="c049e5b">{{toState accountLogState}}</div>
+            <div>{{createTime}}</div>
+        </li>
+{{/each}}
+</script>
+
+<script type="text/x-handlebars-template" id="TXRECORD">
+{{#each list}}
+    <li>
+        <div>{{no}}</div>
+        <div>{{money}}</div>
+        <div class="c049e5b">{{toState1 accountLogState}}</div>
+        <div>{{createTime}}</div>
+    </li>
+{{/each}}
+</script>
+
+<script>
+	Handlebars.registerHelper('toState', function(accountLogState,options) {
+	    if(accountLogState=='WAITIN'){
+	        return "充值中";
+	    }else if(accountLogState=='FAILED'){
+	        return "充值失败";
+	    }else if(accountLogState=='SUCCESS'){
+	        return "充值成功";
+	    }else if(accountLogState=='CANCEL'){
+	        return "取消";
+	    }
+	});
+	
+	Handlebars.registerHelper('toState1', function(accountLogState,options) {
+	    if(accountLogState=='PENDING'){
+	        return "待入账";
+	    }else if(accountLogState=='FAILED'){
+	        return "提现失败";
+	    }else if(accountLogState=='SUCCESS'){
+	        return "提现成功";
+	    }else if(accountLogState=='CANCEL'){
+	        return "取消";
+	    }
+	});
+	
+	Handlebars.registerHelper('toWay', function(way,options) {
+	    if(way=='CZ_BILL99'){
+	        return "快钱";
+	    }else if(way=='CZ_BAOFOO'){
+	        return "宝付";
+	    }else if(way=='CZ_ALIPAY'){
+	        return "支付宝";
+	    }
+	});
+	
+	Handlebars.registerHelper('toPurpose', function(accountLogType,options) {
+	    if(accountLogType=='ORDERIN'){
+	        return "收到保证金";
+	    }else if(accountLogType=='ORDEROUT'){
+	        return "支出保证金";
+	    }else if(accountLogType=='INQUIRYREPLYOUT'){
+	        return "查询查复";
+	    }else if(accountLogType=='INQUIRYREPLYBACK'){
+	        return "查询查复退款";
+	    }else if(accountLogType=='SERVER_IN'){
+	        return "服务费（退还）";
+	    }else if(accountLogType=='SERVER_OUT'){
+	        return "服务费（支出）";
+	    }else if(accountLogType=='VIP'){
+	        return "购买会员";
+	    }else if(accountLogType=='ECONTRACT_IN'){
+	        return "电子签章费（退还）";
+	    }else if(accountLogType=='ECONTRACT_OUT'){
+	        return "电子签章费（支出）";
+	    }
+	});
+	var memberId = '${member.id}';
+	$(function(){
+		loadData();
+	});	
+	
+	/**
+	* 初始化页面加载数据
+	*/
+	function loadData(){
+		$("#pager").html("");
+		var deposit;
+		$("input[name='depositTab']").each(function(){
+			if($(this).attr("checked") == "checked"){
+				deposit = $(this).val();
+			}
+		});
+		var params = {"memberId":memberId};
+		if(deposit ==1 ){
+			$(".czRecord").removeClass("none");
+			$(".txRecord").addClass("none");
+			$(".bzjRecord").addClass("none");
+			params.type = "CZ";
+		}else if(deposit == 2){
+			$(".czRecord").addClass("none");
+			$(".txRecord").removeClass("none");
+			$(".bzjRecord").addClass("none");
+			params.type = "TX";
+		}
+		var url = '${basePath}/yonyou/accountlog/page';
+		var pageIndex = 1;//分页
+		
+		$('#pager').sjAjaxPager({
+	        url: url,
+	        pageIndex:pageIndex,
+	        myTotalType:"data.data.total",
+	        searchParam: params,
+	        beforeSend: function () {
+	        },success: function (data) {
+	        	console.log(data.data);
+	        	var source = null;
+	    		if(deposit == 1){
+	    			source = $("#CZRECORD").html();
+	    		}else if(deposit == 2){
+	    			source = $("#TXRECORD").html();
+	    		}else if(deposit == 3){
+	    			source = $("#BZJRECORD").html();
+	    		}
+	            var template = Handlebars.compile(source);
+	            var html = template(data.data);
+	            $("#content"+deposit).html(html);
+	        },complete: function(){
+	        },
+	    });
+	}
+        
+        $("#czTab").click(function (){
+        	$(".txRecord").hide();
+			$(".czRecord").show();
+			loadData();
+        });
+        
+		$("#txTab").click(function (){
+			$(".czRecord").hide();
+			$(".txRecord").show();
+			loadData();
+        });
+</script>

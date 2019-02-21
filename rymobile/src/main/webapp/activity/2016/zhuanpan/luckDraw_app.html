@@ -1,0 +1,332 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>
+	幸运大转盘
+</title>
+<style type="text/css">
+body {
+	font-size: 12px;
+	height:100%;
+	background: #e03021;
+}
+* {
+	margin: 0;
+	padding: 0;
+}
+img { border: 0}
+#mian {
+	width: auto;
+	height: 40em;
+	background: url(https://img.utiexian.com/rymobile/zhuanpan/bg.jpg) center no-repeat;
+	background-size: 100% 100%;
+	text-align:center;
+}
+.youhave {
+	position: absolute;
+	color: #fff;
+	font-weight: bold;
+	height: 3em;
+	line-height: 3em;
+	top: 2em;
+	left: 25em;
+	font-size: 1.4em;
+	display: none;
+}
+#zhuanpan {
+	width: 100%;
+	height: auto;
+	top: 20%;
+	left:0;
+	position: absolute;
+	overflow: hidden;
+}
+#img{
+	width:90%;
+	height:auto;
+	margin:0 auto;
+}
+#tip {
+	width:33%;
+	height:56%;
+	position: absolute;
+	top: 13%;
+	left: 33.5%;
+	cursor: pointer;
+}
+
+.lingjiang{
+	width:100%;
+	position:absolute;
+	top:82%;
+}
+.chakan{
+	width:100%;
+	position:absolute;
+	top:88%;
+	font-size:1.4em;
+	color:#FFF;
+}
+.t-t3 {
+	width: 50%;
+	height:3em;
+	margin:0 25%;
+	font-size: 3em;
+	background: #FC3;
+	border: 0;
+	border-radius: 0.3em;
+	-moz-border-radius: .3em;
+	-webkit-border-radius: .3em;
+}
+/*alert*/
+.box,.boxl {
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.9);
+	position: fixed;
+	top:0;
+	left:0;
+	z-index: 100;
+	display: none;
+}
+/*奖品*/
+.hint {
+	width: 90%;
+	height:auto;
+	margin: 0 auto;
+	position: fixed;
+	top: 3%;
+	left: 5%;
+	z-index: 111;
+	display: none;
+}
+.hint-in1 {
+	width: 100%;
+	height: 3em;
+	position: relative;
+	text-align: center;
+	line-height: 3em;
+	color: #f4e8df;
+	font-size: 2em;
+	top: 0em;
+}
+.hint-in2 {
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+	
+}
+.hint-in2 img {
+	width: 50%;
+	height: auto;
+	margin:0 25%;
+}
+.hint-in3 {
+	width: 90%;
+	height: 3em;
+	line-height: 3em;
+	font-size: 1.8em;
+	text-align: center;
+	color: #ff6600;
+	margin: 0 5%;
+}
+.hint-in4{
+	font-size: 1.8em;
+	width: 70%;
+	height: 2.2em;
+	background: #e03021;
+	color: #f4e8df;
+	position: relative;
+	top:80%;
+	left: 15%;
+	text-align: center;
+	line-height: 2.2em;
+	border-radius: .4em;
+}
+.hint-in5 {
+	font-size: 1.8em;
+	width: 70%;
+	height: 2.2em;
+	background: #e03021;
+	color: #f4e8df;
+	margin:1em 15% 0;
+	text-align: center;
+	line-height: 2.2em;
+	border-radius: .4em;
+}
+/*机会*/
+.hintl {
+	width: 90%;
+	height: 25em;
+	margin: 0 auto;
+	background: #fff;
+	position: fixed;
+	top: 20%;
+	left: 5%;
+	z-index: 111;
+	display: none;
+}
+.hintl-in1 {
+	width: 100%;
+	height: 4em;
+	background: #e03021;
+	position: relative;
+}
+.hintl1 {
+	width: 3em;
+	height: 3em;
+	background: url(https://img.utiexian.com/rymobile/zhuanpan/hint2.png) no-repeat 100% center;
+	-webkit-background-size: 3em 3em;
+	background-size: 3em 3em;
+	top: .5em;
+	left: 1em;
+	position: absolute;
+	z-index: 111;
+}
+.hintl2 {
+	line-height: 4em;
+	color: #f4e8df;
+	font-size: 2em;
+	position: absolute;
+	top:-1em;
+	left: 2.5em;
+}
+.hint3 {
+	width: 3em;
+	height: 3em;
+	background: url(https://img.utiexian.com/rymobile/zhuanpan/hint3.png) no-repeat;
+	-webkit-background-size: 3em 3em;
+	background-size: 3em 3em;
+	position: absolute;
+	top: .5em;
+	right: .5em;
+}
+.hint3:hover {
+	width: 3em;
+	height: 3em;
+	background: url(https://img.utiexian.com/rymobile/zhuanpan/hint33.png) no-repeat;
+	-webkit-background-size: 3em 3em;
+	background-size: 3em 3em;
+	position: absolute;
+	top: .5em;
+	right: .5em;
+}
+.hintl-in2 {
+	width:90%;
+	margin:0 auto;
+	line-height: 2em;
+	font-size: 2em;
+	text-align: center;
+	color: #ff6600;
+	padding-top:1em;
+}
+.hintl-in3 {
+	font-size: 2em;
+	width: 80%;
+	height: 2.6em;
+	background: #e03021;
+	color: #f4e8df;
+	position: absolute;
+	bottom: 1em;
+	left: 10%;
+	text-align: center;
+	line-height: 2.6em;
+	border-radius: .4em;
+}
+</style>
+<script type="text/javascript" src="https://static.utiexian.com/js/common/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="https://static.utiexian.com/js/rymobile/zhuanpan/zhuanpan.js"></script>
+<script type="text/javascript" src="https://static.utiexian.com/js/rymobile/zhuanpan/jQueryRotate.2.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".hint-in3").click(function(event) {
+		$(".hint").css({"display":"none"});
+		$(".box").css({"display":"none"});
+	});
+	
+	var t = localStorage["GOODS"];
+	var type = localStorage["TYPE"];
+	if(t!='undefined' && t!=undefined){
+		myAlert(t,type);
+	}
+});
+
+function myAlert(t,type){
+	$(".hint").show();
+	$(".box").show();
+	$(".hint-in3").text(t);
+}
+
+function receive(){
+	var to = localStorage["TYPE"];
+	if(to=='0'){//实物
+		window.location.href='logistic_app.html';
+	}else if(to=='1'){//话费
+		window.location.href='bill_app.html';
+	}else if(to=='2'){//红包
+		window.location.href='red_app.html';
+	}else{
+		Alert("您的抽奖机会已用完,每个用户仅限抽奖一次！");
+	}
+}
+
+function Alert(t){
+	$(".hintl").css({"display":"block"});
+	$(".boxl").css({"display":"block"});
+	$(".hintl-in2").text(t);
+}
+
+function closeAlert(){
+	$(".hintl").hide();
+	$(".boxl").hide();
+}
+</script>
+</head>
+<body>
+	<div id="mian">
+		<div class="youhave">
+			您还有
+			<span class="coud_num">
+			1
+			</span>
+			次抽奖机会
+		</div>
+		<div id="zhuanpan">
+			<img id="img" src="https://img.utiexian.com/rymobile/zhuanpan/four_zhuanpan.png">
+			<img id="tip" src="https://img.utiexian.com/rymobile/zhuanpan/four1.png">
+		</div>
+		<div class="lingjiang">
+		</div>
+		<div class="chakan">
+		<a onclick="javascript:window.location.href='prize_app.html'">【 查看活动奖品及说明 】</a>
+		</div>
+	</div>
+	
+	<!--提示抽奖-->
+	<div class="box"></div>
+	<div class="hint">
+	  <div class="hint-in1">
+		恭喜您获得
+	  </div>
+	  <div class="hint-in2"><img src="https://img.utiexian.com/rymobile/zhuanpan/liwuhez.png"></div>
+	  <div class="hint-in3"></div>
+	  <div class="hint-in4" onclick="receive();">立即领取奖品</div>
+	  <div class="hint-in5" onclick="javascript:window.location.href='gzwm_app.html'">关注我们</div>
+	</div>
+	
+	<!--警告-->
+	<div class="boxl"></div>
+	<div class="hintl">
+		<div class="hintl-in1">
+			<div class="hintl1"></div>
+			<div class="hintl2">抱歉！</div>
+			<div class="hint3" onclick="closeAlert();"></div>
+		</div>
+	  	<div class="hintl-in2"></div>
+		<div class="hintl-in3" onclick="closeAlert();">确定</div>
+	</div>
+</body>
+</html>

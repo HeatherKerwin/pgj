@@ -1,0 +1,64 @@
+/*搜索输入框*/
+.urgeInp{
+    position: relative;
+    width: 90%;
+    height: 42px;
+    margin: 10px 5%;
+    background: #ffffff;
+    border: solid 1px #d8d8d8;
+    border-radius: 3px;
+}
+/*搜索图标*/
+.urgeInp .searchIcon{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    background: url("https://img.utiexian.com/rywap/common/search.png") no-repeat center;
+    background-size: 100%;
+}
+.urgeInp input{
+    position: absolute;
+    top: 5px;
+    left: 18%;
+    width: 82%;
+    height: 30px;
+    line-height: 30px;
+    border: none;
+    overflow: hidden;
+}
+
+/*文字提示*/
+.urgeTXT{
+    width: 100%;
+    padding: 0 16px;
+    margin-top: 25px;
+}
+.urgeTXT h2{
+    font-size: 14px;
+}
+.urgeTXT p{
+    font-size: 12px;
+}
+
+
+/*公催查询结果列表*/
+.urgeTitle{
+    height: 40px;
+    line-height: 40px;
+    padding-left: 16px;
+}
+ul.urgeList{
+    width: 100%;
+    font-size: 16px;
+    margin-top: 10px;
+}
+ul.urgeList li.urgeListCon{
+    width: 100%;
+    height: auto;
+    line-height: 28px;
+    padding: 5px 16px;
+    background: #ffffff;
+    margin-bottom: 10px;
+}

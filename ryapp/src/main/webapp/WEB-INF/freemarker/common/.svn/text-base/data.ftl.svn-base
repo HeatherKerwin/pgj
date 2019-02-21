@@ -1,0 +1,1 @@
+<#assign coopMap = {"ysjs":"有色金属网"}>

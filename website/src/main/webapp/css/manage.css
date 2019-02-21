@@ -1,0 +1,5 @@
+/*选择条件选radio鼠标触碰样式*/
+ul.MGcheckbox li label:hover{
+    background: #e84c3d;
+    color: #ffffff;
+}

@@ -1,0 +1,154 @@
+/*head*/
+header.header{
+    top:0;
+    height:44px;
+    border-bottom: solid 1px #eeeeee;
+}
+/*logo*/
+.header a.head-left-logo{
+    position: absolute;
+    width: 98px;
+    height: 28px;
+    background-image: url(https://img.utiexian.com/rywap/head/head-logo.png);
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    left: 16px;
+    top: 8px;
+}
+/*返回键*/
+.head-left-back{
+    position: absolute;
+    top: 12px;
+    left: 16px;
+    width: 12px;
+    height: 20px;
+    background-image: url("https://img.utiexian.com/rywap/head/icon-left.png");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-size: 100% auto;
+}
+/*title*/
+.header h2.head-title{
+    font-size: 18px;
+    line-height: 44px;
+    text-align: center;
+}
+/*APP下载*/
+.header a.head-right{
+    position: absolute;
+    color: #f84040;
+    font-size: 18px;
+    line-height: 44px;
+    top: 0px;
+    right: 16px;
+}
+
+
+/*功能页tab*/
+.choseTab{
+    position:fixed;
+    top: 44px;
+    right:0;
+    left:0;
+    z-index:1;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 15px;
+    background: #eeeeee;
+    border-bottom: solid 1px;
+    border-color: rgba(69,69,69,0.2);
+}
+.choseTab ul li{
+    width: 25%;
+}
+/*更多tab*/
+.moreTab{
+    position: fixed;
+    top: 77px;
+    right: 9px;
+    z-index: 2;
+    width: 100px;
+    background: url("https://img.utiexian.com/rywap/head/xialakuang.png") center no-repeat;
+    background-size: 100% 100%;
+}
+.moreTab ul li{
+    font-size: 14px;
+    line-height: 33px;
+    border-bottom: solid 1px #eeeeee;
+}
+.moreTab ul li:first-child{
+    padding-top: 5px;
+}
+.moreTab ul li:last-child{
+    border-bottom: none;
+}
+.moreTab ul li a{
+    display: block;
+    color: #a0a0a0;
+}
+.moreTab ul li a:hover{
+    background: #d43c33;
+    color: #ffffff;
+}
+
+/*tab*/
+ul.tabTitle{
+    padding: 10px 0px 0px;
+}
+ul.tabTitle li:last-child a{
+    border-right: none;
+}
+ul.tabTitle li a{
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+    border-right: solid 1px #c5c5c5;
+}
+.selectbar{
+    border-bottom: solid 1px #d43c33;
+}
+.selectbar a{color: #d43c33;}
+.tabCon{
+    /*padding: 10px;*/
+}
+
+/*工具、我 列表*/
+ul.list{
+    width: 100%;
+    background: #ffffff;
+    padding-left: 16px;
+}
+ul.list li{
+    position: relative;
+    font-size: 17px;
+    height: 50px;
+    line-height: 50px;
+    border-bottom: solid 1px #d9d9d9;
+}
+ul.list li:last-child{
+    border-bottom: none;
+}
+ul.list li a{
+    display: block;
+    height: 50px;
+}
+ul.list li a img.listLeft{
+    position: absolute;
+    left: 3px;
+    top: 13px;
+    width: 25px;
+    height: 25px;
+}
+ul.list li a span{
+    position: absolute;
+    left: 35px;
+}
+ul.list li a .listRight{
+    position: absolute;
+    right: 16px;
+    top: 15px;
+    width: 12px;
+    height: 20px;
+    background: url("https://img.utiexian.com/rywap/common/right.png") center no-repeat;
+    background-size: 8px 13px;
+}

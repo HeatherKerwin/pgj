@@ -1,0 +1,97 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="applicable-device" content="mobile" />
+<meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>
+票据管家-主页
+</title>
+<link href="https://static.utiexian.com/css/common/mobileBase.css" rel="stylesheet" type="text/css" />
+<link href="https://static.utiexian.com/css/rymobile/t_css/index.css" rel="stylesheet" type="text/css" />
+<link href="https://static.utiexian.com/css/rymobile/t_css/register.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="https://static.utiexian.com/js/common/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="https://static.utiexian.com/js/rymobile/config.js"></script>
+<script type="text/javascript" src="https://static.utiexian.com/js/common/jquery.cookie.js"></script>
+<script type="text/javascript" src="https://static.utiexian.com/js/rymobile/clickCount.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	save1("WAP","visit","");
+});
+$("#download").click(function(){
+	save1("WAP","download","https://app.utiexian.com/down.html?style=WAP&code=download")
+});
+$("#button1").click(function(){
+	save1("WAP","button1","")
+});
+$("#button2").click(function(){
+	save1("WAP","button2","")
+});
+function chuan(){
+	window.location="register.html?"+document.getElementById("phone").value;
+}
+</script>
+</head>
+
+<body>
+	
+	<div class="register_top">
+		<img src="https://img.utiexian.com/rymobile/t_img/head-logo.png" alt="logo" class="logoIcon">
+		<a href="tel:400-067-0002" class="title">400-067-0002</a>
+		<div class="register_top_r">
+			<a href="tel:400-067-0002" class="fl icon">
+				<img src="https://img.utiexian.com/rymobile/t_img/call.png" alt="tel">
+			</a>
+			<a href="https://app.utiexian.com/down.html" class="fl icon">
+				<img src="https://img.utiexian.com/rymobile/t_img/download.png" alt="APP">
+			</a>
+			<a href="https://wap.utiexian.com" class="fl icon">
+				<img src="https://img.utiexian.com/rymobile/t_img/wap.png" alt="wap">
+			</a>
+			<div class="cl"></div>
+		</div>		
+	</div>
+	<div class="banner">
+		<img src="https://img.utiexian.com/common/banner/banner2.jpg" >
+	</div>
+	<div class="account">
+		<img class="fl" src="https://img.utiexian.com/rymobile/t_img/woshijigou.png">
+		<img class="fr" src="https://img.utiexian.com/rymobile/t_img/woshiqiye.png">
+		<div class="cl"></div>
+	</div>
+	<div class="register1">
+		<input id="phone" type="tel" placeholder="请输入您的手机号码" class="fl" />
+		<a href="javascript:chuan()">
+		<input id="button1" type="button" value="立即注册" class="fr" />
+		</a>
+		<div class="cl"></div>
+	</div>
+	<div class="why">
+	<img src="https://img.utiexian.com/rymobile/t_img/why.png">
+	</div>
+	<a href="register.html">
+	<input id="button2" type="button" value="立即注册" class="register_btn1" />
+	</a>
+	<div class="copyright">
+		© Copyright 2016 沪ICP备16003046号<br>
+       上海票管家金融服务有限公司 
+	</div>
+</body>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256299776'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1256299776' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<!-- 360监测代码开始 -->
+<script type="text/javascript">
+var _mvq = _mvq || [];
+_mvq.push(['$setAccount', 'm-236927-0']);
+
+_mvq.push(['$logConversion']);
+(function() {
+var mvl = document.createElement('script');
+mvl.type = 'text/javascript'; mvl.async = true;
+mvl.src = ('https:' == document.location.protocol ? 'https://static-ssl.mediav.com/mvl.js' : 'http://static.mediav.com/mvl.js');
+var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(mvl, s);
+})();
+
+</script>
+<!-- 360监测代码结束 -->
+</html>

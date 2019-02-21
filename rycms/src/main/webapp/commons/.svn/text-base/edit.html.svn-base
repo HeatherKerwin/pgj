@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>列表页 - 工艺美术平台 - 管理后台</title>
+<link rel="stylesheet" href="styles/reset.css" />
+<!-- 最新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="styles/bootstrap.css">
+<link rel="stylesheet"  href="styles/bootstrap-datetimepicker.min.css">
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="scripts/jquery-1.10.1.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="scripts/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="scripts/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+
+
+<link rel="stylesheet" href="styles/default.css" />
+
+<!-- 上传组件Uploadify -->
+<script src="scripts/jquery.uploadify.js"></script>
+
+<!--编辑器-->
+<script src="scripts/kindeditor.js"></script>
+<script src="scripts/lang/zh_CN.js"></script>
+<script>
+	KindEditor.ready(function(K) {
+		window.editor = K.create('#kindeditor textarea');
+	});
+</script>
+
+</head>
+
+<body>
+
+<form>
+
+<div id="top">
+	<div class="left">
+		<button type="button" class="btn btn-success" id="publish"> 发 布 </button>
+		<button type="button" class="btn btn-default" id="preview">预览</button>
+		<button type="button" class="btn btn-default" id="draft">存草稿</button>
+		<button type="button" class="btn btn-default" id="cancel">取消</button>
+	</div>
+	<div class="right" id="box-pubdate">
+        <div class="input-group date form_datetime" data-date="2013-12-12T05:25:07Z" data-date-format="yyyy-mm-dd HH:ii" data-link-field="pubdate">
+            <input  type="text" value="" placeholder="设置发布时间" />
+            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+        </div>
+        <input type="hidden" id="pubdate" value="" />
+     </div>
+</div>
+
+
+<div id="edit">
+
+	<div id="edit-addon">
+    	<div class="box-addon" id="sns-addon">
+        	<h4><!--<a href="#" class="btn btn-success btn-xs">添加</a>-->同时发布到</h4>
+			<div class="form-group">
+            	<label for="weibo"><input type="checkbox" id="weibo" value="weibo"  name="sns[]" />新浪微博</label>
+            </div>
+			<div class="form-group">
+            	<label for="tencent"><input type="checkbox" id="tencent" value="weibo"  name="sns[]" />腾讯微博</label>
+            </div>
+			<div class="form-group">
+            	<label for="douban"><input type="checkbox" id="douban" value="weibo"  name="sns[]" />豆瓣网</label>
+            </div>
+			<div class="form-group">
+            	<label for="renren"><input type="checkbox" id="renren" value="weibo"  name="sns[]" />人人网</label>
+            </div>
+        </div>
+        
+    	<div class="box-addon" id="cover-addon">
+        	<h4><!--<a href="#" class="btn btn-success btn-xs">添加</a>-->封面图片</h4>
+            <div id="cover-preview">
+            	<img src="images/nonecover.png" width="160"  height="120" />
+                <input type="hidden" value="" id="cover" name="cover" />
+	        </div>
+			<div class="form-group">
+            	<a id="addcover"></a>
+                <button type="button" class="btn btn-danger btn-xs" id="delcover">删除</button>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+    	<div class="box-addon" id="cate-addon">
+        	<h4><a href="#" class="btn btn-success btn-xs">添加分类</a>分类板块</h4>
+            <ul>
+            	<li>
+					<label><input type="checkbox" id="" value=""  name="cate[]" />大分类1</label>
+                	<ul>
+                    	<li><label><input type="checkbox" id="" value=""  name="cate[]" />小分类1</label></li>
+                    	<li><label><input type="checkbox" id="" value=""  name="cate[]" />小分类2</label></li>
+                    	<li><label><input type="checkbox" id="" value=""  name="cate[]" />小分类3</label></li>
+                    	<li><label><input type="checkbox" id="" value=""  name="cate[]" />小分类4</label></li>
+                    </ul>
+                </li>
+            	<li>
+					<label><input type="checkbox" id="" value=""  name="cate[]" />大分类2</label>
+                	<ul>
+                    	<li><label><input type="checkbox" id="" value=""  name="cate[]" />小分类5</label></li>
+                    	<li><label><input type="checkbox" id="" value=""  name="cate[]" />小分类6</label></li>
+                    	<li><label><input type="checkbox" id="" value=""  name="cate[]" />小分类7</label></li>
+                    	<li><label><input type="checkbox" id="" value=""  name="cate[]" />小分类8</label></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+     
+	</div>
+
+
+	<div id="edit-main">
+		<div class="edit-box">
+			<div class="label"><label>标&nbsp;&nbsp;题</label></div>
+			<div class="input"><input type="text" placeholder="文章标题" class="input-sm" name="" id="" /></div>
+		</div>
+		<div class="edit-box">
+			<div class="label"><label>来&nbsp;&nbsp;源</label></div>
+			<div class="input"><input type="text" placeholder="文章来源" class="input-sm" name="" id="" /></div>
+		</div>
+		<div class="edit-box" id="kindeditor">
+			<textarea name="content" style="width:100%; height:300px;"></textarea>
+		</div>
+		<div class="edit-box">
+			<div class="label"><label>摘&nbsp;&nbsp;要</label></div>
+			<div class="input"><input type="text" placeholder="文章摘要" class="input-sm" name="" id="" /></div>
+		</div>
+		<div class="edit-box">
+			<div class="label"><label>关键字</label></div>
+			<div class="input"><input type="text" placeholder="输入关键字,半角空格分隔,  敲击回车键添加, 下面有个隐藏的input, 记录关键词" class="input-sm" name="" id="input-tag" /></div>
+		</div>
+		<div class="edit-box" id="tagslist">
+			<ul>
+				<li><span>关键</span><a class="del">x</a></li>
+				<li><span>词</span><a class="del">x</a></li>
+				<li><span>关键词</span><a class="del">x</a></li>
+			</ul>
+			<input type="hidden" value=" 关键 词 关键词 " name="tag" id="tag" />
+		</div>
+		<div class="edit-box">
+			<div class="label"><label>相册</label></div>
+			<div class="input" id="album">
+				<div class="album-img"><img src="images/test.png" /><input type="hidden" value="" name="album[]" /><a class="album-del">x</a></div>
+				<a id="addpic"></a>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+
+<div id="bottom">
+  <div class="left">
+		<button type="button" class="btn btn-success" id="publish"> 发 布 </button>
+		<button type="button" class="btn btn-default" id="preview">预览</button>
+		<button type="button" class="btn btn-default" id="draft">存草稿</button>
+		<button type="button" class="btn btn-default" id="cancel">取消</button>
+	</div>
+</div>
+
+</form>
+
+<script language="javascript">
+
+    $('.form_datetime').datetimepicker({
+		language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+    });
+
+	//删除标签
+	$(document).on('click','#tagslist ul li',function(){
+		var tags = $('#tag').val();
+		var tagdel = $(this).find('span').html();
+		var tagsnew = tags.replace(' ' + tagdel + ' ', ' ');//删除标签
+		$('#tag').val(tagsnew);
+		$(this).remove();
+	});
+
+	//删除封面图
+	$(document).on('click','#delcover',function(){
+		$('#cover-preview img').attr('src', 'images/nonecover.png'); //修改预览图
+		$('#cover').val(''); //设置提交值为空
+	});
+
+
+	$(function() {
+		//相册
+		$('#addpic').uploadify({
+			'swf'      : 'flash/uploadify.swf',
+			'uploader' : 'upload.html',
+			'buttonClass' : 'addpic',
+			'buttonImage' : 'images/addpic.png',
+			'fileTypeExts' : '*.gif; *.jpg; *.png',
+			'width'   :  84,
+			'height'   : 84,
+			'method'   : 'post',
+			'onUploadError' : function(f, eCode, eMsg, eString) {
+            	//
+			},
+			'onUploadComplete' : function(e, q, f) {
+				//上传成功操作
+				$('#addpic').before('<div class="album-img"><img src="images/test.png" /><input type="hidden" value="" name="album[]" /><a class="album-del">x</a</div>');
+	        }
+		});
+		
+		$('#addcover').uploadify({
+			'swf'      : 'flash/uploadify.swf',
+			'uploader' : 'upload.html',
+			'fileTypeExts' : '*.gif; *.jpg; *.png',
+			'buttonImage' : 'images/addcover.png',
+			'width'   :  86,
+			'height'   : 30,
+			'method'   : 'post',
+			'onUploadError' : function(f, eCode, eMsg, eString) {
+            	//
+			},
+			'onUploadComplete' : function(e, q, f) {
+				//上传成功操作
+				$('#cover-preview img').attr('src', 'images/previewcover.png'); //修改预览图 //这里拿一张图片做测试而已 实际根据后台脚本返回的图片地址值
+				$('#cover').val('images/previewcover.png'); //设置提交值为图片地址
+	        }
+		});
+		
+	});
+
+	//删除相册
+	$(document).on('click','.album-del',function(){
+		$(this).closest('.album-img').remove();
+	});
+	
+	//监听#input-tag
+	$(document).on('keydown','#input-tag',function(event){
+		var tags = $('#tag').val();
+		var tagsinput = $('#input-tag').val();
+		var tag = tagsinput.split(" ");
+		if (event.keyCode == 13) {
+			$('#tag').val(tags + tagsinput + ' '); //设置隐藏#tag值
+			for(var i=0;i<tag.length;i++){
+				if(tag[i].length>0){
+					$('#tagslist ul').append('<li><span>'+tag[i]+'</span><a class="del">x</a></li>');
+				}
+			}
+			$('#input-tag').val(''); //清空
+		}
+	});
+
+</script>
+
+</body>
+</html>

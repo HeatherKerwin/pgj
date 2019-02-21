@@ -1,0 +1,83 @@
+<html>
+<head>
+<title>管理后台</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="scripts/jquery-1.10.1.min.js" language="javascript"></script>
+<link rel="stylesheet" href="styles/reset.css"/>
+<!-- 最新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.2/css/bootstrap.min.css">
+<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.2/css/bootstrap-theme.min.css">
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.2/js/bootstrap.min.js"></script>
+<style>
+body {
+	background-repeat: no-repeat;
+	background-position: top right;
+	height: 75px;
+	border-bottom: 5px solid #135aa4;
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+	overflow: hidden;
+	background-color: #94b8e5;
+}
+td {
+	padding: 0 10px;
+	margin: 0;
+	font-size: 12px;
+}
+span {
+	padding: 0 5px;
+	color: #ddd;
+	line-height: 30px;
+	height: 30px;
+	display: inline-block;
+}
+span a{
+	color:#666;
+	text-decoration: none;
+}
+#global-search {
+	display: block;
+	height: 30px;
+	width: 250px;
+	margin-top: 10px;
+	text-align: right;
+}
+</style>
+
+</head>
+<script type="text/javascript">
+    function logout() {
+        if(window.confirm('您确定要退出吗？')) {
+        	parent.location.href = '../j_spring_cas_security_logout';
+        }
+    }
+</script>
+<body leftmargin="0" topmargin="0">
+<table width="100%" height="80" border="0" cellpadding="0" cellspacing="0" class="admin_topbg">
+  <tr>
+    <td align="left" valign="middle" style="text-align:left;vertical-align:middle;">
+		<img src="../images/logo_.png" style="height:52px;"/>
+    </td>
+    <td align="right">
+		<div id="global-search">
+			<form>
+			<!-- 
+				<div class="input-group input-group-sm pull-right">
+					<input type="text" class="form-control" placeholder="全站搜索">
+					<span class="input-group-addon glyphicon glyphicon-search"></span>
+				</div>
+			 -->
+			</form>
+			
+		</div>
+		<span><a href="javascript:void(0);" onclick="logout();" style="color:white;">退出</a></span>
+	</td>
+  </tr>
+</table>
+</body>
+</html>

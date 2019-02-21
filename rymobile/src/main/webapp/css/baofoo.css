@@ -1,0 +1,369 @@
+html { font-size: 62.5%; } /* 10*16 = 62.5% */
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: #eeeeee;
+    color: #2d2d2d;
+    font-size:16px;
+    font-size:1.6rem;
+    -webkit-text-size-adjust: none;
+}
+ul, li {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+
+img {
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    max-width: 100%;
+}
+input,select { -webkit-appearance:none; appearance: none; }
+input[type=radio]::-ms-check {border: none}
+input[type=checkbox]::-ms-check { display:none; }
+input[type=button]{
+    -webkit-appearance:none;
+    outline:none
+}
+input{
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    /*-webkit-user-select: none;*/
+    -moz-user-focus: none;
+    -moz-user-select: none;
+    -webkit-appearance:none;
+    outline: none;
+    border: none;
+}
+
+a, div, header, span {
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
+}
+a{color: #d43c33}
+.fl{float: left}
+.fr{float: right}
+.none{display: none}
+/*---------------------------------------*/
+.nav{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0%;
+}
+.w {
+    background-color: #FFFFFF;
+    width: 97%;
+    padding: 1.25rem 1.5%;
+}
+/*---------------------------------------*/
+
+/*绑定页面*/
+/*---------------------------------------*//*---------------------------------------*/
+/*银行卡类型选择*/
+.bankChose{
+    height: 3rem;
+    line-height: 3rem;
+    font-size: 2rem;
+}
+.bankChose-l{
+    width: 50%;
+    border-right: 0.1rem #e7e7e7 solid;;
+}
+/*radio圆形勾选单选框*/
+.bankChose-radio{
+    margin-left: 2.5rem;
+    margin-right: 0.5rem;
+}
+input[type=radio].bankChose-radio{
+    width: 2rem;
+    height: 2rem;
+    background: url(https://img.utiexian.com/rymobile/baofoo/weixuanzhong.png) no-repeat center;
+    background-size: 100%;
+
+}
+input[type=radio].bankChose-radio:checked{
+    width: 2rem;
+    height: 2rem;
+    background: url(https://img.utiexian.com/rymobile/baofoo/xuanzhong.png) no-repeat center;
+    background-size: 100%;
+}
+/*---------------------------------------*/
+/*表单列表*/
+.form {
+    padding: 0.2rem 1.5% !important;
+    margin-top: 1rem;
+    border-top: 0.1rem #e7e7e7 solid;
+    border-bottom: 0.1rem #e7e7e7 solid;
+}
+ul.list{
+    width: 100%;
+}
+ul.list li{
+    width: 97%;
+    margin: 0 1.5%;
+    min-height: 4rem;
+    line-height: 4rem;
+    border-bottom: 0.1rem #e7e7e7 solid;
+    vertical-align: middle;
+}
+ul.list li:last-child{
+    border-bottom: none;
+}
+ul.list li input{
+    text-align: right;
+    height: 3rem;
+    line-height: 3rem;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+    border: none;
+    background: none;
+}
+/*银行卡图标*/
+img.bankIcon{
+    width: 2.5rem;
+    height: 1.8rem;
+    margin-left: 0.5rem;
+    margin-top: 1rem;
+}
+/*选择银行卡下拉图标*/
+img.choseIcon{
+    width: 2rem;
+    height: 2rem;
+    margin-left: 0.5rem;
+    margin-top: 1rem;
+}
+/*获取验证码*/
+.phoneCode{
+    height: 3rem;
+    line-height: 3rem;
+    margin-top: 0.5rem;
+    margin-left: 0.6rem;
+    padding: 0 0.5rem;
+    background: #d43c33;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 0.5rem;
+}
+/*---------------------------------------*/
+/*按钮*/
+input[type=button].btn{
+    width: 90%;
+    margin: 1rem 5%;
+    background: #d43c33;
+    border-radius: 0.4rem;
+    color: #FFFFFF;
+    font-size: 2rem;
+    height: 3.6rem;
+    line-height: 3.6rem;
+}
+input[type=button].btn-on{
+    background: #e84c3d;
+}
+
+input[type=button].btn-no{
+    width: 90%;
+    margin: 1rem 5%;
+    background: #dddddd;
+    border-radius: 0.4rem;
+    color: #f1fafa;
+    font-size: 2rem;
+    height: 3.6rem;
+    line-height: 3.6rem;
+}
+
+input[type=submit].btn{
+    width: 90%;
+    margin: 1rem 5%;
+    background: #d43c33;
+    border-radius: 0.4rem;
+    color: #FFFFFF;
+    font-size: 2rem;
+    height: 3.6rem;
+    line-height: 3.6rem;
+}
+input[type=submit].btn-on{
+    background: #e84c3d;
+}
+
+input[type=submit].btn-no{
+    width: 90%;
+    margin: 1rem 5%;
+    background: #dddddd;
+    border-radius: 0.4rem;
+    color: #f1fafa;
+    font-size: 2rem;
+    height: 3.6rem;
+    line-height: 3.6rem;
+}
+
+/*---------------------------------------*/
+/*选择银行卡弹窗*/
+.maskWindow{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: rgba(0,0,0,0.6);
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+/*输入提示*/
+.mask-prompt{
+    background: #FFFFFF;
+    width: 60%;
+    min-height: 8rem;
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    margin-top: -3rem;
+    padding: 0.5rem 1rem 0;
+    border-radius: 0.6rem;
+    text-align: center;
+}
+.prompt-title{
+    width: 100%;
+    font-size: 1.8rem;
+    line-height: 2rem;
+    padding: 1rem 0;
+    /* min-height: 4rem; */
+    border-bottom: 0.1rem #e7e7e7 solid;
+}
+.prompt-btn{
+    color: #d43c33;
+    font-size: 1.8rem;
+    line-height: 4rem;
+}
+/*选择银行卡*/
+.mask-bank{
+    /*width: 90%;*/
+    height: auto;
+    background: #FFFFFF;
+    padding: 1rem 0.5rem;
+    margin: 10% 5%;
+    border-radius: 1rem;
+}
+.mask-bank ul {
+
+}
+.mask-bank ul li{
+    height: 3.5rem;
+    border-bottom: 0.1rem #e7e7e7 solid;
+    padding-top: 0.5rem;
+}
+.bank-img{
+    width: auto;
+    height: 3rem;
+}
+/*---------------------------------------*//*---------------------------------------*/
+
+/*支付页面*/
+/*---------------------------------------*/
+/*开户行*/
+.form-pay {
+    margin-top: 0 !important;
+    font-size: 1.8rem;
+}
+.pay-money{
+    color: #d43c33;
+    margin-left: 1rem;
+}
+/*---------------------------------------*/
+/*查看金额详情*/
+ul.list-pay{
+    width: 100%;
+    font-size: 1.2rem;
+}
+ul.list-pay li{
+    width: 97%;
+    margin: 0 1.5%;
+    min-height: 2.6rem;
+    line-height: 2.6rem;
+    vertical-align: middle;
+}
+ul.list-pay li:first-child{
+    border-top: 0.1rem #e7e7e7 solid;
+    padding-top: 0.3rem;
+}
+/*---------------------------------------*/
+/*选择银行卡*/
+ul.list-pay-chose{
+    width: 100%;
+}
+ul.list-pay-chose li{
+    width: 97%;
+    margin: 0 1.5%;
+    min-height: 4.2rem;
+    line-height: 4.2rem;
+    vertical-align: middle;
+    border-bottom: 0.1rem #e7e7e7 solid;
+}
+.pay-choseRadio{
+    margin-top: 1rem;
+    margin-left: 0 !important;
+}
+.pay-choseIcon{
+    width: 3rem;
+    height: 3rem;
+    margin-top: 0.5rem;
+}
+.bank-text{
+    line-height: 1.4rem;
+    margin-left: 0.6rem;
+    margin-top: 0.8rem;
+}
+.bank-text span{
+    color: #049e5b;
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+}
+/*绑定新卡*/
+a.bank-add{
+    width: 10em;
+    height: 4rem;
+    margin: 0.6rem auto 0;
+    vertical-align: middle;
+    text-align: center;
+    display: block;
+}
+a.bank-add img{
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-top: 0.8rem;
+    margin-right: 0.3rem;
+}
+a.bank-add span{
+    color: #d43c33;
+    font-size: 1.8rem;
+    line-height: 4rem;
+}
+
+/*---------------------------------------*/
+/*支付结果*/
+.result{
+    text-align: center;
+}
+.pay-result{
+    margin-top: 35%;
+    line-height: 4rem;
+    height: 4rem;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+.pay-result img{
+    width: 4rem;
+    height: 4rem;
+    margin-right: 1rem;
+    margin-left: 30%;
+}
+.back{
+    color: #d43c33;
+    line-height: 2rem;
+}

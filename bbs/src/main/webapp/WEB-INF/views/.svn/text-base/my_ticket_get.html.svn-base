@@ -1,0 +1,117 @@
+#include("./common/header.html", {title:"转盘抽奖地址"})
+#include("./common/right.html")
+<div class="container">
+	<div class="row">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form id="award_form" class="form-horizontal" role="form">
+					<input type="hidden" id="aid" name="aid" value="${aid}">
+					<div class="form-group">
+						 <label for="inputEmail1" class="col-sm-2 control-label">收货人姓名：</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="name" name="name" value="" placeholder="请输入收货人姓名"/>
+						</div>
+					</div>
+					<div class="form-group">
+						 <label for="inputEmail1" class="col-sm-2 control-label">电话号码：</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="phone" name="phone" value="" placeholder="请输入你的电话号码"/>
+						</div>
+					</div>
+					<div class="form-group">
+	                  <label class="col-sm-2 control-label">省、市、区：</label>
+	                   <div class="col-sm-2">
+	                       <select id="prov" name="prov" class="selectpicker show-tick form-control" data-live-search="false" onchange="selectC();">
+	                       </select>
+	                   </div>
+	                   <div class="col-sm-3">
+	                       <select id="city" name="city" class="selectpicker show-tick form-control" data-live-search="false" onchange="selectD();">
+	                       </select>
+	                   </div>
+	                   <div class="col-sm-3">
+	                       <select id="dist" name="dist" class="selectpicker show-tick form-control" data-live-search="false">
+	                       </select>
+	                   </div>
+	                 </div>
+	                 <div class="form-group">
+                        <label for="location" class="col-sm-2 control-label">详细地址</label>
+                        <div class="col-sm-8">
+                            <textarea id="address" name="address" class="form-control" rows="5" placeholder="请输入你的详细地址"></textarea>
+                        </div>
+                    </div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-4">
+							 <button type="button" class="btn btn-default btn-danger btn-block submit ladda-button" data-style="zoom-out">我要领取</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>	
+</div>
+#include("./common/footer.html") 
+</body>
+<script type="text/javascript">
+var p;//省
+var c;//市
+var d;//区
+$(document).ready(function(){
+	getRegion();//初始化省市区
+});
+function getRegion(){
+	$.post(BASE + '/get/region', function(response){
+		if(response){
+			if(response.status == 200){
+				region = response.data;
+				initPCD(region);
+			}
+		}
+	});
+}
+
+/**
+ * 初始化省市区
+ */
+function initPCD(obj){
+    p = obj.p;
+    c = obj.c;
+    d = obj.d;
+    var phtml = "";
+    for(var i=0;i<p.length;i++){
+        var provice = p[i];
+        phtml += "<option value='"+provice.id+"'>"+provice.name+"</option>";
+    }
+    $("#prov").html(phtml);
+    selectC();
+}
+
+/**
+ * 选择市
+ */
+function selectC(){
+    var p = $("#prov").val();
+    var chtml = "";
+    for(var i=0;i<c.length;i++){
+        if(p==(c[i].parentId)){
+            chtml += "<option value='"+c[i].id+"'>"+c[i].name+"</option>";
+        }
+    }
+    $("#city").html(chtml);
+    selectD();
+}
+
+/**
+ * 选择区
+ */
+function selectD(){
+    var c = $("#city").val();
+    var dhtml = "";
+    for(var i=0;i<d.length;i++){
+        if(c==(d[i].parentId)){
+            dhtml += "<option value='"+d[i].id+"'>"+d[i].name+"</option>";
+        }
+    }
+    $("#dist").html(dhtml);
+}
+</script>
+</html>

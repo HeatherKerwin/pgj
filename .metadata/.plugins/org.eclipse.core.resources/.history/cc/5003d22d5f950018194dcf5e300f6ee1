@@ -1,0 +1,8 @@
+[#import "/common/main.ftl" as main]
+[#include "/common/setting.ftl"]
+[@main.body title='票管家-票据管理']
+[@main.header currentmenu='1' topindex='4'/]
+
+
+[@main.footer/]
+[/@main.body]

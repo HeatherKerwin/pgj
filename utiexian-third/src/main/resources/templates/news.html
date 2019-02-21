@@ -1,0 +1,37 @@
+[#import "/common/main.html" as main]
+[#include "/common/setting.html"]
+[@main.body title='票据管家-新闻中心']
+
+[@main.pager/]
+<div class="main">
+	这是新闻列表！
+	<div id="content"></div>
+   	<div id="pager"></div>
+</div>
+<script type="text/x-handlebars-template" id="NEWS">
+{{#each list}}
+	<p>{{id}}--{{title}}</p>
+{{/each}}
+</script>
+<script type="text/javascript">
+var pageIndex = 1;//分页
+$(document).ready(function(){
+	$('#pager').sjAjaxPager({
+        url: "${basePath}/news/page",
+        pageIndex:pageIndex,
+        searchParam: {
+        },beforeSend: function () {
+        },success: function (data) {
+        	var source = $("#NEWS").html();
+            var template = Handlebars.compile(source);
+            var html = template(data.data);
+            $("#content").html(html);
+        },complete: function(){
+        },error:function(){
+        	
+        }
+    });
+});
+</script>
+
+[/@main.body]

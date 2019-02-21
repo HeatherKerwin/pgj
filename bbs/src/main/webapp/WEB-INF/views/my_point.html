@@ -1,0 +1,38 @@
+#include("./common/header.html", {title:"我的积分"})
+#include("./common/right.html")
+#include("./common/my_menu.html")
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column calendar-viewer">
+			<strong class="mt20">我的积分</strong>
+			<div class="row mt20 mb30">
+				<div class="pull-left pl25 pr25 account-avatar">
+					#if(null != login_user)
+						<img src="${login_user.avatar}" alt="${login_user.user_name}" class="img-circle head-img"/>
+					#else
+						<img alt="游客" src="${imgPath}/bbs/bbs/head.png" class="img-circle"/>
+					#end
+				</div>
+				<div class="pull-left account-details col-md-4">
+			        <div style="height:25px;">
+			        	<span class="pull-left">${cosname.current.name}（${cosname.score}）</span>
+			        	<span class="pull-right">${cosname.next.name}（${cosname.next.min}）</span>
+			        </div>
+			        <div class="progress mb5" style="height: 10px;border-radius: 8px;">
+					   <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:${cosname.progress}%;"></div>
+					</div>
+					<p class="progress-text">距离下次升级还需要<font style="color:red"> ${cosname.tonext} </font>积分</p>
+				</div>
+			</div>
+			<strong class="mt20">积分规则</strong>
+			<p class="mt10 mb30">积分是用户通过日常的操作行为获取的，用户获取一定的积分后会达到相应的等级！后期等级特权即将推出，积分越高，享有的特权越多越丰富，敬请期待！</p>
+			<strong >积分等级规则</strong>
+			<div class="col-md-12 mt20">
+				<img class="img-thumbnail" alt="300x200" src="${imgPath}/bbs/bbs/integral.jpg" />
+			</div>
+		</div>
+	</div><!-- /.row -->
+</div><!-- /.container -->
+#include("./common/footer.html") 
+</body>
+</html>

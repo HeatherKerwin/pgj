@@ -1,0 +1,326 @@
+@charset "utf-8";
+/* CSS Document */
+/*注册头部*/
+.register_top{
+	width: 100%;
+	height: auto;
+	background: #FFF;
+	border-bottom: #f2f2f2 solid 1px;
+	margin-top: 0.5rem;
+}
+.register_top_l{
+	width: 50%;
+	height: auto;
+	margin: 0.5rem 0 0.5rem 0.5rem;
+	display: block;
+}
+
+/*banner*/
+.banner{
+	width: 100%;
+	height: auto;
+}
+.banner img{
+	width: 100%;
+	height: auto;
+}
+/*注册输入*/
+.register_con{
+	width: 88%;
+	height: auto;
+	margin: 4.5% 6% 0 6%;
+	background: #FFF;
+}
+.register_phone , .register_captcha ,.login_password{
+	width: 100%;
+	height: 4.5rem;
+	border: 1px solid #c8c8c8;
+	border-radius: 0.3rem;
+	font-size: 3.2rem;
+	line-height: 4.7rem;
+	margin: 2.6% 0;
+}
+.phone_icon , .captcha_icon ,.password_icon{
+	width: 5%;
+	height: 3.5rem;
+	margin: .5rem 3%;
+	text-align: center;
+}
+.phone_icon{
+	background:url(../../images/bbs/shoujihao.png) center no-repeat;
+	background-size: 100% auto;
+}
+.captcha_icon{
+	background:url(../../images/bbs/yanzhengma.png) center no-repeat;
+	background-size: 100% auto;
+}
+.password_icon{
+	background: url(../../images/bbs/mima.png) center no-repeat;
+	background-size: 100% auto;
+}
+.register_phone input , .register_captcha input ,.login_password input{
+	background: none;
+	border: 0;
+	font-size: 3.2rem;
+	line-height: 4.5rem;
+}
+.register_phone input ,.login_password input{
+	width: 88%;
+}
+.register_captcha input{
+	width: 40%;
+}
+input.register_yzm{
+	height: 4.7rem;
+	font-size: 3.2rem;
+	color: #fff;
+	background: #f84040;
+	boeder: 0;
+	text-align: center;
+	border-radius: 0 0.3rem 0.3rem 0;
+	margin-top: -0.1rem;
+	margin-right: -0.1rem;
+	padding: 0;
+}
+.register_btn{
+	width:88%;
+	background:#f84040;
+	border-radius:.5rem;
+	color:#FFFFFF;
+	font-size: 3rem;
+	border: 0;
+	height: 4.5rem;
+	line-height: 4.5rem;
+	margin: 0 6%;
+}
+/*复选框*/
+.checkbox  {
+	float: left;
+	margin:0 5% 2% ;
+	font-size: 3rem;
+	color: #2d2d2d;
+}
+.ui-list-checkbox .ui-checkbox {
+	position:absolute;
+	top:50%;
+	left:0;
+	margin-top:-1rem
+}
+.ui-list-checkbox>li {
+	padding-left:40px
+}
+.ui-checkbox input {
+	display:inline-block;
+	width:25px;
+	height:1px;
+	position:relative;
+	overflow:visible;
+	border:0;
+	background:0 0;
+	-webkit-appearance:none;
+	outline:0;
+	vertical-align:middle
+}
+.ui-checkbox input:before {
+	background: url(../../images/bbs/icon11.png) no-repeat -50px -25px;
+	-webkit-background-size:150px auto;
+	content:"";
+	display:block;
+	width:25px;
+	height:26px;
+	position:absolute;
+	left:0;
+	top:-10px
+}
+.ui-checkbox input:checked:before {
+	background-position:-25px -25px
+}
+.ui-checkbox-s {
+	width:19px;
+	font-size: 2.5rem;
+	line-height: 2.8rem;
+}
+.ui-checkbox-s input:before {
+	width:21px;
+	height:20px;
+	background-position:-100px -25px
+}
+.ui-checkbox-s input:checked:before {
+	background-position:-75px -25px
+}
+.checkbox a{
+	color: #d43c33;
+}
+
+.register_foot{
+	width: 88%;
+	height: 3rem;
+	font-size: 3rem;
+	color: #2d2d2d;
+	margin: 4.6% 6%;
+}
+.register_foot a{
+	font-size: 3rem;
+	color: #2d2d2d;
+}
+.why{
+	width: 100%;
+	margin: 5% 0;
+}
+.why img{
+	width:100%;
+	height:auto;
+}
+.jieshao{
+	width: 90%;
+	margin: 2% 5%;
+}
+.jieshao img{
+	width: 100%;
+	height: auto;
+}
+
+.windowDiv{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.6);
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+}
+.successWindow{
+	width: 80%;
+	height: auto;
+	position: relative;
+	top: 20%;
+	left: 10%;
+	z-index: 1001;
+}
+.close1{
+	width: 4rem;
+	height: 4rem;
+	position: relative;
+	top: 1.5rem;
+	left: 93%;
+	border: 0;
+	background: url("../../images/bbs/close.png") center no-repeat;
+	background-size: 100% auto;
+	z-index: 1002;
+}
+.successDiv{
+	padding: 2rem;
+	background: #ffffff;
+	border-radius: 1rem;
+}
+.successDiv p{
+	font-size: 3.6rem;
+	text-align: center;
+	color: #f84040;
+	font-weight: 600;
+	margin-top: 2rem;
+	margin-bottom: 2.5rem;
+}
+.xiyiWindow{
+	width: 82%;
+	position: relative;
+	top: 10%;
+	left: 7%;
+}
+.window{
+	width: 100%;
+	height: 80%;
+	position: relative;
+	background: #FFFFFF;
+	border: 1px solid #d43c33;
+	line-height: 2rem	;
+	text-indent: 1rem;
+	border-radius: 0.5rem;
+	padding: 1rem 2%;
+	overflow: auto;
+	z-index: 1001;
+}
+.close2{
+	width: 4rem;
+	height: 4rem;
+	position: absolute;
+	top: -2.6rem;
+	right: -3rem;
+	border: 0;
+	background: url("../../images/bbs/close.png") center no-repeat;
+	background-size: 100% auto;
+	z-index: 1002;
+}
+
+.account{
+	width: 54%;
+	height: auto;
+	margin: 5% 23% 0;
+}
+.account img{
+	width: 100%;
+	height: auto;
+}
+.success{
+	width: 90%;
+	height: auto;
+	background: white;
+	margin-top: 1rem;
+	padding:0 5% 1rem;
+}
+.success p{
+	font-size: 2.5rem;
+	line-height: 2.5rem;
+	text-indent: 3rem;
+	color: #323232;
+}
+p.successTitle{
+	font-weight: bold;
+	font-size: 3rem;
+	text-indent:0;
+	border-bottom: 1px solid #dadada;
+	margin: 4% 0;
+}
+p.successRed1{
+	 color: #f84040;
+	 font-weight: 600;
+ }
+span.successRed2{
+	 color: #f84040;
+ }
+.success_btn{
+	width: 80%;
+	height: 4.5rem;
+	margin: 0 10% 4%;
+	background: #f84040;
+	border:0;
+	border-radius: 0.4rem;
+	color: #fff;
+	font-size: 3.2rem;
+	line-height: 4.5rem;
+}
+.copyright{
+	font-size: 2.5rem;
+	line-height: 2.7rem;
+	color: #868686;
+	text-align: center;
+	margin-bottom: 4%;
+}
+
+.xuxian1{
+	width: 55%;
+	height: auto;
+	position: absolute;
+	left: 33%;
+	top: 0.5rem;
+	z-index: 11;
+}
+.xuxian2{
+	width: 66%;
+	height: auto;
+	position: absolute;
+	left: 27%;
+	top: 5.5rem;
+	z-index: 12;
+}
+

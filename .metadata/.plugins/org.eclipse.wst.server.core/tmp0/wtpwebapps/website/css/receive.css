@@ -1,0 +1,31 @@
+@charset"utf-8";
+
+/*定位图标*/
+.position{
+    background: url("../images/receive/position.png") center no-repeat;
+    background-size: auto;
+}
+
+/*价格微调加减*/
+.TXjj2{
+background: url('../images/receive/jiajian2.png') no-repeat center;
+background-size: 100% auto;
+}
+/*关闭按钮图标*/
+.redClose{
+    background: url("../images/img/REDclose.png") center no-repeat;
+    background-size: auto;
+}
+
+.select1{
+    /*背景图*/
+    background: url("../images/receive/select1.png") no-repeat;
+    /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+    padding-right: 14px;
+}
+.select2{
+    /*背景图*/
+    background: url("../images/receive/select2.png") no-repeat;
+    /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+    padding-right: 35px;
+}

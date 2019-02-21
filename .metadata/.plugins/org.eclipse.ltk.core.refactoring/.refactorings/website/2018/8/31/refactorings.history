@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;website/src/main/webapp/WEB-INF/freemarker/manage/index.ftl&apos; to &apos;manage.ftl&apos;" description="Rename resource &apos;index.ftl&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/webapp/WEB-INF/freemarker/manage/index.ftl" name="manage.ftl" stamp="1533109645706" updateReferences="true"/>
+</session>

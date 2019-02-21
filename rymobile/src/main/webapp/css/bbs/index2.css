@@ -1,0 +1,148 @@
+@charset "utf-8";
+/* CSS Document */
+
+.account{
+	width: 80%;
+	height: auto;
+	margin: 4% 10%;
+}
+.account img{
+	width: 100%;
+	height: auto;
+}
+.register1{
+	width: 90%;
+	height: 3.6rem;
+	margin: 4% 5%;
+	border: 0.1rem solid #f84040;
+	border-radius: 0.4rem;
+}
+.register1 input[type="tel"]{
+	width: 66%;
+	height: 3.6rem;
+	font-size: 3.2rem;
+	line-height: 3.6rem;
+	border: 0;
+	background: none;
+	margin-left: 4%;
+}
+.register1 input[type="button"]{
+	width: 30%;
+	height: 3.6rem;
+	background: #f84040;
+	border-radius: 0 0.4rem 0.4rem 0;
+	border: 0;
+	color: #fff;
+	font-size: 3.2rem;
+}
+.why{
+	width: 100%;
+}
+.why img{
+	width:100%;
+	height:auto;
+}
+.jieshao{
+	width: 52%;
+	margin: 2% 24%;
+}
+.jieshao img{
+	width: 100%;
+	height: auto;
+}
+.money{
+	width: 88%;
+	margin: 4% 6%;
+}
+.money_title{
+	font-size: 2.8rem;
+	color: #2d2d2d;
+	text-align: center;
+}
+.money_show{
+	font-size: 4.4rem;
+	color:#f84040;
+	text-align: center;
+	margin-top: 2%;
+}
+.total ,.month{
+	width: 50%;
+}
+.register_btn1{
+	width: 68%;
+	height: 4rem;
+	margin: 4% 16%;
+	background: #f84040;
+	border:0;
+	border-radius: 0.4rem;
+	color: #fff;
+	font-size: 3.6rem;
+	line-height: 4rem;
+}
+.copyright{
+	font-size: 2.6rem;
+	line-height: 2.7rem;
+	color: #868686;
+	text-align: center;
+	margin-bottom: 4%;
+}
+
+/*success*/
+.successTop{
+	width: 100%;
+	height: auto;
+	background: #eee;;
+}
+.successTop a.register_top_r{
+	font-size: 3.4rem;
+	color: #f84040;
+	margin-top:0.8rem;
+	margin-right: 3.3%;
+}
+.success1{
+	width: 100%;
+	height: auto;
+	background: white;
+	text-align: center;
+	font-size: 2.8rem;
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+}
+.success1Title{
+	font-size: 4.2rem;
+	color: #f84040;
+	margin-bottom: 1rem;
+}
+.successBtn{
+	width: 80%;
+	height: 4.2rem;
+	font-size: 3.6rem;
+	line-height: 4.2rem;
+	background: #f84040;
+	border: 0;
+	border-radius: 0.4rem;
+	color: white;
+	margin-top: 2rem;
+}
+
+.success2{
+	width: 90%;
+	height: 60%;
+	background: white;
+	margin-top: 1rem;
+	padding: 1rem 5%;
+}
+.success2 p{
+	font-size: 2.5rem;
+	line-height: 2.5rem;
+	text-indent: 3rem;
+	color: #323232;
+}
+p.success2Title{
+	font-weight: 600;
+	font-size: 3rem;
+	text-indent:0;
+	border-bottom: 1px solid #dadada;
+}p.success2Gift{
+	 color: #f84040;
+}

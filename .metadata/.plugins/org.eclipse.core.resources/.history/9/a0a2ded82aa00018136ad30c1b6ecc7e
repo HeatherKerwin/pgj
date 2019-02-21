@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 无内容元素 -->
+    <meta name="author" content="Hengtian">
+    <!-- 设置网站关键字 -->
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>七夕活动-兑换奖品</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- 以下两个插件用于在IE8以及以下版本浏览器支持HTML5元素和媒体查询，如果不需要用可以移除 -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript" src="js/jQueryRotate.2.1.js"></script>
+    <script type="text/javascript" src="js/zhuanpan.js"></script>
+</head>
+<body>
+<header>
+    <img src="images/logo.png" class="img-responsive logo" alt="logo">
+    <h3 class="">兑换奖品</h3>
+</header>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <img src="images/banner.jpg" class="img-responsive" alt="banner">
+
+        <form class="mt10">
+            <div class="form-group mt10">
+                <input type="text" class="form-control" id="name" placeholder="姓名">
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control" id="mobile" maxlength="11" placeholder="手机号">
+            </div>
+            <div class="form-group row">
+                <div class="col-xs-8">
+                    <input type="password" class="form-control" id="code" placeholder="短信验证码">
+                </div>
+                <input type="submit" id="codesend" class="btn btn-module" value="获取验证码">
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" rows="3" id="place" placeholder="收货地址"></textarea>
+            </div>
+            <button type="submit" class="btn btn-module btn-block">提交</button>
+        </form>
+
+        <div style="height: 400px"></div>
+    </div>
+</div>
+
+</body>
+<script>
+    $(function(){
+        $("#codesend").click("tap", codesend);//获取验证码
+    });
+    /**
+     * 点击获取验证码
+     */
+    function codesend(){
+        var mobile = $("#mobile").val();
+        var p = validateMobile(mobile);//验证手机
+        if(!p){
+            myToast('你输入的手机不符合格式');
+            return;
+        }
+        timeshow = 60;
+        $.ajax({
+            url:BASEPATH + "",
+            type:"post",
+            data:{"mobile":mobile,"flag":"quicklogin"},
+            dataType:"json",
+            success:function(data){
+                if(data.response == "success"){
+                    $('#codesend').val(timeshow+" S");
+                    $("#codesend").attr({"disabled":"disabled"});
+                    $("#codesend").removeClass("btn-module").addClass("btn-default");
+                    for(i=1;i<=timeshow;i++) {
+                        window.setTimeout("update_p(" + i + ","+timeshow+")", i * 1000);
+                    }
+                }else{
+                    myError(data.msg);
+                }
+            }
+        });
+    }
+
+    /**
+     *  验证码倒计时
+     */
+    function update_p(num,t) {
+        if(num == t) {
+            $('#codesend').val("重新发送 ");
+            $("#codesend").removeClass("btn-default").addClass("btn-module");
+            document.getElementById("codesend").disabled="";
+        }
+        else {
+            $('#codesend').val(t-num+" s重新发送");
+        }
+    };
+</script>
+</html>

@@ -1,0 +1,750 @@
+[#import "/common/main.html" as main]
+[#include "/common/setting.html"]
+[@main.body title='云票据-开户管理-完成开户']
+<link rel="stylesheet" href="${basePath}/css/yonyou/discountConfirmation.css">
+<link rel="stylesheet" href="${basePath}/js/ajaxPager/page.css">
+<link rel="stylesheet" href="${basePath}/css/yonyou/authentication.css">
+<link rel="stylesheet" href="${basePath}/css/yonyou/authentication_success.css">
+<link rel="stylesheet" href="${basePath}/css/yonyou/mask.css">
+<link rel="stylesheet" href="${basePath}/css/validationEngine.jquery.css">
+<link rel="stylesheet" href="${basePath}/css/template.css">
+
+<script type="text/javascript" src="${basePath}/js/jquery.validationEngine-zh_CN.js"></script>
+<script type="text/javascript" src="${basePath}/js/jquery.validationEngine.js"></script>
+
+<!-- 头部 -->
+[@main.header currentmenu='5'/]
+<!-- 头部end -->
+
+<div class="wrap authenticationWrap">
+    <!--top-->
+    <div class="authenticationTop">
+        <label>开户管理</label>
+        <a href="javascript:void(0);" class="contractBtn">开户合同</a>
+    </div>
+    <!--开户信息-->
+    <div class="authenticationCon">
+        <!--左侧-->
+        <div class="toggleList toggleLeft">
+
+            <!--企业法人营业执照-->
+            <div class="prependCon">
+                <!--标签title-->
+                <div class="toggleTop">
+                    <label>企业法人营业执照</label>
+                    <img class="toggleIcon" src="${basePath}/images/yonyou/authentication/down.png" alt="">
+                </div>
+                <!--内容-->
+                <div class="toggleCon" style="display: block">
+                    <ul class="accountDiv">
+                        <li>
+                            <label for="name">公司名称：</label>
+                            <input type="text" id="name" maxlength="60" readonly>
+                        </li>
+                        <li>
+                            <label for="bizLicenceRegisteredNo">注册号：</label>
+                            <input type="text" id="bizLicenceRegisteredNo" maxlength="18" readonly>
+                        </li>
+                        <li>
+                            <label for="bizLicenceLegalName">法人姓名：</label>
+                            <input type="text" id="bizLicenceLegalName" maxlength='25' readonly>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 银行信息-->
+            <div class="prependCon">
+                <!--标签title-->
+                <div class="toggleTop">
+                    <label>银行信息</label>
+                    <img class="toggleIcon" src="${basePath}/images/yonyou/authentication/down.png" alt="">
+                </div>
+                <!--内容-->
+                <div class="toggleCon" style="display: block">
+                    <ul class="accountDiv">
+                        <li>
+                            <label for="bankstr">开户行行号：</label>
+                            <input type="text" id="bankstr" readonly>
+                        </li>
+                        <li>
+                            <label for="bankAcctAcctNameStr">账户名：</label>
+                            <input type="text" id="bankAcctAcctNameStr" readonly>
+                        </li>
+                        <li>
+                            <label for="bankAcctAcctNoStr">账号：</label>
+                            <input type="text" id="bankAcctAcctNoStr" readonly>
+                        </li>
+                        <li>
+                            <label for="contactName">经办人：</label>
+                            <input type="text" id="contactName" readonly>
+                        </li>
+                        <li>
+                            <label for="contactMobile">手机号：</label>
+                            <input type="text" id="contactMobile" readonly>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <!--左侧end-->
+
+        <!--右侧-->
+        <div class="toggleList">
+
+            <!-- 出票对公账户管理-->
+            <div class="accountCon">
+                <div class="accountTitle">出票对公账户管理：</div>
+                <p class="accountAlert">您的登录用户名为：<span class="username"></span>，第一次登录请重置密码后再登录。</p>
+
+                <!--选择支付银行卡-列表-->
+                <ul class="bankList" id="cibBankList">
+                </ul>
+
+                <!-- add添加新卡 -->
+                <div class="addbank" id="addbank">
+                    <label for="bank_add">
+                        <input type="button" id="bank_add" style="display: none">
+                        <img src="https://img.utiexian.com/website/discount/jia1.png" alt="bank_add" width="30" height="30">
+                    </label>
+                </div>
+
+                <!-- add_item -->
+                <div class="addItem" style="display: none" id="bindingBankWindow">
+                    <!--申请绑卡-->
+                    <ul class="applyBank" style="display: none" id="applyBankWindow">
+                        <li>
+                            <input type="button" value="请选择开户行" class="bankBtn" readonly id="bankStr">
+                            <input type="hidden" id="bankAcctBankNo"/>
+                            <input type="hidden" id="bankAcctCnapsCode"/>
+                            <input type="hidden" id="bankAcctBankBranch"/>
+                        </li>
+                        <li>
+                            <input type="number" placeholder="请输入对公账户账号" maxlength="18" id="bankAcctAcctNo" class="validate[required]">
+                        </li>
+                        <li>
+                            <input type="text" placeholder="请输入账户名" id="bankAcctAcctName" maxlength="60" class="validate[required]">
+                        </li>
+                        <li>
+                            <p>*请添加常用账户，绑定对公银行账户不超过四个。每次贴现时，需要选择贴现票据的最后一手背书银行账号，该账号同时也是本次贴现交易的收款账号！</p>
+                        </li>
+                        <li>
+                            <a href="#" onclick="applyForToCard();" id="bindingBank">申请绑卡</a>
+                        </li>
+                    </ul>
+                    <!--完成绑卡-->
+                    <ul class="finishBank" style="display: none" id="finishBankWindow">
+                        <li>
+                            <label for="">户名：<span class="bankAcctAcctNo"></span></label>
+                        </li>
+                        <li>
+                            <label for="">账号：<span class="bankAcctAcctName"></span></label>
+                        </li>
+                        <li>
+                            <input type="number" placeholder="请填写该银行卡收到的小额款项" oninput="checkMoney();" id="money" class="money">元
+                        	<input type="hidden" id="cibBankId"/>
+                        </li>
+                        <li>
+                            <p>已提交开户申请，申请绑定的银行账号里会收到一笔小额款项，将收到的金额填写上，最后点击“完成绑卡”，即可完成绑卡。</p>
+                        </li>
+                        <li>
+                            <!--小额款项未输入了不可点击（灰色）-->
+                            <a href="javascript:void(0);" class="gray bindBtn" id="confirmAppraisal">完成绑卡</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <a class="discountBtn" onclick="Showall();">登录执剑人</a>
+            </div>
+
+        </div>
+        <!--右侧end-->
+
+    </div>
+    <!--开户信息end-->
+
+
+</div>
+
+<!--弹窗-->
+<div class="maskWindow" id="maskWindow" style="display: none">
+    <div class="maskBg"></div>
+    <div class="maskWrap maskWrapSmall">
+        <!--top-->
+        <div class="maskTop">
+            <!--弹窗名称-->
+            <div id="title" class="maskTitle">开户合同</div>
+            <!--关闭按钮-->
+            <a class="maskClose">
+                <img src="${basePath}/images/yonyou/common/closeIcon.png" alt="关闭">
+            </a>
+        </div>
+        <!--top end-->
+
+        <!--内容容器-->
+        <div class="maskCon">
+            <!--开户声明-->
+            <div class="maskDiv" style="display: none" id="sendEmailWindow">
+                <ul class="maskForm">
+                    <li>
+                        <label for="email">发送合同至您的邮箱</label>
+                        <input type="email" id="email" maxlength="30" placeholder="请输入经办人邮箱号" style="width: 300px">
+                        <input type="hidden" id="corpNo"/>
+                    </li>
+                </ul>
+            </div>
+            <!--开户合同-->
+            <!--开户行名称-->
+            <div class="maskDiv bankWindow" style="display: none" id="bankWindow">
+                <div class="searchBank">
+                    <input type="text" id="bank_branch" maxlength="25" placeholder="请输入分支行号或分支行关键词">
+                    <a href="#" onclick="loadBank();">搜索</a>
+                </div>
+                <p id="promptStr" style="display: none">暂无查询结果,您可以尝试更改查询条件搜索。</p>
+                <ul id="banks" class="searchBankList" style="display: none">
+                    
+                </ul>
+            </div>
+        </div>
+        <!--内容容器end-->
+
+        <!--弹窗底部操作-->
+        <div class="maskFooter" id="maskFooter" style="display: none">
+            <!--开户声明-->
+            <div id="sendEmailFooter" style="display: none">
+                <a href="#" onclick="sendEmail();" class="flatBtn openAccountBtn">发送</a>
+            </div>
+            <!--开户声明end-->
+			<!--开户行名称-->
+            <div id="bankFooter" style="display: none">
+                <a href="javascript:void(0)" class="flatBtn nextPage" onclick="nextPage();" style="display: none" id="">下一页</a>
+                <a href="javascript:void(0)" class="flatBtn prevPage" onclick="prevPage();" style="display: none" id="">上一页</a>
+            </div>
+        </div>
+        <!--弹窗底部操作end-->
+
+    </div>
+</div>
+
+<script>
+var pageIndex = 1; 
+var pageSize = 10;
+var bankList = [];
+var memberId = ${member.id};
+var role = 0;
+    $(document).ready(function () {
+    	loadData();
+    	loadCibBankList();
+    	Show();
+    });
+    
+    function loadData(){
+		var url = '${basePath}/yonyou/orginfo/rz';
+		var params = {
+			type:0,
+			memberId:memberId
+		};
+		$.ajax({
+    		url:url,
+    		type:"POST",
+    		data:params,
+    		dataType:"json",
+    		async: false,
+    		success:function(res){
+    			console.log(res);
+    			if(res.response == "success"){
+    				var cib = res.data.cib;
+    				$("#corpNo").val(cib.corpNo);
+    				$("#name").val(cib.name);
+    				$("#bizLicenceRegisteredNo").val(cib.bizLicenceRegisteredNo);
+    				$("#bizLicenceLegalName").val(cib.bizLicenceLegalName);
+    				$("#bankstr").val(cib.bankAcctCnapsCode);
+    				$("#bankAcctAcctNameStr").val(cib.bankAcctAcctName);
+    				$("#bankAcctAcctNoStr").val(cib.bankAcctAcctNo);
+    				$("#contactName").val(cib.contactName);
+    				$("#contactMobile").val(cib.contactMobile);
+    			}
+    		},
+    		error:function(json){
+				console.log("获取数据失败！");
+    		}
+    	});
+	}
+    
+    /**
+	 * 加载多账户列表
+	 */
+	function loadCibBankList(){
+		var params = {
+			  memberId:memberId,
+			  type:0,
+			};
+		console.log(params);
+		var url = "${basePath}/yonyou/cibbank/list";
+		$.ajax({
+    		url:url,
+    		type:"POST",
+    		data:params,
+    		dataType:"json",
+    		async: false,
+    		success:function(res){
+    			console.log(res);
+    			if(res!=null){
+    				var data = res.data;
+    				if(res.response == "success"){
+    					if(typeof(data)!="undefined"){
+    						if(data.length>4){
+    							$("#bank_add").parent().parent().addClass("none");
+    						}else{
+    							$("#bank_add").parent().parent().removeClass("none");
+    						}
+    						var html = "";
+    						for(var i=0;i<data.length;i++){
+    							var stateStr = "";
+    							if(data[i].status == 0){
+    								stateStr = '无效';
+    							}else if(data[i].status == 1){
+    								stateStr = '正常';
+    							}else if(data[i].status == 2){
+    								stateStr = '锁定';
+    							}else if(data[i].status == 5){
+    								$("#bank_add").parent().parent().addClass("none");
+    								stateStr = '待鉴定';
+    							}else if(data[i].status == 6){
+    								stateStr = '鉴定失败';
+    							}else{
+    								stateStr = '无效';
+    							}
+    							var a = data[i].bankAcctAcctNo.substring(0,4);
+    							var b = data[i].bankAcctAcctNo.length - 3;
+    							var c = data[i].bankAcctAcctNo.substring(b);
+    							if(data[i].status == 5){
+    								html += '<li onclick=chooseBank('+data[i].id+')>';
+    							}else{
+    								html += '<li>';
+    							}
+    							html += '<label for="" class="bankvAcctAcctNo" id="b_0">';
+    							html += '<div class="bankbCard f14 c717583 bankTitle">';
+    							html += '<div>'+stateStr+'</div>';
+    							html += '<div>'+data[i].bankAcctBankBranch+'</div>';
+    							html += '</div>'
+    							html += '<div class="bankbCard f14 c717583">'
+    							html += '<div>'+a + "***" + c+'</div>';
+    							html += '<div>'+data[i].bankAcctAcctName+'</div>';
+    							html += '</div>'
+    							html += '</label>';
+    							html += '</li>';
+    						}
+    						$("#cibBankList").html("");
+    						$("#cibBankList").append(html);
+    					}
+    				}
+    			}
+    		},
+    		error:function(json){
+				console.log("获取数据失败！");
+    		}
+    	});
+	}
+
+    /**
+     * 弹出绑定账户信息
+     */
+    $("#bank_add").click(function(){
+    	$("#bank_add").parent().parent().hide();
+        $("#bindingBankWindow").fadeIn(500);
+        $("#applyBankWindow").fadeIn(500); /*申请绑卡*/
+        $("#title").html("添加银行账户");
+    });
+    /**
+     * 完成绑卡  小额鉴定
+     */
+    $(".bindBtn").click(function(){
+    	var params = {
+   			memberId:memberId,
+   			cibBankId:$("#cibBankId").val(),
+   			amt:$(".money").val(),
+   		};
+   		var url = "${basePath}/yonyou/cibbank/authenticate";
+   		$.ajax({
+    		url:url,
+    		type:"POST",
+    		data:params,
+    		dataType:"json",
+    		success:function(res){
+    			if(res!=null){
+    	   			var data = res.data;
+    	   			if(res.response == "success"){
+    	   				if(typeof(data.error_msg)!="undefined"){
+    	   					alert(data.error_msg);
+    	   				}else if(typeof(data.return_msg)!="undefined"){
+    	   					alert(data.return_msg);
+    	   				}else if (data.cibBank != null && data.cibBank != '') {
+	   	   					if (data.cibBank.status == 5) {
+	   	   					    alert("您输入的小额鉴定金额有误,您还有" + data.authenticate_order.left_count + "机会可操作");
+	   	   					}else if(data.cibBank.status != 1){
+	   							alert("鉴定失败，可联系客服咨询");
+	   						}else{
+	   							alert("鉴定成功");
+	   							loadCibBankList();
+	   	   					 	$("#bindingBankWindow").fadeOut(500);
+	    	   			        $("#applyBankWindow").fadeOut(100); /*申请绑卡*/
+	
+	    	   			        $("#finishBankWindow").fadeOut(500); /*完成绑卡*/
+	    	   			        $("#cibBankList").fadeIn(500); /*展示银行卡列表*/
+	   						}
+    	   				}
+    	   			}else{
+    	   				alert(res.msg);
+    	   			}
+    	   		}
+    		},
+    	});
+    });
+
+    /*关闭所有弹窗*/
+    $(".maskClose , .closeBtn").click(function(){
+        $("#maskWindow").fadeOut(500); /*内容区域*/
+        $("#contractWindow").fadeOut(500); /*开户合同*/
+        $("#bankWindow").fadeOut(500); /*开户合同*/
+        $("#sendEmailWindow").fadeOut(); /*开户合同*/
+        $("#maskFooter").fadeOut(500); /*底部按钮区域*/
+        $("#sendEmailFooter").fadeOut(500); /*发送邮件底部*/
+        $("#bankFooter").fadeOut(500); /*开户行分页底部*/
+
+    });
+
+    /*-----打开弹窗-----*/
+    //开户合同
+    $(".contractBtn").click(function(){
+        $("#maskWindow").fadeIn(500);
+        $("#sendEmailWindow").fadeIn(500); /*开户合同*/
+        $("#maskFooter").fadeIn(500);
+        $("#sendEmailFooter").fadeIn(500); /*开户合同*/
+    });
+    
+  	//选择开户行
+    $(".bankBtn").click(function(){
+        $("#maskWindow").fadeIn(500);
+        $(".maskWrap").fadeIn();
+        $("#bankWindow").fadeIn(500); //选择开户行
+        $("#title").html("选择开户行");
+    });
+    
+    /**
+     * 加载查询数据
+     */
+    function loadBank(){
+    	var bankBranch = $("#bank_branch").val();
+    	$.ajax({
+    		url:'${basePath}/yonyou/cib/query/back',
+    		type:"POST",
+    		data:{bank_branch:bankBranch,memberId:memberId},
+    		dataType:"json",
+    		success:function(data){
+    			pageIndex = 1;
+        		bankList = data.data.banks;
+        		var html = "";
+        		if(typeof(data.data.return_msg)!="undefined"){
+        			alert(data.data.return_msg+"，请联系客服");
+        		}else{
+        			if(typeof(data.data.banks)!="undefined"){
+            			if(data.data.banks.length > 10){
+            				for(var i=0;i<10;i++){
+                				banks[i] = bankList[((pageIndex-1)*pageSize)+i];
+                				html += "<li onclick='choseBank("+i+");'>";
+                                html += "<div class='searchBankName'>"+banks[i].cnaps_code+"</div>";
+                                html += "<div class='searchBankPlace'>"+banks[i].bank_branch+"</div>";
+                                html += "</li>";
+                			}
+            				$(".nextPage").show();
+            			}else{
+            				for(var i=0;i<data.data.banks.length;i++){
+                				banks[i] = bankList[((pageIndex-1)*pageSize)+i];
+                				html += "<li onclick='choseBank("+i+");'>";
+                                html += "<div class='searchBankName'>"+banks[i].cnaps_code+"</div>";
+                                html += "<div class='searchBankPlace'>"+banks[i].bank_branch+"</div>";
+                                html += "</li>";
+                			}
+            			}
+            			
+            			$("#banks").html("");
+                		$("#banks").append(html);
+                		$("#banks").fadeIn(500);
+                		$("#bankFooter").fadeIn(500);
+                		$("#maskFooter").fadeIn(500);
+                		$("#promptStr").hide();
+                		$(".prevPage").hide();
+            		}else{
+            			$("#banks").html("");
+            			$("#promptStr").fadeIn(500);
+            		}
+        		}
+    		},
+    	});
+    };
+    
+    /**
+     * 上一页
+     */
+    function prevPage(){
+    	if(pageIndex <= 2) $(".prevPage").hide();
+    	if((bankList.length/pageSize-1) < pageIndex)$(".nextPage").show();
+    	pageIndex = (pageIndex-1) < 1 ? pageIndex:pageIndex-1;
+    	var html = "";
+    	$("#banks").html("");
+   		for(var i=0;i<10;i++){
+       		banks[i] = bankList[((pageIndex-1)*pageSize)+i];
+       		html += "<li onclick='choseBank("+i+");'>";
+            html += "<div class='searchBankName'>"+banks[i].cnaps_code+"</div>";
+            html += "<div class='searchBankPlace'>"+banks[i].bank_branch+"</div>";
+            html += "</li>";
+       	}
+    	$("#banks").append(html);
+    };
+
+    /**
+    * 下一页
+    */
+    function nextPage(){
+    	if(pageIndex ==1) $(".prevPage").show();
+    	if((bankList.length/pageSize) <= (pageIndex+1))$(".nextPage").hide();
+   
+    	var html = "";
+    	$("#banks").html("");
+    	if((pageIndex+1) > (bankList.length/pageSize)){
+    		for(var i=0;i<(bankList.length-pageSize*pageIndex);i++){
+        		banks[i] = bankList[(pageIndex*pageSize)+i];
+        		html += "<li onclick='choseBank("+i+");'>";
+                html += "<div class='searchBankName'>"+banks[i].cnaps_code+"</div>";
+                html += "<div class='searchBankPlace'>"+banks[i].bank_branch+"</div>";
+                html += "</li>";
+        	}
+    	}else{
+    		for(var i=0;i<10;i++){
+        		banks[i] = bankList[(pageIndex*pageSize)+i];
+        		html += "<li onclick='choseBank("+i+");'>";
+                html += "<div class='searchBankName'>"+banks[i].cnaps_code+"</div>";
+                html += "<div class='searchBankPlace'>"+banks[i].bank_branch+"</div>";
+                html += "</li>";
+        	}
+    	}
+    	$("#banks").append(html);
+    	pageIndex = (pageIndex+1) > (bankList.length/pageSize) ? pageIndex:pageIndex+1;
+    };
+    
+    /**
+     * 选定开户行之后赋值
+     */
+    function choseBank(i){
+        $("#maskWindow").fadeOut(500);
+        $("#bankWindow").fadeOut(500);
+        $("#banks").fadeOut(500);
+        $(".nextPage").hide();
+        $(".prevPage").hide();
+        
+        console.log(banks[i]);
+        $("#bankStr").val(banks[i].bank_branch+"("+banks[i].cnaps_code+")");
+    	$("#bankAcctBankNo").val(banks[i].bank_no);
+    	$("#bankAcctCnapsCode").val(banks[i].cnaps_code);
+    	$("#bankAcctBankBranch").val(banks[i].bank_branch);
+    };
+    
+    /**
+    * 申请绑卡
+    */
+    function applyForToCard(){
+    	if(!$("#bankAcctAcctNo").validationEngine("validate")){
+			setTimeout(function(){$(".formError").hide();},2000);
+			$("#bankAcctAcctNo").focus();
+			return ;
+		}
+    	if(!$("#bankAcctAcctName").validationEngine("validate")){
+    		setTimeout(function(){$(".formError").hide();},2000);
+			$("#bankAcctAcctName").focus();
+			return ;
+		}
+    	var bankAcctBankNo = $("#bankAcctBankNo").val();
+    	var bankAcctCnapsCode = $("#bankAcctCnapsCode").val();
+    	var bankAcctBankBranch = $("#bankAcctBankBranch").val();
+    	var bankAcctAcctNo = $("#bankAcctAcctNo").val();
+    	var bankAcctAcctName = $("#bankAcctAcctName").val();
+    	
+    	$.ajax({
+    		url:'${basePath}/yonyou/cibbank/save',
+    		type:"POST",
+    		data:{memberId:memberId,type:0,bankAcctBankNo:bankAcctBankNo,bankAcctCnapsCode:bankAcctCnapsCode,bankAcctBankBranch:bankAcctBankBranch,
+				bankAcctAcctNo:bankAcctAcctNo,bankAcctAcctName:bankAcctAcctName},
+    		dataType:"json",
+    		success:function(data){
+    			if(data.response == 'success'){
+    				if(data.data != null && data.data.error_msg != null){
+    					alert(data.data.error_msg);
+    				}else if(data.data.data != null && data.data.data.return_msg != null){
+    					alert(data.data.return_msg);
+    				}else{
+    					 $("#bindingBankWindow").fadeIn(500);
+    			         $("#applyBankWindow").fadeOut(100); /*申请绑卡*/
+    			         $("#finishBankWindow").fadeIn(500); /*完成绑卡*/
+    					
+    					$(".bankAcctAcctNo").html(bankAcctAcctNo);
+    					$(".bankAcctAcctName").html(bankAcctAcctName);
+    					$("#cibBankId").val(data.data.cibBankId);
+    				}
+    			}else{
+    				alert(data.msg);
+    			}
+    		}
+    	});
+    }
+    /**
+    * 点击未通过鉴定的银行账户时
+    */
+	function chooseBank(id){
+		$("#cibBankId").val(id);
+		var params = {
+			memberId:memberId,
+			id:id,
+		};
+		var url = "${basePath}/yonyou/cibbank/get";
+		$.ajax({
+    		url:url,
+    		type:"POST",
+    		data:params,
+    		dataType:"json",
+    		success:function(res){
+    			if(res!=null){
+    				var data = res.data;
+    				if(res.response == "success"){
+    					$("#bindingBankWindow").fadeIn(500);
+	   			        $("#applyBankWindow").fadeOut(100); /*申请绑卡*/
+	   			        $("#finishBankWindow").fadeIn(500); /*完成绑卡*/
+	   			     	$("#bank_add").parent().parent().hide();
+	   			        
+		   			    $(".bankAcctAcctNo").html(data.bankAcctAcctNo);
+	 					$(".bankAcctAcctName").html(data.bankAcctAcctName);
+	 					$("#cibBankId").val(data.id);
+	 					
+    				}
+    			}
+    		},
+    	});
+	}
+    
+	function Show(){
+		var params = {
+			memberId:memberId,
+			type:role,
+		};
+		var url = "${basePath}/yonyou/cib/corp/query";
+		$.ajax({
+    		url:url,
+    		type:"POST",
+    		data:params,
+    		dataType:"json",
+    		success:function(res){
+   				var data = res.data;
+   				if(res.response == "success"){
+   					if(typeof(data.error_msg)!="undefined"){
+   						alert(data.error_msg+"，请联系客服");
+   					}else{
+   						var corp = data.corp;
+   						if(typeof(data.cib)!="undefined"){
+   							var contactMobile = data.cib.contactMobile;
+   							$(".username").text(contactMobile);
+   						}
+   					}
+   				}else{
+   					alert(data.msg);
+   				}
+    		},
+    	});
+	}
+	
+	/**
+	 * 充值
+	 */
+	function Showall(){
+		var newTab = window.open("${basePath}/loading");
+		setTimeout(function(){
+			var params = {
+				memberId:memberId,
+				type:role,
+			};
+			var url = "${basePath}/yonyou/cib/corp/query";
+			$.ajax({
+	    		url:url,
+	    		type:"POST",
+	    		data:params,
+	    		dataType:"json",
+	    		success:function(res){
+	   				if(res!=null){
+	   					var data = res.data;
+	   					if(res.response == "success"){
+	   						newTab.location.href = data.login_url;
+	   					}else{
+	   						alert(res.msg);
+	   					}
+	   				}
+	    		},
+	    	});
+		},100);
+		
+	}
+	/**
+	* 发送邮件
+	*/
+	function sendEmail(){
+		if(!$("#email").validationEngine("validate")){
+    		$("#email").focus();
+    		setTimeout(function(){$("#email").validationEngine('hideAll');},1000);
+    		return;
+    	}
+		var params = {
+				no:$("#corpNo").val(),
+				email:$("#email").val(),
+				isCib:true,
+				memberId:memberId
+			};
+		var url = "${basePath}/yonyou/cib/econtract/email";
+		$.ajax({
+    		url:url,
+    		type:"POST",
+    		data:params,
+    		dataType:"json",
+    		success:function(res){
+    			if(res!=null){
+    				$("#maskWindow").hide();
+    		        $("#sendEmailWindow").hide(); /*开户合同*/
+    		        $("#maskFooter").hide();
+    		        $("#sendEmailFooter").hide(); /*开户合同*/
+    				alert(res.msg);
+    			}
+    		},
+    	});
+	}
+	
+	function checkMoney(){
+		if($("#money").val()>0 && $("#money").val()<=1){
+			$(".bindBtn").removeClass("gray");
+		}else{
+			$(".bindBtn").addClass("gray");
+		}
+	}
+	
+	/*收缩列表*/
+    $(".toggleTop").toggle(function(){
+        console.log("1");
+        $(this).children("img").attr("src", "${basePath}/images/yonyou/authentication/up.png");
+        $(this).next(".toggleCon").slideUp(100);
+
+    },function(){
+        console.log("2");
+        $(this).children("img").attr("src", "${basePath}/images/yonyou/authentication/down.png");
+        $(this).next(".toggleCon").slideDown(100);
+    });
+	
+	
+</script>
+[/@main.body]

@@ -1,0 +1,400 @@
+[#import "/common/main.html" as main]
+[#include "/common/setting.html"]
+[@main.body title='云票据-账户管理']
+<link rel="stylesheet" href="${basePath}/css/yonyou/account.css">
+<link rel="stylesheet" href="${basePath}/css/yonyou/mask.css">
+<link rel="stylesheet" href="${basePath}/css/validationEngine.jquery.css">
+<link rel="stylesheet" href="${basePath}/css/template.css">
+
+<script type="text/javascript" src="${basePath}/js/jquery.validationEngine-zh_CN.js"></script>
+<script type="text/javascript" src="${basePath}/js/jquery.validationEngine.js"></script>
+
+<!-- 头部 -->
+[@main.header currentmenu='7'/]
+<!-- 头部end -->
+
+<!--首页-公司信息-->
+<div class="wrap">
+    <!--公司基本信息-->
+    <div class="companyInformation">
+        <img src="${basePath}/images/yonyou/account/company.png" alt="">
+        <p id="name"></p>
+        <label class="accountType redLabel">已开户</label>
+    </div>
+    <!--公司基本信息end-->
+
+    <!--公司账户-->
+    <div class="companyAccount">
+        <!--金额-->
+        <div class="companyTop">
+            <!--押金余额-->
+            <div class="balance">
+                <label class="balanceTitle">
+                    <img src="${basePath}/images/yonyou/account/balanceIcon.png" alt="">
+                    <div class="title">押金余额</div>
+                </label>
+                <div class="balanceCon">
+                    <div class="moneyNum" id="money">**</div>
+                    <a href="javascript:void(0);" class="tx">提现</a>
+                </div>
+            </div>
+
+            <!--出票保证金-->
+            <div class="deposit">
+                <label class="depositTitle">
+                    <img src="${basePath}/images/yonyou/account/depositIcon.png" alt="">
+                    <div class="title">出票保证金<span>（冻结中）</span></div>
+                </label>
+                <div class="depositCon">
+                    <div class="moneyNum" id="disc_deposit">**</div>
+                </div>
+            </div>
+        </div>
+
+        <!--充值-->
+        <div class="recharge">
+            <div class="rechargeTop">
+                <div class="rechargeTitle">充值</div>
+                <a class="record" href="${basePath}/yonyou/page/accountrecord">交易记录</a>
+            </div>
+            <ul class="rechargeForm">
+                <li>
+                    <label for="pay_money">充值金额</label>
+                    <input type="number" name="pay_money" id="pay_money" class="validate[required],validate[custom[onlyNumberSp]]">
+                    <span class="unit">元</span>
+                </li>
+                <li>
+                    <label for="pay_type">充值方式</label>
+                    <select name="" id="pay_type">
+                        <option value="ALIPAY">支付宝</option>
+                    </select>
+                </li>
+                <li>
+                    <a href="#" onclick="pay()">立即支付</a>
+                </li>
+            </ul>
+            <p>*押金取现支持自定义取现金额。</p>
+        </div>
+    </div>
+    <!--公司账户end-->
+</div>
+
+
+<!--弹窗-->
+<div class="maskWindow" id="maskWindow" style="display: none">
+    <div class="maskBg"></div>
+    <div class="maskWrap maskWrapSmall">
+        <!--top-->
+        <div class="maskTop">
+            <!--弹窗名称-->
+            <div id="title" class="maskTitle">提现</div>
+            <!--关闭按钮-->
+            <a class="maskClose">
+                <img src="${basePath}/images/yonyou/common/closeIcon.png" alt="关闭">
+            </a>
+        </div>
+        <!--top end-->
+
+        <!--内容容器-->
+        <div class="maskCon">
+            <!--不同的弹窗内容-->
+
+            <!--钱包余额-->
+            <div class="maskDiv" id="contentWindow" style="display: none">
+                <!--表单-->
+                <ul class="maskForm">
+                    <li>
+                    <input type="number" id="tx_money" class="bae0e0e0 br3 h30 w120 ti8 validate[required]" placeholder="请输入要提现的金额">
+                        <label>钱包余额：</label>
+                        <div class="FormValue" id="balance">1230</div>
+                        <div class="FormUnit">元</div>
+                    </li>
+                    <li>
+                        <input type="text" id="cardNumber" class="bae0e0e0 br3 h30 w300 ti8 validate[required]" placeholder="请输入银行卡号或支付宝账号">
+                    </li>
+                    <li>
+                        <input id="cardBank" type="text" class="validate[required]" placeholder="请输入支付宝账号">
+                        <div class="ce84c3d FormUnit">*支付宝账号请输入“支付宝”</div>
+                    </li>
+                    <li>
+                        <input type="text" id="cardUserName" class="validate[required]" placeholder="请输入账户名">
+                    </li>
+                    <li>
+                        <input type="number" id="code" placeholder="请输入验证码" class="validate[required,maxSize[4]]" style="width: 110px">
+                        <input type="button" id="codeBtn" value="获取验证码">
+                        <div class="ce84c3d FormUnit">*短信发送到${member.mobile}</div>
+                    </li>
+                </ul>
+            </div>
+
+            <!--温馨提示-->
+            <div class="maskDiv" id="promptWindow" style="display: none">
+                <p class="maskMessage">提现将于两个工作日之内到账，请注意查收。</p>
+            </div>
+
+        </div>
+        <!--内容容器 end-->
+
+        <!--弹窗底部操作-->
+        <div class="maskFooter" id="maskFooter" style="display: none">
+            <!--选择机构-->
+            <div id="selectionFooter" style="display: block">
+                <!--钱包余额-->
+                <a href="javascript:void(0)" id="confirm_tx" class="flatBtn">提现</a>
+
+                <!--温馨提示-->
+                <a href="#" id="pay_prompt" class="flatBtn closeBtn">确定</a>
+            </div>
+        </div>
+        <!--弹窗底部操作 end-->
+
+    </div>
+</div>
+
+[/@main.body]
+
+<script>
+	var memberId = '${member.id}';
+	$(function(){
+		loadData();
+		loadMember();
+	});
+    /*关闭所有弹窗*/
+    $(".maskClose , .closeBtn").click(function(){
+        $("#maskWindow").fadeOut(500); /*内容区域*/
+        $("#contentWindow").fadeOut(500); /*用户进行提现*/
+        $("#promptWindow").fadeOut(500); /*温馨提示*/
+
+        $("#maskFooter").fadeOut(500); /*底部按钮区域*/
+        $("#confirm_tx").fadeOut(500); /*提现*/
+
+    });
+
+    /*-----打开弹窗-----*/
+    //用户进行提现
+    $(".tx").click(function(){
+    	var money = $("#money").html();
+		if(money == 0){
+			alert("余额为零，无法提现。");
+			return ;
+		}
+		$("#balance").html(money);
+        $("#maskWindow").fadeIn(500);
+        $("#contentWindow").fadeIn(500); /*用户进行提现*/
+        $("#maskFooter").fadeIn(500);
+        $("#confirm_tx").fadeIn(500); /*确认选择该机构按钮*/
+        $("#title").html("提现");
+    });
+    /**
+     * 用户确认提现
+     */
+    $("#confirm_tx").click(function() {
+    	var code = $("#code").val();
+		var cardBank = $("#cardBank").val();
+		var cardUserName = $("#cardUserName").val();
+		var cardNumber = $("#cardNumber").val();
+		var money = $("#tx_money").val();
+		if(parseInt(money) < 1 ){
+			alert("提现金额不能小于1");
+			return;
+		}
+		if(parseInt(money) > parseInt($("#balance").text())){
+			alert("提现金额不能超过余额");
+			return;
+		}
+		if(!$("#code").validationEngine("validate")){
+			$("#code").focus();
+			setTimeout(function(){$("#code").validationEngine('hideAll');},1000);
+			return ;
+		}
+		
+		if(!$("#cardBank").validationEngine("validate")){
+			$("#cardBank").focus();
+			setTimeout(function(){$("#cardBank").validationEngine('hideAll');},1000);
+			return ;
+		}
+		
+		if(!$("#cardUserName").validationEngine("validate")){
+			$("#cardUserName").focus();
+			setTimeout(function(){$("#cardUserName").validationEngine('hideAll');},1000);
+			cardBank
+			return ;
+		}
+		
+		if(!$("#cardNumber").validationEngine("validate")){
+			$("#cardNumber").focus();
+			setTimeout(function(){$("#cardNumber").validationEngine('hideAll');},1000);
+			return ;
+		}
+		
+		var mobile = '${member.mobile}';
+		var url = '${basePath}/yonyou/accountlog/save/tx';
+		var params = {code:code,memberId:memberId,cardBank:cardBank,cardUserName:cardUserName,cardNumber:cardNumber,money:money,mobile:mobile};
+		$.ajax({
+    		url:url,
+    		type:"POST",
+    		data:params,
+    		dataType:"json",
+    		async: false,
+    		success:function(res){
+    			console.log(res);
+    			if(res != null){
+    				if(res.response == 'success'){
+   					 	$("#maskWindow").fadeIn(500);
+   				        $("#promptWindow").fadeIn(500); /*温馨提示*/
+   				        $("#maskFooter").fadeIn(500);
+   				        $("#pay_prompt").fadeIn(500); /*温馨提示*/
+   				        $("#title").html("温馨提示");
+   				        
+    			        $("#contentWindow").fadeOut(500); /*用户进行提现*/
+    			        $("#confirm_tx").fadeOut(500); /*提现*/
+    					loadData();
+    				}else{
+    					alert(res.msg);
+    				}
+    			};
+    		},
+    		error:function(err){
+    			
+   			}
+   		});
+    });
+
+    //确认发送验证码
+    var timeshow = 60;
+    var timer;
+    $("#codeBtn").click(function(){
+    	var mobile = ${member.mobile};
+	    var url = '${basePath}/send/sms';
+		var params = {mobile:mobile,type:'TX'};
+		timeshow = 60;
+		$("#codeBtn").attr({"disabled":"disabled"});
+		$.ajax({
+    		url:url,
+    		type:"POST",
+    		data:params,
+    		dataType:"json",
+    		async: false,
+    		success:function(res){
+    			if(res.response == 'success'){
+    				timer = setInterval(show, 1000);
+    			}else{
+    		    	$("#codeBtn").removeAttr("disabled");//按钮启用
+    			}
+    		},
+    		error:function(err){
+    			
+   			}
+   		});
+		
+    });
+    /**
+     * 短信倒计时
+     */
+    function show() {
+        if (timeshow <= 1) {
+            clearInterval(timer);
+        }
+        timeshow--;
+        $("#codeBtn").val(timeshow+"s重新发送");
+        if (timeshow == 0) {
+            $("#codeBtn").val("重新发送 ");
+            $("#codeBtn").removeAttr("disabled");
+        }
+    };
+
+    /**
+     *押金充值
+     */
+    function pay() {
+    	if(!$("#pay_money").validationEngine("validate")){
+			setTimeout(function(){$(".formError").hide();},2000);
+			$("#pay_money").focus();
+			return ;
+		}
+		
+		var pay_type = $("#pay_type").val();
+		var pay_money = $("#pay_money").val();
+		if(pay_money == 0){
+			$("#pay_money").validationEngine('showPrompt','* 充值金额不能为0',null,null,true);
+			setTimeout(function(){$(".formError").hide();},2000);
+			return ;
+		}
+		if(pay_type == null ||  $.trim(pay_type)==""){
+			alert("请选择充值方式");
+			return ;
+		}
+		
+		window.open('${websiteBootPath}/out/alipay/pay?money='+pay_money+'&memberId='+memberId);
+    };
+    
+    /**
+	* 初始化页面加载数据
+	*/
+	function loadData(){
+		var url = '${basePath}/yonyou/account/info/by/member';
+		var params = {memberId:memberId};
+		$.ajax({
+    		url:url,
+    		type:"POST",
+    		data:params,
+    		dataType:"json",
+    		async: false,
+    		success:function(res){
+   				if(res.response == 'success'){
+   					var data = res.data;
+   					if(data.account.money != null){
+   						$("#money").html(data.account.money);
+   					}else{
+   						$("#money").html(0);
+   					}
+   					
+   					if(data.disc_deposit != null){
+   						$("#disc_deposit").html(data.disc_deposit);
+   					}else{
+   						$("#disc_deposit").html(0);
+   					}
+   					
+   					if(data.dist_deposit != null){
+   						$("#dist_deposit").html(data.dist_deposit);
+   					}else{
+   						$("#dist_deposit").html(0);
+   					}
+   				}else{
+   					alert("获取数据失败");
+   				}
+    		},
+    		error:function(json){
+				console.log("获取数据失败！");
+    		}
+    	});
+	};
+	
+	/**
+	* 加载member信息
+	*/
+	function loadMember(){
+		var url = '${basePath}/yonyou/orginfo/rz';
+		var params = {
+			type:0,
+			memberId:memberId
+		};
+		$.ajax({
+    		url:url,
+    		type:"POST",
+    		data:params,
+    		dataType:"json",
+    		async: false,
+    		success:function(res){
+    			console.log(res);
+    			if(res.response == "success"){
+    				var cib = res.data.cib;
+    				$("#name").html(cib.name);
+    			}
+    		},
+    		error:function(json){
+				console.log("获取数据失败！");
+    		}
+    	});
+	};
+</script>

@@ -1,0 +1,72 @@
+#include("./common/header.html", {title:"搜索结果"})
+#include("./common/right.html")
+<link rel="stylesheet" href="${staticPath}/plugins/highlight/styles/default.css" />
+<link rel="stylesheet" href="${staticPath}/plugins/highlight/styles/github.css" />
+<script src="${staticPath}/plugins/highlight/highlight.pack.js"></script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+		<div class="panel panel-default">
+              <div class="panel-heading">
+              		与 <font style="color:red">"${q}"</font> 相关，共为您搜索到 <font style="color:red">${topicPage.totalCount}</font> 条帖子
+              </div>
+              <div class="panel-body home-panel">
+					<div class="box-tab">
+						<div class="tab-content">
+							<div class="tab-pane active" id="home">
+								#if(null == topicPage.results || topicPage.results.size() == 0)
+								<div class="alert alert-info alert-dismissable">
+									未查到数据 <i class="twa twa-lg twa-sparkles"></i>
+								</div>
+								#else
+								<section class="widget bg-white post-comments">
+									#for(topic : topicPage.results)
+									<div class="media">
+										<a class="pull-left" href="${base_url('/member/') + topic.user_name}"> 
+											<img class="media-object avatar avatar-sm" src="${topic.avatar}" alt="${topic.user_name}">
+										</a>
+										<div class="comment">
+											<div class="comment-author h6 no-margin">
+												#if(topic.comments > 0)
+												<div class="comment-meta small">
+													<a href="${base_url('/topic/') + topic.tid + '#Reply' + topic.comments}" class="badge-comment">${topic.comments}</a>
+												</div>
+												#end
+												<a href="${base_url('/topic/') + topic.tid}">${topic.title}</a>
+											</div>
+											<div class="comment-bt">
+												<span class="label label-default"><a href="${base_url('/go/') + topic.node_slug}">${topic.node_name}</a></span> &nbsp;•&nbsp; 
+												<strong><a href="${base_url('/member/') + topic.user_name}">${topic.user_name}</a></strong>
+												 &nbsp;•&nbsp; <span>${timespan(topic.update_time)}</span>
+												 #if(topic.comments > 0)
+												 &nbsp;•&nbsp; 最后回复来自
+												 <strong><a href="${base_url('/member/') + topic.reply_name}">${topic.reply_name}</a></strong>
+												 #end
+											</div>
+										</div>
+									</div>
+									<hr/>
+									#end
+								</section>
+								#end
+								
+								#if(topicPage.totalPage > 1)
+								<ul class="pager">
+									#if(topicPage.page > 1)
+									<li class="pull-left"><a data-myset="set-pjax" href="${base_url('/search/') + q + '&p=' + topicPage.prev_page}">上一页</a></li>
+									#end
+									#if(topicPage.totalPage > 1 && topicPage.page != topicPage.totalPage)
+									<li class="pull-right"><a data-myset="set-pjax" href="${base_url('/search/') + q + '&p=' + topicPage.next_page}">下一页</a></li>
+									#end
+								</ul>
+								#end
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;appchart.ftl&apos; to &apos;appPieChart.ftl&apos;&#x0D;&#x0A;- Original project: &apos;rywap&apos;&#x0D;&#x0A;- Destination element: &apos;appPieChart.ftl&apos;&#x0D;&#x0A;- Original element: &apos;appchart.ftl&apos;" description="Copy file" element1="src/main/webapp/WEB-INF/freemarker/appchart.ftl" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1515747874270" target="/rywap/src/main/webapp/WEB-INF/freemarker/appPieChart.ftl" units="0" version="1.0"/>
+</session>

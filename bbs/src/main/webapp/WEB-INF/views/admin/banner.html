@@ -1,0 +1,83 @@
+#include("./header.html", {active:'banner', title:'banner管理'})
+<div class=main-content>
+<div id="ajax-modal" class="modal fade" tabindex="-1"></div>
+	<div class="panel mb25">
+		<div class="panel-heading">banner列表</div>
+		<div class="panel-body">
+			<div class="table-responsive">
+				<div class="row">
+					<div class="pull-right pr10">
+						<a href="${base_url('/admin/banner/add')}" type="button" class="btn btn-success">新增banner</a>
+					</div>
+				</div>
+				<table class="table table-bordered table-striped mb0">
+					<thead>
+						<tr>
+							<th>图片顺序</th>
+							<th>图片URl</th>
+							<th width="15%" align="center">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						#for(banner : bannerPage.results)
+						<tr>
+							<td>${banner.sort}</td>
+							<td>${banner.url}</td>
+							<td>
+								<a href="${base_url('/admin/banner/') + banner.id }" class="btn btn-info btn-outline btn-sm">编辑</a>
+								<a href="javascript:;" class="btn btn-danger btn-outline btn-sm" onclick="deleteBanner('${banner.id}');">删除</a>
+							</td>
+						</tr>
+						#end
+					</tbody>
+				</table>
+			</div>
+			#if(bannerPage.totalPage > 1)
+			<div class="datatable-bottom pt10">
+				<div class="pull-left">
+					<div class="dataTables_info" id="DataTables_Table_0_info"
+						role="status" aria-live="polite">Showing 1 to 5 of 5 entries</div>
+				</div>
+				<div class="pull-right">
+					<div class="dataTables_paginate paging_bootstrap"
+						id="DataTables_Table_0_paginate">
+						<ul class="pagination no-margin">
+							<li class="prev #if(bannerPage.page==1)#end"><a href="${base_url('/admin/banner?p=') + bannerPage.prev_page }" title="Previous">←</a></li>
+							<li class="active"><a href="#">${bannerPage.page}</a></li>
+							<li class="next"><a href="${base_url('/admin/banner?p=') + bannerPage.next_page }" title="Next">→</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			#end
+		</div>
+	</div>
+</div>
+#include("./footer.html")
+<link type="text/css" rel=stylesheet href="${staticPath}/js/bbs/page/page.css?ver=${version}"/>
+<script type="text/javascript" src="${staticPath}/js/bbs/page/js-extend.js?ver=${version}"></script>
+<script type="text/javascript" src="${staticPath}/js/bbs/page/jquery-ajax-pager.js?ver=${version}"></script>
+<script type="text/javascript">
+/**
+ * 删除banner
+ */
+function deleteBanner(id){
+	$.ajax({
+        type:"POST",
+        dataType:"JSON",
+        url:"${base_url('/admin/banner/delete')}",
+        data:{
+            "id":id
+        },success:function(result) {//返回数据根据结果进行相应的处理  
+        	if(result.status == 200){
+        		alertOk(result.data);
+        		location.reload(true);
+        	}else{
+        		alertError(result.msg);
+        	}
+        }
+    });
+}
+</script>
+</body>
+</html>

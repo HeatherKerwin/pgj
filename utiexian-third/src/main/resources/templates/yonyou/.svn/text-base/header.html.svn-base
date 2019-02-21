@@ -1,0 +1,11 @@
+[#import "/common/main.html" as main]
+[#include "/common/setting.html"]
+[@main.body title='票据管家-用友云合作']
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+});
+</script>
+
+[/@main.body]

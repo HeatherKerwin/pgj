@@ -1,0 +1,57 @@
+/*head*/
+.head{
+    width: 100%;
+    height: 90px;
+    position: absolute;
+    top: 0px;
+    z-index: 2;
+    background: #FFFFFF;
+    box-shadow: 1px 2px 2px #e0e0e0;
+}
+.head .headWrap{
+    width: 1200px;
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    margin-left: -600px;
+}
+/*logo*/
+.head a.logo{
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    display: block;
+    width: 155px;
+    height: 70px;
+    cursor: pointer;
+}
+.head a.logo img{
+    width: 100%;
+    height: 100%;
+}
+/*menu菜单*/
+.head ul.menu{
+    position: absolute;
+    right: 20px;
+    top: 40px;
+    overflow: hidden;
+    font-size: 16px;
+}
+.head ul.menu:after{
+    clear: both;
+    height: 0px;
+}
+.head ul.menu li{
+    float: left;
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+}
+.head ul.menu li a{
+    width: 100%;
+    color: #2d2d2d;
+    display: block;
+}
+.head ul.menu li a:hover{
+    color: #e84c3d;
+}

@@ -1,0 +1,191 @@
+/*背书*/
+.beishu{
+    float: left;
+    position: relative;
+    top: 10px;
+    width: 108px;
+    height: 30px;
+    background: url("https://img.utiexian.com/rywap/discount/jiajian.png") center no-repeat;
+    background-size: auto 100%;
+    margin-right: 5px;
+}
+/*加减按钮*/
+.beishu .reduce , .beishu .add{
+    width: 30px;
+    height: 30px;
+}
+.beishu .reduce{
+    position: absolute;
+    top: 0px;
+    left: 1px;
+}
+.beishu .reduce img ,.beishu .add img {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+.beishu .add{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+/*手数input*/
+.beishu input{
+    position: absolute;
+    left: 32px;
+    top: 1px;
+    width: 45px;
+    height: 28px !important;
+    line-height: 28px !important;
+    background: none;
+    margin: 0px !important;
+    text-align: center;
+}
+
+/*上传图片*/
+.imgInp {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    display: inline-block;
+    background: url("https://img.utiexian.com/rywap/discount/upload.png") center no-repeat;
+    background-size: 100%;
+    border: none;
+    overflow: hidden;
+}
+.imgInp input {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.imgShow{
+    width: auto;
+    text-align: center;
+    margin: 0 auto;
+    max-height: 200px;
+}
+
+/*查看票据样例*/
+.template{
+    margin-top: 5px;
+}
+.templateImg{
+    width: 95%;
+    height: auto;
+    margin-right: 5%;
+}
+
+/*选择地址*/
+.plaec{
+    position: relative;
+    width: 100%;
+    min-height: 70px;
+    background: #ffffff url("https://img.utiexian.com/rywap/discount/caitiao.png");
+    background-repeat: repeat-x;
+    background-position: 0 69px;
+    background-size: 100% 100%;
+    text-align: center;
+    font-size: 16px;
+}
+.plaec .plaecLeft{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 20px;
+    height: 30px;
+    background: url("https://img.utiexian.com/rywap/common/dingwei.png") center no-repeat;
+    background-size: 100%;
+}
+.plaec .placeChose{
+    position: absolute;
+    left: 16%;
+    font-size: 16px;
+    line-height: 70px;
+    font-weight: bold;
+}
+.plaec .pelacShow , .pelacShow{
+    position: absolute;
+    left: 16%;
+    top: 10px;
+    width: 80%;
+    height: 60px;
+    line-height: 30px;
+    overflow: hidden;
+    text-align: left;
+}
+.pelacShow h2{
+    font-size: 16px;
+    font-weight: bold;
+}
+.plaecRight{
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    width: 12px;
+    height: 20px;
+    background: url("https://img.utiexian.com/rywap/common/right.png") center no-repeat;
+    background-size: 100%;
+}
+
+
+/*选择贴现地址*/
+/*没有地址*/
+img.noPlace{
+    width: 40%;
+    height: auto;
+    margin: 40px 30% 10px;
+}
+/*地址列表*/
+ul.placeList{
+    width: 100%;
+    height: auto;
+}
+ul.placeList li{
+    position: relative;
+    width: 100%;
+    height: 120px;
+    /*padding-left: 16px;*/
+    background: #ffffff;
+    border-top: solid 1px #cecece;
+    border-bottom: solid 1px #cecece;
+    margin-bottom: 10px;
+}
+/*地址信息*/
+ul.placeList li .plaec{
+    border-bottom: solid 1px #cecece;
+    left: 16px;
+}
+ul.placeList li .plaec .plaecLeft{
+    left: 0px;
+}
+ul.placeList li .plaec .pelacShow{
+    left: 30px;
+}
+/*地址操作*/
+ul.placeList li .placeEdit{
+    position: absolute;
+    top: 70px;
+    /*left: 16px;*/
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+}
+ul.placeList li .placeEdit .radioIcon2{
+    margin-top: 15px;
+    margin-right: 5px;
+}
+.editBtn , .deleteBtn{
+    margin-right: 10px;
+}
+.editBtn img , .deleteBtn img{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}

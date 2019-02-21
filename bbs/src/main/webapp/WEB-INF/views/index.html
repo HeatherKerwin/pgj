@@ -1,0 +1,495 @@
+#include("./common/header.html", {active:"home", title : node_name ?! ''})
+<div style="background: url('${imgPath}/bbs/bbs/bannerBG.jpg');background-size:100% 100%;margin-top: -20px">
+	<div class="container" >
+		<div class="row clearfix">
+			<div class="col-md-7 column mt20 mb20">
+				<div class="carousel slide" id="carousel-752786" data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li class="active" data-slide-to="0" data-target="#carousel-752786"></li>
+						<li data-slide-to="1" data-target="#carousel-752786"></li>
+						<li data-slide-to="2" data-target="#carousel-752786"></li>
+					</ol>
+					<div class="carousel-inner">
+					       #if(null != banners || banners.size() != 0)
+							#for(banner : banners)
+								#if(null != banner)
+								<div class="item #if(banners.get(0) == banner)active#end">
+								#if( banner.url != null && banner.url != "")
+									<a href="${banner.url} " target="_blank">
+								#end	
+									<img src="${banner.path}" />
+								#if( banner.url != null && banner.url != "")	
+									</a>
+								#end	
+								</div>
+								#end
+							#end
+							#end
+					</div>
+					<a class="left carousel-control" href="#carousel-752786" role="button" data-slide="prev">
+					  <span class="glyphicon glyphicon-chevron-left arrow-left"></span>
+					  <span class="sr-only">Previous</span>
+					</a>
+					<a class="right carousel-control" href="#carousel-752786" role="button" data-slide="next">
+					  <span class="glyphicon glyphicon-chevron-right arrow-right"></span>
+					  <span class="sr-only">Next</span>
+					</a>
+				</div>
+			</div>
+			<div class="col-md-5 column">
+				<div class="row">
+					<div class="col-xs-12">	
+						<div class="list-group mb0">
+							<h2 class="list-group-item">
+								<strong>
+									<a href="${base_url('/essence')}">精华帖</a>
+								</strong>
+							</h2>
+							#if(null != essence || essence.size() != 0)
+							#for(topic : essence)
+								<div class="list-group-item pb2">
+									<h4 class="list-group-item-heading table-hidden">
+										<a data-myset="set-pjax" href="${base_url('/go/') + topic.node_slug}"><strong>【${topic.node_name}】</strong></a>
+										<a data-myset="set-pjax" href="${base_url('/topic/') + topic.tid}">
+											${topic.title}
+											#if(topic.has_pic)
+												<img src="${imgPath}/bbs/pic.png" class="my_has_pic ml2" title="内容含图片">
+											#end
+											#if(topic.attach_type!=null)
+												<img src="${imgPath}/bbs/add.png" class="my_has_pic ml2" title="帖子内含附加内容">
+											#end
+										</a>
+									</h4>
+									<p>
+										<a class="span_link" href="#"><span class="eyeIcon pr5"></span>${topic.views}</a>
+										<a class="span_link" href="#"><span class="commentIcon"></span>${topic.comments}</a>
+										<a class="span_link" href="#"><span class="thumbsIcon"></span>${topic.loves}</a>
+										<a class="pull-right" data-myset="set-pjax" href="${base_url('/member/') + topic.user_name}"><strong>${topic.nick_name ?! topic.user_name}</strong></a>
+									</p>
+								</div>
+							#end
+							#end
+						</div>
+					</div>
+				</div>
+				<div class="row" style="margin-top: 13px">
+					<div class="col-xs-12">
+						<ul class="demo1 list-unstyled list-group pl10 pt5" style="background: #fff;visibility:hidden;" id="topbar">
+							#if(null != user_stack || user_stack.size() != 0)
+							#for(user : user_stack)
+								#if(null != user)
+									<li class="news-item"><img src="${imgPath}/bbs/bbs/fire.png" class="mr5">欢迎<a data-myset="set-pjax" href="${base_url('/member/') + user.user_name}">&nbsp;${user.nick_name ?! user.user_name}&nbsp;</a>用户登录票据管家社区</li>
+								#end
+							#end
+							#end
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container mt30">
+    <div class="row">
+        <div class="col-md-9">
+	        <div class="list-group">
+				<div class="list-group-item">
+					#if(null != talk.pic && talk.pic != '')
+					<div class="pull-left mr10">
+						<a data-myset="set-pjax" href="${base_url('/go/talk')}">
+							<img width="40" height="40" src="${talk.pic}" class="" />
+						</a>
+					</div>
+					#end
+					<div class="row">
+						<strong class="pull-left mr10 mt5" style="font-size: 20px">
+							${talk.node_name}
+						</strong>
+						<div class="pull-left mr10 mt10">
+							${talk.description ?! ''}
+						</div>
+						<a class="pull-right text-right mt10 mr25 text-blue" data-myset="set-pjax" href="${base_url('/go/talk')}">
+							<span>帖子总数 ${talk.topics} >></span>
+						</a>
+					</div>
+				</div>
+				#if(null == node_talk || node_talk.size() == 0)
+				<div class="alert alert-info alert-dismissable">
+					该节点下暂时还木有帖子呢 <i class="twa twa-lg twa-sparkles"></i>
+				</div>
+				#else
+					#for(topic : node_talk)
+					<div class="list-group-item">
+						<h4 class="list-group-item-heading">
+							<a href="${base_url('/topic/') + topic.tid}">
+								#if(topic.is_essence == 1)
+									<font class="my_is_essence">${topic.title}</font>
+								#else
+									${topic.title}
+								#end
+								#if(topic.has_pic)
+									<img src="${imgPath}/bbs/pic.png" class="my_has_pic ml2">
+								#end
+								#if(topic.attach_type!=null)
+									<img src="${imgPath}/bbs/add.png" class="my_has_pic ml2" title="帖子内含附加内容">
+								#end
+							</a>
+							<a href="${base_url('/topic/') + topic.tid + '#Reply' + topic.comments}" class="badge-comment">
+								<span class="badge pull-right">
+								${topic.comments}/${topic.views}
+								</span>
+							</a>
+						</h4>
+						<div class="comment-bt">
+							<strong><a data-myset="set-pjax" href="${base_url('/member/') + topic.user_name}">${topic.nick_name ?! topic.user_name}</a></strong>
+							&nbsp;•&nbsp;<span>${timespan(topic.update_time)}</span>
+							#if(topic.comments > 0)
+								&nbsp;•&nbsp;最后回复来自
+								<strong><a data-myset="set-pjax" href="${base_url('/member/') + topic.reply_name}">${topic.reply_nick_name ?! topic.reply_name}</a></strong>
+							#end
+						</div>
+					</div>
+					#end
+				#end
+			</div>
+			
+			<div class="row" style="padding: 0 5px;margin-bottom:15px">
+				<div class="col-md-12 column">
+					<img alt="欢迎使用票据管家社区" class="img-responsive" src="${imgPath}/bbs/bbs/banner.png"/>
+				</div>
+			</div>
+			
+			<div class="list-group">
+				<div class="list-group-item">
+					#if(null != advice.pic && advice.pic != '')
+					<div class="pull-left mr10">
+						<a data-myset="set-pjax" href="${base_url('/go/advice')}">
+							<img width="40" height="40" src="${advice.pic}" class=""/>
+						</a>
+					</div>
+					#end
+					<div class="row">
+						<strong class="pull-left mr10 mt5" style="font-size: 20px">
+							${advice.node_name}
+						</strong>
+						<div class="pull-left mr10 mt10">
+							${advice.description ?! ''}
+						</div>
+						<a class="pull-right text-right mt10 mr25 text-blue" data-myset="set-pjax" href="${base_url('/go/advice')}">
+							<span>帖子总数 ${advice.topics} >></span>
+						</a>
+					</div>
+				</div>
+				#if(null == node_advice || node_advice.size() == 0)
+				<div class="alert alert-info alert-dismissable">
+					该节点下暂时还木有帖子呢 <i class="twa twa-lg twa-sparkles"></i>
+				</div>
+				#else
+					#for(topic : node_advice)
+					<div class="list-group-item">
+						<h4 class="list-group-item-heading">
+							<a href="${base_url('/topic/') + topic.tid}">
+								#if(topic.is_essence == 1)
+									<font class="my_is_essence">${topic.title}</font>
+								#else
+									${topic.title}
+								#end
+								#if(topic.has_pic)
+									<img src="${imgPath}/bbs/pic.png" class="my_has_pic ml2">
+								#end
+								#if(topic.attach_type!=null)
+									<img src="${imgPath}/bbs/add.png" class="my_has_pic ml2" title="帖子内含附加内容">
+								#end
+							</a>
+							<a href="${base_url('/topic/') + topic.tid + '#Reply' + topic.comments}" class="badge-comment">
+								<span class="badge pull-right">
+								${topic.comments}/${topic.views}
+								</span>
+							</a>
+						</h4>
+						<div class="comment-bt">
+							<strong><a data-myset="set-pjax" href="${base_url('/member/') + topic.user_name}">${topic.nick_name ?! topic.user_name}</a></strong>
+							&nbsp;•&nbsp;<span>${timespan(topic.update_time)}</span>
+							#if(topic.comments > 0)
+								&nbsp;•&nbsp;最后回复来自
+								<strong><a data-myset="set-pjax" href="${base_url('/member/') + topic.reply_name}">${topic.reply_nick_name ?! topic.reply_name}</a></strong>
+							#end
+						</div>
+					</div>
+					#end
+				#end
+			</div>
+			
+			<div class="list-group">
+				<div class="list-group-item">
+					#if(null != joyful.pic && joyful.pic != '')
+					<div class="pull-left mr10">
+						<a data-myset="set-pjax" href="${base_url('/go/joyful')}">
+							<img width="40" height="40" src="${joyful.pic}" class="" />
+						</a>
+					</div>
+					#end
+					<div class="row">
+						<strong class="pull-left mr10 mt5" style="font-size: 20px">
+							${joyful.node_name}
+						</strong>
+						<div class="pull-left mr10 mt10">
+							${joyful.description ?! ''}
+						</div>
+						<a class="pull-right text-right mt10 mr25 text-blue" data-myset="set-pjax" href="${base_url('/go/joyful')}">
+							<span>帖子总数 ${joyful.topics} >></span>
+						</a>
+					</div>
+				</div>
+				#if(null == node_joyful || node_joyful.size() == 0)
+				<div class="alert alert-info alert-dismissable">
+					该节点下暂时还木有帖子呢 <i class="twa twa-lg twa-sparkles"></i>
+				</div>
+				#else
+					#for(topic : node_joyful)
+					<div class="list-group-item">
+						<h4 class="list-group-item-heading">
+							<a href="${base_url('/topic/') + topic.tid}">
+								#if(topic.is_essence == 1)
+									<font class="my_is_essence">${topic.title}</font>
+								#else
+									${topic.title}
+								#end
+								#if(topic.has_pic)
+									<img src="${imgPath}/bbs/pic.png" class="my_has_pic ml2">
+								#end
+								#if(topic.attach_type!=null)
+									<img src="${imgPath}/bbs/add.png" class="my_has_pic ml2" title="帖子内含附加内容">
+								#end
+							</a>
+							<a href="${base_url('/topic/') + topic.tid + '#Reply' + topic.comments}" class="badge-comment">
+								<span class="badge pull-right">
+								${topic.comments}/${topic.views}
+								</span>
+							</a>
+						</h4>
+						<div class="comment-bt">
+							<strong><a data-myset="set-pjax" href="${base_url('/member/') + topic.user_name}">${topic.nick_name ?! topic.user_name}</a></strong>
+							&nbsp;•&nbsp;<span>${timespan(topic.update_time)}</span>
+							#if(topic.comments > 0)
+								&nbsp;•&nbsp;最后回复来自
+								<strong><a data-myset="set-pjax" href="${base_url('/member/') + topic.reply_name}">${topic.reply_nick_name ?! topic.reply_name}</a></strong>
+							#end
+						</div>
+					</div>
+					#end
+				#end
+			</div>
+
+			<div class="offer">
+	        	<div class="list-group text-center offer-con1">
+					<div class="offer_close visible-lg-block"></div>
+					<p class="list-group-item list-blue" style="background: #778fdd;border:1px solid #778fdd;">今日报价</p>
+					<div class="list-group-item">
+						<strong class="list-group-item-heading mb5">
+							100万以下电票
+						</strong>
+						<p class="list-group-item-text mb10">
+							（年利率%）
+						</p>
+						<div class="bigTktPager list-group-item-text" >
+							<div>国股：<span class="guogu">--</span></div>
+							<div>城商：<span class="chengshang">--</span></div>
+							<div>农商：<span class="nongshang">--</span></div>
+						</div>
+					</div>
+					<div class="list-group-item">
+						<strong class="list-group-item-heading mb5">
+							100万以上买断电票
+						</strong>
+						<p class="list-group-item-text mb10">
+							（年利率%）
+						</p>
+						<div class="bigTktElec list-group-item-text">
+							<div>国股：<span class="guogu">--</span></div>
+							<div>城商：<span class="chengshang">--</span></div>
+							<div>农商：<span class="nongshang">--</span></div>
+						</div>
+					</div>
+					<a target="_blank" href="https://www.utiexian.com/homepage/tool/inquiry" class="list-group-item" style="color: #778fdd">查看更多</a>
+				</div>
+	        </div>
+			<div class="offer-con2">
+				今日报价
+			</div>
+        </div>
+        #include("./common/sidebar.html")
+    </div>
+</div>
+#include("./common/footer.html")
+#include("./common/right.html")
+
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="modal fade" id="modal-choujiang" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal-dialog" style="margin-top: 15%">
+					<div class="modal-content choujiang-con">
+						<div class="modal-header" style="border: 0">
+							 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="canleRemind();">×</button>
+						</div>
+						<div class="modal-body text-center">
+							您还需邀请<b id="need_invitation" style="color: #e84c3d;">3</b>位好友即可再得一张抽奖券
+						</div>
+						<div class="modal-footer" style="border: 0;text-align: center;">
+							 <button type="button" class="btn btn-default" data-dismiss="modal" onclick="canleRemind();">先不邀请</button><button onclick="toShare();" id="code_invitation" data-href="${base_url('')}" class="btn btn-danger hidden-lg hidden-md hidden-sm">邀请好友</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+var _uid = null;
+$(document).ready(function(){
+	var member_id = "${member_id}";//@WKX 设置缓存（用户主键）
+	if(member_id!=null && $.trim(member_id).length>0){
+		localStorage.setItem("MEMBERID",member_id);
+	}
+	
+	_uid = "#if(login_user!=null)${login_user.uid}#end";
+	$(".demo1").bootstrapNews({
+        newsPerPage: 1,
+        autoplay: true,
+		pauseOnHover: true,
+		navigation: false,
+        direction: 'up',
+        newsTickerInterval: 5000,
+        onToDo: function () {
+        	document.getElementById("topbar").style.visibility="visible";//显示
+        }
+    });
+	
+	getPriceFromAPP();//初始化报价
+	initRemind();//初始化邀请用户提醒
+});
+
+/**
+ * 首页获取平台报价
+ */
+function getPriceFromAPP(){
+	$.post(BASE + '/get/price', function(response){
+		if(response){
+			if(response.status == 200){
+				var price = response.data;
+				if(price==null)return;
+				$.each(price,function(n,hp){
+					if (hp!=null && hp.type2 == 2) {//大票
+			            var type1 = hp.type1;
+			            var type6 = hp.type6;
+			            var price = hp.price;
+			            if (type6 == 2 && type1 == 1) {//大票电票国股
+			                $(".bigTktElec .guogu").html(price);
+			            }else if (type6 == 2 && type1 == 2) {//大票电票城商
+			                $(".bigTktElec .chengshang").html(price);
+			            }else if (type6 == 2 && type1 == 4) {//大票电票农商
+			                $(".bigTktElec .nongshang").html(price);
+			            }
+			        }else{//小票
+			        	var type1 = hp.type1;
+                        var type6 = hp.type6;
+                        var type2 = hp.type2;
+                        var price = hp.price;
+			        	if (type2 == 4 && type6 == 2 && type1 == 1) {//50万以下纸票国股
+			                $(".bigTktPager .guogu").html(price);
+			            }else if (type2 == 4 && type6 == 2 && type1 == 2) {//50万以下纸票城商
+			                $(".bigTktPager .chengshang").html(price);
+			            }else if (type2 == 4 && type6 == 2 && type1 == 4) {//50万以下纸票农商
+			                $(".bigTktPager .nongshang").html(price);
+			            }
+			        }
+				});
+			}
+		}
+	});
+}
+
+/**
+ * 初始化邀请用户提醒
+ */
+function initRemind(){
+	var user = "${login_user}";
+	if(user==null || user=="")return;//用户登录才提醒
+	if(!window.localStorage)return;//支持存储才提醒
+	
+	var day = localStorage.getItem("REMIND-DAY" + _uid);
+	if(day==getNowDay())return;//当天只提醒一次
+	
+	var count = localStorage.getItem("REMIND-COUNT" + _uid);
+	if(Number(count)!=null && Number(count)>4)return;//提醒5次（五天）
+	
+	$.post(BASE + '/get/remind', function(response){
+		if(response){
+			if(response.status == 200){
+				var re = response.data;
+				if(re==null)return;
+				$("#need_invitation").text(re.need_invitation);
+				$("#code_invitation").attr("data-href",re.code_invitation);
+				if(re.code_invitation!=null)$('#modal-choujiang').modal({backdrop: 'static', keyboard: false});
+			}
+		}
+	});
+}
+
+/**
+ * 暂不邀请
+ */
+function canleRemind(){
+	localStorage.setItem("REMIND-DAY" + _uid,getNowDay());//记录当前时间
+	var count = localStorage.getItem("REMIND-COUNT" + _uid);
+	localStorage.setItem("REMIND-COUNT" + _uid, Number(count)+1);
+}
+
+/**
+ * 分享链接
+ */
+function toShare(){
+	canleRemind();//记录本次提醒
+	var url = $("#code_invitation").attr("data-href");
+	setTimeout(function(){
+		window.location.href = url;
+	},200);
+}
+
+// 左侧今日报价显示隐藏
+$(".offer_close").click(function(){
+	$(".offer-con1").hide();
+	$(".offer-con2").show();
+});
+$(".offer-con2").click(function(){
+	$(".offer-con1").show();
+	$(".offer-con2").hide();
+});
+
+/**
+ * 获取当前时间
+ */
+function getNowDay(){
+	var myDate = new Date();
+	var year=myDate.getFullYear();//获取当前年
+	var month=myDate.getMonth()+1;//获取当前月
+	var date=myDate.getDate(); 
+	var h=myDate.getHours();       //获取当前小时数(0-23)
+	var m=myDate.getMinutes();     //获取当前分钟数(0-59)
+	var s=myDate.getSeconds();  
+
+	var now=year+'-'+myFormat(month)+"-"+myFormat(date);
+	return now;
+}
+
+/**
+ * 获取当前时间（月、日格式化）
+ */
+function myFormat(s) {
+    return s < 10 ? '0' + s: s;
+}
+</script>
+</body>
+</html>

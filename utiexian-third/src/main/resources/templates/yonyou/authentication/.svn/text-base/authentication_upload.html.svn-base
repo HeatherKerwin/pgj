@@ -1,0 +1,436 @@
+[#import "/common/main.html" as main]
+[#include "/common/setting.html"]
+[@main.body title='云票据-开户管理']
+<link rel="stylesheet" href="${basePath}/css/yonyou/authentication.css">
+<link rel="stylesheet" href="${basePath}/css/yonyou/mask.css">
+<link rel="stylesheet" href="${basePath}/css/yonyou/cropper.min.css">
+<link rel="stylesheet" href="${basePath}/css/yonyou/ImgCropping.css">
+<script type="text/javascript" src="${basePath}/js/cropper.min.js"></script>
+
+<!-- 头部 -->
+<div class="head">
+    <div class="headWrap">
+        <a class="logo" href="http://www.yonyou.com/" target="_blank">
+            <img src="${basePath}/images/yonyou/logo.png" alt="yonyou">
+        </a>
+        <ul class="menu">
+            <li><a href="${basePath}/yonyou/index">首页</a></li>
+            <li><a href="${basePath}/yonyou/ypDiscount">出票</a></li>
+            <li><a href="${basePath}/yonyou/inquiry">询价</a></li>
+            <li><a href="${basePath}/yonyou/calculator">计算器</a></li>
+            <li><a href="${basePath}/yonyou/authentication" class="ce84c3d">开户管理</a></li>
+            <li><a href="${basePath}/yonyou/ypOrderList">订单中心</a></li>
+        </ul>
+    </div>
+</div>
+<!-- 头部end -->
+
+<div class="wrap authenticationWrap">
+    <!--top-->
+    <div class="authenticationTop">
+        <label>开户管理</label>
+    </div>
+    
+    <!--开户进程-->
+    <div class="authenticationType">
+        <ul>
+            <li><img src="${basePath}/images/yonyou/authentication/type1.png" width="180" height="52" alt="申请开户"></li>
+            <li><img src="${basePath}/images/yonyou/authentication/type2.png" width="180" height="52" alt="审核"></li>
+            <li><img src="${basePath}/images/yonyou/authentication/type3.png" width="55" height="52" alt="完成开户"></li>
+        </ul>
+    </div>
+
+    <!--上传证件-->
+    <div class="uploadCon">
+        <div class="uploadTitle">
+            <label for="">证件上传：</label>
+            <span>（可修改）</span>
+        </div>
+        <!--上传-->
+        <ul class="uploadImg">
+            <li>
+                <label for="replaceImg1">
+				    <img id="finalImg1" src="${basePath}/images/yonyou/authentication/upload1.png" alt="身份证正面">
+                    <button id="replaceImg1" style="display: none" class="replaceImg">营业执照</button>
+                    <input type="hidden" name="imgpath1" id="imgpath1">
+                </label>
+            </li>
+            <li>
+                <label for="replaceImg2">
+				    <img id="finalImg2" src="${basePath}/images/yonyou/authentication/upload1.png" alt="身份证反面">
+                	<button id="replaceImg2" style="display: none" class="replaceImg">身份证正面</button>
+                	<input type="hidden" name="imgpath2" id="imgpath2"
+                </label>
+            </li>
+            <li>
+                <label for="replaceImg3">
+				    <img id="finalImg3" src="${basePath}/images/yonyou/authentication/upload1.png" alt="营业执照">
+                	<button id="replaceImg3" style="display: none" class="replaceImg">身份证反面</button>
+                	<input type="hidden" name="imgpath3" id="imgpath3"
+                </label>
+            </li>
+        </ul>
+    </div>
+    <!--证件识别中-->
+    <div class="loading" style="display: none">
+        <img src="${basePath}/images/yonyou/discount/recogniseLoad.gif" alt="loading">
+    </div>
+    <!--上传证件end-->
+
+</div>
+
+<!--弹窗-->
+<div class="maskWindow" id="maskWindow" style="display: none">
+    <div class="maskBg"></div>
+    <div class="maskWrap maskWrapSmall">
+        <!--top-->
+        <div class="maskTop">
+            <!--弹窗名称-->
+            <div id="title" class="maskTitle">温馨提示</div>
+            <!--关闭按钮-->
+            <a class="maskClose">
+                <img src="${basePath}/images/yonyou/common/closeIcon.png" alt="关闭">
+            </a>
+        </div>
+        <!--top end-->
+
+        <!--内容容器-->
+        <div class="maskCon">
+            <!--开户声明-->
+            <div class="maskDiv" style="display: none" id="declarationWindow">
+                <p class="maskMessage">开户之前，需要准备什么资料？</p>
+                <p class="maskMessage">1、营业执照正本扫描件</p>
+                <p class="maskMessage">2、法定代表人的身份证正、反面扫描件</p>
+                <p class="maskMessage">3、对公银行账号（建议绑定公司常用的背书户的银行账户）</p>
+                <p class="ce84c3d maskMessage">*扫描件必须为彩色原件的扫描件。</p>
+            </div>
+
+            <!--开户合同-->
+        </div>
+        <!--内容容器end-->
+
+        <!--弹窗底部操作-->
+        <div class="maskFooter" id="maskFooter" style="display: none">
+            <!--开户声明-->
+            <div id="declarationFooter" style="display: none">
+                <a href="javascript:void(0)" class="flatBtn openAccountBtn">我要开户</a>
+            </div>
+            <!--开户声明end-->
+
+        </div>
+        <!--弹窗底部操作end-->
+    </div>
+</div>
+
+
+<!--图片裁剪框 start-->
+<div style="display: none" class="tailoring-container">
+   	<input type="hidden" id="currentImg" >
+    <div class="black-cloth" onClick="closeTailor(this)"></div>
+    <div class="tailoring-content">
+            <div class="tailoring-content-one">
+                <label title="上传图片" for="chooseImg" class="l-btn choose-btn">
+                    <input type="file" accept="image/jpg,image/jpeg,image/png" name="file" id="chooseImg" class="hidden" onChange="selectImg(this)">
+                    选择图片
+                </label>
+                <div class="tailoring-text">
+			    <span>若图片不需要裁剪，请点击</span>
+			    <img src="${basePath}/images/yonyou/handClicks.png">
+			    <a href="#" onclick="OriginalPic()">使用原图</a>
+		    </div>
+                <div class="close-tailoring"  onclick="closeTailor(this)">×</div>
+            </div>
+            <div class="tailoring-content-two">
+                <div class="tailoring-box-parcel">
+                    <img id="tailoringImg">
+                </div>
+            </div>
+            <div class="tailoring-content-three">
+                <button class="l-btn cropper-reset-btn">复位</button>
+                <button class="l-btn cropper-rotate-btn">旋转</button>
+                <button class="l-btn cropper-scaleX-btn">换向</button>
+                <button class="l-btn sureCut" id="sureCut">确定裁剪</button>
+            </div>
+        </div>
+</div>
+<!--图片裁剪框 end-->
+
+<!-- 这里是测试链接，用后删除 -->
+<div style="position: absolute;z-index: 100;color: #d43c33;margin: 200px;">
+<a href="${basePath}/yonyou/authentication_open">新开户</a><br><br>
+<a href="${basePath}/yonyou/authentication_bind">账户绑定</a>
+</div>
+<!-- 这里是测试链接，用后删除end -->
+
+<script>
+    $(document).ready(function () {
+        /*显示开户声明*/
+        $("#maskWindow").fadeIn(500); /*内容区域*/
+        $("#declarationWindow").fadeIn(500); /*开户声明*/
+        $("#maskFooter").fadeIn(500); /*底部按钮区域*/
+        $("#declarationFooter").fadeIn(500); /*开户声明*/
+        $("#title").html("开户声明");
+    });
+
+    /*我要开户*/
+    $(".openAccountBtn").click(function(){
+        $("#maskWindow").fadeOut(500);
+        $("#declarationWindow").fadeOut(500); /*开户合同*/
+        $("#maskFooter").fadeOut(500);
+        $("#declarationFooter").fadeOut(500); /*开户合同*/
+
+        /*$(".loading").show(500); 开户合同*/
+    });
+
+    /*关闭所有弹窗*/
+    $(".maskClose , .closeBtn").click(function(){
+        $("#maskWindow").fadeOut(500); /*内容区域*/
+        $("#declarationWindow").fadeOut(500); /*开户声明*/
+
+        $("#maskFooter").fadeOut(500); /*底部按钮区域*/
+        $("#declarationFooter").fadeOut(500); /*开户声明*/
+
+    });
+    
+	/* ------------------------------------ */
+    //弹出框水平垂直居中
+    (window.onresize = function () {
+    	var win_height = window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight;
+        var win_width = window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth;
+        if (win_width <= 768){
+            $(".tailoring-content").css({
+                "top": (win_height - $(".tailoring-content").outerHeight())/2,
+                "left": 0
+            });
+        }else{
+            $(".tailoring-content").css({
+                "top": (win_height - $(".tailoring-content").outerHeight())/2,
+                "left": (win_width - $(".tailoring-content").outerWidth())/2
+            });
+        }
+    })();
+
+    //弹出图片裁剪框
+    $(".replaceImg").on("click",function () {
+    	if($(this).attr("id") == "replaceImg1"){
+    		$("#currentImg").val("BIZLICENCE");
+    	}else if($(this).attr("id") == "replaceImg2"){
+    		$("#currentImg").val("IDCARD");
+    	}else if($(this).attr("id") == "replaceImg3"){
+    		$("#currentImg").val("");
+    	}
+        $(".tailoring-container").toggle();
+    });
+    //图像上传
+    function selectImg(file) {
+        if (!file.files || !file.files[0]){
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function (evt) {
+            var replaceSrc = evt.target.result;
+            //更换cropper的图片
+            $('#tailoringImg').cropper('replace', replaceSrc,false);//默认false，适应高度，不失真
+        }
+        reader.readAsDataURL(file.files[0]);
+    }
+    //cropper图片裁剪
+    $('#tailoringImg').cropper({
+        guides: false,  //裁剪框的虚线(九宫格)
+        autoCropArea: 0.5,  //0-1之间的数值，定义自动剪裁区域的大小，默认0.8
+        movable: false, //是否允许移动图片
+        dragCrop: true,  //是否允许移除当前的剪裁框，并通过拖动来新建一个剪裁框区域
+        movable: true,  //是否允许移动剪裁框
+        resizable: true,  //是否允许改变裁剪框的大小
+        zoomable: true,  //是否允许缩放图片大小
+        mouseWheelZoom: true,  //是否允许通过鼠标滚轮来缩放图片
+        touchDragZoom: true,  //是否允许通过触摸移动来缩放图片
+        rotatable: true,  //是否允许旋转图片
+        crop: function(e) {
+            // 输出结果数据裁剪图像。
+        }
+    });
+    //旋转
+    $(".cropper-rotate-btn").on("click",function () {
+        $('#tailoringImg').cropper("rotate", 45);
+    });
+    //复位
+    $(".cropper-reset-btn").on("click",function () {
+        $('#tailoringImg').cropper("reset");
+    });
+    //换向
+    var flagX = true;
+    $(".cropper-scaleX-btn").on("click",function () {
+        if(flagX){
+            $('#tailoringImg').cropper("scaleX", -1);
+            flagX = false;
+        }else{
+            $('#tailoringImg').cropper("scaleX", 1);
+            flagX = true;
+        }
+        flagX != flagX;
+    });
+
+    //裁剪后的处理
+    $("#sureCut").on("click",function () {
+        if ($("#tailoringImg").attr("src") == null ){
+            return false;
+        }else{
+            var cas = $('#tailoringImg').cropper('getCroppedCanvas');//获取被裁剪后的canvas
+            var base64url = cas.toDataURL('image/png'); //转换为base64地址形式
+            $(".finalImg").prop("src",base64url);//显示为图片的形式
+            
+            readFile(base64url);
+        }
+    });
+    //关闭裁剪框
+    function closeTailor() {
+        $(".tailoring-container").toggle();
+    }
+    /**
+	* 使用选择的图片，未裁剪
+	*/
+	function OriginalPic(){
+		if ($("#tailoringImg").attr("src") == null ){
+			alert("请先选择图片");
+            return ;
+		}else{
+			var base64url = $('#tailoringImg').attr("src");
+			readFile(base64url);
+		}
+	};
+	
+	/**
+	* boot 项目的图片上传
+	*/
+	function readFile(imgUrl){
+		$(".loading").show();
+        $("#maskWindow1").removeClass("none");
+		closeTailor();//关闭裁剪框
+        var currentImg;
+        if($("#currentImg").val()!=""){
+        	currentImg = $("#currentImg").val();
+        }
+		if(imgUrl == null && imgUrl == ""){
+			return ;
+		}
+		setTimeout(function(){
+			var index = imgUrl.indexOf(",");
+			var base64Image = imgUrl.substr(index+1);
+			var url = '${bootAppPath}/upload/image';
+			var params = {base64Image:base64Image,ocrGenre:currentImg};
+			
+			$.ajax({
+	    		url:url,
+	    		type:"POST",
+	    		data:params,
+	    		dataType:"json",
+	    		async: false,
+	    		success:function(res){
+	    			var data = res.data;
+	    			if(data != null){
+	    				if(data.response == 'success'){
+	    					$("#maskWindow1").addClass("none");
+	    					$(".loading").hide(500);
+	    					var ocrInfo = data.data.ocrInfo;
+	    					if(typeof(ocrInfo) != "undefined" || ocrInfo != null){
+	    						if(ocrInfo.bizLicenceNameMap != null){
+	    							$("#company").val(ocrInfo.bizLicenceNameMap.bizLicenceName);
+	    						}
+	    						if(ocrInfo.bizLicenceRegisteredNoMap != null){
+	    							$("#regNum").val(ocrInfo.bizLicenceRegisteredNoMap.bizLicenceRegisteredNo);
+	    							//checkIsAccount();
+	    						}
+	    						if(ocrInfo.bizLicenceLegalNameMap != null){
+	    							$("#bizLicenceLegalName").val(ocrInfo.bizLicenceLegalNameMap.bizLicenceLegalName);
+	    						}
+	    						if(ocrInfo.bizLicenceAddrMap != null){
+	    							$("#bizLicenceAddr").val(ocrInfo.bizLicenceAddrMap.bizLicenceAddr);
+	    						}
+	    						if(ocrInfo.bizLicenceFoundedDateMap != null){
+	    							$("#bizLicenceFoundedDate").val(ocrInfo.bizLicenceFoundedDateMap.bizLicenceFoundedDate);
+	    						}
+	    						if(ocrInfo.idMap != null){
+	    							$("#legalCertNo").val(ocrInfo.idMap.id);
+	    						}
+	    					}
+	    					if(currentImg == "BIZLICENCE"){
+	    						$("#replaceImg1").prev().attr("src","${bootPic}/"+data.data.base64Image);
+	    						$('#replaceImg1').next().val(data.data.base64Image);
+	    					}else if(currentImg == "IDCARD"){
+	    						$("#replaceImg2").prev().attr("src","${bootPic}/"+data.data.base64Image);
+	    						$('#replaceImg2').next().val(data.data.base64Image);
+	    					}else{
+	    						$("#replaceImg3").prev().attr("src","${bootPic}/"+data.data.base64Image);
+	    						$('#replaceImg3').next().val(data.data.base64Image);
+	    					}
+	    				}else{
+	    					alert(data.data.msg);
+	    				}
+	    			}
+	    		},
+	    		error:function(json){
+    				console.log("获取数据失败！");
+	    		}
+	    	});
+		});
+	}
+	
+	/**
+	*检查是否已经开过户
+	*/
+	function checkIsAccount(){
+		console.log("fresh");
+		if(!$("#company").validationEngine("validate")){
+    		$("#company").focus();
+    		setTimeout(function(){$("#company").validationEngine('hideAll');},1000);
+    		return;
+    	}
+		if(!$("#regNum").validationEngine("validate")){
+    		$("#regNum").focus();
+    		setTimeout(function(){$("#regNum").validationEngine('hideAll');},1000);
+    		return;
+    	}
+		var regNum = $("#regNum").val();
+		var url = '${bootAppPath}/cib/get/same';
+		var params = {memberId:memberId,bizLicenceRegisteredNo:regNum};
+		var res = bootPost(url,params);
+		console.log(res);
+		if(res != null){
+			var data = res.data;
+			if (data.response == 'success') {
+				if (data.data.type == 0 ) {//已经开户的角色是企业
+					if(role == 1 ){//当前选择的角色是机构，去开户
+						$("#Btn1").addClass('none');
+						$(".openAccountDiv2").removeClass('none');
+					}else{//是企业，去绑定
+						console.log("当前开户的角色是企业，去绑定");
+						var map = new Map();
+						map.put("_PAGE", "bisic_message/authentication_orgUser1");//必传
+						map.put("regNum", regNum);
+						map.put("company", data.data.name);
+						map.put("cibId", data.data.id);
+						map.put("role", role);
+						_OPENPAGE_FORM(map);
+					}
+				}else if(data.data.type == 1){//已经开户的角色是机构直接去绑定
+					var map = new Map();
+					map.put("_PAGE", "bisic_message/authentication_orgUser1");//必传
+					map.put("regNum", regNum);
+					map.put("cibId", data.data.id);
+					map.put("company", data.data.name);
+					map.put("role", role);
+					_OPENPAGE_FORM(map);
+		        }else {//两边都没开户去开户
+					$("#Btn1").addClass('none');
+					$(".openAccountDiv2").removeClass('none');
+				}
+			} else {
+				alert(data.msg);
+			  	//弹出提示信息
+			}
+		}
+	}
+
+</script>
+[/@main.body]

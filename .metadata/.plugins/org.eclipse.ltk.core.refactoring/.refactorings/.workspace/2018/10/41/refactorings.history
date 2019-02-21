@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;website/src/main/webapp/WEB-INF/freemarker/agreements/yingshoukuan.ftl&apos;" deleteContents="false" description="Delete resource &apos;website/src/main/webapp/WEB-INF/freemarker/agreements/yingshoukuan.ftl&apos;" element1="/website/src/main/webapp/WEB-INF/freemarker/agreements/yingshoukuan.ftl" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1539140842944"/>
+</session>

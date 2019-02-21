@@ -1,0 +1,17 @@
+</div>
+	<footer class=content-footer>
+		<nav class=footer-left>
+			<ul class=nav>
+				<li>
+					<a href=javascript:;>Copyright <i class="fa fa-copyright"></i> <span>票据管家社区</span> 2016. All rights reserved</a>
+				</li>
+			</ul>
+		</nav>
+	</footer>
+</div>
+<script type="text/javascript">
+var BASE = '${base}';
+</script>
+<script type="text/javascript" src="${staticPath}/js/bbs/sweetalert.min.js"></script>
+<script type="text/javascript" src="${staticPath}/js/bbs/bootstrap.js"></script>
+<script type="text/javascript" src="${staticPath}/js/bbs/admin.js"></script>

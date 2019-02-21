@@ -1,0 +1,10 @@
+[#import "/common/main.html" as main]
+[#include "/common/setting.html"]
+[@main.body title='ERROR']
+
+<div class="main">
+	<h1>Error</h1>
+	<p>请向客服反应你的问题！</p>
+</div>
+
+[/@main.body]

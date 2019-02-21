@@ -1,0 +1,102 @@
+@charset "utf-8";
+/* CSS Document */
+
+.account{
+	width: 68%;
+	height: auto;
+	margin: 4% 16%;
+}
+.account img{
+	width: 40%;
+	height: auto;
+}
+.register1{
+	width: 84%;
+	height: 4.2rem;
+	margin: 4% 8%;
+	border: 1px solid #f84040;
+	border-radius: 0.4rem;
+}
+.register1 input[type="tel"]{
+	width: 66%;
+	height: 4.2rem;
+	font-size: 3.2rem;
+	line-height: 4.2rem;
+	border: 0;
+	background: none;
+	margin-left: 4%;
+}
+.register1 input[type="button"]{
+	width: 30%;
+	height: 4.2rem;
+	background: #f84040;
+	border-radius: 0 0.4rem 0.4rem 0;
+	border: 0;
+	color: #fff;
+	font-size: 3.2rem;
+}
+.why{
+	width: 100%;
+}
+.why img{
+	width:100%;
+	height:auto;
+}
+.why_title{
+	width: 50%;
+	font-size: 3rem;
+	line-height: 3rem;
+	color: #f84040;
+	text-align: center;
+}
+.xian{
+	width: 25%;
+	height: 0.1rem;
+	background:url(../img/xian.png) repeat-x;
+	background-size: auto 100%;
+	margin-top: 1.8rem;
+}
+.jieshao{
+	width: 52%;
+	margin: 2% 24%;
+}
+.jieshao img{
+	width: 100%;
+	height: auto;
+}
+.money{
+	width: 100%;
+	margin: 4% 0;
+}
+.money_title{
+	font-size: 2.8rem;
+	color: #2d2d2d;
+	text-align: center;
+}
+.money_show{
+	font-size: 4.4rem;
+	color:#f84040;
+	text-align: center;
+	margin-top: 2%;
+}
+.total ,.month{
+	width: 50%;
+}
+.register_btn1{
+	width: 68%;
+	height: 4.5rem;
+	margin: 6% 16%;
+	background: #f84040;
+	border:0;
+	border-radius: 4px;
+	color: #fff;
+	font-size: 3.6rem;
+	line-height: 4.5rem;
+}
+.copyright{
+	font-size: 2.6rem;
+	line-height: 2.7rem;
+	color: #868686;
+	text-align: center;
+	margin-bottom: 4%;
+}

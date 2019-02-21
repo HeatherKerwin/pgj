@@ -1,0 +1,211 @@
+#include("./header.html", {active:'nodes', title:'板块管理'})
+<div class=main-content>
+<div id="ajax-modal" class="modal fade" tabindex="-1"></div>
+	<div class="panel mb25">
+		<div class="panel-heading">板块列表</div>
+		<div class="panel-body">
+			<div class="table-responsive">
+				<div class="row">
+					<div class="pull-left pl10">
+						<label>
+							<input type="search" class="form-control" placeholder="搜索...">
+						</label>
+						<a class="btn btn-icon-icon btn-sm btn-google-plus btn-round"><i class="fa fa-search"></i></a>
+					</div>
+					<div class="pull-right pr10">
+						<a href="${base_url('/admin/nodes/add')}" type="button" class="btn btn-success">新增板块</a>
+					</div>
+				</div>
+				<table class="table table-bordered table-striped mb0">
+					<thead>
+						<tr>
+							<th>板块名称</th>
+							<th>父板块</th>
+							<th>子板块数</th>
+							<th>帖子数</th>
+							<th width="15%" align="center">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						#for(node : nodePage.results)
+						<tr>
+							<td>${node.node_name}</td>
+							<td>${node.parent_name}</td>
+							<td>${node.childs}</td>
+							<td>${node.topics}</td>
+							<td>
+								<a href="${base_url('/admin/nodes/') + node.nid }" class="btn btn-info btn-outline btn-sm">编辑</a>
+								#if(node.pid >= 1)
+								<a href="javascript:;" class="btn btn-danger btn-outline btn-sm" onclick="node_user('${node.nid}');">设置版主</a>
+								#end
+							</td>
+						</tr>
+						#end
+					</tbody>
+				</table>
+			</div>
+			#if(nodePage.totalPage > 1)
+			<div class="datatable-bottom pt10">
+				<div class="pull-left">
+					<div class="dataTables_info" id="DataTables_Table_0_info"
+						role="status" aria-live="polite">Showing 1 to 5 of 5 entries</div>
+				</div>
+				<div class="pull-right">
+					<div class="dataTables_paginate paging_bootstrap"
+						id="DataTables_Table_0_paginate">
+						<ul class="pagination no-margin">
+							<li class="prev #if(nodePage.page==1)#end"><a href="${base_url('/admin/nodes?p=') + nodePage.prev_page }" title="Previous">←</a></li>
+							<li class="active"><a href="#">${nodePage.page}</a></li>
+							<li class="next"><a href="${base_url('/admin/nodes?p=') + nodePage.next_page }" title="Next">→</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			#end
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog" style="width:950px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					用户列表
+				</h4>
+			</div>
+			<div id="my-body" class="modal-body" style="height:580px;">
+				<div class="pull-left pl10">
+					<label>
+						<input id="keyword" type="search" class="form-control" placeholder="用户名搜索...">
+					</label>
+					<a class="btn btn-icon-icon btn-sm btn-google-plus btn-round" onclick="node_user();"><i class="fa fa-search"></i></a>
+				</div>
+				<table class="table table-bordered table-striped mb0">
+					<thead>
+						<tr>
+							<th width="20%">用户名</th>
+							<th width="25%">用户邮箱</th>
+							<th width="25%">注册日期</th>
+							<th width="15%">用户状态</th>
+							<th width="10%">操作</th>
+						</tr>
+					</thead>
+					<tbody id="my-content" class="user-table">
+						
+					</tbody>
+				</table>
+				<div id="pager" style="bottom:10px;position:absolute;right:10px;"></div>
+			</div>
+		</div>
+	</div>
+</div>
+#include("./footer.html")
+<script type="text/x-handlebars-template" id="TEST">
+{{#each results}}
+<tr>
+	<td>
+		<a href="{{toUrl login_name}}" target="_blank">{{login_name}}</a>
+	</td>
+	<td>{{email}}</td>
+	<td>
+		{{toTime create_time}}
+	</td>
+	<td>
+		{{toStatus status}}
+	</td>
+	<td>
+		<button type="button" class="{{btnColor node_user_id}} btn btn-xs" onclick="selectUser('{{node_user_id}}','{{uid}}');">{{hasNode node_user_id}}</button>
+	</td>
+</tr>
+{{/each}}
+</script>
+<link type="text/css" rel=stylesheet href="${staticPath}/js/bbs/page/page.css?ver=${version}"/>
+<script type="text/javascript" src="${staticPath}/js/bbs/page/js-extend.js?ver=${version}"></script>
+<script type="text/javascript" src="${staticPath}/js/bbs/page/jquery-ajax-pager.js?ver=${version}"></script>
+<script type="text/javascript">
+Handlebars.registerHelper('toUrl', function(name, options) {
+    return "${base_url('/member/')}"+name;
+});
+Handlebars.registerHelper('toTime', function(num, options) {
+    if(num!=null){
+        var d = new Date(num*1000);
+        return d.format('yyyy-MM-dd hh:mm');
+    }else{
+        return "--";
+    }
+});
+Handlebars.registerHelper('toStatus', function(num, options) {
+    if(num=="0"){
+        return "未激活";
+    }else if(num=="1"){
+        return "正常";
+    }else if(num=="2"){
+        return "已拉黑";
+    }
+});
+Handlebars.registerHelper('hasNode', function(num, options) {
+    if(num!=null && num!=""){
+        return "取消";
+    }else{
+        return "赋予";
+    }
+});
+Handlebars.registerHelper('btnColor', function(num, options) {
+    if(num!=null && num!=""){
+        return "btn-danger";
+    }else{
+        return "btn-primary";
+    }
+});
+/**
+ * 用户弹窗
+ */
+var nid_temp = null;
+function node_user(nid){
+	if(nid!=null && nid!="")nid_temp = nid;
+	var keyword = $("#keyword").val();
+	$('#myModal').modal();
+	
+	$('#pager').sjAjaxPager({
+        url: "${base_url('/admin/users/panel/do')}",
+        pageSize:10,
+        searchParam: {
+        	nid:nid_temp,
+        	keyword: keyword
+        },beforeSend: function () {
+        	
+        },success: function (result) {
+        	var source = $("#TEST").html();
+	        var template = Handlebars.compile(source);
+	        var html = template(result.data);
+	        $("#my-content").html(html);
+        },complete: function(){
+        },error:function(){
+        	
+        }
+    });
+}
+
+/**
+ * 设置版主（设置版主、取消版主）
+ */
+function selectUser(nuid,uid){
+	$.ajax({
+        type:"POST",
+        dataType:"JSON",
+        url:"${base_url('/admin/nodeuser/set')}",
+        data:{
+            "nuid":nuid,
+            "uid":uid,
+            "nid":nid_temp
+        },success:function(result) {//返回数据根据结果进行相应的处理  
+        	node_user(null);
+        }
+    });
+}
+</script>
+</body>
+</html>

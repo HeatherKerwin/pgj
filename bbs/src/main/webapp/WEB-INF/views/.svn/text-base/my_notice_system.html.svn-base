@@ -1,0 +1,13 @@
+#include("./common/header.html", {title:"系统消息"})
+#include("./common/right.html")
+#include("./common/my_menu.html")
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column p30" style="background: #fdfdfd">
+			<div class="alert alert-info">你还没有系统消息呢</div>
+		</div>
+	</div>
+</div>
+#include("./common/footer.html") 
+</body>
+</html>

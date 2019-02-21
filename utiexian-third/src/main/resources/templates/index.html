@@ -1,0 +1,22 @@
+[#import "/common/main.html" as main]
+[#include "/common/setting.html"]
+[@main.body title='票据管家']
+
+<div class="main">
+	这是首页！
+	<p id="content"></p>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$.ajax({
+        type: "GET",
+        url: "${basePath}/test",
+        dataType: "text",
+        success: function(data){
+        	$("#content").text(data);
+        }
+    });
+});
+</script>
+
+[/@main.body]

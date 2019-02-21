@@ -1,0 +1,4 @@
+127.0.0.1 - - [29/Dec/2018:16:59:56 +0800] "GET / HTTP/1.1" 404 951
+192.168.1.26 - - [29/Dec/2018:17:00:24 +0800] "GET /website/bisicmessage/authentication HTTP/1.1" 302 -
+192.168.1.26 - - [29/Dec/2018:17:00:25 +0800] "GET /website/login?redirect_url=/bisicmessage/authentication HTTP/1.1" 200 110945
+127.0.0.1 - - [29/Dec/2018:17:09:37 +0800] "GET / HTTP/1.1" 404 951

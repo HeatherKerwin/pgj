@@ -1,0 +1,83 @@
+10
+
+dir
+13933
+svn://192.168.1.20/projects/java/trunk/bbs/src/main/webapp/assets
+svn://192.168.1.20
+
+
+
+2018-03-16T05:37:11.728743Z
+12582
+wangkaixuan
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+cd0490cf-131f-41e0-8c25-b9b9ec0c004c
+
+favicon.ico
+file
+
+
+
+
+2018-08-13T06:17:36.032000Z
+3e71587637e52543f303c02beab2cee3
+2016-12-13T07:57:33.966057Z
+6628
+wangkaixuan
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1150
+
+font-awesome-4.6.1
+dir
+
+images
+dir
+
+lib
+dir
+
+scripts
+dir
+
+styles
+dir
+
+temp
+dir
+
+ueditor
+dir
+

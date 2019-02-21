@@ -1,0 +1,50 @@
+<div class="container" style="background: #f8f8f8">
+	<div class="row clearfix" style="border: 1px solid #e2e2e2;">
+		<div class="col-md-12 column">
+			<ul class="nav nav-tabs">
+				<li class="dropdown">
+					 <a href="#" data-toggle="dropdown" class="dropdown-toggle bbsTab">我的帖子<strong class="caret"></strong></a>
+					<ul class="dropdown-menu">
+						<li>
+							 <a data-myset="set-pjax" href="${base_url('/my/topic')}">我发表的</a>
+						</li>
+						<li>
+							 <a data-myset="set-pjax" href="${base_url('/my/topic/comment')}">我参与的</a>
+						</li>
+						<li>
+							 <a data-myset="set-pjax" href="${base_url('/my/topic/collect')}">我收藏的</a>
+						</li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					 <a href="#" data-toggle="dropdown" class="dropdown-toggle bbsTab">账户信息<strong class="caret"></strong></a>
+					<ul class="dropdown-menu">
+						<li>
+							 <a href="${base_url('/my/setting/base')}">基本信息</a>
+						</li>
+						<li>
+							 <a data-myset="set-pjax" href="${base_url('/my/point')}">我的积分</a>
+						</li>
+						<li>
+							 <a href="${base_url('/my/ticket')}">我的奖励</a>
+						</li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					 <a href="#" data-toggle="dropdown" class="dropdown-toggle bbsTab">消息中心<strong class="caret"></strong></a>
+					<ul class="dropdown-menu">
+						<li>
+							 <a data-myset="set-pjax" href="${base_url('/my/notice')}">帖子消息</a>
+						</li>
+						<li>
+							 <a data-myset="set-pjax" href="${base_url('/my/notice/system')}">系统消息</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					 <a data-myset="set-pjax" href="${base_url('/my/password')}" class="bbsTab">更改密码</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

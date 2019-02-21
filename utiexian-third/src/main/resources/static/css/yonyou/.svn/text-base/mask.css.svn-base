@@ -1,0 +1,314 @@
+/*遮罩层弹窗*/
+.maskWindow{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 10;
+}
+/*遮罩层背景*/
+.maskBg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    filter: alpha(opacity=60);
+    opacity: 0.6;
+    background-color: #000;
+}
+
+/* 居中显示图片 */
+.maskIMG_center{
+	position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    margin: auto;
+}
+
+.maskWrap{
+    height: auto;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    z-index: 11;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+/*大宽度*/
+.maskWrapBig{
+    width: 800px;
+    margin-left: -400px;
+}
+/*小宽度*/
+.maskWrapSmall{
+    width: 600px;
+    margin-left: -300px;
+}
+.maskWrap .maskTop{
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #e0e0e0;
+}
+/*弹窗对应的标题*/
+.maskWrap .maskTop .maskTitle{
+    position: absolute;
+    left: 20px;
+}
+/*关闭按钮*/
+.maskWrap .maskTop a.maskClose{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 10px;
+    height: 10px;
+    line-height: 0px;
+}
+/*---------------------*/
+/*---------------------*/
+
+/*弹窗内容容器*/
+.maskWrap .maskCon{
+    padding: 10px 20px 20px;
+}
+.maskWrap .maskCon .maskDiv{
+    height: 100%;
+}
+
+/*提示信息*/
+.maskWrap .maskCon .maskDiv .maskMessage{
+    line-height: 40px;
+    text-indent: 32px;
+}
+
+/*---表单类-输入型---*/
+.maskWrap .maskCon .maskDiv ul.maskForm{}
+.maskWrap .maskCon .maskDiv ul.maskForm:first-child li{
+    display: block;
+    min-height: 34px;
+    line-height: 34px;
+    margin: 8px 0;
+    overflow: hidden;
+
+}
+.maskWrap .maskCon .maskDiv ul.maskForm li:after{
+    clear: both;
+    display: block;
+    overflow: hidden;
+}
+/*标签*/
+.maskWrap .maskCon .maskDiv ul.maskForm li label{
+    float: left;
+    display: block;
+    margin-right: 10px;
+}
+/*理由、属性-下拉框*/
+.maskWrap .maskCon .maskDiv ul.maskForm li select{
+    float: left;
+    display: block;
+    width: 235px;
+    line-height: 30px;
+    padding-right: 20px;
+    margin-top: 2px;
+    background: url("/images/yonyou/common/select245.png") center no-repeat;
+    background-size: 100% 100%;
+}
+/*文本域*/
+.maskWrap .maskCon .maskDiv ul.maskForm li textarea{
+    float: left;
+    display: block;
+    width: 300px;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}
+/*输入框*/
+.maskWrap .maskCon .maskDiv ul.maskForm li input{
+    float: left;
+    display: block;
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+    box-sizing: border-box;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 0px 5px;
+    margin-top: 2px;
+}
+/*input类型按钮button-收取验证码*/
+.maskWrap .maskCon .maskDiv ul.maskForm li input[type=button]{
+    width: 80px;
+    font-size: 12px;
+    background: #f9f9f9;
+    margin-left: 10px;
+}
+/*展示值*/
+.maskWrap .maskCon .maskDiv ul.maskForm li .FormValue{
+    float: left;
+    display: block;
+}
+/*单位、注释*/
+.maskWrap .maskCon .maskDiv ul.maskForm li .FormUnit{
+    float: left;
+    display: block;
+    font-size: 14px;
+    color: #717583;
+    margin-left: 10px;
+}
+
+/*出票-上传图片*/
+.maskWrap .maskCon .maskDiv .uploadImg{
+    margin: 5px 0;
+    margin: 5px 0;
+}
+.maskDiv .uploadImg label span{
+    color: #e84c3d;
+    margin-left: 15px;
+}
+/*已上传图片列表*/
+.maskDiv .uploadImg ul.uploadImgList{
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+.maskDiv .uploadImg ul.uploadImgList:after{
+    clear: both;
+    display: block;
+}
+.maskDiv .uploadImg ul.uploadImgList li{
+    float: left;
+    display: block;
+    position: relative;
+    z-index: 11;
+    width: 200px;
+    height: 144px;
+    margin: 15px 20px 10px;
+}
+.maskDiv .uploadImg ul.uploadImgList li img.showImg{
+    position: relative;
+    z-index: 11;
+    width: 200px;
+    height: 144px;
+}
+/*删除已上传的图片*/
+.maskDiv .uploadImg ul.uploadImgList li a.closeImg{
+    width: 20px;
+    height: 20px;
+    display: block;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    z-index: 12;
+    background: url("/images/yonyou/common/close1.png") center no-repeat;
+    background-size: 20px 20px;
+}
+/*上传按钮*/
+.maskDiv .uploadImg ul.uploadImgList li.addImg label{
+    display: block;
+    cursor: pointer;
+}
+/*---表单类-输入型end---*/
+
+/*---表单类-展示型---*/
+.maskWrap .maskCon .maskDiv ul.maskForm1{
+    padding: 10px 30%;
+    overflow: hidden;
+}
+.maskWrap .maskCon .maskDiv ul.maskForm1 li{
+    line-height: 30px;
+}
+.maskWrap .maskCon .maskDiv ul.maskForm1 li label{
+    float: left;
+    width: 120px;
+}
+.maskWrap .maskCon .maskDiv ul.maskForm1 li .FormValue{
+    float: left;
+}
+/*---表单类-展示型end---*/
+
+/* 合同类型*/
+.contractWindow{
+    width: 100%;
+    height: 500px;
+    overflow-y: scroll;
+    color: #7d7d7d;
+}
+.contractWindow h2{
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 24px;
+}
+.contractWindow h3{
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 18px;
+}
+.contractWindow p{
+    font-size: 14px;
+    line-height: 20px;
+    margin: 10px 0px;
+}
+.contractWindow p.footer{
+    text-align: right;
+}
+.contractWindow img{
+    width: 80%;
+    height: auto;
+    border: none;
+    margin: 5px 10%;
+}
+/*---------------------*/
+/*---------------------*/
+
+/*底部操作按钮*/
+.maskWrap .maskFooter{
+    width: 100%;
+    height: 50px;
+    border-top: 1px solid #e0e0e0;
+}
+.maskWrap .maskFooter:after{
+    clear: both;
+}
+.maskWrap .maskFooter a{
+    height: 30px;
+    padding: 0 12px;
+    float: right;
+    display: block;
+    font-size: 14px;
+    line-height: 30px;
+    border-radius: 5px;
+    margin: 10px 12px;
+    text-align: center;
+    border: 1px solid;
+}
+.maskWrap .maskFooter a:hover{
+    box-shadow: 1px 2px 2px #000;
+}
+
+/*线框按钮*/
+.maskWrap .maskFooter a.lineBtn{
+    color: #e84c3d;
+    border-color: #D43C33;
+    background: #ffffff;
+}
+.maskWrap .maskFooter a.flatBtn{
+    background: #e84c3d;
+    border-color: #D43C33;
+    color: #ffffff;
+}
+.maskWrap .maskFooter a.grayBtn{
+    background: #f2f2f2;
+    border-color: #e0e0e0;
+    color: #2d2d2d;
+}
+/*---------------------*/

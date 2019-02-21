@@ -1,0 +1,75 @@
+.homepage{
+    padding: 50px 120px;
+    background: #ffffff;
+}
+.homepage .listTitle{
+    font-size: 18px;
+    text-align: center;
+}
+.homepage ul.companyList{
+    width: 100%;
+    margin-top: 20px;
+}
+.homepage ul.companyList{
+    overflow: auto;
+}
+.homepage ul.companyList:after{
+    clear: both;
+    height: 0px;
+}
+.homepage ul.companyList li{
+    float: left;
+    width: 50%;
+    font-size: 14px;
+    line-height: 30px;
+    height: 30px;
+    margin: 15px 0px ;
+}
+.homepage ul.companyList li:after{
+    clear: both;
+    height: 0px;
+}
+.homepage ul.companyList li a{
+    float: left;
+    color: #666666;
+    width: 320px;
+    margin-left: 40px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.homepage ul.companyList li a:hover{
+    text-decoration: underline;
+    color: #3366cc;
+}
+.homepage ul.companyList li a:active{
+    color: #3366cc;
+}
+/*序号*/
+.homepage ul.companyList li a span.serialNum{
+}
+/*公司名称*/
+.homepage ul.companyList li a span.companyName{  }
+/*开户状态-标签*/
+.homepage ul.companyList li label{
+    float: right;
+    display: block;
+    font-size: 12px;
+    line-height: 14px;
+    padding: 4px 12px;
+    border-radius: 5px;
+    border: 1px solid;
+    margin: 3px 30px 3px 0px;
+}
+/*开户中*/
+.homepage ul.companyList li label.blueLabel{
+    color: #447bea;
+}
+/*已开户*/
+.homepage ul.companyList li label.redLabel{
+    color: #e84c3d;
+}
+/*未开户*/
+.homepage ul.companyList li label.grayLabel{
+    color: #717583;
+}

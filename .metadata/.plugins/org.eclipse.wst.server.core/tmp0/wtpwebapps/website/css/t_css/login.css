@@ -1,0 +1,238 @@
+.cl { clear: both; }
+input[type="text"]:focus, input[type="password"]:focus { outline: none; }
+input::-ms-clear {
+ display:none;
+}
+/*登录、注册*/
+.login {
+	margin: 0;
+	width: 330px;
+	height: 400px;
+	background: rgba(0,0,0,.5);
+	border-radius: 5px;
+	position: relative;
+	top: 0px;
+	left: 900px;
+	z-index: 1003;
+}
+/*切换*/
+.login-top {
+	width: 330px;
+	height: 50px;
+	position: relative;
+	margin-bottom: 25px;
+}
+.login-top .switch {
+	height: 50px;
+	width: 330px;
+	position: absolute;
+	font-size: 20px;
+	line-height: 50px;
+	border-radius: 5px 5px 0 0;
+}
+/*左*/
+.login-top .switch #switch_qlogin {
+	
+}
+.login-top .switch .switch_btn_focus {
+	color: #fff;
+	display: inline-block;
+	width: 161px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	outline: none;
+ *hide-focus:expression(this.hideFocus=true);
+}
+.login-top .switch .switch_btn_focus:hover {
+	text-decoration: none;
+}
+/*右*/
+.login-top .switch .switch_btn {
+	color: #b8b8b8;
+	display: inline-block;
+	width: 162px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	background: rgba(0,0,0,.5);
+	border-radius: 5px 5px 0 0;
+	outline: none;
+ *hide-focus:expression(this.hideFocus=true);
+}
+
+.login-top .switch .switch_btn:hover {
+	text-decoration: none;
+	/*background: none;*/
+}
+/*切换边框*/
+#switch_bottom {
+	position: absolute;
+	background: none;
+}
+
+/*左*/
+.web_login {
+	width: 330px;
+	position: relative;
+}
+#web_login { _left: 60px; *left:0;
+}
+.web_login .login_form {
+	width: 270px;
+	margin: 0 auto;
+}
+.login-phone ,.login-password{
+	width: 268px;
+	height:44px;
+	line-height: 44px;
+	color:#727272;
+	background: #fff;
+	border: #d6d6d6 1px solid;
+}
+.login-mat1{margin-bottom: 10px;}
+.login-mat2{margin-bottom: 30px;}
+.login-mat3{margin-top: 39px;}
+.login-phone input,.login-password input{
+	width: 234px;
+	height:44px;
+	line-height: 44px;
+	border: none;
+	background: none;
+}
+.login-code{
+	width: 268px;
+	height:44px;
+	margin-bottom: 10px;
+	color:#727272;
+}
+.login-code .login-codeL{
+	width: 170px;
+	height: 44px;
+	border: border: #d6d6d6 1px solid;
+	background: #fff;
+}
+.login-codeL input{
+	width: 136px;
+	height:44px;
+	line-height: 44px;
+	border: none;
+	background: none;
+}
+.login-code .login-codeR {
+	width: 97px;
+	height: 44px;
+	font-size: 14px;
+	line-height: 44px;
+	border: none;
+	background: #d43c33;
+	color:#fff;
+}
+.phone-img ,.code-img ,.password-img{
+	width:15px;
+	height:18px;
+	background-size: 100% 100%;
+	margin: 13px 8px;
+}
+.code-img{
+	background:url(../../images/t_img/footUp/footUp3.png) no-repeat center ;
+}
+.phone-img{
+	background:url(../../images/t_img/footUp/footUp4.png) no-repeat center ;
+}
+.password-img{
+	background:url(../../images/t_img/footUp/password.png) no-repeat center ;
+}
+.login-xy{
+	width:270px;
+	height:15px;
+	margin: 10px 0;
+}
+.xy{
+	font-size: 14px;
+	line-height: 15px;
+	color: #fff;
+}
+.xy a{
+	color: #d43c33;
+}
+.checkbox{
+	width: 13px;
+	height: 13px;
+	border-radius: 2px;
+	background: #fff;
+	border:#d6d6d6 1px solid;
+	color: #d43c33;
+	margin: 0 10px;
+}
+.register{
+	width:270px;
+	height:44px;
+	font-size: 14px;
+	line-height:44px;
+	color:#fff;
+	border: none;
+	background: #d43c33;
+	margin: 10px 0;
+}
+.other-top{
+	width: 270px;
+	height: 15px;
+	color:#fff;
+	line-height:15px;
+}
+.other-l ,.other-r{
+	width: 76px;
+	height:1px;
+	background: #fff;
+	margin-top: 7px;
+}
+.other-l2 ,.other-r2{
+	width: 76px;
+	height:1px;
+	background: #000;
+	margin-top: 7px;
+}
+.other-c{
+	width: 118px;
+	text-align: center;
+}
+.others{
+	width: 270px;
+	height:25px;
+	margin-top: 10px;
+}
+.qq , .weixin ,.weibo{
+	width: 28px;
+	height: 25px;
+	background-size: 100% 100%;
+}
+.qq{
+	background:url(../../images/t_img/login/qq.png) center no-repeat;
+	margin-left: 50px;
+}
+.weixin{
+	background: url(../../images/t_img/login/weixin.png) center no-repeat;
+	margin: 0 43px;
+}
+.weibo{
+	background:url(../../images/t_img/login/weibo.png) center no-repeat;
+	margin-right: 50px;
+}
+.qq1 , .weixin1 ,.weibo1{
+	width: 38px;
+	height: 38px;
+	background-size: 100% 100%;
+}
+.qq1{
+	background: url(../../images/t_img/tc/QQ.png) center no-repeat;
+	margin-left: 40px;
+}
+.weixin1{
+	background: url(../../images/t_img/tc/weixin.png) center no-repeat;
+	margin: 0 37px;
+}
+.weibo1{
+	background: url(../../images/t_img/tc/weibo.png) center no-repeat;
+	margin-right: 40px;
+}

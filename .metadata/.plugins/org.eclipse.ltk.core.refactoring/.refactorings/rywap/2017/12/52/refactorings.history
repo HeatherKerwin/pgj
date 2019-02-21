@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;rywap/src/main/webapp/WEB-INF/freemarker/appPiechart.ftl&apos; to &apos;appPieChart.ftl&apos;" description="Rename resource &apos;appPiechart.ftl&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/webapp/WEB-INF/freemarker/appPiechart.ftl" name="appPieChart.ftl" stamp="1514277845019" updateReferences="true"/>
+</session>

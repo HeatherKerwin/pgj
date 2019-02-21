@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>	
+	<bean id="freemarkerConfiguration" class="com.ry.web.html.FreemarkerConfiguration">
+    	<property name="directoryForTemplateLoading">
+    		<value>${directoryForTemplateLoading}</value>
+    	</property>
+    	<property name="locale"><value>zh_CN</value></property>
+    	<property name="defaultEncoding"><value>utf-8</value></property>
+    	<property name="tagSyntax"><value>0</value></property>
+    	<property name="outputEncoding"><value>utf-8</value></property>
+    	<property name="dateFormat"><value>yyyy-MM-dd</value></property>
+    	<property name="timeFormat"><value>HH:mm:ss</value></property>
+    	<property name="dateTimeFormat"><value>yyyy-MM-dd HH:mm:ss</value></property>
+    	<property name="numberFormat"><value>0.####</value></property>
+    </bean>
+    
+    <bean id="freemarkerTemplate" class="com.ry.web.html.FreemarkerTemplate">
+    	<property name="configuration">
+    		<ref local="freemarkerConfiguration" />
+    	</property>
+    	<property name="charset">
+    		<value>utf-8</value>
+    	</property>
+    	 <property name="freemarkerVariables"> 
+		 	<map>  
+		 		<entry key="absoluteInclude" value-ref="includeFunction"/> 
+		 	</map>	
+		 </property>
+    </bean>
+    
+    <bean id="mainPageHtmlGenerator" class="com.ry.web.html.CommonHtmlGenerator">
+		<property name="outputPath">
+			<value></value>
+		</property>
+<!-- 		<property name="templateFileName"> -->
+<!--     		<value>/template/index.ftl</value> -->
+<!--     	</property> -->
+		<property name="template">
+			<ref bean="freemarkerTemplate" />
+		</property>
+	</bean>
+</beans>

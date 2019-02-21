@@ -1,0 +1,41 @@
+@charset "utf-8";
+/* CSS Document */
+html {
+		height:100%;
+		}
+body {
+		margin: 0;
+		padding: 0;
+		height:100%;
+		/*background:url(../images/chucuo1.png) no-repeat scroll center 150px ;*/
+		}
+
+.nav{
+		background: #e35555;
+		height: 80px;
+		}
+.navimg{
+		left:200px;
+		position:relative;
+		height: 70px;
+		}	
+.center{
+	width:600px;
+	background-color:#efefef;
+	margin:100px auto 0;
+	text-align:center;
+		}
+.center img{
+	margin-top:100px;
+	margin-bottom:20px;}
+
+.centerp{
+		text-decoration:none;
+		text-align: center;
+		color:#ff2d4b;!important
+		font-size:50px;
+		margin-bottom:50px;
+		
+}
+.center a{
+	font-size:16px;}

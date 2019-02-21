@@ -1,0 +1,90 @@
+@charset "utf-8";
+/* CSS Document */
+body,p,a{ margin:0; padding:0;}
+h1,h2{ font-weight:normal;margin:0; }
+a{ text-decoration:none;}
+*{ font-family:"微软雅黑"; font-size:14px; color:#323232;}
+.Box{ width:1200px; margin:0 auto; overflow:hidden;border:solid 1px #dcdcdc; margin:100px auto; height:955px;}
+.BoxLeft{ width:400px; float:left;}
+.BoxRight1{ width:798px; float:left; border:solid 1px #dcdcdc;}
+.Ltitle{ height:120px; overflow:hidden; border:solid 1px #dcdcdc;}
+.Ltitle img,.Ltitle1 a{ display:block; float:left;}
+.Ltitle img{ padding:25px 15px 25px 40px; width:60px;}
+.Ltitle a{ line-height:120px; font-size:24px;color:#323232;}
+.CAtitle,.Ltitle:hover{ background-color:#00a6e4;}
+.BoxRight1{ width:798px; float:left; border:solid 1px #dcdcdc;}
+.Rtitle{ width:759px;  margin:0 auto; height:60px; overflow:hidden; padding-top:20px; border-bottom:solid 1px #dcdcdc;}
+.Rtitle p{ display:block; width:15px;background-color:#00a6e4; height:40px; float:left;}
+.Rtitle h1{ display:block; float:left; line-height:40px; padding-left:20px; font-size:24px;color:#323232;}
+.BoxRight1 .Rcontent1 table{ width:760px; margin:0 auto; margin-top:40px;}
+.BoxRight1 .Rcontent1 .ta1{ width:248px; text-align:center; border:solid 1px #dcdcdc; height:100px;}
+.BoxRight1 .Rcontent1 .ta2{ width:508px; text-align:center;height:100px; border:solid 1px #dcdcdc; height:100px;}
+/*左边四个控制显示的四个类*/
+.BoxRight1{ width:798px; float:left; border:solid 1px #dcdcdc;height:954px;}
+.BoxRight2{ width:798px; float:left; border:solid 1px #dcdcdc; height:954px;display:none;}
+.BoxRight3{ width:798px; float:left; border:solid 1px #dcdcdc;height:954px; display:none;}
+.BoxRight4{ width:798px; float:left; border:solid 1px #dcdcdc;height:954px;display:none;}
+
+.Rcontent2 table{ width:760px; margin:0 auto; margin-top:40px; text-align:center;border:solid 1px #dcdcdc; border-radius:10px 10px 0 0;}
+.BoxRight2 .Rti{ background-color:#830506; width:260px; height:26px; border-radius:6px; margin-top:9px; margin-left:100px; text-align:center; color:white; line-height:26px;}
+.Rcontent2{}
+.BoxRight2 a{ color:#FFFFFF;}
+.Rcontent2 .ta21{ background-color:#b7b7b7; width:760px; border-radius:8px;text-align:center;}
+.ta21 span{ line-height:40px;  color:white;}
+.Rcontent2 .ta22{ width:120px; height:80px;}
+.Rcontent2 .ta23{ text-align:center; line-height:50px; width:220px;}
+.Rcontent2 .ta24{ text-align:left;  line-height:50px; width:260px; padding-left:60px;}
+.ta22 p{ display:block; width:80px; margin:0 auto; line-height:40px; background-color:#e35555; border-radius:5px; color:white;}
+.Rcontent3 table{ width:760px; margin:0 auto; margin-top:40px; text-align:center;border:solid 1px #dcdcdc; border-radius:8px 8px 0 0; overflow:hidden;}
+.ta31{ background-color:#830506; border-radius:8px; overflow:hidden; height:50px;}
+.ta32{ padding:6px 0; width:100px;}
+.ta33 span{color:white;}
+.detail{ background-color:#e35555; display:block; width:70px; margin:0 auto; color:white; line-height:30px; border-radius:8px;}
+.Rcontent4 .ta42{ width:110px;}
+.Rcontent4 .ta42 img{width:100%;padding:15px; padding-left:20px;}
+.Rcontent4 .ta43{ height:60px; padding-left:70px; padding-top:20px;}
+.Rcontent4 .ta44{height:60px; padding-top:15px;}
+.ta44 input{ width:200px;}
+.xinxi{ padding-left:20px;}
+.xinxi .xinxi_in{ padding-left:40px;}
+.xinxi_in input{ width:260px;}
+.xinxi_btn{ text-align:center; padding-top:30px;}
+.xinxi_btn input{ width:200px;}
+.btn1,.btn2,.btn3,.btn4{ cursor:pointer;}
+/*登录页*/
+.dl_title{ width:1200px; margin:0 auto; overflow:hidden; padding:10px 0;}
+.dl_titleL{ float:left; height:64px;}
+.dl_titleR{ float:right;height:64px;}
+.dl_bannerBox{ width:100%; background-color:#24a2dc;}
+.dl_banner{ width:1200px; margin:0 auto; overflow:hidden; height:512px;}
+.dl_bannerL{float:left;}
+.dl_bannerR{ float:right;}
+.dl_bannerR{ background-color:white; border-radius:10px;padding:15px 20px 20px 20px; height:310px; margin-top:80px;}
+.dl_Rt1{ padding-bottom:15px; font-size:20px;color:#4B4B4B;}
+.dl_Rt3 input{ width:220px; line-height:28px; }
+.dl_Rt4 a{ display:block;width:100%; color:white; background-color:#ff6b04; font-size:20px; line-height:44px; cursor:pointer;}
+.dl_Rt2{ font-size:16px;}
+.footer{ width:1200px; margin:0 auto;padding:38px 0;}
+/*注册页*/
+.zc_Box{ width:1200px; margin:0 auto;padding-top:50px;}
+.zc_title{ font-size:30px; line-height:70px;}
+.zc_content{ width:1200px; margin:0 auto; border:solid 1px #e3e9ef; background-color:white; padding:50px 0 0 60px; height:650px;}
+.zc_content .zc_ti{ font-size:24px; padding-bottom:20px;color:#646464;}
+.zc_ta1{ line-height:60px;}
+.zc_ta1 td{ font-size:16px;}
+.zc_ta1 input{ width:100%; line-height:28px;}
+.zc_ta2{background-color:#00a6e4; display:block; border-radius:10px; width:14px; color:white; text-align:center; line-height:14px; margin-top:24px;}
+.zc_ta3 a{ margin:0 0 0 10px; background-color:#ff6b04; color:white; line-height:40px; display:block; padding:0 20px; cursor:pointer; border-radius:4px; text-align:center;}
+.zc_ta4 p{ border:solid 1px #ccd6e1; width:500px; height:200px;}
+.zc_ta5 a{ background-color:#24a2dc; color:white; display:block; width:200px; font-size:18px; line-height:44px; text-align:center; border-radius:6px; margin-top:20px; cursor:pointer;}
+.zc_ta6 a{color:#00a6e4;}
+.zc_ta6 p{line-height:44px;margin-top:20px;}
+/*新闻页*/
+.new_box{ width:1200px; margin:0 auto; border:solid 1px #cad5e0; border-top:none;}
+.new_title h1{ font-size:28px; text-align:center; line-height:100px;}
+.new_title{ padding-bottom:36px;}
+.new_ti{ font-size:16px; text-align:center; line-height:30px;}
+.new_content{ width:1100px; margin:0 auto;}
+.new_pho{ width:900px; margin:0 auto;}
+.new_pho img{ width:100%; padding-top:4px; display:block;}
+.new_text p{ text-indent:28px; line-height:30px; font-size:16px;}

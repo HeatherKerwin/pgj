@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 无内容元素 -->
+    <meta name="author" content="Hengtian">
+    <!-- 设置网站关键字 -->
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>七夕活动</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- 以下两个插件用于在IE8以及以下版本浏览器支持HTML5元素和媒体查询，如果不需要用可以移除 -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript" src="js/jQueryRotate.2.1.js"></script>
+    <script type="text/javascript" src="js/zhuanpan.js"></script>
+    <script src="js/jquery.bootstrap.newsbox.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://static.utiexian.com/js/rymobile/config.js"></script>
+    <script type="text/javascript" src="https://static.utiexian.com/js/rymobile/clickCount.js"></script>
+</head>
+<body>
+
+<div class="warp">
+    <img src="images/activityBg.png" class="activityBg img-responsive" alt="背景">
+    
+    <div class="activityCon text-center">
+        <img src="images/title.png" class="img-responsive center-blick" alt="活动标题">
+        <!--转盘-->
+        <div id="zhuanpan" class="center-blick">
+            <img id="img" src="images/four_zhuanpan.png">
+            <img id="tip" src="images/four1.png" >
+        </div>
+
+        <div class="center-block text-center clearfix timesDiv">
+            <a href="giftList.html" class="pull-left myGift">兑换奖品</a>
+            <button class="playBtn pull-left">您还可以抽<span id="has_ticket" class="coud_num">3</span>次</button>
+            <button class="addTimes pull-left" data-toggle="modal" data-target="#addTimes">增加次数</button>
+        </div>
+
+        <!-- 中奖名单 -->
+        <div class="ruleDiv">
+            <ul class="gundong list-group center-block">
+                <li class="news-item list-group-item">恭喜181****7407获得了红包！</li>
+                <li class="news-item list-group-item">恭喜157****4403获得了充电宝！</li>
+                <li class="news-item list-group-item">恭喜150****6464获得了红包！</li>
+                <li class="news-item list-group-item">恭喜130****6960获得了音响！</li>
+                <li class="news-item list-group-item">恭喜187****9707获得了红包！</li>
+                <li class="news-item list-group-item">恭喜186****1865获得了靠枕！</li>
+            </ul>
+
+            <img src="images/rule.png" class="img-responsive center-blick">
+        </div>
+    </div>
+
+</div>
+
+<div class="col-md-12 column">
+    <div class="modal fade" id="my-result" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">
+                        我的奖励
+                    </h4>
+                </div>
+                <div id="goods" class="modal-body text-danger">
+
+                </div>
+                <div class="modal-footer">
+                    <button id="iknow" type="button" class="btn btn-module btn-blick" data-dismiss="modal">知道了</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<input id="prize" type="hidden">
+<input id="wechat" type="hidden">
+<!-- 获取更多次数 -->
+<div class="modal fade" id="addTimes" tabindex="-1" role="dialog" aria-labelledby="addTimesLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+            <div class="modal-body">
+                <img src="images/share.png" class="img-responsive" alt="分享指引">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-module addTimesBtn" data-dismiss="modal">知道了</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+	$(function(){
+		var storage=window.localStorage;
+        var has_ticket = storage.getItem("has_ticket");
+        if(has_ticket != null && has_ticket != "" && has_ticket.length>0){
+        	$("#has_ticket").text(has_ticket);
+        }
+        var wechat = GetRequest();
+        if(wechat.wechat){
+        	storage.setItem("wechat",true);
+        	location.href = mobilePath+"/activity/2018/08/choujiang/index.html";
+        }
+        saveCross();
+	});
+	
+	/**
+	* 页面统计
+	*/
+	function saveCross(){
+		var url = location.href; //当前地址
+		$.ajax({
+			type:"get",
+			url:mobilePath + "/tg/clickCount/save",//从后台获取ip
+			data:{"url":url,"style":'RYMOBILE',"code":'wechat'},
+			dataType : "jsonp",
+			async:false
+		});
+	};
+	
+    /**
+     * 保存中奖记录回调（实物含去领奖）
+     */
+    function myAlert(){
+    	var storage=window.localStorage;
+        
+    	var prize = $("#prize").val();
+    	var array = storage.getItem("array");
+    	if(array != null && array != "" && array.length>0){
+    		array = array +","+prize;
+    		storage.setItem("array",array);
+    	}else{
+    		storage.setItem("array",prize);
+    	}
+    	$('#my-result').modal({backdrop: 'static', keyboard: false});
+    };
+
+    /*获取次数*/
+    $(".addTimesBtn").on("click",function () {
+    	var oldValue=parseInt($("#has_ticket").text()); //取出现在的值，并使用parseInt转为int类型数据
+        
+        var storage=window.localStorage;
+        
+        var num = storage.getItem("num");
+        if(num != null && num != "" && num.length>0){
+        }else{
+        	 oldValue++   //自加1
+        	 storage.setItem("num",oldValue);
+        }
+        $("#has_ticket").text(oldValue)  //将增加后的值付给控件
+        storage.setItem("has_ticket",oldValue);
+    });
+
+    /*中奖名单滚动*/
+    $(".gundong").bootstrapNews({
+        newsPerPage: 4,
+        autoplay: true,
+        pauseOnHover: true,
+        navigation: false,
+        direction: 'down',
+        newsTickerInterval: 2500,
+        onToDo: function () {
+            //console.log(this);
+        }
+    });
+    
+	/**
+	* 获取参数
+	*/
+	function GetRequest() {   
+	   var url = location.search; //获取url中"?"符后的字串   
+	   var theRequest = new Object();   
+	   if (url.indexOf("?") != -1) {   
+	      var str = url.substr(1);   
+	      strs = str.split("&");   
+	      for(var i = 0; i < strs.length; i ++) {   
+	         theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);   
+	      }   
+	   }
+	   return theRequest;   
+	} 
+</script>
+</body>
+</html>

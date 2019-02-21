@@ -1,0 +1,264 @@
+<div class="col-md-3">
+	<div class="panel-body btn-danger mb20">
+		<a href="${base_url('/my/ticket/use')}" class="col-md-12 column text-center">
+			<img alt="马上抽奖" src="https://img.utiexian.com/bbs/bbs/choujiang.png" class="">
+		</a>
+   	</div>
+	#if(null != login_user)
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<blockquote class="blockquote"><strong style="font-size: 20px">个人信息</strong></blockquote>
+		</div>
+		<div class="panel-body pb0">
+			<div class="row clearfix">
+				<div class="profile-sidebar">
+					<div class="col-md-12 column mb10 pl25">
+						<a href="${base_url('/member/' + login_user.user_name)}" class="account-avatar pr20">
+							<img src="${login_user.avatar}" alt="${login_user.user_name}" class=" img-circle">
+						</a>
+						<div class="account-details">
+							<span class="account-name">${login_user.user_name}</span>
+							<span class="mt5">
+								${login_user.nick_name ?! ''}
+								<a href="javascript:logout();" style="font-size:12px;color:blue;text-decoration:underline;">退出</a>
+							</span>
+						</div>
+						#if(user_info !=null)
+						<div class="account-actions mt5">
+							<a class="mr5">积分<b class="ml5">${user_info.score ?! '--'}&nbsp;</b></a>
+							<a href="${base_url('/my/ticket')}" style="position:absolute;right:25px;">
+								<img src="${imgPath}/bbs/bbs/gift.png" style="margin-top: -5px" class="mr5"/>未领取奖励
+								<b>${user_info.tickets ?! '--'}</b>
+							</a>
+						</div>
+						#end
+					</div>
+					<div class="col-md-12 column">
+						<div class="checkin-button col-md-6 column mb10">
+							#if(user_info !=null && true == user_info.checkIn)
+							<button type="button" class="btn btn-block btn-sign disabled">已签到</button>
+				        	#else
+						 	<button type="button" class="todo btn btn-block btn-danger btn-default">签到</button>
+				        	#end
+						</div>
+						<div class="col-md-6 column mb10">
+							<a href="${base_url('/topic/add')}" class="btn btn-block btn-danger btn-default">发帖</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer box">
+			<a href="${base_url('/my/notice')}">
+				<span id="notice_count">0</span>
+				条未读提醒
+			</a>
+		</div>
+	</div>
+    #else
+	<div class="panel panel-default">
+	    <div class="panel-heading">
+			<blockquote class="blockquote"><strong style="font-size: 20px">个人信息</strong></blockquote>
+		</div>
+	    <div class="panel-body">
+	    	<div class="profile-sidebar">
+				<div class="col-md-12 column mb10 pl25">
+					<div class="row clearfix">
+						<div class="col-md-4 column">
+							<img alt="游客" src="${imgPath}/bbs/bbs/head.png" class="img-circle"/>
+						</div>
+						<div class="account-details">
+							<span class="account-name">游客</span>
+							<span class="account-role">
+								登录后即可<a href="${base_url('/topic/add')}">发帖</a>
+							</span>
+						</div>
+					</div>
+				</div>
+	    	</div>
+			<div class="col-md-6 column">
+				<a href="${base_url('/signin/quick')}" class="btn btn-block btn-danger btn-outline btn-default">立即登录</a>
+			</div>
+			<div class="col-md-6 column">
+				<a href="${base_url('/signup')}" class="btn btn-block btn-danger btn-default">注册账号</a>
+			</div>
+		</div>
+	</div>
+	#end
+	
+	#if(null != hot_topics && hot_topics.size() > 0)
+	<div class="panel panel-default">
+		 <div class="panel-heading">
+		     <h3 class="panel-title"><strong style="font-size: 20px">今日热议帖子</strong></h3>
+		 </div>
+           <div class="panel-body">
+           	<ul class="list-unstyled hot-topics">
+           		#for(topic : hot_topics)
+           		<li>
+					<a href="${base_url('/member/') + topic.user_name}">
+						<img class="img-circle" src="${topic.avatar}" width="25" height="25" />
+					</a>
+					<a href="${base_url('/topic/') + topic.tid}">${topic.title}</a>
+				</li>
+           		#end
+			</ul>
+		</div>
+	</div>
+	#end
+	
+	#if(null != top_user && top_user.size() > 0)
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<blockquote class="blockquote"><strong style="font-size: 20px">论坛达人</strong></blockquote>
+		</div>
+			<div class="panel-body">
+			<ul class="list-unstyled">
+           		#for(tu : top_user)
+				<li class="col-md-12 column mb10">
+					<div class="account-avatar pr20">
+						<img src="${tu.avatar}" alt="" class="DR-img img-circle">
+					</div>
+					<div class="account-details">
+						<span class="account-name">${tu.nick_name ?! tu.login_name}</span>
+						<span class="account-role">
+							${tu.cosname.name}
+							积分:<font style="color:red">${tu.score ?! '--'}</font>
+						</span>
+					</div>
+				</li>
+           		#end
+			</ul>
+		</div>
+	</div>
+	#end
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+		    <blockquote class="blockquote"><strong style="font-size: 20px">合作伙伴</strong></blockquote>
+		</div>
+		<div class="panel-body recommend" align="center">
+			<div style="margin-bottom: 20px;display: table;">
+				<div class="pull-left relative"> 
+					<img class="img-responsive" src="${imgPath}/bbs/bbs/bank1.png"/>
+				</div>
+			</div>
+			<div style="margin-bottom: 20px;display: table;">
+				<div class="pull-left relative"> 
+					<img class="img-responsive" src="${imgPath}/bbs/bbs/bank2.png" />
+				</div>
+			</div>
+			<div style="margin-bottom: 20px;display: table;">
+				<div class="pull-left relative"> 
+					<img class="img-responsive" src="${imgPath}/bbs/bbs/bank3.png" />
+				</div>
+			</div>
+			<div style="margin-bottom: 20px;display: table;">
+				<div class="pull-left relative"> 
+					<img class="img-responsive" src="${imgPath}/bbs/bbs/bank4.png" />
+				</div>
+			</div>
+			<div style="margin-bottom: 20px;display: table;">
+				<div class="pull-left relative"> 
+					<img class="img-responsive" src="${imgPath}/bbs/bbs/bank5.png" />
+				</div>
+			</div>
+			<div style="margin-bottom: 20px;display: table;">
+				<div class="pull-left relative"> 
+					<img class="img-responsive" src="${imgPath}/bbs/bbs/bank6.png" />
+				</div>
+			</div>
+			<div style="margin-bottom: 20px;display: table;">
+				<div class="pull-left relative"> 
+					<img class="img-responsive" src="${imgPath}/bbs/bbs/bank7.png" />
+				</div>
+			</div>
+			<div style="margin-bottom: 20px;display: table;">
+				<div class="pull-left relative"> 
+					<img class="img-responsive" src="${imgPath}/bbs/bbs/bank8.png" />
+				</div>
+			</div>
+			<div style="margin-bottom: 20px;display: table;">
+				<div class="pull-left relative"> 
+					<img class="img-responsive" src="${imgPath}/bbs/bbs/bank9.png" />
+				</div>
+			</div>
+			<div style="margin-bottom: 20px;display: table;">
+				<div class="pull-left relative"> 
+					<img class="img-responsive" src="${imgPath}/bbs/bbs/bank10.png" />
+				</div>
+			</div>
+			<div style="margin-bottom: 20px;display: table;">
+				<div class="pull-left relative"> 
+					<img class="img-responsive" src="${imgPath}/bbs/bbs/bank11.png" />
+				</div>
+			</div>
+			<div style="margin-bottom: 20px;display: table;">
+				<div class="pull-left relative"> 
+					<img class="img-responsive" src="${imgPath}/bbs/bbs/bank12.png" />
+				</div>
+			</div>
+			<div style="margin-bottom: 20px;display: table;">
+				<div class="pull-left relative"> 
+					<img class="img-responsive" src="${imgPath}/bbs/bbs/bank13.png" />
+				</div>
+			</div>
+        </div>
+	</div>
+	
+	#if(null != hot_nodes && hot_nodes.size() > 0)
+	<div class="panel panel-default">
+		<div class="panel-heading">
+		    <blockquote class="blockquote"><strong style="font-size: 20px">热门板块</strong></blockquote>
+		</div>
+		<div class="panel-body">
+			<p class="hot-nodes">
+				#for(node : hot_nodes)
+				<a href="${base_url('/go/') + node.slug}" class="label label-default">${node.title}</a>
+				#end
+			</p>
+		</div>
+	</div>
+	#end
+	#if(login_user!=null && login_user.role_id==1 && null != sys_info)
+	<div class="panel panel-default">
+		<div class="panel-heading">
+		    <blockquote class="blockquote"><strong style="font-size: 20px">社区运行状况</strong></blockquote>
+		</div>
+	    <div class="panel-body">
+	        <p>社区会员：${sys_info.user_count}</p>
+	        <p>帖子数　：${sys_info.topic_count}</p>
+	        <p>回帖数　：${sys_info.comment_count}</p>
+	    </div>
+	</div>  
+	#end
+</div>
+<script type="text/javascript">
+function check_notice(){
+	$.get("${base_url('/check_notice')}",{},function(response){
+		if(response){
+			$('.panel-footer #notice_count').text(response);
+		}
+	});
+}
+check_notice();
+window.setInterval(check_notice, 60 * 1000 * 10);
+
+function getCookie(name){
+	return $.cookie(name);
+}
+
+function setCookie(name,val){
+	$.cookie(name, val, { expires: 7 });
+}
+
+function delCookie(name) {
+	$.cookie(name, "", { expires: -1 });
+}
+
+function logout(){
+	delCookie("SH_SIGNIN_USER");
+	setTimeout(function(){
+		window.location.href="${base_url('/logout')}";
+	},200);
+}
+</script>

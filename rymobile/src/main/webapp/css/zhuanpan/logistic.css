@@ -1,0 +1,215 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+	margin: 0;
+	padding: 0
+}
+html {
+	width: 100%;
+	font-family: 'Heiti SC', 'Microsoft YaHei';
+	outline: 0;
+	-webkit-text-size-adjust: none;
+}
+body {
+	width: 100%;
+	margin: 0;
+	color: #181818;
+	-webkit-user-select: none;
+	z-index: 1
+}
+a:hover, a:link, a:visited, a {
+	color: inherit;
+	text-decoration: none;
+}
+ul, li { list-style: none }
+/*select {
+	background: none;
+	color: #d1d1d1;
+	border: none;
+	text-align: center;
+}*/
+select {
+	color: #d1d1d1;
+	font-size:0.8em;
+	line-height:1.2em;
+	text-align:center;
+	/*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+	border: solid 1px #ddd;
+	/*很关键：将默认的select选择框样式清除*/
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	/*在选择框的最右侧中间显示小箭头图片*/
+	background: url("") no-repeat scroll right center transparent;
+	/*为下拉小箭头留出一点位置，避免被文字覆盖*/
+	padding-right: 14px;
+}
+/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+select::-ms-expand {display: none;}
+
+.fl { float: left }
+.tc { text-align: center }
+.clear { clear: both }
+.t_l { text-align: left }
+.t_c { text-align: center }
+.t_r { text-align: right }
+.of_h { overflow: hidden; }
+.w_110 { width: 110% }
+.w_100 { width: 100% }
+.w_96 { width: 96% }
+.w_94 { width: 94% }
+.w_90 { width: 90% }
+.w_80 { width: 80% }
+.w_70 { width: 70% }
+.w_60 { width: 60% }
+.w_50 { width: 50% }
+.w_53 { width: 53% }
+.w_55 { width: 55% }
+.w_40 { width: 40% }
+.w_35 { width: 35% }
+.w_32 { width: 32% }
+.w_31 { width: 31% }
+.w_30 { width: 30% }
+.w_20 { width: 20% }
+.w_15 { width: 15% }
+.w_10 { width: 10% }
+.w_5 { width: 5% }
+.w_3 { width: 3% }
+.w_2 { width: 2% }
+
+.fs_1 { font-size: 1em }
+.fs_08 { font-size: .8em; }
+.fs_09 { font-size: .9em }
+.fs_12 { font-size: 1.2em }
+.fs_14 { font-size: 1.4em }
+.fs_16 { font-size: 1.6em }
+.fc_c { color: #ccc }
+.fc_fed782 { color: #fed782 }
+.lh_1 { line-height: 1em }
+.lh_12 { line-height: 1.2em }
+.lh_14 { line-height: 1.4em }
+.lh_16 { line-height: 1.6em }
+.lh_18 { line-height: 1.8em }
+.lh_20 { line-height: 2em }
+.ma { margin: 0 auto }
+.ma_2{margin:0 2%}
+.mt_35 { margin-top: 35% }
+.mt_30 { margin-top: 30% }
+.mt_25 { margin-top: 25% }
+.mt_20 { margin-top: 20% }
+.mt_15 { margin-top: 15% }
+.mt_10 { margin-top: 10% }
+.mt_5 { margin-top: 5% }
+.pt_45 { padding-top: 45% }
+.pt_40 { padding-top: 40% }
+.pt_35 { padding-top: 35% }
+.pt_30 { padding-top: 30% }
+.pt_25 { padding-top: 25% }
+.pt_20 { padding-top: 20% }
+.pt_15 { padding-top: 15% }
+.pt_10 { padding-top: 10% }
+.pt_3 { padding-top: 3% }
+.pb_50{padding-bottom:50%}
+.pb_40{padding-bottom:40%}
+.bg {
+	height: 1280px;
+	background: url(images/nzj.png) no-repeat center;
+	background-size: 100% 100%;
+	text-align: center;
+}
+.head {
+	height: 2em;
+	color: #fed782;
+	font-size: 1.5em;
+	line-height: 1.5em;
+}
+.head_r {
+	text-align: center;
+	border: 2px #ffbc48;
+}
+.row {
+	height: 2em;
+	color: #FFF;
+	font-size: 1.2em;
+	line-height: 1.4em;
+}
+.row1 {
+	height: 3.6em;
+	color: #FFF;
+	font-size: 1.2em;
+	line-height: 1.4em;
+}
+.rol1 { }
+.rol2 { }
+.txt_input {
+	width: 100%;
+	height: 2em;
+	background: none;
+	border: 1px solid #ddd;
+	-moz-border-radius: .2em;
+	-webkit-border-radius: .2em;
+	border-radius: .2em;
+	line-height: 2em;
+	margin-bottom: 1em;
+	font-size: .9em;
+	color: #d1d1d1;
+	font-family: Arial;
+	text-indent: .2em;
+}
+.dl_input{
+	height:2em;
+}
+.t-t3 {
+	width: 70%;
+	height: 2em;
+	margin: 0 15%;
+	font-size: 1.2em;
+	line-height: 2em;
+	vertical-align: middle;
+	background: #FC3;
+	border: 0;
+	border-radius: 0.3em;
+	-moz-border-radius: .3em;
+	-webkit-border-radius: .3em;
+}
+.city {
+	height: 1.4em;
+	line-height: 1.4em;
+}
+.in-t { background-color: rgba(255 255 255 0.1) }
+.my-yzm{
+	border: 1px solid #ddd;
+	-moz-border-radius: .2em;
+	-webkit-border-radius: .2em;
+	border-radius: .2em;
+	padding:.3em .2em
+}
+/*地址*/
+.textarea { 
+	display: block;
+	margin:0 auto;
+	overflow: hidden; 
+	width:90%; 
+	margin-left:0;
+	min-height: 3em; 
+    max-height: 5em;
+    _height: 4.2;
+	font-size: .9em;
+	line-height:1.2em;
+	color: #FFF;
+}
+textarea {
+	outline: 0 none;
+	border-color: rgba(82, 168, 236, 0.8);
+	overflow-x: hidden;
+    overflow-y: auto;
+    _overflow-y: visible;
+    background: none;
+    border: 1px solid #ddd;
+}
+/*微信搜索*/
+.wxss{
+	height:2em;
+	background: url(../../images/zhuanpan/wxss.png) no-repeat center;
+	background-size: 100% auto;
+}

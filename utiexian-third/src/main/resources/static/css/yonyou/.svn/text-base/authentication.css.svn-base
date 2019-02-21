@@ -1,0 +1,317 @@
+/*开户管理*/
+
+.authenticationWrap{
+    background: #ffffff;
+    color: #2d2d2d;
+}
+
+/*头部top*/
+.authenticationWrap .authenticationTop{
+    position: relative;
+    height: 34px;
+    font-size: 14px;
+    line-height: 34px;
+    background: #f9f9f9;
+}
+.authenticationWrap .authenticationTop label{
+    margin-left: 20px;
+}
+.authenticationWrap .authenticationTop a{
+    position: absolute;
+    right: 20px;
+    top: 0px;
+    color: #3366cc;
+}
+/*头部top end*/
+
+/*开户进程*/
+.authenticationWrap .authenticationType{
+    width: 100%;
+    margin-top: 50px;
+}
+.authenticationWrap .authenticationType ul{
+    width: 450px;
+    height: auto;
+    margin: 0px 375px;
+    overflow: hidden;
+}
+.authenticationWrap .authenticationType ul:after{
+    clear: both;
+    height: 0px;
+}
+.authenticationWrap .authenticationType ul li{
+    float: left;
+}
+/*开户进程 end*/
+
+/*上传图片*/
+.authenticationWrap .uploadCon{
+    width: 530px;
+    margin: 30px 335px 0px;
+}
+/*title*/
+.authenticationWrap .uploadCon .uploadTitle span{
+    font-size: 14px;
+    color: #e84c3d;
+    font-weight: bold;
+}
+/*上传*/
+.authenticationWrap .uploadCon ul.uploadImg{
+    height: auto;
+    overflow: hidden;
+    margin-top: 35px;
+}
+.authenticationWrap .uploadCon ul.uploadImg:after{
+    clear: both;
+    height: 0px;
+}
+.authenticationWrap .uploadCon ul.uploadImg li{
+    float: left;
+    width: 156px;
+    height: 156px;
+    margin: 10px;
+}
+.authenticationWrap .uploadCon ul.uploadImg li label{
+    display: block;
+    width: 156px;
+    height: 156px;
+    cursor: pointer;
+}
+.authenticationWrap .uploadCon ul.uploadImg li label img{
+    width: 156px;
+    height: 156px;
+}
+.authenticationWrap .uploadCon ul.uploadImg li label input{
+    display: none;
+    height: 0px;
+}
+/*上传图片end*/
+
+/*识别中load*/
+.authenticationWrap .loading{
+    width: 100%;
+    text-align: center;
+    display: block;
+    padding: 10px 0px;
+}
+.authenticationWrap .loading img{
+    width: 500px;
+    height: 280px;
+}
+/*上传图片load end*/
+
+
+/*开户信息*/
+.authenticationWrap .authenticationCon{
+    padding: 10px 60px;
+    overflow: hidden;
+}
+.authenticationWrap .authenticationCon:after{
+    clear: both;
+    height: 0px;
+}
+
+/*信息可修改提示*/
+.authenticationWrap .authenticationCon p{
+    color: #e84c3d;
+    margin: 10px;
+}
+
+/*输入框不可编辑*/
+.authenticationWrap .authenticationCon input[readonly]{
+    background: none;
+    border: 0px;
+}
+
+/*开户信息-左右区域*/
+.authenticationWrap .authenticationCon .toggleList{
+    width: 48%;
+    float: left;
+    margin-right: 2%;
+}
+/*企业经办人*/
+.authenticationWrap .authenticationCon .agentList{
+    padding: 20px 20px 5px;
+    box-shadow: 0px 0px 1px #ddd;
+    margin-bottom: 10px;
+}
+.authenticationWrap .authenticationCon .agentList .agentTitle{
+    border-left: 4px solid #e84c3d;
+    line-height: 20px;
+    text-indent: 10px;
+    margin-bottom: 16px;
+}
+.authenticationWrap .authenticationCon ul.agentDiv li{
+    min-height: 30px;
+    margin: 10px 0px;
+    line-height: 30px;
+    overflow: hidden;
+}
+.authenticationWrap .authenticationCon ul.agentDiv li:after{
+    clear: both;
+    height: 0px;
+}
+.authenticationWrap .authenticationCon ul.agentDiv li label{
+    width: 100px;
+    float: left;
+}
+.authenticationWrap .authenticationCon ul.agentDiv li input{
+    width: 330px;
+    height: 30px;
+    font-size: 14px;
+    padding: 0px 5px;
+    float: left;
+    margin-left: 10px;
+    box-sizing: border-box;
+}
+/*企业经办人end*/
+
+/*可收缩的列表*/
+.authenticationWrap .authenticationCon .toggleList .prependCon{ /*第一层*/
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 1px #ddd;
+}
+/*标签title*/
+.toggleList .prependCon .toggleTop{
+    position: relative;
+    height: 35px;
+    line-height: 34px;
+    padding: 0 10px;
+    background: #f4f4f4;
+    cursor: pointer;
+    border-bottom: 1px solid #e0e0e0;
+}
+.toggleList .prependCon .toggleTop img.toggleIcon{
+    position: absolute;
+    right: 10px;
+    top: 14px;
+    width: 10px;
+    height: 6px;
+    display: block;
+}
+
+/*内容*/
+.toggleList .prependCon .toggleCon{
+    padding: 5px 0px 5px 20px;
+}
+.toggleList .prependCon .toggleCon ul.accountDiv li{
+    min-height: 30px;
+    margin: 10px 0px;
+    line-height: 30px;
+    overflow: hidden;
+}
+.toggleList .prependCon .toggleCon ul.accountDiv li:after{
+    clear: both;
+    height: 0px;
+}
+.toggleList .prependCon .toggleCon ul.accountDiv li label{
+    width: 100px;
+    float: left;
+}
+.toggleList .prependCon .toggleCon ul.accountDiv li input{
+    width: 330px;
+    height: 30px;
+    font-size: 14px;
+    padding: 0px 5px;
+    float: left;
+    margin-left: 10px;
+    box-sizing: border-box;
+}
+
+/*内部收缩列表*/
+.authenticationWrap .authenticationCon .toggleList .prependCon .toggleCon ul.accountDiv li .childrenCon{ /*第二层*/
+    height: auto;
+    margin: 0px;
+    padding-right: 20px;
+    box-shadow: 0px 0px 1px #e0e0e0;
+}
+.authenticationWrap .authenticationCon .toggleList .prependCon .toggleCon ul.accountDiv li .childrenCon .toggleTop label{
+    width: 150px;
+}
+/*可收缩的列表end*/
+
+/*底部操作*/
+.authenticationWrap .authenticationCon .authenticationFoot{
+    padding: 20px;
+    overflow: hidden;
+}
+.authenticationWrap .authenticationCon .authenticationFoot p{
+    float: left;
+    font-size: 14px;
+    color: #e84c3d;
+}
+.authenticationWrap .authenticationCon .authenticationFoot a{
+    float: right;
+    display: block;
+    width: 100px;
+    height: 34px;
+    background: #e84c3d;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 34px;
+    text-align: center;
+    padding: 0px;
+}
+/*底部操作*/
+/*开户信息 end*/
+
+/*账户绑定*/
+.authenticationWrap .authenticationItem{
+    width: 500px;
+    margin: 30px 350px 0px;
+}
+.authenticationWrap .authenticationItem ul li{
+    overflow: hidden;
+    min-height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    margin: 10px 0px;
+}
+.authenticationWrap .authenticationItem ul li:after{
+    content: '';
+    clear: both;
+    height: 0px;
+}
+.authenticationWrap .authenticationItem ul li label{
+    width: 80px;
+    float: left;
+}
+.authenticationWrap .authenticationItem ul li input{
+    width: 330px;
+    height: 30px;
+    font-size: 14px;
+    padding: 0px 5px;
+    float: left;
+    margin-right: 10px;
+    box-sizing: border-box;
+}
+.authenticationWrap .authenticationItem ul li .itemValue , .authenticationWrap .authenticationItem ul li .itemUnit{
+    float: left;
+}
+.authenticationWrap .authenticationItem ul li p{
+    float: left;
+    font-size: 13px;
+    color: #717583;
+    line-height: 20px;
+}
+.authenticationWrap .authenticationItem ul li a{
+    display: block;
+    width: 110px;
+    color: #ffffff;
+    background: #e84c3d;
+    text-align: center;
+    border: 0px;
+    border-radius: 5px;
+    margin-left: 150px;
+    margin-top: 30px;
+}
+.authenticationWrap .authenticationItem ul li a.gray{
+    background: #e0e0e0;
+    color: #2d2d2d;
+}
+
+/*账户绑定 end*/
+
+

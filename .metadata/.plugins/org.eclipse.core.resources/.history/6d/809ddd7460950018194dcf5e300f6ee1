@@ -1,0 +1,106 @@
+[#import "/common/main.ftl" as main]
+[#include "/common/setting.ftl"]
+[@main.body title='票管家-票据管理']
+[@main.header currentmenu='1' topindex='4'/]
+
+<div class="w1200 bc">
+    <!-- 票据管理菜单 -->
+    <div class="w clearfix mt20">
+        <!--tab 菜单-->
+        <ul class="fl bcwhite f16 c2d2d2d lh50 tc TXtab oh mt6">
+            <li class="w250 lh50 fl bre0e0e0 bbd43c33"><a href="javascript:void(0)" class="cd43c33 dsb">已出库</a></li>
+            <li class="w250 lh50 fl bre0e0e0"><a href="myChiyou.html" class="c2d2d2d dsb">持有中</a></li>
+            <li class="w250 lh50 fl "><a href="myDairuzhang.html" class="c2d2d2d dsb">待入账</a></li>
+        </ul>
+
+        <!--菜单-->
+        <div class="fr clearfix tc c3366cc f12">
+            <!-- 新增票据 -->
+            <div class="bcwhite box-sizing box-shadow w120 h60 fl pt10 cp">
+                <img src="https://img.utiexian.com/website/manage/add.png" alt="新增票据">
+                <p>新增票据</p>
+            </div>
+            <!-- 票据提醒 -->
+            <div class="bcwhite box-sizing box-shadow w120 h60 fl ml20 pt10 cp">
+                <img src="https://img.utiexian.com/website/manage/tixing.png" alt="票据提醒">
+                <p>票据提醒</p>
+            </div>
+        </div>
+    </div>
+    <!-- 票据管理菜单 end -->
+
+    <!-- 到期日期提醒 -->
+    <div class="w mt20 bcwhite box-shadow box-sizing pl10 pt20 pr10 pb20" id="endDates">
+        <!-- 列表 -->
+        <div class="w box-sizing bre0e0e0 tc mt20">
+            <div class="h60 lh60 bcf9f9f9 f14 c717583 clearfix bte0e0e0 bbe0e0e0 ble0e0e0 box-sizing ml18">
+                <div class="fl w200 bre0e0e0 box-sizing">承兑行</div>
+                <div class="fl w130 bre0e0e0 box-sizing">票面金额（元）</div>
+                <div class="fl w140 bre0e0e0 box-sizing">价格（元）</div>
+                <div class="fl w140 bre0e0e0 box-sizing">到期日</div>
+                <div class="fl w180 bre0e0e0 box-sizing">来票公司</div>
+                <div class="fl w180 bre0e0e0 box-sizing">去处</div>
+                <div class="fl w190">操作</div>
+            </div>
+            <ul class="clearfix" id="dairuzhang"></ul>
+        </div>
+    </div>
+    <!-- 到期日期提醒 end -->
+
+</div>
+
+<script>
+    $.ajax({
+        url: "data.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            console.log(data);
+            var str='';
+            var typeColor='c33c879 ba33c879';
+            var typeText='手动';
+            $.each(data.dairuzhang,function(i,item){
+                var piaoIcon;
+                var piaoType;
+
+                if (item.num="0"){
+                    piaoIcon = "shangdian";
+                    piaoType = "商票电票";
+                }else if (item.num="1"){
+                    piaoIcon = "shangzhi";
+                    piaoType = "商票纸票";
+                }else if (item.num="2"){
+                    piaoIcon = "yindian";
+                    piaoType + "银票电票";
+                }else if (item.num="3"){
+                    piaoIcon = "yinzhi";
+                    piaoType = "银票纸票";
+                }else {
+                    piaoIcon = "11";
+                    piaoType = "111";
+                };
+
+                str = str + '<li class="clearfix box-sizing">';
+                str = str + '<div class="fl w18 tc h40 mt20 lh20 box-sizing '+typeColor+'">'+typeText+'</div>';
+                str = str + '<div class="fl pr ble0e0e0 bbe0e0e0">';
+                str = str + '<div class="pa top left z12 w44 h44"><img src="https://img.utiexian.com/website/180606/'+piaoIcon+'.png" width="44" height="44" alt="'+piaoType+'" title="'+piaoType+'"></div>';
+                str = str + '<div class="clearfix f15 h86 lh86">';
+                str = str + '<div class="fl w200 bre0e0e0 box-sizing pl35 pr10 pt20 pb15 h"><span class="lh24 text-line2">'+item.enterprise+'</span> </div>';
+                str = str + '<div class="fl w130 bre0e0e0 box-sizing">'+item.money+'</div>';
+                str = str + '<div class="fl w140 bre0e0e0 box-sizing">'+item.money+'</div>';
+                str = str + '<div class="fl w140 bre0e0e0 box-sizing">'+item.money+'</div>';
+                str = str + '<div class="fl w180 bre0e0e0 box-sizing pl35 pr10 pt20 pb15 h"><span class="lh24 text-line2">'+item.enterprise+'</span> </div>';
+                str = str + '<div class="fl w180 bre0e0e0 box-sizing pl35 pr10 pt20 pb15 h"><span class="lh24 text-line2">'+item.enterprise+'</span> </div>';
+                str = str + '<div class="fl clearfix w190"><a class="fl c3366cc cp w50 ml50">编辑</a><a class="fl c3366cc w50 cp">删除</a></div>';
+                str = str + '</div></div> </li>';
+
+            });
+
+            $("#dairuzhang").append(str);
+
+        }
+    })
+
+</script>
+[@main.footer/]
+[/@main.body]

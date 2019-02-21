@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<link rel="shortcut icon" href="https://m.utiexian.com/favicon.ico" />
+<title>任性抢票据管家红包</title>
+<meta http-equiv="description" content="亲，一大波优惠即将袭来，抢！抢！抢！">
+<link rel="stylesheet" type="text/css" href="https://static.utiexian.com/css/rymobile/hb.css" />
+<script type="text/javascript" src="https://static.utiexian.com/js/common/jquery-1.8.3.min.js"></script>
+<div id='wx_pic' style='margin:0 auto;display:none;'>
+<img src="https://img.utiexian.com/rymobile/hb.png" />
+</div>
+</head>
+
+<script type="text/javascript">
+	//根据 参数名称 获取url 参数值
+	function getUrlParam(name) {  
+	    //构造一个含有目标参数的正则表达式对象  
+	    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");  
+	    //匹配目标参数  
+	    var r = window.location.search.substr(1).match(reg);  
+	    //返回参数值  
+	    if (r!=null) return unescape(r[2]);  
+	    return null;  
+	}  	
+
+	$(function(){
+		$.ajax({
+			url:"../../add/sitestatistics.htm",
+			type:"post",
+			data:{url:window.location.href},
+			dataType:"text",
+			success:function(data){
+				
+			}
+		});
+			var cphone = localStorage["cphone"];		
+			if (cphone) {			
+				window.location.href = "../../hongbao/lingqu.htm?phone="+cphone+"&&hid=2&&sid=88";
+			}
+		
+	});
+
+	
+	//验证手机号码
+	function checkMobile(str) {
+		var telReg = !!str.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/);
+		//如果手机号码不能通过验证
+		return telReg;
+	}
+	function lingqu() {		
+		var phone = $("#phone").val();		
+		if(!checkMobile(phone)){
+			alert("手机号码不正确!");		
+			return;
+		} else {
+			localStorage["cphone"] = phone;
+			window.location.href = "../../hongbao/lingqu.htm?phone="+phone+"&&hid=2&sid=88";
+		}		
+	}
+</script>
+
+<body>
+
+<div class="t1">
+	<div style="height:10%;">&nbsp;</div>
+  <ul>
+    <li style="color:#FFF;">票据管家给您发了一个红包！</li>
+    <li class="t-t1">直接输入手机账号，立即领取</li>
+    <li ><input id="phone" class="t-t2" type="text" placeholder="请输入手机号"></li>
+    <li><input class="t-t3" onclick="lingqu();" type="button" value="立即领取" style="color:#FF0000;"></li>
+  </ul>
+  <div style="height:10%;">&nbsp;</div>
+</div>
+</body>
+</html>

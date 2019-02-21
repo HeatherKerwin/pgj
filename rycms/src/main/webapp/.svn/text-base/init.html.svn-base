@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>初始化PC页面</title>
+	<script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+</head>
+<body>
+	<table style="width:100%" border="1">
+		<thead style="background-color:#D6D6D6">
+			<tr>
+				<td align="center" width="20%">请求</td>
+				<td align="center" width="60%">参数</td>
+				<td align="center" width="20%">操作</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td align="center" width="20%">
+					首页（generate/index.htm）
+				</td>
+				<td align="center" width="60%">
+					无
+				</td>
+				<td align="center" width="20%">
+					<button onclick="index();">生成</button>
+				</td>
+			</tr>
+			<tr>
+				<td align="center" width="20%">
+					资讯（generate/news.htm）
+				</td>
+				<td align="left" width="60%">
+					主键<input type="text" id="id">
+					开始日期<input type="text" id="start">
+					截至日期<input type="text" id="end">
+				</td>
+				<td align="center" width="20%">
+					<button onclick="news();">生成</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<p id="result"></p>
+</body>
+<script type="text/javascript">
+function index(){
+	$("#result").text("正在加载...");
+	$.ajax({  
+        type : "POST",  //提交方式  
+        url : "generate/index.htm",//路径  
+        dataType:"json",
+        success : function(result) {//返回数据根据结果进行相应的处理  
+            $("#result").text(result.message);
+        }  
+    });
+}
+
+function news(){
+	var id = $("#id").val();
+	var start = $("#start").val();
+	var end = $("#end").val();
+	var _url = "generate/news.htm";
+	if(id!=null && id.trim()!=""){
+		_url += "?id="+id;
+	}
+	$("#result").text("正在加载...");
+	$.ajax({
+        type : "POST",  //提交方式  
+        url : _url,//路径  
+        data : {
+            "start":start,
+            "end":end
+        },
+        dataType:"json",
+        success : function(result) {//返回数据根据结果进行相应的处理  
+            if(result.message!=null){
+            	$("#result").text(result.message);
+            }else{
+            	$("#result").text("无符合咨询");
+            }
+        }  
+    });
+}
+</script>
+</html>

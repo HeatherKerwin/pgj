@@ -1,0 +1,602 @@
+[#import "/common/main.html" as main]
+[#include "/common/setting.html"]
+[@main.body title='云票据-银票订单中心']
+<link rel="stylesheet" type="text/css" href="${basePath}/css/yonyou/mask.css">
+<link rel="stylesheet" type="text/css" href="${basePath}/css/yonyou/orderList.css">
+<link rel="stylesheet" type="text/css" href="${basePath}/css/yonyou/orderDetail.css">
+<link rel="stylesheet" type="text/css" href="${basePath}/css/template.css">
+<link rel="stylesheet" type="text/css" href="${basePath}/js/ajaxPager/page.css">
+
+<script type="text/javascript" src="${basePath}/js/yonyou/tab.js"></script>
+<script type="text/javascript" src="${basePath}/js/yonyou/data/laydate.js"></script>
+<script type="text/javascript" src="${basePath}/js/handlebars.js"></script>
+<script type="text/javascript" src="${basePath}/js/ajaxPager/jquery-ajax-pager.js"></script>
+<script type="text/javascript" src="${basePath}/js/ajaxPager/js-extend.js"></script>
+<script type="text/javascript" src="${basePath}/js/map.js"></script>
+<script type="text/javascript" src="${basePath}/js/enum.js"></script>
+
+<!-- 头部 -->
+[@main.header currentmenu='6'/]
+<!-- 头部end -->
+
+<div class="wrap">
+    <!--银票、商票tab-->
+    [@main.left remark='2'/]
+
+    <!--订单列表-->
+    <div class="rightCon">
+        <div class="orderList">
+            <div class="orderList_tab">
+                <!--订单不同状态-->
+                <ul class="orderTab">
+                    <li>
+                        <a href="javascript:void(0);" class="checked">
+                            <label for="order1"><input type="radio" name="orderTab" id="order1" value="0" class="orderTabBtn" checked>全部订单</label>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">
+                            <label for="order2"><input type="radio" name="orderTab" id="order2" value="1" class="orderTabBtn">待支付</label>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">
+                            <label for="order3"><input type="radio" name="orderTab" id="order3" value="2" class="orderTabBtn">交易中</label>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">
+                            <label for="order4"><input type="radio" name="orderTab" id="order4" value="3" class="orderTabBtn">待评价</label>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">
+                            <label for="order5"><input type="radio" name="orderTab" id="order5" value="4" class="orderTabBtn">已完成</label>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);">
+                            <label for="order6"><input type="radio" name="orderTab" id="order6" value="5" class="orderTabBtn">无效订单</label>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!--搜索-->
+            <div class="searchCon">
+                <div class="searchRow">
+                    <div class="searchCol">
+                        <div class="searchTitle">下单时间</div>
+                        <div class="searchDate">
+                            <label for="start">
+                                <input type="text" name="searchDate" id="start" readonly>
+                                <img src="${basePath}/images/yonyou/common/rili.png" alt="">
+                            </label>
+                            <span>至</span>
+                            <label for="end">
+                                <input type="text" name="searchDate" id="end" readonly>
+                                <img src="${basePath}/images/yonyou/common/rili.png" alt="">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="searchCol">
+                        <div class="searchTitle">票面金额</div>
+                        <div class="searchMoney">
+                            <label>
+                                <input type="number" name="" id="minMoney">
+                            </label>
+                            <label>
+                              	  至<input type="number" name="" id="maxMoney">
+                            </label>
+                            <span>万元</span>
+                        </div>
+                    </div>
+                    <div class="searchCol">
+                        <button class="searchBtn" onclick="loadDate();">搜索</button>
+                        <button class="clearBtn" onclick="empty();">清空</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 新搜索 end -->
+            
+            <!--订单列表-->
+            <!-- 新列表 -->
+            <div class="orderList_con">
+                <!--列表标签-->
+                <ul class="listLabel">
+                    <li style="width: 150px">票面金额</li>
+                    <li style="width: 150px">贴现日期</li>
+                    <li style="width: 180px">到期日期/计息天数</li>
+                    <li style="width: 120px">背书手数</li>
+                    <li style="width: 200px">承兑企业</li>
+                    <li style="width: 150px; display: none;">成交金额/年利率</li>
+                    <li style="width: 159px">操作</li>
+                </ul>
+                <!--列表展示-->
+                <div id="content">
+                
+                </div>
+                <!-- 分页 -->
+                <div class="pagerCon pager">
+					<div id="pager"></div>
+				</div>
+                
+            </div>
+            <!-- 新列表 end -->
+
+            <!--订单列表-->
+            <div class="orderList_con">
+                <ul id="content"></ul>
+                <!-- 分页 -->
+                <div class="pagerCon pager">
+					<div id="pager"></div>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-handlebars-template" id="DISCOUNTRECORDSP">
+{{#each list}}
+	<ul class="orderList_show details" data-orderflag="{{orderflag}}" data-id="{{id}}">
+	    <!--单个订单列表-->
+	    <li>
+	        <!--回头票-->
+	        <div class="returnTicket {{toBackEndorse back_endorse}}"></div>
+	        <!--订单信息-->
+	        <div class="orderDetailCon">
+	            <!--订单头部信息-->
+	            <div class="detailHead">
+	                <!--票据属性-电票-->
+	                <div class="ticketType"></div>
+	                <!--下单信息-->
+	                <div class="detailHead_con">
+	                    <!--左侧票号-->
+	                    <div class="detailHead_left">
+	                        票号：
+	                        <span>{{draft_no}}</span>
+	                    </div>
+	                    <!--右侧-->
+	                    <div class="detailHead_right">
+	                        <!--订单状态-->
+	                        <div>{{toOrderState orderflag deposit_state type1 c_id}}</div>
+	                        <!--时间-->
+	                        <div class="{{toOrdertime deposit_state}}">
+	                            <img src="${basePath}/images/yonyou/common/clockIcon.png" width="18" height="18">
+	                            <span class="minute_show{{id}}">{{toTime create_time id deposit_state orderflag}}</span>
+	                        </div>
+	                        <!--提示-->
+	                        <div class="">{{toPrompt orderflag deposit_state type1 c_id id sum create_time cib_cancel}}
+								<span class="{{toOrgsum orderflag sum}}">已有<span class="cd43c33" id="orgnum">{{sum}}</span>家机构报价<a href="javascript:void(0)" class="">去看看>></a></span>
+							</div>
+	                    </div>
+	                </div>
+	            </div>
+	            <!--订单具体信息、操作、备注-->
+	            <div class="detailCon">
+	                <div class="detailInformation RrightLine" style="width: 800px;">
+	                    <!--票面信息-->
+	                    <div class="ticketsValue">
+	                        <div style="width: 150px" class="ce84c3d bold RrightLine">{{allmoney}}万元</div>
+	                        <div style="width: 150px" class="RrightLine">{{begintime}}</div>
+	                        <div style="width: 180px" class="RrightLine">{{formatDate endtime}}/{{jxts}}天</div>
+	                        <div style="width: 120px" class="RrightLine">{{endorse}}手</div>
+	                        <div style="width: 200px">{{bank}}</div>
+	                    </div>
+	                    <!--备注-->
+	                    <div class="remarks">备注：<span>{{memberother}}</span></div>
+	                </div>
+	                <!--操作-->
+	                <div class="operation" style="width: 158px;">
+	                    <a href="javascript:void(0)" data-orderflag="{{orderflag}}" data-id="{{id}}" class="details redBtn {{toOperation orderflag deposit_state type1 c_id 1}}" id="evaluateBtn">去评价</a>
+                		<a href="javascript:void(0)" data-orderflag="{{orderflag}}" data-id="{{id}}" class="details redBtn {{toOperation orderflag deposit_state type1 c_id 2}}" id="finish">确认已完成</a>
+                		<a href="javascript:void(0)" data-orderflag="{{orderflag}}" data-id="{{id}}" class="details redBtn {{toOperation orderflag deposit_state type1 c_id 3}}" id="pay">去支付</a>
+                		<a href="javascript:void(0)" data-orderflag="{{orderflag}}" data-id="{{id}}" class="details grayBtn {{toOperation orderflag deposit_state type1 c_id 4}}" id="cancel">取消订单</a>
+              			<a href="javascript:void(0)" data-orderflag="{{orderflag}}" data-id="{{id}}" class="details redBtn {{toOperation orderflag deposit_state type1 c_id 5}}" id="endorse">确认背书</a>
+                		<a href="javascript:void(0)" data-orderflag="{{orderflag}}" data-id="{{id}}" class="details redBtn {{toOperation orderflag deposit_state type1 c_id 6}}" id="gathering">确认收款</a>
+	                </div>
+	            </div>
+	        </div>
+	    </li>
+	</ul>
+{{/each}}
+</script>
+<script>
+/**
+* 是否是回头票
+*/
+Handlebars.registerHelper('toBackEndorse', function(back_endorse, options) {
+    if(back_endorse == "T"){
+    	return "";
+    }else{
+    	return "none";
+    }
+});
+
+/**
+*	时间格式化
+*/
+Handlebars.registerHelper('formatDate', function(num, options) {
+    if(num!=null){
+        num = num.replace(/-/g, "/");
+        var d = new Date(num);
+        return d.format('yyyy-MM-dd');
+    }else{
+        return "--";
+    }
+});
+
+/* 
+ * 订单标题
+ */
+Handlebars.registerHelper('toOrderState', function(orderflag ,deposit_state,type1, c_id, options) {
+    if(orderflag == 1){
+    	if(deposit_state == 0){
+    		return "待支付";
+    	}else if(deposit_state == 1){
+    		return "派单中";
+    	}
+    }else if(orderflag == 4 || orderflag == 2){
+    	if(type1 == 1){
+    		return "等待确认";
+    	}else{
+    		return "背书中";
+    	}
+    }else if(orderflag == 7 || orderflag == 5){
+    	return "收款中";
+    }else if(orderflag == 3 && c_id == null){
+    	return "待评价";
+    }else if(orderflag == 3 && c_id != null){
+    	return "已完成";
+    }else if(orderflag == 0 || orderflag == -2){
+    	return "无效订单";
+    }
+});
+
+/*
+ * 显示提示语
+ */
+Handlebars.registerHelper('toPrompt', function(orderflag, deposit_state ,type1,c_id,id,sum,create_time,cib_cancel, options) {
+    if(orderflag == 1){
+    	if(deposit_state == 1 && (sum == 0 || sum == null)){
+    		return "机构正在报价，请耐心等待！";
+    	}else if(deposit_state == 1 && sum != null && sum >0){
+    		return "";
+    	}
+    }else if(orderflag == 4){
+    	if(cib_cancel != null){
+    		if(cib_cancel.orgTime != null && cib_cancel.bnsTime != null){
+    			return "双方同意取消订单，订单处理中！";
+    		}else if(cib_cancel.orgTime != null){
+    			return "资方已经申请取消订单，如有异议，请联系客服！";
+    		}else if(cib_cancel.bnsTime != null){
+    			return "票方已经申请取消订单，如有异议，请联系客服！";
+    		}
+    	}else{
+    		return "资方处于打款状态！";
+    	}
+    }else if(orderflag == 2){
+    	if(cib_cancel != null){
+    		if(cib_cancel.orgTime != null && cib_cancel.bnsTime != null){
+    			return "双方同意取消订单，订单处理中！";
+    		}else if(cib_cancel.orgTime != null){
+    			return "资方已经申请取消订单，如有异议，请联系客服！";
+    		}else if(cib_cancel.bnsTime != null){
+    			return "票方已经申请取消订单，如有异议，请联系客服！";
+    		}
+    	}else{
+    		return "资方已付款，请尽快背书！";
+    	}
+    }else if(orderflag == 7){
+    	if(cib_cancel != null){
+    		if(cib_cancel.orgTime != null && cib_cancel.bnsTime != null){
+    			return "双方同意取消订单，订单处理中！";
+    		}else if(cib_cancel.orgTime != null){
+    			return "资方已经申请取消订单，如有异议，请联系客服！";
+    		}else if(cib_cancel.bnsTime != null){
+    			return "票方已经申请取消订单，如有异议，请联系客服！";
+    		}
+    	}else{
+    		return "已上传背书，等待资方确认！";
+    	}
+    }else if(orderflag == 5){
+    	return "资方已确认，票款已出，请查收并确认！";
+    }
+});
+/* 
+ * 展示报价机构数
+ */
+Handlebars.registerHelper('toOrgsum', function(orderflag,sum, options) {
+	if(orderflag != 1 || sum == 0){
+		return "none";
+	}else if(orderflag == 1 || sum > 0){
+		return "";
+	}
+});
+
+/* 
+ * 时间倒计时是否显示
+ */
+Handlebars.registerHelper('toOrdertime', function(deposit_state, options) {
+	if(deposit_state != 1){
+		return "none";
+	}
+});
+
+/* 
+ * 展示电票或纸票倒计时
+ */
+Handlebars.registerHelper('toTime', function(create_time,id,deposit_state,orderflag, options) {
+	_timer(create_time,id,deposit_state,orderflag);
+});
+
+/*
+ * 显示按钮
+ */
+Handlebars.registerHelper('toOperation', function(orderflag, deposit_state ,type1,c_id,num, options) {
+	if(orderflag == 1){
+		if(deposit_state == 1){
+			if(num != 4){
+				return "none";
+			}
+		}else{
+			if(num !=3){
+	    		return "none";
+	    	}
+		}
+    }else if(orderflag == 4){
+    	if(num != 4){
+    		return "none";
+    	}
+    }else if(orderflag == 2){
+    	if(num != 4 && num != 5){
+    		return "none";
+    	}
+    }else if(orderflag == 7){
+    	if(num != 4){
+    		return "none";
+    	}
+    }else if(orderflag == 5){
+    	if(num != 6){
+    		return "none";
+    	}
+    }else if(orderflag == 3){
+    	if(c_id != null && c_id >0){
+    		return "none";
+    	}else{
+    		if(num != 1){
+    			return "none";
+    		}
+    	}
+    }else if(orderflag == 0){
+    	return "none";
+    }
+});
+
+var memberId = "${member.id}";
+$(document).ready(function() {
+	loadDate();
+});
+
+/**
+* 页面初始化 加载数据
+	*/
+function loadDate(){
+	var orderTab = 0 ;
+	orderTab = $('input[name="orderTab"]:checked').val();
+	var data = {};
+	if(orderTab == 0){//查询所有的订单
+		data = {memberId:memberId,orderType:'DISCOUNTRECORDSP'};
+    }else if(orderTab == 1){//查询待支付的订单
+    	data = {memberId:memberId,orderType:'DISCOUNTRECORDSP',depositState:0,orderflags:1};
+    }else if(orderTab == 2){//查询交易中的订单
+    	data = {memberId:memberId,orderType:'DISCOUNTRECORDSP',depositState:1,orderflags:'1,2,4,5,7'};
+    }else if(orderTab == 3){//查询待评价的订单
+    	data = {memberId:memberId,orderType:'DISCOUNTRECORDSP',orderflags:3,comment:1};
+    }else if(orderTab == 4){//查询完成的订单
+    	data = {memberId:memberId,orderType:'DISCOUNTRECORDSP',orderflags:3,comment:0};
+    }else if(orderTab == 5 ){//查询无效的订单
+    	data = {memberId:memberId,orderType:'DISCOUNTRECORDSP',orderflags:0};
+    }
+	
+	var type2 = $(".type2").val();
+	if(type2 >0){
+		data.type2 = type2;
+	}
+	
+	var start = $("#start").val();
+	var end = $("#end").val();
+	var maxMoney = $("#maxMoney").val();
+	var minMoney = $("#minMoney").val();
+	if(minMoney==""){
+		minMoney = 0;
+	}
+	if(start!=""){
+		data.start = start;
+	}
+	if(end!=""){
+		data.end = end;
+	}
+	if(maxMoney!=""){
+		data.maxMoney = maxMoney;
+	}
+	if(minMoney!=""){
+		data.minMoney = minMoney;
+	}
+
+	$("#content").html("");
+	$("#pager").html("");
+	
+	var pageIndex = 1;//分页
+    $("#pager").sjAjaxPager({
+        url: "${basePath}/yonyou/order/list/disc",
+        pageIndex:pageIndex,
+        pageSize:5,
+        myTotalType:"data.data.total",
+        searchParam: data,
+        beforeSend: function () {
+        	
+        },success: function (data) {
+        	console.log(data);
+        	document.body.scrollTop = document.documentElement.scrollTop = 0;
+        	var source = $("#DISCOUNTRECORDSP").html();
+            var template = Handlebars.compile(source);
+            var html = template(data.data);
+            $("#content").html(html);
+            
+            $(".details").live("click",details);
+            
+        },complete: function(){
+        },
+    });
+};
+
+/**
+* 跳转到详情
+*/
+function details(){
+	var id =  $(this).attr("data-id");
+	var orderflag =  $(this).attr("data-orderflag");
+	var map = new Map();
+	map.put("_PAGE", "/yonyou/order/order_sp_detail");//必传
+	map.put("orderflag", orderflag);
+	map.put("id", id);
+	_OPENPAGE_FORM(map);
+};
+
+/**
+ * tab 切换，订单状态查询
+ */
+$(".orderTabBtn").click(function(){
+	loadDate();
+});
+
+/**
+ * 清空查询条件
+ */
+function empty(){
+	var start = $("#start").val("");
+	var end = $("#end").val("");
+	var maxMoney = $("#maxMoney").val("");
+	var minMoney = $("#minMoney").val("");
+};
+
+/**
+* 倒计时
+*/
+var timerArr = new Array();
+function _timer(create_time,id,deposit_state,orderflag){
+	if(orderflag == 0){
+		clearInterval(_t);
+		$('.minute_show'+id).html('('+0+'分'+0+'秒'+')');
+		return;
+	}
+	
+	var date1 = new Date();//'2017-9-26 15:36:00'
+	var date2 = new Date(create_time); 
+
+	date2.setMinutes(date2.getMinutes() + 120 , date2.getSeconds(), 0);
+	var s1 = date1.getTime();
+	var s2 = date2.getTime(); 
+	
+	var intDiff = Math.floor((s2 - s1)/1000); 
+	
+    var _t = window.setInterval(function(){
+    	timerArr[timerArr.length] = _t;
+        var day=0,
+                hour=0,
+                minute=0,
+                second=0;//时间默认值
+        if(intDiff > 0){
+            minute = Math.floor(intDiff / 60);
+            second = Math.floor(intDiff) - (minute * 60);
+        }
+        if (minute <= 9) minute = '0' + minute;
+        if (second <= 9) second = '0' + second;
+        $('.minute_show'+id).html('('+minute+'分'+second+'秒'+')');
+        if(intDiff<=0){
+            clearInterval(_t);
+        }
+        intDiff--;
+    }, 1000);
+}
+
+var begintimelong = Date.parse(new Date());
+var begintime = new Date(begintimelong);
+var fullyear = begintime.getFullYear();
+//获取完整的年份(4位,1970-????)
+var month = begintime.getMonth() + 1;
+//获取当前月份(0-11,0代表1月)
+var date = begintime.getDate();
+//获取当前日(1-31)
+
+var endtime = new Date(begintimelong + 360 * 24 * 60 * 60 * 1000);
+var endfullyear = endtime.getFullYear();
+//获取完整的年份(4位,1970-????)
+var endmonth = endtime.getMonth() + 1;
+//获取当前月份(0-11,0代表1月)
+var enddate = endtime.getDate();
+//获取当前日(1-31)
+
+if (month < 10) {
+    month = "0" + month;
+}
+if (date < 10) {
+    date = "0" + date;
+}
+if (endmonth < 10) {
+    endmonth = "0" + endmonth;
+}
+if (enddate < 10) {
+    enddate = "0" + enddate;
+}
+
+//日历
+!function(){
+    laydate.skin('dahong');//切换皮肤，请查看skins下面皮肤库
+}();
+//日期范围限制
+//    贴现日期
+var start = {
+    elem: '#start',
+    format: 'YYYY-MM-DD',
+    //min: laydate.now(), //设定最小日期为当前日期
+    min: '1900-01-01', //设定最小日期
+    max: '2099-06-16', //最大日期
+    istime: true,
+    istoday: false,
+    choose: function(datas){
+        end.min = datas; //开始日选好后，重置结束日的最小日期
+        end.start = datas //将结束日的初始值设定为开始日
+    }
+};
+
+//    到期日期
+var end = {
+    elem: '#end',
+    format: 'YYYY-MM-DD',
+    min: laydate.now(),
+    max: '2099-06-16',
+    istime: true,
+    istoday: false,
+    choose: function(datas){
+        start.max = datas; //结束日选好后，充值开始日的最大日期
+    }
+};
+laydate(start);
+laydate(end);
+/**
+* 跳转页面
+*/
+$("#spTab").click(function(){
+	location.href = "${basePath}/yonyou/page/ordersp/list";
+});
+
+/**
+ * 跳转页面
+ */
+ $("#ypTab").click(function(){
+	location.href = "${basePath}/yonyou/page/order/list";
+ });
+</script>
+[/@main.body]

@@ -1,0 +1,13 @@
+/*tab切换*/
+ul.orderTab li label:hover{
+    color: #d43c33;
+}
+/*定位图标*/
+.position{
+    background: url("../images/receive/position.png") center no-repeat;
+    background-size: auto;
+}
+
+.closeImg{
+    background: url("../images/discount/close1.png") center no-repeat;
+}

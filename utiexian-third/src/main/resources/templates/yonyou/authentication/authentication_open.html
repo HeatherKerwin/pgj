@@ -1,0 +1,983 @@
+[#import "/common/main.html" as main]
+[#include "/common/setting.html"]
+<link rel="stylesheet" href="${basePath}/css/yonyou/discountConfirmation.css">
+<link rel="stylesheet" href="${basePath}/js/ajaxPager/page.css">
+[@main.body title='云票据-开户管理-新开户']
+<link rel="stylesheet" href="${basePath}/css/yonyou/authentication.css">
+<link rel="stylesheet" href="${basePath}/css/yonyou/mask.css">
+<link rel="stylesheet" href="https://static.utiexian.com/css/ImgCropping/cropper.min.css">
+<link rel="stylesheet" href="https://static.utiexian.com/css/ImgCropping/ImgCropping.css">
+<script type="text/javascript" src="${basePath}/js/yonyou/toggle.js"></script>
+<script type="text/javascript" src="https://static.utiexian.com/js/ImgCropping/cropper.min.js"></script>
+<script type="text/javascript" src="${basePath}/js/jquery.validationEngine-zh_CN.js"></script>
+<script type="text/javascript" src="${basePath}/js/jquery.validationEngine.js"></script>
+<link rel="stylesheet" href="${basePath}/css/validationEngine.jquery.css" type="text/css"/>
+<link rel="stylesheet" href="${basePath}/css/template.css" type="text/css"/>
+
+<!-- 头部 -->
+[@main.header currentmenu='5'/]
+<!-- 头部end -->
+
+<div class="wrap authenticationWrap">
+    <!--top-->
+    <div class="authenticationTop">
+        <label>开户管理</label>
+    </div>
+    
+    <!--开户进程-->
+    <div class="authenticationType">
+        <ul>
+            <li><img src="${basePath}/images/yonyou/authentication/type1.png" width="180" height="52" alt="申请开户"></li>
+            <li><img src="${basePath}/images/yonyou/authentication/type2.png" width="180" height="52" alt="审核"></li>
+            <li><img src="${basePath}/images/yonyou/authentication/type3.png" width="55" height="52" alt="完成开户"></li>
+        </ul>
+    </div>
+
+    <!--上传证件-->
+    <div class="uploadCon">
+        <div class="uploadTitle">
+            <label for="">证件上传：</label>
+            <span>（可修改）</span>
+        </div>
+        <!--上传-->
+        <ul class="uploadImg">
+            <li>
+                <label for="replaceImg1">
+				    <img id="finalImg1" src="${basePath}/images/yonyou/authentication/upload2.png" alt="营业执照">
+                    <button id="replaceImg1" style="display: none" class="replaceImg">营业执照</button>
+                    <input type="hidden" name="imgpath1" id="imgpath1"/>
+                </label>
+            </li>
+            <li>
+                <label for="replaceImg2">
+				    <img id="finalImg2" src="${basePath}/images/yonyou/authentication/upload3.png" alt="身份证正面">
+                	<button id="replaceImg2" style="display: none" class="replaceImg">身份证正面</button>
+                	<input type="hidden" name="imgpath2" id="imgpath2"/>
+                </label>
+            </li>
+            <li>
+                <label for="replaceImg3">
+				    <img id="finalImg3" src="${basePath}/images/yonyou/authentication/upload1.png" alt="身份证反面">
+                	<button id="replaceImg3" style="display: none" class="replaceImg">身份证反面</button>
+                	<input type="hidden" name="imgpath3" id="imgpath3"/>
+                </label>
+            </li>
+        </ul>
+    </div>
+    <!--证件识别中-->
+    <div class="loading" style="display: none">
+        <img src="${basePath}/images/yonyou/discount/recogniseLoad.gif" alt="loading">
+    </div>
+    <!--上传证件end-->
+
+    <!--开户信息-->
+    <div class="authenticationCon">
+        <p>请认真核对以下信息，如信息有误请手动修改</p>
+        <!--左侧-->
+        <div class="toggleList">
+
+            <!--企业经办人-->
+            <div class="agentList">
+                <div class="agentTitle">
+                    企业经办人
+                </div>
+                <ul class="agentDiv">
+                    <li>
+                        <label for="name">经办人姓名：</label>
+                        <input type="text" id="name" class="validate[required]"  placeholder="请填写开户经办人姓名">
+                    </li>
+                    <li>
+                        <label for="phone">手机号：</label>
+                        <input type="text" id="phone" class="validate[required,custom[phone]]" placeholder="请输入经办人手机号">
+                    </li>
+                    <li>
+                        <label for="IdCard">身份证号：</label>
+                        <input type="text" id="IdCard" class="validate[required,custom[IdCard]]" placeholder="请输入经办人身份证号">
+                    </li>
+                    <li>
+                        <label for="email">邮箱号：</label>
+                        <input type="text" id="email" class="validate[required,custom[email]]"" maxlength='60' placeholder="请输入经办人邮箱号">
+                    </li>
+                </ul>
+            </div>
+
+            <!--企业法人营业执照-->
+            <div class="prependCon">
+                <!--标签title-->
+                <div class="toggleTop">
+                    <label>企业法人营业执照</label>
+                    <img class="toggleIcon" src="${basePath}/images/yonyou/authentication/down.png" alt="">
+                </div>
+                <!--内容-->
+                <div class="toggleCon" style="display: block">
+                    <ul class="accountDiv">
+                        <li>
+                            <label for="company">公司名称：</label>
+                            <input type="text" id="company" maxlength="60" class="validate[required]" placeholder="请输入公司名称">
+                        </li>
+                        <li>
+                            <label for="regNum">注册号：</label>
+                            <input type="text" id="regNum" maxlength="18" class="validate[required,custom[regNum]]" placeholder="请输入营业执照上的统一社会信用代码">
+                        </li>
+                        <li>
+                            <label for="bizLicenceType">公司类型：</label>
+                            <input type="text" id="bizLicenceType" maxlength='25' class="validate[required]" placeholder="请输入营业执照上公司类型">
+                        </li>
+                        <li>
+                            <label for="bizLicenceAddr">住所：</label>
+                            <input type="text" id="bizLicenceAddr" maxlength='60' class="validate[required]" placeholder="请输入营业执照上的住所">
+                        </li>
+                        <li>
+                            <label for="bizLicenceFoundedDate">成立日期：</label>
+                            <input type="text" id="bizLicenceFoundedDate" class="validate[required]" placeholder="请输入营业执照上的成立日期（格式：xxxx-xx-xx）">
+                        </li>
+                        <li>
+                            <label for="bizLicenceLegalName">法人姓名：</label>
+                            <input type="text" id="bizLicenceLegalName" maxlength='10' class="validate[required]" placeholder="请输入营业执照上的法定代表人">
+                        </li>
+                        <li>
+                            <label for="legalCertNo">身份证号：</label>
+                            <input type="text" id="legalCertNo" class="validate[required,custom[IdCard]]" placeholder="请输入营业执照上的法定代表人身份证">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 银行信息-->
+            <div class="prependCon">
+                <!--标签title-->
+                <div class="toggleTop">
+                    <label>银行信息</label>
+                    <img class="toggleIcon" src="${basePath}/images/yonyou/authentication/down.png" alt="">
+                </div>
+                <!--内容-->
+                <div class="toggleCon" style="display: block">
+                    <ul class="accountDiv">
+                        <li>
+                            <label for="bankstr">开户行行号：</label>
+                            <input type="text" class="bankBtn validate[required]" id="bankstr" style="border:1px solid #e0e0e0;cursor: pointer;" placeholder="请选择开户行行号" readonly>
+                            <input type="hidden" id="bankNo"/>
+                        	<input type="hidden" id="CnapsCode"/>
+                        	<input type="hidden" id="bankAcctBankBranch"/>
+                        </li>
+                        <li>
+                            <label for="bankAcctAcctNo">账号：</label>
+                            <input type="text" id="bankAcctAcctNo" maxlength="25" class="validate[required]" placeholder="请填写对应的卡号">
+                        </li>
+                        <li>
+                            <label for="bankAcctAcctName">账户名：</label>
+                            <input type="text" id="bankAcctAcctName" class="validate[required]" placeholder="请填写对应的账户名">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <!--左侧end-->
+
+        <!--右侧-->
+        <div class="toggleList">
+            <!-- 其他-->
+            <div class="prependCon">
+                <!--标签title-->
+                <div class="toggleTop">
+                    <label>其他</label>
+                    <img class="toggleIcon" src="${basePath}/images/yonyou/authentication/down.png" alt="">
+                </div>
+                <!--内容-->
+                <div class="toggleCon" style="display: block">
+                    <ul class="accountDiv">
+                        <li>
+                            <!--财务-->
+                            <div class="childrenCon">
+                                <!--标签title-->
+                                <div class="toggleTop">
+                                    <label>财务</label>
+                                    <img class="toggleIcon" src="${basePath}/images/yonyou/authentication/down.png" alt="">
+                                </div>
+                                <!--内容-->
+                                <div class="toggleCon" style="display: block">
+                                    <ul class="accountDiv">
+                                        <li>
+                                            <label for="treasurerName">姓名：</label>
+                                            <input type="text" id="treasurerName" maxlength='10' class="validate[required]" placeholder="请输入财务姓名">
+                                        </li>
+                                        <li>
+                                            <label for="treasurerCertNo">身份证号：</label>
+                                            <input type="text" id="treasurerCertNo" class="validate[required,,custom[IdCard]]" placeholder="请输入财务身份证号码">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <!--机构信用代码证-->
+                            <div class="childrenCon">
+                                <!--标签title-->
+                                <div class="toggleTop">
+                                    <label>机构信用代码证</label>
+                                    <img class="toggleIcon" src="${basePath}/images/yonyou/authentication/down.png" alt="">
+                                </div>
+                                <!--内容-->
+                                <div class="toggleCon" style="display: block">
+                                    <ul class="accountDiv">
+                                        <li>
+                                            <label for="orgCreditCodeCertCode">代码：</label>
+                                            <input type="text" id="orgCreditCodeCertCode" maxlength='18' class="validate[custom[regNum]]" placeholder="请输入代码（选填）">
+                                        </li>
+                                        <li>
+                                            <label for="orgCreditCodeCertName">名称：</label>
+                                            <input type="text" id="orgCreditCodeCertName" maxlength='60' placeholder="请输入公司名称（选填）">
+                                        </li>
+                                        <li>
+                                            <label for="orgCreditCodeCertAddr">地址：</label>
+                                            <input type="text" id="orgCreditCodeCertAddr" maxlength='60' placeholder="请输入机构信用代码的地址（选填）">
+                                        </li>
+                                        <li>
+                                            <label for="orgCreditCodeCertExpiredDate">有效期：</label>
+                                            <input type="text" id="orgCreditCodeCertExpiredDate" maxlength='18' placeholder="请输入有效期（选填）">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <!--开户许可证-->
+                            <div class="childrenCon">
+                                <!--标签title-->
+                                <div class="toggleTop">
+                                    <label>开户许可证</label>
+                                    <img class="toggleIcon" src="${basePath}/images/yonyou/authentication/down.png" alt="">
+                                </div>
+                                <!--内容-->
+                                <div class="toggleCon" style="display: block">
+                                    <ul class="accountDiv">
+                                        <li>
+                                            <label for="acctPermitNo">编码：</label>
+                                            <input type="text" id="acctPermitNo" maxlength='13' placeholder="请输入开户许可证编号（选填）">
+                                        </li>
+                                        <li>
+                                            <label for="acctPermitPermitNo">核准号：</label>
+                                            <input type="text" id="acctPermitPermitNo" maxlength='14' placeholder="请输入开户许可证核准号（选填）">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="childrenCon">
+                                <!--标签title-->
+                                <div class="toggleTop">
+                                    <label>税务登记处</label>
+                                    <img class="toggleIcon" src="${basePath}/images/yonyou/authentication/down.png" alt="">
+                                </div>
+                                <!--内容-->
+                                <div class="toggleCon" style="display: block">
+                                    <ul class="accountDiv">
+                                        <li>
+                                            <label for="taxCertGovTaxNo">国税字号：</label>
+                                            <input type="text" id="taxCertGovTaxNo">
+                                        </li>
+                                        <li>
+                                            <label for="taxCertLocalTaxNo">地税字号：</label>
+                                            <input type="text" id="taxCertLocalTaxNo">
+                                        </li>
+                                        <li>
+                                            <label for="taxCertName">纳税人名称：</label>
+                                            <input type="text" id="taxCertName">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--右侧end-->
+
+        <!--操作按钮-->
+        <div class="authenticationFoot">
+            <p>*以上信息若为空，平台将保存为“-”并传给兴业数金。</p>
+            <a href="javascript:void(0);" onclick="nextStep();">申请开户</a>
+        </div>
+        <!--操作按钮end-->
+    </div>
+    <!--开户信息end-->
+</div>
+
+<!--弹窗-->
+<div class="maskWindow" id="maskWindow" style="display: none">
+    <div class="maskBg"></div>
+    <!-- 图片上传识别中 -->
+	<img alt="图片上传识别中" style="display: none;" class="maskIMG_center" src="${basePath}/images/yonyou/recognition.gif" width="100" height="100">
+	<!-- 图片上传识别中end -->
+    <div class="maskWrap maskWrapSmall" style="display: none;">
+        <!--top-->
+        <div class="maskTop">
+            <!--弹窗名称-->
+            <div id="title" class="maskTitle">温馨提示</div>
+            <!--关闭按钮-->
+            <a class="maskClose">
+                <img src="${basePath}/images/yonyou/common/closeIcon.png" alt="关闭">
+            </a>
+        </div>
+        <!--内容容器-->
+        <div class="maskCon">
+            <!--不同的弹窗内容-->
+            <!--开户行名称-->
+            <div class="maskDiv bankWindow" style="display: none" id="bankWindow">
+                <div class="searchBank">
+                    <input type="text" id="bank_branch" maxlength="25" placeholder="请输入分支行号或分支行关键词">
+                    <a href="#" onclick="loadBank();">搜索</a>
+                </div>
+                <p id="promptStr" style="display: none">暂无查询结果,您可以尝试更改查询条件搜索。</p>
+                <ul id="banks" class="searchBankList" style="display: none">
+                    
+                </ul>
+            </div>
+        </div>
+
+        <!--弹窗底部操作-->
+        <div class="maskFooter" id="maskFooter" style="display: none">
+            <!--开户行名称-->
+            <div id="bankFooter" style="display: none">
+                <a href="javascript:void(0)" class="flatBtn nextPage" onclick="nextPage();" style="display: none" id="">下一页</a>
+                <a href="javascript:void(0)" class="flatBtn prevPage" onclick="prevPage();" style="display: none" id="">上一页</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--图片裁剪框 start-->
+<div style="display: none" class="tailoring-container">
+   	<input type="hidden" id="currentImg" >
+    <div class="black-cloth" onClick="closeTailor(this)"></div>
+    <div class="tailoring-content">
+            <div class="tailoring-content-one">
+                <label title="上传图片" for="chooseImg" class="l-btn choose-btn">
+                    <input type="file" accept="image/jpg,image/jpeg,image/png" name="file" id="chooseImg" class="hidden" onChange="selectImg(this)">
+                    选择图片
+                </label>
+                <div class="tailoring-text">
+			    <span>若图片不需要裁剪，请点击</span>
+			    <img src="${basePath}/images/yonyou/handClicks.png">
+			    <a href="#" onclick="OriginalPic()">使用原图</a>
+		    </div>
+                <div class="close-tailoring"  onclick="closeTailor(this)">×</div>
+            </div>
+            <div class="tailoring-content-two">
+                <div class="tailoring-box-parcel">
+                    <img id="tailoringImg">
+                </div>
+            </div>
+            <div class="tailoring-content-three">
+                <button class="l-btn cropper-reset-btn">复位</button>
+                <button class="l-btn cropper-rotate-btn">旋转</button>
+                <button class="l-btn cropper-scaleX-btn">换向</button>
+                <button class="l-btn sureCut" id="sureCut">确定裁剪</button>
+            </div>
+        </div>
+</div>
+<!--图片裁剪框 end-->
+
+<script>
+var memberId = 150;
+var pageIndex = 1; 
+var pageSize = 10;
+var bankList = [];
+    $(document).ready(function () {
+    	checkAccount();
+    });
+
+    /*关闭所有弹窗*/
+    $(".maskClose , .closeBtn").click(function(){
+        $("#maskWindow").fadeOut(500); /*内容区域*/
+        $("#imgAlertWindow").fadeOut(500); /*内容区域*/
+        $(".maskWrap").fadeOut();
+        $("#maskFooter").fadeOut(500); /*底部按钮区域*/
+        $("#imgAlertFooter").fadeOut(500); /*底部按钮区域*/
+    });
+    
+  	//选择开户行
+    $(".bankBtn").click(function(){
+        $("#maskWindow").fadeIn(500);
+        $(".maskWrap").fadeIn();
+        $("#bankWindow").fadeIn(500); //选择开户行
+        $("#title").html("选择开户行");
+    });
+
+    /*-----打开弹窗-----*/
+    /*上传图片有问题*/
+    $("#fileToUpload").click(function () {
+        $("#maskWindow").fadeIn(500); /*内容区域*/
+        $("#imgAlertWindow").fadeIn(500); /*内容区域*/
+
+        $("#maskFooter").fadeIn(500); /*底部按钮区域*/
+        $("#imgAlertFooter").fadeIn(500); /*底部按钮区域*/
+    });
+    /* ------------------------------------ */
+    //弹出框水平垂直居中
+    (window.onresize = function () {
+    	var win_height = window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight;
+        var win_width = window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth;
+        if (win_width <= 768){
+            $(".tailoring-content").css({
+                "top": (win_height - $(".tailoring-content").outerHeight())/2,
+                "left": 0
+            });
+        }else{
+            $(".tailoring-content").css({
+                "top": (win_height - $(".tailoring-content").outerHeight())/2,
+                "left": (win_width - $(".tailoring-content").outerWidth())/2
+            });
+        }
+    })();
+
+    //弹出图片裁剪框
+    $(".replaceImg").on("click",function () {
+    	if($(this).attr("id") == "replaceImg1"){
+    		$("#currentImg").val("BIZLICENCE");
+    	}else if($(this).attr("id") == "replaceImg2"){
+    		$("#currentImg").val("IDCARD");
+    	}else if($(this).attr("id") == "replaceImg3"){
+    		$("#currentImg").val("");
+    	}
+        $(".tailoring-container").toggle();
+    });
+    //图像上传
+    function selectImg(file) {
+        if (!file.files || !file.files[0]){
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function (evt) {
+            var replaceSrc = evt.target.result;
+            //更换cropper的图片
+            $('#tailoringImg').cropper('replace', replaceSrc,false);//默认false，适应高度，不失真
+        }
+        reader.readAsDataURL(file.files[0]);
+    }
+    //cropper图片裁剪
+    $('#tailoringImg').cropper({
+        guides: false,  //裁剪框的虚线(九宫格)
+        autoCropArea: 0.5,  //0-1之间的数值，定义自动剪裁区域的大小，默认0.8
+        movable: false, //是否允许移动图片
+        dragCrop: true,  //是否允许移除当前的剪裁框，并通过拖动来新建一个剪裁框区域
+        movable: true,  //是否允许移动剪裁框
+        resizable: true,  //是否允许改变裁剪框的大小
+        zoomable: true,  //是否允许缩放图片大小
+        mouseWheelZoom: true,  //是否允许通过鼠标滚轮来缩放图片
+        touchDragZoom: true,  //是否允许通过触摸移动来缩放图片
+        rotatable: true,  //是否允许旋转图片
+        crop: function(e) {
+            // 输出结果数据裁剪图像。
+        }
+    });
+    //旋转
+    $(".cropper-rotate-btn").on("click",function () {
+        $('#tailoringImg').cropper("rotate", 45);
+    });
+    //复位
+    $(".cropper-reset-btn").on("click",function () {
+        $('#tailoringImg').cropper("reset");
+    });
+    //换向
+    var flagX = true;
+    $(".cropper-scaleX-btn").on("click",function () {
+        if(flagX){
+            $('#tailoringImg').cropper("scaleX", -1);
+            flagX = false;
+        }else{
+            $('#tailoringImg').cropper("scaleX", 1);
+            flagX = true;
+        }
+        flagX != flagX;
+    });
+
+    //裁剪后的处理
+    $("#sureCut").on("click",function () {
+        if ($("#tailoringImg").attr("src") == null ){
+            return false;
+        }else{
+            var cas = $('#tailoringImg').cropper('getCroppedCanvas');//获取被裁剪后的canvas
+            var base64url = cas.toDataURL('image/png'); //转换为base64地址形式
+            $(".finalImg").prop("src",base64url);//显示为图片的形式
+            
+            readFile(base64url);
+        }
+    });
+    //关闭裁剪框
+    function closeTailor() {
+        $(".tailoring-container").toggle();
+    }
+    /**
+	* 使用选择的图片，未裁剪
+	*/
+	function OriginalPic(){
+		if ($("#tailoringImg").attr("src") == null ){
+			alert("请先选择图片");
+            return ;
+		}else{
+			var base64url = $('#tailoringImg').attr("src");
+			readFile(base64url);
+		}
+	};
+	
+	/**
+	* boot 项目的图片上传
+	*/
+	function readFile(imgUrl){
+		$("#maskWindow").show();
+        $(".maskIMG_center").show();
+		closeTailor();//关闭裁剪框
+        var currentImg;
+        if($("#currentImg").val()!=""){
+        	currentImg = $("#currentImg").val();
+        }
+		if(imgUrl == null && imgUrl == ""){
+			return ;
+		}
+		setTimeout(function(){
+			var index = imgUrl.indexOf(",");
+			var base64Image = imgUrl.substr(index+1);
+			var url = '${basePath}/upload/image';
+			var params = {base64Image:base64Image,ocrGenre:currentImg};
+			
+			$.ajax({
+	    		url:url,
+	    		type:"POST",
+	    		data:params,
+	    		dataType:"json",
+	    		async: false,
+	    		success:function(res){
+	    			if(res != null){
+	    				if(res.response == "success"){
+	    					$("#maskWindow").hide();
+	    			        $(".maskIMG_center").hide();
+	    					var data = res.data;
+	    					var ocrInfo = data.ocrInfo;
+	    					if(typeof(ocrInfo) != "undefined" || ocrInfo != null){
+	    						if(ocrInfo.bizLicenceNameMap != null){
+	    							$("#company").val(ocrInfo.bizLicenceNameMap.bizLicenceName);
+	    							$("#taxCertName").val(ocrInfo.bizLicenceNameMap.bizLicenceName);
+	    							$("#orgCreditCodeCertName").val(ocrInfo.bizLicenceNameMap.bizLicenceName);
+	    						}
+	    						if(ocrInfo.bizLicenceRegisteredNoMap != null){
+	    							$("#regNum").val(ocrInfo.bizLicenceRegisteredNoMap.bizLicenceRegisteredNo);
+	    							$("#taxCertGovTaxNo").val(ocrInfo.bizLicenceRegisteredNoMap.bizLicenceRegisteredNo);
+	    							$("#taxCertLocalTaxNo").val(ocrInfo.bizLicenceRegisteredNoMap.bizLicenceRegisteredNo);
+	    							//checkIsAccount();
+	    						}
+	    						if(ocrInfo.bizLicenceLegalNameMap != null){
+	    							$("#bizLicenceLegalName").val(ocrInfo.bizLicenceLegalNameMap.bizLicenceLegalName);
+	    						}
+	    						if(ocrInfo.bizLicenceAddrMap != null){
+	    							$("#bizLicenceAddr").val(ocrInfo.bizLicenceAddrMap.bizLicenceAddr);
+	    						}
+	    						if(ocrInfo.bizLicenceFoundedDateMap != null){
+	    							$("#bizLicenceFoundedDate").val(ocrInfo.bizLicenceFoundedDateMap.bizLicenceFoundedDate);
+	    						}
+	    						if(ocrInfo.idMap != null){
+	    							$("#legalCertNo").val(ocrInfo.idMap.id);
+	    						}
+	    					}
+	    					if(currentImg == "BIZLICENCE"){
+	    						$("#replaceImg1").prev().attr("src","${bootPic}/"+data.base64Image);
+	    						$('#replaceImg1').next().val(data.base64Image);
+	    					}else if(currentImg == "IDCARD"){
+	    						$("#replaceImg2").prev().attr("src","${bootPic}/"+data.base64Image);
+	    						$('#replaceImg2').next().val(data.base64Image);
+	    					}else{
+	    						$("#replaceImg3").prev().attr("src","${bootPic}/"+data.base64Image);
+	    						$('#replaceImg3').next().val(data.base64Image);
+	    					}
+	    				}else{
+	    					alert(data.msg);
+	    				}
+	    			}
+	    		},
+	    		error:function(json){
+    				console.log("获取数据失败！");
+	    		}
+	    	});
+		});
+	}
+	/**
+	* 申请开户
+	*/
+	function nextStep(){
+		if($("#imgpath1").val() == ''){
+			alert("请上传清晰的营业执照正面照片");
+			return;
+		}
+		if($("#imgpath4").val() == ''){
+			alert("点击上传身份证正面");
+			return;
+		}
+		if($("#imgpath5").val() == ''){
+			alert("点击上传身份证反面");
+			return;
+		}
+		if(!$("#company").validationEngine("validate")){
+    		$("#company").focus();
+    		setTimeout(function(){$("#company").validationEngine('hideAll');},1000);
+    		return;
+    	}
+		if(!$("#regNum").validationEngine("validate")){
+    		$("#regNum").focus();
+    		setTimeout(function(){$("#regNum").validationEngine('hideAll');},1000);
+    		return;
+    	}
+		if(!$("#name").validationEngine("validate")){
+    		$("#name").focus();
+    		setTimeout(function(){$("#name").validationEngine('hideAll');},1000);
+    		return;
+    	}
+		if(!$("#phone").validationEngine("validate")){
+    		$("#phone").focus();
+    		setTimeout(function(){$("#phone").validationEngine('hideAll');},1000);
+    		return;
+    	}
+		if(!$("#IdCard").validationEngine("validate")){
+    		$("#IdCard").focus();
+    		setTimeout(function(){$("#IdCard").validationEngine('hideAll');},1000);
+    		return;
+    	}
+		if(!$("#email").validationEngine("validate")){
+    		$("#email").focus();
+    		setTimeout(function(){$("#email").validationEngine('hideAll');},1000);
+    		return;
+    	}
+		if(!$("#bizLicenceType").validationEngine("validate")){
+    		$("#bizLicenceType").focus();
+    		setTimeout(function(){$("#bizLicenceType").validationEngine('hideAll');},1000);
+    		return;
+    	}
+		if(!$("#bizLicenceAddr").validationEngine("validate")){
+    		$("#bizLicenceAddr").focus();
+    		setTimeout(function(){$("#bizLicenceAddr").validationEngine('hideAll');},1000);
+    		return;
+    	} 
+		if(!$("#bizLicenceFoundedDate").validationEngine("validate")){
+    		$("#bizLicenceFoundedDate").focus();
+    		setTimeout(function(){$("#bizLicenceFoundedDate").validationEngine('hideAll');},1000);
+    	 	return;
+    	}
+		if(!$("#bizLicenceLegalName").validationEngine("validate")){
+    		$("#bizLicenceLegalName").focus();
+    		setTimeout(function(){$("#bizLicenceLegalName").validationEngine('hideAll');},1000);
+    		return;
+    	}
+		if(!$("#legalCertNo").validationEngine("validate")){
+    		$("#legalCertNo").focus();
+    		setTimeout(function(){$("#legalCertNo").validationEngine('hideAll');},1000);
+    		return;
+    	}
+		if(!$("#bankstr").validationEngine("validate")){
+    		$("#bankstr").focus();
+    		setTimeout(function(){$("#bankstr").validationEngine('hideAll');},1000);
+    		return;
+    	}
+		if(!$("#bankAcctAcctNo").validationEngine("validate")){
+    		$("#bankAcctAcctNo").focus();
+    		setTimeout(function(){$("#bankAcctAcctNo").validationEngine('hideAll');},1000);
+    		return;
+    	}
+		if(!$("#bankAcctAcctName").validationEngine("validate")){
+    		$("#bankAcctAcctName").focus();
+    		setTimeout(function(){$("#bankAcctAcctName").validationEngine('hideAll');},1000);
+    		return;
+    	}
+		if(!$("#treasurerName").validationEngine("validate")){
+    		$("#treasurerName").focus();
+    		setTimeout(function(){$("#treasurerName").validationEngine('hideAll');},1000);
+    		return;
+    	}
+		if(!$("#treasurerCertNo").validationEngine("validate")){
+    		$("#treasurerCertNo").focus();
+    		setTimeout(function(){$("#treasurerCertNo").validationEngine('hideAll');},1000);
+    		return;
+    	}
+		var params={
+			memberId:memberId,
+			type:1,
+			name:$("#company").val(),//企业名称
+			address:$("#bizLicenceAddr").val(),//联系人公司地址
+			bankAcctBankNo: $("#bankNo").val(),//企业开户行行号
+			bankAcctAcctNo:$("#bankAcctAcctNo").val(),//卡号
+			bankAcctAcctName:$("#bankAcctAcctName").val(),//
+			bankAcctCnapsCode: $("#CnapsCode").val(),//支行行号
+			bankAcctBankBranch:$("#bankAcctBankBranch").val(),//支行名称
+			bizLicenceRegisteredNo:$("#regNum").val(),//企业信用代码
+			bizLicenceName:$("#company").val(),//企业许可证公司名
+			bizLicenceType:$("#bizLicenceType").val(),//营业执照上的公司类型
+			bizLicenceAddr:$("#bizLicenceAddr").val(),//营业执照上的住所
+			bizLicenceLegalName:$("#bizLicenceLegalName").val(),//法人姓名
+			bizLicenceFoundedDate:$("#bizLicenceFoundedDate").val(),//成立日期
+			legalCertNo:$("#legalCertNo").val(),
+			agentCertNo:$("#IdCard").val(),//经办人身份证号码
+			treasurerName:$("#treasurerName").val(),//财务姓名
+			treasurerCertNo:$("#treasurerCertNo").val(),//财务身份证号码
+			orgCodeCertCode:$("#regNum").val(),
+			orgCodeCertName:$("#company").val(),
+			orgCodeCertType:$("#bizLicenceType").val(),
+			contactName:$("#name").val(),//经办人姓名
+			contactMobile:$("#phone").val(),//经办人手机号
+			email:$("#email").val(),
+			imgPathA1:$("#imgpath2").val(),
+			imgPathA2:$("#imgpath3").val(),
+			imgPath20:$("#imgpath1").val()
+		};
+		if($("#orgCreditCodeCertCode").val() == ""){
+			params.orgCreditCodeCertCode = '-';
+		}else {
+			params.orgCreditCodeCertCode = $("#orgCreditCodeCertCode").val();
+		}
+		if($("#orgCreditCodeCertName").val() == ""){
+			params.orgCreditCodeCertName = '-';
+		}else {
+			params.orgCreditCodeCertName = $("#orgCreditCodeCertName").val();
+		}
+		if($("#orgCreditCodeCertAddr").val() == ""){
+			params.orgCreditCodeCertAddr = '-';
+		}else {
+			params.orgCreditCodeCertAddr = $("#orgCreditCodeCertAddr").val();
+		}
+		if($("#orgCreditCodeCertExpiredDate").val() == ""){
+			params.orgCreditCodeCertExpiredDate = '-';
+		}else {
+			params.orgCreditCodeCertExpiredDate = $("#orgCreditCodeCertExpiredDate").val();
+		}
+		if($("#taxCertGovTaxNo").val() == ""){
+			params.taxCertGovTaxNo = '-';
+		}else {
+			params.taxCertGovTaxNo = $("#taxCertGovTaxNo").val();
+		}
+		if($("#taxCertLocalTaxNo").val() == ""){
+			params.taxCertLocalTaxNo = '-';
+		}else {
+			params.taxCertLocalTaxNo = $("#taxCertLocalTaxNo").val();
+		}
+		if($("#taxCertName").val() == ""){
+			params.taxCertName = '-';
+		}else {
+			params.taxCertName = $("#taxCertName").val();
+		}
+		if($("#acctPermitNo").val() == ""){
+			params.acctPermitNo = '-';
+		}else {
+			params.acctPermitNo = $("#acctPermitNo").val();
+		}
+		if($("#acctPermitPermitNo").val() == ""){
+			params.acctPermitPermitNo = '-';
+		}else {
+			params.acctPermitPermitNo = $("#acctPermitPermitNo").val();
+		}
+		console.log(params);
+		var url = "${basePath}/cib/save";
+		$.ajax({
+    		url:url,
+    		type:"POST",
+    		data:params,
+    		dataType:"json",
+    		async: false,
+    		success:function(res){
+    			if(res != null){
+    				var data = res.data;
+    				console.log("----------------------------------------------");
+    				console.log(data);
+    				if(data.response == 'success'){
+    					var map = new Map();
+    					map.put("_PAGE", "bisic_message/authentication_orgExamine");//必传
+    					map.put("cibId", data.data.id);
+    					_OPENPAGE_FORM(map);
+    				}
+    			}
+    		},
+    		error:function(json){
+				console.log("获取数据失败！");
+    		}
+    	});
+	}
+	
+	/**
+     * 加载查询数据
+     */
+    function loadBank(){
+    	var bankBranch = $("#bank_branch").val();
+    	$.ajax({
+    		url:'${basePath}/cib/query/back',
+    		type:"POST",
+    		data:{bank_branch:bankBranch,memberId:memberId},
+    		dataType:"json",
+    		success:function(data){
+    			pageIndex = 1;
+        		bankList = data.data.banks;
+        		var html = "";
+        		if(typeof(data.data.return_msg)!="undefined"){
+        			alert(data.data.return_msg+"，请联系客服");
+        		}else{
+        			if(typeof(data.data.banks)!="undefined"){
+            			if(data.data.banks.length > 10){
+            				for(var i=0;i<10;i++){
+                				banks[i] = bankList[((pageIndex-1)*pageSize)+i];
+                				html += "<li onclick='choseBank("+i+");'>";
+                                html += "<div class='searchBankName'>"+banks[i].cnaps_code+"</div>";
+                                html += "<div class='searchBankPlace'>"+banks[i].bank_branch+"</div>";
+                                html += "</li>";
+                			}
+            				$(".nextPage").show();
+            			}else{
+            				for(var i=0;i<data.data.banks.length;i++){
+                				banks[i] = bankList[((pageIndex-1)*pageSize)+i];
+                				html += "<li onclick='choseBank("+i+");'>";
+                                html += "<div class='searchBankName'>"+banks[i].cnaps_code+"</div>";
+                                html += "<div class='searchBankPlace'>"+banks[i].bank_branch+"</div>";
+                                html += "</li>";
+                			}
+            			}
+            			
+            			$("#banks").html("");
+                		$("#banks").append(html);
+                		$("#banks").fadeIn(500);
+                		$("#bankFooter").fadeIn(500);
+                		$("#maskFooter").fadeIn(500);
+                		$("#promptStr").hide();
+                		$(".prevPage").hide();
+            		}else{
+            			$("#banks").html("");
+            			$("#promptStr").fadeIn(500);
+            		}
+        		}
+    		},
+    	});
+    };
+    
+    /**
+     * 上一页
+     */
+    function prevPage(){
+    	if(pageIndex <= 2) $(".prevPage").hide();
+    	if((bankList.length/pageSize-1) < pageIndex)$(".nextPage").show();
+    	pageIndex = (pageIndex-1) < 1 ? pageIndex:pageIndex-1;
+    	var html = "";
+    	$("#banks").html("");
+   		for(var i=0;i<10;i++){
+       		banks[i] = bankList[((pageIndex-1)*pageSize)+i];
+       		html += "<li onclick='choseBank("+i+");'>";
+            html += "<div class='searchBankName'>"+banks[i].cnaps_code+"</div>";
+            html += "<div class='searchBankPlace'>"+banks[i].bank_branch+"</div>";
+            html += "</li>";
+       	}
+    	$("#banks").append(html);
+    };
+
+    /**
+    * 下一页
+    */
+    function nextPage(){
+    	if(pageIndex ==1) $(".prevPage").show();
+    	if((bankList.length/pageSize) <= (pageIndex+1))$(".nextPage").hide();
+   
+    	var html = "";
+    	$("#banks").html("");
+    	if((pageIndex+1) > (bankList.length/pageSize)){
+    		for(var i=0;i<(bankList.length-pageSize*pageIndex);i++){
+        		banks[i] = bankList[(pageIndex*pageSize)+i];
+        		html += "<li onclick='choseBank("+i+");'>";
+                html += "<div class='searchBankName'>"+banks[i].cnaps_code+"</div>";
+                html += "<div class='searchBankPlace'>"+banks[i].bank_branch+"</div>";
+                html += "</li>";
+        	}
+    	}else{
+    		for(var i=0;i<10;i++){
+        		banks[i] = bankList[(pageIndex*pageSize)+i];
+        		html += "<li onclick='choseBank("+i+");'>";
+                html += "<div class='searchBankName'>"+banks[i].cnaps_code+"</div>";
+                html += "<div class='searchBankPlace'>"+banks[i].bank_branch+"</div>";
+                html += "</li>";
+        	}
+    	}
+    	$("#banks").append(html);
+    	pageIndex = (pageIndex+1) > (bankList.length/pageSize) ? pageIndex:pageIndex+1;
+    };
+    
+    /**
+     * 选定开户行之后赋值
+     */
+    function choseBank(i){
+        $("#maskWindow").fadeOut(500);
+        $("#bankWindow").fadeOut(500);
+        $("#banks").fadeOut(500);
+        $(".nextPage").hide();
+        $(".prevPage").hide();
+        
+        console.log(banks[i]);
+        $("#bankstr").val(banks[i].bank_branch+"("+banks[i].cnaps_code+")");
+    	$("#bankNo").val(banks[i].bank_no);
+    	$("#CnapsCode").val(banks[i].cnaps_code);
+    	$("#bankAcctBankBranch").val(banks[i].bank_branch);
+    };
+    
+    var bool = false; //审核是否通过 true是 false否
+    /**
+     * @param
+     */
+    function checkAccount(){
+    	var url = '${basePath}/orginfo/rz';
+    	var params = {memberId:memberId,type:0};
+    	
+    	$.ajax({
+    		url:url,
+    		type:"POST",
+    		data:params,
+    		dataType:"json",
+    		success:function(res){
+   	    		console.log(res);
+   	    		if (res.response == 'success') {
+   	    			var active = res.data;
+   	    			var cib = active.cib;
+   	    			var cibCheckState;
+   	    			if(active.info!=null){
+   	    				cibCheckState = active.info.cibCheckState;
+   	    			}
+   	   				if((cibCheckState != "PENDING"&&cibCheckState != "PASS")||cibCheckState == "NOPASS"){//orgInfo的审核状态
+   	   					if(cib.status == 0){//开户待审核
+   	   						//到审核的页面，可修改信息和图片
+   	   						var map = new Map();
+   	   						map.put("_PAGE", "authentication/authentication_review");//必传
+   	   						map.put("cibId", cib.id);
+   	   						_OPENPAGE_FORM(map);
+   	   					}else if(cib.status == 1){//开户审核失败
+   							bool = true;
+   	   						var map = new Map();
+   	   						map.put("_PAGE", "authentication/authentication_review");//必传
+   	   						map.put("cibId", cib.id);
+   	   						_OPENPAGE_FORM(map);
+   	   					}else if(cib.status == 5){//审核通过,待鉴定
+   	   						//到小额鉴定
+   	   						var map = new Map();
+   	   						map.put("_PAGE", "bisic_message/authentication_orgFinish");//必传
+   	   						map.put("bankAcctAcctNo", cib.bankAcctAcctNo);//银行账号
+   	   						map.put("bankAcctAcctName", cib.bankAcctAcctName);//银行账户名
+   	   						map.put("cibId", cib.id);//银行账户名
+   	   						_OPENPAGE_FORM(map);
+   	   					}else if(cib.status == 6){//小额鉴定失败
+   	   						//重新鉴定
+   	   						var map = new Map();
+   	   						map.put("_PAGE", "bisic_message/authentication_orgFinish");//必传
+   	   						_OPENPAGE_FORM(map);
+   	   					}else if(cib.status == 2){
+   	   						//已通过审核显示开户信息
+   	   						var map = new Map();
+   	   						map.put("_PAGE", "bisic_message/authentication_success");//必传
+   	   						map.put("openFlag", "ok");
+   	   						_OPENPAGE_FORM(map);
+   	   					}
+   	   				}
+   	    		}
+   	    	}
+    	});
+    }
+</script>
+[/@main.body]

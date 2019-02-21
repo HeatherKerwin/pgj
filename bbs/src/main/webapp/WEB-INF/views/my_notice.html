@@ -1,0 +1,50 @@
+#include("./common/header.html", {title:"帖子消息"})
+#include("./common/right.html")
+#include("./common/my_menu.html")
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column p30" style="background: #fdfdfd">
+			#if(null == noticePage || null == noticePage.results || noticePage.results.size() == 0)
+				<div class="alert alert-info">你还没有帖子消息呢</div>
+			#else
+				#for(item : noticePage.results)
+					<div class="list-group">
+						<div class="list-group-item clearfix mb20" style="background: #fff">
+							<div class="col-md-12">
+								<h4 class="media-heading topic-list-heading">
+									<small>
+	                                	<a href="${base_url('/member/') + item.user_name}">${item.nick_name ?! item.user_name}</a> 
+	                                	<span>${timespan(item.create_time)}</span>
+		                                #if(item.type=='comment')
+	                                		评论了帖子 <a href="${base_url('/topic/') + item.tid}">${item.title}</a>
+		                                #elseif(item.type=='favorites')
+		                                	收藏了你的帖子 <a href="${base_url('/topic/') + item.tid}">${item.title}</a>
+		                                #elseif(item.type=='comment_at')
+		                                	在帖子 <a href="${base_url('/topic/') + item.tid}">${item.title}</a> 中提到了你
+		                                #end
+	                                </small>
+                                </h4>
+								<p class="list-group-item-text clearfix">
+									${item.content}
+								</p>
+							</div>
+						</div>
+					</div>
+				#end
+				#if(noticePage.totalPage > 1)
+					<ul class="pager">
+						#if(noticePage.page > 1)
+						<li class="pull-left"><a href="${base_url('/my/notice?p=') + noticePage.prev_page}">上一页</a></li>
+						#end
+						#if(noticePage.totalPage > 1 && noticePage.page != noticePage.totalPage)
+						<li class="pull-right"><a href="${base_url('/my/notice?p=') + noticePage.next_page}">下一页</a></li>
+						#end
+					</ul>
+				#end
+        	#end
+		</div>
+	</div>
+</div>
+#include("./common/footer.html") 
+</body>
+</html>

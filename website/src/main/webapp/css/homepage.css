@@ -1,0 +1,100 @@
+@charset"utf-8";
+/* 焦点图css*/
+.foucs {
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+    height: 480px;
+    overflow: hidden;
+    z-index: 100;
+}
+.lipic {
+    display: block;
+    width: 100%;
+    height: 470px;
+    margin: 0 auto;
+}
+.lipic li {
+    display: block;
+    height: 480px;
+}
+.lipic li .pic {
+    position: relative;
+    width: 960px;
+    margin: 0 auto;
+    z-index: 10;
+}
+.lipic li .pic a {
+    display: block;
+    width: 620px;
+    height: 430px;
+    position: absolute;
+    z-index: 10;
+    right: 0;
+    top: 0;
+    z-index: 9;
+}
+/*数字按钮样式*/
+.foucs .num {
+    display: block;
+    width: 100%;
+    height: 20px;
+    position: relative;
+    top: -30px;
+    overflow: hidden;
+    zoom: 1;
+    z-index: 133;
+}
+.foucs .num ul {
+    display: block;
+    width: 960px;
+    margin: 0 auto;
+    text-align: center;
+}
+.foucs .num ul li {
+    display: inline-block;
+    overflow: hidden;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    margin: 0 14px 0 0;
+    text-indent: -9999em;
+    cursor: pointer;
+    background: url(../images/homepage/banner-but.png) no-repeat;
+}
+.foucs .num ul li.on {
+    background-position: -23px 0px;
+}
+
+/*模块图标*/
+.interestIcon{
+    background:#ffffff url('../images/homepage/interestIcon.png') top left no-repeat;
+    background-size:auto;
+}
+.indexIcon{
+    background:#ffffff url('../images/homepage/indexIcon.png') top left no-repeat;
+    background-size:auto;
+}
+.marketIcon{
+    background:#ffffff url('../images/homepage/marketIcon.png') top left no-repeat;
+    background-size:auto;
+}
+.queryIcon{
+    background:#ffffff url('../images/homepage/queryIcon.png') top left no-repeat;
+    background-size:auto;
+}
+/*shibor图标*/
+.time li {
+    background: url(../images/homepage/prli.png) no-repeat 0 16px ;
+}
+.bp1 { background: url(../images/homepage/prb-1.png) no-repeat 35px 15px;}
+.bp2 { background: url(../images/homepage/prot.png) no-repeat 35px 15px;}
+
+/*弹窗*/
+.yjBackground{
+    background: url("../images/homepage/opinion.png") center no-repeat;
+    background-size: 100% 100%;
+}.yjClose{
+    background: url("../images/homepage/opinionclose.png") center no-repeat;
+    background-size: auto;
+}

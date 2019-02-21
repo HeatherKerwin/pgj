@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>上海票管家金融</title>
+<script type="text/javascript" src="https://static.utiexian.com/js/common/jquery-1.8.3.min.js"></script>
+
+</head>
+
+<body>
+mobile:<input id="in" type="text"/>
+<input type="button" onclick="test()" value="提交"/>
+</body>
+<script>
+
+		//	window.location="http://192.168.1.21:8080/rymobile/test/tongji/";
+			if(localStorage.mobile){
+				alert("cache:"+localStorage.mobile);
+				$("#in").val(localStorage.mobile);
+			}
+			function test(){
+				alert($("#in").val());
+				localStorage.mobile = $("#in").val();
+			}
+			
+</script>
+</html>

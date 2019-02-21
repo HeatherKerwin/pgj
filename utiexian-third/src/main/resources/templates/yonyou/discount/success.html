@@ -1,0 +1,50 @@
+[#import "/common/main.html" as main]
+[#include "/common/setting.html"]
+[@main.body title='云票据-出票成功']
+<link rel="stylesheet" href="${basePath}/css/yonyou/discountSuccess.css">
+<script type="text/javascript" src="${basePath}/js/yonyou/tab.js"></script>
+<script type="text/javascript" src="${basePath}/js/yonyou/radio.js"></script>
+
+<!-- 头部 -->
+[@main.header currentmenu='2'/]
+<!-- 头部end -->
+
+<!--出票成功-->
+<div class="wrap">
+   [@main.left remark='${ym}'/]
+
+    <!--订单列表-->
+    <div class="rightCon successCon">
+        <img src="${basePath}/images/yonyou/discount/success.gif">
+        <p>订单已生成，请耐心等待机构报价~</p>
+        <a href="javascript:void();" onclick="track()">订单跟踪</a>
+    </div>
+
+</div>
+<script type="text/javascript">
+	/**
+	* 跳转页面
+	*/
+	$("#spTab").click(function(){
+		location.href = "${basePath}/yonyou/page/discountrecordsp";
+	});
+	/**
+	* 跳转页面
+	*/
+	$("#ypTab").click(function(){
+		location.href = "${basePath}/yonyou/page/discountrecord";
+	});
+	
+	/**
+	* 订单追踪
+	*/
+	function track(){
+		var ym = ${ym};
+		if(ym == 1){
+			location.href = "${basePath}/yonyou/page/order/list";
+		}else{
+			location.href = "${basePath}/yonyou/page/ordersp/list";
+		}
+	};
+</script>
+[/@main.body]

@@ -1,0 +1,125 @@
+#include("./common/header.html", {title : node.node_name})
+#include("./common/right.html")
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+        	<div class="panel panel-default">
+        		<div class="panel-heading home-panel">
+					<div class="box-tab">
+						<ul class="nav nav-tabs">
+							#for(n : hot_nodes)
+							<li #if(node.node_slug==n.slug)class='my_active'#end><a data-myset="set-pjax" href="${base_url('/go/') + n.slug}">${n.title}</a></li>
+							#end
+						</ul>
+        			</div>
+        		</div>
+        		<div class="panel-heading node-head" style="height: 100px;">
+					<div>
+						#if(null != node.pic && node.pic != '')
+						<div class="pull-left mr10">
+							<img width="73" height="73" src="${node.pic}"/>
+						</div>
+						#end
+						<div class="pull-left">
+							<span>首页 › ${node.node_name}</span>
+							<span>${node.content}</span>
+							<p class="mt10 mb10" style="color:gray;">${node.description ?! ''}</p>
+							#if(null != has_nus)
+								版主：
+								#for(nu : has_nus)
+									<a href="${base_url('/member/') + nu.login_name}">${nu.nick_name ?! nu.login_name}</a>
+								#end
+							#end
+						</div>
+					</div>
+					<div class="pull-right text-right mr10">
+                		<span>帖子总数 ${node.topics}</span>
+                		#if(null != login_user)
+                		&nbsp;&nbsp;•&nbsp;
+                		#if(is_favorite)
+                		<a href="javascript:void(0);" nid="${node.nid}" class="favorite"><span>取消收藏</span></a>
+                		#else
+                		<a href="javascript:void(0);" nid="${node.nid}" class="favorite"><span>加入收藏</span></a>
+                		#end
+						<p class="mt20">
+							<a href="${base_url('/topic/add?pid=') + node.nid}" class="btn btn-primary btn-sm">发布新帖子</a>
+						</p>
+						#end
+                	</div>
+                </div>
+                <div class="panel-body home-panel">
+					<div class="box-tab">
+						<div class="tab-content">
+							<div class="tab-pane active" id="home">
+								#if(null == topicPage.results || topicPage.results.size() == 0)
+								<div class="alert alert-info alert-dismissable">
+									该板块下暂时还木有帖子呢 <i class="twa twa-lg twa-sparkles"></i>
+								</div>
+								#else
+								<section class="widget bg-white post-comments">
+									#for(topic : topicPage.results)
+									<div class="media">
+										<a class="pull-left account-avatar" href="${base_url('/member/') + topic.user_name}"> 
+											<img class="media-object avatar avatar-sm head-img" src="${topic.avatar}" alt="${topic.user_name}">
+										</a>
+										<div class="comment">
+											<div class="comment-author h6 no-margin">
+												#if(topic.comments > 0)
+												<div class="comment-meta small">
+													<a href="${base_url('/topic/') + topic.tid + '#Reply' + topic.comments}" class="badge-comment">${topic.comments}</a>
+												</div>
+												#end
+												<a href="${base_url('/topic/') + topic.tid}">
+													#if(topic.is_essence == 1)
+														<font class="my_is_essence">${topic.title}</font>
+													#else
+														${topic.title}
+													#end
+													#if(topic.has_pic)
+														<img src="${imgPath}/bbs/pic.png" class="my_has_pic ml2">
+													#end
+													#if(topic.attach_type!=null)
+														<img src="${imgPath}/bbs/add.png" class="my_has_pic ml2" title="帖子内含附加内容">
+													#end
+												</a>
+											</div>
+											<div class="comment-bt">
+												<span class="label label-default"><a href="${base_url('/go/') + topic.node_slug}">${topic.node_name}</a></span> &nbsp;•&nbsp; 
+												<strong><a href="${base_url('/member/') + topic.user_name}">${topic.nick_name ?! topic.user_name}</a></strong>
+												 &nbsp;•&nbsp; <span>${timespan(topic.update_time)}</span>
+												 #if(topic.comments > 0)
+												 &nbsp;•&nbsp; 最后回复来自
+												 <strong><a href="${base_url('/member/') + topic.reply_name}">${topic.reply_nick_name ?! topic.reply_name}</a></strong>
+												 #end
+											</div>
+										</div>
+									</div>
+									<hr/>
+									#end
+								</section>
+								#end
+								
+								#if(topicPage.totalPage > 1)
+								<ul class="pager">
+									#if(topicPage.page > 1)
+									<li class="pull-left"><a href="${base_url('/go/') + node.node_slug + '?page=' + topicPage.prev_page}">上一页</a></li>
+									#end
+									#if(topicPage.totalPage > 1 && topicPage.page != topicPage.totalPage)
+									<li class="pull-right"><a href="${base_url('/go/') + node.node_slug + '?page=' + topicPage.next_page}">下一页</a></li>
+									#end
+								</ul>
+								#end
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+        	
+        </div><!-- /.col-md-8 -->
+		#include("./common/sidebar.html")
+    </div>
+</div>
+#include("./common/footer.html")
+</body>
+</html>

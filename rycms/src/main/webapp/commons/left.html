@@ -1,0 +1,151 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title></title>
+<script src="scripts/jquery-1.10.1.min.js" language="javascript"></script>
+<link rel="stylesheet" href="styles/reset.css"/> 
+<style>
+body {
+	background-color: #f5f5f5;
+	color:#222;
+}
+html {
+	border-right: 1px solid #bdbdbd;
+	height: 100%;
+}
+
+a {
+	color:#222;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	display: block;
+}
+li {
+	font-size: 12px;
+	line-height: 30px;
+	list-style-type: none;
+	display: block;
+	text-decoration: none;
+	padding-left: 0px;
+}
+
+span a:link {
+	font-size: 12px;
+	line-height: 30px;
+	height: 30px;
+	display: block;
+	text-align: left;
+	padding-left: 30px;
+	margin: 0px;
+	padding-left: 30px;
+	overflow: hidden;
+	text-decoration: none;
+	background-image: url(images/arror_down.png);
+	background-repeat: no-repeat;
+	background-position: 10px 7px;
+	
+}
+span a:visited {
+	font-size: 12px;
+	line-height: 30px;
+	display: block;
+	text-align: left;
+	margin: 0px;
+	padding-left: 30px;
+	height: 30px;
+	text-decoration: none;
+}
+span a:active {
+	font-size: 12px;
+	line-height: 30px;
+	height: 30px;
+	display: block;
+	text-align: left;
+	margin: 0px;
+	padding-left: 30px;
+	overflow: hidden;
+	text-decoration: none;
+}
+span a:hover {
+	font-size: 12px;
+	line-height: 30px;
+	text-align: left;
+	display: block;
+	margin: 0px;
+	padding-left: 30px;
+	height: 30px;
+	text-decoration: none;
+	background-color: #ebebeb;
+}
+li dl dt { height:30px; repeat-y;}
+li dl dt a {
+	font-size: 12px;	line-height: 30px;
+	color: #333333;	height: 30px;
+	display: block;
+	overflow: hidden;
+	text-decoration: none;
+	padding-left: 30px;
+}
+li dl dt a:hover{
+		background-color: #ebebeb;
+}
+</style>
+</head>
+
+<body>
+
+<ul id="sidemenu" class="MM">
+	<li><span><a href="#">询价管理</a></span>
+		<dl class="down">
+			<dt><a href="../admin/currentpriceServlet.do?method=list" target="main">价格修改</a></dt>
+			<dt><a href="../admin/daypriceServlet.do?method=daypricesearch" target="main">价格走势</a></dt>
+			<dt><a href="../admin/historypriceServlet.do?method=historypricesearch" target="main">历史价格</a></dt>
+			<!-- <dt><a href="../admin/salepriceServlet.do?method=list" target="main">限时特价</a></dt> -->
+			<dt><a href="../admin/discountrecordServlet.do?method=daylimitlist" target="main">贴现额度</a></dt>
+		</dl>
+	</li>
+	<li><span><a href="#">订单管理</a></span>
+		<dl class="down">
+			<dt><a href="../admin/discountrecordServlet.do?method=list" target="main">订单列表</a></dt>
+			
+		</dl>
+	</li>
+	<li><span><a href="#">信息中心</a></span>
+		<dl class="down">
+			<dt><a href="../admin/newsServlet.do?method=list" target="main">市场信息</a></dt>
+			<dt><a href="../admin/piaojujiangtangServlet.do?method=list" target="main">票据讲堂</a></dt>
+			<dt><a href="../admin/gongjuServlet.do?method=shiborsearch" target="main">shibor管理</a></dt>
+			<dt><a href="../admin/gongcuiServlet.do?method=bimport" target="main">公催导入</a></dt>
+			<dt><a href="../admin/lianhangServlet.do?method=bimport" target="main">联行号导入</a></dt>
+		</dl>
+	</li>
+	<li><span><a href="#">用户管理</a></span>
+		<dl class="down">
+			<dt><a href="../admin/memberServlet.do?method=list" target="main">会员中心</a></dt>
+			<dt><a href="../admin/messageServlet.do?method=list" target="main">意见反馈</a></dt>
+			<dt><a href="../admin/servicememberServlet.do?method=list" target="main">推荐人</a></dt>
+		</dl>
+	</li>
+</ul>
+        
+<script type="text/javascript" language="javascript">
+$(document).ready(function (e) {
+	$("#sidemenu li dl").slideUp(0);
+	$("#sidemenu li span").click(function () {
+		$("#sidemenu li span").removeClass("nav_on");
+		$(this).addClass("nav_on");
+		$(this).parent().siblings().find("dl").slideUp(400);
+		$(this).next().slideToggle(200);
+	});
+	$("#sidemenu li ul.down").slideToggle(0);
+});
+</script>
+
+</body>
+</html>

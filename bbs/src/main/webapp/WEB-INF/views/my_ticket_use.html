@@ -1,0 +1,164 @@
+#include("./common/header.html", {title:"转盘抽奖"})
+#include("./common/right.html")
+<script type="text/javascript" src="${staticPath}/js/bbs/jQueryRotate.2.1.js?ver=${version}"></script>
+<script type="text/javascript" src="${staticPath}/js/bbs/zhuanpan.js?ver=${version}"></script>
+<div class="container">
+	<div class="row">
+		<div class="panel panel-default ticketBg">
+			<div class="panel-body">
+				<div class="col-md-6 col-sm-12 column text-center clearfix">
+					<div id="zhuanpan center-blick text-center">
+						<img id="img" src="${imgPath}/bbs/bbs/four_zhuanpan.png">
+						<img id="tip" src="${imgPath}/bbs/bbs/four1.png" >
+					</div>
+					<button type="button" class="btn btn-lg btn-danger mt20" style="border: 1px solid #f9f9f9;" disabled="disabled">您还可以抽 <span id="has_ticket" class="coud_num">${has}</span> 次</button>
+				</div>
+				<div class="col-md-6 column table-responsive mt10" style="color: #f8f8f8">
+					<h4><strong>活动奖品：</strong></h4>
+					<table class="table table-bordered" style="background: #f9f9f9;color: #2d2d2d">
+						<thead>
+							<tr>
+								<th>
+									奖品等级
+								</th>
+								<th>
+									奖品名称
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									一等奖
+								</td>
+								<td>
+									iPhone7 plus
+								</td>
+							</tr>
+							<tr>
+								<td>
+									二等奖
+								</td>
+								<td>
+									apple iWatch 2
+								</td>
+							</tr>
+							<tr>
+								<td>
+									三等奖
+								</td>
+								<td>
+									充电宝
+								</td>
+							</tr>
+							<tr>
+								<td>
+									四等奖
+								</td>
+								<td>
+									指甲钳套装
+								</td>
+							</tr>
+							<tr>
+								<td>
+									五等奖
+								</td>
+								<td>
+									笔筒
+								</td>
+							</tr>
+							<tr>
+								<td>
+									六等奖
+								</td>
+								<td>
+									u盘
+								</td>
+							</tr>
+							<tr>
+								<td>
+									七等奖
+								</td>
+								<td>
+									10~100元手机话费
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<h4><strong>活动时间：</strong></h4>
+					<p>活动长期有效</p>
+					<h4><strong>活动及兑奖说明：</strong></h4>
+					<p>凡活动期间新注册用户及老用户均可参与本次抽奖；<br>本次抽奖活动仅限票据管家注册用户并每个注册用户仅限抽奖一次；<br>线上抽奖除江浙沪以内包邮、江浙沪以外地区中奖用户邮费自理。<br>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col-md-12 column">
+	<div class="modal fade" id="my-result" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header bg-danger">
+					<h4 class="modal-title" id="myModalLabel">
+						我的奖励
+					</h4>
+				</div>
+				<div id="goods" class="modal-body text-danger">
+					
+				</div>
+				<span id="type1" class="modal-body" style="color:gray;">*我们将尽快充值到您的账号（手机号），请耐心等待...</span>
+				<div class="modal-footer">
+					 <button id="iknow" type="button" class="btn btn-default btn-danger btn-blick" data-dismiss="modal">知道了</button>
+					 <button id="getgoods" data-aid="" type="button" class="btn btn-default btn-danger btn-blick" onclick="getAward();">立即领取奖品</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+#include("./common/footer.html") 
+<script type="text/javascript">
+/**
+ * 保存中奖记录回调（实物含去领奖）
+ */
+function myAlert(goods,genre,aid,has){
+	if(aid!=null){
+		$("#getgoods").attr("data-aid",aid);
+	}
+	if(has!=null){
+		$("#has_ticket").text(has);
+	}
+	if(genre==0){//实物
+		$("#type1").hide();
+		$("#goods").text(goods);
+		$("#iknow").hide();
+		$("#getgoods").show();
+	}else if(genre==1){//话费
+		$("#type1").show();
+		$("#goods").text(goods);
+		$("#iknow").show();
+		$("#getgoods").hide();
+	}else{
+		$("#goods").text("非法请求，该奖品无效");
+		$("#type1").hide();
+		$("#iknow").show();
+		$("#getgoods").hide();
+	}
+	$('#my-result').modal({backdrop: 'static', keyboard: false});
+}
+
+/**
+ * 跳转领取页面
+ */
+function getAward(){
+	var aid = $("#getgoods").attr("data-aid");
+	if(aid!=null && aid!=''){
+		window.location.href = BASE + "/my/award/" + aid;
+	}else{
+		window.location.href = BASE + "/my/ticket";
+	}
+}
+</script>
+</body>
+</html>

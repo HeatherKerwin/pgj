@@ -1,0 +1,56 @@
+# base package
+blade.basepackage = com.bbs
+blade.dev = true
+
+blade.view.500 = /500.html
+blade.view.404 = /404.html
+
+app.version = 0.1.4
+app.site_url = http://192.168.1.40:8888/bbs
+app.db_cahce = false
+app.aes_salt = bbs
+
+# \u540d\u8a00\u63a5\u53e3key
+famous.key = 
+# qiniu
+qiniu.BUCKET_NAME = 
+qiniu.ACCESS_KEY = 
+qiniu.SECRET_KEY = 
+qiniu.cdn = http://7xsk2r.com2.z0.glb.qiniucdn.com
+
+# github
+github.CLIENT_ID = 
+github.CLIENT_SECRET = 
+github.REDIRECT_URL = 
+
+# sendcloud email config
+mail.api_user = 
+mail.api_key = 
+
+
+# local config -------------------------------------------------------------------
+#img.preimgUrl=http://192.168.1.40/
+#img.uploadPath=D:/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/bbs/
+#app.url=http://192.168.1.40:8888/ryapp
+#mobile.url=http://192.168.1.40:8888/rymobile/activity/2016/11/bbs.html
+#test
+# 40:8888 config -----------------------------------------------------------------
+img.preimgUrl=https://192.168.1.40/
+img.uploadPath=/usr/local/src/ryfinance/img/
+app.url=http://192.168.1.40:8888/ryapp
+mobile.url=https://test.utiexian.com/rymobile/activity/2016/11/bbs.html
+
+# line config --------------------------------------------------------------------
+#img.preimgUrl=
+#img.uploadPath=
+#app.url=https://app.utiexian.com
+#mobile.url=https://m.utiexian.com/activity/2016/11/bbs.html
+
+path.img = https://img.utiexian.com
+path.static = https://static.utiexian.com
+
+# db
+jdbc.driver = com.mysql.jdbc.Driver
+jdbc.url = jdbc:mysql://192.168.1.20:3306/bbs?useUnicode=true&characterEncoding=UTF-8
+jdbc.user = root
+jdbc.pass = root

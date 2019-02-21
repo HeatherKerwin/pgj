@@ -1,0 +1,108 @@
+/*右侧浮动*/
+#moquu_top,#moquu_wxin,#moquu_wshare,#moquu_wmaps,#moquu_wyijian {
+    width:50px;
+    height:50px;
+    left: 130px;
+    position:absolute;
+    cursor:pointer;
+    _position:absolute;
+    _bottom:auto;
+    z-index: 100003;
+    _top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)))
+}
+
+#moquu_wxin {
+    top:93px;
+    _margin-top:93px
+}
+#moquu_wxin a {
+    background: url(../images/right/right1.png);
+    right:0;
+    float:left;
+    width:50px;
+    height:50px;
+    text-indent:-9999px
+}
+#moquu_wxin a:hover {
+    background: url(../images/right/right11.png) -50px -0px
+}
+#moquu_wshare {
+    top:145px;
+    _margin-top:145px
+}
+#moquu_wshare a {
+    background: url(../images/right/right2.png);
+    width:50px;
+    height:50px;
+    right:0;
+    float:left;
+    text-indent:-9999px
+}
+#moquu_wshare a:hover {
+    background: url(../images/right/right22.png);
+}
+#moquu_wmaps {
+    top:197px;
+    _margin-top:197px
+}
+#moquu_wmaps a {
+    background: url(../images/right/right3.png);
+    width:50px;
+    height:50px;
+    right:0;
+    float:left;
+    text-indent:-9999px
+}
+#moquu_wmaps a:hover {
+    background: url(../images/right/right33.png);
+}
+#moquu_wyijian {
+    top:249px;
+    _margin-top:249px;
+}
+#moquu_wyijian a {
+    background: url(../images/right/right5.png);
+    width:50px;
+    height:50px;
+    right:0;
+    float:left;
+    text-indent:-9999px
+}
+#moquu_wyijian a:hover {
+    background: url(../images/right/right55.png);
+}
+#moquu_top {
+    top:301px;
+    _margin-top:301px;
+    background: url(../images/right/right4.png);
+    width:50px;
+    height:50px
+}
+#moquu_top:hover {
+    background: url(../images/right/right44.png);
+}
+.moquu_wxin,.moquu_wshare {
+    position:relative;
+    z-index:2
+}
+.moquu_wxin a:hover .moquu_wxinh,.moquu_wshare a:hover .moquu_wshareh,.moquu_wyijian {
+    display:block
+}
+.moquu_wxin .moquu_wxinh {
+    position:absolute;
+    display:none;
+    left:-130px;
+    top:-93px;
+    width:130px;
+    height:141px;
+    background: url(../images/right/right111.png) no-repeat
+}
+.moquu_wshare .moquu_wshareh {
+    position:absolute;
+    display:none;
+    left:-130px;
+    top:-93px;
+    width:130px;
+    height:141px;
+    background: url(../images/right/right222.png) no-repeat
+}

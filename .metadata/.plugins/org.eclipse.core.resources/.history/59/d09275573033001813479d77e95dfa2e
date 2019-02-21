@@ -1,0 +1,209 @@
+[#import "/common/main.ftl" as main]
+[#include "/common/setting.ftl"]
+[@main.body title='票管家']
+<link rel="stylesheet" type="text/css" href="https://static.utiexian.com/css/website/paperMarket/paperMarket.css"/>
+[@main.header currentmenu='2'/]
+
+<div class="w1200 bc">
+    <!--条件搜索区域-->
+    <div class="paperSearch">
+        <h2>票据市场</h2>
+        <!--已筛选条件-->
+        <div class="selected"><label for="">筛选条件</label>
+                <span>不限</span>
+                <span>不限</span>
+                <span>不限</span>
+            </ul>
+        </div>
+        <!--选择搜索条件-->
+        <ul class="selectDiv">
+            <!--承兑行-->
+            <li class="selectRow">
+                <span class="title">承兑行</span>
+                <ul class="RadioDiv">
+                    <li>
+                        <label for="bank0"><input type="checkbox" name="bank" id="bank0" class="selectCheckbox" value="0" checked>不限</label>
+                    </li>
+                    <li>
+                        <label for="bank1"><input type="checkbox" name="bank" id="bank1" class="selectCheckbox" value="1">国股</label>
+                    </li>
+                    <li>
+                        <label for="bank2"><input type="checkbox" name="bank" id="bank2" class="selectCheckbox" value="2">城商</label>
+                    </li>
+                    <li>
+                        <label for="bank3"><input type="checkbox" name="bank" id="bank3" class="selectCheckbox" value="3">其他</label>
+                    </li>
+                </ul>
+            </li>
+            <!--票面金额-->
+            <li class="selectRow">
+                <span class="title">票面金额</span>
+                <!--选择-->
+                <ul class="RadioDiv">
+                    <li>
+                        <label for="money0"><input type="checkbox" name="money" id="money0" class="selectCheckbox" value="0" checked>不限</label>
+                    </li>
+                    <li>
+                        <label for="money1"><input type="checkbox" name="money" id="money1" class="selectCheckbox" value="0">300万以下</label>
+                    </li>
+                    <li>
+                        <label for="money2"><input type="checkbox" name="money" id="money2" class="selectCheckbox" value="0">300万以上</label>
+                    </li>
+                </ul>
+                <!--自定义-->
+                <div class="custom">
+                    <div class="numberDiv"><input type="number" name="" id="">万</div>
+                    ~
+                    <div class="numberDiv"><input type="number" name="" id="">万</div>
+                    <button>确定</button>
+                </div>
+            </li>
+            <!--剩余天数-->
+            <li class="selectRow">
+                <span class="title">剩余天数</span>
+                <ul class="RadioDiv">
+                    <li>
+                        <label for="days0"><input type="checkbox" name="days" id="days0" class="selectCheckbox" value="0" checked>不限</label>
+                    </li>
+                    <li>
+                        <label for="days1"><input type="checkbox" name="days" id="days1" class="selectCheckbox" value="1">≤90天</label>
+                    </li>
+                    <li>
+                        <label for="days2"><input type="checkbox" name="days" id="days2" class="selectCheckbox" value="2">91-180天</label>
+                    </li>
+                    <li>
+                        <label for="days3"><input type="checkbox" name="days" id="days3" class="selectCheckbox" value="3">181天以上</label>
+                    </li>
+                </ul>
+                <!--自定义-->
+                <div class="custom">
+                    <div class="numberDiv"><input type="number" name="" id="">天</div>
+                    ~
+                    <div class="numberDiv"><input type="number" name="" id="">天</div>
+                    <button>确定</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!--列表展示-->
+    <ul class="paperList">
+        <!--单个票据-->
+        <li class="paperCon">
+            <!--票据标签-->
+            <div class="icon redIcon">银</div>
+            <!--票据信息展示-->
+            <div class="showCon">
+                <!--票据属性-->
+                <div class="title">
+                    <span class="type1 dian">电票</span>
+                    <span class="type2 guogu">国股</span>
+                </div>
+                <!--信息列表-->
+                <ul class="paperShow">
+                    <li><label>票面金额：</label>20万元</li>
+                    <li><label>到期日：</label>2018-8-30 &nbsp; （剩余天数：<span>164</span>&nbsp;天）</li>
+                    <li><label>发布时间：</label>2018-8-30</li>
+                    <li><label>回头背书：</label>有</li>
+                    <li><label>每十万贴息：</label></li>
+                </ul>
+                <!--票据操作按钮-->
+                <a class="paperBtn offerBtn" target="_blank">我要报价</a>
+            </div>
+        </li>
+
+        <li class="paperCon">
+            <!--票据标签-->
+            <div class="icon redIcon">银</div>
+            <!--票据信息展示-->
+            <div class="showCon">
+                <!--票据属性-->
+                <div class="title">
+                    <span class="type1 zhi">纸票</span>
+                    <span class="type2 guogu">国股</span>
+                </div>
+                <!--信息列表-->
+                <ul class="paperShow">
+                    <li><label>票面金额：</label>20万元</li>
+                    <li><label>到期日：</label>2018-8-30 &nbsp; （剩余天数：<span>164</span>&nbsp;天）</li>
+                    <li><label>发布时间：</label>2018-8-30</li>
+                    <li><label>回头背书：</label>有</li>
+                    <li><label>每十万贴息：</label></li>
+                </ul>
+                <!--票据操作按钮-->
+                <a class="paperBtn transactionBtn" target="_blank">交易中</a>
+            </div>
+        </li>
+
+        <li class="paperCon">
+            <!--票据标签-->
+            <div class="icon VioletIcon">商</div>
+            <!--票据信息展示-->
+            <div class="showCon">
+                <!--票据属性-->
+                <div class="title">
+                    <span class="type1 dian">电票</span>
+                    <span class="type2 guogu">国股</span>
+                </div>
+                <!--信息列表-->
+                <ul class="paperShow">
+                    <li><label>票面金额：</label>20万元</li>
+                    <li><label>到期日：</label>2018-8-30 &nbsp; （剩余天数：<span>164</span>&nbsp;天）</li>
+                    <li><label>发布时间：</label>2018-8-30</li>
+                    <li><label>回头背书：</label>有</li>
+                    <li><label>每十万贴息：</label></li>
+                </ul>
+                <!--票据操作按钮-->
+                <a class="paperBtn SuccessBtn" target="_blank">交易完成</a>
+            </div>
+        </li>
+
+        <li class="paperCon">
+            <!--票据标签-->
+            <div class="icon redIcon">银</div>
+            <!--票据信息展示-->
+            <div class="showCon">
+                <!--票据属性-->
+                <div class="title">
+                    <span class="type1 dian">电票</span>
+                    <span class="type2 guogu">国股</span>
+                </div>
+                <!--信息列表-->
+                <ul class="paperShow">
+                    <li><label>票面金额：</label>20万元</li>
+                    <li><label>到期日：</label>2018-8-30 &nbsp; （剩余天数：<span>164</span>&nbsp;天）</li>
+                    <li><label>发布时间：</label>2018-8-30</li>
+                    <li><label>回头背书：</label>有</li>
+                    <li><label>每十万贴息：</label></li>
+                </ul>
+                <!--票据操作按钮-->
+                <a class="paperBtn offerBtn" target="_blank">我要报价</a>
+            </div>
+        </li>
+
+        <li class="paperCon">
+            <!--票据标签-->
+            <div class="icon redIcon">银</div>
+            <!--票据信息展示-->
+            <div class="showCon">
+                <!--票据属性-->
+                <div class="title">
+                    <span class="type1 dian">电票</span>
+                    <span class="type2 guogu">国股</span>
+                </div>
+                <!--信息列表-->
+                <ul class="paperShow">
+                    <li><label>票面金额：</label>20万元</li>
+                    <li><label>到期日：</label>2018-8-30 &nbsp; （剩余天数：<span>164</span>&nbsp;天）</li>
+                    <li><label>发布时间：</label>2018-8-30</li>
+                    <li><label>回头背书：</label>有</li>
+                    <li><label>每十万贴息：</label></li>
+                </ul>
+                <!--票据操作按钮-->
+                <a class="paperBtn offerBtn" target="_blank">我要报价</a>
+            </div>
+        </li>
+    </ul>
+</div>
+
+[@main.footer/]
+[/@main.body]

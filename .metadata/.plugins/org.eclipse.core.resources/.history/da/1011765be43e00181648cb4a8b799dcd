@@ -1,0 +1,7 @@
+@CHARSET "UTF-8";
+
+body{
+    background: #efeded;
+    font-family:Microsoft YaHei;
+    color: #2d2d2d;
+}

@@ -1,0 +1,144 @@
+/*遮罩层*/
+.maskWindow{
+    width: 100%;
+    min-height: 100%;
+    position: fixed;
+    z-index: 5;
+    background-color: rgba(0,0,0,0.5);
+    text-align: center;
+    vertical-align: middle;
+}
+
+/*提示内容*/
+.maskWindow .windowCon , .maskWindow .windowTel{
+    width: 260px;
+    min-height: 170px;
+    font-size: 16px;
+    background: #ffffff;
+    border-radius: 3px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -85px;
+    margin-left: -130px;
+    text-align: center;
+}
+/*图标*/
+/*失败哭脸*/
+.windowCon .promptIcon{
+    width: 48px;
+    height: 48px;
+    margin: 20px auto 0;
+    background: url("https://img.utiexian.com/rywap/common/kulian.png") center no-repeat;
+    background-size: 48px 48px;
+}
+/*成功笑脸*/
+.windowCon .promptIcon-success{
+    width: 48px;
+    height: 48px;
+    margin: 20px auto 0;
+    background: url("https://img.utiexian.com/rywap/common/xiaolian.png") center no-repeat;
+    background-size: 48px 48px;
+}
+/*文字提示*/
+.windowCon .promptTitle{
+    font-size: 16px;
+    margin-top: 15px;
+    padding: 0 5px;
+/*     word-break:keep-all;           不换行 */
+/*     white-space:nowrap;          不换行 */
+/*     overflow:hidden;               内容超出宽度时隐藏超出部分的内容 */
+/*     text-overflow:ellipsis;         当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。 */
+}
+/*按钮*/
+.windowCon input.promptBtn{
+    width: 100px;
+    height: 32px;
+    font-size: 16px;
+    line-height: 32px;
+    text-align: center;
+    color: #ffffff;
+    background: #d43c33;
+    border: none;
+    border-radius: 14px;
+    margin: 15px 10px;
+}
+
+
+/*拨打电话*/
+.windowTel p{
+    margin-bottom: 8px;
+}
+.windowTel p:first-child{
+    margin-top: 25px;
+    font-size: 18px;
+}
+.windowTel a{
+    float: left;
+    display: block;
+    width: 40%;
+    margin: 0 5%;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 3px;
+    text-align: center;
+}
+.windowTel a.yesBtn{
+    background: #d43c33;
+    color: #ffffff;
+    border: solid 1px #d43c33;
+}
+.windowTel a.noBtn{
+    background: #ffffff;
+    color: #2d2d2d;
+    border: solid 1px #d8d8d8;
+}
+
+/*下载APP*/
+.maskWindow .WindowDownload{
+    width: 285px;
+    height: 330px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -165px;
+    margin-left: -142.5px;
+    background: url("https://img.utiexian.com/rywap/common/download.png") center no-repeat;
+    background-size: 100%;
+}
+.WindowDownload .closeDow{
+    width: 33px;
+    height: 33px;
+    position: absolute;
+    top: -33px;
+    right: 7px;
+    background: url("https://img.utiexian.com/rywap/common/close.png") no-repeat center;
+    background-size: 100%;
+}
+.WindowDownload .conDow{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.WindowDownload .conDow h2{
+    font-size: 18px;
+    margin-top: 185px;
+}
+.WindowDownload .conDow p{
+    font-size: 14px;
+    margin: 15px 40px;
+}
+.WindowDownload .conDow a input[type=button]{
+    width: 195px;
+    height: 36px;
+    font-size: 19px;
+    line-height: 36px;
+    color: #ffffff;
+    background: #d43c33;
+    border: none;
+    border-radius: 6px;
+    margin: 0 auto;
+}

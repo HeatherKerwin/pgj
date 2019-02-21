@@ -1,0 +1,83 @@
+#include("./common/header.html", {title:"基本信息"})
+#include("./common/right.html")
+#include("./common/my_menu.html")
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column calendar-viewer">
+			<form class="form-horizontal" role="form">
+				<div class="form-group ml0 mr0">
+					<div class="col-sm-1"></div>
+					#if(cosname!=null && cosname.current!=null)
+						<strong class="pull-left col-sm-11">欢迎我们的${cosname.current.name ?! '票据大大'}来到票据管家社区哦</strong>
+					#else
+						<strong class="pull-left col-sm-11">欢迎来到票据管家社区哦</strong>
+					#end
+				</div>
+				<div class="form-group ml0 mr0">
+					<label for="inputEmail1" class="col-sm-2 control-label">昵称：</label>
+					<div class="col-sm-10">
+						<p class="form-control">${profile.nick_name}</p>
+					</div>
+				</div>
+				<div class="form-group ml0 mr0" style="vertical-align:middle">
+					<label for="inputPassword2" class="col-sm-2 control-label">头像：</label>
+					<div class="col-sm-10">
+                    	<img id="upload_img" alt="${profile.username}" src="${profile.avatar}" width="73" height="73" class="img-circle"/>
+                	</div>
+				</div>
+			</form>
+			<form id="info_form" class="form-horizontal" role="form">
+				<div class="form-group ml0 mr0">
+					 <label for="inputEmail1" class="col-sm-2 control-label">姓名：</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="name" name="name" value="${profile.name}" placeholder="请输入你的真实姓名"/>
+					</div>
+				</div>
+				<div class="form-group ml0 mr0">
+					 <label for="inputEmail1" class="col-sm-2 control-label">企业名称：</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="company" name="company" value="${profile.company}" placeholder="请输入你的企业名称"/>
+					</div>
+				</div>
+				<div class="form-group ml0 mr0">
+					 <label for="inputEmail1" class="col-sm-2 control-label">联系方式：</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="phone" name="phone" value="${profile.phone}" placeholder="请输入你的联系方式"/>
+					</div>
+				</div>
+				<div class="form-group ml0 mr0">
+					 <label for="inputEmail1" class="col-sm-2 control-label">微信：</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="wechat" name="wechat" value="${profile.wechat}" placeholder="请输入你的微信"/>
+					</div>
+				</div>
+				<div class="form-group ml0 mr0">
+					 <label for="inputEmail1" class="col-sm-2 control-label">邮箱：</label>
+					<div class="col-sm-10">
+						<input type="email" class="form-control" id="email" name="email" value="${profile.email}" placeholder="请输入您的邮箱"/>
+					</div>
+				</div>
+				<div class="form-group ml0 mr0">
+					 <label for="inputEmail1" class="col-sm-2 control-label">QQ：</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="qq" name="qq" value="${profile.qq}" placeholder="请输入你的QQ"/>
+					</div>
+				</div>
+				<div class="form-group ml0 mr0">
+					 <label for="inputEmail1" class="col-sm-2 control-label">职务：</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="jobs" name="jobs" value="${profile.jobs}" placeholder="请输入您的职务"/>
+					</div>
+				</div>
+				<div class="form-group ml0 mr0">
+					<div class="col-sm-offset-2 col-sm-4">
+						 <button type="button" class="btn btn-default btn-danger btn-block submit ladda-button" data-style="zoom-out">保存</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+#include("./common/footer.html") 
+</body>
+</html>

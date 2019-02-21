@@ -1,0 +1,606 @@
+[#import "/common/main.html" as main]
+[#include "/common/setting.html"]
+[@main.body title='云票据-商票出票']
+<link rel="stylesheet" href="${basePath}/css/yonyou/mask.css">
+<link rel="stylesheet" href="${basePath}/css/yonyou/discount.css">
+<link rel="stylesheet" href="${basePath}/css/yonyou/cropper.min.css">
+<link rel="stylesheet" href="${basePath}/css/yonyou/ImgCropping.css">
+<link rel="stylesheet" href="${basePath}/css/validationEngine.jquery.css">
+<link rel="stylesheet" href="${basePath}/css/template.css">
+
+<script type="text/javascript" src="${basePath}/js/yonyou/tab.js"></script>
+<script type="text/javascript" src="${basePath}/js/yonyou/radio.js"></script>
+<script type="text/javascript" src="${basePath}/js/yonyou/data/laydate.js"></script>
+<script type="text/javascript" src="${basePath}/js/cropper.min.js"></script>
+<script type="text/javascript" src="${basePath}/js/jquery.validationEngine-zh_CN.js"></script>
+<script type="text/javascript" src="${basePath}/js/jquery.validationEngine.js"></script>
+<script type="text/javascript" src="${basePath}/js/map.js"></script>
+
+<!-- 头部 -->
+[@main.header currentmenu='2'/]
+<!-- 头部end -->
+
+<!--银票出票-->
+<div class="wrap">
+[@main.left remark='2'/]
+
+    <!--出票-->
+    <div class="rightCon discountCon">
+        <!--长传票据图片并识别-->
+        <div class="recognise">
+            <p>请上传正面的清晰图片（请勿遮挡票号），电子汇票请使用电脑截图，<span >上传图片3-4秒后，系统会自动识别您的相关信息</span>。</p>
+            <div class="uploadImg">
+                <label for="replaceImg">
+                    <button id="replaceImg" style="display: none" class="replaceImg">请上传票据正面</button>
+				    <img id="finalImg" src="${basePath}/images/yonyou/discount/photo.png" alt="请上传票据正面">
+                	<input type="hidden" name="picpath" id="picpath"  style="display:none;">
+                </label>
+            </div>
+        </div>
+
+        <!--贴现表单-->
+        <div class="formCon" style="display: none">
+            <p>请认真核对以下票据信息，如信息有误请手动修改</p>
+            <ul class="discountForm">
+                <li class="BottomLine SXdiv">
+                    <div class="discountTitle">承兑期限：</div>
+                    <ul class="ryRadioCheckd">
+                        <li>
+                            <input class="ryRadio" type="radio" id="half" name="acceptTime" value="0">
+                            <label class="acceptTime_opt_css" for="half">半年期</label>
+                        </li>
+                        <li>
+                            <input class="ryRadio" type="radio" id="year" name="acceptTime" value="1" checked>
+                            <label class="checked acceptTime_opt_css" for="year">一年期</label>
+                        </li>
+                    </ul>
+                </li>
+                <li class="BottomLine">
+                    <div class="discountTitle">承兑企业：</div>
+                    <input type="text" name="bank" id="bank"  placeholder="请输入承兑企业全称" style="width: 350px" class="validate[required]">
+                </li>
+                <li class="BottomLine">
+                    <div class="discountTitle">票面金额：</div>
+                    <input id="allmoney" name="allmoney" maxlength="13" type="number" placeholder="请输入金额" class="validate[custom[Okmoney]],validate[required],validate[custom[number]],validate[custom[money]]">
+                    <div class="unit">万元</div>
+                </li>
+                <li class="BottomLine draftNo">
+                    <div class="discountTitle">票号：</div>
+                    <input id="draftNo" name="draftNo" maxlength="30" type="number" style="width: 320px" placeholder="请输入票号" class="validate[required,custom[orderDraftNo]]">
+                </li>
+                <li class="BottomLine cnapsCode">
+                    <div class="discountTitle">开户行号：</div>
+                    <input id="cnapsCode" name="cnapsCode" maxlength="12" type="number" style="width: 220px" placeholder="请输入开户行号" class="validate[required,custom[cnapsCode]]">
+                </li>
+                <li class="BottomLine">
+                    <div style="float: left">
+                        <div class="discountTitle">开票日期：</div>
+                        <input type="text" class="inline" id="first" readonly />
+                        <label class="riliIcon" for="first"></label>
+                        <input type="hidden" name="first" />
+                    </div>
+                    <div style="float: left;margin-left: 30px">
+                        <div class="discountTitle">交易日期：</div>
+                        <input type="text" class="inline" id="start" readonly />
+                        <label class="riliIcon" for="start"></label>
+                        <input type="hidden" name="start" />
+                    </div>
+                    <div style="float: left;margin-left: 30px">
+                        <div class="discountTitle">到期日期：</div>
+                        <input type="text" class="inline" id="end" readonly />
+                        <label class="riliIcon" for="end"></label>
+                        <input type="hidden" name="end" />
+                    </div>
+
+                </li>
+                <li class="BottomLine endorse">
+                    <div class="discountTitle">背书：</div>
+                    <div class="endorseNum TXjj1">
+                        <a class="reduce" onClick="setAmount1.reduce('#endorse')">
+                        </a>
+                        <input readonly="readonly" type="number" name="endorse" value="0" id="endorse" onKeyUp="setAmount1.modify('#endorse')" />
+                        <a class="add" onClick="setAmount1.add('#endorse')" href="javascript:void(0)">
+                        </a>
+                    </div>
+                    <div class="unit">手</div>
+                </li>
+                <li class="BottomLine remarks">
+                    <div class="discountTitle">备注（选填）：</div>
+                    <textarea id="memberother" name="memberother" maxlength="100" placeholder="备注最多可输入100个字......"></textarea>
+                </li>
+                <li>
+                    <div class="discountTitle">回头票：</div>
+                    <ul class="ryRadioCheckd">
+                        <li>
+                            <input class="ryRadio" type="radio" id="yes4" name="backEndorse" value="T">
+                            <label class="returnTicket_opt_css" for="yes4">是</label>
+                        </li>
+                        <li>
+                            <input class="ryRadio" type="radio" id="no4" name="backEndorse" value="F" checked>
+                            <label class="returnTicket_opt_css checked" for="no4">否</label>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!--底部按钮-->
+        <div class="discountFoot">
+            <a href="javascript:void(0)" onclick="tiexian()" id="tiexian">生成订单</a>
+        </div>
+    </div>
+</div>
+
+<!--图片裁剪框 start-->
+<div style="display: none" class="tailoring-container">
+    <div class="black-cloth" onClick="closeTailor(this)"></div>
+    <div class="tailoring-content">
+            <div class="tailoring-content-one">
+                <label title="上传图片" for="chooseImg" class="l-btn choose-btn">
+                    <input type="file" accept="image/jpg,image/jpeg,image/png" name="file" id="chooseImg" class="hidden" onChange="selectImg(this)">
+                    选择图片
+                </label>
+                <div class="tailoring-text">
+			    <span>若图片不需要裁剪，请点击</span>
+			    <img src="${basePath}/images/yonyou/handClicks.png">
+			    <a href="javascript:void(0)" onclick="OriginalPic()">使用原图</a>
+		    </div>
+                <div class="close-tailoring"  onclick="closeTailor(this)">×</div>
+            </div>
+            <div class="tailoring-content-two">
+                <div class="tailoring-box-parcel">
+                    <img id="tailoringImg">
+                </div>
+            </div>
+            <div class="tailoring-content-three">
+                <button class="l-btn cropper-reset-btn">复位</button>
+                <button class="l-btn cropper-rotate-btn">旋转</button>
+                <button class="l-btn cropper-scaleX-btn">换向</button>
+                <button class="l-btn sureCut" id="sureCut">确定裁剪</button>
+            </div>
+        </div>
+</div>
+<!--图片裁剪框 end-->
+
+<!--弹窗-->
+<div class="maskWindow" id="maskWindow" style="display: none;">
+    <div class="maskBg"></div>
+    <!-- 图片上传识别中 -->
+	<img alt="图片上传识别中" style="display: none;" class="maskIMG_center" src="${basePath}/images/yonyou/recognition.gif" width="100" height="100">
+	<!-- 图片上传识别中end -->
+</div>
+<!-- 弹窗end -->
+
+<input type="hidden" name="jxts" value="365" />
+<script>
+	var memberId = ${member.id};//1;
+	/* ------------------------------------ */
+	//弹出框水平垂直居中
+	(window.onresize = function () {
+		var win_height = window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight;
+        var win_width = window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth;
+	    if (win_width <= 768){
+	        $(".tailoring-content").css({
+	            "top": (win_height - $(".tailoring-content").outerHeight())/2,
+	            "left": 0
+	        });
+	    }else{
+	        $(".tailoring-content").css({
+	            "top": (win_height - $(".tailoring-content").outerHeight())/2,
+	            "left": (win_width - $(".tailoring-content").outerWidth())/2
+	        });
+	    }
+	})();
+	//弹出图片裁剪框
+	$(".replaceImg").on("click",function () {
+	    $(".tailoring-container").toggle();
+	});
+	//图像上传
+	function selectImg(file) {
+	    if (!file.files || !file.files[0]){
+	        return;
+	    }
+	    var reader = new FileReader();
+	    reader.onload = function (evt) {
+	        var replaceSrc = evt.target.result;
+	        //更换cropper的图片
+	        $('#tailoringImg').cropper('replace', replaceSrc,false);//默认false，适应高度，不失真
+	    }
+	    reader.readAsDataURL(file.files[0]);
+	}
+	//cropper图片裁剪
+	$('#tailoringImg').cropper({
+	    guides: false,  //裁剪框的虚线(九宫格)
+	    autoCropArea: 0.5,  //0-1之间的数值，定义自动剪裁区域的大小，默认0.8
+	    movable: false, //是否允许移动图片
+	    dragCrop: true,  //是否允许移除当前的剪裁框，并通过拖动来新建一个剪裁框区域
+	    movable: true,  //是否允许移动剪裁框
+	    resizable: true,  //是否允许改变裁剪框的大小
+	    zoomable: true,  //是否允许缩放图片大小
+	    mouseWheelZoom: true,  //是否允许通过鼠标滚轮来缩放图片
+	    touchDragZoom: true,  //是否允许通过触摸移动来缩放图片
+	    rotatable: true,  //是否允许旋转图片
+	    crop: function(e) {
+	        // 输出结果数据裁剪图像。
+	    }
+	});
+	//旋转
+	$(".cropper-rotate-btn").on("click",function () {
+	    $('#tailoringImg').cropper("rotate", 45);
+	});
+	//复位
+	$(".cropper-reset-btn").on("click",function () {
+	    $('#tailoringImg').cropper("reset");
+	});
+	//换向
+	var flagX = true;
+	$(".cropper-scaleX-btn").on("click",function () {
+	    if(flagX){
+	        $('#tailoringImg').cropper("scaleX", -1);
+	        flagX = false;
+	    }else{
+	        $('#tailoringImg').cropper("scaleX", 1);
+	        flagX = true;
+	    }
+	    flagX != flagX;
+	});
+	
+	//裁剪后的处理
+	$("#sureCut").on("click",function () {
+	    if ($("#tailoringImg").attr("src") == null ){
+	    	alert("请先选择图片");
+	        return ;
+	    }else{
+	        var cas = $('#tailoringImg').cropper('getCroppedCanvas');//获取被裁剪后的canvas
+	        var base64url = cas.toDataURL('image/png'); //转换为base64地址形式
+	        readFile(base64url);
+	    }
+	});
+	
+	//关闭裁剪框
+	function closeTailor() {
+	    $(".tailoring-container").toggle();
+	}
+	
+	/**
+	* 使用选择的图片，未裁剪
+	*/
+	function OriginalPic(){
+		if ($("#tailoringImg").attr("src") == null ){
+			alert("请先选择图片");
+	        return ;
+		}else{
+			var base64url = $('#tailoringImg').attr("src");
+			readFile(base64url);
+		}
+	};
+		
+	/**
+	* boot 项目的图片上传
+	*/
+	function readFile(imgUrl){
+	    closeTailor();//关闭裁剪框
+	    $("#maskWindow").show();
+	    $(".maskIMG_center").show();
+		if(imgUrl == null && imgUrl == ""){
+			return ;
+		}
+			
+		var index = imgUrl.indexOf(",");
+		var base64Image = imgUrl.substr(index+1);
+		$.ajax({
+			url:'${basePath}/upload/image',
+			type:"POST",
+			data:{base64Image:base64Image,ocrGenre:'DRAFT'},
+			dataType:"json",
+			success:function(data){
+				if(data.response == 'success'){
+					var ocrInfo = data.data.ocrInfo
+					if(ocrInfo != null){
+						if(ocrInfo.bankNameMap != null){
+							$("#bank").val(ocrInfo.bankNameMap.bankName);
+						}
+						if(ocrInfo.bankNoMap != null){
+							$("#cnapsCode").val(ocrInfo.bankNoMap.bankNo);
+						}
+						if(ocrInfo.endDateMap != null){
+							$("#end").val(ocrInfo.endDateMap.endDate);
+							$("input[name='endtime']").val(ocrInfo.endDateMap.endDate);
+						}
+						if(ocrInfo.beginDateMap != null){
+							$("#first").val(ocrInfo.beginDateMap.beginDate);
+							$("input[name='first']").val(ocrInfo.beginDateMap.beginDate);
+						}
+						if(ocrInfo.moneyMap != null){
+							$("#allmoney").val(ocrInfo.moneyMap.money/10000);
+						}
+						if(ocrInfo.noMap != null){
+							$("#draftNo").val(ocrInfo.noMap.no);
+						}
+					}
+					$(".formCon").show();
+					$("#maskWindow").hide();
+			        $(".maskIMG_center").hide();
+					$("#finalImg").attr("src","${bootPic}/"+data.data.base64Image);
+					$("#picpath").val(data.data.base64Image);
+					jixidate();
+				}
+			}
+		});
+	};
+	
+	//计息天数
+	function jixidate(){
+		var type1 = 2;
+		var type2 = $("#type2").val();
+		var start = $("#start").val();
+		var end = $("#end").val();
+		
+		$("input[name='start']").val(start);
+		$("input[name='end']").val(end);
+	
+		var allmoney = $("#allmoney").val();
+		
+		if($.trim(allmoney).length == 0){
+			alert("金额不能为空");
+			return ;
+		}
+		$.ajax({
+			type: "POST",
+	     	url: "${websitePath}/excel/price",
+	     	data: {type1:type1,type2:type2,startDate:start,endDate:end,allmoneys:allmoney},
+	     	dataType:"json",
+	     	success:function(retValue){
+	     		var data = retValue.jxts;
+	     		var salepriceid=0;
+	     		if(parseInt(allmoney) >= 500){
+	     			salepriceid = retValue.rate;
+	     		}else{
+	     			salepriceid = retValue.rate2;
+	     		}
+	     		var lx = retValue.txlx;
+	     		if(data == 'undefined' || typeof(data) == 'undefined'){
+	     			$("#jxts").html(0+"天");
+		     		$("input[name='jxts']").val(0);
+	     		}else{
+	     			$("#jxts").html(data+"天");
+		     		$("input[name='jxts']").val(data);
+	     		}
+	     		$("#salepriceid").html(lx);
+	    	}
+		 })	
+	};
+	
+	var now = new Date();
+	var fullyear = now.getFullYear();
+   	//获取完整的年份(4位,1970-????)
+	var month = now.getMonth() + 1;
+	//获取当前月份(0-11,0代表1月)
+	var date = now.getDate();
+	//获取当前日(1-31)
+	if (month < 10) {
+		month = "0" + month;
+	}
+	if (date < 10) {
+		date = "0" + date;
+	}	
+	$("#start").val(fullyear+"-"+month+"-"+date);
+	$("#first").val(fullyear+"-"+month+"-"+date);
+	$("input[name='start']").val(fullyear+"-"+month+"-"+date);
+	$("input[name='first']").val(fullyear+"-"+month+"-"+date);
+	
+	var begintimelong = Date.parse(new Date());
+	var endtime12 = new Date(begintimelong + 360 * 24 * 60 * 60 * 1000);
+    var endfullyear = endtime12.getFullYear();
+    //获取完整的年份(4位,1970-????)
+    var endmonth = endtime12.getMonth() + 1;
+    //获取当前月份(0-11,0代表1月)
+    var enddate = endtime12.getDate();
+	//获取当前日(1-31)
+	if (endmonth < 10) {
+		endmonth = "0" + endmonth;
+	}
+	if (enddate < 10) {
+		enddate = "0" + enddate;
+	}
+	$("#end").val(endfullyear+"-"+endmonth+"-"+enddate);
+	$("input[name='end']").val(endfullyear+"-"+endmonth+"-"+enddate);
+
+    //日历
+    !function(){
+        laydate.skin('dahong');//切换皮肤，请查看skins下面皮肤库
+    }();
+    //日期范围限制
+    //    贴现日期
+    var start = {
+        elem: '#start',
+        format: 'YYYY-MM-DD',
+        min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16', //最大日期
+        istime: true,//时分秒
+        isclear: false,//清空
+        istoday: false,//今天
+        choose: function(datas){
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas //将结束日的初始值设定为开始日
+            $("input[name='start']").val(datas);
+            jixidate();
+        }
+    };
+    //    到期日期
+    var end = {
+        elem: '#end',
+        format: 'YYYY-MM-DD',
+        min: laydate.now(),
+        max: '2099-06-16',
+        istime: true,//时分秒
+        isclear: false,//清空
+        istoday: false,//今天
+        choose: function(datas){
+            start.max = datas; //结束日选好后，充值开始日的最大日期
+            $("input[name='end']").val(datas);
+            jixidate();
+        }
+    };
+//  贴现日期
+    var first = {
+        elem: '#first',
+        format: 'YYYY-MM-DD',
+        //min: laydate.now(), //设定最小日期为当前日期
+        min: '1900-01-01', //设定最小日期
+        max: '2099-06-16', //最大日期
+        istime: true,//时分秒
+        isclear: false,//清空
+        istoday: false,//今天
+        choose: function(datas){
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.first = datas //将结束日的初始值设定为开始日
+            $("input[name='first']").val(datas);
+        }
+    };
+    laydate(start);
+    laydate(end);
+    laydate(first);
+
+
+    //背书手数加减
+    var setAmount1 = {
+        min:0,
+        max:999,
+        reg:function(x) {
+            return new RegExp("^[0-9]\\d*$").test(x);
+        },
+        amount:function(obj, mode) {
+            var x = $(obj).val();
+            if (this.reg(x)) {
+                if (mode) {
+                    x++;
+                } else {
+                    x--;
+                }
+            } else {
+                console.log("请输入正确的背书手数！");
+                $(obj).val(0);
+            }
+            return x;
+        },
+        reduce:function(obj) {
+            var x = this.amount(obj, false);
+            if (x >= this.min) {
+                $(obj).val(x);
+            } else {
+                console.log("背书手数最少为" + this.min);
+                $(obj).val(0);
+            }
+        },
+        add:function(obj) {
+            var x = this.amount(obj, true);
+            if (x <= this.max) {
+                $(obj).val(x);
+            } else {
+                console.log("背书手数最多为" + this.max);
+                $(obj).val(999);
+            }
+        },
+        modify:function(obj) {
+            var x = $(obj).val();
+            if (x < this.min || x > this.max || !this.reg(x)) {
+                console.log("请输入正确的背书手数！");
+                $(obj).val(0);
+            }
+        }
+    };
+    
+    /**
+    * 保存贴现
+    */
+    function tiexian(){
+    	if($("#tiexian").attr("disabled")){
+			return;
+		}
+    	
+		if(!$("#allmoney").validationEngine("validate")){
+			$("#allmoney").focus();
+			return ;
+		};
+		
+		if(!$("#draftNo").validationEngine("validate")){
+			$("#draftNo").focus();
+			return ;
+		};
+	
+		if(!$("#cnapsCode").validationEngine("validate")){
+			$("#cnapsCode").focus();
+			return ;
+		};
+		
+		if(!$("#bank").validationEngine("validate")){
+			$("#bank").focus();
+			return ;
+		};
+		
+		if($.trim($("#picpath").val()).length == 0 || $("#picpath").val() == null){
+			alert("请选择上传的票面");
+			return ;
+		};
+		
+		var type1 = 2;//$("input:radio[name='type1']:checked").val();
+		var allmoney = $("#allmoney").val();
+		var end = $("input[name='end']").val();
+		var start = $("input[name='start']").val();
+		var print = $("input[name='first']").val();
+		var acceptTime = $("input:radio[name='acceptTime']:checked").val();//期限
+		var jxts = $("input[name='jxts']").val();
+		var endorse = $("#endorse").val();
+		var backEndorse = $("input:radio[name='backEndorse']:checked").val();//是否是回头票
+		var remarks = $("#memberother").val();
+		var draftNo = $("#draftNo").val();
+		var cnapsCode = $("#cnapsCode").val();
+		var picpath = $("#picpath").val();
+		var bank = $("#bank").val();
+		
+		var params = {type1:type1,bank:bank,start:start,end:end,print:print,backEndorse:backEndorse,
+				endorse:endorse,allmoney:allmoney,remarks:remarks,jxts:jxts,memberId:memberId,source:"YONYOU"};
+		
+			params.acceptTime = acceptTime;
+			params.picpath = picpath;
+			params.draftNo = draftNo;
+			params.cnapsCode = cnapsCode;
+		
+		$("#tiexian").attr("disabled","disabled");//按钮禁用
+		$.ajax({
+			type: "POST",
+	     	url: "${basePath}/yonyou/discountrecordsp/tiexian",
+	     	data: params,
+	     	dataType:"json",
+	     	success:function(data){
+	     		if(data.response == 'success'){
+	     			$("#tiexian").removeAttr("disabled");//按钮启用
+	     			var map = new Map();
+	     			map.put("_PAGE", "/yonyou/discount/discountrecord_sp_confirmation");//必传
+	     			map.put("discId", data.data.id);//类型
+	     			_OPENPAGE_FORM(map);
+	    		}else{
+	    			alert(data.msg);
+	    			$("#tiexian").removeAttr("disabled");//按钮启用
+	    		 	return;
+	    		}
+	    	}
+		 })	
+    };
+
+    /**
+     * 跳转页面
+     */
+     $("#spTab").click(function(){
+     	location.href = "${basePath}/yonyou/page/discountrecordsp";
+     });
+    
+     /**
+      * 跳转页面
+      */
+      $("#ypTab").click(function(){
+      	location.href = "${basePath}/yonyou/page/discountrecord";
+      });
+</script>
+[/@main.body]

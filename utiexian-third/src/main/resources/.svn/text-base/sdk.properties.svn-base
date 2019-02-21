@@ -1,0 +1,35 @@
+##cas地址,表示cas认证服务器地址URL,可按情况修改为实际使用的cas服务器地址
+cas.url=https://idtest.yyuap.com/cas
+##当前域名 如有多个用空格隔开
+servername=http://test.utiexian.com:3030
+#友户通接口服务器地址
+yht.user.base.url=https://idtest.yyuap.com/rest
+yht.enterprise.base.url=https://idtest.yyuap.com/enterprise/rest
+#企业选择页面
+enterprise.select.url=https://idtest.yyuap.com/assist 
+app.base.url=https://idtest.yyuap.com/assist/rest
+#授权文件中的username，即应用id
+sysid=utiexian
+#应用接入授权文件路径
+yht.client.credential.path=application-dev.properties
+#使用Redis进行session存储,如果使用内存进行会话存储的话，则不需要配置
+#sessionStoreClass=com.yonyou.yht.cache.RedisSessionStore
+#不需要拦截的模式名称
+ignoreUrlPatternType=MUTIREGEX
+ignorePattern=/images/*,/css/*,/js/*,.*\\.jsx,/rest/.*,/style/.*,/index\\.html,/controller/register/.*,/openapp,/discountrecord/tiexian,/api,/yonyou/page/index
+#单路由最大并发数
+httpclient.MaxTotal=100
+httpclient.MaxPerRoute=100
+issimpleregister=8;
+#restful摘要算法
+rest.algorithm=HmacSHA1
+#RSA数字签名算法
+UAP.DigitalSignatureAlgorithm=SHA1withRSA
+#RSA 秘钥长度 1024/2048
+UAP.DigitalSignatureKeyLength=1024
+#随机算法
+UAP.RandomAlgorithm=SHA1PRNG
+#HMAC摘要算法
+UAP.KDF.PRF=HmacSHA1
+#签名或者摘要算法目前支持HMAC,RSA.
+UAP.AUTH.ALG=HMAC

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<!-- 额度15% type:唯一标识， weight：该项所占权重 -->
+	<group type="limit" weight="0.15">
+		<!-- type:唯一标识，  min:大于等于min，  max:小于max，  score:中间的数值 -->
+		<element type="above_1500" min="1500" max="">10</element>
+		<element type="above_1200" min="1200" max="1500">8</element>
+		<element type="above_800" min="800" max="1200">6</element>
+		<element type="above_500" min="500" max="800">4</element>
+		<element type="above_0" min="0" max="500">2</element>
+		<element type="equals_0" min="" max="" equals="0">0</element>
+	</group>
+
+	<!-- 报价差额15% type:唯一标识， weight：该项所占权重 -->
+	<group type="price" weight="0.15">
+		<element type="noprice">0</element>
+		<!--  高于标准值  type:唯一标识， min:大于min，  max:小于等于max， score:中间的数值-->
+		<element type="above_max" min="3.0" max="">1.8</element>
+		<element type="above_3.0" min="2.5" max="3.0">2.4</element>
+		<element type="above_2.5" min="2.0" max="2.5">3.0</element>
+		<element type="above_2.0" min="1.5" max="2.0">3.6</element>
+		<element type="above_1.5" min="1.0" max="1.5">4.0</element>
+		<element type="above_1.0" min="0.5" max="1.0">4.6</element>
+		<element type="above_0.5" min="0" max="0.5">5.2</element>
+		<!-- 标准值  type:唯一标识， min:大于min，  max:小于等于max， score:中间的数值 -->
+		<element type="standard" min="" max="" equals="0">5.8</element>
+		<!-- 低于标准值   type:唯一标识， min:大于min，  max:小于等于max，  score:中间的数值-->
+		<element type="below_0.5" min="0" max="0.5">6.4</element>
+		<element type="below_1.0" min="0.5" max="1.0">7.0</element>
+		<element type="below_1.5" min="1.0" max="1.5">7.6</element>
+		<element type="below_2.0" min="1.5" max="2.0">8.2</element>
+		<element type="below_2.5" min="2.0" max="2.5">8.8</element>
+		<element type="below_3.0" min="2.5" max="3.0">9.4</element>
+		<element type="below_min" min="3.0" max="">10.0</element>
+	</group>
+
+	<!-- 地理位置10% type:唯一标识， weight：该项所占权重  -->
+	<group type="location" weight="0.10">
+		<!-- type:唯一标识， min:大于min，  max:小于等于max，  score:中间的数值-->
+		<element type="distance_0" min="0" max="0">0</element>
+		<element type="distance_1" min="0" max="1">10.0</element>
+		<element type="distance_5" min="1" max="5">8.6</element>
+		<element type="distance_9" min="5" max="9">7.2</element>
+		<element type="distance_12" min="9" max="12">5.8</element>
+		<element type="distance_15" min="12" max="15">4.4</element>
+		<element type="distance_50" min="15" max="50">3.0</element>
+		<element type="distance_max" min="50" max="50">1.6</element>
+	</group>
+	
+	<!-- 成交单数20% type:唯一标识， weight：该项所占权重  -->
+	<group type="orderComplate" weight="0.20">
+		<!-- type:唯一标识， min:大于min，  max:小于等于max，  score:中间的数值-->
+		<element type="below_0" min="0" max="0">0</element>
+		<element type="below_2" min="0" max="2">2</element>
+		<element type="below_4" min="2" max="4">4</element>
+		<element type="below_6" min="4" max="6">6</element>
+		<element type="below_8" min="6" max="8">8</element>
+		<element type="below_10" min="8" max="8">10</element>
+	</group>
+	
+	<!-- 机构权重因素2 type:唯一标识  -->
+	<group type="pingjiaScore">
+		<!-- type:唯一标识， min:大于min，  max:小于等于max，  score:中间的数值-->
+		<element type="below_2" min="2" max="4">2</element>
+		<element type="below_4" min="4" max="6">4</element>
+		<element type="below_6" min="6" max="8">6</element>
+		<element type="below_8" min="8" max="10">8</element>
+		<element type="below_10" min="10" max="10">10</element>
+	</group>
+	
+	<!-- 拒绝订单数20% type:唯一标识， weight：该项所占权重  -->
+	<group type="orderRefused" weight="0.20">
+		<!-- type:唯一标识， min:大于min，  max:小于等于max，  score:中间的数值-->
+		<element type="equals_0" min="0" max="0">0</element>
+		<element type="below_2" min="0" max="2">-2</element>
+		<element type="below_4" min="2" max="4">-4</element>
+		<element type="below_6" min="4" max="6">-6</element>
+		<element type="below_8" min="6" max="8">-8</element>
+		<element type="below_10" min="8" max="8">-10</element>
+	</group>
+	
+	<!-- 总共完成交易时间10% type:唯一标识， weight：该项所占权重  -->
+	<group type="completeHour" weight="0.10">
+		<!-- type:唯一标识， min:大于min，  max:小于等于max，  score:中间的数值-->
+		<element type="below_3" min="0" max="3">10</element>
+		<element type="below_4" min="3" max="4">8</element>
+		<element type="below_5" min="4" max="5">6</element>
+		<element type="below_8" min="5" max="8">4</element>
+		<element type="below_max" min="8" max="">2</element>
+		<element type="below_none" min="0" max="0">0</element>
+	</group>
+	
+	<!-- 评价10% type:唯一标识， weight：该项纸票所占权重 ，weight2：该项电票所占权重  -->
+	<group type="remark" weight="0.10">
+		<!-- 打款速度 -->
+		<element type="speed" weight="0.30" weight2="0.40"></element>
+		<!-- 价格真实 -->
+		<element type="priceReal" weight="0.30" weight2="0.40"></element>
+		<!-- 服务态度 -->
+		<element type="manner" weight="0.30" weight2="0.20"></element>
+		<!-- 上门服务率 -->
+		<element type="service" weight="0.20">
+			<!-- type:唯一标识， min:大于等于min，  max:小于max，  score:中间的数值-->
+			<ele type="below_40" min="0" max="0.40">2</ele>
+			<ele type="below_60" min="0.40" max="0.60">4</ele>
+			<ele type="below_80" min="0.60" max="0.80">6</ele>
+			<ele type="below_100" min="0.80" max="1.00">8</ele>
+			<ele type="equals_100" min="1.00" max="1.00">10</ele>
+		</element>
+	</group>
+	
+	<!-- 保证金 -->
+	<group type="margin">
+		<!-- type:唯一标识， 中间的值：需缴纳的金额 -->
+		<element type="org">
+			<ele type="bigTicket">30</ele>
+			<ele type="smallTicket">10</ele>
+			<ele type="hasProved">0</ele>
+			<ele type="noProved">30</ele>
+			<ele type="hasComplateOrder">10</ele>
+			<ele type="noComplateOrder">30</ele>
+			<ele type="hasRefusedOrder">30</ele>
+			<ele type="noRefusedOrder">0</ele>
+		</element>
+		<element type="bns">
+			<ele type="bigTicket">20</ele>
+			<ele type="smallTicket">10</ele>
+			<ele type="hasProved">0</ele>
+			<ele type="noProved">20</ele>
+			<ele type="hasComplateOrder">10</ele>
+			<ele type="noComplateOrder">20</ele>
+			<ele type="hasRefusedOrder">30</ele>
+			<ele type="noRefusedOrder">0</ele>
+		</element>
+	</group>
+	
+	<!-- 新用户额度20% type:唯一标识， weight：该项所占权重 -->
+	<group type="newlimit" weight="0.20">
+		<!-- type:唯一标识，  min:大于等于min，  max:小于max，  score:中间的数值 -->
+		<element type="newabove_10" min="10000" max="">10</element>
+		<element type="newabove_8" min="8000" max="10000">8</element>
+		<element type="newabove_6" min="5000" max="8000">6</element>
+		<element type="newabove_4" min="2000" max="5000">4</element>
+		<element type="newabove_2" min="0" max="2000">2</element>
+		<element type="newequals_0" min="" max="" equals="0">0</element>
+	</group>
+	
+	<!-- 新用户交易城市数量20% type:唯一标识， weight：该项所占权重 -->
+	<group type="newCity" weight="0.25">
+		<!-- type:唯一标识，  min:大于等于min，  max:小于max，  score:中间的数值 -->
+		<element type="cityabove_10" min="9" max="">10</element>
+		<element type="cityabove_8" min="6" max="9">8</element>
+		<element type="cityabove_6" min="4" max="6">6</element>
+		<element type="cityabove_4" min="2" max="4">4</element>
+		<element type="cityabove_2" min="0" max="2">2</element>
+		<element type="cityequals_0" min="" max="" equals="0">0</element>
+	</group>
+	
+	<!-- 新用户报价种类15% type:唯一标识， weight：该项所占权重 -->
+	<group type="newPrice" weight="0.15">
+		<!-- type:唯一标识，  min:大于等于min，  max:小于max，  score:中间的数值 -->
+		<element type="priceabove_10" min="20" max="">10</element>
+		<element type="priceabove_8" min="14" max="20">8</element>
+		<element type="priceabove_6" min="9" max="14">6</element>
+		<element type="priceabove_4" min="6" max="9">4</element>
+		<element type="priceabove_2" min="0" max="6">2</element>
+		<element type="priceequals_0" min="" max="" equals="0">0</element>
+	</group>
+</root>

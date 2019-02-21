@@ -1,0 +1,161 @@
+package com.ry.core.dao;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import com.ry.core.dto.InquiryReplyDto;
+import com.ry.core.entity.InquiryReply;
+import com.ry.core.form.InquiryReplyForm;
+import com.ry.core.form.company.InquiryReplyRequest;
+import com.ry.util.page.PageResults;
+
+/**
+ * 名称: OrgDao.java<br>
+ * 描述: <br>
+ * 类型: JAVA<br>
+ * 最近修改时间:2016年3月2日 下午6:55:04<br>
+ * @since  2016年3月2日
+ * @author li.xiaofei 
+ */
+public interface InquiryReplyDao {
+
+	
+	/**
+	 * 主键获取发票详情
+	 * @param req
+	 * @return
+	 */
+	List<InquiryReply> getByObj(InquiryReplyRequest req);
+	
+	 /**
+	  * 更新查询查复实体
+	  * @param reply
+	  */
+	 void updateInquiryReply(InquiryReply reply);
+
+	/**
+	 * 根据编号获取查询查复（编号必传）
+	 * @author WKX
+	 * @param no
+	 * @since 2016年3月9日 下午4:10:05
+	 */
+	public List<InquiryReply> getByNo(String no);
+	
+	/**
+	 * 保存对象
+	 * @author WKX
+	 * @param reply
+	 * @since 2016年3月9日 下午4:36:00
+	 */
+	public void saveModel(InquiryReply reply);
+	
+	/**
+	 * 根据主键获取对象
+	 * @author WKX
+	 * @param id
+	 * @since 2016年3月10日 上午9:29:34
+	 */
+	public InquiryReply getById(Integer id);
+	
+	/**
+	 * 根据主键获取对象（查询查复）
+	 * @param id
+	 */
+	public List<Map<String,Object>> getInfoById(Integer id);
+	
+	/**
+	 * 根据用户主键获取消息[分页]
+	 * @author xiaoc
+	 */
+	public PageResults<InquiryReply> getPageList(InquiryReply inq,Integer currentPage,Integer pageSize);
+	
+	/**
+	 * 根据商户订单号获取交易号（前提已完成支付的）
+	 * 定时任务：根据交易状态、时间和交易号为空 查询订单号，得到的订单号再写进为空的交易号中
+	 * @author BKY
+	 */
+	public List<InquiryReply> updateTransaction(Integer payState,Date createTime, Date createTime2);
+	
+	/**
+	 * 根据上面得到的集合 修改交易号(jyh)
+	 * @author BKY
+	 */
+	public void updateJyh(InquiryReply inquiryRepl);
+	
+	/**
+	 * 根据认证主键获取查询查复的记录
+	 * @author WKX
+	 * @param orgId
+	 * @since 2016年4月9日 上午10:26:21
+	 */
+	public List<InquiryReply> getByOrgId(Integer orgId);
+	
+	/**
+	 * 查询多个用户在某段时间内的查询查复的记录
+	 * @param paramList	用户的id列表
+	 * @param payState	订单状态
+	 */
+	public List<Map<String, Object>> getCountByArray(List<Object> paramList, Integer payState, Date startTime, Date endTime);
+	
+	/**
+	 * 根据（用户主键）获取查询查复的记录[APP2.2后企业可能没有OrgId]
+	 * @author WKX
+	 * @param memberId
+	 * @since 2016年6月13日 下午1:56:50
+	 */
+	public List<InquiryReply> getByMemberId(Integer memberId);
+	
+	/**
+	 * 动态分页获取查询查复信息
+	 * @author KHC
+	 * @param form
+	 * @param pageIndex
+	 * @param pageSize
+	 * @since 2016年11月9日 下午3:53:50
+	 */
+	public PageResults<Map<String, Object>> getPageList(InquiryReplyForm form,Integer pageIndex,Integer pageSize) throws Exception;
+
+	/**
+	 * 根据查询查复订单号获取详情
+	 * @author KHC
+	 * @param no
+	 * @since 2016年11月10日 下午2:27:35
+	 */
+	public Map<String, Object> getInfoByNo(String no);
+	
+	/**
+	 * 分页查询查询查复信息列表
+	 * @author ZY
+	 * @param currentPage
+	 * @param pageSize
+	 * @param req
+	 * @since 2017年1月5日 下午6:01:23
+	 */
+	public PageResults<Map<String,Object>> listByInquiryReplyRequest(Integer currentPage,Integer pageSize,InquiryReplyRequest req);
+	
+	/**
+	 * 消息弹框推送
+	 * @author ZY
+	 * @param importState
+	 * @param time
+	 * @since 2017年1月12日 下午8:08:49
+	 */
+	public Long countByImportAndTime(Integer importState,Integer time);
+	
+	/**
+	 * 报表导出的数据
+	 */
+	public List<Map<String, Object>> getExcelExport(InquiryReplyRequest req);
+	
+	/**
+	 * 分页查询查询查复信息报表
+	 * @author MH
+	 * @param currentPage 
+	 * @param pageSize
+	 * @param req 参数集合
+	 * @return
+	 */
+	public PageResults<Map<String,Object>> listReportByInquiryReplyRequest(Integer currentPage,Integer pageSize,InquiryReplyRequest req);
+	
+}

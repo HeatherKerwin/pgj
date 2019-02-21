@@ -1,0 +1,249 @@
+#include("./common/header.html",{title:topic.title ?! ''})
+#include("./common/right.html")
+<link rel="stylesheet" href="${staticPath}/plugins/highlight/styles/default.css" />
+<link rel="stylesheet" href="${staticPath}/plugins/highlight/styles/github.css" />
+<script type="text/javascript" src="${staticPath}/plugins/highlight/highlight.pack.js"></script>
+<script type="text/javascript">
+var comment_members = [];
+</script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="panel panel-default topic-detail-heading">
+            	<input type="hidden" id="tid" value="${topic.tid}">
+                <div class="panel-heading pb0">
+                    <div class="pull-right">
+                    	<a class="account-avatar" href="${base_url('/member/') + topic.user_name}" title="${topic.user_name}">
+                    		<img class="head-img avatar avatar-sm img-circle" src="${topic.avatar}" alt="${topic.user_name}">
+                    	</a>
+                    </div>
+                    <p><a href="${base_url('')}">首页</a> / <a href="${base_url('/go/') + topic.node_slug}">$!{topic.node_name}</a></p>
+                    <h1 class="panel-title">$!{topic.title}</h1>
+                    <p class="mt5">
+                    <small class="text-muted">
+                        <span>by <a href="${base_url('/member/')}${topic.user_name}">${topic.nick_name ?! topic.user_name}</a></span>&nbsp;•&nbsp;
+                        <span>${fmtdate(topic.create_time)}</span>
+                        #if(null!=login_user)
+                        &nbsp;&nbsp;&nbsp;<span><a href="javascript:void(0);" tid="${topic.tid}" class="sinks" alt="下沉" title="下沉"><i class="fa fa-sort-desc" aria-hidden="true"></i></a></span>
+                        #if(topic.uid == login_user.uid)
+                        &nbsp;•&nbsp;&nbsp;<span><a href="${base_url('/topic/edit/') + topic.tid}">编辑</a></span>
+                        #end
+                        #end
+                    </small>
+
+                    #if(login_user !=null && (topic.uid==login_user.uid || login_user.role_id < 3))
+                    <small class="text-muted" style="float:right;">帖子转移到：
+                    	<select id="nodeId">
+	                    	#for(node : all_nodes)
+	                    		#if(node.nid!=topic.nid)
+							<option value="${node.nid}">${node.title}</option>
+								#end
+							#end
+                    	</select>
+                    	<button id="toDoChange" type="button" class="btn btn-info btn-xs">转移</button>
+                    </small>
+                    #end
+                    </p>
+                </div>
+                <div class="panel-body topic-detail">
+                    ${topic.content}
+                    #if(topic.attach_content && topic.attach_type!=null)
+                    	<hr>
+                    	#if(topic.attach_type==1)
+                    		#if(null != login_user)
+                    			<font style="color:red;">*以下为附加内容</font>
+                    			<br>${topic.attach_content}
+                   			#elseif(login_user !=null && (topic.uid==login_user.uid || login_user.role_id < 3 || is_nu!=null))
+                   				<font style="color:red;">*以下为附加内容</font>
+                    			<br>${topic.attach_content}
+                   			#else
+                    			<font style="color:red;">*含附加内容（登录可见）</font>
+                    		#end
+	                    #elseif(topic.attach_type==2)
+                    		#if(topic.uid_comment)
+                    			<font style="color:red;">*以下为附加内容</font>
+                    			<br>${topic.attach_content}
+                   			#elseif(login_user !=null && (topic.uid==login_user.uid || login_user.role_id < 3 || is_nu!=null))
+                   				<font style="color:red;">*以下为附加内容</font>
+                    			<br>${topic.attach_content}
+                   			#else
+                    			<font style="color:red;">*含附加内容（回复可见）</font>
+                    		#end
+                    	#else#end
+                    #end
+                </div>
+                #if(null != login_user)
+                <div class="panel-footer topic-footer">
+                	<div class="pull-left left">
+                		#if(is_love)
+	                	<div class="heart heartRed" id="like_topic" tid="${topic.tid}" rel="unlike"></div>
+	                	#else
+	                	<div class="heart " id="like_topic" tid="${topic.tid}" rel="like"></div>
+	                	#end
+	                	<span class="likeCount" id="likeCount">${topic.loves}</span>
+	                	&nbsp;&nbsp;&nbsp;&nbsp;
+	                	<span><a>分享到：</a><a href="javascript:void(0);" class="share-weibo"><i class="fa fa-weibo" aria-hidden="true"></i></a></span>
+                	</div>
+                	
+                	<div class="pull-right right">
+                		<span class="text-muted">${topic.views}次点击&nbsp;•&nbsp;</span>
+                		<span class="text-muted">${topic.favorites}人收藏</span>
+                		
+	                	#if(is_favorite)
+	                	<a class="follow" tid="${topic.tid}" role="button" href="javascript:void(0);">&nbsp;•&nbsp;<small class="text-muted">取消收藏</small></a>
+	                	#else
+						<a class="follow" tid="${topic.tid}" role="button" href="javascript:void(0);">&nbsp;•&nbsp;<small class="text-muted">加入收藏</small></a>	                	
+	                	#end
+	                	#if((null!=login_user && login_user.role_id < 3) || is_nu!=null)
+		                	#if(topic.is_essence == 0)
+		                	<a class="essence" tid="${topic.tid}" role="button" href="javascript:void(0);">&nbsp;•&nbsp;<small class="text-muted ">加精</small></a>
+		                	#else
+		                	<a class="essence" tid="${topic.tid}" role="button" href="javascript:void(0);">&nbsp;•&nbsp;<small class="text-muted ">取消加精</small></a>
+		                	#end
+		                	<a class="deltopic" tid="${topic.tid}" role="button" href="javascript:void(0);">&nbsp;•&nbsp;<small class="text-muted ">删帖</small></a>
+	                	#end
+                	</div>
+                </div>
+                #end
+             </div><!-- /.panel content -->
+            
+            #if(topic.comments > 0)
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span>$!{topic.comment} 回复 | 直到${today("yyyy-MM-dd HH:mm")}</span>
+                </div>
+                <div class="panel-body">
+                    <ul class="media-list comment-list">
+                    	#for(comment : commentPage.results)
+                    	<li class="media" id="Reply${for.index}">
+                    		#if(login_user !=null && (topic.uid==login_user.uid || login_user.role_id < 3))
+	                            <a href="javascript:void(0);" data-id="${comment.cid}" class="DELCOMMENT pull-right text-muted" style="color:red;" title="删除评论">
+	                            	删除
+	                            </a>
+                    		#end
+                            <a href="javascript:void(0);" alt="${comment.reply_name}" class="pull-right text-muted at-user my-at-user" title="回复#${for.index}">
+                            	回复 #${for.index}
+                            </a>
+                            <a class="media-left account-avatar" href="${base_url('/member/') + comment.reply_name}">
+                                <img class="head-img avatar avatar-sm img-circle" src="${comment.reply_avatar}" alt="${comment.reply_name}">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading topic-list-heading">
+	                                <a href="${base_url('/member/') + comment.reply_name}">
+	                                	${comment.reply_nick_name ?! comment.reply_name}
+	                                	#if(comment.role_id <= 3)
+		                                &nbsp;<i class="fa fa-slideshare"></i> 
+		                                #end
+	                                </a>
+	                                <span class="meta-span">
+	                                	${timespan(comment.reply_time)}
+	                                </span>
+                                </h4>
+                                ${comment.content}
+                            </div>
+                        </li>
+                        <hr class="smallhr">
+                        <script>comment_members.push('${comment.reply_name}');</script>
+                    	#end
+                    </ul>
+                </div>
+            </div><!-- /.panel comment -->
+            #end
+            
+            <div class="panel panel-default" id="Reply">
+                <div class="panel-heading">
+                    <span>添加一条新回复</span>
+                    <p class="pull-right mr5">
+                    	<span><a href="#">回到顶部 <i class="fa fa-angle-double-up fa-fw"></i></a></span>
+                    </p>
+                </div>
+                <div class="panel-body">
+                	#if(null != login_user)
+               		<form id="comment-form" onsubmit="return topic.comment();" class="form-horizontal" role="form" method="post">
+               			<input type="hidden" name="tid" value="${topic.tid}">
+                        <input type="hidden" name="tuid" value="${topic.uid}">
+                        <div class="mb10">
+                       		<script id="content" name="content" type="text/plain" style="width:100%;height:100px;"></script>
+                        </div>
+                        <div class="pull-right">
+                        	<button type="submit" class="btn btn-success ladda-button" data-style="zoom-out">回复</button>
+                        </div>
+	                </form>
+		           	#else
+	                <div class="well text-center">
+                    	<a href="${base_url('/signup')}">注册</a> 参与讨论 or <a href="${base_url('/signin/quick')}">登录</a>
+                    </div>
+	                #end
+                </div>
+            </div><!-- /.panel add comment -->
+        </div><!-- /.col-md-8 -->
+        #include("./common/sidebar.html")
+    </div>
+</div>
+#include("./common/footer.html")
+<script type="text/javascript" src="${base}/assets/ueditor/ueditor.config.js?ver=${version}"></script>
+<script type="text/javascript" src="${base}/assets/ueditor/ueditor.all.min.js?ver=${version}"></script>
+<script type="text/javascript" src="${base}/assets/ueditor/lang/zh-cn/zh-cn.js?ver=${version}"></script>
+<script type="text/javascript">
+var ue = null;
+$(document).ready(function(){
+	if('${login_user!=null}'=='true'){
+		ue = UE.getEditor('content',{
+			toolbars: [
+				['undo', 'redo', 'emotion', 'bold', 'italic', 'underline', 'fontsize', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc']
+			],
+			elementPathEnabled:false,
+			wordCount:false
+		});
+	}
+});
+
+$('.my-at-user').on('click', function(){
+	var user_name = $(this).attr('alt');
+	var has = ue.getContent();
+	var at = '<span style="color:gray;">@'+user_name+' </span>';
+	if(has.trim()==""){
+		ue.setContent(at, null);
+	}else{
+		ue.setContent(at, true);
+	}
+	$("html,body").animate({scrollTop:$("#comment-form").offset().top-60},300);//滚动到评论区
+	ue.focus(true);
+});
+
+/**
+ * 更新帖子板块
+ */
+$('#toDoChange').on('click', function(){
+	var tid = $("#tid").val();
+	var nodeId = $("#nodeId").val();
+	$.post(BASE + '/topic/change', {tid:tid, nodeId:nodeId}, function(response){
+		if(response){
+			if(response.status == 200){
+				window.location.reload();	
+			} else{
+				alertError(response.msg);
+			}
+		}
+	});
+});
+
+/**
+ * 删除评论
+ */
+$('.DELCOMMENT').on('click', function(){
+	var cid = $(this).attr("data-id");
+	var tid = $("#tid").val();
+	$.post(BASE + '/comment/del', {cid:cid,tid:tid}, function(response){
+		if(response){
+			if(response.status == 200){
+				window.location.reload();
+			} else{
+				alertError(response.msg);
+			}
+		}
+	});
+});
+</script>
+</body>
+</html>

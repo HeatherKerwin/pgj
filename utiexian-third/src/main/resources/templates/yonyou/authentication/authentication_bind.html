@@ -1,0 +1,158 @@
+[#import "/common/main.html" as main]
+[#include "/common/setting.html"]
+[@main.body title='云票据-开户管理-绑定开户']
+<link rel="stylesheet" href="${basePath}/css/yonyou/authentication.css">
+<link rel="stylesheet" href="${basePath}/css/yonyou/mask.css">
+
+<!-- 头部 -->
+<div class="head">
+    <div class="headWrap">
+        <a class="logo" href="http://www.yonyou.com/" target="_blank">
+            <img src="${basePath}/images/yonyou/logo.png" alt="yonyou">
+        </a>
+        <ul class="menu">
+            <li><a href="${basePath}/yonyou/index">首页</a></li>
+            <li><a href="${basePath}/yonyou/ypDiscount">出票</a></li>
+            <li><a href="${basePath}/yonyou/inquiry">询价</a></li>
+            <li><a href="${basePath}/yonyou/calculator">计算器</a></li>
+            <li><a href="${basePath}/yonyou/authentication" class="ce84c3d">开户管理</a></li>
+            <li><a href="${basePath}/yonyou/ypOrderList">订单中心</a></li>
+        </ul>
+    </div>
+</div>
+<!-- 头部end -->
+
+<div class="wrap authenticationWrap">
+    <!--top-->
+    <div class="authenticationTop">
+        <label>开户管理</label>
+    </div>
+    
+    <!--开户进程-->
+    <div class="authenticationType">
+        <ul>
+            <li><img src="${basePath}/images/yonyou/authentication/type1.png" width="180" height="52" alt="申请开户"></li>
+            <li><img src="${basePath}/images/yonyou/authentication/type2.png" width="180" height="52" alt="审核"></li>
+            <li><img src="${basePath}/images/yonyou/authentication/type3.png" width="55" height="52" alt="完成开户"></li>
+        </ul>
+    </div>
+
+    <!--上传证件-->
+    <div class="uploadCon">
+        <div class="uploadTitle">
+            <label for="">证件上传：</label>
+            <span>（可修改）</span>
+        </div>
+        <!--上传-->
+        <ul class="uploadImg">
+            <li>
+                <label for="fileToUpload">
+                    <input type="file" id="fileToUpload">
+                    <img src="${basePath}/images/yonyou/authentication/upload1.png" alt="身份证正面">
+                </label>
+            </li>
+            <li>
+                <label for="fileToUpload1">
+                    <input type="file" id="fileToUpload1">
+                    <img src="${basePath}/images/yonyou/authentication/upload2.png" alt="身份证反面">
+                </label>
+            </li>
+            <li>
+                <label for="fileToUpload2">
+                    <input type="file" id="fileToUpload2">
+                    <img src="${basePath}/images/yonyou/authentication/upload3.png" alt="营业执照">
+                </label>
+            </li>
+        </ul>
+    </div>
+    <!--证件识别中-->
+    <div class="loading" style="display: none">
+        <img src="${basePath}/images/yonyou/discount/recogniseLoad.gif" alt="loading">
+    </div>
+    <!--上传证件end-->
+
+    <!--账户绑定-->
+    <div class="bind authenticationItem">
+        <ul>
+            <li>
+                <label for="company">公司名称：</label>
+                <input type="text" id="company" placeholder="请输入公司名称">
+            </li>
+            <li>
+                <label for="regNum">注册号：</label>
+                <input type="text" id="regNum" placeholder="请输入营业执照上的统一社会信用代码">
+            </li>
+            <li>
+                <a href="${basePath}/yonyou/authentication_review">申请绑定账户</a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<!--弹窗-->
+<div class="maskWindow" id="maskWindow" style="display: none">
+    <div class="maskBg"></div>
+    <div class="maskWrap maskWrapSmall">
+        <!--top-->
+        <div class="maskTop">
+            <!--弹窗名称-->
+            <div id="title" class="maskTitle">开户合同</div>
+            <!--关闭按钮-->
+            <a class="maskClose">
+                <img src="${basePath}/images/yonyou/common/closeIcon.png" alt="关闭">
+            </a>
+        </div>
+        <!--top end-->
+
+        <!--内容容器-->
+        <div class="maskCon">
+            <!--上传图片有问题-->
+            <div class="maskDiv" style="display: none" id="imgAlertWindow">
+                <p class="maskMessage">图片不清晰，原素1、原素2 识别度较低，是否更换图片，重新识别？</p>
+            </div>
+            <!--上传图片有问题end-->
+        </div>
+        <!--内容容器end-->
+
+        <!--弹窗底部操作-->
+        <div class="maskFooter" id="maskFooter" style="display: none">
+            <!--上传图片有问题-->
+            <div id="imgAlertFooter" style="display: none">
+                <a href="#" onclick="return false" class="flatBtn">使用原图</a>
+                <a href="#" onclick="return false" class="flatBtn">重新上传</a>
+            </div>
+            <!--上传图片有问题end-->
+
+        </div>
+        <!--弹窗底部操作end-->
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+    });
+
+    /*关闭所有弹窗*/
+    $(".maskClose , .closeBtn").click(function(){
+        $("#maskWindow").fadeOut(500); /*内容区域*/
+        $("#contractWindow").fadeOut(500); /*开户合同*/
+
+        $("#maskFooter").fadeOut(500); /*底部按钮区域*/
+        $("#selectionFooter").fadeOut(500); /*开户合同*/
+
+    });
+
+    /*-----打开弹窗-----*/
+    //开户合同
+    $(".contractBtn").click(function(){
+        $("#maskWindow").fadeIn(500);
+        $("#sendEmailWindow").fadeIn(500); /*开户合同*/
+        $("#maskFooter").fadeIn(500);
+        $("#sendEmailFooter").fadeIn(500); /*开户合同*/
+    });
+</script>
+[/@main.body]

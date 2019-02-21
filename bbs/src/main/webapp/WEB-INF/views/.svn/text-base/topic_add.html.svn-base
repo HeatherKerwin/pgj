@@ -1,0 +1,122 @@
+#include("./common/header.html", {site_title:"发布新帖子"})
+#include("./common/right.html")
+<link rel="stylesheet" href="${staticPath}/plugins/highlight/styles/default.css" />
+<link rel="stylesheet" href="${staticPath}/plugins/highlight/styles/github.css" />
+<script src="${staticPath}/plugins/highlight/highlight.pack.js"></script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">发布新帖子</h3>
+                </div>
+                <div class="panel-body">
+                	<form id="topic-add" role="form" method="post">
+                        <div class="form-group">
+                            <label for="title">标题<font style="color:red;">（必填）*</font></label>
+                            <input type="text" class="form-control" id="title" name="title" placeholder="请输入帖子标题" required="required" />
+                        </div>
+                        <div class="form-group">
+                            <label for="nid">板块<font style="color:red;">（必填）*</font></label>
+                            <select class="form-control" id="nid" name="nid">
+                                <option value ="">请选择板块</option>
+                                #for(node : nodes)
+			                    	#if(node.pid == 0)
+			                    		#if(null != node.items)
+				                    		<optgroup label="${node.node_name}">
+					                     	#for(item : node.items)
+					                     	<option #if(null != pid && pid == item.nid)selected="selected"#end value="${item.nid}">${item.node_name}</option>
+					                     	#end
+				                     	#else
+				                     		<option value="${node.nid}">${node.node_name}</option>
+			                    		#end
+			                    	#end
+			                    #end	
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="nid">帖子内容<font style="color:red;">（必填）*</font></label>
+	                        <div class="form-group">
+                            	<script class="inputor" id="content" name="content" type="text/plain" style="width:100%;height:300px;"></script>
+	                        </div>
+                        </div>
+                        <div>
+                        	<button type="button" class="btn btn-default btn-small preview">预览帖子</button>
+							<button type="submit" class="btn btn-primary btn-small ladda-button" data-style="zoom-out">
+								<span class="ladda-label">发布帖子</span>
+							</button>                        	
+                        </div>
+                        
+                        <br>
+                        <div class="form-group">
+                            <label for="nid">帖子附加内容<font style="font-size:12px;color:gray;">（可设置部分内容指定可见，非必填）</font></label>
+                            <div class="form-group">
+	                            <input id="attach_type_0" name="attach_type" type="radio" value="" checked="checked"><label for="attach_type_0">无附加</label>
+	                            <input id="attach_type_1" name="attach_type" type="radio" value="1"><label for="attach_type_1">登录可见</label>
+	                            <input id="attach_type_2" name="attach_type" type="radio" value="2"><label for="attach_type_2">评论可见</label>
+                            </div>
+                        </div>
+                        <div id="attach_content_div" class="form-group none">
+	                        <div class="form-group">
+                            	<script class="inputor" id="attach_content" name="attach_content" type="text/plain" style="width:100%;height:120px;"></script>
+	                        </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="markdown_preview" class="panel-footer hide"></div>
+            </div>
+        </div><!-- /.col-md-8 -->
+        #include("./common/sidebar.html")
+    </div>
+</div>
+<script type="text/javascript" src="${base}/assets/ueditor/ueditor.config.js?ver=${version}"></script>
+<script type="text/javascript" src="${base}/assets/ueditor/ueditor.all.min.js?ver=${version}"></script>
+<script type="text/javascript" src="${base}/assets/ueditor/lang/zh-cn/zh-cn.js?ver=${version}"></script>
+<script type="text/javascript">
+var comment_members = [];
+ue = UE.getEditor('content',{
+	toolbars: [[
+		'fullscreen', 'source', '|', 'undo', 'redo', '|',
+		'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+		'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+		'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+		'directionalityltr', 'directionalityrtl', 'indent', '|',
+		'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+		'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+		'simpleupload', 'insertimage', 'emotion', 'scrawl',  'attachment', 'map'
+	]],
+	elementPathEnabled:false,
+	maximumWords:1000,
+	wordCount:false
+});
+ue = UE.getEditor('attach_content',{
+	toolbars: [[
+		'fullscreen', 'source', '|', 'undo', 'redo', '|',
+		'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+		'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+		'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+		'directionalityltr', 'directionalityrtl', 'indent', '|',
+		'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+		'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+		'simpleupload', 'insertimage', 'emotion', 'scrawl',  'attachment', 'map'
+	]],
+	elementPathEnabled:false,
+	maximumWords:1000,
+	wordCount:false
+});
+
+/**
+ * 设置附加内容
+ */
+$("input[name='attach_type']").change(function() {
+	var a = $("input[name='attach_type']:checked").val();
+	if(a==1 || a==2){
+		$("#attach_content_div").removeClass("none");
+	}else{
+		$("#attach_content_div").addClass("none");
+	}
+});
+</script>
+#include("./common/footer.html")
+</body>
+</html>

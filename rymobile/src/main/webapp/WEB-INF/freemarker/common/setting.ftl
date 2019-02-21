@@ -1,0 +1,1 @@
+[#assign basePath = 'https://test.utiexian.com/rymobile']

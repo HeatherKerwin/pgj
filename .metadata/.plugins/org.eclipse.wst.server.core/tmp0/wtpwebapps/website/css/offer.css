@@ -1,0 +1,40 @@
+@charset"utf-8";
+/*tab银票、商票*/
+ul.offerTab1 li a:hover{
+    color: #d43c33;
+}
+a.offerTsb2:hover{
+    background: #fc4d42;
+    color: #ffffff;
+}
+.select1{
+    /*背景图*/
+    background: url("../images/receive/select1.png") no-repeat;
+    /*为下拉小箭头留出一点位置，避免被文字覆盖*/
+    padding-right: 14px;
+}
+
+ul#spOffer li:hover{
+    background: #e84c3d;
+    color: #ffffff;
+}
+
+/*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
+.scrollbar::-webkit-scrollbar{
+    width: 3px;
+    height: 5px;
+    background-color: #ffffff;
+}
+/*定义滚动条的轨道，内阴影及圆角*/
+.scrollbar::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+/*定义滑块，内阴影及圆角*/
+.scrollbar::-webkit-scrollbar-thumb{
+    height: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #e84c3d;
+}

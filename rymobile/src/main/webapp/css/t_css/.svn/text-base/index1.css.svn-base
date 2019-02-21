@@ -1,0 +1,66 @@
+@charset "utf-8";
+/* CSS Document */
+
+@media only screen and (min-width: 640px){
+html{
+ font-size: 62.5%;
+}
+}
+@media only screen and (max-width: 640px) and (min-width: 580px){
+html{
+ font-size: 62.5%;
+}
+}
+
+@media only screen and (max-width:580px) and (min-width: 440px){
+html{
+ font-size: 54%;
+}
+}
+@media only screen and (max-width:440px) and (min-width: 400px){
+html{
+ font-size: 46%;
+}
+}
+@media only screen and (max-width:440px) and (min-width: 400px){
+html{
+ font-size: 42%;
+}
+}
+@media only screen and (max-width:400px) and (min-width: 360px){
+html{
+ font-size: 40%;
+}
+}
+@media only screen and (max-width:400px) and (min-width: 360px){
+html{
+ font-size: 32%;
+}
+}
+@media only screen and (max-width:360px){
+html{
+ font-size: 25%;
+}
+}
+
+*{
+	margin: 0;
+	padding: 0;
+}
+body {
+	width: 100%;
+	font-family: roboto, \65B9\6B63\5170\4EAD\7EA4\9ED1\7B80\4F53, \5FAE\8F6F\96C5\9ED1, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background-color: #fff;
+}
+ol, ul { list-style: none }
+a{
+	text-decoration: none;
+}
+input {outline:none;}
+input{-webkit-appearance:none;}
+input[type="number"] {
+   -moz-appearance: textfield;
+}
+.fl{float:left}
+.fr{float:right}
+.cl{clear:both}

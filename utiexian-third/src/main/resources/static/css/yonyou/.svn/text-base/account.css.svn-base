@@ -1,0 +1,198 @@
+/*公司基本信息*/
+.companyInformation{
+    float: left;
+    width: 380px;
+    height: 450px;
+    background: #ffffff;
+    text-align: center;
+}
+.companyInformation img{
+    width: 121px;
+    height: 100px;
+    margin-top: 50px;
+}
+.companyInformation p{
+    font-size: 18px;
+    color: #666666;
+    margin-top: 20px;
+}
+.companyInformation label.accountType{
+    display: block;
+    width: 80px;
+    height: 30px;
+    font-size: 14px;
+    line-height: 30px;
+    border-radius: 5px;
+    border: 1px solid;
+    margin: 20px auto;
+}
+/*开户中*/
+.companyInformation label.blueLabel{
+    color: #447bea;
+}
+/*已开户*/
+.companyInformation label.redLabel{
+    color: #e84c3d;
+}
+/*未开户*/
+.companyInformation label.grayLabel{
+    color: #717583;
+}
+.companyInformation a{
+    display: block;
+    width: 160px;
+    height: 40px;
+    color: #ffffff;
+    line-height: 40px;
+    border: 0px;
+    border-radius: 5px;
+    background: #e84c3d;
+    margin: 40px auto 0px;
+}
+/*公司基本信息*/
+
+/*公司账户*/
+.companyAccount{
+    float: right;
+    width: 800px;
+    height: 450px;
+    background: #ffffff;
+}
+
+/*账户余额+保证金*/
+.companyAccount .companyTop{
+    padding: 30px 50px;
+    overflow: hidden;
+}
+/**/
+.companyAccount .companyTop .balance , .companyAccount .companyTop .deposit{
+    float: left;
+    width: 50%;
+    border-right: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    padding: 0px 0px 10px;
+}
+.companyAccount .companyTop .deposit{
+    border-right: 0px;
+}
+/*上方标签名*/
+.companyAccount .companyTop .balance label.balanceTitle , .companyAccount .companyTop .deposit label.depositTitle{
+    display: block;
+    overflow: hidden;
+    height: auto;
+    line-height: 18px;
+    padding: 10px 0px 20px 100px;
+}
+.companyAccount .companyTop .balance label.balanceTitle:after , .companyAccount .companyTop .deposit label.depositTitle:after{
+    clear: both;
+    height: 0px;
+}
+/*小图标*/
+.companyAccount .companyTop .balance .balanceTitle img , .companyAccount .companyTop .deposit .depositTitle img{
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 10px;
+}
+.companyAccount .companyTop .balance .balanceTitle .title ,，.companyAccount .companyTop .deposit .depositTitle .title{
+    float: left;
+}
+.companyAccount .companyTop .deposit .depositTitle .title span{
+    font-size: 14px;
+    color: #c2c1c1;
+}
+/*余额-金额*/
+.companyAccount .companyTop .balance .balanceCon , .companyAccount .companyTop .deposit .depositCon{
+    font-size: 36px;
+    line-height: 40px;
+    color: #108ee9;
+    overflow: hidden;
+}
+.companyAccount .companyTop .balance .balanceCon .moneyNum{
+    float: left;
+    width: 150px;
+    margin-right: 20px;
+}
+.companyAccount .companyTop .deposit .depositCon .moneyNum{
+    text-align: center;
+    color: #e84c3d;
+}
+/*提现按钮*/
+.companyAccount .companyTop .balance .balanceCon a{
+    float: left;
+    width: 100px;
+    height: 40px;
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    background: #108ee9;
+    font-size: 24px;
+    line-height: 40px;
+}
+
+/*充值*/
+.companyAccount .recharge{
+    padding: 10px 50px 20px;
+}
+.companyAccount .rechargeTop{
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.companyAccount .rechargeTop:after{
+    clear: both;
+    height: 0px;
+}
+.companyAccount .rechargeTop .rechargeTitle{
+    float: left;
+    font-size: 18px;
+    color: #2d2d2d;
+}
+.companyAccount .rechargeTop a.record{
+    float: right;
+    font-size: 14px;
+    color: #447bea;
+    display: block;
+}
+/*充值账户*/
+.companyAccount ul.rechargeForm{
+    padding-left: 50px;
+}
+.companyAccount ul.rechargeForm li{
+    line-height: 30px;
+    margin: 15px 0px;
+    overflow: hidden;
+}
+.companyAccount ul.rechargeForm li:after{
+    clear: both;
+}
+.companyAccount ul.rechargeForm li label{
+    display: block;
+    float: left;
+    width: 120px;
+}
+.companyAccount ul.rechargeForm li input , .companyAccount ul.rechargeForm li select{
+    float: left;
+    margin: 0px 10px;
+}
+.companyAccount ul.rechargeForm li select{
+    width: 180px;
+    line-height: 30px;
+    padding-right: 20px;
+    margin-top: 2px;
+    background: url("/images/yonyou/common/select148.png") center no-repeat;
+    background-size: 100% 100%;
+}
+.companyAccount ul.rechargeForm li a{
+    display: block;
+    width: 120px;
+    height: 34px;
+    line-height: 34px;
+    margin: 20px 130px;
+    text-align: center;
+    border-radius: 5px;
+    background: #e84c3d;
+    color: #ffffff;
+}
+
+/*公司账户end*/

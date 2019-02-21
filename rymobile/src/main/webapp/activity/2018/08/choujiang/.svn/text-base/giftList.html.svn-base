@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 无内容元素 -->
+    <meta name="author" content="Hengtian">
+    <!-- 设置网站关键字 -->
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>兑换奖品-我的奖品</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- 以下两个插件用于在IE8以及以下版本浏览器支持HTML5元素和媒体查询，如果不需要用可以移除 -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<style>
+    body{background-image: -webkit-linear-gradient(left, #b208db, #4632e9);}
+    .itemWidth {
+        float: left;
+        width: 48%;
+        margin: 0.5rem 1%;
+    }
+</style>
+<body>
+<header>
+    <img src="images/logo.png" class="img-responsive logo" alt="logo">
+    <h3 class="">我的奖品</h3>
+</header>
+<div class="panel bcnone banone">
+    <div class="panel-body bcnone banone">
+        <ul class="list-group" id="content">
+            
+        </ul>
+    </div>
+    
+    <div class="hide">
+    	<div id="chongdianbao">
+	    	<li class="list-group-item itemWidth">
+			    <h5 class="text-center"><strong>票据管家定制充电宝</strong></h5>
+			    <img src="images/chongdianbao.png" class="img-responsive" alt="充电宝">
+			    <a class="btn center-block btn-module mt10" href="myGift.html">立即兑换</a>
+			</li>
+    	</div>
+    	<div id="kaozhen">
+	    	<li class="list-group-item itemWidth">
+			    <h5 class="text-center"><strong>票据管家定制靠枕</strong></h5>
+			    <img src="images/baozhen.png" class="img-responsive" alt="靠枕">
+			    <a class="btn center-block btn-module mt10" href="myGift.html">立即兑换</a>
+			</li>
+    	</div>
+    	<div  id="hongbao">
+	    	<li class="list-group-item itemWidth">
+			    <h5 class="text-center"><strong>票据管家定制红包</strong></h5>
+			    <img src="images/hongbao.png" class="img-responsive" alt="红包">
+			    <a class="btn center-block btn-module mt10" href="myGift.html">立即兑换</a>
+			</li>
+    	</div>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript">
+	$(function(){
+		var storage=window.localStorage;
+		var array = storage.getItem("array");
+		var arrays = array.split(',');
+		for (var i = 0; i < arrays.length; i++) {
+			var html = '';
+			if(arrays[i] == 1){
+				html = $("#hongbao").html();
+			}
+			if(arrays[i] == 2){
+				html = $("#kaozhen").html();
+			}
+			if(arrays[i] == 3){
+				html = $("#chongdianbao").html();
+			}
+			$("#content").append(html);
+		}
+	});
+</script>
+</html>

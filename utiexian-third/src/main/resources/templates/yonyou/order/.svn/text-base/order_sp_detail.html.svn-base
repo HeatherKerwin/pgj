@@ -1,0 +1,1353 @@
+[#import "/common/main.html" as main]
+[#include "/common/setting.html"]
+[@main.body title='云票据-银票订单中心']
+<link rel="stylesheet" type="text/css" href="${basePath}/css/yonyou/mask.css">
+<link rel="stylesheet" type="text/css" href="${basePath}/css/yonyou/orderList.css">
+<link rel="stylesheet" type="text/css" href="${basePath}/css/yonyou/orderDetail.css">
+<link rel="stylesheet" type="text/css" href="${basePath}/css/template.css">
+<link rel="stylesheet" type="text/css" href="${basePath}/js/ajaxPager/page.css">
+<link rel="stylesheet" type="text/css" href="${basePath}/css/validationEngine.jquery.css">
+
+<script type="text/javascript" src="${basePath}/js/yonyou/tab.js"></script>
+<script type="text/javascript" src="${basePath}/js/yonyou/data/laydate.js"></script>
+<script type="text/javascript" src="${basePath}/js/enum.js"></script>
+<script type="text/javascript" src="${basePath}/js/handlebars.js"></script>
+<script type="text/javascript" src="${basePath}/js/ajaxPager/jquery-ajax-pager.js"></script>
+<script type="text/javascript" src="${basePath}/js/ajaxPager/js-extend.js"></script>
+<script type="text/javascript" src="${basePath}/js/map.js"></script>
+<script type="text/javascript" src="${basePath}/js/jquery.validationEngine-zh_CN.js"></script>
+<script type="text/javascript" src="${basePath}/js/jquery.validationEngine.js"></script>
+
+<!-- 头部 -->
+[@main.header currentmenu='6'/]
+<!-- 头部end -->
+
+<div class="wrap">
+    <!--银票、商票tab-->
+    [@main.left remark='2'/]
+
+    <!--订单列表-->
+    <div class="rightCon">
+        <div class="detailWarp">
+            <!--订单详情页：容器-->
+            <div class="detailContainer">
+                <!--头部信息-->
+                <div class="detailHead">
+                    <div class="detailTitle">
+                        <h2 class="ce84c3d titlePrompt"></h2>
+                        <div class="detailLocation place" style="display: none"><img src="${basePath}/images/yonyou/common/position.png" alt="定位"><span id="place"></span></div>
+                    </div>
+                </div>
+
+                <!--内容-->
+                <div class="detailContent">
+
+                    <!--基本信息-->
+                    <!--商票-->
+                    <div class="detailBasic">
+                        <!--票据市场：回头票标志-->
+                        <div class="ticketReturn" style="display: none"><img src="${basePath}/images/yonyou/common/returnTicket.png" alt="回头票"></div>
+                        <!--票据各属性名-->
+                        <ul class="showTitle">
+					        <li class="w210">商票订单号</li>
+					        <li class="w100">票面金额</li>
+					        <li class="w70">背书</li>
+					        <li class="w200">承兑企业</li>
+					        <li class="w70">保证金</li>
+					        <li class="w308">票据特征</li>
+					    </ul>
+                        <!--票据各属性值-->
+                        <div class="showMain">
+                            <div class="showLeft RrightLine">
+                                <ul class="showLeftTop RrightLine">
+                                    <li class="w210 RrightLine"><span class="ordernumber"></span><a class="download contractBtn" title="下载合同"></a></li>
+                                    <li class="w100 RrightLine ce84c3d"><span class="allmoney"></span>万元</li>
+                                    <li class="w70 RrightLine endorse"></li>
+                                    <li class="w200 RrightLine bank"></li>
+                                    <li class="w70"><span class="deposit"></span>元</li>
+                                </ul>
+                                <div class="showLeftBottom">
+                                    <!--相关日期值-->
+                                    <div class="showDate RrightLine">
+                                        <div>开票日期：<span class="printtime"></span></div>
+                                        <div>到期日期：<span class="endtime"></span></div>
+                                        <div>计息天数：<span class="jxts"></span></div>
+                                    </div>
+                                    <div class="showNote">
+                                        <p>备注：<span class="memberother"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--票据特征-->
+                            <ul class="showRight">
+                                <li id="type1"></li>
+                                <li id="accept_time_dian"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--基本信息end-->
+
+                    <!--票据处理效率评分-->
+                    <div class="ScoreDiv selectOrg" style="display: none">
+                        <div class="">
+                            <div class="scoreLabel" style="width: 180px">
+                                <p>票款金额</p>
+                                <p><span class="txje"></span>万元</p>
+                            </div>
+                            <div class="scoreLabel">
+                                <p>每十万贴息</p>
+                                <p><span class="txlx"></span>元</p>
+                            </div>
+                            <div class="scoreLabel" style="display: none">
+                                <p>上门费用</p>
+                                <p><span class="todoor_price"></span>元</p>
+                            </div>
+                            <div class="scoreLabel">
+                                <p>订单成交率</p>
+                                <p><span class="singleRate"></span>%</p>
+                            </div>
+                            <div class="scoreLabel">
+                                <p>打款速度</p>
+                                <p><span class="advanceTime">10</span></p>
+                            </div>
+                            <div class="scoreLabel" style="width: 120px">
+                                <p>历史报价持续性</p>
+                                <p><span class="priceDurative"></span>%</p>
+                            </div>
+                            <div class="scoreLabel entScore">
+                                <p>机构评分</p>
+                                <ul>
+                                    <li>价格真实：<span class="price"></span></li>
+                                    <li>服务态度：<span class="service"></span></li>
+                                    <li>确认效率：<span class="speed"></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--票据处理效率评分end-->
+                    
+                    <!--资方信息-->
+                    <div class="orgInformation selectOrg" style="display: none">
+                        <div class="orgRow">
+                            <div class="orgCol">账户名：<span id="bankAcctAcctName"></span></div>
+                            <div class="orgCol">背书接收账户：<span id="bankAcctAcctNo"></span></div>
+                            <div class="orgCol">支行行号：<span id="bankAcctCnapsCode"></span></div>
+                        </div>
+                        <div class="orgRow">
+                            <div class="orgCol">联系人：<span id="name"></span></div>
+                            <div class="orgCol">联系方式：<span id="phone"></span></div>
+                            <div class="orgCol">报价资方名称：<span id="company"></span></div>
+                        </div>
+                    </div>
+                    <!--资方信息end-->
+
+                    <!--票面信息-->
+                    <div class="ticketPar picpath" style="display:none">
+                        <!--模块标题-->
+                        <div class="modulTitle">票面</div>
+                        <!--票面-->
+                        <div class="ticketParCon">
+                            <div class="ticketParTitle">票面</div>
+                            <!--票面图片-->
+                            <ul class="ticketParImg">
+                                <li><a href="" target="_blank" class="showPic" title="点击查看大图"><img src="" alt="" class="showPic"></a></li>
+                            </ul>
+                            <!--票面注释-->
+                            <div class="ticketParNotes"></div>
+                        </div>
+                    </div>
+                    <!--票面信息end-->
+                    
+                    <!--选择机构-->
+                    <div class="modulTitle noSelectOrg" style="display: none">选择机构</div>
+                    <div class="noSelectOrg" style="display: none" id="content"></div>
+                    <!--选择机构end-->
+
+                </div>
+                <!--底部操作栏-->
+                <div class="detailFooter">
+                    <!--左侧-->
+                    <div class="footerLeft">
+                        <!--订单倒计时-->
+                        <div class="countDown">
+                            <img src="${basePath}/images/yonyou/common/timer.png">
+                            <span class="minute_show ordertime"></span>
+                        </div>
+                        <!--订单状态-->
+                        <div class="orderType titlePrompt" id="prompt"></div>
+                    </div>
+                    <!--右侧-->
+                    <div class="footerRight">
+                        <a href="javascript:void(0);" class="lineBtn" style="display: none" id="endorse">确认背书</a>
+                        <a href="javascript:void(0);" class="lineBtn" style="display: none" id="gathering">确认收款</a>
+                        <a href="javascript:void(0);" class="lineBtn" style="display: none" id="evaluateBtn">去评价</a>
+                        <a href="javascript:void(0);" class="lineBtn" style="display: none" id="cancel">取消订单</a>
+                        <a href="javascript:void(0);" class="lineBtn" style="display: none" id="pay">去支付</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--弹窗-->
+<div class="maskWindow" id="maskWindow" style="display: none">
+    <div class="maskBg"></div>
+    <div class="maskWrap maskWrapSmall">
+        <!--top-->
+        <div class="maskTop">
+            <!--弹窗名称-->
+            <div id="title" class="maskTitle">开户合同</div>
+            <!--关闭按钮-->
+            <a class="maskClose">
+                <img src="${basePath}/images/yonyou/common/closeIcon.png" alt="关闭">
+            </a>
+        </div>
+        <!--top end-->
+
+        <!--内容容器-->
+        <div class="maskCon">
+
+            <!--选择机构-->
+            <div class="maskDiv" id="selectionWindow" style="display: none">
+                <div class="flex-row pl105 mt40">
+                    公司名称：<span id="confirm_company"></span>
+                    <input type="hidden" id="selectDistId" value=""/>
+                </div>
+                <div class="flex-row pl105">
+                    票款金额：<span class="cd43c33" id="confirm_txje"></span>
+                </div>
+                <div class="flex-row pl105">
+                    您是否选择该机构？
+                </div>
+
+            </div>
+            <!--选择机构end-->
+
+            <!-- 下载交易合同 -->
+            <div class="maskDiv" id="sendEmailWindow" style="display: none">
+                <ul class="maskForm">
+                    <li>
+                        <label for="email">发送合同至您的邮箱</label>
+                        <input type="email" id="email" class="validate[required,custom[email]]" maxlength="30" placeholder="请输入经办人邮箱号" style="width: 300px">
+                    </li>
+                </ul>
+            </div>
+            <!-- 下载交易合同end -->
+            
+            <!--去支付-->
+            <div class="maskDiv" id="payWindow" style="display: none">
+                <p class="maskMessage">请您在新打开的支付页面上进行支付。</p>
+                <p class="maskMessage">支付完成前，请不要关闭该窗口。</p>
+            </div>
+            <!--去支付 end-->
+
+            <!--取消订单-->
+            <div class="maskDiv" id="cancelWindow" style="display: none">
+                <ul class="maskForm">
+                    <li>
+                        <label>请选择取消理由：</label>
+                        <select id="reason">
+                            <option value="0">票面信息输入有误</option>
+                            <option value="1">只为熟悉流程和询问价格</option>
+                            <option value="2">价格不合适</option>
+                            <option value="3">已提前出票</option>
+                            <option value="4">其它</option>
+                        </select>
+                    </li>
+                    <li style="display: none">
+                        <textarea id="reasonOther" maxlength="100" placeholder="最多100字的理由。" class="validate[required]"></textarea>
+                    </li>
+                </ul>
+            </div>
+            <!--取消订单end-->
+
+            <!--评价-->
+            <div class="maskDiv" id="evaluateWindow" style="display: none">
+                <!--票据信息-->
+                <ul class="evaluateTop">
+                    <li>
+                        <div id="comment_company">这是一家公司</div>
+                        <div id="comment_type">银票</div>
+                    </li>
+                    <li>
+                        <div id="comment_name">名字</div>
+                        <div id="comment_phone">12345678910</div>
+                    </li>
+                </ul>
+                <p>发表评价：</p>
+                <textarea id="contents" maxlength="200" placeholder="最多200个字符"></textarea>
+                <ul class="evaluateItem">
+                    <li>
+                        <div class="evaluateLabel">价格真实：</div>
+                        <div class="evaluateChose">
+                            <label for="price1" class="evaluateRadio star2">
+                                <input type="radio" name="price" id="price1" value="1">
+                            </label>
+                            <label for="price2" class="evaluateRadio star2">
+                                <input type="radio" name="price" id="price2" value="2">
+                            </label>
+                            <label for="price3" class="evaluateRadio star2">
+                                <input type="radio" name="price" id="price3" value="3">
+                            </label>
+                            <label for="price4" class="evaluateRadio star2">
+                                <input type="radio" name="price" id="price4" value="4">
+                            </label>
+                            <label for="price5" class="evaluateRadio star2">
+                                <input type="radio" name="price" id="price5" value="5">
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="evaluateLabel">服务态度：</div>
+                        <div class="evaluateChose">
+                            <label for="service1" class="evaluateRadio star2">
+                                <input type="radio" name="service" id="service1" value="1">
+                            </label>
+                            <label for="service2" class="evaluateRadio star2">
+                                <input type="radio" name="service" id="service2" value="2">
+                            </label>
+                            <label for="service3" class="evaluateRadio star2">
+                                <input type="radio" name="service" id="service3" value="3">
+                            </label>
+                            <label for="service4" class="evaluateRadio star2">
+                                <input type="radio" name="service" id="service4" value="4">
+                            </label>
+                            <label for="service5" class="evaluateRadio star2 w25 h24">
+                                <input type="radio" name="service" id="service5" value="5">
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="evaluateLabel">确认效率：</div>
+                        <div class="evaluateChose">
+                            <label for="efficiency1" class="evaluateRadio star2">
+                                <input type="radio" name="efficiency" id="efficiency1" value="1">
+                            </label>
+                            <label for="efficiency2" class="evaluateRadio star2">
+                                <input type="radio" name="efficiency" id="efficiency2" value="2">
+                            </label>
+                            <label for="efficiency3" class="evaluateRadio star2">
+                                <input type="radio" name="efficiency" id="efficiency3" value="3">
+                            </label>
+                            <label for="efficiency4" class="evaluateRadio star2">
+                                <input type="radio" name="efficiency" id="efficiency4" value="4">
+                            </label>
+                            <label for="efficiency5" class="evaluateRadio star2 w25 h24">
+                                <input type="radio" name="efficiency" id="efficiency5" value="5">
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--评价end-->
+
+			<!--签署交易合同-->
+            <div class="maskDiv" id="contractWindow" style="display: none;height: 400px;overflow-y: scroll;">
+					<div class="contractWindow">
+                    	<h2>票据应收款转让服务合同</h2>
+                    <p>
+                        甲方（出票方）：<span id="bnsName"></span><br>
+                        法定代表人或负责人：<span id="bnsBizLicenceLegalName"></span><br>
+                        住所地：<span id="bnsBizLicenceAddr"></span><br>
+                    </p>
+
+                    <p>
+                        乙方（收票方）：<span id="orgName"></span><br>
+                        法定代表人或负责人：<span id="orgBizLicenceLegalName"></span><br>
+                        住所地：<span id="orgBizLicenceAddr"></span><br>
+                    </p>
+
+                    <p>
+                        交易订单号：<span id="no"></span><br>
+                        票号：<span id="draftNo"></span><br>
+                        鉴于：<br>
+                        1、甲乙双方均为上海票管家金融服务有限公司（“票管家”）平台用户（“平台用户”），票管家是一家依托互联网金融创新技术，为广大票据供需双方提供专业、安全、便捷的信息服务和撮合交易的企业。甲乙双方均签署并同意票管家用户协议在内的全部平台交易规则。<br>
+                        2、兴业数字金融服务（上海）股份有限公司（“兴业数金”）为兴业银行集团面向中小银行、非银行金融机构、中小企业提供金融信息云服务的最主要平台，为兴业银行集团开展互联网金融科技创新的最主要平台。<br>
+                        3、为方便平台用户通过票管家平台线上服务系统办理票据应收款转让业务，票管家与兴业数金建立了合作关系。兴业数金将自主研发的“执剑人系统”与票管家平台交易系统端口对接，为在票管家平台依法合规开展票据流转业务的平台用户提供票据流转见证（包括票据基本信息、票据交易信息流转记录、交易明细）、票据流转资金代管、传递汇划指令等服务（“服务”）。<br>
+                        4、甲乙双方作为平台用户，同意兴业数金通过票管家平台向甲乙双方提供服务，并由兴业数金在兴业银行开立票据流转资金代管专户。甲乙双方自行对其提供给票管家平台/兴业数金的有关信息的真实性、充分性、可靠性、准确性、完整性和有效性负责。<br>
+                        为明确协议双方权利义务，甲乙双方根据《中华人民共和国合同法》《中华人民共和国票据法》及相关法律法规规定，秉承平等自愿、协作共赢的原则，经友好协商，达成如下协议内容：
+                    </p>
+
+                    <h3>第一条 释义</h3>
+                    <p>
+                        除非本合同上下文另有解释或文义另有所指，下列词语或简称具有如下含义：<br>
+                        一、甲方（出票方）：拟于票管家平台转让票据应收款的一方，甲方应为平台用户。<br>
+                        二、乙方（收票方）：拟于票管家平台受让票据应收款的一方，乙方应为平台用户。<br>
+                        三、票管家平台：票管家开发的，为票据交易双方提供交易撮合服务的互联网网站及交易系统。<br>
+                        四：代管专户：兴业数金为方便甲乙双方资金流转和安全而以其自身名义在兴业银行开立的票据流转资金代管专户。<br>
+                        五：票据应收款：票据承兑人承担的在票据到期日无条件支付的票据全部款项，包括但不限于票据付款人的付款、被追索人支付的金额和费用、出票人或承兑人返还的其余未支付票据金额相当的款项或利益、根据司法机关裁决或有权机关规定获得的任何形式的货币或者实物等。<br>
+                        六、票据应收款转让：甲乙双方通过票管家平台达成协议，甲方通过票据背书转让方式将票据应收款无条件不可撤销地转让给乙方的行为。<br>
+                        七、实扣金额：乙方实际应支付的款项，即票管家平台于乙方支付款项时从乙方账户里扣划至代管专户的款项，实扣金额=成交金额+转让服务费。<br>
+                        八、成交金额：甲乙双方就票据应收款转让业务达成的成交金额。<br>
+                        九、实收金额：票据应收款转让成功时自代管专户实际划入甲方收款账户的金额，实收金额=成交金额-提现费用。<br>
+                        十、转让服务费：兴业数金及/或兴业数金合作机构基于为甲乙双方提供票据应收款转让相关服务而向乙方单方收取的服务费。转让服务费包括服务费用、电子合同服务费及其他增值或综合费用（如有）。<br>
+                        十一、提现费用：兴业数金及/或兴业数金合作机构基于为甲乙双方提供票据应收款转让相关服务而向甲方单方收取的银行划转交易手续费。<br>
+                        十二、执剑人票据见证代管系统：由兴业数金研发，融合融资、见证、代管、支付四大功能为一体，为银行及金融机构、票据撮合平台及经纪、B2B电商平台、小微企业提供互联网票据业务综合服务的票据交易款安全代管系统。
+                    </p>
+
+                    <h3>第二条 票据应收款的转让</h3>
+                    <p>
+                        甲方作为出票方，同意根据本合同约定的条款及条件通过票据背书转让方式向乙方转让相应的票据应收款，乙方作为收票方，同意根据本合同约定的条款及条件受让甲方合法持有的票据应收款并向甲方支付本合同约定的金额。
+                    </p>
+
+                    <h3>第三条 乙方转让款支付前提 </h3>
+                    <p>
+                        如下条件全部获得满足的前提下，乙方有义务向甲方支付受让票据应收款的转让价款：<br>
+                        1、本合同已经签署并生效；<br>
+                        2、甲方转让的票据不存在任何争议、纠纷；<br>
+                        3、甲方已经将票据背书给乙方。
+                    </p>
+
+                    <h3>第四条 服务</h3>
+                    <p>
+                        一、兴业数金及兴业数金合作机构根据票据应收款转让订单为甲乙双方提供服务。甲乙双方无条件不可撤销地同意，当甲乙双方对票据应收款项下的票据信息确认一致时，即视为甲乙双方针对票据应收款转让的相关信息达成一致：<br>
+                        1、甲方将拟转让的票据应收款项下的票据信息于票管家平台发布后，乙方对其进行报价，甲方同意实收金额及承担提现费用并确认交易后，订单生效，进入实际交易阶段。<br>
+                        2、乙方在有效时间内（乙方报价之时起30分钟内）成功提交有效代管资金支付指令和出金指令将实扣资金转入代管专户后，兴业数金将向甲方及票管家平台发出乙方实扣资金转入代管专户有效指令。<br>
+                        3、票管家平台收到兴业数金指令后，将对该笔转让订单显示“买方已付款，等待卖方确认背书”状态。<br>
+                        4、票据应收款在票管家平台上显示“买方已付款，等待卖方确认背书”状态后，甲方应当根据兴业数金执剑人票据见证代管系统及票管家平台的提示在有效时间（30分钟）内办理票据的背书手续。<br>
+                        5、甲方在有效时间（30分钟）内办理完毕票据背书的，乙方应在有效时间（30分钟）内点击确认完成签收操作。若乙方在有效时间（30分钟）内点击确认完成签收操作后，票管家平台对该笔转让订单自动显示为“买方确认签收”，则甲方可通过兴业数金执剑人票据见证代管系统发出指令将代管专户内数额等于实收金额的资金划入甲方指定入金关联账户。若乙方未在有效时间内点击确认完成签收操作，则视为乙方拒绝签收。<br>
+                        6、甲方未在有效时间（30分钟）内办理完毕票据背书手续的，乙方有权与票管家平台工作人员进行电话沟通：如沟通后乙方拒绝继续交易的，或票管家平台工作人员根据乙方指示与甲方沟通后，甲方明确拒绝确认本次票据背书的，则票管家平台有权在系统中取消订单；如经沟通后甲乙双方均同意继续本次交易的，则票管家平台有权在系统中修改订单状态，继续订单交易，甲方应当在额外有效时间（【30】分钟）内办理票据的背书手续，乙方应在额外有效时间（【30】分钟）内点击确认完成签收操作。<br>
+                        7、如代管专户内数额等于实收金额的资金划入甲方指定入金关联账户且甲乙双方用户均无违约行为的，票管家平台将在交易完成后【5】个工作日内将甲乙双方根据票管家用户协议等约定支付的履约保证金按原支付渠道无息退回甲乙双方账户。<br>
+                        如乙方未于有效时间内成功提交有效付款指令将资金转入代管专户，或乙方银行账户内资金不足实扣金额的，或乙方主动取消交易，或在有效时间内拒绝签收票据的，则票据应收款转让失败，票管家平台有权取消订单并将乙方根据票管家用户协议等约定支付的履约保证金直接划付至甲方账户。若乙方将资金转入代管专户，甲方未能根据前款约定在有效时间内完成票据背书，或甲方在票据背书后撤销背书、或甲方主动取消交易、或甲方在有效时间经过后同意背书而乙方拒绝与甲方继续交易的，则票据应收款转让失败，票管家平台有权取消订单并将甲方根据票管家用户协议等约定支付的履约保证金直接划付至乙方账户。<br>
+                        8、转让失败的，票管家平台取消订单，同时兴业数金代管专户内数额等于乙方实扣金额的资金退回乙方执剑人票据见证代管系统的电子帐户内，甲乙双方将无法对该笔票据应收款转让项下的订单进行任何操作。<br>
+                        二、票管家平台正常发起转让的时间段为银行工作日的9：00-16：30，在16：30后需要进行票据应收款转让见证审核的订单，将在次日进行。<br>
+                        三、为避免疑问，甲乙双方同意向兴业数金申请指定唯一的同名银行结算账户作为其出入金关联账户，甲乙双方在执剑人系统向代管专户开户银行提出的出入金指令必须是转入此关联账户或转出至此关联账户；甲乙任何一方如需增加或者变更出入金关联账户的，应向兴业数金提出书面申请并抄送票管家，兴业数金依据国家法律法规和政策规定审核确认后才能根据申请办理增加或变更手续。
+                    </p>
+
+                    <h3>第五条 款项支付</h3>
+                    <p>
+                        一、本合同第三条之“票据应收款的转让款支付的前提条件”全部满足之后，乙方无条件不可撤销的同意兴业数金将乙方已转入代管专户中代管数额等于实收金额的资金通过代管专户转入甲方指定入金关联账户，并由票管家代为提取该笔业务的转让服务费，后续票管家将依据与兴业数金签署的合作协议将相应转让服务费划付至相关账户。<br>
+                        甲方无条件不可撤销的同意兴业数金将乙方已转入代管专户中代管数额等于提现费用的资金通过代管专户划入兴业数金合作机构指定账户，并将代管数额等于实收金额的资金通过代管专户转入甲方指定入金关联账户。<br>
+                        如因系统关闭或故障等特殊原因导致兴业数金无法在当日完成划款的，则兴业数金可于下一个工作日完成划款。<br>
+                        二、双方均确认及同意，甲方成交金额=乙方实扣金额-转让服务费
+                    </p>
+
+                <h3>    第六条 转让服务费及提现费用</h3>
+                    <p>
+                        一、甲乙双方无条件不可撤销地同意，委托兴业数金通过其自主研发的执剑人票据见证代管系统平台为甲乙双方提供服务；甲乙双方知悉并同意，票管家及/或兴业数金可自行也可与兴业数金的合作机构联合提供金融科技及信息等方面的综合服务，同意转让服务费由乙方支付，票管家代为收取，后续票管家将依据与兴业数金签署的合作协议将相应转让服务费划付至相关账户；同意提现费用由甲方支付。<br>
+                        二、双方确认，转让服务费包括了兴业数金及/或兴业数金合作机构基于服务收取的相关费用。<br>
+                        三、转让服务费=服务费用+电子合同服务费+其他增值或综合费用，乙方同意根据本合同的约定支付转让服务费。同时，甲方同意根据本合同的约定支付提现费用。其中，<br>
+                        1、服务费用及提现费用根据交易金额按如下约定收取：<br>
+                        <img src="${basePath}/images/yonyou/authentication/cost.png">
+                        2、乙方同意，协议双方使用兴业数金提供的电子合同线上签署服务的，电子合同服务费按照  伍  元/份的标准向乙方收取，电子合同服务包括电子合同线上签署服务、区块链存证服务。<br>
+                        3、业务合作过程中，兴业数金基于兴业银行集团优势及自身研发能力，为甲乙双方提供其他增值和综合服务的，该增值和综合服务相关费用具体收费标准和收费方式，由兴业数金和票管家另行通知，并向乙方收取。<br>
+                        四、乙方确认，乙方同时向代管专户划转成交金额及转让服务费。
+                    </p>
+
+                    <h3>第七条 甲方的承诺与保证</h3>
+                    <p>
+                        一、甲方是一家根据中国法律设立的企业机构，自设立至今始终有效存续，且目前经营状况正常，具备签署和履行本合同项下全部权利和义务的民事权利能力和民事行为能力。<br>
+                        二、甲方签署并履行本合同项下的义务（包括但不限于向乙方转让票据应收款）已经得到了甲方内部充分的授权，所需的外部审批及同意（如有）亦已全部取得。<br>
+                        三、签署本合同是甲方的真实意思表示，签署和履行本合同不会导致违反适用于甲方的任何法律法规、规范性文件或甲方章程或类似文件，也不会违反其与任何第三方签订的任何协议或承诺；本合同生效后，将构成对甲方有法律约束力及执行力的义务约定。
+                        四、甲方不存在任何可能对本合同履行产生重大不利影响的诉讼、仲裁、执行、申诉、复议、重组、破产、清算等程序及其他事件或情况。<br>
+                        五、票据应收款项下的票据为合法、真实、有效且不存在票据诈骗等违法犯罪情形，不属于风险票据、已挂失票据或公示催告票据，票据记载事项完整，甲方为该票据的合法持有人并享有完整的票据应收款。<br>
+                        六、票据为甲方背书受让的，甲方保证其直接前手的背书是真实有效的并对其真实性负责；票据为甲方以其他合法方式取得的，甲方保证其受让是合法有效的并对合法性负责。<br>
+                        七、甲乙双方之间除根据本合同转让票据应收款产生的权利及义务外，票据及票据应收款均不存在本合同未作披露的任何债务负担或者第三方的权利主张、抵消权、质押或其他负担，甲方享有的票据应收款及票据相关权益不存在本合同未作披露的法律上的障碍，且转让后票据应收款及其项下的票据上不存在本合同未作披露的任何债务负担或第三方的权利主张或抵消权。<br>
+                        八、本合同生效后，甲方无权也不得再做对票据应收款及其项下的票据进行除向乙方之外的任何第三方转让的行为或事项。<br>
+                        九、甲方向兴业数金及票管家平台提交的票据应收款信息、票据背书、账户信息等真实合法有效，甲方自行承担因其提供信息或者材料错误造成的一切损失和责任。<br>
+                        十、甲方已经授权票管家平台的合作机构通过电子商业汇票系统查询应收款项下票据的票面信息、背书记录、影像等相关信息，并无条件不可撤销同意委托兴业数金代管票据应收款转让项下的款项。<br>
+                        十一、票据应收款转让过程中，甲方所有操作必须依照兴业数金及票管家平台的提示进行并保障甲方联系方式的畅通，甲方自行承担因甲方操作失误造成的一切损失。<br>
+                        十二、甲方承诺放弃票据流转资金代管专户内的资金利息的任何权利。<br>
+                        十三、甲方承诺在票据交易流转中严格遵守《票据法》、《支付结算办法》等有关票据交易流转的全部法律法规及有关规定。
+                    </p>
+
+                    <h3>第八条 乙方的承诺与保证</h3>
+                    <p>
+                        一、乙方是一家根据中国法律设立的企业机构，自设立至今始终有效存续，且目前经营状况正常，具备签署和履行本合同项下全部权利和义务的民事权利能力和民事行为能力。<br>
+                        二、乙方签署并履行本合同项下的义务已经得到了乙方内部充分的授权，所需的外部审批及同意（如有）亦已全部取得。<br>
+                        三、签署本合同是乙方的真实意思表示，签署和履行本合同不会导致违反适用于乙方的任何法律法规、规范性文件或乙方章程或类似文件，也不会违反其与任何第三方签订的任何协议或承诺；本合同生效后，将构成对乙方有法律约束力及执行力的义务约定。<br>
+                        四、乙方不存在任何可能对本合同履行产生重大不利影响的诉讼、仲裁、执行、申诉、复议、重组、破产、清算等程序及其他事件或情况。<br>
+                        五、乙方在票管家平台提交的票据应收款项下票据被背书账户、乙方名称等信息和材料真实合法有效，乙方承担因乙方提供的信息或材料错误造成的一切损失和责任。<br>
+                        六、乙方已经授权票管家平台的合作机构通过电子商业汇票系统查询应收款项下票据的票面信息、背书记录、影像等相关信息，并无条件不可撤销同意委托兴业数金代管票据应收款转让项下的款项。<br>
+                        七、票据应收款转让过程中，乙方所有操作必须依照兴业数金及票管家的提示进行并保障乙方联系方式的畅通，乙方自行承担因甲方操作失误造成的一切损失。<br>
+                        八、乙方承诺放弃票据流转资金代管专户内的资金利息的任何权利。<br>
+                        九、乙方承诺在票据交易流转中严格遵守《票据法》、《支付结算办法》等有关票据交易流转的全部法律法规及有关规定。
+                    </p>
+
+                    <h3>第九条 甲乙双方的特别承诺</h3>
+                    <p>
+                        一、甲乙双方明确知悉票据可能存在多手背书、回头背书等背书情况，甲方背书之前的前手背书中可能存在无真实贸易背景和债务关系的背书情况，也可能存在前手已经背书至后手，但后手没有支付对价或者没有全部适当履行完成票据项下民事权利义务等方面的情况，从而影响甲方或乙方票据相关权利行使的情形，甲乙双方知悉由此产生的全部经济和法律后果并承诺，由此产生的全部经济和法律后果均由甲乙双方自行承担，与兴业数金、票管家平台及兴业数金、票管家平台的合作机构均无任何关系。
+                        二、甲乙双方确认，票管家平台仅为本协议双方提供信息服务和撮合交易的服务，票管家平台未向协议任何一方收取任何服务费用，亦不就协议任何一方因本票据应收款转让业务遭受的任何损失承担责任。
+                        三、如因兴业数金系统维护或升级的需要而需暂停网络服务、服务功能调整的，票管家将尽可能在网站上进行通告。票管家未进行通告，或者由于用户未能及时浏览通告信息而造成的损失，甲乙双方确认，票管家金融不承担任何责任。
+                        四、甲乙双方同意并授权委托兴业数金对票据流转全部信息进行查询见证留存，对票据流转资金进行代管，知悉并同意兴业银行对票据流转相关资金进行划付；同时，知悉理解并同意兴业数金有权利用互联网+科技手段开展委托项下各类服务。
+                        五、甲乙双方确认，本合同项下转让服务费、提现费用可能因国家法律法规、政策规定、兴业数金以及兴业数金合作机构等调整相关费用而产生变化，甲乙双方签署本合同即代表均已认可并接受该等转让服务费、提现费用的变更，并自愿承担相应的支付义务。
+                    </p>
+
+                    <h3>第十条 违约责任</h3>
+                    <p>
+                        一、甲乙双方为完成票据应收款转让业务，已经根据用户协议等相关平台交易规则规定支付了履约担保金，如任何一方在票据应收款转让业务中出现了本合同第四条第7款之违约行为或违反了本合同约定的其他义务的，该等履约保证金根据票管家用户协议的约定由票管家平台直接划付至守约方账户，用于对守约方的赔偿；如该等履约保证金不足以支付守约方的全部直接损失的，违约方还有义务对不足部分予以赔偿。<br>
+                        若因任何一方违约行为造成合同主体以外的其他方损失，非违约方对合同主体以外其他方损失不承担任何责任。<br>
+                        二、如因甲乙双方的如下情形导致兴业数金任何损失的，由违约方自行向兴业数金承担违约及赔偿责任，与票管家无涉：<br>
+                        1、甲乙双方提供的信息和资料的真实性、完整性、有效性、合法性存在瑕疵；<br>
+                        2、甲乙双方与票据流转相关交易的合法性、合规性、有效性存在瑕疵；<br>
+                        3、乙方资金来源的合法性存在瑕疵；<br>
+                        4、乙方发出的划款指令超出资金代管专户限额；<br>
+                        5、票据流转交易项下票据非因兴业数金原因被采取冻结等限制措施影响甲乙任何一方票据权利行使或实现的；<br>
+                        6、其他因甲乙任何一方原因导致任何损失或责任的情形。<br>
+                        三、如因甲乙双方任何违约行为导致票管家平台任何损失的，违约方根据本合同及甲乙双方签署的票管家用户协议在内的全部平台交易规则就票管家平台全部损失承担赔偿责任。<br>
+                        四、甲乙双方确认，如因任何一方履行本合同产生侵权责任的，侵权方是该等责任的最终承担者。如被侵权方向票管家平台或兴业数金主张任何侵权赔偿责任的，实际侵权方应承担该等侵权赔偿责任，并确保票管家平台或兴业数金不因其侵权行为遭受任何损失或承担任何责任。<br>
+                        五、甲乙双方确认，任何一方违反本合同约定的，票管家平台或兴业数金均有权将其违约信息上报中国人民银行征信中心或者失信公示机构。
+                    </p>
+
+                    <h3>第十一条 争议解决</h3>
+                    <p>
+                        一、本合同适用中华人民共和国法律（不含香港、澳门及台湾地区的法律），并依据其解释。<br>
+                        二、在合同履行过程中发生的争议，双方应以友好信任的精神协商解决；若争议发生三十（30）个工作日内仍未能通过协商解决时，应提交上海仲裁委员会，根据该会当时有效的仲裁规则进行仲裁，仲裁地点为上海，仲裁裁决是终局性的并对双方当事人具有约束力，仲裁费由败诉方承担。
+                    </p>
+
+                    <h3>第十二条 合同生效</h3>
+                    <p>
+                        双方同意本合同满足以下任何一种形式即为生效：<br>
+                        一、本合同自甲乙双方根据电子签名相关法律法规线上签署之日生效。<br>
+                        二、本合同自甲乙双方通过票管家平台阅读并点击同意接受（包括勾选、点击确认等任一种方式）本合同后生效。
+                    </p>
+
+                    <h3>第十三条 其他事宜</h3>
+                    <p>
+                        本合同未尽事宜，由双方协商并签订补充合同确定，补充合同与本合同具有同等法律效力。<br>
+                        甲乙双方均已通读本合同全部条款，甲方、乙方对各自在本合同项下的权利义务已经充分熟悉并理解，甲乙双方对本合同所有内容均无异议。
+                    </p>
+                    <p class="footer">
+                        <br><br><br><br>
+                        甲方：       （公司公章）	乙方：       （公司公章）
+                        <br><br><br><br><br><br>
+                        年     月     日
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <!--内容容器end-->
+
+        <!--弹窗底部操作-->
+        <div class="maskFooter" id="maskFooter" style="display: none">
+            <!--选择机构-->
+            <div class="selectionFooter" id="selectionFooter" style="display: none">
+                <a href="javascript:void(0);" onclick="selectUpdate();" class="flatBtn openAccountBtn">确定</a>
+                <a href="javascript:void(0);" class="flatBtn closeBtn">取消</a>
+            </div>
+            <!--选择机构end-->
+
+            <!--下载交易合同-->
+            <div id="sendEmailFooter" style="display: none">
+                <a href="javascript:void(0);" id="sendEmail" onclick="sendEmail();" class="flatBtn openAccountBtn">发送</a>
+            </div>
+            <!--下载交易合同end-->
+            
+            <!--去支付-->
+            <div id="payFooter" style="display: none">
+                <a href="javascript:void(0);" id="paySuccess" class="flatBtn">支付完成</a>
+            </div>
+            <!--去支付end-->
+
+            <!--取消订单-->
+            <div id="cancelFooter" style="display: none">
+                <a href="javascript:void(0);" id="confirm_reason" class="flatBtn">确定取消订单</a>
+            </div>
+            <!--取消订单end-->
+
+            <!--评价-->
+            <div id="evaluateFooter" style="display: none">
+                <a href="javascript:void(0);" id="comment" class="flatBtn">发表评价</a>
+            </div>
+            <!--评价end-->
+
+            <!--票据转让合同-->
+            <div id="contractFooter" style="display: none">
+                <a href="javascript:void(0);" onclick="agreeContract()" class="flatBtn">签署同意</a>
+                <a href="javascript:void(0);" class="flatBtn closeBtn">取消</a>
+            </div>
+            <!--票据转让合同end-->
+        </div>
+        <!--弹窗底部操作end-->
+    </div>
+</div>
+<input type="hidden" value="" id="discId">
+<input type="hidden" value="" id="distId">
+<input type="hidden" value="" id="orderflag">
+<input type="hidden" value="" class="type1">
+<input type="hidden" value="" id="cib_id">
+<input type="hidden" id="txlx"/>
+<input type="hidden" id="allmoney"/>
+<script type="text/x-handlebars-template" id="NOSELECTORG">
+{{#each listmap}}
+	<div class="ScoreDiv ScoreDiv1" onclick="selectOrg('{{txje}}','{{txlx}}','{{company}}','{{distId}}');">
+		<div class="">
+			<div class="scoreLabel" style="width: 180px">
+				<p>票款金额</p>
+				<p><span class="txje">{{txje}}</span>万元</p>
+			</div>
+			<div class="scoreLabel">
+				<p>每十万贴息</p>
+				<p><span class="txlx">{{price2}}</span>元</p>
+			</div>
+			<div class="scoreLabel" style="display: none">
+				<p>上门费用</p>
+				<p><span class="todoor_price">{{todoor_price}}</span>元</p>
+			</div>
+			<div class="scoreLabel">
+				<p>订单成交率</p>
+				<p><span class="singleRate">{{singleRate}}</span>%</p>
+			</div>
+			<div class="scoreLabel">
+				<p>打款速度</p>
+				<p><span class="advanceTime">{{advanceTime}}</span></p>
+			</div>
+			<div class="scoreLabel" style="width: 120px">
+				<p>历史报价持续性</p>
+				<p><span class="priceDurative">{{priceDurative}}</span>%</p>
+			</div>
+			<div class="scoreLabel entScore">
+				<p>机构评分</p>
+				<ul>
+					<li>价格真实：<span class="price">{{toPrice price}}</span></li>
+					<li>服务态度：<span class="service"></span>{{toService service}}</li>
+					<li>确认效率：<span class="speed"></span>{{toService speed}}</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+{{/each}}
+</script>
+<script>
+/**
+* 价格真实
+*/
+Handlebars.registerHelper('toPrice', function(price, options) {
+    if(price != null && price != "" && price != "--"){
+    	return (price*1).toFixed(2);
+    }else{
+    	return "--";
+    }
+});
+
+/**
+* 服务态度
+*/
+Handlebars.registerHelper('toService', function(service, options) {
+    if(service != null && service != "" && service != "--"){
+    	return (service*1).toFixed(2);
+    }else{
+    	return "--";
+    }
+});
+
+/**
+* 确认效率
+*/
+Handlebars.registerHelper('toSpeed', function(speed, options) {
+    if(speed != null && speed != "" && speed != "--"){
+    	return (speed*1).toFixed(2);
+    }else{
+    	return "--";
+    }
+});
+
+	var memberId = ${member.id};
+	var id = ${id};
+	var orderflag = ${orderflag};
+	var priceOrgNum = 0;
+	
+	$(function(){
+		if(orderflag != 1){
+			getOrderInfo();
+		}else{
+			exhibitionOrder();
+		}
+	});
+	
+	/**
+	*展示订单,选择机构
+	*/
+	function exhibitionOrder(){
+		$.ajax({
+    		url:'${basePath}/yonyou/discountrecord/details',
+    		type:"POST",
+    		data:{discId:id,order_type:'DISCOUNTRECORDSP'},
+    		dataType:"json",
+    		success:function(data){
+				if(data.response == 'success'){
+					var data = data.data;
+					console.log(data);
+					$("#orderflag").val(data.orderflag);
+					$("#discId").val(data.id);
+					$("#distId").val(data.dist_id);
+					_timer(data.create_time,data.deposit_state,data.orderflag);
+					
+					if(data.orderflag == 0){
+						$(".titlePrompt").html("无效订单");
+					}else if(data.orderflag == 1){
+						$("#cancel").show();
+						if(data.deposit_state == 0){
+							$(".titlePrompt").html("订单待支付");
+							$("#pay").show();
+						}else{
+							$(".titlePrompt").html("派单中");
+							$(".noSelectOrg").show();
+							var source = $("#NOSELECTORG").html();
+	        	            var template = Handlebars.compile(source);
+	        	            var html = template(data);
+	        	            $("#content").html(html);
+						}
+					}
+					
+					if(data.place != null){
+						$(".place").show();
+						$("#place").html(data.place);
+					}
+					if(data.picpath != null && $.trim(data.picpath).length >0){
+						$(".picpath").show();
+						$(".showPic").attr("src","${bootPic}/"+data.picpath);
+					}
+					
+					$("#begintime").html(data.begintime);
+					$(".txje").html(data.txje);
+					$(".todoor_price").html(data.todoor_price);
+					$(".bank").html(data.bank);
+					
+					$(".ordernumber").html(data.ordernumber);
+					$(".allmoney").html(data.allmoney);
+					$("#allmoney").html(data.allmoney);
+					$(".type1").val(data.type1);
+					$(".endorse").html(data.endorse+"手");
+					$(".deposit").html(data.deposit);
+					
+					$(".printtime").html(data.printtime);
+					$(".endtime").html(data.endtime);
+					$(".jxts").html(data.jxts+"天");
+					$(".memberother").html(data.memberother);
+					
+					if(data.type1 == 1){
+						$("#type1").text("纸票");
+						//$("#type2_zhi").html(getBank(data.type2));
+						if(data.need_todoor == 1){
+							$("#need_todoor_zhi").show();
+						}
+						if(data.flaw_ticket == 0){
+							$("#flaw_ticket_zhi").show();
+						}
+					}else if(data.type1 == 2){
+						$("#type1").html("电票");
+						if(data.accept_time == 1){
+							$("#accept_time_dian").html("一年期");
+						}else{
+							$("#accept_time_dian").html("半年期");
+						}
+					}
+					
+					if(data.back_endorse == "T"){
+						$(".ticketReturn").show();
+					}
+				}else{
+					alert(data.msg);
+				}
+    		}
+		});
+	};
+	
+	/**
+	* 获取机构信息
+	*/
+	function getOrderInfo(){
+		$.ajax({
+    		url:'${basePath}/yonyou/order/isselect/details',
+    		type:"POST",
+    		data:{discId:id,order_type:'DISCOUNTRECORDSP'},
+    		dataType:"json",
+    		success:function(data){
+				if(data.response == 'success'){
+					var orgInfo = data.data.listmap[0];
+					var cib = data.data.cib;
+					var cib_cancel = data.data.cib_cancel;
+					var data = data.data;
+					
+					$("#orderflag").val(data.orderflag);
+					$("#discId").val(data.id);
+					$("#distId").val(data.dist_id);
+					$(".type1").val(data.type1);
+		
+					if(cib_cancel != null){
+						$("#cib_id").val(cib_cancel.id);
+						if(cib_cancel.orgTime != null){
+							if(cib_cancel.bnsTime != null){
+								$(".titlePrompt").html("双方同意取消订单，订单处理中！");
+								$("#prompt").html("双方同意取消订单，订单处理中！");
+							}else{
+								$(".titlePrompt").html("资方已经申请取消订单");
+								$("#prompt").html("资方已经申请取消订单，如有异议，请联系客服！");
+								$("#cancel").show();
+							}
+						}else if(cib_cancel.bnsTime != null){
+							$(".titlePrompt").html("票方已经申请取消订单");
+							$("#prompt").html("票方已经申请取消订单，如有异议，请联系客服！");
+						}
+					}else{
+						_timer(data.create_time,data.deposit_state,data.orderflag);
+						if(data.orderflag == 0){
+							$(".titlePrompt").html("无效订单");
+						}else if(data.orderflag == 1){
+							$(".noOrg").addClass("none");
+							$("#begintime").html(data.begintime);
+							$("#priceOrg").removeClass("none");
+							$(".priceOrgNum").removeClass("none");
+							$(".titlePrompt").html("派单中");
+							
+							$("#cancel").removeClass("none");
+						}else if(data.orderflag == 2){
+							$("#endorse").show();
+							$("#cancel").show("none");
+							$(".titlePrompt").html("背书中");
+						}else if(data.orderflag == 3 && (data.c_id == null || $.trim(data.c_id).length == 0)){
+							$("#evaluateBtn").show();
+							$(".titlePrompt").html("待评价");
+						}else if(data.orderflag == 4){
+							$("#cancel").show();
+							$(".titlePrompt").html("等待机构打款");
+						}else if(data.orderflag == 5){
+							$("#gathering").show();
+							$(".titlePrompt").html("等待收款");
+						}else if(data.orderflag == 7){
+							$("#cancel").show();
+							$(".titlePrompt").html("背书中");
+						}else if(data.orderflag == 3 && data.c_id != null){
+							$(".titlePrompt").html("已完成");
+						}
+					}
+					if(data.orderflag != 0){
+						$(".selectOrg").show();
+					}
+					
+					$("#begintime").html(data.begintime);
+					$(".bank").html(data.bank);
+					
+					if(data.back_endorse == "T"){
+						$(".ticketReturn").show();
+					}
+					
+					if(data.picpath != null && $.trim(data.picpath).length >0){
+						$(".showPic").attr("src","${bootPic}/"+data.picpath);
+						$(".picpath").show("none");
+					}
+					
+					if(data.place != null){
+						$(".place").show();
+						$("#place").html(data.place);
+					}
+					
+					$("#begintime").html(data.begintime);
+					$(".txje").html(data.txje);
+					$(".todoor_price").html(data.todoor_price);
+					$(".bank").html(data.bank);
+					
+					$(".ordernumber").html(data.ordernumber);
+					$(".allmoney").html(data.allmoney);
+					$("#allmoney").html(data.allmoney);
+					$(".type1").val(data.type1);
+					$(".endorse").html(data.endorse+"手");
+					$(".deposit").html(data.deposit);
+					
+					$(".printtime").html(data.printtime);
+					$(".endtime").html(data.endtime);
+					$(".jxts").html(data.jxts+"天");
+					$(".memberother").html(data.memberother);
+					
+					if(data.type1 == 1){
+						$("#type1").html("纸票");
+					//	$("#type2_zhi").html(getBank(data.type2));
+						if(data.need_todoor == 1){
+							$("#need_todoor_zhi").show();
+						}
+						if(data.flaw_ticket == 0){
+							$("#flaw_ticket_zhi").show();
+						}
+					}else if(data.type1 == 2){
+						$("#type1").html("电票");
+						//$("#type2_dian").html(getBank(data.type2));
+						if(data.accept_time == 1){
+							$("#accept_time_dian").html("一年期");
+						}else{
+							$("#accept_time_dian").html("半年期");
+						}
+					}
+					
+					if(orgInfo != null){
+						$("#company").html(orgInfo.company);
+						$("#name").html(orgInfo.name);
+						$("#phone").html(orgInfo.mobile);
+						$(".txje").html(orgInfo.txje);
+						$(".txlx").html((orgInfo.txlx*10/data.allmoney).toFixed(2));
+						$(".todoor_price").html(orgInfo.todoor_price);
+						
+						$(".singleRate").html(((orgInfo.singleRate)*100).toFixed(2));
+						$(".advanceTime").html(getTime(orgInfo.advanceTime));
+						$(".priceDurative").html(((orgInfo.priceDurative)*100).toFixed(2));
+						if(orgInfo.price != "--"){
+							$(".price").html(orgInfo.price.toFixed(2));
+						}else{
+							$(".price").html("--");
+						}
+						if(orgInfo.service != "--"){
+							$(".service").html(orgInfo.service.toFixed(2));
+						}else{
+							$(".service").html("--");
+						}
+						if(orgInfo.speed != "--"){
+							$(".speed").html(orgInfo.speed.toFixed(2));
+						}else{
+							$(".speed").html("--");
+						}
+					}else{
+						$(".noOrg").addClass("none");
+					}
+					
+					if(cib != null){
+						$("#bankAcctAcctNo").html(data.cib.bankAcctAcctNo);
+						$("#bankAcctCnapsCode").html(data.cib.bankAcctCnapsCode);
+						$("#bankAcctAcctName").html(data.cib.bankAcctAcctName);
+					}
+				}else{
+					alert(data.msg);
+				}
+			}
+		});
+	};
+	
+    /**
+	* 去支付
+	*/
+	$("#pay").click(function(){
+    	var discId = $("#discId").val();
+    	var map = new Map();
+		map.put("discId",discId );//类型
+		map.put("_PAGE", "/yonyou/discount/discountrecord_sp_confirmation");//必传
+		_OPENPAGE_FORM(map);
+	});
+	
+	/**
+	* 企业选定机构
+	*/
+	function selectOrg(txje,txlx,company,distId){
+		$("#confirm_company").html(company);
+		$("#selectDistId").val(distId);
+		$("#confirm_txje").html(txje+'万元');
+		$("#txlx").val(txlx);
+		$("#title").html("选择机构");
+		
+		$("#maskWindow").show();
+		$("#selectionWindow").show();
+		$("#maskFooter").show();
+		$("#selectionFooter").show();
+	};
+	
+	/**
+	* 确认选定机构
+	*/
+	function selectUpdate(){
+		contract();
+		$("#selectionWindow").hide(); /*选择机构*/
+		$("#contractWindow").fadeIn(500); /*票据转让合同*/
+		$("#selectionFooter").hide(); /*选择机构*/
+		$("#contractFooter").fadeIn(500); /*票据转让合同*/
+	};
+	
+	/**
+	* 票据合同
+	*/
+	function contract(){
+		var distId = $("#distId").val();
+		var orderType = 'DISCOUNTRECORDSP';
+		
+		$.ajax({
+    		url:'${basePath}/yonyou/cib/contract/info/by/id',
+    		type:"POST",
+    		data:{distId:distId,orderType:orderType},
+    		dataType:"json",
+    		success:function(data){
+				if(data.response == 'success'){
+					$("#bnsName").html(data.data.bnsName);
+					$("#bnsBizLicenceLegalName").html(data.data.bnsBizLicenceLegalName);
+					$("#bnsBizLicenceAddr").html(data.data.bnsBizLicenceAddr);
+					$("#orgName").html(data.data.orgName);
+					$("#orgBizLicenceLegalName").html(data.data.orgBizLicenceLegalName);
+					$("#orgBizLicenceAddr").html(data.data.orgBizLicenceAddr);
+					$("#no").html(data.data.no);
+					$("#draftNo").html(data.data.draftNo);
+				}else{
+					alert(data.msg);
+				}
+    		}
+		});
+	};
+	
+	/**
+	* 同意票据转让合同
+	*/
+	function agreeContract(){
+		var selectDistId = $("#selectDistId").val();
+		var txlx = $("#txlx").val();
+		$.ajax({
+    		url:'${basePath}/yonyou/discountrecordsp/update/select',
+    		type:"POST",
+    		data:{selectDistId:selectDistId,orderflag:orderflag,id:id,txlx:txlx,memberId:memberId},
+    		dataType:"json",
+    		success:function(data){
+				if(data.response == 'success'){
+					$("#title").html("同意票据转让合同");
+			        $("#maskWindow").fadeOut(500); /*内容区域*/
+			        $("#contractWindow").fadeOut(500); /*选择机构*/
+			        $("#maskFooter").fadeOut(500); /*底部按钮区域*/
+			        $("#contractFooter").fadeOut(500); /*选择机构*/
+					location.href = "${basePath}/yonyou/page/ordersp/list";
+				}else{
+					alert(data.msg);
+				}
+    		}
+		});
+	};
+	
+    /**
+    * 确认上传背书
+    */
+    $("#endorse").click(function(){
+    	var id = $("#discId").val();
+		var orderflag = $("#orderflag").val();
+		var type1 = $(".type1").val();
+		var endorsePicPath = $("#endorse_pic_path").val();
+		//if(type1 == 1){
+		//	if($.trim(endorsePicPath).length == 0 || endorsePicPath == ""){
+		//		alert("请上传背书");
+		//		return ;
+		//	}
+		//}
+		
+		$.ajax({
+    		url:'${basePath}/yonyou/discountrecordsp/update/endorsetime',
+    		type:"POST",
+    		data:{id:id,orderflag:orderflag,endorsePicPath:endorsePicPath},
+    		dataType:"json",
+    		success:function(data){
+				if(data.response == 'success'){
+					alert("背书上传成功");
+					location.href = "${basePath}/yonyou/page/ordersp/list";
+				}else{
+					alert(data.msg);
+				}
+    		}
+		});
+    });
+
+    //确认收到款项
+    $("#gathering").click(function(){
+    	var id = $("#discId").val();
+		var orderflag = $("#orderflag").val();
+		
+		$.ajax({
+    		url:'${basePath}/yonyou/discountrecordsp/update/confirmaccounttime',
+    		type:"POST",
+    		data:{id:id,orderflag:orderflag,memberId:memberId},
+    		dataType:"json",
+    		success:function(data){
+				if(data.response == 'success'){
+					alert("已收到票款");
+					location.href = "${basePath}/yonyou/page/ordersp/list";
+				}else{
+					alert(data.msg);
+				}
+    		}
+		});
+    });
+    
+    //去评价打开评论窗口
+    $("#evaluateBtn").click(function(){
+        var name = $("#name").html();
+		var company = $("#company").html();
+		var phone = $("#phone").html();
+		var type1 = $(".type1").val();
+		
+		$("#comment_company").html(company);
+		$("#comment_name").html(name);
+		$("#comment_phone").html(phone);
+		if(type1 == 1){
+			$("#comment_type").html("银纸");
+		}else{
+			$("#comment_type").html("银电");
+		}
+        $("#title").html("评论企业");
+        $("#maskWindow").fadeIn(500); /*内容区域*/
+        $("#evaluateWindow").fadeIn(500); /*评价*/
+        $("#maskFooter").fadeIn(500); /*内容区域*/
+        $("#evaluateFooter").fadeIn(500); /*评价*/
+    });
+    
+  	//发表评论，机构保存对企业的评论
+    $("#comment").click(function(){
+    	var service = $("input[name='service']:checked").val();
+		var speed = $("input[name='efficiency']:checked").val();
+		var price = $("input[name='price']:checked").val();
+		var dcrdId = $("#discId").val();
+		var dtboId = $("#distId").val();
+		var content = $("#contents").val();
+		if(service == null || service == ''){
+			alert("请在评论后在提交。");
+			return;
+		}
+		if(speed == null || speed == ''){
+			alert("请在评论后在提交。");
+			return;
+		}
+		if(price == null || price == ''){
+			alert("请在评论后在提交。");
+			return;
+		}
+
+		$.ajax({
+    		url:'${basePath}/yonyou/comments/save',
+    		type:"POST",
+    		data:{service:service,speed:speed,price:price,dcrdId:dcrdId,dtboId:dtboId,role:0,type:1,memberId:memberId,content:content},
+    		dataType:"json",
+    		success:function(data){
+				if(data.response == 'success'){
+					$("#maskWindow").fadeOut(500); /*内容区域*/
+			        $("#evaluateWindow").fadeOut(500); /*评价*/
+			        $("#maskFooter").fadeOut(500); /*内容区域*/
+			        $("#evaluateFooter").fadeOut(500); /*评价*/
+					alert("评论成功");
+					location.href = "${basePath}/yonyou/page/ordersp/list";
+				}else{
+					alert(data.msg);
+				}
+    		}
+		});
+    });
+  	
+    //企业取消订单的操作
+    $("#confirm_reason").click(function(){
+    	var orderflag = $("#orderflag").val();
+		var reason = $("#reason").val();
+		var reasonOther = $("#reasonOther").val();
+		var id = $("#discId").val();
+		var type1 = $(".type1").val();
+		var cib_id = $("#cib_id").val();
+
+		if(reason == 4){
+			if(!$("#reasonOther").validationEngine("validate")){
+				$("#reasonOther").focus();
+				return ;
+			 }
+		}
+		
+		var url;
+		var params = {cancel:reason,cancelCause:reasonOther};
+		
+		if(orderflag == 1){
+			url = '${basePath}/yonyou/discountrecordsp/cancel/unconfirm';
+			params.id = id;
+			params.orderflag = orderflag;
+		}else{
+			url = '${basePath}/yonyou/cibcancel/save';
+			params.orderType = 'DISCOUNTRECORDSP';
+			params.type = 0;
+			params.memberId = memberId;
+			params.orderId = id;
+			if(cib_id != null){
+				params.id = cib_id;
+			}
+		}
+
+		$.ajax({
+    		url:url,
+    		type:"POST",
+    		data:params,
+    		dataType:"json",
+    		success:function(data){
+				if(data.response == 'success'){
+					$("#maskWindow").fadeOut(500); /*内容区域*/
+			        $("#cancelWindow").fadeOut(500); /*取消订单*/
+			        $("#maskFooter").fadeOut(500); /*底部按钮区域*/
+			        $("#cancelFooter").fadeOut(500); /*取消订单*/
+			        alert("取消成功");
+					location.href = "${basePath}/yonyou/page/ordersp/list";
+				}else{
+					alert(data.msg);
+				}
+    		}
+		});
+    });
+
+    /**
+	* 倒计时
+	*/
+	var timerArr = new Array();
+    function _timer(create_time,deposit_state,orderflag){
+    	if(deposit_state == 0){//未支付保证金，不显示倒计时
+    		$(".ordertime").addClass("none");
+    		return ;
+    	}
+    	if(orderflag == 0  || orderflag == 3){
+			clearInterval(_t);
+			$('.minute_show').html('('+0+'分'+0+'秒'+')');
+			return;
+		}
+    	
+    	var date1 = new Date();//'2017-9-26 15:36:00'
+		var date2 = new Date(create_time); 
+
+		date2.setMinutes(date2.getMinutes() + 120 , date2.getSeconds(), 0);
+		var s1 = date1.getTime();
+		var s2 = date2.getTime(); 
+		
+		var intDiff = Math.floor((s2 - s1)/1000); 
+		
+        var _t = window.setInterval(function(){
+        	timerArr[timerArr.length] = _t;
+            var day=0,
+                    hour=0,
+                    minute=0,
+                    second=0;//时间默认值
+            if(intDiff > 0){
+                minute = Math.floor(intDiff / 60);
+                second = Math.floor(intDiff) - (minute * 60);
+            }
+            if (minute <= 9) minute = '0' + minute;
+            if (second <= 9) second = '0' + second;
+            $('.minute_show').html('('+minute+'分'+second+'秒'+')');
+            if(intDiff<=0){
+                clearInterval(_t);
+            }
+            intDiff--;
+        }, 1000);
+    };
+
+    /*关闭所有弹窗*/
+    $(".maskClose , .closeBtn").click(function(){
+        $("#maskWindow").fadeOut(500); /*内容区域*/
+        $("#selectionWindow").fadeOut(500); /*选择机构*/
+        $("#contractWindow").fadeOut(500); /*票据转让合同*/
+        $("#sendEmailWindow").fadeOut(500); /*下载交易合同*/
+        $("#offerWindow").fadeOut(500); /*去支付*/
+        $("#cancelWindow").fadeOut(500); /*取消订单*/
+        $("#evaluateWindow").fadeOut(500); /*评价*/
+
+        $("#maskFooter").fadeOut(500); /*底部按钮区域*/
+        $("#selectionFooter").fadeOut(500); /*选择机构*/
+        $("#contractFooter").fadeOut(500); /*票据转让合同*/
+        $("#sendEmailFooter").fadeOut(500); /*下载交易合同*/
+        $("#offerFooter").fadeOut(500); /*去支付*/
+        $("#cancelFooter").fadeOut(500); /*取消订单*/
+        $("#evaluateFooter").fadeOut(500); /*评价*/
+
+    });
+
+    /*-----打开弹窗-----*/
+    //选择机构
+    function choseJG(){
+        $("#title").html("选择机构");
+        $("#maskWindow").fadeIn(500); /*内容区域*/
+        $("#selectionWindow").fadeIn(500); /*选择机构*/
+        $("#maskFooter").fadeIn(500); /*底部按钮区域*/
+        $("#selectionFooter").fadeIn(500); /*选择机构*/
+    };
+
+    //下载交易合同
+    $(".contractBtn").click(function(){
+        $("#title").html("发送合同至您的邮箱");
+        $("#maskWindow").fadeIn(500);
+        $("#sendEmailWindow").fadeIn(500); /*开户合同*/
+        $("#maskFooter").fadeIn(500);
+        $("#sendEmailFooter").fadeIn(500); /*开户合同*/
+    });
+    
+  	//发送电子合同
+    function sendEmail(){
+    	var no = $(".ordernumber").html();
+		var email = $("#email").val();
+		if(!$("#email").validationEngine("validate")){
+			$("#email").focus();
+			setTimeout(function(){$("#email").validationEngine('hideAll');},2000);
+		    return;
+		} 
+		$.ajax({
+    		url:'${basePath}/yonyou/cib/econtract/email',
+    		type:"POST",
+    		data:{no:no,email:email,memberId:memberId},
+    		dataType:"json",
+    		success:function(data){
+				if(data.response == 'success'){
+					alert("合同已经发送到您的邮箱");
+					$("#maskWindow").fadeOut(500); /*内容区域*/
+			        $("#sendEmailWindow").fadeOut(500); /*下载交易合同*/
+			        $("#maskFooter").fadeOut(500); /*底部按钮区域*/
+			        $("#sendEmailFooter").fadeOut(500); /*下载交易合同*/
+				}else{
+					alert(data.msg);
+				}
+    		}
+		});
+    };
+
+    //取消订单理由
+    $("#cancel").click(function(){
+        $("#maskWindow").fadeIn(500); /*内容区域*/
+        $("#cancelWindow").fadeIn(500); /*取消订单*/
+        $("#maskFooter").fadeIn(500); /*底部按钮区域*/
+        $("#cancelFooter").fadeIn(500); /*取消订单*/
+    });
+    
+    //填写理由
+    $("#reason").change(function(){
+        var value = $(this).val();
+        if(value=="4"){
+            $("#reasonOther").parent("li").show();
+        }else{
+            $("#reasonOther").parent("li").hide();
+        }
+    });
+    
+    //企业取消订单的操作
+    $("#confirm_reason").click(function(){
+        $("#maskWindow").fadeOut(500); /*内容区域*/
+        $("#cancelWindow").fadeOut(500); /*取消订单*/
+        $("#maskFooter").fadeOut(500); /*底部按钮区域*/
+        $("#cancelFooter").fadeOut(500); /*取消订单*/
+    });
+
+    //评价星级
+    $(".evaluateRadio").click(function(){
+        var o = $(this);
+        o.children().attr('checked', 'checked');
+        with(o){
+            removeClass("star2").addClass("star1");
+            nextAll().removeClass("star1").addClass("star2");
+            prevAll().removeClass("star2").addClass("star1");
+        }
+    });
+    
+    /**
+	* 返回分秒
+	*/
+	function getTime(num){
+		if(num == 0){
+			return "--";
+		}
+		var minute = parseInt(num/60);
+		var second = num % 60;
+		return minute+"分"+second+"秒";
+	};
+	
+	/**
+	* 跳转页面
+	*/
+	$("#spTab").click(function(){
+		location.href = "${basePath}/yonyou/page/ordersp/list";
+	});
+	
+	/**
+	 * 跳转页面
+	 */
+	 $("#ypTab").click(function(){
+		location.href = "${basePath}/yonyou/page/order/list";
+	 });
+</script>
+[/@main.body]

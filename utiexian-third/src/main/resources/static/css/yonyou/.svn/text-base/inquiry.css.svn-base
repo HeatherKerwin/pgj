@@ -1,0 +1,7 @@
+/*底部按钮*/
+.toolWrap .toolFooter{
+    padding: 0 300px 50px;
+}
+.toolWrap .toolFooter a{
+    margin: 15px 30px;
+}

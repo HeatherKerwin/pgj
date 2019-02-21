@@ -1,0 +1,41 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="applicable-device" content="mobile" />
+<meta name="viewport" content="width=device-width,target-densitydpi=high-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>票据管家</title>
+<link href="https://static.utiexian.com/css/common/mobileBase.css" rel="stylesheet" type="text/css" />
+<link href="https://static.utiexian.com/css/rymobile/bbs/index.css" rel="stylesheet" type="text/css"/>
+<link href="https://static.utiexian.com/css/rymobile/bbs/register.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="https://static.utiexian.com/js/common/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="https://static.utiexian.com/js/rymobile/config.js"></script>
+<script type="text/javascript">
+function toBbs(){
+	window.location.href = bbsPath;
+}
+</script>
+</head>
+
+<body style="background: #eeeeee">
+	<div class="successTop">
+		<img class="fl register_top_l" src="https://img.utiexian.com/common/logo/logo.png">
+		<a href="https://app.utiexian.com/down.html" class="fr register_top_r">
+			APP下载
+		</a>
+		<div class="cl"></div>
+	</div>
+	<div class="success1">
+		<p class="success1Title">恭喜您注册成功</p>
+		<p>票管家社区感谢您的加入！</p>
+		<button class="successBtn" onclick="toBbs();">点击进入</button>
+	</div>
+	<div class="success2">
+		<p class="success2Title">转发集赞拿奖品</p>
+		<p>朋友圈，集齐30个赞发送给我们的公众号（微信搜索票据管家），即可获得价值100元的时尚北极熊白充电宝或超高速3.0金属U盘一个。</p>
+		<p class="success2Gift">300个名额，先到先得，送完为止。</p>
+		<p class="success2Title">邀请好友抽大奖</p>
+		<p>邀请3位好友注册成功并点进票据管家社区即可获得一张抽奖券。抽奖方式：登入“票管家社区”社区，点击【我的社区】-【我的奖励】页面即可参与抽奖。</p>
+		<p class="success2Gift">      奖品丰厚，iPhone7Plus等你来拿。</p>
+	</div>
+</body>
+</html>

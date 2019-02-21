@@ -1,0 +1,98 @@
+/*上方logo*/
+.loginLogo{
+    width: 130px;
+    height: 128px;
+    margin: 20px auto;
+    background: url("https://img.utiexian.com/rywap/login/logo.png") center no-repeat;
+    background-size: 100% auto;
+}
+
+
+/*登录方式*/
+.loginTab{
+    width: 100%;
+    height: 160px;
+    margin-top: 45px;
+
+}
+
+/*tab*/
+.title_bar{
+    width: 80%;
+    margin: 0 10%;
+}
+.title_bar li a{
+    border-right: none !important;
+}
+.tabCon{
+    margin-top: 20px;
+}
+
+/*登录输入*/
+ul.loginForm{
+    width: 100%;
+    padding-left: 10px;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+ul.loginForm li{
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #e0e0e0;
+    clear: left;
+}
+ul.loginForm li:last-child {
+    border-bottom: none;
+}
+/*输入框图标*/
+ul.loginForm li img.formIcon{
+    float: left;
+    width: 26px;
+    height: 26px;
+    border: none;
+    margin-top: 12px;
+}
+/*输入框*/
+ul.loginForm li input.formInt{
+    width: 120px;
+    overflow: hidden;
+    float: left;
+    font-size: 16px;
+    line-height: 51px;
+    margin-left: 5px;
+    height: 48px;
+    border: none;
+}
+/*获取验证码*/
+ul.loginForm li input[type="button"]{
+    float: right;
+    width: auto;
+    height: 36px;
+    font-size: 14px;
+    line-height: 36px;
+    background: #D43C33;
+    color: #ffffff;
+    border: none;
+    border-radius: 7px;
+    margin-top: 5px;
+    margin-right: 6px;
+    padding: 0 5px;
+}
+input[type="button"].yanBtn{
+    width: 100%;
+    height: 30px;
+    font-size: 14px;
+    line-height: 30px;
+    background: #D43C33;
+    color: #ffffff;
+    border: none;
+    border-radius: 7px;
+}
+
+
+
+/*协议*/
+.loginCheck{
+    margin-top: 20px;
+}
+/*登录*/

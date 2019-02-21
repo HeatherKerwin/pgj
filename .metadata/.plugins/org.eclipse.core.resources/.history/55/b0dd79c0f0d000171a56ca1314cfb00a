@@ -1,0 +1,413 @@
+[#import "/common/main.ftl" as main]
+[#include "/common/setting.ftl"]
+[@main.body title='票管家']
+<link rel="stylesheet" type="text/css" href="https://static.utiexian.com/css/common/flex.css"/>
+<link rel="stylesheet" type="text/css" href="https://static.utiexian.com/css/website/manage.css"/>
+<link rel="stylesheet" type="text/css" href="https://static.utiexian.com/css/website/order.css"/>
+[@main.header currentmenu='2'/]
+
+<!--订单大厅 -->
+<div class="flex flex-direction-column mt25 w1200 bc bcwhite">
+    <img src="https://img.utiexian.com/website/discount/dingdandating.png" alt="" class="w ha">
+    <!--没有订单-->
+    <div class="flex mt25 w1200 bc bcwhite h500 flex-justify-center flex-alignItems-center">
+        <div class="flex-row">
+            <img src="https://img.utiexian.com/website/discount/noOrder.png" alt="" width="140" height="179">
+        </div>
+    </div>
+    <!--有订单-->
+    <div class="flex flex-direction-column bc pl25 pr25 pb25">
+        <div class="w flex-row flex-direction-column mt30">
+            <!--订单状态类型-->
+            <div class="flex-row flex-justify-space-between bbe0e0e0 h27 lh18">
+                <div class="flex-row flex-direction-row">
+                    <span class="cd43c33 f18 fb">待支付</span>
+                    <div class="ml30"><img src="https://img.utiexian.com/website/receive/position.png" class="h16 mr3 mt3">上海市</div>
+                </div>
+                <div class="c717583">贴现日期:2010-10-10</div>
+            </div>
+            <!--订单详情(不同情况)-->
+            <!--情况1-->
+            <div class="flex-row flex-direction-column w bae0e0e0 mt10">
+                <div class="flex-row flex-direction-row h50 lh50 bcf9f9f9 tc bbe0e0e0 c717583">
+                    <div class="w232">银票订单号</div>
+                    <div class="w158">票面金额</div>
+                    <div class="w105">背书</div>
+                    <div class="w216">承兑企业</div>
+                    <div class="w129">保证金</div>
+                    <div class="w320">票据特征</div>
+                </div>
+                <div class="flex-row flex-justify-space-between">
+                    <div class="flex-row flex-direction-column Rright">
+                        <div class="flex-row flex-direction-row tc lh45 pt10 pb10 bbe0e0e0">
+                            <div class="w232 Rright">QY20160217144633695</div>
+                            <div class="w158 cd43c33 Rright">50.00万元</div>
+                            <div class="w105 Rright">2手</div>
+                            <div class="w216 Rright">上海市陆家嘴支行</div>
+                            <div class="w129">71元</div>
+                        </div>
+                        <div class="flex-row flex-justify-space-between w pt10 pb10">
+                            <div class="flex-row flex-direction-column w212 pl20 lh30 Rright">
+                                <div>开票日期：2010-10-10</div>
+                                <div>到期日期：2010-10-10</div>
+                                <div>计息天数：234天</div>
+                            </div>
+                            <div class="flex-row flex-direction-row w599 flex-align-self-baseline mt10">
+                                <div class="w60 ml20">备注：</div>
+                                <p class="w500 mr20">反发胜多负少的东风浩荡 成功后晶格华老规矩， 你吃饭和桑塔纳出的题和上次修改静态就， 每个房间没想法更新改变附件读后感馈</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-row flex-direction-row flex-wrap w320 lh34 tc">
+                        <div class="c00a5f2 w96 h35 br10 ba00a5f2 ml35 mt16">电票</div>
+                        <div class="c00a5f2 w96 h35 br10 ba00a5f2 ml35 mt16">电票</div>
+                        <div class="c00a5f2 w96 h35 br10 ba00a5f2 ml35 mt16">电票</div>
+                        <div class="c00a5f2 w96 h35 br10 ba00a5f2 ml35 mt16">电票</div>
+                    </div>
+                </div>
+            </div>
+            <!--情况2-->
+            <div class="flex-row flex-direction-column w bae0e0e0 mt10">
+                <div class="flex-row flex-direction-row h50 lh50 bcf9f9f9 tc bbe0e0e0 c717583">
+                    <div class="w232">银票订单号</div>
+                    <div class="w158">票面金额</div>
+                    <div class="w200">到期日期</div>
+                    <div class="w120">计息天数</div>
+                    <div class="w129">保证金</div>
+                    <div class="w320">票据特征</div>
+                </div>
+                <div class="flex-row flex-justify-space-between">
+                    <div class="flex-row flex-direction-column Rright">
+                        <div class="flex-row flex-direction-row tc lh45 pt10 pb10 bbe0e0e0">
+                            <div class="w232 Rright">QY20160217144633695</div>
+                            <div class="w158 cd43c33 Rright">50.00万元</div>
+                            <div class="w200 Rright">2010-10-10</div>
+                            <div class="w120 Rright">10天</div>
+                            <div class="w129">72元</div>
+                        </div>
+                        <div class="flex-row flex-justify-space-between w pt10 pb10">
+                            <div class="flex-row flex-direction-row w599 flex-align-self-baseline mt10">
+                                <div class="w60 ml20">备注：</div>
+                                <p class="w500 mr20">反发胜多负少的东风浩荡 成功后晶格华老规矩， 你吃饭和桑塔纳出的题和上次修改静态就， 每个房间没想法更新改变附件读后感馈</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-row flex-direction-row flex-wrap w320 lh34 tc">
+                        <div class="c00a5f2 w96 h35 br10 ba00a5f2 ml35 mt16">电票</div>
+                        <div class="c00a5f2 w96 h35 br10 ba00a5f2 ml35 mt16">电票</div>
+                        <div class="c00a5f2 w96 h35 br10 ba00a5f2 ml35 mt16">电票</div>
+                        <div class="c00a5f2 w96 h35 br10 ba00a5f2 ml35 mt16">电票</div>
+                    </div>
+                </div>
+            </div>
+            <!--情况3-->
+            <div class="flex-row flex-direction-column w bae0e0e0 mt10">
+                <div class="flex-row flex-direction-row h50 lh50 bcf9f9f9 tc bbe0e0e0 c717583">
+                    <div class="fl w232">商票订单号</div>
+                    <div class="fl w155">票面金额</div>
+                    <div class="fl w90">背书</div>
+                    <div class="fl w182">到期日期</div>
+                    <div class="fl w90">计息天数</div>
+                    <div class="fl w90">保证金</div>
+                    <div class="fl w320">票据特征</div>
+                </div>
+                <div class="flex-row flex-justify-space-between">
+                    <div class="flex-row flex-direction-column Rright">
+                        <div class="flex-row flex-direction-row tc lh45 pt10 pb10 bbe0e0e0">
+                            <div class="w232 Rright">QY20160217144633695</div>
+                            <div class="w155 cd43c33 Rright">50.00万元</div>
+                            <div class="w90 Rright">2手</div>
+                            <div class="w182 Rright">2010-10-10</div>
+                            <div class="w90 Rright">70天</div>
+                            <div class="w90">70元</div>
+                        </div>
+                        <div class="flex-row flex-justify-space-between w pt10 pb10">
+                            <div class="flex-row flex-direction-row w599 flex-align-self-baseline mt10">
+                                <div class="w60 ml20">备注：</div>
+                                <p class="w500 mr20">反发胜多负少的东风浩荡 成功后晶格华老规矩， 你吃饭和桑塔纳出的题和上次修改静态就， 每个房间没想法更新改变附件读后感馈</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-row flex-direction-row flex-wrap w320 lh34 tc">
+                        <div class="c00a5f2 w96 h35 br10 ba00a5f2 ml35 mt16">电票</div>
+                        <div class="c00a5f2 w96 h35 br10 ba00a5f2 ml35 mt16">电票</div>
+                        <div class="c00a5f2 w96 h35 br10 ba00a5f2 ml35 mt16">电票</div>
+                        <div class="c00a5f2 w96 h35 br10 ba00a5f2 ml35 mt16">电票</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-row flex-justify-space-between pt15 pb10 bcf9f9f9 lh40">
+                <div class="flex-row flex-direction-row">
+                    <img src="https://img.utiexian.com/website/discount/timer.png" class="wa h20 mt10 ml10">
+                    <div class="f18 ml8 mr10 cd43c33 minute_show">30:00</div>
+                    <!--文字提示-->
+                    <div>机构正在报价，请耐心等待！（取消订单）</div>
+                </div>
+                <div class="flex-row flex-direction-row-reverse">
+                    <button class="h40 bcf9f9f9 cd43c33 bad43c33 br5 w100 f18 mr10" id="selectionBtn">选择机构</button>
+                    <button class="h40 bcf9f9f9 cd43c33 bad43c33 br5 w100 f18 mr10" id="cancelBtn">取消订单</button>
+                    <button class="h40 bcf9f9f9 cd43c33 bad43c33 br5 w100 f18 mr10" id="endorseBtn">确认背书</button>
+                    <button class="h40 bcf9f9f9 cd43c33 bad43c33 br5 w100 f18 mr10" id="appealBtn">申诉</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!--弹窗-->
+<div class="w h pf bc05 zi10 top none" id="maskWindow">
+    <div class="flex flex-alignItems-center flex-justify-center w h">
+        <div class="flex-row flex-direction-column w590 bcwhite bae0e0e0 br3 pb20">
+            <div class="flex-row bbe0e0e0 flex-justify-space-between flex-alignItems-center h57 lh57 pl20 pr20">
+                <!--弹窗名称-->
+                <div>添加绑定对公账户</div>
+                <!--关闭按钮-->
+                <lable for="closeIcon" id="closeBtn">
+                    <img src="https://img.utiexian.com/website/PJGJ/authentication/closeIcon.png" alt="关闭">
+                    <button id="closeIcon" class="oln none"></button>
+                </lable>
+            </div>
+            <!--弹窗内容-->
+            <div class="pl20 pr20">
+                <!--确认背书-->
+                <div class="flex-row flex-direction-column flex-alignItems-center w hmin150 none" id="endorseWindow">
+                    <div class="flex-row flex-alignItems-center flex-justify-center h100 f24">
+                        背书上传成功！
+                    </div>
+                    <!--按钮操作-->
+                    <div class="flex-row flex-justify-center lh30 mt20">
+                        <input type="button" value="知道了" class="w120 h35 ba bad43c33 bcd43c33 cwhite br3 mr20">
+                    </div>
+                </div>
+
+                <!--选择机构-->
+                <div class="flex-row flex-direction-column w lh30 none" id="selectionWindow">
+                    <div class="flex-row pl105 mt40">
+                        公司名称：<span>收到订单多多多</span>
+                    </div>
+                    <div class="flex-row pl105">
+                        总贴现金额：<span class="cd43c33">2000元</span>
+                    </div>
+                    <div class="flex-row pl105">
+                        您是否选择该机构？
+                    </div>
+                    <!--按钮操作-->
+                    <div class="flex-row flex-direction-row-reverse lh30 mt30">
+                        <input type="button" value="确定" class="w90 h35 ba bad43c33 bcd43c33 cwhite br3 mr20">
+                        <input type="button" value="取消" class="w90 h35 ba bae0e0e0 bcf2f2f2 c2d2d2d br3 mr20">
+                    </div>
+                </div>
+
+                <!--申诉-->
+                <div class="flex-row flex-direction-column w lh30 none" id="appealWindow">
+                    <div class="flex-row flex-justify-space-around bae0e0e0 br3 mt20 h50 lh50">
+                        <div class="c717583">资方名称：<span class="cblack">收到了开始的</span></div>
+                        <div class="c717583">票面金额：<span class="cblack">100万元</span></div>
+                        <div class="c717583">票据特征：<span class="cblack">银纸</span></div>
+                    </div>
+                    <div class="w h2 xuxian mt10"></div>
+                    <textarea class="h120 bae0e0e0 br3 pt10 pr10 pl10 mt10" maxlength="200" placeholder="请输入文字，描述申诉的原因和目的。"></textarea>
+                    <!--按钮操作-->
+                    <div class="flex-row flex-justify-center lh30 mt20">
+                        <input type="button" value="提交申诉" class="w120 h35 ba bad43c33 bcd43c33 cwhite br3 mr20">
+                    </div>
+                </div>
+
+                <!--取消订单-->
+                <div class="flex-row flex-direction-column w lh30 none" id="cancelWindow">
+                    <div class="flex-row flex-justify-space-between h34 mt30">
+                        <div class="fb tr">请选择取消理由：</div>
+                        <select class="w400 bae0e0e0 br3 ti10 select400 h35" id="reason">
+                            <option value="0">票面信息输入有误</option>
+                            <option value="1">只为熟悉流程和询问价格</option>
+                            <option value="2">价格不合适</option>
+                            <option value="3">已提前出票</option>
+                            <option value="4">其它</option>
+                        </select>
+                    </div>
+                    <textarea class="h120 bae0e0e0 br3 pt10 pr10 pl10 mt20 none" id="reasonOther" minlength="15" placeholder="请输入不少于15字的理由。"></textarea>
+                    <!--按钮操作-->
+                    <div class="flex-row flex-justify-center lh30 mt40 mb20">
+                        <input type="button" value="确定取消订单" class="w120 h35 ba bad43c33 bcd43c33 cwhite br3 mr20">
+                    </div>
+                </div>
+                
+                <!--评价-->
+                <div class="flex-row flex-direction-column w lh30 none" id="evaluateWindow">
+                    <div class="flex-row flex-direction-column bae0e0e0 br5 pl10 pr10 pt10 pb100 mt20">
+                        <div class="flex-row flex-direction-row">
+                            <div>这是一家公司</div>
+                            <div class="cd43c33 w60 h24 lh24 br5 bad43c33 tc ml20">标签</div>
+                        </div>
+                        <div class="flex-row flex-direction-row mt10">
+                            <div>名字</div>
+                            <div class="ml20">1234678910</div>
+                        </div>
+                    </div>
+                    <div class="h2 xuxian w mt10"></div>
+                    <div class="lh30">发表评价：</div>
+                    <textarea class="h120 bae0e0e0 br3 pt10 pr10 pl10" minlength="15" placeholder="请畅所欲言吧......"></textarea>
+                    <div class="flex-row flex-direction-column mt10 ">
+                        <div class="flex-row flex-direction-row">
+                            <div class="f18 mr10">价格真实</div>
+                            <lable for="price1" class="evaluateRadio">
+                                <img src="https://img.utiexian.com/common/others/sort1.png" alt="" width="30" height="30">
+                                <input type="radio" name="price" id="price1">
+                            </lable>
+                            <lable for="price2" class="evaluateRadio">
+                                <img src="https://img.utiexian.com/common/others/sort1.png" alt="" width="30" height="30">
+                                <input type="radio" name="price" id="price2">
+                            </lable>
+                            <lable for="price3" class="evaluateRadio">
+                                <img src="https://img.utiexian.com/common/others/sort1.png" alt="" width="30" height="30">
+                                <input type="radio" name="price" id="price3">
+                            </lable>
+                            <lable for="price4" class="evaluateRadio">
+                                <img src="https://img.utiexian.com/common/others/sort1.png" alt="" width="30" height="30">
+                                <input type="radio" name="price" id="price4">
+                            </lable>
+                            <lable for="price5" class="evaluateRadio">
+                                <img src="https://img.utiexian.com/common/others/sort1.png" alt="" width="30" height="30">
+                                <input type="radio" name="price" id="price5">
+                            </lable>
+                        </div>
+                        <div class="flex-row flex-direction-row">
+                            <div class="f18 mr10">服务态度</div>
+                            <lable for="service1" class="evaluateRadio">
+                                <img src="https://img.utiexian.com/common/others/sort1.png" alt="" width="30" height="30">
+                                <input type="radio" name="service" id="service1">
+                            </lable>
+                            <lable for="service2" class="evaluateRadio">
+                                <img src="https://img.utiexian.com/common/others/sort1.png" alt="" width="30" height="30">
+                                <input type="radio" name="service" id="service2">
+                            </lable>
+                            <lable for="service3" class="evaluateRadio">
+                                <img src="https://img.utiexian.com/common/others/sort1.png" alt="" width="30" height="30">
+                                <input type="radio" name="service" id="service3">
+                            </lable>
+                            <lable for="service4" class="evaluateRadio">
+                                <img src="https://img.utiexian.com/common/others/sort1.png" alt="" width="30" height="30">
+                                <input type="radio" name="service" id="service4">
+                            </lable>
+                            <lable for="service5" class="evaluateRadio">
+                                <img src="https://img.utiexian.com/common/others/sort1.png" alt="" width="30" height="30">
+                                <input type="radio" name="service" id="service5">
+                            </lable>
+                        </div>
+                        <div class="flex-row flex-direction-row">
+                            <div class="f18 mr10">确认效率</div>
+                            <lable for="efficiency1" class="evaluateRadio">
+                                <img src="https://img.utiexian.com/common/others/sort1.png" alt="" width="30" height="30">
+                                <input type="radio" name="efficiency" id="efficiency1">
+                            </lable>
+                            <lable for="efficiency2" class="evaluateRadio">
+                                <img src="https://img.utiexian.com/common/others/sort1.png" alt="" width="30" height="30">
+                                <input type="radio" name="efficiency" id="efficiency2">
+                            </lable>
+                            <lable for="efficiency3" class="evaluateRadio">
+                                <img src="https://img.utiexian.com/common/others/sort1.png" alt="" width="30" height="30">
+                                <input type="radio" name="efficiency" id="efficiency3">
+                            </lable>
+                            <lable for="efficiency4" class="evaluateRadio">
+                                <img src="https://img.utiexian.com/common/others/sort1.png" alt="" width="30" height="30">
+                                <input type="radio" name="efficiency" id="efficiency4">
+                            </lable>
+                            <lable for="efficiency5" class="evaluateRadio">
+                                <img src="https://img.utiexian.com/common/others/sort1.png" alt="" width="30" height="30">
+                                <input type="radio" name="efficiency" id="efficiency5">
+                            </lable>
+                        </div>
+                    </div>
+                    <!--按钮操作-->
+                    <div class="flex-row flex-justify-center lh30 mt40 mb20">
+                        <input type="button" value="发表评价" class="w120 h35 ba bad43c33 bcd43c33 cwhite br3 mr20">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>	      
+[@main.footer/]
+[/@main.body]
+<script type="text/javascript">
+	$(document).ready(function() {
+	    //倒计时
+	    var intDiff = parseInt(1800);//倒计时总秒数量
+	    function timer(intDiff){
+	        var _t = window.setInterval(function(){
+	            var day=0,
+	                hour=0,
+	                minute=0,
+	                second=0;//时间默认值
+	            if(intDiff > 0){
+	                minute = Math.floor(intDiff / 60);
+	                second = Math.floor(intDiff) - (minute * 60);
+	            }
+	            if (minute <= 9) minute = '0' + minute;
+	            if (second <= 9) second = '0' + second;
+	            $('.minute_show').html(minute+':'+second);
+	            intDiff--;
+	        }, 1000);
+	    }
+	    $(function(){
+	        timer(intDiff);
+	    });
+	});
+	//关闭按钮
+	$("#closeBtn").click(function(){
+	    $("#maskWindow").addClass("none");
+	    $("#endorseWindow").addClass("none"); //背书
+	    $("#selectionWindow").addClass("none"); //选择机构
+	    $("#appealWindow").addClass("none"); //申诉
+	    $("#cancelWindow").addClass("none"); //取消
+	});
+	
+	//拒绝订单理由显示隐藏
+	$("#cancelBtn").click(function(){
+	    $("#maskWindow").removeClass("none");
+	    $("#cancelWindow").removeClass("none");
+	});
+	//    填写理由
+	$("#reason").change(function(){
+	    var value = $(this).val();
+	    if(value=="4"){
+	        $("#reasonOther").removeClass("none");
+	    }else{
+	        $("#reasonOther").addClass("none");
+	    }
+	});
+	//背书
+	$("#endorseBtn").click(function(){
+	    $("#maskWindow").removeClass("none");
+	    $("#endorseWindow").removeClass("none");
+	});
+	//选择机构
+	$("#selectionBtn").click(function(){
+	    $("#maskWindow").removeClass("none");
+	    $("#selectionWindow").removeClass("none");
+	});
+	//去申诉
+	$("#appealBtn").click(function(){
+	    $("#maskWindow").removeClass("none");
+	    $("#appealWindow").removeClass("none");
+	});
+	//去评价
+    $("#evaluateBtn").click(function(){
+        $("#maskWindow").removeClass("none");
+        $("#evaluateWindow").removeClass("none");
+    });
+    //评价星级
+    $(".evaluateRadio").click(function(){
+        var obj = $(this);
+        obj.children("input").attr('checked', 'checked');
+        with(obj.children("img")){
+            obj.children("img").attr("src", "https://img.utiexian.com/common/others/sort2.png");
+            nextAll().attr("src", "https://img.utiexian.com/common/others/sort2.png");
+            prevAll().attr("src", "https://img.utiexian.com/common/others/sort1.png");
+        }
+    });
+</script>

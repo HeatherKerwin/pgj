@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="${sys_info.site_description ?! ''}"/>
+    <meta name="keywords" content="${sys_info.site_keywords ?! ''}"/>
+    <meta name="csrf-token" content="${csrf_token}"/>
+    <link rel="shortcut icon" href="${base}/assets/favicon.ico"/>
+    
+    <title>#if(title != null && title != '')${title} - #end ${sys_info.site_title ?! '票据管家'} #if(title=='') - 票据交流社区#end</title>
+    <link type="text/css" rel="stylesheet" href="${base}/assets/styles/main.min.css?ver=${version}"/>
+    <link type="text/css" rel="stylesheet" href="${staticPath}/css/bbs/bbs.css?ver=${version}"/>
+    <link type="text/css" rel="stylesheet" href="${base}/assets/font-awesome-4.6.1/css/font-awesome.min.css?ver=${version}"/>
+    <link type="text/css" rel="stylesheet" href="${staticPath}/plugins/sweet-alert/sweetalert.min.css?ver=${version}"/>
+    <link type="text/css" rel="stylesheet" href="${staticPath}/plugins/ladda/ladda-themeless.min.css?ver=${version}"/>
+    <link type="text/css" rel="stylesheet" href="${staticPath}/plugins/nprogress/nprogress.min.css?ver=${version}"/>
+    
+    <script type="text/javascript" src="${staticPath}/js/common/jquery-2.2.0.min.js?ver=${version}"></script>
+    <script type="text/javascript" src="${staticPath}/js/bbs/app.js?ver=${version}"></script>
+    <script type="text/javascript" src="${staticPath}/js/bbs/jquery.bootstrap.newsbox.min.js?ver=${version}"></script>
+    <script type="text/javascript" src="${staticPath}/js/common/jquery.cookie.js?ver=${version}"></script>
+    
+	<!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+    .my_is_essence{
+    	color:#EE5023;
+    }
+    .my_has_pic{
+    }
+    .none{
+		display:none;
+	}
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-default box" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                #if(null == login_user)
+	            	<a href="${base_url('/signin/quick')}" class="navbar-toggle" style="height:34px;line-height:16px">立即登录</a>
+                #end
+                <a class="img-responsive pt10" href="${base_url('')}"><img src="${imgPath}/bbs/bbs/logo.png" width="160" style="padding-left:0.4em"></a>
+            </div>
+			
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav" style="font-size: 16px">
+                    <li><a href="${base_url('')}">社区首页</a></li>
+                    <li>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">论坛版块<strong class="caret"></strong></a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="${base_url('/go/advice')}">票据咨询</a>
+							</li>
+							<li>
+								<a href="${base_url('/go/talk')}">自由交流</a>
+							</li>
+							<li>
+								<a href="${base_url('/go/joyful')}">票据天天乐</a>
+							</li>
+						</ul>
+					</li>
+                    <li><a class="SET-PJAX" href="${base_url('/my/topic')}">我的社区</a></li>
+                    <li><a class="SET-PJAX" href="${base_url('/guide')}">新手引导</a></li>
+                    <li><a class="SET-PJAX" href="${base_url('/opinion')}">意见反馈</a></li>
+                    <li><a href="https://www.utiexian.com">官网首页</a></li>
+                    #if(login_user!=null && login_user.role_id < 2)
+	                    <li><a href="${base_url('/admin')}" style="color:red;">进入后台</a></li>
+                    #end
+                </ul>
+                <form class="navbar-form navbar-right" action="${base_url('/search')}" method="post">
+					<div class="input-group">
+						<input type="text" class="form-control control-group error" placeholder="请输入搜索内容" name="q" id="q" required="required" style="border-radius:2px 2px 0 0"/>
+						<span class="input-group-btn">
+				        	<button type="submit" class="btn btn-danger" style="border-radius:2px 0 0 2px">搜索</button>
+				    	</span>
+				    </div>
+                </form>
+            </div>
+        </div>
+    </nav>

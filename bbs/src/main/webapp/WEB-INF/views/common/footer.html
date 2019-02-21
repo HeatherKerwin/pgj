@@ -1,0 +1,45 @@
+<footer class="bs-docs-footer" role="contentinfo">
+	<div class="container">
+		<ul class="bs-docs-footer-links text-muted">
+			<li><a href="https://www.utiexian.com" target="_blank">官网首页</a></li>
+			<li>·</li>
+			<li><a href="https://www.utiexian.com/discountrecord/assess" target="_blank">票据贴现</a></li>
+			<li>·</li>
+			<li><a href="${base_url('/go/advice')}">票据咨询</a></li>
+			<li>·</li>
+			<li><a href="${base_url('/go/talk')}">自由交流</a></li>
+			<li>·</li>
+			<li><a href="${base_url('/go/joyful')}">票据天天乐</a></li>
+		</ul>
+		<p>
+			© Copyright 2015 <a target="_blank" href="https://www.utiexian.com">上海票管家金融服务有限公司</a>. 沪ICP备16003046号.
+		</p>
+		<div class="tc pa l_50 ml-63"><a  href="http://webscan.360.cn/index/checkwebsite/url/www.utiexian.com"><img border="0" src="http://webscan.360.cn/status/pai/hash/5aca64d4d048d43880ab34a213dabf88"/></a></div>
+	</div>
+</footer>
+
+<div style="display:none">
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256299776'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1256299776' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+
+<script type="text/javascript" src="${staticPath}/plugins/sweet-alert/sweetalert.min.js?ver=${version}"></script>
+<script type="text/javascript" src="${staticPath}/plugins/ladda/spin.min.js?ver=${version}"></script>
+<script type="text/javascript" src="${staticPath}/plugins/ladda/ladda.min.js?ver=${version}"></script>
+<script type="text/javascript" src="${staticPath}/plugins/nprogress/nprogress.min.js?ver=${version}"></script>
+<script type="text/javascript" src="${staticPath}/js/bbs/jquery.pjax.min.js?ver=${version}"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+	//暂时不用pjax
+	$(document).pjax("a[data-myset='set-pjax-old']", 'body', {fragment:'body', timeout:5000});
+	$(document).on('pjax:start', function() {
+   	    NProgress.start();
+   	});
+   	$(document).on('pjax:end', function() {
+   		NProgress.done();
+   	});
+});
+var BASE = '${base}';
+var CDN_URL = '${cdn}';
+</script>
+<script type="text/javascript" src="${staticPath}/js/bbs/main.js?ver=${version}"></script>
+<script src="https://s19.cnzz.com/z_stat.php?id=1274121263&web_id=1274121263" language="JavaScript"></script>
