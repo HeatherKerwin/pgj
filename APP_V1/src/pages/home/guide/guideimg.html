@@ -1,0 +1,87 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons left>
+      <button ion-button icon-only (tap)="close()">
+        <ion-icon  color="dark"  name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-segment mode="ios"  [(ngModel)]="st" (ngModelChange)='Changed($event)' color="primary" >
+      <ion-segment-button value="s1">
+        报价
+      </ion-segment-button>
+      <ion-segment-button value="s2">
+        收票
+      </ion-segment-button>
+      <ion-segment-button value="s3">
+        订单
+      </ion-segment-button>
+    </ion-segment>
+  </ion-navbar>
+</ion-header>
+<ion-content color="dark" id="aboutContent">
+  <!-- 切换 -->
+  <ion-slides pager *ngIf="guideA">
+    <ion-slide>
+      <img src="assets/images/home/baojia1.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/baojia2.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/baojia3.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/baojia4.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/baojia5.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/baojia6.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/baojia7.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/baojia8.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/baojia9.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/baojia10.jpg"/>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-slides pager *ngIf="guideB">
+    <ion-slide>
+      <img src="assets/images/home/shoupiao1.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/shoupiao2.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/shoupiao3.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/shoupiao4.jpg"/>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-slides pager *ngIf="guideC">
+    <ion-slide>
+      <img src="assets/images/home/dingdan1.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/dingdan2.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/dingdan3.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/dingdan4.jpg"/>
+    </ion-slide>
+  </ion-slides>
+
+</ion-content>
+

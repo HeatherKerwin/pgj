@@ -1,0 +1,48 @@
+﻿<ion-header mode="ios">
+    <ion-navbar mode="ios">
+        <ion-buttons  style="margin-left:0px;float:left">
+	    <button ion-button icon-only (tap)="close()">
+            <ion-icon  color="dark"  name="ios-arrow-back"></ion-icon>
+        </button>
+	</ion-buttons>
+	<ion-title  mode="ios" >选择角色</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="cn-all">
+
+    <div style="text-align:center;">
+
+      <div style="color:#717583;font-size:2.2rem;margin:0 auto;text-align:center;width:240px;margin-top:40px;">
+        请选择你的角色
+      </div>
+
+      <img src="assets/images/login/drawer.png" style="border:0px;margin-top:30px;width:120px;height:120px; "
+           (tap)="chupiao()"/>
+      <div style="color:#717583;font-size:1.8rem;margin:0 auto;text-align:center;width:240px;margin-top:10px;">
+        我是出票方
+      </div>
+
+
+      <div style="margin:0 auto;text-align:center;width:240px;margin-top:33px;">
+        <div style="width:70px;margin:0 auto;float:left">
+          <hr/>
+        </div>
+        <div style="width:100px;margin:0 auto;float:left;color:#cccccc;font-size:1.18rem">OR</div>
+        <div style="width:70px;margin:0 auto;float:left">
+          <hr/>
+        </div>
+      </div>
+      <div style="width: 100%">
+      <img src="assets/images/login/offer1.png" style="border:0px;width:120px;height:120px;margin: 30px 30% 0;"
+           (tap)="baojia()"/>
+      </div>
+      <div style="color:#717583;font-size:1.8rem;margin:0 auto;text-align:center;width:240px;margin-top:10px;">
+        我是收票方
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>

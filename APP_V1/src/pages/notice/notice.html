@@ -1,0 +1,114 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title mode="ios">票据资讯</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div>
+    <ion-segment [(ngModel)]="segmentModel" mode="md">
+      <ion-segment-button value="billNews">
+        票据新闻
+      </ion-segment-button>
+      <ion-segment-button value="bankNews">
+        银行动态
+      </ion-segment-button>
+      <ion-segment-button value="marketNews">
+        市场分析
+      </ion-segment-button>
+      <ion-segment-button value="aboutNews">
+        相关新闻
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div (swipe)="swipeEvent($event)">
+
+    <div [ngSwitch]="segmentModel">
+
+      <!--票据新闻-->
+      <ion-list *ngSwitchCase="'billNews'">
+        <ion-list>
+          <ion-item ion-item-options *ngFor="let newsList of newsLists" (click)="newsSelected(newsList.id)">
+            <ion-thumbnail item-start>
+              <img src="{{apiSev.getImgUrl+newsList.pic1}}">
+            </ion-thumbnail>
+            <h2>{{newsList.title}}</h2>
+            <p>{{newsList.publishtimeStr}}</p>
+          </ion-item>
+        </ion-list>
+
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+          <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="加载更多...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+
+      </ion-list>
+
+      <!--银行动态-->
+      <ion-list *ngSwitchCase="'bankNews'">
+        <ion-list>
+          <ion-item ion-item-options *ngFor="let newsList of newsLists2" (click)="newsSelected(newsList.id)">
+            <ion-thumbnail item-start>
+              <img src="{{apiSev.getImgUrl+newsList.pic1}}">
+            </ion-thumbnail>
+            <h2>{{newsList.title}}</h2>
+            <p>{{newsList.publishtimeStr}}</p>
+          </ion-item>
+        </ion-list>
+        <ion-infinite-scroll (ionInfinite)="doInfinite2($event)">
+          <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="加载更多...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </ion-list>
+
+      <!--市场分析-->
+      <ion-list *ngSwitchCase="'marketNews'">
+        <ion-list>
+          <ion-item ion-item-options *ngFor="let newsList of newsLists3" (click)="newsSelected(newsList.id)">
+            <ion-thumbnail item-start>
+              <img src="{{apiSev.getImgUrl+newsList.pic1}}">
+            </ion-thumbnail>
+            <h2>{{newsList.title}}</h2>
+            <p>{{newsList.publishtimeStr}}</p>
+          </ion-item>
+        </ion-list>
+        <ion-infinite-scroll (ionInfinite)="doInfinite3($event)">
+          <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="加载更多...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </ion-list>
+
+      <!--相关新闻-->
+      <ion-list *ngSwitchCase="'aboutNews'">
+        <ion-list>
+          <ion-item ion-item-options *ngFor="let newsList of newsLists4" (click)="newsSelected(newsList.id)">
+            <ion-thumbnail item-start>
+              <img src="{{apiSev.getImgUrl+newsList.pic1}}">
+            </ion-thumbnail>
+            <h2>{{newsList.title}}</h2>
+            <p>{{newsList.publishtimeStr}}</p>
+          </ion-item>
+        </ion-list>
+        <ion-infinite-scroll (ionInfinite)="doInfinite4($event)">
+          <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="加载更多...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </ion-list>
+
+    </div>
+  </div>
+</ion-content>

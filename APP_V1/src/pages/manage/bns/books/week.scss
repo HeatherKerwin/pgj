@@ -1,0 +1,74 @@
+page-week {
+  ion-content{
+    background: #eeeeee !important;
+    ion-toolbar{
+      padding-top: 0px !important;
+      .segment-button{
+        max-width: 50% !important;
+      }
+    }
+    .toolbar-con{
+      ion-grid.datetime{
+        background: #d43c33;
+        color: #ffffff;
+        margin: 10px 0 !important;
+        ion-row ,ion-col{
+          padding: 0 !important;
+          margin: 0 !important;
+          ion-datetime{
+            opacity: 10;
+          }
+          button{
+            padding: 0 !important;
+            margin: 0 !important;
+            font-size: inherit;
+          }
+          .weekShow{
+            padding: 11px 0px;
+            overflow: hidden;
+          }
+        }
+      }
+      ion-list.dataCon{
+        ion-item{
+          margin-top: 10px;
+          padding-left: 0px;
+          border-top: 0.55px solid #c8c7cc !important;
+          .item-inner {
+            padding-right: 0px;
+            ion-label {
+              margin: 0;
+              ion-grid ion-row:nth-child(2) ion-col:nth-child(3){
+                color: #d43c33;
+                span{
+                  font-size: 0.8rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .toolbar-con{
+      ion-grid.datetime{
+        background: #d43c33;
+        color: #ffffff;
+        margin: 10px 0 !important;
+        ion-row ,ion-col{
+          padding: 0 !important;
+          margin: 0 !important;
+          ion-datetime{
+            opacity: 10;
+          }
+          button{
+            padding: 0 !important;
+            margin: 0 !important;
+            font-size: inherit;
+          }
+        }
+      }
+
+    }
+
+  }
+}

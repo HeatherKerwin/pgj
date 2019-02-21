@@ -1,0 +1,88 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      选择银行卡
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+
+  <ion-list margin-bottom>
+<!--    <div *ngFor="let bank of banklist" (click)="bankchanger(bank.id,bank.bankAcctAcctNo,bank.bankAcctAcctName,bank.bankAcctBankBranch,bank.status,bank.bankAcctCnapsCode,bank.bankAcctBankNo,bank.vAcctAcctNo)">
+      <div padding-top style="padding-left:5%">
+        <ion-item style="min-height: 40px;height: 40px;width: 95%;background-color: #d43c33;padding: 0;border-radius: 3px;">
+          <ion-label *ngIf="bank.status==1" style="padding-left:6%;padding-top:8px;font-size:1.7rem;color: #ffffff !important;height:40px;">正常</ion-label>
+          <ion-label *ngIf="bank.status==2" style="padding-left:6%;padding-top:8px;font-size:1.7rem;color: #ffffff !important;height:40px;">锁定</ion-label>
+          <ion-label *ngIf="bank.status==0" style="padding-left:6%;padding-top:8px;font-size:1.7rem;color: #ffffff !important;height:40px;">无效</ion-label>
+          <ion-label *ngIf="bank.status==5" style="padding-left:6%;padding-top:8px;font-size:1.7rem;color: #ffffff !important;height:40px;">待鉴定</ion-label>
+          <ion-label *ngIf="bank.status==6" style="padding-left:6%;padding-top:8px;font-size:1.7rem;color: #ffffff !important;height:40px;">鉴定失败</ion-label>
+          <ion-label *ngIf="bank.status==7" style="padding-left:6%;padding-top:8px;font-size:1.7rem;color: #ffffff !important;height:40px;">失效</ion-label>
+          <ion-label *ngIf="bank.status!=1&&bank.status==2&&bank.status==0&&bank.status==5&&bank.status==6&&bank.status==7" style="padding-left:6%;padding-top:8px;font-size:1.7rem;color: #ffffff !important;height:40px;">非正常</ion-label>
+          <ion-note item-end text-right style="color: #ffffff;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 60%;">{{bank.bankAcctBankBranch}}</ion-note>
+        </ion-item>
+      </div>
+      <div style="padding-left: 5%;padding-right: 5%;text-align: center;width: 100%;height: 100px;border-bottom: 15px solid #F5F5F5;">
+        <div style="border-right: 1px solid #E9E9E9;background-color: #ffffff;border-left: 1px solid #E9E9E9;border-bottom: 1px solid #E9E9E9;height: 100px;border-radius: 3px;">
+          <ion-grid style="height:40px !important;">
+            <ion-row style="height:40px !important;">
+              <ion-col col-auto style="height:40px !important;">
+                <div text-right style="padding-top:30%;padding-left:7%">
+                  <img src="assets/images/authentication/ka.png" style="height:40px !important;width:40px !important;"/>
+                </div>
+              </ion-col>
+              <ion-col col-9>
+                <div text-left style="padding-top:11px;font-size:1.7rem;font-weight:bold;">{{apiSev.check3(bank.bankAcctAcctNo)}}</div>
+                <div text-left style="padding-top:4px;font-size:1.3rem;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{bank.bankAcctAcctName}}</div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </div>
+    </div>-->
+
+    <ion-card *ngFor="let bank of banklist" tappable (click)="bankchanger(bank.id,bank.bankAcctAcctNo,bank.bankAcctAcctName,bank.bankAcctBankBranch,bank.status,bank.bankAcctCnapsCode,bank.bankAcctBankNo,bank.vAcctAcctNo)">
+      <div class="card_text">
+        <img src="assets/images/authentication/ka.png" class="card_icon" />
+        <span>{{bank.bankAcctBankBranch}}</span>
+        <div style="float: right;margin-top: -1px;font-weight: 600;">
+          <span *ngIf="bank.status==1">正常</span>
+          <span *ngIf="bank.status==2">锁定</span>
+          <span *ngIf="bank.status==0">无效</span>
+          <span *ngIf="bank.status==5">待鉴定</span>
+          <span *ngIf="bank.status==6">鉴定失败</span>
+          <span *ngIf="bank.status==7">失效</span>
+          <span *ngIf="bank.status!=1&&bank.status==2&&bank.status==0&&bank.status==5&&bank.status==6&&bank.status==7">非正常</span>
+        </div>
+      </div>
+      <div text-center class="banknum">{{apiSev.checkbank(bank.bankAcctAcctNo)}}</div>
+      <div text-center class="card_name">{{bank.bankAcctAcctName}}</div>
+    </ion-card>
+
+    <ion-card text-center (tap)="bankpay()" *ngIf="cibbank">
+      <div text-center>
+        <img src="assets/images/jd/addbank.png" style="width: auto;height: 32px;margin-top: 10px;display: inline;"/>
+      </div>
+      <div class="add_card_bank" text-center>绑定对公账户</div>
+    </ion-card>
+
+
+<!--    <div padding-top style="padding-left: 5%;padding-right: 5%;text-align: center;width: 100%;height: 120px;" (tap)="bankpay()" *ngIf="cibbank">
+      <div style="border:1px dashed #85878a;background-color: #ffffff;height: 110px;border-radius: 3px;">
+        <div text-center padding-top>
+          <img src="assets/images/authentication/tianjia.png" style="height: 50px !important;"/>
+          <div style="color: #a3a3a3">绑定对公账户</div>
+        </div>
+      </div>
+    </div>-->
+  </ion-list>
+
+  <div margin text-wrap style="color: #d43c33;font-size:1rem;text-indent:1em">
+    <p>*请添加常用账户，绑定对公银行账户不超过四个。每次出票时，需要选择该票据的最后一手背书银行账号，该账号同时也是本次交易的收款账号！</p>
+  </div>
+</ion-content>

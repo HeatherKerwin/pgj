@@ -1,0 +1,124 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons *ngIf="SPDATA.type1==2" end class="redbutton">
+      <button ion-button icon-only data-tap-disabled="true" (click)="ToAccountPage()">
+        票面预览
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >商票业务</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <div style="background-color: #ffffff;color: #f23a3a;padding: 10px 4% 0 4%;">*注意：(回头票)指票据背书中出现回头背书现象的票据，如A公司背给B公司后，B公司又背给了A公司。</div>
+    <ion-item>
+      <ion-label>回头票</ion-label>
+      <button ion-button mode="ios" outline item-end class="radioBtn" color="danger" [ngClass]=" {'activedBtn': discount.backEndorse=='T'}" (tap)="discount.backEndorse='T'">是</button>
+      <button ion-button mode="ios" outline item-end class="radioBtn" color="danger" [ngClass]=" {'activedBtn': discount.backEndorse=='F'}" (tap)="discount.backEndorse='F'">否</button>
+    </ion-item>
+    <ion-item class="endorse">
+      <ion-label>背书</ion-label>
+      <button ion-button mode="ios" outline  item-end color="danger" (tap)="decr()">-</button>
+      <span item-end>{{discount.endorse}}</span>
+      <button ion-button mode="ios" outline item-end color="danger" (tap)="incr()">+</button>
+      <ion-note item-end>手</ion-note>
+    </ion-item>
+    <ion-item *ngIf="this.SPDATA.type1==1">
+      <ion-label>是否上门</ion-label>
+      <button ion-button mode="ios" outline item-end class="radioBtn" color="danger" [ngClass]=" {'activedBtn': discount.needTodoor==1}" (tap)="radioBtn(discount.needTodoor=1)">是</button>
+      <button ion-button mode="ios" outline item-end class="radioBtn" color="danger" [ngClass]=" {'activedBtn': discount.needTodoor==0}" (tap)="radioBtn(discount.needTodoor=0)">否</button>
+    </ion-item>
+    <ion-item class="itme-noborder textarea">
+      <ion-textarea type="text" name="description" id="" rows="6" maxlength="200" [(ngModel)]="discount.memberother" placeholder="请填写一个备注，标明设置的票据提醒！"></ion-textarea>
+    </ion-item>
+    <ion-item *ngIf="this.SPDATA.type1==2">
+      <ion-label>一口价</ion-label>
+      <button ion-button mode="ios" outline item-end class="radioBtn" color="danger" [ngClass]=" {'activedBtn': discount.OnePrice=='T'}" (tap)="discount.OnePrice='T'">是</button>
+      <button ion-button mode="ios" outline item-end class="radioBtn" color="danger" [ngClass]=" {'activedBtn': discount.OnePrice=='F'}" (tap)="discount.OnePrice='F'">否</button>
+    </ion-item>
+    <div class="OnePrice" *ngIf="discount.OnePrice=='T'">
+      <div text-center class="left">
+        <div class="lefttxt1">买断价格</div>
+        <span style="position: absolute;right: 62%;margin-top: 14px;font-size: 1.5rem;">万元</span>
+        <ion-input class="lefttxt2" type="text" maxlength="13" (keyup)="this.apiSev.check2B($event);" [(ngModel)]="OnePrice.allmoney" (ionChange)="OnePrices()"></ion-input>
+      </div>
+      <div text-center style="padding-top: 20px;" class="right">
+        <div class="righttxt1">总扣息：{{OnePrice.price}}元</div>
+        <div class="righttxt2">每十万：{{OnePrice.priceSW}}元</div>
+        <div class="righttxt3">年利率：{{OnePrice.yearRate}}%</div>
+      </div>
+    </div>
+  </ion-list>
+
+  <ion-list margin-top *ngIf="SPDATA.type1==1">
+    <ion-item >
+      <ion-label>票已开出</ion-label>
+      <button ion-button mode="ios" outline item-end class="radioBtn" color="danger" [ngClass]=" {'activedBtn': discount.hasTicket==0}" (tap)="radioBtn(discount.hasTicket=0)">是</button>
+      <button ion-button mode="ios" outline item-end class="radioBtn" color="danger" [ngClass]=" {'activedBtn': discount.hasTicket==1}" (tap)="radioBtn(discount.hasTicket=1)">否</button>
+    </ion-item>
+    <p class="gray text" *ngIf="isUpload">上传正面的清晰图片（可遮掉右上角票号），电子汇票请使用电脑截图</p>
+    <div class="uploadDiv">
+      <button ion-button mode="ios" class="upload" *ngIf="isUpload"  (click)="uploadBtn()"></button>
+      <img class="picpath" src="{{discount.picpath}}" *ngIf="isPicpath"  (click)="uploadBtn()">
+    </div>
+    <details *ngIf="this.SPDATA.type1==1">
+      <summary>查看票据样例</summary>
+      <img src="assets/images/discount/sp.jpg">
+    </details>
+  </ion-list>
+
+  <p margin>
+    <button ion-button mode="ios" block (tap)="save()">生成订单</button>
+  </p>
+
+</ion-content>
+
+<!--上传图片弹出层-->
+<!--上传图片弹出层-->
+<div *ngIf="isMask" (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="maskCon" *ngIf="CameraRoll">
+      <ion-row text-center>
+        <ion-col col-4 offset-2 (click)="cameraPic()">
+          <img src="assets/images/discount/camera.png" alt="相机">
+          <p>相机</p>
+        </ion-col>
+        <ion-col col-4 (click)="albumPic()">
+          <img src="assets/images/discount/album.png" alt="相册">
+          <p>相册</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <button ion-button mode="ios" block color="danger" (tap)="closeMask()">取消</button>
+      </ion-row>
+    </div>
+
+    <div class="maskConB" *ngIf="Distinguish">
+      <div class="offer">
+        <button mode="ios" class="close" data-tap-disabled="true" (click)="closeMask()"></button>
+        <!--<img src="{{discount.picpath}}">-->
+        <img  src="{{discount.picpath}}" *ngIf="isUpload" data-tap-disabled="true" (click)="CameraRoll=true">
+        <img  src="{{discount.picpath}}" *ngIf="isPicpath" data-tap-disabled="true" (click)="CameraRoll=true">
+      </div>
+    </div>
+
+    <div class="maskConB" *ngIf="DistinguishB">
+      <div class="offer">
+        <button mode="ios" class="close" data-tap-disabled="true" (click)="closeMask()"></button>
+        <div text-left style="margin-top: 30px;font-size: 1.7rem;width: 90%;margin-left: 5%;margin-bottom: 15px;">您选择了支持一口价的方式进行交易，订单生成后，若资方直接买断，则双方自动达成交易意向，您的实际收款，也将以您报出的一口价为准。</div>
+        <div text-center >一口价实收票款为：{{OnePrice.allmoney*10000}}元</div>
+        <p text-center>
+          <input margin-right type="button" value="取消" (tap)="closeMask()" class="frame">
+          <input type="button" value="确认" (tap)="Newsave();">
+        </p>
+      </div>
+    </div>
+  </ion-backdrop>
+</div>

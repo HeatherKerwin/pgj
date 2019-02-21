@@ -1,0 +1,45 @@
+page-openaccountListB {
+  ion-content{
+    .red{
+      color: #d43c33;
+    }
+    .searchbar-ios .searchbar-search-icon {
+      left: 9px;
+      top: 12px;
+      width: 16px;
+      height: 16px;
+    }
+    button.searchBtn{
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 60px;
+      height: 3rem;
+      z-index: 100;
+      margin: 4px;
+      border-radius: 0 5px 5px 0;
+      border-left: 0.55px solid #D9D9DB;
+      background: white;
+    }
+    ion-list{
+      background: #ffffff !important;
+      ion-item{
+        border:0 !important;;
+        ion-grid{
+          border: 1px dashed #dcdcdc !important;
+          border-radius: 5px;
+          ion-row{
+            ion-col{
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
+
+
+
+
+

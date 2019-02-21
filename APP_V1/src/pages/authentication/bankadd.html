@@ -1,0 +1,84 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title *ngIf="addkeep">
+      添加银行卡
+    </ion-title>
+    <ion-title *ngIf="cibkeep">
+      小额鉴定
+    </ion-title>
+    <ion-buttons  style="float:right">
+      <button ion-button (click)='apiSev.Call("400-067-0002");'> 联系客服</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <ion-list>
+    <ion-item>
+      <ion-label  style="margin-right: 0">
+        开户银行支行号
+      </ion-label>
+      <ion-label *ngIf="addkeep" item-end (tap)="banklistB()"
+                 style="color: #000000;margin-right:0;border:1px solid #85878a;font-size: 1.3rem;border-radius: 2px;border-right:0;padding: 3px;margin-left: 0;">
+        {{CnapsCode}} {{bankAcctBankBranch}}
+      </ion-label>
+      <ion-note *ngIf="addkeep" item-end style="margin-left:0" (tap)="banklistB()">
+        <button style="background-color:#FFFFFF;border:1px solid #85878a;height: 25px;border-radius:2px;">
+          <img src="assets/images/openaccount/jiantou.png" style="height:15px;"/>
+        </button>
+      </ion-note>
+      <ion-label *ngIf="cibkeep" item-end style="color: #000000;margin-right:0;border:1px solid #85878a;font-size: 1.3rem;border-radius: 2px;border-right:0;padding: 3px;margin-left: 0;">
+        {{CnapsCode}} {{bankAcctBankBranch}}
+      </ion-label>
+      <ion-note *ngIf="cibkeep" item-end style="margin-left:0">
+        <button style="background-color:#FFFFFF;border:1px solid #85878a;height: 25px;border-radius:2px;">
+          <img src="assets/images/openaccount/jiantou.png" style="height:15px;"/>
+        </button>
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        账号
+      </ion-label>
+      <ion-input *ngIf="addkeep" type="tel" maxlength="25" text-right placeholder="请填写对应账号" [(ngModel)]="bankAcctAcctNo" (keyup)='apiSev.check1($event)'></ion-input>
+      <ion-note item-end *ngIf="cibkeep" disabled>{{bankAcctAcctNo}}</ion-note >
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        账户名
+      </ion-label>
+      <ion-input *ngIf="addkeep" type="text" maxlength="30" text-right placeholder="请填写对应账户名" [(ngModel)]="bankAcctAcctName"></ion-input>
+      <ion-note item-end text-right *ngIf="cibkeep" disabled class="notocol">{{bankAcctAcctName}}</ion-note>
+    </ion-item>
+    <ion-item *ngIf="cibkeep">
+      <ion-label>
+        金额
+      </ion-label>
+      <ion-input type="text" maxlength="5" text-right placeholder="请输入金额" [(ngModel)]="allprice" (keyup)="switching()" (keyup)='apiSev.check2($event);'></ion-input>
+      <ion-note item-end>元</ion-note>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="addkeep" margin text-wrap style="color: #d43c33;font-size:1rem;text-indent:1em">
+    <p>*请添加常用账户，绑定对公银行账户不超过四个。每次出票时，需要选择该票据的最后一手背书银行账号，该账号同时也是本次交易的收款账号！如有疑问，请联系客服！</p>
+  </div>
+
+  <div padding *ngIf="addkeep">
+    <button ion-button mode="ios" block color="primary" (tap)="cardbinding()">申请绑定</button>
+  </div>
+
+  <div padding-left padding-right *ngIf="cibkeep">
+    <div text-wrap style="color: #d43c33;font-size:1rem;text-indent:1em;">
+      <p>已提交开户申请，申请绑定的银行账号里会收到一笔小额款项，将收到的金额填写上，最后点击“完成绑卡”，即可完成绑卡。如有疑问，请联系客服！</p>
+    </div>
+    <button ion-button mode="ios" block color="primary" disabled *ngIf="Tonosuccess">完成绑卡</button>
+    <button ion-button mode="ios" block color="primary" *ngIf="Tosuccess" (tap)="banklistpop()">完成绑卡</button>
+  </div>
+
+</ion-content>

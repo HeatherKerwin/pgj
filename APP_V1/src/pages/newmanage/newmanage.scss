@@ -1,0 +1,252 @@
+page-newmanage {
+  ion-content {
+    .segment-md .segment-button {
+      border-bottom-color: #f5f5f500;
+    }
+    ion-segment-button {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+
+    ion-list {
+      //提示
+      .tishi{
+        margin: 5px;
+        padding: 5px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border: 1px dashed #d43c33;
+        border-radius: 6px;
+        font-size: 1.3rem;
+        margin-top: 15px;
+      }
+
+      //我的票据编辑删除
+      .mepjbt{
+        background-color: #ffffff;
+        img{
+          height: 15px;
+          width: auto;
+        }
+      }
+
+      //核算文字
+      .managetxtbut{
+        border: 1px solid #d9d9d9;
+        background-color: #ffffff;
+        height: 35px;
+        margin-top: 6px;
+        border-radius: 6px;
+        float: right;
+        margin-right: 5px;
+      }
+      //出票按钮
+      .chupiaobt{
+        height: 26px;
+        font-size: 1.4rem;
+        background-color: #ffffff;
+        color: #d43c33;
+        border: 1px solid #d43c33;
+        width: 80px;
+      }
+
+      //来票公司
+      .lptxt{
+        margin-left: 12px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        font-size: 1.3rem;
+        height: 35px;
+        line-height: 34px;
+        border-top: 1px solid #d9d9d9;
+        border-bottom: 1px solid #d9d9d9;
+        margin-right: 5px;
+      }
+
+
+      //到期提醒背景
+      .manage1butbj {
+        height: 35px;
+        background-color: #ffffff;
+        margin-top: 10px;
+        box-shadow: -1px 3px 5px #e0e0e0, 2px 2px 5px #f5f5f5;
+        margin-bottom: 5px;
+      }
+      //到期提醒
+      .manage1dqtx {
+        float: left;
+        font-size: 1.6rem;
+        height: 20px;
+        /* line-height: 43px; */
+        margin-left: 10px;
+        padding-left: 5px;
+        border-left: 2px solid #d43c33;
+        margin-top: 11px;
+      }
+      //查看更多
+      .manage1ckgd {
+        height: 20px;
+        background-color: #ffffff;
+        color: #c3bfbf;
+        font-size: 1.5rem;
+        float: right;
+        margin-top: 14px;
+        padding-right: 10px;
+      }
+      //快
+      .manage1card {
+        background: url(../assets/images/manage/backgroup.png) center no-repeat;
+        background-size: 100%;
+        height: 80px;
+        padding-top: 13px;
+        padding-bottom: 20px;
+        padding-right: 10px;
+      }
+      manage1cardB{
+        background-size: 100%;
+        height: 80px;
+        padding-top: 13px;
+        padding-bottom: 20px;
+        padding-right: 10px;
+      }
+      //图片高
+      .manage1img1 {
+        height: 40px;
+        margin-left: 20%;
+        width: auto !important;
+      }
+      //长度隐藏
+      .yingc {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      //提醒文字
+      .mabage1text {
+        color: #bfbfbf;
+        font-size: 1.3rem;
+        margin-top: 5px;
+      }
+      //金额红色展示
+      .manage1mony {
+        color: #d43c33;
+        font-size: 1.6rem;
+      }
+      //图标加减
+      .manage2img {
+        height: 18px;
+        position: absolute;
+        right: 7px;
+        margin-top: -9px;
+      }
+    }
+  }
+  ion-footer {
+    .manage2xuanzhong {
+      border: 1px solid #ffc801;
+      height: 30px;
+      line-height: 31px;
+      background-color: #fff4cc;
+      color: #ebaa01;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      margin-bottom: 1px;
+    }
+    ion-list {
+      margin-bottom: 0 !important;
+      border: none !important;
+      ion-item {
+        border: none !important;
+        ion-label {
+          font-size: 1.7rem;
+          span {
+            padding-left: 2px;
+            color: #d43c33;
+          }
+        }
+        .item-inner {
+          padding-right: 0 !important;
+          button {
+            height: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            font-size: 1.8rem;
+          }
+        }
+      }
+    }
+  }
+
+  //input
+  .manageinput{
+    background-color: #f5f5f5;
+    height: 32px;
+    line-height: 16px;
+    margin-top: 9px;
+    padding-left: 12px;
+    font-size: 1.4rem;
+    border-radius: 7px;
+    input{
+      margin-top: 10px;
+    }
+
+
+  }
+
+  //分享弹出层
+  .maskCon {
+    position: absolute;
+    bottom: 0;
+    left: 28%;
+    right: 0;
+    color: #2d2d2d;
+    background: #f5f5f5 !important;
+    opacity: 1.0 !important;
+    height: 100%;
+    z-index: 999;
+    ion-list {
+      //去掉下划线
+      ion-list-header{
+        border: 0 !important;
+        background-color: #f5f5f5;
+      }
+      ion-col{
+        margin-bottom: 20px;
+        button{
+          background-color: #f5f5f5;
+          border: 1px solid #bfbfbf;
+          padding: 8px 15px 8px 15px;
+          border-radius: 5px;
+        }
+      }
+      //点击类型筛选
+      .activeCard{
+        border: 1px solid #d43c33;
+        color: #d43c33;
+      }
+    }
+
+    ion-footer{
+      margin-bottom: 20px;
+      .checkbutton{
+        width: 80%;
+        background-color: #d43c33;
+        border: 1px solid #d43c33;
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

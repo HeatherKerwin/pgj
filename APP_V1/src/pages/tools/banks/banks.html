@@ -1,0 +1,127 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only (tap)="(tools)">
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      联行号查询
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+
+  <ion-list>
+
+    <ion-item style="padding-top:3px;padding-right:10px;padding-left:10px;height:60px;background: #fff;">
+      <ion-label  mode="ios" style="padding:0px;height:20px;color:#222222;font-size:1.60rem">
+      银行名称:
+      </ion-label>
+      <ion-select [(ngModel)]="selectbank" interface="popover" >
+        <ion-option value=''>请选择银行</ion-option>
+        <ion-option value='城商行'>城商行</ion-option>
+        <ion-option value='城市信用社'>城市信用社</ion-option>
+        <ion-option value='工商银行'>工商银行</ion-option>
+        <ion-option value='光大银行'>光大银行</ion-option>
+        <ion-option value='广发银行'>广发银行</ion-option>
+        <ion-option value='合作联社'>合作联社</ion-option>
+        <ion-option value='合作银行'>合作银行</ion-option>
+        <ion-option value='华夏银行'>华夏银行</ion-option>
+        <ion-option value='建设银行'>建设银行</ion-option>
+        <ion-option value='交通银行'>交通银行</ion-option>
+        <ion-option value='民生银行'>民生银行</ion-option>
+        <ion-option value='农村信用社'>农村信用社</ion-option>
+        <ion-option value='农业发展'>农业发展</ion-option>
+        <ion-option value='农业银行'>农业银行</ion-option>
+        <ion-option value='商业银行'>商业银行</ion-option>
+        <ion-option value='深圳发展银行'>深圳发展银行</ion-option>
+        <ion-option value='信用合作社'>信用合作社</ion-option>
+        <ion-option value='兴业银行'>兴业银行</ion-option>
+        <ion-option value='邮储银行'>邮储银行</ion-option>
+        <ion-option value='招商银行'>招商银行</ion-option>
+        <ion-option value='中国人民银行'>中国人民银行</ion-option>
+        <ion-option value='中国银行'>中国银行</ion-option>
+        <ion-option value='中信银行'>中信银行</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item style="padding-top:3px;padding-right:10px;padding-left:10px;height:60px;background: #fff;">
+      <ion-label  mode="ios" style="padding:0px;height:20px;color:#222222;font-size:1.60rem">
+        省份:
+      </ion-label>
+      <ion-select [(ngModel)]="province" (ionChange)="chageProv()" interface="popover">
+        <ion-option value=''>请选择省份</ion-option>
+        <ion-option value='北京'>北京</ion-option>
+        <ion-option value='天津'>天津</ion-option>
+        <ion-option value='上海'>上海</ion-option>
+        <ion-option value='重庆'>重庆</ion-option>
+        <ion-option value='河北省'>河北省</ion-option>
+        <ion-option value='山西省'>山西省</ion-option>
+        <ion-option value='内蒙古'>内蒙古</ion-option>
+        <ion-option value='辽宁省'>辽宁省</ion-option>
+        <ion-option value='吉林省'>吉林省</ion-option>
+        <ion-option value='黑龙江省'>黑龙江省</ion-option>
+        <ion-option value='江苏省'>江苏省</ion-option>
+        <ion-option value='浙江省'>浙江省</ion-option>
+        <ion-option value='安徽省'>安徽省</ion-option>
+        <ion-option value='福建省'>福建省</ion-option>
+        <ion-option value='江西省'>江西省</ion-option>
+        <ion-option value='山东省'>山东省</ion-option>
+        <ion-option value='河南省'>河南省</ion-option>
+        <ion-option value='湖北省'>湖北省</ion-option>
+        <ion-option value='湖南省'>湖南省</ion-option>
+        <ion-option value='广东省'>广东省</ion-option>
+        <ion-option value='广西'>广西</ion-option>
+        <ion-option value='海南省'>海南省</ion-option>
+        <ion-option value='四川省'>四川省</ion-option>
+        <ion-option value='贵州省'>贵州省</ion-option>
+        <ion-option value='云南省'>云南省</ion-option>
+        <ion-option value='西藏'>西藏</ion-option>
+        <ion-option value='陕西省'>陕西省</ion-option>
+        <ion-option value='甘肃省'>甘肃省</ion-option>
+        <ion-option value='青海省'>青海省</ion-option>
+        <ion-option value='宁夏'>宁夏</ion-option>
+        <ion-option value='新疆'>新疆</ion-option>
+        <ion-option value='香港'>香港</ion-option>
+        <ion-option value='澳门'>澳门</ion-option>
+        <ion-option value='台湾省'>台湾省</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item style="padding-top:3px;padding-right:10px;padding-left:10px;height:60px;background: #fff;">
+      <ion-label  mode="ios" style="padding:0px;height:20px;color:#222222;font-size:1.60rem">
+        城市:
+      </ion-label>
+      <ion-select [(ngModel)]="selectcity" interface="popover">
+        //for循环cityList参数
+        <ion-option *ngFor="let item of cityList" value={{item}}>{{item}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item style="padding-top:3px;padding-right:10px;padding-left:10px;height:60px;background: #fff;">
+      <ion-label mode="ios" style="padding:0px;height:20px;color:#222222;font-size:1.60rem">
+        请输入关键字:
+      </ion-label>
+      <ion-input [(ngModel)]="search1.keyword" type="text" text-right placeholder="请输入银行名称">
+      </ion-input>
+    </ion-item>
+
+    <div style="margin-left:15px;margin-top:5px; font-size:0.9em;">
+      <img src="assets/images/tool/tishi.png" style="height:15px;width:15px;margin-right:5px;"/>
+      你可以直接输入关键字
+    </div>
+
+  </ion-list>
+
+  <div (tap)="banksPage()">
+    <div style="text-align:center;">
+      <button ion-button block style="margin-top:60px;border:1px solid rgba(255,255,255,0.32);border-radius: 8px;width: 90%;height: 40px;margin: 0 auto">
+        查询
+      </button>
+    </div>
+  </div>
+
+
+</ion-content>

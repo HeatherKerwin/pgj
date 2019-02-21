@@ -1,0 +1,27 @@
+page-orderShoukuanB {
+  div[padding-left]{
+    padding-left: 12px!important;
+  }
+  .bWhite{
+    background-color: white;
+  }
+  .f12{
+    font-size: 12px !important;
+    line-height: 22px !important;;
+  }
+  .red{
+    color: $Red !important;
+  }
+  .black{
+    color: $Black !important;
+  }
+  .bRedLeft{
+    line-height: 30px;
+    border-bottom: 1px solid $boderBlue;
+    span{
+      border-left: 2px solid $Red;
+      font-size:12px;
+    }
+  }
+
+}

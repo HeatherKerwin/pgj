@@ -1,0 +1,62 @@
+page-Detailedlist {
+  ion-content {
+    .scroll-content{
+      overflow-x: inherit;
+    }
+    //按钮
+    .buttonimg{
+      position: fixed;
+      top: 80%;
+      left: 71%;
+      z-index: 10;
+      background-color: rgba(245, 245, 245, 0);
+    }
+    ion-grid{
+      padding: 0 !important;
+      width: 90% !important;
+      margin-left: 5% !important;
+      margin-top: 10px !important;
+      ion-row{
+        padding: 0 !important;
+        ion-col{
+          padding: 0 !important;
+          ion-label{
+            text-overflow: inherit;
+            white-space: inherit;
+            margin-right: 0!important;
+          }
+        }
+      }
+    }
+    .butcolo{
+      background-color: #EEEEEE;
+      //align-items: center;
+    }
+    .borderq{
+      border: 0.5px solid #85878a;
+    }
+    .borderup{
+      border-top: 0.5px solid #85878a;
+    }
+    .borderdown{
+      border-bottom: 0.5px solid #85878a;
+    }
+    .borderleft{
+      border-left: 0.5px solid #85878a;
+    }
+    .borderright{
+      border-right: 0.5px solid #85878a;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

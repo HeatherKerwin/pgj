@@ -1,0 +1,61 @@
+<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >导出</ion-title>
+    <ion-buttons right style="margin-left:-26px;">
+      <button ion-button mode="ios" icon-only (tap)="sendEmail($event)" style="font-size: 12px;height: 24px;padding: 0 10px;border-radius: 3px;background: #d43c33">
+        发送
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>开始时间:</ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="beginTime" [max]="today" doneText="确定" cancelText="取消"></ion-datetime>
+      <ion-note item-end class="calendarIcon"></ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label>结束时间:</ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="endTime" [min]="beginTime" [max]="today" doneText="确定" cancelText="取消"></ion-datetime>
+      <ion-note item-end class="calendarIcon"></ion-note>
+    </ion-item>
+<!--    <ion-item>
+      <ion-label>请选择需要导出的内容:</ion-label>
+    </ion-item>-->
+
+<!--    <ion-grid margin-left no-padding style="border-bottom: 1px solid #dedede">
+      <ion-row >
+        <ion-col col-4>
+          <ion-item no-lines>
+            <ion-label margin-left>已出库</ion-label>
+            <ion-checkbox mode="ios" [(ngModel)]="type1" color="red" margin-left></ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4>
+          <ion-item no-lines>
+            <ion-label margin-left>持有中</ion-label>
+            <ion-checkbox mode="ios" [(ngModel)]="type2" color="red"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4>
+          <ion-item no-lines>
+            <ion-label margin-left>待入账</ion-label>
+            <ion-checkbox mode="ios" [(ngModel)]="type3" color="red" margin-left></ion-checkbox>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>-->
+
+    <ion-item>
+      <ion-label>接收邮箱：</ion-label>
+      <ion-input type="email" [(ngModel)]="email" text-right placeholder="请输入邮箱地址">
+      </ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>

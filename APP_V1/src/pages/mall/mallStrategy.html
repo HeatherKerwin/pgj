@@ -1,0 +1,20 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios">积分攻略</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let strategy of strategys">
+      <ion-label>{{strategy.title}}</ion-label>
+      <ion-note class="red" item-end margin-right>{{strategy.integral}}</ion-note>
+      <ion-note item-end>{{strategy.limit}}</ion-note>
+    </ion-item>
+  </ion-list>
+</ion-content>

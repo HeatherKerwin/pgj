@@ -1,0 +1,141 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons  style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon  color="dark"  name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >银票询价</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+
+<ion-list>
+  <!-- 询价 -->
+  <div class="padding">
+    <ion-grid>
+<!--      <ion-row>
+        <ion-col col-6>
+          <div>上月贴现金额</div>
+          <div>{{discount.month}}万元</div>
+        </ion-col>
+        <ion-col col-6>
+          <div>总贴现金额</div>
+          <div colors="primary">{{discount.all}}万元</div>
+        </ion-col>
+      </ion-row>-->
+
+      <ion-row>
+        <ion-col col-6 *ngIf="inquiry.discount">
+          <div>每10万贴息：(买断)</div>
+          <div>{{result.price2}}元</div>
+        </ion-col>
+        <ion-col col-6 *ngIf="inquiry.nianlilv">
+          <div>当前价格：年利率</div>
+          <div>{{result.price}}%</div>
+        </ion-col>
+        <ion-col col-6>
+          <div>出票利息：(买断)</div>
+          <div>{{price3}}元</div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div class="textone">
+      大票设计特殊行业、瑕疵票、不足月票、二查票价格另议
+    </div >
+    <div class="texttwo">
+      <button type="" (tap)="chart($event)" class="textbutton">票据指数</button>
+    </div>
+  </div>
+
+  <ion-item>
+    <ion-label>票据属性</ion-label>
+    <button ion-button outline item-end color="danger" [ngClass]=" {'activedBtn': inquiry.pjtype==2}" (tap)="attribute($event,inquiry.pjtype=2)">电票</button>
+    <button ion-button outline item-end color="danger" [ngClass]=" {'activedBtn': inquiry.pjtype==1}" (tap)="attribute($event,inquiry.pjtype=1)">纸票</button>
+  </ion-item>
+
+  <ion-item *ngIf=inquiry.isShow>
+    <ion-label>承兑期限</ion-label>
+    <button ion-button outline item-end color="danger" [ngClass]=" {'activedBtn': inquiry.limit==1}" (tap)="attribute($event,inquiry.limit=1)">一年期</button>
+    <button ion-button outline item-end color="danger" [ngClass]=" {'activedBtn': inquiry.limit==0}" (tap)="attribute($event,inquiry.limit=0)">半年期</button>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>承兑行类型</ion-label>
+    <ion-select [(ngModel)]="inquiry.chengduihang" interface="popover">
+      <ion-option value="1">国股</ion-option>
+      <ion-option value="8">大商</ion-option>
+      <ion-option value="2">小商</ion-option>
+      <ion-option value="3">外资</ion-option>
+      <ion-option value="4">农商</ion-option>
+      <ion-option value="5">农合</ion-option>
+      <ion-option value="6">农信</ion-option>
+      <ion-option value="7">村镇</ion-option>
+    </ion-select>
+  </ion-item>
+
+<!--  <ion-item *ngIf=inquiry.iscity>
+    <ion-label><span class="spot">*</span>交易城市</ion-label>
+    <city-picker item-content [cancelText]="'取消'" [doneText]="'完成'" [separator]="'-'" [citiesData]="cityData" [(ngModel)]="cityName" (ionChange)="cityChange($event)">
+    </city-picker>
+  </ion-item>-->
+
+  <ion-item>
+    <ion-label>单张票据金额:</ion-label>
+    <ion-input type="number" maxlength="10" (keyup)="this.apiSev.check1($event)" [(ngModel)]="inquiry.allprice" text-right placeholder="请输入金额(大于1万元)">
+    </ion-input>
+	<ion-note item-end >万元</ion-note>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>下单日期:</ion-label>
+    <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="inquiry.begintime" doneText="确定" cancelText="取消" (ionChange)="jixidate()"></ion-datetime>
+    <ion-note item-end class="calendarIcon"></ion-note>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>到期日期:</ion-label>
+    <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="inquiry.endtime" [min]="inquiry.min" [max]="2999-12-31" doneText="确定" cancelText="取消" (ionChange)="jixidate()"></ion-datetime>
+    <ion-note item-end class="calendarIcon"></ion-note>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>调整天数</ion-label>
+    <ion-input type="number" disabled text-right placeholder={{jixidata.tzts}}></ion-input>
+    <ion-note item-end >天</ion-note>
+  </ion-item>
+
+  <ion-item>
+    <ion-label><span class="spot">*</span>计息天数</ion-label>
+    <ion-input type="number" disabled text-right placeholder={{jixidata.jxts}}></ion-input>
+    <ion-note item-end >天</ion-note>
+  </ion-item>
+
+  <div class="textthree">
+    <img src="assets/images/tool/tishi.png" class="textimg"/>
+    <button class="textbutton2">
+      详见票据学院-新手指引
+    </button>
+  </div>
+
+  <div class="cn-all">
+    <div style="text-align:center;" (tap)="inquirydata($event)">
+      <button ion-button block class="loginBtn">
+        询价
+      </button>
+    </div>
+  </div>
+
+  <div class="cn-all" (tap)="discountYPPage($event)">
+    <div style="text-align:center;">
+      <button ion-button block class="loginBtn">
+        贴现
+      </button>
+    </div>
+  </div>
+
+</ion-list>
+
+
+</ion-content>

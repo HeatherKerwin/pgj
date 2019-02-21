@@ -1,0 +1,32 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >商品列表</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let commodity of commoditys">
+      <ion-thumbnail item-start (click)="Detailed(commodity.id)">
+        <img src="assets/images/mall/nomall.png" *ngIf="commodity.stock==0" class="nomall">
+        <img src="{{this.apiSev.getImgUrl+commodity.banner1}}">
+      </ion-thumbnail>
+      <h2 (click)="Detailed(commodity.id)">{{commodity.goodsName}}</h2>
+      <p><img src="assets/images/mall/dajifen.png" class="jifenIcon" />{{commodity.integral}}积分</p>
+      <button ion-button mode="ios"  outline small color="primary" item-end (click)="convert(commodity.id)" [ngClass]="{'red':commodity.stock==0}" >兑换</button>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="加载更多...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <p class="underscore" *ngIf="!isOk"></p>
+
+</ion-content>

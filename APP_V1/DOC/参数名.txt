@@ -1,0 +1,122 @@
+post方法例子：
+let data:any={
+      memberId: this.memberId,
+    }
+    if(this.orgId!=null&&this.orgId!= ""&&this.orgId!=undefined){
+      data.orgId= this.orgId;
+    }
+    console.log(data);
+    this.apiSev.api("post", "app/org/save2", (res) => {
+      console.log(res);
+    },(error) => {}, 500,data);
+
+缓存方法例子：
+   缓存：this.storage.set('userInfo', res1) 
+   获取缓存：this.storage.get('userInfo').then((data)=>{
+      this.memberId=data.id;
+      console.log("this.memberId=="+this.memberId);
+ })
+
+页面直接传参方法例子：
+    传参：this.navCtrl.push(xxxxPage, {
+      TEMP_TYPE2: this.type2
+    });
+    获取参数：let type2 = this.params.get("TEMP_TYPE2");
+
+参数对应：
+//************userInfo对应memberId
+public memberId:any;
+this.storage.set('userInfo', res1) 
+ this.storage.get('userInfo').then((data)=>{
+      this.memberId=data.id;
+      console.log("this.memberId=="+this.memberId);
+ })
+
+//***********userInfo对应memberId
+public orgId:any;
+this.storage.set('userInfo', res1) 
+    this.storage.get('ORGID').then((data)=>{
+      this.orgId=data;
+      console.log("this.orgId==="+this.orgId);
+    })
+
+let data:any={}
+this.apiSev.api("post", "app/org/save2", (res) => {
+}, 500,data);
+
+
+票据属性：TEMP_TYPE1
+承兑期限：TEMP_ACCEPTTIME
+承兑行类型：TEMP_TYPE2
+票面金额：TEMP_ALLMONEY
+贴现日期：TEMP_START
+到期日期：TEMP_END
+背书：TEMP_
+是否上门：TEMP_
+备注：TEMP_OTHER
+计息天数：TEMP_DAY
+参考贴现利息：TEMP_PRICE
+票据正面图：TEMP_FRONT
+瑕疵票：
+
+贴现地址姓名：TEMP_NAME
+贴现地址性别：TEMP_SEX
+贴现地址电话：TEMP_MOBILE
+
+贴现地址：TEMP_PLACE
+交易城市id：TEMP_CITYID
+贴现地址经度：TEMP_LONGITUDE
+贴现地址纬度：TEMP_LATITUDE
+我的位置：TEMP_ADDRESS
+贴现地址ID：ADDRESSID
+
+当前选择的机构类型：ORG_TYPE
+报价类型Id：PRICETYPE_ID
+
+
+
+
+
+
+
+
+
+
+ionic start piaojuguanjia tabs --skip npm
+npm install ts-md5 --save
+ionic cordova plugin add cordova-plugin-inappbrowser
+npm install --save @ionic-native/in-app-browser
+ionic cordova platform add ios
+ionic cordova plugin add com-sarriaroman-photoviewer
+npm install --save @ionic-native/photo-viewer
+ionic cordova plugin add cordova-plugin-camera
+npm install --save @ionic-native/camera
+npm install ionic2-city-picker --save
+ionic cordova plugin add cordova-plugin-statusbar
+cd platform/ios/cordova
+npm install ios-sim
+
+ionic cordova plugin add jpush-phonegap-plugin --variable APP_KEY=74749812632a52b5306e7b92
+npm i ionic3-jpush -S
+cordova plugin add cordova-plugin-wechat --variable wechatappid=wxfcf5788bc89da8db cordova plugin add cordova-plugin-qqsdk --variable QQ_APP_ID=1104682371
+npm install @ionic-native/qqsdk
+
+
+open -n /Applications/Google\ Chrome.app/ --args --disable-web-security  --user-data-dir=/Users/apple-01/Documents/MyChromeDevUserData 
+
+
+Classes/AppDelegate.m
+@implementation NSURLRequest(DataController)
+
++ (BOOL)allowsAnyHTTPSCertificateForHost:(NSString *)host
+{
+    return YES;
+}
+
+
+@end
+
+
+
+
+

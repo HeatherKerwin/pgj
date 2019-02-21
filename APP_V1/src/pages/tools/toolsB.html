@@ -1,0 +1,135 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only (tap)="close()">
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title mode="ios">工具</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content style="background-color:#F5F5F5;">
+
+  <div class="tab-all">
+    <ion-list>
+      <div class="tools-content toolsliest">
+
+        <div class="iconlist plotnew" (tap)="inquiry()">
+          <div class="iconitem icontool">
+            <button ion-button mode="ios" color="xunjia" icon-start>
+              <img src="assets/images/home/xunjia.png" style="height:30px;width:26px;"/>
+            </button>
+          </div>
+          <div class="ionitemw" (tap)="inquiry()">
+            <button ion-button clear mode="ios">银票询价</button>
+          </div>
+        </div>
+
+<!--        <div class="iconlist plotnew" (tap)="counTer()">
+          <div class="iconitem icontool">
+            <button ion-button mode="ios" color="xunjia" icon-start>
+              <img src="assets/images/tool/jisuanqi.png" style="height:30px;width:26px;"/>
+            </button>
+          </div>
+          <div class="ionitemw">
+            <button ion-button clear mode="ios">
+              计算器
+            </button>
+          </div>
+        </div>-->
+        <div class="iconlist plotnew" (tap)="queryZn()">
+          <div class="iconitem icontool">
+            <button ion-button mode="ios" color="chafu" icon-start>
+              <img src="assets/images/home/shu.png" style="height:28px;width:32px;"/>
+            </button>
+          </div>
+          <div class="ionitemw" (tap)="queryZn()">
+            <button ion-button clear mode="ios">新手指南</button>
+          </div>
+        </div>
+
+        <div class="iconlist plotnew">
+          <div class="iconitem icontool" (tap)="queryYp()">
+            <button ion-button mode="ios" color="chaxunchafu1"
+                    icon-start>
+              <img src="assets/images/tool/guanli.png" style="height:30px;width:30px;"/>
+            </button>
+          </div>
+          <div class="ionitemw">
+            <button ion-button clear mode="ios">票据管理<!--<button ion-button clear mode="ios" style="color:#d43c33;">(付费)</button>--></button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="tools-content toolsliest" style="border-top:0.9px solid #eeeeee;border-bottom:0.9px solid #eeeeee">
+
+        <div class="iconlist plotnew">
+          <div class="iconitem" style="margin:0 auto;margin-top:15px;" (tap)="reSult()">
+            <button ion-button mode="ios" color="gongcui" icon-start>
+              <img src="assets/images/tool/gongcui.png" style="height:30px;width:30px;"/>
+            </button>
+          </div>
+          <div class="ionitemw">
+            <button ion-button clear mode="ios">公催查询</button>
+          </div>
+        </div>
+
+        <div class="iconlist plotnew" (tap)="bankCode()">
+          <div class="iconitem icontool">
+            <button ion-button mode="ios" color="shangpiao" icon-start>
+              <img src="assets/images/tool/lianhanghao.png" style="height:25px;width:36px;"/>
+            </button>
+          </div>
+          <div class="ionitemw">
+            <button ion-button clear mode="ios">联行号查询</button>
+          </div>
+        </div>
+
+        <div class="iconlist plotnew">
+          <div class="iconitem icontool" (tap)="ShiBor()">
+            <button ion-button mode="ios" color="jisuanqi" icon-start>
+              <img src="assets/images/tool/shibor.png" style="height:20px;width:50px;"/>
+            </button>
+          </div>
+          <div class="ionitemw">
+            <button ion-button clear mode="ios">shibor查询</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="tools-content toolsliest">
+
+        <div class="iconlist plotnew">
+          <div class="iconitem icontool" (tap)='apiSev.Call("400-067-0002");'>
+            <button ion-button mode="ios" color="lianxikefu" icon-start>
+              <img src="assets/images/tool/kefu.png" style="height:30px;width:30px;"/>
+            </button>
+          </div>
+          <div class="ionitemw">
+            <button ion-button clear mode="ios">联系客服</button>
+          </div>
+        </div>
+
+        <div class="iconlist plotnew" (tap)="OpiNion()">
+          <div class="iconitem icontool">
+            <button ion-button mode="ios" color="chafu" icon-start>
+              <img src="assets/images/tool/fankui.png" style="height:28px;width:32px;"/>
+            </button>
+          </div>
+          <div class="ionitemw">
+            <button ion-button clear mode="ios">意见反馈</button>
+          </div>
+        </div>
+
+      </div>
+
+    </ion-list>
+
+
+  </div>
+
+</ion-content>

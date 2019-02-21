@@ -1,0 +1,169 @@
+﻿<ion-content>
+	<div class="me-header">
+    <ion-slides pager style="background-color: #f5f5f5;height: 150px">
+      <ion-slide *ngFor="let item of imgList" (click)="itemSelected(item.url)">
+       <img src="{{ apiSev.getImgUrl+item.path }}" style="max-height: 155px;width: 100%;" />
+     </ion-slide>
+   </ion-slides>
+
+ </div>
+
+ <div class="home-content" style="height:185px;background: #fff;border-top:0.9px solid #eeeeee;border-bottom:0.9px solid #eeeeee">
+  <div class="iconlist" style="float:left;width:30%;text-align:center">
+
+    <div class="iconitem" style="margin:0 auto;margin-top:8px;" (click)="discountSPPage()">
+      <button style="background: #FFFFFF" icon-start>
+        <img src="assets/images/home/tieixanG.png" style="height:49px;width:50px;"/>
+      </button>
+    </div>
+    <div style="margin:0 auto;margin-top:-2px;border-bottom: 0.9px solid rgba(223, 223, 223, 0.52);padding-bottom: 5px;" (click)="discountSPPage()">
+      <button ion-button clear mode="ios" style="padding:0px;height:14px;color:#222222;font-size:1.25rem;">
+        商票业务
+      </button>
+    </div>
+
+    <div class="iconitem" style="margin:0 auto;margin-top:8px" (click)="Inventorys()">
+      <button style="background: #FFFFFF" icon-start>
+        <img src="assets/images/Inventory/qingdan.png" style="height:49px;width:50px;"/>
+      </button>
+    </div>
+    <div style="margin:0 auto;margin-top:-2px;" (click)="Inventorys()">
+      <button ion-button clear mode="ios" style="padding:0px;height:14px;color:#222222;font-size:1.25rem">
+        库存清单
+      </button>
+    </div>
+  </div>
+
+  <div (click)="discountYPPage()" class="iconlist" style="float:left;width:40%;height: 100%;text-align:center;border-right: 0.9px solid rgba(223, 223, 223, 0.52);border-left: 0.9px solid rgba(223, 223, 223, 0.52);">
+
+    <div class="iconitem"  style="margin:0 auto;margin-top:30px;" >
+      <button style="background: #FFFFFF" icon-start>
+        <img src="assets/images/home/yinpiaoG.png" style="height:70px;width:70px;"/>
+      </button>
+    </div>
+    <div style="margin:0 auto;margin-top:-2px;" id="guideTsB">
+      <button ion-button clear mode="ios" style="padding: 0;height: 20px;color: #d43c33;font-size: 1.74rem;margin: 0;margin-top: 10px;">
+        银票业务
+      </button>
+    </div>
+    <div style="margin:0 auto;margin-top:-2px;" id="guideTsB">
+      <button ion-button clear mode="ios" style="padding: 0;height: 14px;color: #85878a;font-size: 1.3rem;">
+        点击开启您的交易
+      </button>
+    </div>
+
+
+  </div>
+
+  <div class="iconlist" style="float:right;width:30%;text-align:center">
+    <div class="iconitem"  style="margin:0 auto;margin-top:8px" (click)="manage()">
+      <button style="background: #FFFFFF" icon-start>
+        <img src="assets/images/home/guankiG.png" style="height:49px;width:50px;"/>
+      </button>
+    </div>
+    <div style="margin:0 auto;margin-top:-2px;border-bottom: 0.9px solid rgba(223, 223, 223, 0.52);padding-bottom: 5px;" (click)="manage()">
+      <button ion-button clear mode="ios" style="padding:0px;height:14px;color:#222222;font-size:1.25rem;">
+        票据管理
+      </button>
+    </div>
+
+    <div class="iconitem" style="margin:0 auto;margin-top:8px" (click)="juese()" id="guideTs">
+      <button style="background: #FFFFFF" icon-start>
+        <img src="assets/images/home/jueseG.png" style="height:49px;width:50px;"/>
+      </button>
+    </div>
+    <div style="margin:0 auto;margin-top:-2px;" (click)="juese()">
+      <button ion-button clear mode="ios" style="padding:0px;height:14px;color:#222222;font-size:1.25rem">
+        切换角色
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="home-content" style="margin-top:10px;margin-bottom: 20px;height:115px;background: #fff;border-top:0.9px solid #eeeeee;border-bottom:0.9px solid #eeeeee">
+  <div style="clear:both;"></div>
+  <div style="font-size:1.28rem;width:94%;height:110px;margin:0 auto;margin-top:6px;">
+   <div style="margin-top:8px;text-align:center;float:left;width:50%;height:80px;border-right:0.9px solid #dddddd">
+     100万以下买断电票<br/><span style="font-size:1rem;color:#aaaaaa">年利率(%)</span><br/>国股:{{guoguB}}<br/>城商:{{chengshangB}}<br/>农商:{{nongshangB}}
+   </div>
+   <div style="margin-top:8px;text-align:center;float:left;width:50%;height:80px;">
+     100万以上买断电票<br/><span style="font-size:1rem;color:#aaaaaa">年利率(%)</span><br/>国股:{{guogu}}<br/>城商:{{chengshang}}<br/>农商:{{nongshang}}
+   </div>
+ </div>
+</div>
+
+
+<div tappable class="busy" *ngIf="backDropShow"></div>
+<div class="update" *ngIf="backDropShow">
+  <div class="des">
+    有新版本更新
+    <p>V{{appVersion}}</p>
+    <p>{{appDes}}</p>
+  </div>
+
+  <div class="updateIt" (tap)="sure()">
+    {{btnText}}
+  </div>
+</div>
+
+  <div *ngFor="let getnotices of getnotice">
+    <div tappable class="busy" *ngIf="Notices"></div>
+    <div class="update" *ngIf="Notices">
+      <div class="des">
+        公告通知
+        <p>{{getnotices.content}}</p>
+      </div>
+
+    <div class="updateIt" *ngIf="getnotices.button_fun == 'CLOSE'" (tap)="ReadNotice(getnotices.id)">
+      知道了
+    </div>
+      <div class="updateIt" *ngIf="getnotices.button_fun == 'NONE'" (tap)="ReadNoticeS()">
+        关闭APP
+      </div>
+    </div>
+  </div>
+
+
+  <ion-segment mode="md"  [(ngModel)]="st" (ngModelChange)='Changed($event)' color="primary" >
+    <ion-segment-button value="s1">
+      一月
+    </ion-segment-button>
+    <ion-segment-button value="s2">
+      三月
+    </ion-segment-button>
+    <ion-segment-button value="s3">
+      六月
+    </ion-segment-button>
+    <ion-segment-button value="s4">
+      一年
+    </ion-segment-button>
+  </ion-segment>
+
+  <div #container class="indexH"></div>
+
+</ion-content>
+
+<!--弹窗提示-->
+<div *ngIf="isMask" (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="Newupdate" *ngIf="Newred" (click)="Redinput()">
+      <div class="NewupdateIt">
+        抢红包
+      </div>
+    </div>
+    <div *ngIf="Guide">
+      <div class="Guidedate" (click)="isMask=false;Newred=false;Guide=false;" [(ngStyle)]="guideDate">
+      </div>
+      <div class="GuidedateB" (click)="isMask=false;Newred=false;Guide=false;" [(ngStyle)]="guideDateB">
+      </div>
+    </div>
+  </ion-backdrop>
+</div>
+
+
+
+
+
+
+
+

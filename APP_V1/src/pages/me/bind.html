@@ -1,0 +1,28 @@
+<ion-header mode="ios">
+  <ion-navbar mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title mode="ios">账号绑定</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content >
+  <ion-list mode="md" *ngIf="isQQflag">
+    <ion-item >
+      <ion-avatar item-start >
+        <img src="assets/images/me/qq.png"  >
+      </ion-avatar>
+      腾讯QQ<button style="background-color: #336cd4;" ion-button item-end  (tap)="ToBindQQ()" >{{qqStr}}</button>
+    </ion-item>
+  </ion-list>
+  <ion-list mode="md" *ngIf="isWeChatflag">
+    <ion-item >
+      <ion-avatar item-start >
+        <img src="assets/images/me/weixin.png"  >
+      </ion-avatar>
+      微信<button style="background-color: rgb(77, 200, 81);" ion-button item-end  (tap)="ToBindWX()">{{wxStr}}</button>
+    </ion-item>
+  </ion-list>
+</ion-content>

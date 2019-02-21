@@ -1,0 +1,169 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >确认订单</ion-title>
+    <ion-buttons  end class="redbutton">
+      <button ion-button icon-only (tap)="cancelPage()">
+        取消订单
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <!--银行卡空展示-->
+  <div margin-top class="city" *ngIf="type1=='2'">
+    <!--没有信息-->
+    <ion-list class="placeNot">
+      <div text-center>
+        <p text-center style="color: #d43c33;margin-bottom: 0;background-color:#FFFFFF;">请选择该票据当前背书户的银行账号。</p>
+      </div>
+      <ion-item>
+        <button *ngIf="addkeep" ion-button outline block item-end icon-left color="light" (tap)="chosePlace()">
+          <ion-icon class="placeIcon"></ion-icon>
+          请选择银行卡
+        </button>
+        <ion-grid *ngIf="cibkeep" (tap)="chosePlace()">
+          <ion-row>
+            <ion-col col-8 text-left style="padding: 0;margin: 0;padding-left:5px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
+              {{bankAcctAcctName}}
+            </ion-col>
+            <ion-col col-4 text-right style="padding: 0;margin: 0;padding-right:5px;">
+              <div><img src="assets/images/authentication/qiehuan.png" style="height:20px !important;"/></div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-6 text-left style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;padding: 0;margin: 0;padding-left: 5px">
+              {{bankAcctAcctNo}}
+            </ion-col>
+            <ion-col col-6 text-right style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;padding: 0;margin: 0">
+              {{bankAcctBankBranch}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <ion-list margin-top>
+    <ion-list-header>
+      <img src="assets/images/discount/remind.png" class="remind">请支付保证金
+    </ion-list-header>
+    <!--<ion-item>-->
+      <!--<h2>银行账户名：{{order.company}}</h2>-->
+<!--      <img src="assets/images/discount/logo.png" class="bankLogo">
+      <ion-row>
+        <ion-col>{{order.bank}}:{{order.cardNum}}</ion-col>
+      </ion-row>-->
+      <!--<p>{{order.bank}}:{{order.cardNum}}</p>-->
+      <!--<ion-icon item-end class="replace" (tap)="choseBank()"></ion-icon>-->
+    <!--</ion-item>-->
+    <ion-item>
+      <ion-label fixed style="min-width: 200px !important;">应付保证金<button style="font-size: 1.3rem;color: #7790fe;padding-left: 2px;background: #FFFFFF !important;" (click)="cashBtn()">(交易完成后退回)</button></ion-label>
+      <ion-note item-end><span class="red">{{order.deposit}}</span>元</ion-note>
+    </ion-item>
+    <ion-item *ngIf="redNoVIP">
+      <ion-label fixed>撮合服务费</ion-label>
+      <ion-note item-end><span class="red">20</span>元</ion-note>
+    </ion-item>
+    <ion-item *ngIf="redYesVIP">
+      <ion-label fixed>撮合服务费</ion-label>
+      <ion-note item-end><span class="red" style="text-decoration: line-through solid #2d2d2d !important;">20元</span></ion-note>
+      <ion-note item-end>(<button class="vipimg"></button>年卡免费)</ion-note>
+
+    </ion-item>
+    <ion-item *ngIf="redNoVIP">
+      <ion-label fixed style="min-width: 200px !important;">红包<span style="font-size: 1.3rem;color: #7790fe;padding-left: 1px;background: #FFFFFF !important;" (tap)="vipgate()">(成为会员享优惠)</span></ion-label>
+      <ion-note item-end *ngIf="redYes"><button style="background: #FFFFFF !important;font-size: 1.5rem;" class="red" (tap)="redlist()">{{rednumber}}个可用</button><img src="assets/images/openaccount/arrow.png" style="height:15px;" (tap)="redlist()" /></ion-note>
+      <ion-note item-end *ngIf="redNo">无可用红包</ion-note>
+      <ion-note item-end *ngIf="JredYes" (tap)="redlist()"><span style="font-size: 1.3rem;margin-right: 2px;">撮合服务费</span><span class="red">-{{redmoney}}</span>元</ion-note>
+    </ion-item>
+<!--    <ion-item>
+      <ion-label fixed>实付</ion-label>
+      <ion-note item-end><span class="red">{{Totalamount}}</span>元</ion-note>
+    </ion-item>-->
+  </ion-list>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>钱包余额</ion-label>
+      <ion-note item-end><span>{{order.money}}</span>元</ion-note>
+    </ion-item>
+  </ion-list>
+
+  <ion-list margin-top>
+    <ion-item>
+      <ion-label>是否指定收票机构</ion-label>
+      <button ion-button mode="ios" outline item-end class="radioBtn" color="danger" [ngClass]=" {'activedBtn': order.appoint==1}" (tap)="radioBtn(order.appoint=1)">是</button>
+      <button ion-button mode="ios" outline item-end class="radioBtn" color="danger" [ngClass]=" {'activedBtn': order.appoint==0}" (tap)="radioBtn(order.appoint=0)">否</button>
+    </ion-item>
+  </ion-list>
+
+  <ion-list margin-top class="mechanism" *ngIf="order.appoint==1">
+    <ion-item text-center (tap)="mechanismChose()" *ngIf="isOrg">
+      <img src="assets/images/discount/jigou.png">
+      <p>暂无指定机构，请点击搜索</p>
+    </ion-item>
+    <ion-grid *ngIf="isOrgshow" (tap)="mechanismChose()">
+      <ion-row>
+        <ion-col col-7>{{mechanism.company}}</ion-col>
+        <ion-col col-5 text-right>联系人<span>{{mechanism.name}}</span></ion-col>
+      </ion-row>
+      <ion-row text-center>
+        <ion-col col-4>价格真实<span>{{apiSev.toFix(mechanism.price,1)}}</span></ion-col>
+        <ion-col col-4>服务态度<span>{{apiSev.toFix(mechanism.service,1)}}</span></ion-col>
+        <ion-col col-4>确认效率<span>{{apiSev.toFix(mechanism.speed,1)}}</span></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+
+<!--  <p margin>
+    <button ion-button mode="ios" block (click)="saveGet()">确认订单</button>
+  </p>-->
+
+</ion-content>
+
+<!--弹出层-->
+<div *ngIf="isMask" (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="maskCon">
+
+      <ion-grid class="cash" *ngIf="isCash">
+        <button mode="ios" class="close" (tap)="isMask = false;isCash = false;isPay = false;"></button>
+        <div class="textdiv">为了保证交易双方的安全，票据管家将对交易的双方收取履约保证金。若交易顺利完成，保证金返还双方账户，若交易过程中出现违约行为，保证金将作为补偿，退还至未违约方账户。</div>
+        <div class="textdiv">当您下单时收取的保证金，若您未选择报价的资方作为您的交易对象，该保证金在订单失效后返还。</div>
+      </ion-grid>
+
+      <ion-grid class="cash" *ngIf="isPay">
+        <button mode="ios" class="close" (tap)="isMask = false;isCash = false;isPay = false;ismonybut=true;"></button>
+        <ion-item class="topitem">
+          <ion-label fixed>共计:</ion-label>
+          <ion-note item-end><span class="textcolor">{{Totalamount}}</span>元</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label fixed>钱包余额:</ion-label>
+          <ion-note item-end><span class="textcolor">{{order.money}}</span>元</ion-note>
+        </ion-item>
+        <p margin>
+          <button *ngIf="moneyYes" ion-button mode="ios" block (tap)="save()">确认支付</button>
+          <button *ngIf="moneyNo" ion-button mode="ios" block (tap)="addDeposit()">余额不足,去充值</button>
+        </p>
+      </ion-grid>
+    </div>
+  </ion-backdrop>
+</div>
+
+
+<ion-footer>
+  <ion-list>
+    <ion-item>
+      <ion-label item-start>实付 <span class="red">¥{{Totalamount}}</span></ion-label>
+      <button ion-button full item-end class="black" *ngIf="ismonybut" (tap)="saveGet()">确认订单</button>
+      <button ion-button full item-end class="black" *ngIf="!ismonybut" disabled>确认订单</button>
+    </ion-item>
+  </ion-list>
+</ion-footer>

@@ -1,0 +1,96 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >兑换记录</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <p margin text-center *ngIf="detailNo" class="detailNo">
+    <img src="assets/images/mall/jilu.png" >
+    您还没有兑换记录
+  </p>
+  <div *ngIf="detailList">
+    <ion-list margin-top *ngFor="let detail of details">
+      <ion-item (tap)="Detailed($event,detail.no)">
+        <ion-label *ngIf="detail.state==0" class="red">待发货</ion-label>
+        <ion-label *ngIf="detail.state==1" class="red">已发货</ion-label>
+      </ion-item>
+      <ion-item  (click)="Detailed(detail.no)">
+        <ion-avatar item-start>
+          <img src="{{this.apiSev.getImgUrl+detail.goods[0].banner1}}">
+        </ion-avatar>
+        <h3>{{detail.goods[0].goods_name}}</h3>
+        <ion-row>
+          <ion-col class="red"><img src="assets/images/mall/dajifen.png" class="jifenIcon" />{{detail.goods[0].integral}}积分</ion-col>
+          <ion-col text-center class="gray">X {{detail.goods[0].count}}</ion-col>
+          <ion-col text-right class="gray">包邮</ion-col>
+        </ion-row>
+      </ion-item>
+      <ion-item *ngIf="detail.state==0">
+        <button ion-button  mode="ios"  outline color="dark" item-end (tap)="search($event,detail.id)">查看快递</button>
+        <button ion-button  mode="ios"  outline color="primary" item-end (tap)="del($event,detail.id)">删除</button>
+      </ion-item>
+    </ion-list>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="加载更多...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <p class="underscore" *ngIf="!isOk"></p>
+  </div>
+</ion-content>
+
+
+<!--弹出层-->
+<div *ngIf="isMask" (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="maskCon">
+
+      <ion-grid class="edit" *ngIf="isEedit">
+        <button class="close" (tap)="isMask=false;isEedit=false;isDelete=false;"></button>
+        <ion-row text-center>
+          <ion-col><img src="assets/images/mall/edit.png"></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>承兑公司</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>{{express.remark}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>快递单号</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>{{express.no}}</ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid class="delete" *ngIf="isDelete">
+        <ion-row text-center>
+          <ion-col >
+            <img src="assets/images/mall/deleteIcon.png">
+          </ion-col>
+        </ion-row>
+        <ion-row text-center>
+          <ion-col><h4>是否删除订单？</h4></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-5 offset-1>
+            <button (tap)="isMask=false;isEedit=false;isDelete=false;"  mode="ios"  ion-button block color="primary" >暂不删除</button>
+          </ion-col>
+          <ion-col col-5 >
+            <button (tap)="delete($event)"  mode="ios"  ion-button block outline color="danger" small>删除订单</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </div>
+  </ion-backdrop>
+</div>

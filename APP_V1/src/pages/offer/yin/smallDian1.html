@@ -1,0 +1,67 @@
+<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons  style="margin-left:-26px;float:left">
+      <button ion-button icon-only>
+        <ion-icon  color="dark"  name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons  end>
+      <button ion-button icon-only (tap)="ContrastPrice()">
+        对比价格
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >银票小电票报价</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="warn" padding-left margin-top>请填写各个承兑行对应的价格：</div>
+  <div class="red-12" padding-left>*请注意电票请填写足年息、即年利率</div>
+  <div class="Box1">
+    <div><span>国股：</span><div class="InputDiv"><input type="number" placeholder="请输入年利率" [(ngModel)]="guogu"/>%</div><span> + </span><div class="InputDiv"><input type="number" [(ngModel)]="guogu1" placeholder="请输入零头"/>元</div></div>
+  </div>
+  <div class="Box1">
+    <div><span>城商：</span><div class="InputDiv"><input type="number" placeholder="请输入年利率" [(ngModel)]="chengshang"/>%</div><span> + </span><div class="InputDiv"><input type="number" [(ngModel)]="chengshang1" placeholder="请输入零头"/>元</div></div>
+  </div>
+  <div class="Box1">
+    <div><span>外资：</span><div class="InputDiv"><input type="number" placeholder="请输入年利率" [(ngModel)]="waizi"/>%</div><span> + </span><div class="InputDiv"><input type="number" [(ngModel)]="waizi1" placeholder="请输入零头"/>元</div></div>
+  </div>
+  <div class="Box1">
+    <div><span>农商：</span><div class="InputDiv"><input type="number" placeholder="请输入年利率" [(ngModel)]="nongshang"/>%</div><span> + </span><div class="InputDiv"><input type="number" [(ngModel)]="nongshang1" placeholder="请输入零头"/>元</div></div>
+  </div>
+  <div class="Box1">
+    <div><span>农合：</span><div class="InputDiv"><input type="number" placeholder="请输入年利率" [(ngModel)]="nongxin"/>%</div><span> + </span><div class="InputDiv"><input type="number" [(ngModel)]="nongxin1" placeholder="请输入零头"/>元</div></div>
+  </div>
+  <div class="Box1">
+    <div><span>农信：</span><div class="InputDiv"><input type="number" placeholder="请输入年利率" [(ngModel)]="nonghe"/>%</div><span> + </span><div class="InputDiv"><input type="number" [(ngModel)]="nonghe1" placeholder="请输入零头"/>元</div></div>
+  </div>
+  <div class="Box1">
+    <div><span>村镇：</span><div class="InputDiv"><input type="number" placeholder="请输入年利率" [(ngModel)]="cunzhen"/>%</div><span> + </span><div class="InputDiv"><input type="number" [(ngModel)]="cunzhen1" placeholder="请输入零头"/>元</div></div>
+  </div>
+
+  <div style="text-align:center;" margin-top>
+    <button ion-button block  mode="ios" class="Btn" (tap)='submit()'>确认提交</button>
+  </div>
+  <div style="text-align:center;" margin-top>
+    <button ion-button block  mode="ios" class="Btn1" (tap)="clear()">一键清空</button>
+  </div>
+</ion-content>
+<!--弹窗提示-->
+<div *ngIf="maskDiv" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="PlatformPrice" *ngIf="PlatformPrice" padding>
+      <h5>平台价格</h5>
+      <div class="Price" padding>
+        <div><span>国股：</span><span margin-left>年利率{{smallDianGuoGu}}%+{{smallDianGuoGu1}}元</span></div>
+        <div><span>城商：</span><span margin-left>年利率{{smallDianChengShang}}%+{{smallDianChengShang1}}元</span></div>
+        <div><span>外资：</span><span margin-left>年利率{{smallDianWaiZi}}%+{{smallDianWaiZi1}}元</span></div>
+        <div><span>农商：</span><span margin-left>年利率{{smallDianNongShang}}%+{{smallDianNongShang1}}元</span></div>
+        <div><span>农合：</span><span margin-left>年利率{{smallDianNongHe}}%+{{smallDianNongHe1}}元</span></div>
+        <div><span>农信：</span><span margin-left>年利率{{smallDianNongXin}}%+{{smallDianNongXin1}}元</span></div>
+        <div><span>村镇：</span><span margin-left>年利率{{smallDianCunZhen}}%+{{smallDianCunZhen1}}元</span></div>
+        <p>
+          <button ion-button round (tap)="closeMask()">知道了</button>
+        </p>
+      </div>
+    </div>
+  </ion-backdrop>
+</div>

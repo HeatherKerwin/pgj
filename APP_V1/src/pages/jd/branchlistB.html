@@ -1,0 +1,47 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      行号查询
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <ion-list>
+    <ion-item>
+      <ion-label>银行地址</ion-label>
+      <ion-select [(ngModel)]="province" (ionChange)="querycity()" interface="popover" doneText="确定" cancelText="取消">
+        <ion-option value="请选择省">请选择省</ion-option>
+        <ion-option  *ngFor="let item of provincelist" value="{{item.provinceId}}" >{{item.provinceName}}</ion-option>
+      </ion-select>
+      <ion-select [(ngModel)]="city" (ionChange)="querybankcnapsinfo()"  interface="popover" doneText="确定" cancelText="取消">
+        <ion-option value="请选择市">请选择市</ion-option>
+        <ion-option *ngFor="let item of citylist" value="{{item.cityId}}">{{item.cityName}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-searchbar mode="ios" [(ngModel)]="keyword" maxlength="25" placeholder="请输入支行的关键字"></ion-searchbar>
+  <button mode="ios" class="searchBtn" style="margin-top: 67px;" (tap)="draftcalculatesave(pageIndex)">搜索</button>
+
+  <ion-list>
+    <ion-item text-wrap *ngFor="let banklist of banklists" tappable (click)="myColumn(banklist.bankChildName,banklist.bankCnaps)">
+      <ion-grid>
+        <ion-row text-center>
+          <ion-col col-6>
+            <div>{{banklist.bankCnaps}}</div>
+          </ion-col>
+          <ion-col col-6>
+            <div>{{banklist.bankChildName}}</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>

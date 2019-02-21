@@ -1,0 +1,95 @@
+<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons  style="margin-left:-26px;float:left">
+      <button ion-button icon-only>
+        <ion-icon  color="dark"  name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons  end>
+      <button ion-button icon-only (tap)="ContrastPrice()">
+        对比价格
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >银票小纸票报价</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="warn" padding-left margin-top>请填写各个承兑行对应的价格：</div>
+  <div class="Box1">
+    <div><span>国股：</span><div class="InputDiv"><input type="number" placeholder="请输入月利率" [(ngModel)]="guogu"/>‰</div><span> + </span><div class="InputDiv"><input type="number" [(ngModel)]="guogu1" placeholder="请输入零头"/>元</div></div>
+    <div margin-top><span>足月票价：</span><div class="InputDiv1"><input type="number" [(ngModel)]="guogu3" placeholder="请输入每十万贴息"/> 元 </div></div>
+  </div>
+  <div class="Box1">
+    <div><span>城商：</span><div class="InputDiv"><input type="number" placeholder="请输入月利率" [(ngModel)]="chengshang"/>‰</div><span> + </span><div class="InputDiv"><input type="number" [(ngModel)]="chengshang1" placeholder="请输入零头"/>元</div></div>
+    <div margin-top><span>足月票价：</span><div class="InputDiv1"><input type="number" placeholder="请输入每十万贴息" [(ngModel)]="chengshang3"/> 元 </div></div>
+  </div>
+  <div class="Box1">
+    <div><span>外资：</span><div class="InputDiv"><input type="number" placeholder="请输入月利率" [(ngModel)]="waizi"/>‰</div><span> + </span><div class="InputDiv"><input type="number" [(ngModel)]="waizi1" placeholder="请输入零头"/>元</div></div>
+    <div margin-top><span>足月票价：</span><div class="InputDiv1"><input type="number" placeholder="请输入每十万贴息" [(ngModel)]="waizi3"/> 元 </div></div>
+  </div>
+  <div class="Box1">
+    <div><span>农商：</span><div class="InputDiv"><input type="number" placeholder="请输入月利率" [(ngModel)]="nongshang"/>‰</div><span> + </span><div class="InputDiv"><input type="number" placeholder="请输入零头" [(ngModel)]="nongshang1"/>元</div></div>
+    <div margin-top><span>足月票价：</span><div class="InputDiv1"><input type="number" placeholder="请输入每十万贴息" [(ngModel)]="nongshang3"/> 元 </div></div>
+  </div>
+  <div class="Box1">
+    <div><span>农合：</span><div class="InputDiv"><input type="number" placeholder="请输入月利率" [(ngModel)]="nonghe"/>‰</div><span> + </span><div class="InputDiv"><input type="number" [(ngModel)]="nonghe1" placeholder="请输入零头"/>元</div></div>
+    <div margin-top><span>足月票价：</span><div class="InputDiv1"><input type="number" placeholder="请输入每十万贴息" [(ngModel)]="nonghe3"/> 元 </div></div>
+  </div>
+  <div class="Box1">
+    <div><span>农信：</span><div class="InputDiv"><input type="number" placeholder="请输入月利率" [(ngModel)]="nongxin"/>‰</div><span> + </span><div class="InputDiv"><input type="number" [(ngModel)]="nongxin1" placeholder="请输入零头"/>元</div></div>
+    <div margin-top><span>足月票价：</span><div class="InputDiv1"><input type="number" placeholder="请输入每十万贴息" [(ngModel)]="nongxin3"/> 元 </div></div>
+  </div>
+  <div class="Box1">
+    <div><span>村镇：</span><div class="InputDiv"><input type="number" placeholder="请输入月利率" [(ngModel)]="cunzhen"/>‰</div><span> + </span><div class="InputDiv"><input type="number" [(ngModel)]="cunzhen1" placeholder="请输入零头"/>元</div></div>
+    <div margin-top><span>足月票价：</span><div class="InputDiv1"><input type="number" placeholder="请输入每十万贴息" [(ngModel)]="cunzhen3"/> 元 </div></div>
+  </div>
+
+  <div style="text-align:center;" margin-top>
+    <button ion-button block  mode="ios" class="Btn" (tap)='submit()'>确认提交</button>
+  </div>
+  <div style="text-align:center;" margin-top>
+    <button ion-button block  mode="ios" class="Btn1" (tap)="clear()">一键清空</button>
+  </div>
+</ion-content>
+<!--弹窗提示-->
+<div *ngIf="maskDiv" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="PlatformPrice" *ngIf="PlatformPrice" padding>
+      <h5>平台价格</h5>
+      <div class="Price" padding>
+        <div>
+          <strong>国股：</strong><span margin-left>月利率--‰+0.00元</span>
+          <p>每10万约***元(足月票价)</p>
+        </div>
+        <div>
+          <strong>城商：</strong><span margin-left>月利率--‰+0.00元</span>
+          <p>每10万约***元(足月票价)</p>
+        </div>
+        <div>
+          <strong>外资：</strong><span margin-left>月利率--‰+0.00元</span>
+          <p>每10万约***元(足月票价)</p>
+        </div>
+        <div>
+          <strong>农商：</strong><span margin-left>月利率--‰+0.00元</span>
+          <p>每10万约***元(足月票价)</p>
+        </div>
+        <div>
+          <strong>农合：</strong><span margin-left>月利率--‰+0.00元</span>
+          <p>每10万约***元(足月票价)</p>
+        </div>
+        <div>
+          <strong>农信：</strong><span margin-left>月利率--‰+0.00元</span>
+          <p>每10万约***元(足月票价)</p>
+        </div>
+        <div>
+          <strong>村镇：</strong><span margin-left>月利率--‰+0.00元</span>
+          <p>每10万约***元(足月票价)</p>
+        </div>
+
+        <p>
+          <button ion-button round (tap)="closeMask()">知道了</button>
+        </p>
+      </div>
+    </div>
+  </ion-backdrop>
+</div>

@@ -1,0 +1,107 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      开户图片
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <ion-list>
+    <div style="padding-top: 10px;padding-bottom: 10px;background: #ffffff">
+      <ion-icon style="width: 3px;height: 20px;background: #d43c33;float: left;margin-right: 8px;"></ion-icon>
+      <span style="height: 20px;line-height: 20px" >营业执照</span>
+      <button style="float: right;height: 20px;line-height: 20px;background: #ffffff;color: #91C4F3;" tappable (click)="infosl=false;uploadBtninfo()">
+        查看示例
+      </button>
+    </div>
+    <div text-center style="background: #ffffff;padding-top: 10px;padding-bottom: 15px;">
+      <img *ngIf="isUpload" src="assets/images/jd/yyzz.png" tappable (click)="zfmian='A';uploadBtn();" style="height: 120px;"/>
+      <img *ngIf="isPicpath" src="{{jd.picpath}}" tappable (click)="zfmian='A';uploadBtn()" style="height: 120px;"/>
+      <div>营业执照</div>
+    </div>
+  </ion-list>
+
+  <ion-list>
+    <div style="padding-top: 10px;padding-bottom: 10px;background: #ffffff">
+      <ion-icon style="width: 3px;height: 20px;background: #d43c33;float: left;margin-right: 8px;"></ion-icon>
+      <span style="height: 20px;line-height: 20px">法人身份证</span>
+      <button style="float: right;height: 20px;line-height: 20px;background: #ffffff;color: #91C4F3;" tappable (click)="infosl=true;uploadBtninfo()">
+        查看示例
+      </button>
+    </div>
+
+    <ion-row text-center style="background: #ffffff;padding-top: 10px;padding-bottom: 15px;">
+      <ion-col col-6>
+        <img *ngIf="isUploadB" src="assets/images/jd/yyzz.png" tappable (click)="zfmian='B';uploadBtn();" style="height: 120px;"/>
+        <img *ngIf="isPicpathB" src="{{jd.picpathB}}" tappable (click)="zfmian='B';uploadBtn()" style="height: 120px;"/>
+        <div>身份证正面</div>
+      </ion-col>
+      <ion-col col-6>
+        <img *ngIf="isUploadC" src="assets/images/jd/yyzz.png"  tappable (click)="zfmian='C';uploadBtn()" style="height: 120px;"/>
+        <img *ngIf="isPicpathC" src="{{jd.picpathC}}"  tappable (click)="zfmian='C';uploadBtn()" style="height: 120px;"/>
+        <div>身份证反面</div>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+
+  <div padding>
+    <button ion-button mode="ios" block color="primary" (tap)="sava()">保存修改</button>
+  </div>
+
+</ion-content>
+
+
+<!--上传图片弹出层-->
+<div *ngIf="isMask" (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="maskCon" *ngIf="CameraRoll">
+      <ion-row text-center>
+        <ion-col col-4 offset-2 (click)="cameraPic()">
+          <img src="assets/images/discount/camera.png" alt="相机">
+          <p>相机</p>
+        </ion-col>
+        <ion-col col-4 (click)="albumPic()">
+          <img src="assets/images/discount/album.png" alt="相册">
+          <p>相册</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <button ion-button mode="ios" block color="danger" data-tap-disabled="true" (click)="closeMask()">取消</button>
+      </ion-row>
+    </div>
+
+
+    <!--确认-->
+    <div class="maskConB" *ngIf="Distinguish">
+      <div class="offer">
+        <button mode="ios" class="close" data-tap-disabled="true" (click)="Distinguish =false;isMask = false;"></button>
+        <p text-center class="gridTitle">
+          示例
+        </p>
+        <ion-list no-lines *ngIf="infosl">
+          <div style="padding-left: 10px">正确示例:</div>
+          <img src="assets/images/jd/sf1@3x.png" style="padding: 5px 10px 5px 10px;" />
+
+          <div style="padding-left: 10px">错误示例:</div>
+          <img src="assets/images/jd/sf2(1)@3x.png" style="padding: 5px 10px 5px 10px;" />
+
+        </ion-list>
+
+        <ion-list text-center no-lines *ngIf="!infosl">
+          <img src="assets/images/jd/66@3x.png" style="padding: 5px 30% 5px 30%;" />
+        </ion-list>
+
+        <div padding>
+          <button ion-button mode="ios" block color="primary" (tap)="closeMask()">知道了</button>
+        </div>
+      </div>
+    </div>
+  </ion-backdrop>
+</div>

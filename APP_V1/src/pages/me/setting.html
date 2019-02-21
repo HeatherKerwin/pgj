@@ -1,0 +1,43 @@
+<ion-header mode="ios">
+  <ion-navbar mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title mode="ios">设置</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+
+  <ion-list>
+    <button ion-item mode="ios" (tap)="ToResetPwd1($event)">
+      登录密码
+    </button>
+    <button ion-item mode="ios" (tap)="ToInfoMemo($event)">
+      用户协议
+    </button>
+  </ion-list>
+  <ion-list>
+    <button ion-item mode="ios" (tap)="ToAboutUsPage($event)">
+      关于我们
+    </button>
+    <ion-item tappable (click)="versionData()">
+      <ion-label>版本信息</ion-label>
+      <ion-note item-end>{{versionInfo}}</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label>是否接收推送消息</ion-label>
+      <ion-toggle mode="md" checked="true" [(ngModel)]="isAccept" (ionChange)="notify($event)"></ion-toggle>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <div style="text-align:center;">
+      <button ion-button block style="margin-top:20px"   mode="ios"  class="exitBtn" (tap)="exit($event)" >退出登录</button>
+    </div>
+  </ion-list>
+  <ion-list>
+
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,128 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >今日</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <!-- 切换 -->
+  <div class="segment-heard">
+    <ion-toolbar no-border-top>
+      <ion-segment [(ngModel)]="pet" mode="md">
+        <ion-segment-button value="daydiscount">
+          已贴现
+        </ion-segment-button>
+        <ion-segment-button value="dayundiscount">
+          未贴现
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+  </div>
+
+  <!--切换内容-->
+  <div (swipe)="swipeEvent($event)">
+    <div class="toolbar-con" [ngSwitch]="pet">
+      <!-- 已贴现 -->
+      <ion-list *ngSwitchCase="'daydiscount'" class="daydiscount">
+        <!--选择时间-->
+        <ion-grid class="datetime">
+          <ion-row color="primary">
+            <ion-col col-4>
+              <button ion-button mode="ios" full (click)="leftdayA()">上一日</button>
+            </ion-col>
+            <ion-col col-4>
+              <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="dayA.dayDate" disabled text-center></ion-datetime>
+            </ion-col>
+            <ion-col col-4>
+              <button ion-button mode="ios" full (click)="rightdayA()">下一日</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <!--数据展示-->
+        <ion-list class="dataCon">
+          <ion-item margin-top ion-item-options *ngFor="let valueA of valueAs" (click)="openEdit(valueA.id)">
+            <ion-grid>
+              <ion-row>
+                <ion-col><h3>{{apiSev.transformdate(valueA.tiexiandate)}}</h3></ion-col>
+                <ion-col col-auto><p>{{valueA.tiexianType}}</p></ion-col>
+              </ion-row>
+              <ion-row text-center>
+                <ion-col col-2>
+                  <h3>承兑行</h3>
+                  <h3>{{apiSev.pjtype(valueA.type1)}}</h3>
+                </ion-col>
+                <ion-col col-3>
+                  <h3>票据金额</h3>
+                  <h3>{{valueA.allprice}}万元</h3>
+                </ion-col>
+                <ion-col col-4>
+                  <h3>贴现利息</h3>
+                  <h3>{{valueA.tiexianlixi}}元</h3>
+                </ion-col>
+                <ion-col col-3>
+                  <h3>贴现金额</h3>
+                  <h3>{{valueA.txje}}万元</h3>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-list>
+      </ion-list>
+
+      <!-- 未贴现 -->
+      <ion-list *ngSwitchCase="'dayundiscount'" class="dayundiscount">
+        <!--选择时间-->
+        <ion-grid class="datetime">
+          <ion-row color="primary">
+            <ion-col col-4>
+              <button ion-button mode="ios" full (click)="leftdayB()">上一日</button>
+            </ion-col>
+            <ion-col col-4>
+              <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="dayB.dayDate" disabled text-center></ion-datetime>
+            </ion-col>
+            <ion-col col-4>
+              <button ion-button mode="ios" full (click)="rightdayB()">下一日</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <!--数据展示-->
+        <ion-list class="dataCon">
+          <ion-item margin-top ion-item-options *ngFor="let valueB of valueBs" (click)="openEdit(valueB.id)">
+            <ion-grid>
+              <ion-row>
+                <ion-col><h3>{{apiSev.transformdate(valueB.tiexiandate)}}</h3></ion-col>
+                <ion-col col-auto><p>{{valueB.orderStatue}}</p></ion-col>
+              </ion-row>
+              <ion-row text-center>
+                <ion-col col-2>
+                  <h3>承兑行</h3>
+                  <h3>{{apiSev.pjtype(valueB.type1)}}</h3>
+                </ion-col>
+                <ion-col col-3>
+                  <h3>票据金额</h3>
+                  <h3>{{valueB.allprice}}万元</h3>
+                </ion-col>
+                <ion-col col-4>
+                  <h3>参考贴现利息</h3>
+                  <h3>{{valueB.txlx}}<span>(足月)</span></h3>
+                </ion-col>
+                <ion-col col-3>
+                  <h3>到期日期</h3>
+                  <h3>{{apiSev.transformdate(valueB.daoqidate)}}</h3>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-list>
+
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,15 @@
+﻿<ion-content>
+  <iframe style="margin-bottom: 75px; width: 100%; height: 100%;position: absolute;overflow: auto;border: none;"  id="iframe" sandbox="allow-scripts allow-top-navigation allow-pointer-lock allow-same-origin allow-popups allow-forms" [src]="browser.secUrl"  ></iframe>
+</ion-content>
+
+
+<ion-footer>
+  <ion-list>
+    <div class="divlist" text-center>请仔细阅读协议,并在协力最下方确认同意协议!</div>
+    <ion-row>
+      <ion-col text-center col-12>
+        <button class="onbutter" (tap)="Save($event)">下一步</button>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+</ion-footer>

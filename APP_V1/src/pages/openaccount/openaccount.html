@@ -1,0 +1,67 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      开户
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <ion-grid style="background-color:#FFFFFF;border-bottom: 15px solid #F5F5F5;text-align:center;">
+    <ion-row style="text-align:center">
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/one.png" style="height: 25px;"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/huixian.png"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/hui.png" style="height:25px;"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/huixian.png"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/hui.png" style="height:25px;"/></div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 text-left>
+        <div style="color: #d43c33;">开户申请</div>
+      </ion-col>
+      <ion-col col-4>
+        <div>审核</div>
+      </ion-col>
+      <ion-col col-4 text-right>
+        <div>完成开户</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list>
+    <ion-item style="border-top:0">
+      <ion-label>
+        公司名称
+      </ion-label>
+      <ion-input type="text" maxlength="100" text-right placeholder="请输入公司名称" [(ngModel)]="openaccount.name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        注册号
+      </ion-label>
+      <ion-input type="text" maxlength="18" text-right placeholder="请填写营业执照社会信用代码" [(ngModel)]="openaccount.bizLicenceRegisteredNo"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div padding>
+    <button ion-button mode="ios" block color="primary" (tap)="openaccountPage()">申请开户</button>
+  </div>
+
+</ion-content>

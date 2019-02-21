@@ -1,0 +1,19 @@
+page-aboutUs {
+  ion-list {
+    ion-item h3{
+      white-space: pre-line !important;
+    }
+    .item-ios h3 {
+      font-size: 12px;
+      text-indent: 28px;
+      line-height:22px;
+      font-size: 1.4rem;
+    }
+  }
+  .scroll-content{
+    background-color: #eeeeee;
+  }
+  .list-ios {
+    margin: 10px 0 10px;
+  }
+}

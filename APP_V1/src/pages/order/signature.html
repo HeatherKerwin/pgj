@@ -1,0 +1,16 @@
+﻿<ion-content>
+  <iframe style="margin-bottom: 75px; width: 100%; height: 100%;position: absolute;overflow: auto;border: none;"  id="iframe" sandbox="allow-scripts allow-top-navigation allow-pointer-lock allow-same-origin allow-popups allow-forms" [src]="browser.secUrl"  ></iframe>
+</ion-content>
+
+
+<ion-footer>
+  <ion-list>
+    <div class="divlist" text-center>以上合同我已阅读并愿意签署同意</div>
+    <ion-row>
+      <ion-col text-right>
+        <button class="offbutter" (tap)="canceldd()">取消</button></ion-col>
+      <ion-col text-left>
+        <button class="onbutter" (tap)="Save($event)">签署同意</button></ion-col>
+    </ion-row>
+  </ion-list>
+</ion-footer>

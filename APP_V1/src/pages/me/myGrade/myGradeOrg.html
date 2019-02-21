@@ -1,0 +1,52 @@
+<ion-header mode="ios">
+  <ion-navbar mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title mode="ios">我的评分</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list no-lines class="Grade">
+    <div ion-item>
+      <div>打款速度</div><div item-end>{{advanceTime}}</div>
+    </div>
+    <div ion-item>
+      <div>历史报价持续性</div><div item-end>{{priceDurative}}</div>
+    </div>
+    <div ion-item>
+      <div>订单成交率</div><div item-end>{{singleRate}}</div>
+    </div>
+    <div ion-item>
+      <div>价格真实</div><div item-end>{{price}}</div>
+    </div>
+    <div ion-item>
+      <div>服务态度</div><div item-end>{{service}}</div>
+    </div>
+    <div ion-item>
+      <div>确认效率</div><div item-end>{{speed}}</div>
+    </div>
+  </ion-list>
+
+  <ion-list no-lines class="Content">
+    <ion-item><h3>所有评论</h3></ion-item>
+    <ion-item *ngFor="let d of ContentList">
+      <ion-item class="Grade">
+        <ion-row>
+          <ion-col col-5>{{d.membermobile}}</ion-col>
+          <ion-col col-3>{{d.place}}</ion-col>
+          <ion-col text-right col-4>{{d.createtime | date:"yyyy-MM-dd"}}</ion-col>
+        </ion-row>
+      </ion-item>
+        <div style="border: 1px solid #c8c7cc;border-radius: 5px;height: 100px;" padding text-wrap>{{d.content}}</div>
+    </ion-item>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="加载更多...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-list>
+</ion-content>

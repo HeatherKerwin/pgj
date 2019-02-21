@@ -1,0 +1,55 @@
+<ion-header mode="ios">
+  <ion-navbar mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title mode="ios">我的查询查复</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list no-lines margin-top>
+    <ion-item margin-top style="background-color: white" *ngFor="let d of InquiryList" >
+      <div (click)="ToDetailPage(d.id)">
+        <ion-item-divider no-lines style="height: 20px;border-bottom: 0.65px solid #eeeeee"><strong style="color: #d43c33;">{{apiSev.payStateStr(d.payState)}}</strong></ion-item-divider>
+        <ion-item style="height: 30px;">
+          <div margin-left>时间</div><div margin-left>{{d.createTime}}</div>
+          <!--<div margin-left>时间</div><div margin-left>{{d.createTime | date:"yyyy/MM/dd HH:mm:ss"}}</div>-->
+        </ion-item>
+        <ion-item style="height: 30px;">
+          <div margin-left>出票订单号</div><div margin-left>{{d.no}}</div>
+        </ion-item>
+        <ion-item style="height: 30px;">
+          <div margin-left>查询查复金额</div><div *ngIf="d.payMoney!=null&&d.payMoney!=''"  margin-left>{{d.payMoney}}元</div><div *ngIf="d.payMoney==null||d.payMoney==''"  margin-left>0元</div>
+        </ion-item>
+      </div>
+      <ion-grid *ngIf="false">
+        <ion-row>
+          <ion-col col-6>
+            <button mode="md" (tap)='apiSev.Call("400-067-0002");' ion-item style="min-height:40px;height: 40px;border-right: 1px solid #d9d9d9;">
+              <ion-avatar item-start >
+                <img src="assets/images/me/kefu.png"  >
+              </ion-avatar>
+              联系客服
+            </button>
+          </ion-col>
+          <ion-col col-6>
+            <button mode="md" ion-item style="min-height:40px;height: 40px;">
+              <ion-avatar item-start>
+                <img src="assets/images/me/qianbaohong.png" >
+              </ion-avatar>
+              付款
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="加载更多...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-list>
+</ion-content>

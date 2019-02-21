@@ -1,0 +1,276 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      shibor查询
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#fff;">
+  <ion-list class="listheight">
+    <ion-grid class="listgrid">
+      <ion-row class="listrow">
+        <ion-col col-3 class="listcol">
+          <div class="listdiv">
+            <button ion-button clear item-start (tap)="leftDay()" style="height:25px"><img src="assets/images/tool/shiborleft.png" style="height:24px;width:24px"/></button>
+          </div>
+        </ion-col>
+
+        <ion-col col-6 class="listcol2">
+          <div style="height:36px;">
+            <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" text-center class="listdatatime" [(ngModel)]="dayshow" doneText="确定" cancelText="取消" (ionChange)="ToDay()"></ion-datetime>
+          </div>
+        </ion-col>
+
+        <ion-col col-3 class="listcol2">
+          <div style="text-align:right;">
+            <button ion-button clear item-end (tap)="rightDay()" style="height:25px"><img src="assets/images/tool/shiborright.png" style="height:24px;width:24px"/></button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="listgrid2">
+      <ion-row>
+        <ion-col col-4>
+          <div class="listdiv3">
+            期限
+          </div>
+        </ion-col>
+
+        <ion-col col-4>
+          <div class="listdiv3">
+            shibor(%)
+          </div>
+        </ion-col>
+
+        <ion-col col-4>
+          <div class="listdiv3">
+            涨跌(BP)
+          </div>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+
+
+  <ion-list *ngIf="shiboRefresh" class="listshibor">
+    <ion-grid class="shiborgrid">
+      <ion-row>
+        <ion-col col-4>
+          <div class="shibordiv">
+            <img src="assets/images/tool/jiantou.png" class="shiborimg"/>
+            O/N
+          </div>
+        </ion-col>
+
+        <ion-col col-4>
+          <div class="shibordiv2">
+            {{shiBor.shibor1}}
+          </div>
+
+        </ion-col>
+
+        <ion-col col-4>
+          <div class="shibordiv3">
+            <img src="assets/images/tool/up.png" class="shiborimg2" *ngIf="picture1"/>
+            <img src="assets/images/tool/down.png" class="shiborimg2" *ngIf="picture2"/>
+            {{shiBor.updown1}}
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="shiborgrid">
+      <ion-row>
+        <ion-col col-4>
+          <div class="shibordiv">
+            <img src="assets/images/tool/jiantou.png" class="shiborimg"/>
+            1W
+          </div>
+        </ion-col>
+
+        <ion-col col-4>
+          <div class="shibordiv2">
+            {{shiBor.shibor2}}
+          </div>
+
+        </ion-col>
+
+        <ion-col col-4>
+          <div class="shibordiv3">
+            <img src="assets/images/tool/up.png" class="shiborimg2" *ngIf="picture3"/>
+            <img src="assets/images/tool/down.png" class="shiborimg2" *ngIf="picture4"/>
+            {{shiBor.updown2}}
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="shiborgrid">
+      <ion-row>
+        <ion-col col-4>
+          <div class="shibordiv">
+            <img src="assets/images/tool/jiantou.png" class="shiborimg"/>
+            2W
+          </div>
+        </ion-col>
+
+        <ion-col col-4>
+          <div class="shibordiv2">
+            {{shiBor.shibor3}}
+          </div>
+
+        </ion-col>
+
+        <ion-col col-4>
+          <div class="shibordiv3">
+            <img src="assets/images/tool/up.png" class="shiborimg2" *ngIf="picture5"/>
+            <img src="assets/images/tool/down.png" class="shiborimg2" *ngIf="picture6"/>
+            {{shiBor.updown3}}
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="shiborgrid">
+      <ion-row>
+        <ion-col col-4>
+          <div class="shibordiv">
+            <img src="assets/images/tool/jiantou.png" class="shiborimg"/>
+            1M
+          </div>
+        </ion-col>
+
+        <ion-col col-4>
+          <div class="shibordiv2">
+            {{shiBor.shibor4}}
+          </div>
+
+        </ion-col>
+
+        <ion-col col-4>
+          <div class="shibordiv3">
+            <img src="assets/images/tool/up.png" class="shiborimg2" *ngIf="picture7"/>
+            <img src="assets/images/tool/down.png" class="shiborimg2" *ngIf="picture8"/>
+            {{shiBor.updown4}}
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="shiborgrid">
+      <ion-row>
+        <ion-col col-4>
+          <div class="shibordiv">
+            <img src="assets/images/tool/jiantou.png" class="shiborimg"/>
+            3M
+          </div>
+        </ion-col>
+
+        <ion-col col-4>
+          <div class="shibordiv2">
+            {{shiBor.shibor5}}
+          </div>
+
+        </ion-col>
+
+        <ion-col col-4>
+          <div class="shibordiv3">
+            <img src="assets/images/tool/up.png" class="shiborimg2" *ngIf="picture9"/>
+            <img src="assets/images/tool/down.png" class="shiborimg2" *ngIf="picture10"/>
+            {{shiBor.updown5}}
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="shiborgrid">
+      <ion-row>
+        <ion-col col-4>
+          <div class="shibordiv">
+            <img src="assets/images/tool/jiantou.png" class="shiborimg"/>
+            6M
+          </div>
+        </ion-col>
+
+        <ion-col col-4>
+          <div class="shibordiv2">
+            {{shiBor.shibor6}}
+          </div>
+
+        </ion-col>
+
+        <ion-col col-4>
+          <div class="shibordiv3">
+            <img src="assets/images/tool/up.png" class="shiborimg2" *ngIf="picture11"/>
+            <img src="assets/images/tool/down.png" class="shiborimg2" *ngIf="picture12"/>
+            {{shiBor.updown6}}
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="shiborgrid">
+      <ion-row>
+        <ion-col col-4>
+          <div class="shibordiv">
+            <img src="assets/images/tool/jiantou.png" class="shiborimg"/>
+            9M
+          </div>
+        </ion-col>
+
+        <ion-col col-4>
+          <div class="shibordiv2">
+            {{shiBor.shibor7}}
+          </div>
+
+        </ion-col>
+
+        <ion-col col-4>
+          <div class="shibordiv3">
+            <img src="assets/images/tool/up.png" class="shiborimg2" *ngIf="picture13"/>
+            <img src="assets/images/tool/down.png" class="shiborimg2" *ngIf="picture14"/>
+            {{shiBor.updown7}}
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="shiborgrid">
+      <ion-row>
+        <ion-col col-4>
+          <div class="shibordiv">
+            <img src="assets/images/tool/jiantou.png" class="shiborimg"/>
+            1Y
+          </div>
+        </ion-col>
+
+        <ion-col col-4>
+          <div class="shibordiv2">
+            {{shiBor.shibor8}}
+          </div>
+
+        </ion-col>
+
+        <ion-col col-4>
+          <div class="shibordiv3">
+            <img src="assets/images/tool/up.png" class="shiborimg2" *ngIf="picture15"/>
+            <img src="assets/images/tool/down.png" class="shiborimg2" *ngIf="picture16"/>
+            {{shiBor.updown8}}
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-list>
+
+
+</ion-content>

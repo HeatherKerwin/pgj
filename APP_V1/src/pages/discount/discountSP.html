@@ -1,0 +1,155 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons *ngIf="discount.type1==2" end class="redbutton">
+      <button ion-button icon-only data-tap-disabled="true" (click)="ToAccountPage()">
+        票面预览
+      </button>
+    </ion-buttons>
+    <ion-title mode="ios">商票业务</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <!--通知信息循环-->
+  <div class="marqueeDiv" *ngIf="discount.type1==2">
+    <div>请认真核对以下票据信息，如信息有误请手动修改.</div>
+  </div>
+
+  <!--贴现地址-->
+  <div margin-top class="city" *ngIf="this.discount.type1==1">
+    <!--没有地址信息-->
+    <ion-list *ngIf="discount.placeNot" class="placeNot">
+      <ion-item>
+        <button ion-button mode="ios" outline block item-end icon-left color="light" (tap)="chosePlace()">
+          <ion-icon class="placeIcon"></ion-icon>
+          请选择出票地址
+        </button>
+      </ion-item>
+    </ion-list>
+
+    <!--已有地址信息-->
+    <ion-list *ngIf="discount.placeShow" class="placeShow" mode="ios">
+      <button mode="ios" ion-item (tap)="chosePlace()">
+        <input type="hidden" id="place" [(ngModel)]="discount.place"/>
+        <input type="hidden" id="cityId" [(ngModel)]="discount.cityId"/>
+        <input type="hidden" id="longitude" [(ngModel)]="discount.longitude"/>
+        <input type="hidden" id="latitude" [(ngModel)]="discount.latitude"/>
+        <ion-avatar item-start>
+          <img src="assets/images/discount/placeIcon.png" width="30" height="43">
+        </ion-avatar>
+        <ion-row no-padding>
+          <ion-col col-4 style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap;">
+            {{discount.membername}}
+          </ion-col>
+          <ion-col text-center col-2>
+            {{discount.membersex}}
+          </ion-col>
+          <ion-col col-5>
+            {{discount.membermobile}}
+          </ion-col>
+        </ion-row>
+        <h3 style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap;"> {{discount.address}} </h3>
+      </button>
+    </ion-list>
+  </div>
+
+  <!--填写表单-->
+  <ion-list margin-top>
+<!--    <ion-item>
+      <ion-label>票据属性</ion-label>
+      <button data-tap-disabled="true" ion-button mode="ios" outline item-end color="danger" [ngClass]=" {'activedBtn': discount.type1==1}"
+              (click)="radioBtn(discount.type1=1)">纸票
+      </button>
+      <button data-tap-disabled="true" ion-button mode="ios" outline item-end color="danger" [ngClass]=" {'activedBtn': discount.type1==2}"
+              (click)="radioBtn(discount.type1=2)">电票
+      </button>
+    </ion-item>-->
+    <ion-item *ngIf="discount.type1==2">
+      <ion-label>承兑期限</ion-label>
+      <button data-tap-disabled="true" ion-button mode="ios" outline item-end color="danger" [ngClass]=" {'activedBtn': discount.limit==0}"
+              (click)="radioBtn(discount.limit=0)">半年期
+      </button>
+      <button data-tap-disabled="true" ion-button mode="ios" outline item-end color="danger" [ngClass]=" {'activedBtn': discount.limit==1}"
+              (click)="radioBtn(discount.limit=1)">一年期
+      </button>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>票面金额</ion-label>
+      <ion-input type="number" maxlength="13" (keyup)="this.apiSev.check2B($event)" [(ngModel)]="discount.allmoney" (blur)="myExcel()" ngControl="title" text-right
+                 placeholder="请输入金额"></ion-input>
+      <ion-note item-end>万元</ion-note>
+    </ion-item>
+    <ion-item *ngIf="this.discount.type1==2">
+      <ion-label fixed>票号</ion-label>
+      <ion-input type="number" [(ngModel)]="discount.draftNo" (blur)="checkdraftNo()" text-right
+                 placeholder="请输入票号"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>承兑企业</ion-label>
+      <ion-input type="text" maxlength="60" [(ngModel)]="discount.bankname" ngControl="title" text-right
+                 placeholder="请输入承兑企业全称"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="this.discount.type1==2">
+      <ion-label fixed>承兑行行号</ion-label>
+      <ion-input type="tel" maxlength="12" [(ngModel)]="discount.cnapsCode" text-right
+                 placeholder="请输入承兑行行号"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>开票日期</ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="discount.printtime" doneText="确定"
+                    cancelText="取消"></ion-datetime>
+      <ion-note item-end class="calendarIcon"></ion-note>
+    </ion-item>
+    <ion-item>
+    <ion-label>下单日期</ion-label>
+    <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="discount.begintime" doneText="确定"
+                  cancelText="取消" (ionChange)="changeStart()"></ion-datetime>
+    <ion-note item-end class="calendarIcon"></ion-note>
+  </ion-item>
+    <ion-item class="itme-noborder">
+      <ion-label>到期日期</ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="discount.endtime" (ionChange)="myExcel()" [min]="discount.min" [max]="2100-12-31"
+                    doneText="确定" cancelText="取消"></ion-datetime>
+      <ion-note item-end class="calendarIcon"></ion-note>
+    </ion-item>
+    <p margin>
+      <button ion-button mode="ios" block (tap)="next()">下一步</button>
+    </p>
+  </ion-list>
+
+</ion-content>
+
+<!--//弹窗-->
+<!--上传图片弹出层-->
+<div *ngIf="isMask" (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="maskCon" *ngIf="CameraRoll">
+      <ion-row text-center>
+        <ion-col col-4 offset-2 (click)="cameraPic()">
+          <img src="assets/images/discount/camera.png" alt="相机">
+          <p>相机</p>
+        </ion-col>
+        <ion-col col-4  (click)="albumPic()">
+          <img src="assets/images/discount/album.png" alt="相册">
+          <p>相册</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <button ion-button mode="ios" block color="danger" (tap)="closeMask()">取消</button>
+      </ion-row>
+    </div>
+
+    <div class="maskConB" *ngIf="Distinguish">
+      <div class="offer">
+        <button mode="ios" class="close" data-tap-disabled="true" (click)="closeMask()"></button>
+        <img src="{{discount.picpath}}" *ngIf="isUpload" data-tap-disabled="true" (click)="CameraRoll=true" />
+        <img src="{{discount.picpath}}" *ngIf="isPicpath" data-tap-disabled="true" (click)="CameraRoll=true" />
+      </div>
+    </div>
+  </ion-backdrop>
+</div>

@@ -1,0 +1,143 @@
+﻿<ion-header mode="ios">
+  <ion-navbar  mode="ios" hideBackButton="true">
+    <ion-buttons>
+      <button ion-button icon-only (tap)="closeme()">
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      证件上传
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <ion-grid style="background-color:#FFFFFF;border-bottom: 15px solid #F5F5F5;text-align:center;">
+    <ion-row style="text-align:center">
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/duihao.png" style="height: 25px;"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/huixian.png"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/hui.png" style="height:25px;"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/huixian.png"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/hui.png" style="height:25px;"/></div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 text-left>
+        <div style="color: #d43c33;">开户申请</div>
+      </ion-col>
+      <ion-col col-4>
+        <div>审核</div>
+      </ion-col>
+      <ion-col col-4 text-right>
+        <div>完成开户</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list>
+<!--    <div padding-top padding-left style="background-color:#FFF6E7;border-bottom:1px solid #EFA02B;border-top:1px solid #EFA02B;">
+      <div style="color:#EFA02B;margin-top: -10px;text-indent:1em;font-size: 1rem;" *ngIf="judgeA">
+        授权委托书和报价承诺函电子版已发送至您的邮箱： {{openaccount.email}}，请打印盖章后将彩色原件扫描上传。
+      </div>
+      <div style="color:#EFA02B;margin-top: -10px;text-indent:1em;font-size: 1rem;" *ngIf="judgeB">
+        授权委托书电子版已发送至您的邮箱： {{openaccount.email}}，请打印盖章后将彩色原件扫描上传。
+      </div>
+    </div>-->
+
+    <div class="ocrDiv">
+      <div class="txtDiv">请上传正面的清晰图片，如若有电子档请使用电脑截图，不可遮挡图片。<span>(上传图片3-4秒后，系统会自动识别您的相关信息。)</span></div>
+    </div>
+
+    <ion-row style="height: 180px;background-color:#FFFFFF;">
+      <ion-col col-6 style="padding: 0" (tap)="business()">
+        <div class="uploadDiv">
+          <div *ngIf="isUpload" style="font-size: 1.5rem;">营业执照:</div>
+          <button padding ion-button mode="ios" class="upload" *ngIf="isUpload" (click)="uploadBtn()"></button>
+          <img class="picpath" src="{{openaccount.businesss}}" *ngIf="isPicpath" (click)="uploadBtn()">
+        </div>
+      </ion-col>
+    </ion-row>
+
+
+    <div (click)="Distinguish=true;isMask=true;" padding-left padding-bottom style="font-size: 1.5rem;background-color:#FFFFFF;padding-bottom:0 !important;">
+      <p style="margin: 0;font-size: 1.5rem;">法人身份证:</p>
+    </div>
+    <ion-row style="height: 180px;background-color:#FFFFFF;">
+      <ion-col col-6 style="padding: 0" (tap)="positive()">
+        <div class="uploadDiv">
+          <button padding ion-button mode="ios" class="upload" *ngIf="isUploadD" (click)="uploadBtn()"></button>
+          <img class="picpath" src="{{openaccount.positive}}" *ngIf="isPicpathD" (click)="uploadBtn()">
+          <div *ngIf="isUploadD" style="font-size: 1rem;">点击上传身份证正面</div>
+        </div>
+      </ion-col>
+      <ion-col col-6 style="padding: 0" (tap)="sideitive()">
+        <div class="uploadDiv">
+          <button padding ion-button mode="ios" class="upload" *ngIf="isUploadE" (click)="uploadBtn()"></button>
+          <img class="picpath" src="{{openaccount.sideitive}}" *ngIf="isPicpathE" (click)="uploadBtn()">
+          <div *ngIf="isUploadE" style="font-size: 1rem;">点击上传身份证反面</div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+  <div padding-right padding-left>
+    <button ion-button mode="ios" block color="primary" (tap)="openaccountPage()" >提交</button>
+  </div>
+
+  <div class="updats" *ngIf="Ocrgif">
+    <div class="des">
+    </div>
+  </div>
+
+</ion-content>
+
+<!--上传图片弹出层-->
+<div *ngIf="isMask" (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+
+    <div class="maskCon" *ngIf="CameraRoll">
+      <ion-row text-center>
+        <ion-col col-4 offset-2 (click)="cameraPic()">
+          <img src="assets/images/discount/camera.png" alt="相机">
+          <p>相机</p>
+        </ion-col>
+        <ion-col col-4 (click)="albumPic()">
+          <img src="assets/images/discount/album.png" alt="相册">
+          <p>相册</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <button ion-button mode="ios" block color="danger" data-tap-disabled="true" (click)="closeMask()">取消</button>
+      </ion-row>
+    </div>
+
+    <!--确认-->
+    <div class="maskConB" *ngIf="Distinguish">
+      <div class="offer">
+        <button mode="ios" class="close" data-tap-disabled="true" (click)="isMask = false;Distinguish =false;isUpload=true;isPicpath=false;Distinguishyyzz=false;Distinguishsfz=false;"></button>
+        <p text-center class="gridTitle">
+          提示
+        </p>
+        <ion-list no-lines>
+          <div>
+            <div style="text-indent: 2em;" *ngIf="Distinguishyyzz">图片不清晰,<span *ngIf="bizLicenceRegisteredNo==null||bizLicenceRegisteredNo==''||bizLicenceRegisteredNoAccuracy==0">统一社会信用代码、</span><span *ngIf="bizLicenceName==null||bizLicenceName==''||bizLicenceNameAccuracy==0">公司名称、</span><span *ngIf="bizLicenceAddr==null||bizLicenceAddr==''||bizLicenceAddrAccuracy==0">公司地址、</span><span *ngIf="bizLicenceLegalName==null||bizLicenceLegalName==''||bizLicenceLegalNameAccuracy==0">法定代表人、</span>识别度较低，是否更换图片，更新识别？</div>
+            <div style="text-indent: 2em;" *ngIf="Distinguishsfz">图片不清晰,<span *ngIf="name==null||name==''||name==0">姓名、</span><span *ngIf="id==null||id==''||id==0">身份证号码、</span>识别度较低，是否更换图片，更新识别？</div>
+          </div>
+        </ion-list>
+        <p text-center  class="maskBtn">
+          <input margin-right type="button" value="使用原图" data-tap-disabled="true" (click)="isMask = false;Distinguish =false;" class="frame">
+          <input type="button" value="重新上传" data-tap-disabled="true" (click)="isMask = false;Distinguish =false;isUpload=true;isPicpath=false;Distinguishyyzz=false;Distinguishsfz=false;">
+        </p>
+      </div>
+    </div>
+  </ion-backdrop>
+</div>

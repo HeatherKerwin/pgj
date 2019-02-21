@@ -1,0 +1,64 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios">收货地址</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="placeList" radio-group >
+
+    <!--已有地址-->
+    <ion-list margin no-lines *ngFor="let place of places">
+      <ion-item margin-top class="bottom" (click)="myColumn(place.id,place.consignee,place.tel,place.address,place.detailAddress)">
+        <ion-row no-padding>
+          <ion-col col-4>
+            {{place.consignee}}
+          </ion-col>
+          <ion-col col-6>
+            {{place.tel}}
+          </ion-col>
+        </ion-row>
+        <h3 text-wrap> {{place.address}}{{place.detailAddress}}</h3>
+      </ion-item>
+
+      <ion-item mode="md" *ngIf="isShow">
+        <ion-radio color="primary" mode="md" item-start (click)="setDefault(place.id)" [value]="place.id" [checked]="place.state==0"></ion-radio>
+        <ion-label>默认地址</ion-label>
+        <button ion-button mode="ios"  item-end (click)="placeEdit(place.id,place.state)" class="EditBtn">
+          <ion-icon class="EditIcon"></ion-icon>
+          编辑
+        </button>
+        <button ion-button mode="ios"  item-end (click)="deleteById(place.id)" class="delBtn">
+          <ion-icon class="delIcon"></ion-icon>
+          删除
+        </button>
+      </ion-item>
+    </ion-list>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="加载更多...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <p class="underscore" *ngIf="!isOk"></p>
+  </ion-list>
+
+
+
+  <!--暂无地址-->
+  <p margin>
+    <img margin-bottom src="assets/images/discount/noplace.png" alt="暂无地址" *ngIf="placeNo" class="placeNoImg">
+
+    <button mode="ios"  ion-button block (tap)="placeAdd($event)">
+      <ion-icon class="addIcon"></ion-icon>
+      新增地址
+    </button>
+  </p>
+
+</ion-content>

@@ -1,0 +1,35 @@
+page-smallZhi{
+  ion-content{
+    .scroll-content {
+      background-color: #eeeeee;
+    }
+    .remark{
+      border: 1px solid #eeeeee;
+      font-size: 12px;
+      height: 100px;
+    }
+    ion-list{
+      background-color: white;
+      ion-item{
+        ion-select {
+          padding: 3px 8px 6px 8px !important;
+          border-style: solid;
+          border-width: 1px;
+          border-radius: 6px;
+          border-color: #D9D9DB;
+        }
+      }
+      .b_lines.item.item-block{
+        border-bottom: 1px solid #eeeeee;
+      }
+    }
+    .Btn{
+      border:1px solid rgba(255,255,255,0.32);
+      //box-shadow:0 3px 0 0 #d43c33, 0 2px 6px 0 rgba(0,0,0,0.50);
+      border-radius:8px;
+      width:90%;
+      height:40px;
+      margin:0 auto
+    }
+  }
+}

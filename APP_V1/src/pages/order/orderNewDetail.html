@@ -1,0 +1,83 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios" style="border-bottom:0.65px solid #ccc">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only (tap)="close()">
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title mode="ios">订单详情</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <ion-card  mode="ios"  (tap)=bigpic()>
+    <ion-row  *ngIf="item.type1=='1'"  style="position:relative;">
+      <div  style="margin-left:13px;margin-top:11px;margin-bottom:11px;" >
+        <span ><img style="margin-top:2px;float:left;width:11px;height:15px;margin-right:8px;" src="assets/images/order/dingwei.png"> </span>
+        <span >所在城市</span> <span style="color:#d43c33">{{item.place}}</span>
+      </div>
+      <img *ngIf=item.is_designated src="assets/images/order/zhiding.png" style="position:absolute;top:0;right:0;width:35px;height:35px">
+    </ion-row>
+    <ion-row  *ngIf="item.type1=='1'" > <div  style="margin-left:13px;width:93%;height:2px;border-bottom:1px solid #e2e2e2">&nbsp;</div>
+    </ion-row>
+
+    <ion-row style="position:relative;padding-top:3px !important">
+      <ion-col col-auto style="padding-left:8px !important;">
+        <img style="width:35px;height:35px"
+             src="assets/images/order/{{apiSev.pjtypeimg(item.type1,item.order_type)}}.png">
+      </ion-col>
+      <ion-col col-6 style="padding-top:10px !important;">
+        <h2 style="font-size:15px;">到期日期<span>{{item.endtime}}</span></h2>
+      </ion-col>
+      <ion-col col-4 ion-end style="padding-right:18px !important;padding-top:11px !important;" text-right>
+      </ion-col>
+      <img *ngIf="(item.is_designated&&item.type1=='2')" src="assets/images/order/zhiding.png" style="position:absolute;top:0;right:0;width:35px;height:35px">
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 style="padding-left:13px !important;padding-top:3px !important;padding-bottom:3px !important;">
+        <h3>金额{{item.allmoney}}万</h3>
+      </ion-col>
+      <ion-col col-8 text-right ion-end style="padding-left:3px !important;padding-top:3px !important;padding-bottom:3px !important;">
+        <span style="float:left"><h3>{{apiSev.pjtypeP(item.order_type,item.type1,item.type2,item.accept_time)}}</h3></span>
+        <span *ngIf="item.endorse>-1" style="float:left;margin-left:15px;"><h3>背书{{item.endorse}}手</h3></span>
+        <span *ngIf=apiSev.qiehuan(item.flaw_ticket) style="float:right;margin-right:10px"><h3>&nbsp;瑕疵票</h3></span>
+        <span *ngIf=apiSev.qiehuan(item.flaw_ticket) style="float:right;"><img src="assets/images/order/xiacipiao.png" style="margin-top:2px;width:15px;height:15px"></span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 style="padding-left:13px !important;padding-top:3px !important;padding-bottom:6px !important;">
+        <h3 *ngIf="item.order_type=='DISCOUNTRECORDSP'">承兑方:{{item.bank}}</h3>
+        <h3 *ngIf="item.order_type=='DISCOUNTRECORD'&&item.type1=='2'">承兑行:{{item.bank}}</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6 style="padding-left:13px !important;padding-top:3px !important;padding-bottom:6px !important;">
+        <span style="float:left"><img src="assets/images/order/riqi.png" style="margin-top:2px;width:15px;height:15px"></span>
+        <h3 style="color:#888;">&nbsp;计息天数{{item.jxts}}天</h3>
+      </ion-col>
+      <ion-col col-6 style="padding-left:8px !important;padding-top:3px !important;padding-bottom:6px !important;">
+          <span *ngIf=apiSev.shangmen(item.need_todoor,item.type1) style="float:left"><img
+            src="assets/images/order/shangmen.png" style="margin-top:2px;width:15px;height:15px"></span>
+        <h3 *ngIf=apiSev.shangmen(item.need_todoor,item.type1) style="color:#888;">&nbsp;不需要上门</h3>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <div  style="margin-left:13px;width:94%;height:2px;border-bottom:1px solid #e2e2e2">&nbsp;</div>
+    </ion-row>
+    <ion-row>
+      <ion-col style="padding-left: 13px" col-6>
+        <img style="height: 60px;max-width: 80px" src="{{apiSev.getOrderImgUrl+item.picpath}}">
+      </ion-col>
+
+      <ion-col class="card_pad" col-6>
+        <h3 *ngIf="itemPinfen.singleRate>0">成单率:{{apiSev.toFix(itemPinfen.singleRate*100,2)}}%</h3>
+        <h3 *ngIf="!(itemPinfen.singleRate>0)">成单率:&#45;&#45;</h3>
+        <h3>背书时间:{{itemPinfen.endorseTime}}</h3>
+        <h3>违约率:0%</h3>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+</ion-content>
+

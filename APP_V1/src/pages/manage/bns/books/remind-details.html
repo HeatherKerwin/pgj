@@ -1,0 +1,38 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >票据提醒</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="discount" mode="ios">
+    <ion-item>
+      <ion-label fixed><span class="spot">*</span>票据金额</ion-label>
+      <ion-input type="text" (keyup)="apiSev.check1($event)" maxlength="10" [(ngModel)]="data.allprice" text-right placeholder="请输入金额"></ion-input>
+      <ion-note item-end>万元</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label><span class="spot">*</span>下单日期</ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="data.expiredate" doneText="确定" cancelText="取消" aria-readonly="true"></ion-datetime>
+    </ion-item>
+    <ion-item class="itme-noborder">
+      <ion-label>提醒日期</ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="data.noticeaddtime" [min]="1900-01-01" [max]="2999-12-31" doneText="确定" cancelText="取消" (keyup)="onKeyup()" (ionBlur)="blurEvent()"></ion-datetime>
+      <ion-note item-end class="calendarIcon"></ion-note>
+    </ion-item>
+    <ion-item class="itme-noborder textarea">
+      <ion-label>备注</ion-label>
+      <ion-textarea name="description" id="" rows="3" [(ngModel)]="data.noticedesc" placeholder="请输入备注(“银行名称等信息”)"></ion-textarea>
+    </ion-item>
+    <div padding>
+      <button ion-button mode="ios" block color="primary" (click)="confirmN()">确认修改</button>
+      <button ion-button mode="ios" block color="primary" (click)="deleteN()">删除</button>
+    </div>
+  </ion-list>
+
+</ion-content>

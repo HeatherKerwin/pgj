@@ -1,0 +1,121 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      兴业开户
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <ion-grid style="background-color:#FFFFFF;text-align:center;">
+    <ion-row style="text-align:center">
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/one.png" style="height: 25px;"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/huixian.png"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/hui.png" style="height:25px;"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/huixian.png"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/hui.png" style="height:25px;"/></div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 text-left>
+        <div style="color: #d43c33;">申请开户</div>
+      </ion-col>
+      <ion-col col-4>
+        <div>审核</div>
+      </ion-col>
+      <ion-col col-4 text-right>
+        <div>完成开户</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list>
+    <div style="height: 30px;line-height: 30px;margin-left: 3%;font-weight: 300;">请补充以下开户信息</div>
+    <div style="background-color: #d43c33;width: 5px;height: 26px;position: absolute;z-index: 10;margin-top: 13px;"></div>
+    <ion-item>
+      <ion-label>银行信息</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>开户银行支行号</ion-label>
+      <ion-note item-end tappable (tap)="banklistB()" style="color: #333;margin-right: 0;width: 50%;display: -webkit-box !important;-webkit-box-orient: vertical !important;-webkit-line-clamp: 2 !important;overflow: hidden !important;text-align: right;">{{openaccount.CnapsCode}} {{openaccount.bankAcctBankBranch}}</ion-note>
+      <ion-note mode="ios" class="Noteicon" item-end tappable (tap)="banklistB()"><ion-icon name="md-arrow-dropdown"></ion-icon></ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        账户名
+      </ion-label>
+      <ion-input type="text" maxlength="30" text-right placeholder="请填写对应账户名" [(ngModel)]="openaccount.bankAcctAcctName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        账号
+      </ion-label>
+      <ion-input type="tel" maxlength="25" text-right placeholder="请填写对应卡号" [(ngModel)]="openaccount.bankAcctAcctNo" (keyup)='apiSev.check1($event);'></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list>
+    <div style="background-color: #d43c33;width: 5px;height: 26px;position: absolute;z-index: 10;margin-top: 13px;"></div>
+
+    <ion-list-header style="font-size: 1.7rem;background-color:#FFFFFF;">
+      企业经办人
+      <ion-note item-end>
+        <img src="assets/images/openaccount/adderusr.png" style="height: 35px;width: 35px;">
+      </ion-note>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>
+        经办人姓名
+      </ion-label>
+      <ion-input type="text" maxlength="10" text-right placeholder="请输入联系人姓名" [(ngModel)]="openaccount.contactName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        手机号码
+      </ion-label>
+      <ion-input type="tel" maxlength="11" text-right placeholder="请输入用于执剑人登录联系人的手机号码" (keyup)='apiSev.check1($event);' [(ngModel)]="openaccount.contactMobile"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        身份证号码
+      </ion-label>
+      <ion-input type="text" maxlength="18" text-right placeholder="请输入联系人的身份证号码" [(ngModel)]="openaccount.agentCertNo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        邮箱
+      </ion-label>
+      <ion-input type="text" maxlength="30" text-right placeholder="请输入联系人的邮箱" [(ngModel)]="openaccount.email"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <div padding-left padding-right>
+    <div>
+      <button ion-button mode="ios" block color="primary" (tap)="sava()">申请开户</button>
+    </div>
+  </div>
+
+</ion-content>

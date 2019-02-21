@@ -1,0 +1,187 @@
+﻿<ion-header mode="ios">
+    <ion-navbar mode="ios" hideBackButton="true" style="border-bottom:0.65px solid #ccc">
+        <ion-buttons  style="float:left">
+	    <button ion-button icon-only (tap)="close($event)">
+            <ion-icon  color="dark"  name="ios-arrow-back"></ion-icon>
+        </button>
+	</ion-buttons>
+	<ion-title  mode="ios" >报价成功</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+
+
+
+
+
+
+
+
+
+
+  <ion-card  mode="ios"  (tap)=bigpic()  >
+    <div [ngClass]="{'hutiupiao': item.back_endorse=='T'}">
+       <ion-row  *ngIf="item.type1=='1'"  style="position:relative;">
+	   <div  style="margin-left:13px;margin-top:11px;margin-bottom:11px;" >
+	   <span ><img style="margin-top:2px;float:left;width:11px;height:15px;margin-right:8px;" src="assets/images/order/dingwei.png"> </span>
+	   <span >所在城市</span> <span style="color:#d43c33">{{item.place}}</span>
+	   </div>
+	   <img *ngIf=item.is_designated src="assets/images/order/zhiding.png" style="position:absolute;top:0;right:0;width:35px;height:35px">
+	   </ion-row>
+  	   <ion-row  *ngIf="item.type1=='1'" > <div  style="margin-left:13px;width:93%;height:2px;border-bottom:1px solid #e2e2e2">&nbsp;</div>
+	   </ion-row>
+
+	  <ion-row  style="position:relative;padding-top:3px !important">
+		  <ion-col col-auto style="padding-left:8px !important;">
+			<img style="width:35px;height:35px" src="assets/images/order/{{apiSev.pjtypeimg(item.type1,item.order_type)}}.png">
+		  </ion-col>
+		  <ion-col col-6  style="padding-top:10px !important;">
+			<h2 style="font-size:15px;">到期日期<span>{{item.endtime}}</span></h2>
+		  </ion-col>
+
+	  <img  *ngIf="(item.is_designated&&item.type1=='2')"  src="assets/images/order/zhiding.png" style="position:absolute;top:0;right:0;width:35px;height:35px">
+
+	  </ion-row>
+	   <ion-row >
+	   	  <ion-col col-4 style="padding-left:13px !important;padding-top:3px !important;padding-bottom:3px !important;">
+			<h3>金额{{item.allmoney}}万</h3>
+		  </ion-col>
+
+		  <ion-col col-8 text-right ion-end  style="padding-left:3px !important;padding-top:3px !important;padding-bottom:3px !important;">
+
+			<span style="float:left"><h3>{{apiSev.pjtypeP(item.order_type,item.type1,item.type2,item.accept_time)}}</h3></span>
+			<span  *ngIf="item.endorse>-1" style="float:left;margin-left:15px;"><h3>背书{{item.endorse}}手</h3></span>
+			<span *ngIf=apiSev.qiehuan(item.flaw_ticket)  style="float:right;margin-right:10px"><h3>&nbsp;瑕疵票</h3></span>
+			<span *ngIf=apiSev.qiehuan(item.flaw_ticket)  style="float:right;"><img  src="assets/images/order/xiacipiao.png" style="margin-top:2px;width:15px;height:15px"></span>
+
+		  </ion-col>
+       </ion-row>
+	   <ion-row>
+		  <ion-col col-12 style="padding-left:13px !important;padding-top:3px !important;padding-bottom:6px !important;">
+        <h3 *ngIf="item.order_type=='DISCOUNTRECORDSP'">承兑方:{{item.bank}}</h3>
+        <h3 *ngIf="item.order_type=='DISCOUNTRECORD'&&item.type1=='2'">承兑行:{{item.bank}}</h3>
+		  </ion-col>
+       </ion-row>
+	   <ion-row >
+		  <ion-col col-6 style="padding-left:13px !important;padding-top:3px !important;padding-bottom:6px !important;">
+			<span style="float:left"><img src="assets/images/order/riqi.png" style="margin-top:2px;width:15px;height:15px"></span>
+			<h3 style="color:#888;">&nbsp;计息天数{{item.jxts}}天</h3>
+		  </ion-col>
+		  <ion-col col-6 style="padding-left:8px !important;padding-top:3px !important;padding-bottom:6px !important;">
+			<span *ngIf=apiSev.shangmen(item.need_todoor,item.type1)   style="float:left"><img src="assets/images/order/shangmen.png" style="margin-top:2px;width:15px;height:15px"></span>
+			<h3 *ngIf=apiSev.shangmen(item.need_todoor,item.type1)  style="color:#888;">&nbsp;不需要上门</h3>
+		  </ion-col>
+       </ion-row>
+
+ 	  <ion-row >
+	  <div  style="margin-left:13px;width:94%;height:2px;border-bottom:1px solid #e2e2e2">&nbsp;</div>
+	  </ion-row>
+      <ion-row>
+        <ion-col style="padding-left: 13px" col-6>
+          <img style="height: 60px;max-width: 80px" src="{{apiSev.getOrderImgUrl+item.picpath}}">
+        </ion-col>
+
+        <ion-col class="card_pad" col-6>
+          <h3 *ngIf="itemPinfen.singleRate>0">成单率:{{apiSev.toFix(itemPinfen.singleRate*100,2)}}%</h3>
+          <h3 *ngIf="!(itemPinfen.singleRate>0)">成单率:&#45;&#45;</h3>
+          <h3>背书时间:{{itemPinfen.endorseTime}}</h3>
+          <h3>违约率:0%</h3>
+        </ion-col>
+      </ion-row>
+
+    </div>
+  </ion-card>
+
+
+  <ion-card  mode="ios"  >
+	  <ion-row >
+		  <ion-col col-8 style="padding-left:13px !important;padding-top:8px !important;">
+		   <img id="hp1" src="assets/images/order/baojia.png" style="width:15px;height:16px;float:left;margin-top:4px">
+			<h2 ><span style="margin-left:3px;font-size:16px;color:#e84c3d;"  ><strong>我的报价</strong></span></h2>
+		  </ion-col>
+	 	  <ion-col col-4 text-right style="padding-left:8px !important;">
+
+		  </ion-col>
+
+	  </ion-row>
+	  <ion-row >
+	  <div  style="margin-left:13px;width:94%;height:2px;border-bottom:1px solid #e2e2e2">&nbsp;</div>
+	  </ion-row>
+	   <ion-row >
+		  <ion-col col-4 style="padding-left:13px !important;padding-top:8px !important;padding-bottom:1px !important;">
+			<h3 style="font-size:15px;">出票金额</h3>
+		  </ion-col>
+	 	  <ion-col col-4 style="padding-top:8px !important;padding-bottom:1px !important;">
+			<h3 style="font-size:15px;">共扣息(元)</h3>
+		  </ion-col>
+       <ion-col  *ngIf="item.type1=='2'" col-4 style="padding-top:8px !important;padding-bottom:1px !important;">
+         <h3 style="font-size:15px;">每十万扣息</h3>
+       </ion-col>
+	 	  <ion-col  *ngIf="item.type1=='1'" col-4 style="padding-right:13px !important;padding-top:8px !important;padding-bottom:1px !important;">
+			<h3 style="font-size:15px;">上门费用</h3>
+		  </ion-col>
+       </ion-row>
+	   <ion-row>
+		  <ion-col col-4 style="padding-left:13px !important;padding-top:8px !important;padding-bottom:10px !important;">
+			<h3 style="font-size:15px;">{{apiSev.toFix(itemNew.Newmony,6)}}万元</h3>
+		  </ion-col>
+	 	  <ion-col col-4 style="padding-top:8px !important;padding-bottom:10px !important;padding-right:30px !important;">
+                    <h3 style="font-size:15px;">{{itemNew.txlx}}</h3>
+		  </ion-col>
+       <ion-col col-4 style="padding-top:8px !important;padding-bottom:10px !important;padding-right:30px !important;">
+         <h3 style="font-size:15px;">{{swjx}}</h3>
+       </ion-col>
+	 	  <ion-col *ngIf="item.type1=='1'" col-4 style="padding-right:13px !important;padding-top:8px !important;padding-bottom:10px !important;">
+			<h3 style="font-size:15px;">{{item.todoor_price}}</h3>
+		  </ion-col>
+       </ion-row>
+
+  </ion-card>
+
+<!--  	<button   *ngIf="apiSev.getOrgTime(item.cib_cancel)"  ion-button mode="ios" margin clear style="margin-bottom:11px !important;height:40px;width:90%;text-align:center;"  >【资方已经申请取消订单】</button>
+    <button   *ngIf="apiSev.getBnsTime(item.cib_cancel)"  ion-button mode="ios" margin clear style="margin-bottom:11px !important;height:40px;width:90%;text-align:center;"  >【票方已经申请取消订单】</button>
+  <button ion-button mode="ios"   *ngIf="!apiSev.getOrgTime(item.cib_cancel)"  (tap)="showConfirm()" outline margin  style="margin-top:1px !important;margin-bottom:11px !important;height:40px;width:90%;text-align:center;"  >取消订单</button>-->
+</ion-content>
+
+<ion-footer >
+  <button *ngIf="item.state=='1'" ion-button mode="ios" (tap)="orderEdit()"  style="border-radius:0px;margin:0px;padding:0px;height:40px;width:100%;"  >修改报价</button>
+</ion-footer>
+
+<!--<div *ngIf="maskDiv" (tap)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="pop" >
+      <img src="assets/images/order/t.png"  (tap)="closeMask()" />
+      <div class="content">
+        <h5 margin>
+          请选择取消理由
+        </h5>
+        <ion-select class="h6" (ionChange)="Chages()" [(ngModel)]="info" interface="popover">
+          <ion-option value="0">票面信息有误</ion-option>
+          <ion-option value="4">其它</ion-option>
+        </ion-select>
+        <ion-textarea text-wrap  *ngIf="isMemo" type="text" maxlength="200" class="h7" [(ngModel)]="memo" placeholder="请输入您取消订单的原因">
+        </ion-textarea>
+        <button ion-button block round (tap)="CancelMask()">确定取消订单</button>
+      </div>
+    </div>
+  </ion-backdrop>
+</div>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,497 @@
+<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >我的报价</ion-title>
+    <ion-buttons right style="margin-left:-26px;">
+      <button ion-button mode="ios" icon-only (tap)="presentActionSheet()" style="font-size: 12px;height: 24px;padding: 0 10px;border-radius: 3px;background: #d43c33">
+        分享
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list no-lines>
+    <ion-item class="lines">
+      <ion-label>当日额度为</ion-label>
+      <ion-note item-end><span margin-right>{{price}}</span>万元</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label>已用额度为</ion-label>
+      <ion-note item-end><span margin-right>{{usedPrice}}</span>万元</ion-note>
+    </ion-item>
+    <ion-item margin-top>
+      <ion-label>报价机构</ion-label>
+      <div item-end>{{company}}</div>
+    </ion-item>
+  </ion-list>
+  <div>
+    <ion-segment class="WhiteB" [(ngModel)]="pet" mode="md">
+      <ion-segment-button value="yinBigDian">
+        银票大电票
+      </ion-segment-button>
+      <ion-segment-button value="yinSmallZhi">
+        银票小纸票
+      </ion-segment-button>
+      <ion-segment-button value="yinSmallDian">
+        银票小电票
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <p class="GrayB"></p>
+  <div (swipe)="swipeEvent($event)" padding-top padding-bottom="1%" class="WhiteB">
+    <div [ngSwitch]="pet">
+      <!--银票大电票-->
+      <ion-list *ngSwitchCase="'yinBigDian'" no-lines>
+        <ion-grid text-center  *ngIf="show2">
+          <p>半年期-年利率(%)</p>
+          <ion-row>
+            <ion-col>国股</ion-col>
+            <ion-col>大商</ion-col>
+            <ion-col>小商</ion-col>
+            <ion-col>外贸</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>{{GuoGuBig1}}</ion-col>
+            <ion-col>{{DaShangBig1}}</ion-col>
+            <ion-col>{{ChengShangBig1}}</ion-col>
+            <ion-col>{{WaiZiBig1}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>农商</ion-col>
+            <ion-col>农合</ion-col>
+            <ion-col>农信</ion-col>
+            <ion-col>村镇</ion-col>
+          </ion-row>
+          <ion-row class="last">
+            <ion-col>{{NongShangBig1}}</ion-col>
+            <ion-col>{{NongHeBig1}}</ion-col>
+            <ion-col>{{NongXinBig1}}</ion-col>
+            <ion-col>{{CunZhenBig1}}</ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid text-center *ngIf="show1">
+          <p>一年期-年利率(%)</p>
+          <ion-row>
+            <ion-col>国股</ion-col>
+            <ion-col>大商</ion-col>
+            <ion-col>小商</ion-col>
+            <ion-col>外贸</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>{{GuoGuBig}}</ion-col>
+            <ion-col>{{DaShangBig}}</ion-col>
+            <ion-col>{{ChengShangBig}}</ion-col>
+            <ion-col>{{WaiZiBig}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>农商</ion-col>
+            <ion-col>农合</ion-col>
+            <ion-col>农信</ion-col>
+            <ion-col>村镇</ion-col>
+          </ion-row>
+          <ion-row class="last">
+            <ion-col>{{NongShangBig}}</ion-col>
+            <ion-col>{{NongHeBig}}</ion-col>
+            <ion-col>{{NongXinBig}}</ion-col>
+            <ion-col>{{CunZhenBig}}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-list>
+
+      <!--银票小纸票-->
+      <ion-list *ngSwitchCase="'yinSmallZhi'" no-lines>
+        <ion-grid text-center *ngIf="show5">
+          <p text-center>100万-300万(含100万，300万)</p>
+          <ion-row>
+            <ion-col></ion-col>
+            <ion-col>国股</ion-col>
+            <ion-col>城商</ion-col>
+            <ion-col>外资</ion-col>
+            <ion-col>农商</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>月利率</ion-col>
+            <ion-col>{{GuoGuZhiSmall2}}</ion-col>
+            <ion-col>{{ChengShangZhiSmall2}}</ion-col>
+            <ion-col>{{WaiZiZhiSmall2}}</ion-col>
+            <ion-col>{{NongShangZhiSmall2}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>足月</ion-col>
+            <ion-col>{{GuoguZhiMatrueprice1}}</ion-col>
+            <ion-col>{{ChengShangZhiMatrueprice1}}</ion-col>
+            <ion-col>{{WaiZiZhiMatrueprice1}}</ion-col>
+            <ion-col>{{NongShangZhiMatrueprice1}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col></ion-col>
+            <ion-col>农合</ion-col>
+            <ion-col>农信</ion-col>
+            <ion-col>村镇</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>月利率</ion-col>
+            <ion-col>{{NongHeZhiSmall2}}</ion-col>
+            <ion-col>{{NongXinZhiSmall2}}</ion-col>
+            <ion-col>{{CunZhenZhiSmall2}}</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+          <ion-row class="last">
+            <ion-col>足月</ion-col>
+            <ion-col>{{NongHeZhiMatrueprice2}}</ion-col>
+            <ion-col>{{NongXinZhiMatrueprice2}}</ion-col>
+            <ion-col>{{CunZhenZhiMatrueprice2}}</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid text-center *ngIf="show4">
+          <p text-center>50万-100万(含50万)</p>
+          <ion-row>
+            <ion-col></ion-col>
+            <ion-col>国股</ion-col>
+            <ion-col>城商</ion-col>
+            <ion-col>外资</ion-col>
+            <ion-col>农商</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>月利率</ion-col>
+            <ion-col>{{GuoGuZhiSmall1}}</ion-col>
+            <ion-col>{{ChengShangZhiSmall1}}</ion-col>
+            <ion-col>{{WaiZiZhiSmall1}}</ion-col>
+            <ion-col>{{NongShangZhiSmall1}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>足月</ion-col>
+            <ion-col>{{GuoguZhiMatrueprice1}}</ion-col>
+            <ion-col>{{ChengShangZhiMatrueprice1}}</ion-col>
+            <ion-col>{{WaiZiZhiMatrueprice1}}</ion-col>
+            <ion-col>{{NongShangZhiMatrueprice1}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col></ion-col>
+            <ion-col>农合</ion-col>
+            <ion-col>农信</ion-col>
+            <ion-col>村镇</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>月利率</ion-col>
+            <ion-col>{{NongHeZhiSmall1}}</ion-col>
+            <ion-col>{{NongXinZhiSmall1}}</ion-col>
+            <ion-col>{{CunZhenZhiSmall1}}</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+          <ion-row class="last">
+            <ion-col>足月</ion-col>
+            <ion-col>{{NongHeZhiMatrueprice1}}</ion-col>
+            <ion-col>{{NongXinZhiMatrueprice1}}</ion-col>
+            <ion-col>{{CunZhenZhiMatrueprice1}}</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid text-center *ngIf="show3">
+          <p text-center>小于50万</p>
+          <ion-row>
+            <ion-col></ion-col>
+            <ion-col>国股</ion-col>
+            <ion-col>城商</ion-col>
+            <ion-col>外资</ion-col>
+            <ion-col>农商</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>月利率</ion-col>
+            <ion-col>{{GuoGuZhiSmall}}</ion-col>
+            <ion-col>{{ChengShangZhiSmall}}</ion-col>
+            <ion-col>{{WaiZiZhiSmall}}</ion-col>
+            <ion-col>{{NongShangZhiSmall}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>足月</ion-col>
+            <ion-col>{{GuoguZhiMatrueprice}}</ion-col>
+            <ion-col>{{ChengShangZhiMatrueprice}}</ion-col>
+            <ion-col>{{WaiZiZhiMatrueprice}}</ion-col>
+            <ion-col>{{NongShangZhiMatrueprice}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col></ion-col>
+            <ion-col>农合</ion-col>
+            <ion-col>农信</ion-col>
+            <ion-col>村镇</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>月利率</ion-col>
+            <ion-col>{{NongHeZhiSmall}}</ion-col>
+            <ion-col>{{NongXinZhiSmall}}</ion-col>
+            <ion-col>{{CunZhenZhiSmall}}</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+          <ion-row class="last">
+            <ion-col>足月</ion-col>
+            <ion-col>{{NongHeZhiMatrueprice}}</ion-col>
+            <ion-col>{{NongXinZhiMatrueprice}}</ion-col>
+            <ion-col>{{CunZhenZhiMatrueprice}}</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-list>
+
+      <!--银票小电票-->
+      <ion-list *ngSwitchCase="'yinSmallDian'" class="yinSmallDian" no-lines>
+        <h5 *ngIf="show12||show13||show14" text-center>大于100万(含) 年利率</h5>
+        <ion-grid text-center *ngIf="show12">
+          <p>0-90天</p>
+          <ion-row>
+            <ion-col>国股</ion-col>
+            <ion-col>城商</ion-col>
+            <ion-col>外资</ion-col>
+            <ion-col>农商</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>{{GuoguDianSmall6}}</ion-col>
+            <ion-col>{{ChengShangDianSmall6}}</ion-col>
+            <ion-col>{{WaiZiDianSmall6}}</ion-col>
+            <ion-col>{{NongShangDianSmall6}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>农合</ion-col>
+            <ion-col>农信</ion-col>
+            <ion-col>村镇</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+          <ion-row class="last">
+            <ion-col>{{NongHeDianSmall6}}</ion-col>
+            <ion-col>{{NongXinDianSmall6}}</ion-col>
+            <ion-col>{{CunZhenDianSmall6}}</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid text-center *ngIf="show13">
+          <p>90-178天</p>
+          <ion-row>
+            <ion-col>国股</ion-col>
+            <ion-col>城商</ion-col>
+            <ion-col>外资</ion-col>
+            <ion-col>农商</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>{{GuoguDianSmall7}}</ion-col>
+            <ion-col>{{ChengShangDianSmall7}}</ion-col>
+            <ion-col>{{WaiZiDianSmall7}}</ion-col>
+            <ion-col>{{NongShangDianSmall7}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>农合</ion-col>
+            <ion-col>农信</ion-col>
+            <ion-col>村镇</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+          <ion-row class="last">
+            <ion-col>{{NongHeDianSmall7}}</ion-col>
+            <ion-col>{{NongXinDianSmall7}}</ion-col>
+            <ion-col>{{CunZhenDianSmall7}}</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid text-center *ngIf="show14">
+          <p>178天以上</p>
+          <ion-row>
+            <ion-col>国股</ion-col>
+            <ion-col>城商</ion-col>
+            <ion-col>外资</ion-col>
+            <ion-col>农商</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>{{GuoguDianSmall8}}</ion-col>
+            <ion-col>{{ChengShangDianSmall8}}</ion-col>
+            <ion-col>{{WaiZiDianSmall8}}</ion-col>
+            <ion-col>{{NongShangDianSmall8}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>农合</ion-col>
+            <ion-col>农信</ion-col>
+            <ion-col>村镇</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+          <ion-row class="last">
+            <ion-col>{{NongHeDianSmall8}}</ion-col>
+            <ion-col>{{NongHeDianSmall8}}</ion-col>
+            <ion-col>{{NongHeDianSmall8}}</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+        </ion-grid>
+        <h5 *ngIf="show9||show10||show11" text-center>50万(含)-100万 年利率</h5>
+        <ion-grid text-center *ngIf="show9">
+          <p>0-90天</p>
+          <ion-row>
+            <ion-col>国股</ion-col>
+            <ion-col>城商</ion-col>
+            <ion-col>外资</ion-col>
+            <ion-col>农商</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>{{GuoguDianSmall3}}</ion-col>
+            <ion-col>{{ChengShangDianSmall3}}</ion-col>
+            <ion-col>{{WaiZiDianSmall3}}</ion-col>
+            <ion-col>{{NongShangDianSmall3}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>农合</ion-col>
+            <ion-col>农信</ion-col>
+            <ion-col>村镇</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+          <ion-row class="last">
+            <ion-col>{{NongHeDianSmall3}}</ion-col>
+            <ion-col>{{NongXinDianSmall3}}</ion-col>
+            <ion-col>{{CunZhenDianSmall3}}</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid text-center *ngIf="show10">
+          <p>90-178天</p>
+          <ion-row>
+            <ion-col>国股</ion-col>
+            <ion-col>城商</ion-col>
+            <ion-col>外资</ion-col>
+            <ion-col>农商</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>{{GuoguDianSmall4}}</ion-col>
+            <ion-col>{{ChengShangDianSmall4}}</ion-col>
+            <ion-col>{{WaiZiDianSmall4}}</ion-col>
+            <ion-col>{{NongShangDianSmall4}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>农合</ion-col>
+            <ion-col>农信</ion-col>
+            <ion-col>村镇</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+          <ion-row class="last">
+            <ion-col>{{NongHeDianSmall4}}</ion-col>
+            <ion-col>{{NongXinDianSmall4}}</ion-col>
+            <ion-col>{{CunZhenDianSmall4}}</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid text-center *ngIf="show11">
+          <p>178天以上</p>
+          <ion-row>
+            <ion-col>国股</ion-col>
+            <ion-col>城商</ion-col>
+            <ion-col>外资</ion-col>
+            <ion-col>农商</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>{{GuoguDianSmall5}}</ion-col>
+            <ion-col>{{ChengShangDianSmall5}}</ion-col>
+            <ion-col>{{WaiZiDianSmall5}}</ion-col>
+            <ion-col>{{NongShangDianSmall5}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>农合</ion-col>
+            <ion-col>农信</ion-col>
+            <ion-col>村镇</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+          <ion-row class="last">
+            <ion-col>{{NongHeDianSmall5}}</ion-col>
+            <ion-col>{{NongXinDianSmall5}}</ion-col>
+            <ion-col>{{CunZhenDianSmall5}}</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <!--银票小电票-->
+        <h5 *ngIf="show6||show7||show8" text-center>小于50万 年利率</h5>
+        <ion-grid text-center *ngIf="show6">
+          <p>0-90天</p>
+          <ion-row>
+            <ion-col>国股</ion-col>
+            <ion-col>城商</ion-col>
+            <ion-col>外资</ion-col>
+            <ion-col>农商</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>{{GuoguDianSmall}}</ion-col>
+            <ion-col>{{ChengShangDianSmall}}</ion-col>
+            <ion-col>{{WaiZiDianSmall}}</ion-col>
+            <ion-col>{{NongShangDianSmall}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>农合</ion-col>
+            <ion-col>农信</ion-col>
+            <ion-col>村镇</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+          <ion-row class="last">
+            <ion-col>{{NongHeDianSmall}}</ion-col>
+            <ion-col>{{NongXinDianSmall}}</ion-col>
+            <ion-col>{{CunZhenDianSmall}}</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid text-center *ngIf="show7">
+          <p>90-178天</p>
+          <ion-row>
+            <ion-col>国股</ion-col>
+            <ion-col>城商</ion-col>
+            <ion-col>外资</ion-col>
+            <ion-col>农商</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>{{GuoguDianSmall1}}</ion-col>
+            <ion-col>{{ChengShangDianSmall1}}</ion-col>
+            <ion-col>{{WaiZiDianSmall1}}</ion-col>
+            <ion-col>{{NongShangDianSmall1}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>农合</ion-col>
+            <ion-col>农信</ion-col>
+            <ion-col>村镇</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+          <ion-row class="last">
+            <ion-col>{{NongHeDianSmall1}}</ion-col>
+            <ion-col>{{NongXinDianSmall1}}</ion-col>
+            <ion-col>{{CunZhenDianSmall1}}</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid text-center *ngIf="show8">
+          <p>178天以上</p>
+          <ion-row>
+            <ion-col>国股fs</ion-col>
+            <ion-col>城商</ion-col>
+            <ion-col>外资</ion-col>
+            <ion-col>农商</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>{{GuoguDianSmall2}}</ion-col>
+            <ion-col>{{ChengShangDianSmall2}}</ion-col>
+            <ion-col>{{WaiZiDianSmall2}}</ion-col>
+            <ion-col>{{NongShangDianSmall2}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>农合</ion-col>
+            <ion-col>农信</ion-col>
+            <ion-col>村镇</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+          <ion-row class="last">
+            <ion-col>{{NongHeDianSmall2}}</ion-col>
+            <ion-col>{{NongXinDianSmall2}}</ion-col>
+            <ion-col>{{CunZhenDianSmall2}}</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

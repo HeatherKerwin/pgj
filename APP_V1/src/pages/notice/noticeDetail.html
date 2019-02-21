@@ -1,0 +1,17 @@
+<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons  style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon  color="dark"  name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >票据资讯</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <img src="{{apiSev.getImgUrl+news.pic}}" >
+    <p [innerHTML]="assembleHTML(news.content)">{{news.content}}</p>
+  </ion-card>
+</ion-content>

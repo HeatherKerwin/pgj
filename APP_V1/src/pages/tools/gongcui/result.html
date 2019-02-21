@@ -1,0 +1,68 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      公催查询
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+<ion-list>
+  <ion-item>
+    <ion-label><img src="assets/images/tool/chaxun.png" class="gongcuiimg"/></ion-label>
+    <ion-input type="number" maxlength="30" text-left placeholder="请输入汇票票号" [(ngModel)]="setNumber"
+               class="gongcuitext"></ion-input>
+  </ion-item>
+
+  <div class="cn-all">
+    <div style="text-align:center;">
+      <button ion-button block class="loginBtn" (tap)="recordBInfor()">
+        汇票查询
+      </button>
+    </div>
+  </div>
+
+  <div class="gongcuitexta">
+    <img src="assets/images/tool/tishi.png" class="gongcuiimga"/>
+    提示:
+  </div>
+  <div class="gongcuitextb">
+    1、请输入完整的16或30位票号
+  </div>
+  <div class="gongcuitextb">
+    2、仅提供最近6个月公式催告
+  </div>
+  <div class="gongcuitextc">
+    3、免责声明：本软件旨在最大化帮助客户避免汇票业务风险，因本软件未能收录数据而使用户遇到的风险，与本软件无关，由用户自己承担
+  </div>
+</ion-list>
+
+
+<ion-list style="height:130px;" *ngIf="ctresults" >
+  <ion-item>
+    <ion-label style="color:#d43c33">
+      查询结果:
+    </ion-label>
+  </ion-item>
+
+  <div class="banklist">
+    <ion-label>汇票票号：{{gongcui.gongcuinumber}}</ion-label>
+    <ion-label>
+      申请人：{{gongcui.gongcuimember}}
+    </ion-label>
+    <ion-label>
+      法院：{{gongcui.fayuan}}
+    </ion-label>
+    <ion-label>
+      时间：{{gongcui.gongcuidateStr}}
+    </ion-label>
+  </div>
+</ion-list>
+
+</ion-content>

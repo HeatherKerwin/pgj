@@ -1,0 +1,38 @@
+page-bonus {
+	ion-content{
+		
+		background: #EFEFF4 !important;
+		.scroll-content{
+			background: url(../assets/images/background.png) no-repeat bottom;
+    		background-size: 60% auto;
+		}
+
+		.inputContainer{
+			background: #fff;
+			margin-top: 0px;
+			padding-top: 20px;
+			padding-bottom: 20px;
+			.newUserInput{
+				background:#efeff4;
+				border:1px solid rgba(101,172,255,0.23);
+				border-radius:8px;
+				width:320px;
+				height:43px;
+				margin-left: calc(50% - 160px);
+				margin-bottom: 20px;
+				padding-left: 15px;
+			}
+
+			.newUserBtn{
+				margin-left: calc(50% - 160px);
+				background-image:linear-gradient(-180deg, #9ad257 0%, #6fb22c 100%);
+				border:1px solid rgba(255,255,255,0.32);
+				border-radius:8px;
+				width:320px;
+				height:52px;
+				z-index: 100;
+				margin-top: 20px;
+			}
+		}
+	}
+}

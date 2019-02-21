@@ -1,0 +1,15 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only (tap)="close($event)">
+        <ion-icon color="dark" name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <iframe style=" width: 100%; height: 100%;position: absolute;overflow: auto;border: none;"  id="iframe" sandbox="allow-scripts allow-top-navigation allow-pointer-lock allow-same-origin allow-popups allow-forms" [src]="browser.secUrl"  ></iframe>
+
+</ion-content>

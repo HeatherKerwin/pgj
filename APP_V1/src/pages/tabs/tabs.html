@@ -1,0 +1,7 @@
+﻿<ion-tabs selectedIndex="{{index}}" hide-tabs="true">
+  <ion-tab [root]="tab1Root" tabTitle="首页" tabIcon="custom-home"></ion-tab>
+  <ion-tab [root]="tab2Root" tabTitle="社区" tabIcon="custom-offer"></ion-tab>
+  <ion-tab [root]="tab3Root" tabTitle="接单" tabIcon="custom-jiedan" tabBadge={{apiSev.Singular}} tabBadgeStyle="$Red"></ion-tab>
+  <ion-tab [root]="tab4Root" tabTitle="工具" tabIcon="custom-tools"></ion-tab>
+  <ion-tab [root]="tab5Root" tabTitle="我"   tabIcon="custom-me" tabBadge={{apiSev.systeminfo}} tabBadgeStyle="$Red"></ion-tab>
+</ion-tabs>

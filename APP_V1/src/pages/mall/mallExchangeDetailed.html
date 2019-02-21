@@ -1,0 +1,51 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >兑换商品</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides pager>
+    <ion-slide *ngFor="let slide of slides">
+      <img [src]="this.apiSev.getImgUrl+slide" class="slide-image" (click)="viewPhoto(this.apiSev.getImgUrl+slide)"/>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-list class="title">
+    <h3 [innerHTML]="assembleHTML(mall.goodsName)">{{mall.goodsName}}</h3>
+    <ion-item class="red">
+      <ion-icon class="jifenIcon" item-start></ion-icon>
+      {{mall.integral}}积分
+      <ion-note item-end class="black">库存:{{mall.stock}}</ion-note>
+    </ion-item>
+  </ion-list>
+
+  <ion-list margin-top>
+    <ion-list-header>
+      产品参数
+    </ion-list-header>
+    <p [innerHTML]="assembleHTML(mall.goodsParam)">{{mall.goodsParam}}</p>
+  </ion-list>
+
+  <ion-list margin-top>
+    <ion-list-header>
+      产品介绍
+    </ion-list-header>
+    <p [innerHTML]="assembleHTML(mall.goodsExplain)">{{mall.goodsExplain}}</p>
+  </ion-list>
+
+  <ion-list margin-top>
+    <ion-list-header>
+      图片展示
+    </ion-list-header>
+      <img margin-top [src]="this.apiSev.getImgUrl+picShow" *ngFor="let picShow of picShows" (cick)="viewPhoto(this.apiSev.getImgUrl+picShow)" />
+  </ion-list>
+
+  <button ion-button margin style="width:90%" [disabled]="quehuo" padding mode="ios" (tap)="exchange($event)">立即兑换</button>
+
+</ion-content>

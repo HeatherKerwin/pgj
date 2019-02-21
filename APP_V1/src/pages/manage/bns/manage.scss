@@ -1,0 +1,87 @@
+page-manage {
+	ion-content{
+    background: #eeeeee !important;
+    div{
+      .toolbar-con{
+        //显示时间
+        ion-datetime{
+          opacity: 10 !important;
+          font-size: 1.4rem;
+          padding: 0px !important;
+          background: #ffffff !important;
+        }
+
+        //账簿
+        ion-list.manage1{
+          ion-list{
+            margin-bottom: 0px !important;
+            .item-block{
+              min-height: 2.8rem !important;
+              .item-inner{
+                border-bottom-color: $boderBlue !important;
+              }
+            }
+            button{
+              ion-label.label{
+                margin: 10px 5px 10px 25px !important;
+              }
+            }
+            .weekTime{
+              ion-label{
+                margin: 0px !important;
+              }
+            }
+          }
+          button{
+            ion-avatar{
+              img{
+                width: 40px !important;
+                height: 40px !important;
+                border: none !important;
+                border-radius: 0 !important;
+              }
+            }
+          }
+        }
+
+        //已贴现
+        //未贴现
+        ion-list.manage2 , ion-list.manage3{
+          ion-item{
+            border: 0px !important;
+            padding-left: 0px !important;
+            .item-inner{
+              padding-right: 0 !important;
+              ion-label{
+                margin: 0 !important;
+                ion-grid{
+                  ion-row{
+                    ion-col{
+                      h3 span{
+                        font-size: 1rem;
+                      }
+                    }
+                  }
+                  ion-row:nth-child(2){
+                    ion-col:nth-child(3){
+                      color: #d43c33;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        //  统计分析
+        .tjfxInput{
+          padding: 5px !important;
+          border-radius: 3px;
+          border: 1px #c8c7cc solid;
+        }
+
+      }
+    }
+
+	}
+
+}

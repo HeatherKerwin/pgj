@@ -1,0 +1,101 @@
+page-mallExchangeNoteDetail {
+	ion-content{
+    background: #eeeeee !important;
+    ion-list{
+      ion-item{
+        border-bottom: 0.55px solid #e2e2e2 !important;
+        ion-avatar{
+          img{
+            width: 65px !important;
+            height: 65px !important;
+          }
+        }
+        .item-inner{
+          border-bottom: none !important;
+        }
+      }
+      //积分小图标
+      .jifenIcon{
+        width: 1.2rem;
+        height: 1.2rem;
+        margin-right: 5px;
+        background: url("../assets/images/mall/dajifen.png") center no-repeat;
+        background-size: 100%;
+      }
+    }
+    .red{
+      color: #d43c33;
+    }
+    .gray{
+      color: #a3a3a3;
+    }
+    ion-item:first-child{
+      border-bottom: 0.55px solid #c8c7cc;
+      .item-inner{
+        border-bottom: none !important;
+      }
+    }
+
+	}
+
+  .mask{
+    .delete{
+      position: absolute;
+      top: 30%;
+      left: 15%;
+      width: 70%;
+      height: auto;
+      background: #ffffff;
+      border-radius: 10px;
+      h4{
+        margin-top: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
+      }
+      img{
+        width: 36% !important;
+      }
+      button{
+        height: 2.6rem !important;
+      }
+    }
+    .edit{
+      position: absolute;
+      top: 35%;
+      left: 15%;
+      width: 70%;
+      font-size: 1.7rem;
+      padding: 0 16px 30px;
+      border-radius: 10px;
+      height: auto;
+      background: #ffffff;
+      .close{
+        position: absolute;
+        top: -50px;
+        right: -10px;
+        width: 36px;
+        height: 36px;
+        z-index: 10;
+        background: url("../assets/images/common/close.png") center no-repeat;
+        background-size: 100%;
+      }
+      ion-row:nth-child(2) {
+        width: 120px;
+        height: 120px;
+        border-radius: 120px;
+        margin: -50px auto 0;
+        background: #ffffff;
+        img {
+          width: 95px;
+          height: 95px;
+          margin: 10px;
+        }
+      }
+      ion-row:nth-child(4) ,ion-row:nth-child(6){
+        background: url("../assets/images/mall/bottom.png") left bottom no-repeat ;
+        background-size: 100% auto;
+      }
+    }
+
+  }
+
+}

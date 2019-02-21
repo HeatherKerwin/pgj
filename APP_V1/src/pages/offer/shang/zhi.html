@@ -1,0 +1,42 @@
+<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons  style="margin-left:-26px;float:left">
+      <button ion-button icon-only>
+        <ion-icon  color="dark"  name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >商票纸票报价</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list mode="md" no-lines="">
+    <ion-item class="b_lines">
+      <ion-label item-start>商票报价</ion-label>
+      <ion-input type="number" readonly="false" text-right (keyup)="this.apiSev.check1($event)" [(ngModel)]="limit" placeholder="请填写您今日商票的额度"></ion-input>
+      <span item-end>万元</span>
+    </ion-item>
+    <ion-item margin-top padding-bottom>
+      <ion-textarea class="remark" cols=40 rows=6 maxlength="200" [(ngModel)]="remarkSp" placeholder="请输入备注"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+  <div class="Price" padding-bottom>
+    <div margin-left><strong>请输入您的报价</strong></div>
+    <div margin-left margin-top class="Lines">
+      <span>A、设定收票金额区间</span>
+      <div margin>
+        <input placeholder="最小金额" [(ngModel)]="zhiprice1" (blur)="checkprice(1)" /><span margin-left>万元</span><span margin-left>~</span><input margin-left [(ngModel)]="zhiprice2" (blur)="checkprice(2)" placeholder="最大金额"/><span margin-left>万元</span>
+      </div>
+    </div>
+    <div margin-left margin-top>
+      <span>B、设定收票期限</span>
+      <div margin>
+        <input placeholder="距离到期日" (keyup)="this.apiSev.check1($event)" [(ngModel)]="zhidate1" (blur)="checkprice(3)"><span margin-left>天</span><span margin-left>~</span><input (keyup)="this.apiSev.check1($event)" margin-left [(ngModel)]="zhidate2" (blur)="checkprice(4)" placeholder="距离到期日"/><span margin-left>天</span>
+      </div>
+    </div>
+  </div>
+  <div margin class="tishi"><img src="assets/images/offer/zhuyi.png" /> 票据管家会根据您提供的收票条件给您派单，您收到订单后可针对票面报出具体价格。</div>
+  <div style="text-align:center;" margin-top>
+    <button ion-button block  mode="ios" class="Btn" (tap)="save()">提交</button>
+  </div>
+</ion-content>

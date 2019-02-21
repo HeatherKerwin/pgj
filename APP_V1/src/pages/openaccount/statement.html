@@ -1,0 +1,59 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios" hideBackButton="true">
+    <ion-buttons>
+      <button ion-button icon-only (tap)="closeme($event)">
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      开户声明
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <ion-list>
+    <div padding-top color="saapp" mode="ios" style="background-color:#FFFFFF;font-size: 1.5rem;">
+      <ion-title>
+        温馨提示
+      </ion-title>
+    </div>
+    <div padding-left padding-right style="text-indent:1em;background-color:#FFFFFF;padding-top: 10px;padding-bottom: 10px;">使用“收票方（机构方）”角色的核心功能（如报价、收票），须关联兴业银行对公账户（开通电票功能和<span style="color:#d43c33">网上采购员权限</span>）才可以收票，请确认您公司是否已有兴业银行对公账户并开通相关业务。</div>
+
+    <div padding-left padding-right style="background-color:#FFFFFF;border-bottom: 15px solid #F5F5F5;">
+      <p style="padding-top: 10px;">开户之前，需要准备什么资料？</p>
+      <p>1、营业执照正本扫描件</p>
+      <p>2、法定代表人的身份证正、反面扫描件</p>
+      <p>3、对公银行账号</p>
+      <p>收票方需关联兴业银行对公账户（<span style="color:#d43c33">须开通电票功能和网上采购员权限</span>）</p>
+      <div style="padding-bottom:10px;color:#d43c33;font-size:1rem;"><span>*</span>扫描件必须为彩色原件的扫描件</div>
+    </div>
+    <ion-item style="border:0">
+      <div (tap)='apiSev.Call("400-067-0002");'><span>如有问题请联系客服:</span>   400-067-0002<button style="background-color:#FFFFFF;padding-left:15px"><img src="assets/images/openaccount/dianhua.png" style="height:20px;"/></button></div>
+    </ion-item>
+  </ion-list>
+
+<!--
+  <ion-item class="itemstyle">
+    <button class="itemcolor">
+      <img src="assets/images/openaccount/xuanzhongde.png" (tap)="Arrow($event)" style="height:15px;" *ngIf="enterprises"/>
+      <img src="assets/images/openaccount/xuanzhong.png" (tap)="Arrow($event)" style="height:15px;" *ngIf="!enterprises"/>
+    </button>
+    <button class="itemcolor" (tap)="disclaimer($event)">“票管家”平台免责声明</button>
+  </ion-item>
+
+  <ion-item class="itemstyle">
+    <button class="itemcolor">
+      <img src="assets/images/openaccount/xuanzhongde.png" (tap)="commitments($event)" style="height:15px;" *ngIf="commitment"/>
+      <img src="assets/images/openaccount/xuanzhong.png" (tap)="commitments($event)" style="height:15px;" *ngIf="!commitment"/>
+    </button>
+    <button class="itemcolor" (tap)="disclaimerB($event)">票据应收款转让服务合同</button>
+  </ion-item>
+-->
+
+  <div padding>
+    <button ion-button mode="ios" block color="primary" (tap)="OpenaccountPage($event)">知道了</button>
+  </div>
+
+</ion-content>

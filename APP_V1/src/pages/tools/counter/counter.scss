@@ -1,0 +1,155 @@
+page-counter {
+  ion-content {
+    background-color: #FFFFFF;
+    ion-list {
+      background-color: #FFFFFF;
+      ion-item {
+        .yuelilvgrid{
+          .item-inner{
+            padding: 0;
+          }
+          .text-input-ios{
+            padding:0 !important;
+            margin:0 !important;
+          }
+          .label-ios + ion-input .text-input{
+            padding:0 !important;
+            margin: 0 !important;
+          }
+          padding:0 !important;
+          margin:0 !important;
+        }
+
+        ion-select {
+          padding: 3px 8px 6px 8px !important;
+          border-style: solid;
+          border-width: 1px;
+          border-radius: 6px;
+          border-color: #D9D9DB;
+        }
+        .txtbue {
+          padding:0;
+          height:24px;
+          color:#2d2d2d;
+          font-size:1.30rem
+        }
+        .labeleft{
+          padding-left:6px;
+          min-width:150px;
+        }
+        .highttop {
+          margin:0 !important;
+
+          .txtone{
+            width: 130px;
+            flex:none;
+          }
+          .txttwo{
+            width:45px;
+            flex:none;
+          }
+          .txtfire{
+            width:50px;
+            flex:none;
+          }
+        }
+      }
+      .counitem {
+        padding-top:3px;
+        padding-right:10px;
+        padding-left:10px;
+        height:56px;
+        background: #fff;
+      }
+      ion-grid {
+        ion-row{
+          ion-col{
+            border-top:1px solid #FDD1CE;
+            border-right:1px solid #FDD1CE;
+          }
+        }
+      }
+    }
+    .cn-all {
+      .loginBtn {
+        border: 1px solid rgba(255, 255, 255, 0.32);
+        //box-shadow:0 3px 0 0 #d43c33, 0 2px 6px 0 rgba(0,0,0,0.50);
+        margin-top:60px;
+        border-radius: 8px;
+        width: 90%;
+        height: 40px;
+        margin: 0 auto
+      }
+    }
+  }
+
+  .newion_col{
+    background-color: #ffffff;
+    padding-top: 10px;
+    ion-col{
+      padding: 0;
+      ion-item.item-block .item-inner{
+        border: 0;
+      }
+    }
+  }
+
+  .Newinput{
+    ion-input{
+      margin-left: 3%;
+      width: 60%;
+      height: 35px;
+      line-height: 35px;
+      border: 1px solid #e0e0e0!important;
+      margin-top: 12px;
+      padding-left: 10px;
+      border-radius: 5px;
+      .text-input-md{
+        margin: 0 !important;
+      }
+      .text-input-ios{
+        margin: 0 !important;
+      }
+    }
+  }
+
+  .qingkong{
+    position: absolute;
+    background: url(../assets/images/tool/qingkong.png) center no-repeat;
+    background-size: 100%;
+    width: 70px;
+    height: 60px;
+    left: 71%;
+    top: 140px;
+  }
+
+  .chesuan{
+    position: absolute;
+    background: url(../assets/images/tool/chesuan.png) center no-repeat;
+    background-size: 100%;
+    width: 80px;
+    height: 80px;
+    left: 69%;
+    top: 200px;
+  }
+
+  .lijitiexian{
+    position: absolute;
+    background: url(../assets/images/tool/fanhui.png) center no-repeat;
+    background-size: 100%;
+    width: 65px;
+    height: 60px;
+    left: 72%;
+    top: 280px;
+  }
+}
+
+
+
+
+
+
+
+
+
+

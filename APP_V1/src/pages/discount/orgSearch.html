@@ -1,0 +1,40 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >指定机构</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar mode="ios" maxlength="25" [(ngModel)]="searchName" placeholder="搜索机构"></ion-searchbar>
+  <button mode="ios" class="searchBtn" style="margin-top: 6px;" (tap)="search(pageIndex)">搜索</button>
+
+  <ion-list *ngFor="let mechanism of mechanisms" (click)="myColumn(mechanism.id,mechanism.org_id,mechanism.company,mechanism.name,mechanism.price,mechanism.service,mechanism.speed)">
+    <ion-grid>
+      <ion-row>
+        <ion-col>{{mechanism.company}}</ion-col>
+      </ion-row>
+      <ion-row text-center>
+        <ion-col col-5 text-right>联系人：<span>{{mechanism.name}}</span></ion-col>
+        <ion-col col-7 text-right>联系人电话：<span>{{mechanism.mobile}}</span></ion-col>
+      </ion-row>
+      <ion-row text-center>
+        <ion-col col-4>价格真实<span>{{apiSev.toFix(mechanism.price,1)}}</span></ion-col>
+        <ion-col col-4>服务态度<span>{{apiSev.toFix(mechanism.service,1)}}</span></ion-col>
+        <ion-col col-4>确认效率<span>{{apiSev.toFix(mechanism.speed,1)}}</span></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="加载更多...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <p class="underscore" *ngIf="!isOk"></p>
+
+</ion-content>

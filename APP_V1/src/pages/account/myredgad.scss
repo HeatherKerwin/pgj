@@ -1,0 +1,99 @@
+page-myredgad {
+  ion-content {
+    ion-list {
+      ion-segment {
+        margin-left: 5%;
+        width: 91%;
+        margin-top: 10px;
+      }
+      ion-item {
+        ion-label {
+          font-size: 1.8rem;
+          font-weight: 600;
+          span {
+            display: inline-block;
+            margin-bottom: -6px;
+            height: 25px;
+            width: 30px;
+            background: url("../assets/images/account/hongbao.png") center no-repeat;
+            background-size: 100%;
+          }
+        }
+        ion-note {
+          color: #d43c33 !important;;
+          font-size: 1.8rem;
+          font-weight: 500;
+          letter-spacing: 3px;
+        }
+      }
+    }
+    .groundback {
+      height: 90px;
+      background: url("../assets/images/account/beijing2.png") center no-repeat;
+      background-size: 100% 140%;
+      margin-left:10px;
+      margin-right: 10px;
+      max-height: 90px;
+      margin-top: 10px;
+      .imgguoqi{
+        background: url("../assets/images/account/biaoqian.png") center no-repeat;
+        background-size: 100%;
+        position: absolute;
+        z-index: 10;
+        width: 80px;
+        height: 60px;
+        margin-top: -70px;
+        margin-left: 45%;
+      }
+      .groundbackcol{
+        padding-left: 25px !important;
+        padding-top: 10px;
+        .groundbackcoldiv{
+          font-size: 1.9rem;
+        }
+      }
+      .groundbackcolB{
+        padding-right: 25px !important;
+        .groundbackcolBdiv{
+          font-size: 3.6rem;
+          color: #d43c33;
+        }
+      }
+      .groundbackcolC{
+        padding-left: 25px !important;
+        padding-top: 0 !important;
+        color: #a3a3a3;
+      }
+      .groundbackcolD{
+        padding-right: 25px !important;
+        padding-top: 0 !important;
+        color: #a3a3a3;
+      }
+    }
+    .backgoupimg{
+      height: 90px;
+      width: 100%;
+      background: url("../assets/images/account/wuhongbao.png") center no-repeat;
+      background-size: 95px 100%;
+      margin-top: 10%;
+    }
+    .backgoupimgtext{
+      margin-top: 10px;
+      font-size: 2rem;
+      color: #a3a3a3;
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

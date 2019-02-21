@@ -1,0 +1,188 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >记一笔票据</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <!-- 切换 -->
+  <div class="segment-heard">
+    <ion-toolbar no-border-top>
+      <ion-segment [(ngModel)]="pet" mode="md">
+        <ion-segment-button value="discount">
+          已贴现
+        </ion-segment-button>
+        <ion-segment-button value="undiscount">
+          未贴现
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+  </div>
+
+  <!--切换内容-->
+  <div (swipe)="swipeEvent($event)" padding-left padding-right>
+    <div class="toolbar-con" [ngSwitch]="pet">
+      <!-- 已贴现 -->
+      <ion-list *ngSwitchCase="'discount'" class="discount" mode="ios">
+        <p>您将给已贴现的票据计入账簿:</p>
+        <ion-item>
+          <ion-label><span class="spot">*</span>票据属性</ion-label>
+          <button ion-button mode="ios" outline item-end color="danger" [ngClass]=" {'activedBtn': recordA.pjtype==1}" (click)="attribute(recordA.pjtype=1)">纸票</button>
+          <button ion-button mode="ios" outline item-end color="danger" [ngClass]=" {'activedBtn': recordA.pjtype==2}" (click)="attribute(recordA.pjtype=2)">电票</button>
+        </ion-item>
+        <!--        <ion-item *ngIf="recordA.isShow1">
+                  <ion-label>承兑期限</ion-label>
+                  <ion-select [(ngModel)]="recordA.limit" interface="popover" (ionChange)="changeStart()">
+                    <ion-option value="0">半年期</ion-option>
+                    <ion-option value="1">一年期</ion-option>
+                  </ion-select>
+                  </ion-item>-->
+        <ion-item *ngIf="recordA.isShow1">
+          <ion-label>承兑期限</ion-label>
+          <button ion-button outline item-end color="danger" [ngClass]=" {'activedBtn': recordA.limit==1}" (click)="attribute(recordA.limit=1)">一年期</button>
+          <button ion-button outline item-end color="danger" [ngClass]=" {'activedBtn': recordA.limit==0}" (click)="attribute(recordA.limit=0)">半年期</button>
+        </ion-item>
+        <ion-item>
+          <ion-label><span class="spot">*</span>承兑行类型</ion-label>
+          <ion-select [(ngModel)]="recordA.chengduihang" interface="popover">
+            <ion-option value="1">国股</ion-option>
+            <ion-option value="8">大商</ion-option>
+            <ion-option value="2">小商</ion-option>
+            <ion-option value="3">外资</ion-option>
+            <ion-option value="4">农商</ion-option>
+            <ion-option value="5">农合</ion-option>
+            <ion-option value="6">农信</ion-option>
+            <ion-option value="7">村镇</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label fixed><span class="spot">*</span>票据金额</ion-label>
+          <ion-input type="text" maxlength="10" (keyup)="apiSev.check1($event)" [(ngModel)]="recordA.allprice" (keyup)="onKeyup()" text-right placeholder="请输入金额"></ion-input>
+          <ion-note item-end>万元</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label fixed>月利率</ion-label>
+          <ion-input type="number" value="" (keyup)="onKeyup()" [(ngModel)]="recordA.yuelilv" text-right placeholder="请输入月利率"></ion-input>
+          <ion-note item-end>‰</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label fixed>年利率</ion-label>
+          <ion-input type="number" value="" (ionBlur)="nianlilv()" [(ngModel)]="recordA.nianlilv" text-right placeholder="请输入金额"></ion-input>
+          <ion-note item-end>％</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label fixed><span class="spot">*</span>贴现利息</ion-label>
+          <ion-input type="text" maxlength="15" (keyup)="apiSev.check1($event)" value="" [(ngModel)]="recordA.tiexianlixi" text-right placeholder="请输入金额"></ion-input>
+          <ion-note item-end>元</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label fixed>贴现金额</ion-label>
+          <ion-input type="number" value="0.00" [(ngModel)]="recordA.tiexianjine" text-right disabled></ion-input>
+          <ion-note item-end>万元</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label><span class="spot">*</span>下单日期</ion-label>
+          <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="recordA.begintime" doneText="确定" cancelText="取消" (keyup)="onKeyup()" (ionBlur)="blurEvent()"></ion-datetime>
+          <ion-note item-end class="calendarIcon"></ion-note>
+        </ion-item>
+        <ion-item class="itme-noborder">
+          <ion-label>到期日期</ion-label>
+          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="recordA.endtime" [min]="recordA.min" [max]="2999-12-31" doneText="确定" cancelText="取消" (keyup)="onKeyup()" (ionBlur)="blurEvent()"></ion-datetime>
+          <ion-note item-end class="calendarIcon"></ion-note>
+        </ion-item>
+
+        <ion-item margin-top mode="md">
+          <ion-label>设置交易提醒</ion-label>
+          <ion-checkbox color="primary" (ionChange)="checkInfo()" [checked]="recordA.infomemo" mode="md"></ion-checkbox>
+        </ion-item>
+        <ion-item class="itme-noborder">
+          <ion-label>交易日期</ion-label>
+          <ion-datetime text-left displayFormat="YYYY-MM-DD" [(ngModel)]="recordA.remindtime" [max]="recordA.endtime" [disabled]="recordA.endChok"  doneText="确定" cancelText="取消"></ion-datetime>
+          <ion-note item-end class="calendarIcon"></ion-note>
+        </ion-item>
+        <ion-item class="itme-noborder textarea" *ngIf="recordA.isShow2">
+          <ion-textarea name="description" id="" rows="6" [(ngModel)]="recordA.accountdesc" placeholder="请填写一个备注，标明设置的票据提醒！"></ion-textarea>
+        </ion-item>
+        <p>
+          <button ion-button mode="ios" block (click)="recordAInfor()">保存</button>
+        </p>
+      </ion-list>
+
+      <!-- 未贴现 -->
+      <ion-list *ngSwitchCase="'undiscount'" class="undiscount">
+        <p>您将给已贴现的票据计入账簿:</p>
+        <ion-item>
+          <ion-label><span class="spot">*</span>票据属性</ion-label>
+          <button ion-button mode="ios" outline item-end color="danger" [ngClass]=" {'activedBtn': recordB.pjtype==1}" (click)="attribute(recordB.pjtype=1)">纸票</button>
+          <button ion-button mode="ios" outline item-end color="danger" [ngClass]=" {'activedBtn': recordB.pjtype==2}" (click)="attribute(recordB.pjtype=2)">电票</button>
+        </ion-item>
+<!--        <ion-item *ngIf="recordB.isShow1">
+          <ion-label>承兑期限</ion-label>
+          <ion-select [(ngModel)]="recordB.limit" interface="popover">
+            <ion-option value="0">半年期</ion-option>
+            <ion-option value="1">一年期</ion-option>
+          </ion-select>
+        </ion-item>-->
+        <ion-item *ngIf="recordB.isShow1">
+          <ion-label>承兑期限</ion-label>
+          <button ion-button outline item-end color="danger" [ngClass]=" {'activedBtn': recordB.limit==1}" (click)="attribute(recordB.limit=1)">一年期</button>
+          <button ion-button outline item-end color="danger" [ngClass]=" {'activedBtn': recordB.limit==0}" (click)="attribute(recordB.limit=0)">半年期</button>
+        </ion-item>
+        <ion-item>
+          <ion-label><span class="spot">*</span>承兑行类型</ion-label>
+          <ion-select [(ngModel)]="recordB.chengduihang" interface="popover">
+            <ion-option value="1">国股</ion-option>
+            <ion-option value="8">大商</ion-option>
+            <ion-option value="2">小商</ion-option>
+            <ion-option value="3">外资</ion-option>
+            <ion-option value="4">农商</ion-option>
+            <ion-option value="5">农合</ion-option>
+            <ion-option value="6">农信</ion-option>
+            <ion-option value="7">村镇</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label fixed><span class="spot">*</span>票据金额</ion-label>
+          <ion-input type="text" maxlength="10" (keyup)="apiSev.check1($event)" [(ngModel)]="recordB.allprice" ngControl="title" text-right placeholder="请输入金额"></ion-input>
+          <ion-note item-end>万元</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label><span class="spot">*</span>下单日期</ion-label>
+          <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="recordB.begintime" doneText="确定" cancelText="取消"></ion-datetime>
+          <ion-note item-end class="calendarIcon"></ion-note>
+        </ion-item>
+        <ion-item class="itme-noborder">
+          <ion-label>到期日期</ion-label>
+          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="recordB.endtime" [min]="recordB.min" [max]="2999-12-31" doneText="确定" cancelText="取消"></ion-datetime>
+          <ion-note item-end class="calendarIcon"></ion-note>
+        </ion-item>
+
+        <ion-item margin-top mode="md">
+          <ion-label>设置交易提醒</ion-label>
+          <ion-checkbox color="primary" (ionChange)="checkInfo()" [checked]="recordB.infomemo" mode="md"></ion-checkbox>
+        </ion-item>
+        <ion-item class="itme-noborder">
+          <ion-label>交易日期</ion-label>
+          <ion-datetime text-left displayFormat="YYYY-MM-DD" [(ngModel)]="recordB.remindtime" [max]="recordB.endtime" disabled="{{recordB.endChok}}" doneText="确定" cancelText="取消"></ion-datetime>
+          <ion-note item-end class="calendarIcon"></ion-note>
+        </ion-item>
+        <ion-item class="itme-noborder textarea" *ngIf="recordB.isShow2">
+          <ion-textarea name="description" id="" rows="6" [(ngModel)]="recordB.accountdesc" placeholder="请填写一个备注，标明设置的票据提醒！"></ion-textarea>
+        </ion-item>
+        <p>您可以直接</p>
+        <p>
+          <button ion-button mode="ios" block (click)="tiexian()">一键贴现</button>
+        </p>
+        <p text-center>或</p>
+        <p>
+          <button ion-button mode="ios" block (click)="recordBInfor()">保存</button>
+        </p>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

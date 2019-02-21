@@ -1,0 +1,204 @@
+page-discountYPNext {
+  .redbutton{
+    span.button-inner{
+      color:$Red;
+    }
+  }
+	ion-content{
+    background-color: #eeeeee !important;
+    .endorse{
+      button{
+        width: 1.6rem;
+        height: 1.6rem !important;
+        background: #eee;
+        border: #eee;
+        color: #bfbfbf;
+        padding: 0 !important;
+      }
+    }
+    //单选按钮
+    button.radioBtn{
+      width: 41px;
+    }
+    //上传图片
+    .uploadDiv{
+      padding: 5px 16px;
+      background: white;
+      .upload{//上传按钮
+        width: 100px;
+        height: 100px;
+        background: url("../assets/images/discount/upload.png") center no-repeat;
+        background-size: 100%;
+      }
+      img.picpath{//图片展示
+        text-align: center;
+        width: auto;
+        height: 200px;
+        margin: 0 auto;
+      }
+    }
+
+    //查看票据样例
+    details{
+      padding: 5px 16px;
+      background: white;
+      summary{
+        color: #d43c33;
+      }
+      summary::-webkit-details-marker {
+        display:none;
+      }
+    }
+
+  }
+
+  .maskCon{
+    z-index: 99;
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    color: #2d2d2d;
+    background: rgba(255,255,255,1) !important;
+    opacity: 1.0 !important;
+    ion-row:first-child{
+      padding: 16px 0 5px;
+      border-bottom: 1px solid #d9d9d9;
+      img{
+        width: 70px;
+        height: 70px;
+      }
+      p{
+        color: #a3a3a3;
+        font-size: 1.4rem;
+        margin: 5px 0;
+      }
+    }
+    ion-row:last-child{
+      button{
+        background: white;
+        color: #2d2d2d;
+        font-size: 1.7rem;
+      }
+    }
+  }
+
+  .maskConB{
+    position:fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    overflow: scroll;
+
+    div.costItem .close ,.offer .close{
+      position: absolute;
+      top: -50px;
+      right: -10px;
+      width: 50px;
+      height: 50px;
+      background: url("../assets/images/account/close.png") center no-repeat;
+      background-size: 100%;
+    }
+    .gridTitle{
+      font-size: 1.5rem;
+      color: #a3a3a3;
+    }
+
+    p{
+      margin: 20px 0;
+      input{
+        color: #fff;
+        padding: 5px 15px;
+        border: 1px $Red solid;
+        border-radius: 5px;
+        background: $Red;
+      }
+      input.frame{
+        color: $Red;
+        padding: 5px 15px;
+        border: 1px $Red solid;
+        border-radius: 5px;
+        background: #fff;
+      }
+    }
+    .offer{
+      position: absolute;
+      top: 160px;
+      left: 4%;
+      width: 92%;
+      height: 260px;
+      background: #ffffff;
+      padding: 0 5px !important;
+      border-radius: 10px;
+      text-align: center;
+      //上传图片
+      .uploadDivB{
+        padding: 5px 16px;
+        background: white;
+        .upload{//上传按钮
+          text-align: center;
+          margin-top: 30px;
+          max-width: 90%;
+          max-height: 220px;
+          background: url("../assets/images/discount/uploaddiv.png") center no-repeat;
+          background-size: 100%;
+        }
+        img.picpath{//图片展示
+          text-align: center;
+          margin-top: 30px;
+          max-width: 90%;
+          max-height: 220px;
+        }
+      }
+    }
+    .offer img{
+      margin-top: 20px;
+      max-width: 90%;
+      max-height: 220px;
+    }
+  }
+
+  .OnePrice{
+    height: 100px;
+    background-color: #FFFFFF;
+    .left{
+      width: 50%;
+      float: left;
+      margin-top: 18px;
+      border-right: 1px solid #e0e0e0;
+      .lefttxt1{
+        font-size: 1.5rem;
+      }
+      .lefttxt2{
+        font-size: 1.7rem;
+        input{
+          width: 60% !important;
+          border: 1px solid #e0e0e0;
+          text-align: center;
+          color: #d43c33;
+          padding-right: 35px;
+        }
+      }
+    }
+    .right{
+      height: 100px;
+      width: 50%;
+      float: right;
+      text-align: left !important;
+      padding-left: 7%;
+      padding-top: 19px;
+
+      .righttxt1{
+
+      }
+      .righttxt2{
+
+      }
+      .righttxt3{
+
+      }
+    }
+  }
+
+}

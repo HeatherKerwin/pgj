@@ -1,0 +1,19 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios" hideBackButton="true">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >温馨提示</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <img src="assets/images/discount/success.gif">
+  <p margin text-center>订单已生成，请耐心等待机构报价~</p>
+  <p margin>
+    <button ion-button mode="ios" block (tap)="success()">知道了</button>
+  </p>
+
+</ion-content>

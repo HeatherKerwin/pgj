@@ -1,0 +1,64 @@
+page-mallExchangeSuccess {
+	ion-content{
+    background: #eeeeee !important;
+    .red{
+      color: #d43c33 !important;
+    }
+    ion-grid{
+      background: #ffffff !important;
+      ion-row{
+        font-size: 1.3rem;
+        padding: 6px 0 !important;
+        text-align: center !important;
+      }
+      ion-row:first-child{
+        ion-col{
+          vertical-align: middle;
+          font-size: 2rem;
+          .successIcon{
+            display: inline-block;
+            width: 2.2rem;
+            height: 2.2rem;
+            margin-right: 5px;
+            margin-top: 5px;
+          }
+        }
+      }
+      ion-row:last-child{
+        font-size: 1.1rem;
+      }
+    }
+
+      //下方列表
+    .mall-list button:first-child{
+      border-bottom: 1px solid #d9d9d9;
+    }
+    ion-card.mall-list{
+      //热门商品图标
+      .hot{
+        min-width: 20px;
+        width: 1.4rem;
+        height: 1.4rem;
+        margin-top: 0px;
+        background: url("../assets/images/mall/hot.png") center no-repeat;
+        background-size: 100%;
+      }
+      //商品图片
+      img{
+        width: 80%;
+        margin: 5px 10%;
+      }
+      .button-clear-ios{
+        color: #e84c3d !important;
+      }
+      //积分小图标
+      .jifenIcon{
+        width: 1.2rem;
+        height: 1.2rem;
+        margin-right: 5px;
+        background: url("../assets/images/mall/dajifen.png") center no-repeat;
+        background-size: 100%;
+      }
+    }
+	}
+}

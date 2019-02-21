@@ -1,0 +1,42 @@
+page-orgSearch {
+	ion-content{
+    .red{
+      color: #d43c33;
+    }
+    .searchbar-ios .searchbar-search-icon {
+      left: 9px;
+      top: 12px;
+      width: 16px;
+      height: 16px;
+    }
+    button.searchBtn{
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 60px;
+      height: 3rem;
+      z-index: 100;
+      margin: 4px;
+      border-radius: 0 5px 5px 0;
+      border-left: 0.55px solid #D9D9DB;
+      background: white;
+    }
+    ion-list{
+      background: #ffffff !important;
+      padding: 5px 16px;
+      ion-grid{
+        border: 1px dashed #dcdcdc !important;
+        border-radius: 5px;
+        ion-row{
+          padding: 5px 0;
+          ion-col{
+            span{
+              color: #d43c33;
+            }
+          }
+        }
+      }
+    }
+
+	}
+}

@@ -1,0 +1,24 @@
+page-remind {
+  ion-content{
+    background: #eeeeee !important;
+    ion-list{
+      ion-item{
+        margin-top: 10px;
+        padding-left: 0px;
+        .item-inner {
+          padding-right: 0px;
+          ion-label {
+            margin: 0;
+            ion-grid .red{
+              color: #d43c33;
+              span{
+                font-size: 0.8rem;
+              }
+            }
+          }
+        }
+      }
+    }
+
+  }
+}

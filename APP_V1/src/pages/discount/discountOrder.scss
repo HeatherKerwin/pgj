@@ -1,0 +1,186 @@
+page-discountOrder {
+  .redbutton{
+    span.button-inner{
+      color:$Red;
+    }
+  }
+	ion-content{
+    background: #eeeeee !important;
+    .red{
+      color: #d43c33;
+    }
+    //银行卡按钮
+    ion-list.placeNot ion-item ,ion-list.placeShow button{
+      border-image-width:1px !important;
+      border-image-source:url(../assets/images/discount/bottomIcon.png)!important;
+      border-image-repeat:round;
+      border-image-slice: 0 0 10 0;
+    }
+    //无银行卡页面样式
+    ion-list.placeNot{
+      button{
+        font-size: 1.6rem !important;
+        color: #2d2d2d !important;
+        height: 50px !important;
+        border: #a3a3a3 dotted 0.55px !important;
+        ion-icon.placeIcon{
+          width: 20px;
+          height: 20px;
+          margin-right: 5px;
+          background: url("../assets/images/authentication/tianjia.png") center no-repeat;
+          background-size: 100%;
+        }
+      }
+      ion-grid{
+        font-size: 1.4rem !important;
+        color: #2d2d2d !important;
+        height: 50px !important;
+        border-radius: 3px;
+        border: #a3a3a3 dotted 1px !important;
+      }
+    }
+    //银行卡信息
+    ion-list.placeShow {
+      background: #FFFFFF !important;
+      ion-grid{
+        width: 92%;
+        height: 70px;
+        border: #a3a3a3 solid 1px !important;
+      }
+      ion-grid ion-row ion-col {
+        padding: 2px 0;
+      }
+    }
+    ion-list{
+      ion-list-header{
+        margin-left: 0 !important;
+        background: #ffffff !important;
+        color: #d43c33 !important;
+        font-size: 1.8rem !important;
+        font-weight: bold !important;
+        //提醒图标
+        .remind{
+          vertical-align: middle;
+          width: 28px;
+          height: 28px;
+          margin-right: 5px;
+          margin-top: -8px;
+        }
+      }
+      ion-item{
+        //银行卡图标
+        .bankLogo{
+          width: 28px;
+          height: 28px;
+        }
+        .replace{
+          width: 36px;
+          height: 36px;
+          background: url("../assets/images/discount/replace.png") center no-repeat;
+          background-size: 100%;
+        }
+        //单选按钮
+        button.radioBtn{
+          width: 41px;
+        }
+        h2{
+          font-weight: bold !important;
+        }
+        p{
+          font-size: 1.4rem;
+        }
+      }
+      .vipimg {
+        background: url("../assets/images/me/5.png") center no-repeat;
+        background-size: 100% 100%;
+        width: 20px;
+        height: 20px;
+      }
+    }
+    ion-list.mechanism{
+      background: #ffffff !important;
+      padding: 5px 16px;
+      ion-item{
+        .item-inner{
+          border-bottom: none !important;
+        }
+
+        border: 1px dashed #dcdcdc !important;
+        border-radius: 5px;
+      }
+      ion-grid{
+        border: 1px dashed #dcdcdc !important;
+        border-radius: 5px;
+        ion-row{
+          padding: 5px 0;
+          ion-col{
+            span{
+              color: #d43c33;
+            }
+          }
+        }
+      }
+    }
+
+	}
+  .mask{
+    ion-grid.cash{
+      position: absolute;
+      top: 25%;
+      left: 10%;
+      width: 80%;
+      height: auto;
+      background: #ffffff;
+      padding: 0 0 10px !important;
+      border-radius: 10px;
+      .close{
+        position: absolute;
+        top: -50px;
+        right: -10px;
+        width: 50px;
+        height: 50px;
+        background: url("../assets/images/account/close.png") center no-repeat;
+        background-size: 100%;
+      }
+      .textdiv{
+        padding-left: 10px;
+        margin-top: 10px;
+        text-indent: 2rem;
+        font-size: 1.6rem;
+        padding-right: 5px;
+      }
+      .topitem{
+        margin-top: 25px;
+      }
+    }
+    .textcolor{
+      color: #d43c33;
+    }
+  }
+
+  ion-footer{
+    ion-list{
+      margin-bottom: 0 !important;
+      border: none !important;
+      ion-item{
+        border: none !important;
+        ion-label{
+          font-size: 1.7rem;
+          span{
+            padding-left: 2px;
+            color: #d43c33;
+          }
+        }
+        .item-inner{
+          padding-right: 0 !important;
+          button{
+            height: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            font-size: 1.8rem;
+          }
+        }
+      }
+    }
+  }
+}

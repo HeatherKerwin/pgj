@@ -1,0 +1,32 @@
+﻿<ion-header mode="ios" >
+    <ion-navbar mode="ios">
+        <ion-buttons  style="margin-left:-26px;float:left">
+	    <button ion-button icon-only (tap)="close($event)">
+            <ion-icon  color="dark"  name="ios-arrow-back"></ion-icon>
+        </button>
+	</ion-buttons>
+	<ion-title  mode="ios" >日历</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content color="dark" id="aboutContent">
+  <!-- 切换 -->
+  <div class="segment-heard">
+    <ion-toolbar no-border-top>
+      <ion-segment [(ngModel)]="segmentModel" mode="md">
+        <ion-segment-button value="manage1" (click)="btnIcon()">
+          纸票半年期
+        </ion-segment-button>
+        <ion-segment-button value="manage2" (click)="btnIcon()">
+          电票半年期
+        </ion-segment-button>
+        <ion-segment-button value="manage3" (click)="btnIcon()">
+          电票一年期
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+  </div>
+
+  <div (swipe)="swipeEvent($event)"><img src="{{ apiSev.getImgUrl+Calendar}}"></div>
+
+</ion-content>

@@ -1,0 +1,252 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only (tap)="(tools)">
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      贴现利率测算
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-row class="newion_col">
+      <ion-col col-6>
+        <ion-item style="min-height: 30px;height: 30px;">
+          <ion-label>
+            贴现日期
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item style="min-height: 30px;height: 30px;">
+          <ion-label>
+            到期日期
+          </ion-label>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-6>
+        <ion-item style="border: 1px solid #e0e0e0!important;border-radius: 5px;width: 90%;margin-left: 5%;min-height: 30px;height: 38px;">
+          <ion-datetime style="padding: 0;" displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="counter.begintime"
+                        doneText="确定" cancelText="取消" (ionChange)="timidata()"></ion-datetime>
+          <ion-note item-end class="calendarIcon"></ion-note>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item style="border: 1px solid #e0e0e0!important;border-radius: 5px;width: 90%;margin-left: 5%;min-height: 30px;height: 38px;">
+          <ion-datetime style="padding: 0;" displayFormat="YYYY-MM-DD" [(ngModel)]="counter.endtime" [min]="counter.min" [max]="2100-12-31"
+                        doneText="确定" cancelText="取消" (ionChange)="timidata()"></ion-datetime>
+          <ion-note item-end class="calendarIcon"></ion-note>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <div class="qingkong" (tap)="qingqong()"></div>
+    <div class="chesuan" (tap)="reExcel()"></div>
+    <div class="lijitiexian" (tap)="Fuipop()"></div>
+
+    <div class="Newinput">
+      <ion-input type="number" maxlength="10" [(ngModel)]="counter.allprice" placeholder="请输入总金额(万元)" (keyup)="changeT();"></ion-input>
+      <ion-input type="tel" maxlength="4" [(ngModel)]="tzts" placeholder="请输入调整天数" (keyup)="changeday();changeM()"></ion-input>
+      <div>
+        <ion-input style="width: 30%;float: left;" type="number" maxlength="5" value="" [(ngModel)]="counter.yuelilv"
+                   placeholder="请输入月利率(‰)" (keyup)="changeM();"></ion-input>
+        <span style="line-height: 35px;height: 35px;margin-left: 7px;font-size: 2rem;float: left;margin-top: 10px;">+</span>
+        <ion-input style="width: 20%;float: right;margin-right: 40%;margin-left: 0" type="number" maxlength="5" [(ngModel)]="counter.amount" placeholder="金额" (keyup)="changeM();changeT()" ></ion-input>
+      </div>
+      <ion-input style="margin-top: 60px;" type="number" maxlength="5" value="" [(ngModel)]="counter.nianlilv" placeholder="请输入年利率(%)" (keyup)="yTom();"></ion-input>
+      <ion-input type="number" maxlength="10" [(ngModel)]="counter.swtiexi" placeholder="请输入每10万贴息" (keyup)="changeT();"></ion-input>
+      <ion-input type="number" (keyup)="this.apiSev.check1($event)" maxlength="5" [(ngModel)]="counter.poundage" placeholder="请输入其他费用"></ion-input>
+    </div>
+
+    <ion-row style="margin-top: 20px;width: 90%;margin-left: 5%;">
+      <ion-col text-center col-4 style="border-top: 1px solid #e0e0e0!important;border-left: 1px solid #e0e0e0!important;border-bottom: 1px solid #e0e0e0!important;">
+        <div>计息天数(天)</div>
+        <div style="line-height: 40px;color: #f23a3a">{{jxts}}</div>
+      </ion-col>
+
+      <ion-col text-center col-4 style="border: 1px solid #e0e0e0!important;">
+        <div>贴现利息(元)</div>
+        <div style="line-height: 40px;color: #f23a3a">{{txlx}}</div>
+      </ion-col>
+
+      <ion-col text-center col-4 style="border-top: 1px solid #e0e0e0!important;border-right: 1px solid #e0e0e0!important;border-bottom: 1px solid #e0e0e0!important;">
+        <div>贴现金额(万元)</div>
+        <div style="line-height: 40px;color: #f23a3a">{{txje}}</div>
+      </ion-col>
+    </ion-row>
+
+
+<!--
+    <ion-item>
+      <ion-label><span class="spot">*</span>票据属性</ion-label>
+      <button ion-button outline item-end color="danger" [ngClass]=" {'activedBtn': counter.pjtype==2}" (tap)="attribute(counter.pjtype=2)">电票</button>
+      <button ion-button outline item-end color="danger" [ngClass]=" {'activedBtn': counter.pjtype==1}" (tap)="attribute(counter.pjtype=1)">纸票</button>
+    </ion-item>
+    <ion-item *ngIf=counter.isShow>
+      <ion-label><span class="spot">*</span>承兑期限</ion-label>
+      <button ion-button outline item-end color="danger" [ngClass]=" {'activedBtn': counter.limit==1}" (tap)="attribute(counter.limit=1)">一年期</button>
+      <button ion-button outline item-end color="danger" [ngClass]=" {'activedBtn': counter.limit==0}" (tap)="attribute(counter.limit=0)">半年期</button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label><span class="spot">*</span>承兑行类型</ion-label>
+      <ion-select [(ngModel)]="counter.chengduihang" interface="popover">
+        <ion-option value="1">国股</ion-option>
+        <ion-option value="8">大商</ion-option>
+        <ion-option value="2">小商</ion-option>
+        <ion-option value="3">外资</ion-option>
+        <ion-option value="4">农商</ion-option>
+        <ion-option value="5">农合</ion-option>
+        <ion-option value="6">农信</ion-option>
+        <ion-option value="7">村镇</ion-option>
+      </ion-select>
+    </ion-item>
+
+
+&lt;!&ndash;    <ion-item *ngIf=counter.iscity>
+      <ion-label><span class="spot">*</span>交易城市</ion-label>
+      <city-picker item-content [cancelText]="'取消'" [doneText]="'完成'" [separator]="'-'" [citiesData]="cityData"
+                   [(ngModel)]="cityName" (ionChange)="cityChange($event)">
+      </city-picker>
+    </ion-item>&ndash;&gt;
+
+
+    <ion-item>
+      <ion-label><span class="spot">*</span>总金额:</ion-label>
+      <ion-input type="number" maxlength="10" [(ngModel)]="counter.allprice" text-right placeholder="请输入总金额" (keyup)="changeP()">
+      </ion-input>
+      <ion-note item-end>万元</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>下单日期:</ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="counter.begintime" doneText="确定" cancelText="取消" (ionChange)="timidata()"></ion-datetime>
+      <ion-note item-end class="calendarIcon"></ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>到期日期:</ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="counter.endtime" [min]="counter.min" [max]="2999-12-31" doneText="确定" cancelText="取消" (ionChange)="timidata()"></ion-datetime>
+      <ion-note item-end class="calendarIcon"></ion-note>
+    </ion-item>
+
+    <ion-grid *ngIf=counter.yuelilvs style="padding:0;margin:0;" class="yuelilvgrid">
+      <ion-row>
+        <ion-col col-7 style="padding:0;margin:0;border:0;">
+          <ion-item style="border:0">
+            <ion-label><span class="spot">*</span>月利率:</ion-label>
+            <ion-input type="number" maxlength="5" value="" [(ngModel)]="counter.yuelilv" text-right placeholder="请输入月利率" (keyup)="changeM();"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-5 style="padding:0;margin:0;border:0;">
+          <ion-item style="padding-left:0;padding-right:0;border:0">
+            <ion-label style="padding:0;margin:0">‰ +</ion-label>
+            <ion-input type="number" text-right maxlength="5" [(ngModel)]="counter.amount" placeholder="金额" (keyup)="changeM();" (keyup)="changeT()"></ion-input>
+            <ion-note item-end>元</ion-note>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+&lt;!&ndash;    <ion-grid *ngIf=counter.yuelilvs style="padding:0;margin:0;" class="yuelilvgrid">
+      <ion-row>
+        <ion-col col-7 style="padding:0;margin:0;border:0;">
+          <ion-item style="border:0">
+            <ion-label><span class="spot">*</span>月利率:</ion-label>
+            <ion-input type="number" maxlength="5" value="" [(ngModel)]="counter.yuelilv" text-right placeholder={{price}} (keyup)="changeM();"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-5 style="padding:0;margin:0;border:0;">
+          <ion-item style="padding-left:0;padding-right:0;border:0">
+            <ion-label style="padding:0;margin:0">‰ +</ion-label>
+            <ion-input type="number" text-right maxlength="5" [(ngModel)]="counter.amount" placeholder={{rate1}} (keyup)="changeM();" (keyup)="changeT()"></ion-input>
+            <ion-note item-end>元</ion-note>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>&ndash;&gt;
+
+    <ion-item *ngIf=counter.shiwantiexi>
+      <ion-label><span class="spot">*</span>每10万贴息:</ion-label>
+      <ion-input type="number" maxlength="10" [(ngModel)]="counter.swtiexi" text-right placeholder={{rate2}} (keyup)="changeT();"></ion-input>
+      <ion-note item-end >元</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label><span class="spot">*</span>调整天数</ion-label>
+      <ion-input type="number" text-right disabled placeholder={{tzts}} (keyup)="changeday()"></ion-input>
+      <ion-note item-end >天</ion-note>
+    </ion-item>
+
+    <ion-item *ngIf=counter.nianlilvs>
+      <ion-label><span class="spot">*</span>年利率:</ion-label>
+      <ion-input type="number" maxlength="7" value="" [(ngModel)]="counter.nianlilv" text-right placeholder={{rate}}>
+      </ion-input>
+      <ion-note item-end >%</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>手续费:</ion-label>
+      <ion-input type="number" (keyup)="this.apiSev.check1($event)" maxlength="5" text-right placeholder=请输入手续费 [(ngModel)]="counter.poundage"></ion-input>
+      <ion-note item-end >元</ion-note>
+    </ion-item>
+
+    <ion-list style="padding-left:10px;">
+      <button mode="ios" (tap)="qingqong()" ion-button style="border-radius: 40px;float:left;width:47.8%;">
+        清除
+      </button>
+      <button  mode="ios" ion-button style="border-radius: 40px;float:left;width:47.8%;" (tap)="reExcel()">
+        一键测算
+      </button>
+    </ion-list>
+
+    <ion-grid style="background-color:#ffffff;">
+      <ion-row>
+        <ion-col col-5>
+          <div style="text-align:center;margin-top:8%;font-size:1.5rem;">计息天数(天)</div>
+        </ion-col>
+        <ion-col col-7 style="border-right:0">
+          <div><ion-input disabled type="number" text-right [(ngModel)]="jxts" placeholder={{jxts}} style="font-size:1.60rem"></ion-input></div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-5>
+          <div style="text-align:center;margin-top:8%;font-size:1.5rem;">总扣息(元)</div>
+        </ion-col>
+        <ion-col col-7 style="border-right:0">
+          <div><ion-input disabled type="number" [(ngModel)]="txlx" text-right placeholder={{txlx}} style="font-size:1.60rem"></ion-input></div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-5 style="border-bottom:1px solid #FDD1CE;">
+          <div style="text-align:center;margin-top:8%;font-size:1.5rem;">交易金额(万元)</div>
+        </ion-col>
+        <ion-col col-7 style="border-bottom:1px solid #FDD1CE;border-right:0">
+          <div><ion-input disabled type="number" [(ngModel)]="txje" text-right placeholder={{txje}} style="font-size:1.60rem;"></ion-input></div>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+  </ion-list>
+
+  <div class="cn-all" (tap)="discountYPPage()" *ngIf=CounterButton >
+    <div style="text-align:center;">
+      <button style="border-radius: 40px;height: 43px;" mode="ios" ion-button block class="loginBtn">
+        立即贴现
+      </button>
+    </div>
+  </div>
+
+  <div padding *ngIf=orderDetailS >
+    <button style="border-radius: 40px;height: 43px;" ion-button mode="ios" block color="primary" (tap)="orderDetail()">返回报价</button>
+  </div>-->
+  </ion-list>
+</ion-content>

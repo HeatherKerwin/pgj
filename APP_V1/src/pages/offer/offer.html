@@ -1,0 +1,83 @@
+﻿<ion-header mode="ios">
+    <ion-navbar mode="ios">
+      <ion-buttons  style="margin-left:-26px;float:left">
+        <button ion-button icon-only>
+              <ion-icon  color="dark"  name="ios-arrow-back"></ion-icon>
+        </button>
+	    </ion-buttons>
+      <!--<ion-buttons  end class="redbutton">
+        <button ion-button icon-only (tap)="ToMyOfferPage()">
+          我的报价
+        </button>
+      </ion-buttons>-->
+	    <ion-title  mode="ios" >报价</ion-title>
+      <ion-buttons right style="margin-left:-26px;">
+        <button ion-button mode="ios" icon-only (tap)="ToMyOfferPage()" style="font-size: 12px;height: 24px;padding: 0 10px;border-radius: 3px;background: #d43c33">
+          我的报价
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+  <div>
+    <ion-segment [(ngModel)]="pet" mode="md">
+      <ion-segment-button value="yin">
+        银票报价
+      </ion-segment-button>
+      <ion-segment-button value="shang">
+        商票报价
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div (swipe)="swipeEvent($event)" padding-top>
+    <div [ngSwitch]="pet">
+      <!--银票报价-->
+      <ion-list *ngSwitchCase="'yin'">
+        <button ion-item (tap)="ToOffer1Page();">
+          大票电票
+        </button>
+        <button ion-item (tap)="ToSmallDianPage()">
+          小票电票
+        </button>
+        <button ion-item (tap)="ToSmallZhiPage()">
+          小票纸票
+        </button>
+      </ion-list>
+
+      <!--商票报价-->
+      <ion-list *ngSwitchCase="'shang'">
+        <button ion-item mode="ios" (tap)="ToDianPage()">
+          商票电票
+        </button>
+        <button ion-item mode="ios" (tap)="ToZhiPage()">
+          商票纸票
+        </button>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>
+
+<!--//弹窗-->
+<div *ngIf="maskDiv" (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="maskCon">
+      <!--认证验证-->
+      <div class="Authentications" *ngIf="Authentication">
+        <ion-row>
+          <ion-col>
+            <img src="assets/images/home/tongzhi.png">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>为保障用户交易中的资金安全，票据管家联合兴业银行、兴业数金开通电票交易资金专管账户，彻底解决先背书还是先打款的问题。请先开户，开户通过之后方可体验新版报价收票功能。</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-8 offset-2>
+            <button ion-button md="ios" block round (tap)="ToAuthentication()">去开户</button>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+  </ion-backdrop>
+</div>

@@ -1,0 +1,52 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios" hideBackButton="true">
+    <ion-buttons>
+      <button ion-button icon-only (tap)="closeme()">
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      开户声明
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <ion-list>
+    <ion-item>
+      <ion-label>开户之前，需要准备什么资料？</ion-label>
+    </ion-item>
+    <div padding-left padding-right style="background-color:#FFFFFF;border-bottom: 15px solid #F5F5F5;">
+      <p style="padding-top: 10px;">1、营业执照正本扫描件</p>
+      <p>2、法定代表人的身份证正、反面扫描件</p>
+      <p>3、对公银行账号</p>
+      <p>出票方可关联全国任一银行对公账户</p>
+      <div style="padding-bottom:10px;color:#d43c33;font-size:1rem;"><span>*</span>扫描件必须为彩色原件的扫描件</div>
+    </div>
+    <ion-item style="border:0">
+      <div (tap)='apiSev.Call("400-067-0002");'><span>如有问题请联系客服:</span>   400-067-0002<button style="background-color:#FFFFFF;padding-left:15px"><img src="assets/images/openaccount/dianhua.png" style="height:20px;"/></button></div>
+    </ion-item>
+  </ion-list>
+
+<!--  <ion-item class="itemstyle">
+    <button class="itemcolor">
+      <img src="assets/images/openaccount/xuanzhongde.png" (tap)="Arrow()" style="height:15px;" *ngIf="enterprises"/>
+      <img src="assets/images/openaccount/xuanzhong.png" (tap)="Arrow()" style="height:15px;" *ngIf="!enterprises"/>
+    </button>
+    <button class="itemcolor" (tap)="disclaimer()">“票管家”平台免责声明</button>
+  </ion-item>
+
+  <ion-item class="itemstyle">
+    <button class="itemcolor">
+      <img src="assets/images/openaccount/xuanzhongde.png" (tap)="commitments()" style="height:15px;" *ngIf="commitment"/>
+      <img src="assets/images/openaccount/xuanzhong.png" (tap)="commitments()" style="height:15px;" *ngIf="!commitment"/>
+    </button>
+    <button class="itemcolor" (tap)="disclaimerB()">票据应收款转让服务合同</button>
+  </ion-item>-->
+
+  <div padding>
+    <button ion-button mode="ios" block color="primary" (tap)="OpenaccountPage()">知道了</button>
+  </div>
+
+</ion-content>

@@ -1,0 +1,48 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >{{headTetile}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label fixed>联系人</ion-label>
+      <ion-input maxlength="10" type="text" [(ngModel)]="place.name" ngControl="title" text-right placeholder="请输入姓名"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>性别</ion-label>
+      <button ion-button mode="ios" outline item-end class="radioBtn" color="danger" [ngClass]=" {'activedBtn': place.sex==1}" (tap)="radioBtn(place.sex=1)">男士</button>
+      <button ion-button outline item-end class="radioBtn" color="danger" [ngClass]=" {'activedBtn': place.sex==2}" (tap)="radioBtn(place.sex=2)">女士</button>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>联系电话</ion-label>
+      <ion-input maxlength="11" type="number" [(ngModel)]="place.mobile" ngControl="title" text-right placeholder="请输入手机号"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>我的位置</ion-label>
+      <ion-input type="text" [(ngModel)]="place.address" ngControl="title" text-right placeholder="请填写你的位置"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>详细地址</ion-label>
+      <ion-input type="text" [(ngModel)]="place.other" ngControl="title" text-right
+                 placeholder="例如门牌号等"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>交易城市</ion-label>
+      <city-picker item-content [cancelText]="'取消'" [doneText]="'完成'" [separator]="'-'" [citiesData]="cityData" [(ngModel)]="cityName" (ionChange)="cityChange($event)">
+      </city-picker>
+    </ion-item>
+    <p class="text red">注：交易城市默认是您所在位置的城市，但如果您询价时发现其他城市 的价格更低，您可以选择其他交易城市。</p>
+  </ion-list>
+
+  <p margin>
+    <button ion-button mode="ios" block (tap)="save()">确定</button>
+  </p>
+
+</ion-content>

@@ -1,0 +1,112 @@
+<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons  style="margin-left:-26px;float:left">
+      <button ion-button icon-only>
+        <ion-icon  color="dark"  name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons  end>
+      <button ion-button icon-only (tap)="ContrastPrice()">
+        对比价格
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >确认价格</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div padding-left class="red-12" padding-top>*当日价格一小时可更改一次，请确认您所填的信息</div>
+  <div class="Box1">
+    <div><span>国股：</span><div class="InputDiv">月利率{{guogu}}‰<span> + </span>{{guogu1}}元</div></div>
+    <div class="InputDiv1">每10万约{{guogu3}} 元(足月票价) </div>
+  </div>
+  <div class="Box1">
+    <div><span>城商：</span><div class="InputDiv">月利率{{chengshang}}‰<span> + </span>{{chengshang1}}元</div></div>
+    <div class="InputDiv1">每10万约{{chengshang3}} 元(足月票价) </div>
+  </div>
+  <div class="Box1">
+    <div><span>外资：</span><div class="InputDiv">月利率{{waizi}}‰<span> + </span>{{waizi1}}元</div></div>
+    <div class="InputDiv1">每10万约{{waizi3}} 元(足月票价) </div>
+  </div>
+  <div class="Box1">
+    <div><span>农商：</span><div class="InputDiv">月利率{{nongshang}}‰<span> + </span>{{nongshang1}}元</div></div>
+    <div class="InputDiv1">每10万约{{nongshang3}} 元(足月票价) </div>
+  </div>
+  <div class="Box1">
+    <div><span>农合：</span><div class="InputDiv">月利率{{nonghe}}‰<span> + </span>{{nonghe1}}元</div></div>
+    <div class="InputDiv1">每10万约{{nonghe3}} 元(足月票价) </div>
+  </div>
+  <div class="Box1">
+    <div><span>农信：</span><div class="InputDiv">月利率{{nongxin}}‰<span> + </span>{{nongxin1}}元</div></div>
+    <div class="InputDiv1">每10万约{{nongxin3}} 元(足月票价) </div>  </div>
+  <div class="Box1">
+    <div><span>村镇：</span><div class="InputDiv">月利率{{cunzhen}}‰<span> + </span>{{cunzhen1}}元</div></div>
+    <div class="InputDiv1">每10万约{{cunzhen3}} 元(足月票价) </div>  </div>
+  <p margin>
+    <button ion-button block mode="ios" (tap)="save()">确认价格</button>
+  </p>
+
+  <p margin>
+    <button ion-button block mode="ios" (tap)="back()">返回修改</button>
+  </p>
+</ion-content>
+
+<!--弹窗提示-->
+<div *ngIf="maskDiv" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="PlatformPrice" *ngIf="PlatformPrice" padding>
+      <h5>平台均价</h5>
+      <div class="Price" padding>
+        <div>
+          <strong>国股：</strong><span margin-left>月利率--‰+0.00元</span>
+          <p>每10万约***元(足月票价)</p>
+        </div>
+        <div>
+          <strong>城商：</strong><span margin-left>月利率--‰+0.00元</span>
+          <p>每10万约***元(足月票价)</p>
+        </div>
+        <div>
+          <strong>外资：</strong><span margin-left>月利率--‰+0.00元</span>
+          <p>每10万约***元(足月票价)</p>
+        </div>
+        <div>
+          <strong>农商：</strong><span margin-left>月利率--‰+0.00元</span>
+          <p>每10万约***元(足月票价)</p>
+        </div>
+        <div>
+          <strong>农合：</strong><span margin-left>月利率--‰+0.00元</span>
+          <p>每10万约***元(足月票价)</p>
+        </div>
+        <div>
+          <strong>农信：</strong><span margin-left>月利率--‰+0.00元</span>
+          <p>每10万约***元(足月票价)</p>
+        </div>
+        <div>
+          <strong>村镇：</strong><span margin-left>月利率--‰+0.00元</span>
+          <p>每10万约***元(足月票价)</p>
+        </div>
+
+        <p>
+          <button ion-button round (tap)="closeMask()">知道了</button>
+        </p>
+      </div>
+    </div>
+    <div class="Confirm" *ngIf="Confirm" padding>
+      <div class="tishi"></div>
+      <h5 text-center>保存成功</h5>
+      <ion-grid class="button" margin-top>
+        <ion-row>
+          <ion-col col-6>
+            <button mode="md" (tap)="queryPrice()" ion-item style="min-height:30px;height: 30px;border-right: 1px solid #d9d9d9;">
+              查看报价
+            </button>
+          </ion-col>
+          <ion-col col-6>
+            <button mode="md" (tap)="ContinuePrice()" ion-item style="min-height:30px;height: 30px;color: #d43c33">
+              继续报价
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-backdrop>
+</div>

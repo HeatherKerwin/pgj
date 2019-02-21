@@ -1,0 +1,179 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios" hideBackButton="true">
+    <ion-buttons>
+      <button ion-button icon-only (tap)="closeme()">
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      开户信息
+    </ion-title>
+    <ion-buttons right style="margin-left:-26px;padding: 0 !important;padding-bottom: 6px;">
+      <button ion-button mode="ios" icon-only (click)="outputHT()" class="heroutput">
+        <div class="textoutput">合同</div>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <ion-list>
+
+    <ion-item style="background-color: #F4F4F4;" *ngIf="judgeB">
+      <ion-label (tap)="banklist()">
+        对公账户管理
+      </ion-label>
+      <ion-note item-end>
+        <button style="background-color: #F4F4F4;">
+          <img src="assets/images/openaccount/arrow.png" (tap)="banklist()" style="height:20px;"/>
+        </button>
+      </ion-note>
+    </ion-item>
+
+    <ion-item style="background-color: #F4F4F4;">
+      <ion-label (tap)="Arrow()">
+        企业法人营业执照
+      </ion-label>
+      <ion-note item-end>
+        <button style="background-color: #F4F4F4;">
+          <img src="assets/images/openaccount/jiantou.png" (tap)="Arrow()" style="height:20px;" *ngIf="enterprises" />
+          <img src="assets/images/openaccount/jiantoushang.png" (tap)="Arrow()" style="height:20px;" *ngIf="!enterprises"/>
+        </button>
+      </ion-note>
+    </ion-item>
+    <ion-item *ngIf="enterprise">
+      <ion-label>
+        公司名称
+      </ion-label>
+      <ion-input type="text" maxlength="100" text-right disabled [(ngModel)]="openaccount.name"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="enterprise">
+      <ion-label>
+        注册号
+      </ion-label>
+      <ion-input type="text" maxlength="18" text-right disabled [(ngModel)]="openaccount.bizLicenceRegisteredNo"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="enterprise">
+      <ion-label>
+        法人姓名
+      </ion-label>
+      <ion-input type="text" maxlength="20" text-right disabled [(ngModel)]="openaccount.bizLicenceLegalName"></ion-input>
+    </ion-item>
+
+    <ion-item style="background-color: #F4F4F4;">
+    <ion-label (tap)="Tobanks()">
+      银行信息
+    </ion-label>
+    <ion-note item-end>
+      <button style="background-color: #F4F4F4;">
+        <img src="assets/images/openaccount/jiantou.png" (tap)="Tobanks()" style="height:20px;" *ngIf="bankinfo" />
+        <img src="assets/images/openaccount/jiantoushang.png" (tap)="Tobanks()" style="height:20px;" *ngIf="!bankinfo"/>
+      </button>
+    </ion-note>
+  </ion-item>
+
+    <ion-item *ngIf="bankinfos">
+      <ion-label style="margin-right: 0">
+        开户银行支行号
+      </ion-label>
+      <ion-label item-end style="color: #000000;margin-right:0;font-size: 1.3rem;border-radius: 2px;border-right:0;padding: 3px;margin-left: 0;">{{openaccount.bankAcctBankBranch}} {{openaccount.bankAcctCnapsCode}}</ion-label>
+    </ion-item>
+    <ion-item *ngIf="bankinfos">
+      <ion-label>
+        账号
+      </ion-label>
+      <ion-note item-end >{{apiSev.check3(openaccount.bankAcctAcctNo)}}</ion-note >
+    </ion-item>
+
+    <ion-item style="background-color: #F4F4F4;">
+      <ion-label (tap)="Tofinance()">
+        其他
+      </ion-label>
+      <ion-note item-end>
+        <button style="background-color: #F4F4F4;">
+          <img src="assets/images/openaccount/jiantou.png" (tap)="Tofinance()" style="height:20px;" *ngIf="finance" />
+          <img src="assets/images/openaccount/jiantoushang.png" (tap)="Tofinance()" style="height:20px;" *ngIf="!finance"/>
+        </button>
+      </ion-note>
+    </ion-item>
+    <ion-item *ngIf="finances">
+      <ion-label>
+        联系人姓名
+      </ion-label>
+      <ion-input type="text" maxlength="10" text-right disabled [(ngModel)]="openaccount.contactName"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="finances">
+      <ion-label>
+        手机号
+      </ion-label>
+      <ion-input type="text" maxlength="19" text-right disabled [(ngModel)]="openaccount.contactMobile"></ion-input>
+    </ion-item>
+
+    <ion-list-header margin-top style="font-size: 1.7rem;background-color:#FFFFFF;" *ngIf="judgeA">
+      执剑人账户
+      <ion-note item-end>
+        <img src="assets/images/openaccount/payuser.png" style="height: 35px;width: 35px;">
+      </ion-note>
+    </ion-list-header>
+
+    <ion-item *ngIf="judgeA">
+      <ion-label>
+        账户余额
+      </ion-label>
+      <ion-note item-end style="color: #7790fe;">{{v_acct.balance}}</ion-note>
+      <ion-note item-end style="color: #000000;">元</ion-note>
+    </ion-item>
+
+    <ion-item *ngIf="judgeA">
+      <ion-label>
+        冻结资金
+      </ion-label>
+      <ion-note item-end style="color: #d43c33;">{{v_acct.frozen_balance}}</ion-note>
+      <ion-note item-end style="color: #000000;">元</ion-note>
+    </ion-item>
+
+    <div padding>
+      <div text-wrap style="font-size:1rem;text-indent:1em">
+        <p *ngIf="judgeB">已为您在兴业数金系统进行了开户，您的兴业系统登录用户名为：<span style="color: #d43c33">{{mobile}}</span>，首次登录时需要重置密码进行登录!
+          交易票款会在兴业系统进行流转，您的票款提现也需要登录兴业系统进行操作。
+          如需提现，请登录票据电脑端管家官网：www.utiexian.com，在开户管理中点击充值提现链接，进入兴业数金系统。
+        </p>
+        <p *ngIf="judgeA">已为您在兴业数金系统进行了开户，您的兴业系统登录用户名为：<span style="color: #d43c33">{{mobile}}</span>，首次登录时需要重置密码进行登录!
+          交易票款会在兴业系统进行流转，您的资金充值和提现也需要登录兴业系统进行操作。
+          如需充值提现，请登录票据电脑端管家官网：www.utiexian.com，在开户管理中点击充值提现链接，进入兴业数金系统。</p>
+      </div>
+<!--      <button ion-button mode="ios" block color="primary" (tap)="Showall()">提现</button>
+      <button ion-button mode="ios" block color="primary" *ngIf="judgeA" (tap)="Showall()">充值</button>-->
+    </div>
+
+  </ion-list>
+</ion-content>
+
+<!--弹出层-->
+<div *ngIf="isMask" (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="maskCon">
+      <ion-grid class="cash" *ngIf="isCash">
+        <button mode="ios" class="close" (tap)="isMask = false;isCash = false;"></button>
+        <ion-row style="height: 10px">
+        </ion-row>
+        <ion-row style="padding-top: 15px;">
+          <ion-col>
+            发送合同至您的邮箱：
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input type="text" maxlength="50" placeholder="请输入您的邮箱" [(ngModel)]="outputemail"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4 offset-4 text-center>
+            <button (tap)="cash()" ion-button mode="ios" block color="primary" small>发送</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-backdrop>
+</div>

@@ -1,0 +1,54 @@
+<ion-header mode="ios">
+  <ion-navbar mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title mode="ios">银票查询查复</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label><span class="red">*</span>票号</ion-label>
+      <ion-input type="tel" [(ngModel)]="draftNo" text-right (keyup)="checkDraftNo()" placeholder="请输入汇票票号"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label><span class="red">*</span>金额</ion-label>
+      <ion-input type="number" [(ngModel)]="money" text-right placeholder="请输入金额"></ion-input>
+      <span item-end>万元</span>
+    </ion-item>
+    <ion-item>
+      <ion-label><span class="red">*</span>出票人</ion-label>
+      <ion-input type="number" [(ngModel)]="drawer" text-right placeholder="请输入出票人全称"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label><span class="red">*</span>收款人</ion-label>
+      <ion-input type="number" [(ngModel)]="payee" text-right placeholder="请输入收款人全称"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label><span class="red">*</span>承兑行全称</ion-label>
+      <ion-input type="number" [(ngModel)]="bank" text-right placeholder="请输入承兑行全称"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label><span class="red">*</span>承兑行号</ion-label>
+      <ion-input type="number" [(ngModel)]="bankNo" text-right placeholder="请输入承兑行号"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>出票日期</ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" doneText="确定" cancelText="取消" [(ngModel)]="beginDate"></ion-datetime>
+      <ion-note item-end class="calendarIcon"></ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label>到期日期</ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" doneText="确定" cancelText="取消" [(ngModel)]="endDate"></ion-datetime>
+      <ion-note item-end class="calendarIcon"></ion-note>
+    </ion-item>
+  </ion-list>
+  <div class="div1">*请注意，每次查票过程都会在大额支付系统中留下查询记录</div>
+
+<!--  <div style="text-align:center;" margin-top>
+    <button ion-button block  mode="ios" class="Btn" (tap)="save()">保存</button>
+  </div>-->
+</ion-content>

@@ -1,0 +1,67 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "com-sarriaroman-photoviewer": {
+      "PACKAGE_NAME": "com.ruiyin"
+    },
+    "cordova-hot-code-push-plugin": {
+      "PACKAGE_NAME": "com.ruiyin"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.ruiyin"
+    },
+    "cordova-plugin-console": {
+      "PACKAGE_NAME": "com.ruiyin"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.ruiyin"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.ruiyin"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.ruiyin"
+    },
+    "cordova-plugin-qqsdk": {
+      "QQ_APP_ID": "1104682371",
+      "PACKAGE_NAME": "com.ruiyin"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.ruiyin"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.ruiyin"
+    },
+    "cordova-plugin-wechat": {
+      "WECHATAPPID": "wxfcf5788bc89da8db",
+      "PACKAGE_NAME": "com.ruiyin"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.ruiyin"
+    },
+    "ionic-plugin-keyboard": {
+      "PACKAGE_NAME": "com.ruiyin"
+    },
+    "jpush-phonegap-plugin": {
+      "API_KEY": "74749812632a52b5306e7b92",
+      "PACKAGE_NAME": "com.ruiyin"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-clipboard": {
+      "PACKAGE_NAME": "com.ruiyin"
+    },
+    "cordova-plugin-compat": {
+      "PACKAGE_NAME": "com.ruiyin"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.ruiyin"
+    }
+  }
+}

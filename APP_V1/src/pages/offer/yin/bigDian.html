@@ -1,0 +1,36 @@
+<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons  style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon  color="dark"  name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >银票大电票报价</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list mode="md" no-lines>
+    <ion-item class="b_lines">
+      <ion-label item-start>报价额度</ion-label>
+      <ion-input type="number" readonly="false" (keyup)="this.apiSev.check1($event)" text-right [(ngModel)]="amount" placeholder="请输入报价额度"></ion-input>
+      <span item-end>万元</span>
+    </ion-item>
+    <ion-item margin-top padding-bottom>
+      <ion-textarea class="remark" cols=40 rows=6 maxlength="200" placeholder="请输入备注" [(ngModel)]="remarkYp"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+  <ion-list margin-top no-lines>
+    <ion-item>
+      <ion-label>选择报价期限</ion-label>
+      <ion-select [(ngModel)]="acceptTime" interface="popover" >
+        <ion-option value='0'>一年期</ion-option>
+        <ion-option value='1'>半年期</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <div style="text-align:center;" margin-top>
+    <button ion-button block  mode="ios" class="Btn" (tap)="price()">进入报价</button>
+  </div>
+</ion-content>

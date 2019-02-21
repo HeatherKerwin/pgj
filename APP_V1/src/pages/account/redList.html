@@ -1,0 +1,49 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      我的红包
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <ion-list>
+    <div *ngFor="let d of myred">
+      <div class="groundback" *ngIf="d.couponState=='UNUSED'" (click)="Payments(d.id,d.money,d.couponType)">
+        <ion-row>
+          <ion-col text-left col-6 class="groundbackcol">
+            <div *ngIf="d.couponType=='GENERAL'" class="groundbackcoldiv">通用红包</div>
+            <div *ngIf="d.couponType=='DISC'" class="groundbackcoldiv">交易红包</div>
+            <div *ngIf="d.couponType=='DIST'" class="groundbackcoldiv">接单红包</div>
+            <div *ngIf="d.couponType=='INQUIRYREPLY'" class="groundbackcoldiv">查询查复红包</div>
+          </ion-col>
+          <ion-col text-right col-6 class="groundbackcolB">
+            <div class="groundbackcolBdiv">¥{{d.money}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col text-left col-8 class="groundbackcolC">
+            <div>有效期至<span style="padding-left: 3px">{{this.apiSev.transformdateC(d.endDate)}}</span></div>
+          </ion-col>
+          <!-- 暂未使用-->
+          <ion-col text-right col-4 class="groundbackcolD">
+            <div></div>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="加载更多...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-list>
+
+</ion-content>

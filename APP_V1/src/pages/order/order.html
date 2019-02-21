@@ -1,0 +1,316 @@
+﻿<ion-header mode="ios">
+    <ion-navbar mode="ios" style="border-bottom:0.65px solid #ccc">
+        <ion-buttons  style="margin-left:-26px;float:left">
+	    <button ion-button icon-only (tap)="close()">
+            <ion-icon  color="dark"  name="ios-arrow-back"></ion-icon>
+        </button>
+	</ion-buttons>
+	<ion-title  mode="ios" >接单</ion-title>
+		    <ion-buttons  style="float:right">
+	    <button ion-button (tap)='fresh()'>
+		   <ion-icon  color="dark"  name="ios-refresh"></ion-icon>
+		</button>
+	    </ion-buttons>
+    </ion-navbar>
+  <ion-segment mode="md" style="background:#fff" [(ngModel)]="swich" (ngModelChange)='Changed($event)' color="primary" >
+    <ion-segment-button value="swi1">
+      待接单
+    </ion-segment-button>
+    <ion-segment-button value="swi2">
+      已接单
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+
+
+
+
+
+
+<div  [ngSwitch]="swich">
+<ion-list *ngSwitchCase="'swi1'">
+
+
+
+  <div *ngIf='Lists1.length == 0&&Lists3.length == 0' style="margin-top:100px;text-align:center;"><img style="width:70%;margin:0 auto" src="assets/images/order/wujiedan.png"></div>
+  <ion-card  mode="ios"  *ngFor="let item of Lists1" (click)="Selected(item)">
+
+       <ion-row  *ngIf="item.type1=='1'"  style="position:relative;">
+	   <div  style="margin-left:13px;margin-top:11px;margin-bottom:11px;" >
+	   <span ><img style="margin-top:2px;float:left;width:11px;height:15px;margin-right:8px;" src="assets/images/order/dingwei.png"> </span>
+	   <span >所在城市</span> <span style="color:#d43c33">{{item.place}}</span>
+	   </div>
+	   <img *ngIf=item.is_designated src="assets/images/order/zhiding.png" style="position:absolute;top:0;right:0;width:35px;height:35px">
+	   </ion-row>
+  	   <ion-row  *ngIf="item.type1=='1'" > <div  style="margin-left:13px;width:93%;height:2px;border-bottom:1px solid #e2e2e2">&nbsp;</div>
+	   </ion-row>
+
+	  <ion-row style="position:relative;padding-top:3px !important">
+		  <ion-col col-auto style="padding-left:8px !important;">
+			<img style="width:35px;height:35px" src="assets/images/order/{{apiSev.pjtypeimg(item.type1,item.order_type)}}.png">
+		  </ion-col>
+		  <ion-col col-6  style="padding-top:11px !important;">
+			<h2 style="font-size:15px;">到期日<span>{{item.endtime}}</span></h2>
+		  </ion-col>
+		  <ion-col col-4 ion-end  style="padding-right:18px !important;padding-top:11px !important;" text-right>
+		  <span style="display:none" id="h{{item.did}}"></span>
+			<span style="font-size:14px;color:#888;">剩余 </span><span style="font-size:16px;color:#e84c3d;" id={{item.did}}>{{item.difDate}}</span>
+		  </ion-col>
+	  <img *ngIf="(item.is_designated&&item.type1=='2')" src="assets/images/order/zhiding.png" style="position:absolute;top:0;right:0;width:35px;height:35px">
+
+	  </ion-row>
+	   <ion-row >
+	   	  <ion-col col-4 style="padding-left:13px !important;padding-top:3px !important;padding-bottom:3px !important;">
+			<h3>金额{{item.allmoney}}万</h3>
+		  </ion-col>
+
+		  <ion-col col-8 text-right ion-end  style="padding-left:3px !important;padding-top:3px !important;padding-bottom:3px !important;">
+
+			<span style="float:left"><h3>{{apiSev.pjtypeP(item.order_type,item.type1,item.type2,item.accept_time)}}</h3></span>
+			<span *ngIf="item.endorse>-1"  style="float:left;margin-left:15px;"><h3>背书{{item.endorse}}手</h3></span>
+			<span *ngIf=apiSev.qiehuan(item.flaw_ticket)  style="float:right;margin-right:10px"><h3>&nbsp;瑕疵票</h3></span>
+			<span *ngIf=apiSev.qiehuan(item.flaw_ticket)  style="float:right;"><img  src="assets/images/order/xiacipiao.png" style="margin-top:2px;width:15px;height:15px"></span>
+
+		  </ion-col>
+       </ion-row>
+<!--	   <ion-row  *ngIf="item.order_type=='DISCOUNTRECORDSP'" >
+		  <ion-col col-12 style="padding-left:13px !important;padding-top:3px !important;padding-bottom:6px !important;">
+			<h3>承兑方:{{item.bank}}</h3>
+		  </ion-col>
+       </ion-row>-->
+    <ion-row>
+      <ion-col col-12 style="padding-left:13px !important;padding-top:3px !important;padding-bottom:6px !important;">
+        <h3 *ngIf="item.order_type=='DISCOUNTRECORDSP'">承兑方:{{item.bank}}</h3>
+        <h3 *ngIf="item.order_type=='DISCOUNTRECORD'&&item.type1=='2'">承兑行:{{item.bank}}</h3>
+      </ion-col>
+    </ion-row>
+	   <ion-row >
+		  <ion-col col-6 style="padding-left:13px !important;padding-top:3px !important;padding-bottom:6px !important;">
+			<span style="float:left"><img src="assets/images/order/riqi.png" style="margin-top:2px;width:15px;height:15px"></span>
+			<h3 style="color:#888;">&nbsp;计息天数{{item.jxts}}天</h3>
+		  </ion-col>
+		  <ion-col col-6 style="padding-left:8px !important;padding-top:3px !important;padding-bottom:6px !important;">
+			<span *ngIf=apiSev.shangmen(item.need_todoor,item.type1)   style="float:left"><img src="assets/images/order/shangmen.png" style="margin-top:2px;width:15px;height:15px"></span>
+			<h3 *ngIf=apiSev.shangmen(item.need_todoor,item.type1)  style="color:#888;">&nbsp;不需要上门</h3>
+		  </ion-col>
+       </ion-row>
+	   <ion-row > <div  style="margin-left:13px;width:94%;height:2px;border-bottom:1px solid #e2e2e2">&nbsp;</div>
+	   </ion-row>
+	   <ion-row>
+       <ion-col col-5 text-right></ion-col>
+       <ion-col col-7>
+         <button ion-button style="height:22px;font-size:14px  !important;float: right;" outline>去报价</button>
+         <button *ngIf="item.buyout_price!=null&&item.buyout_price!=''&&item.buyout_price!='undefined'" ion-button style="height: 22px;font-size: 14px !important;background-color: #2cafec;color: #ffffff;border: 0;float: right;" outline>买断</button>
+       </ion-col>
+       </ion-row>
+  </ion-card>
+
+
+
+  <ion-card  mode="ios"  *ngFor="let item of Lists3"  (click)="SelectedJD3(item)">
+    <ion-row  *ngIf="item.type1=='1'"  style="position:relative;">
+      <div  style="margin-left:13px;margin-top:11px;margin-bottom:11px;" >
+        <span ><img style="margin-top:2px;float:left;width:11px;height:15px;margin-right:8px;" src="assets/images/order/dingwei.png"> </span>
+        <span >所在城市</span> <span style="color:#d43c33">{{item.place}}</span>
+      </div>
+      <img *ngIf=item.is_designated src="assets/images/order/zhiding.png" style="position:absolute;top:0;right:0;width:35px;height:35px">
+    </ion-row>
+    <ion-row  *ngIf="item.type1=='1'" > <div  style="margin-left:13px;width:93%;height:2px;border-bottom:1px solid #e2e2e2">&nbsp;</div>
+    </ion-row>
+
+    <ion-row style="position:relative;padding-top:3px !important">
+      <ion-col col-auto style="padding-left:8px !important;">
+        <img style="width:35px;height:35px" src="assets/images/order/{{apiSev.pjtypeimg(item.type1,item.order_type)}}.png">
+      </ion-col>
+      <ion-col col-6  style="padding-top:11px !important;">
+        <h2 style="font-size:15px;">到期日<span>{{item.endtime}}</span></h2>
+      </ion-col>
+      <ion-col col-4 ion-end  style="padding-right:18px !important;padding-top:11px !important;" text-right>
+      </ion-col>
+      <img *ngIf="(item.is_designated&&item.type1=='2')" src="assets/images/order/zhiding.png" style="position:absolute;top:0;right:0;width:35px;height:35px">
+
+    </ion-row>
+    <ion-row >
+      <ion-col col-4 style="padding-left:13px !important;padding-top:3px !important;padding-bottom:3px !important;">
+        <h3>金额{{item.allmoney}}万</h3>
+      </ion-col>
+
+      <ion-col col-8 text-right ion-end  style="padding-left:3px !important;padding-top:3px !important;padding-bottom:3px !important;">
+
+        <span style="float:left"><h3>{{apiSev.pjtypeP(item.order_type,item.type1,item.type2,item.accept_time)}}</h3></span>
+        <span *ngIf="item.endorse>-1"  style="float:left;margin-left:15px;"><h3>背书{{item.endorse}}手</h3></span>
+        <span *ngIf=apiSev.qiehuan(item.flaw_ticket)  style="float:right;margin-right:10px"><h3>&nbsp;瑕疵票</h3></span>
+        <span *ngIf=apiSev.qiehuan(item.flaw_ticket)  style="float:right;"><img  src="assets/images/order/xiacipiao.png" style="margin-top:2px;width:15px;height:15px"></span>
+
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col col-12 style="padding-left:13px !important;padding-top:3px !important;padding-bottom:6px !important;">
+        <h3 *ngIf="item.order_type=='DISCOUNTRECORDSP'">承兑方:{{item.bank}}</h3>
+        <h3 *ngIf="item.order_type=='DISCOUNTRECORD'&&item.type1=='2'">承兑行:{{item.bank}}</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col col-6 style="padding-left:13px !important;padding-top:3px !important;padding-bottom:6px !important;">
+        <span style="float:left"><img src="assets/images/order/riqi.png" style="margin-top:2px;width:15px;height:15px"></span>
+        <h3 style="color:#888;">&nbsp;计息天数{{item.jxts}}天</h3>
+      </ion-col>
+      <ion-col col-6 style="padding-left:8px !important;padding-top:3px !important;padding-bottom:6px !important;">
+        <span *ngIf=apiSev.shangmen(item.need_todoor,item.type1)   style="float:left"><img src="assets/images/order/shangmen.png" style="margin-top:2px;width:15px;height:15px"></span>
+        <h3 *ngIf=apiSev.shangmen(item.need_todoor,item.type1)  style="color:#888;">&nbsp;不需要上门</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row > <div  style="margin-left:13px;width:94%;height:2px;border-bottom:1px solid #e2e2e2">&nbsp;</div>
+    </ion-row>
+    <ion-row *ngIf="(item.tag=='WAITTRADE_MINE'||item.tag=='WAITTRADE')&&(item.dispId==''||item.dispId==null||item.dispId=='undefined')">
+      <ion-col col-5 text-right></ion-col>
+      <ion-col col-7>
+        <button ion-button style="height:22px;font-size:14px  !important;float: right;" outline>去报价</button>
+        <button *ngIf="item.buyout_price!=null&&item.buyout_price!=''&&item.buyout_price!='undefined'" ion-button style="height: 22px;font-size: 14px !important;background-color: #2cafec;color: #ffffff;border: 0;float: right;" outline>买断</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="item.tag=='TRADE'&&item.orderflag=='3'">
+      <ion-col col-7 text-left style="padding-top:10px !important;">
+        <span style="font-size: 14px;color: #2d2d2d;margin-left: 13px;height: 30px;padding-top: 5px;">交易已完成</span>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="(item.tag=='TRADE'||(item.dispId!=''&&item.dispId!=null&&item.dispId!='undefined'))&&item.orderflag!='3'">
+      <span style="font-size: 14px;color: #e84c3d;margin-left: 13px;height: 30px;padding-top: 5px;">交易中</span>
+    </ion-row>
+
+  </ion-card>
+
+
+        <ion-infinite-scroll (ionInfinite)="doInfinite1($event)">
+          <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="加载更多...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+
+
+</ion-list>
+<ion-list *ngSwitchCase="'swi2'" >
+
+
+
+   <div *ngIf='Lists2.length == 0' style="margin-top:100px;text-align:center;"><img style="width:70%;margin:0 auto" src="assets/images/order/wujiedan.png"></div>
+   <ion-card  mode="ios"  *ngFor="let item of Lists2" (click)="SelectedJD(item)">
+     <div [ngClass]="{'hutiupiao': item.back_endorse=='T'}">
+      <ion-row  *ngIf="item.type1=='1'"  style="position:relative;">
+	   <div  style="margin-left:13px;margin-top:11px;margin-bottom:11px;" >
+	   <span ><img style="margin-top:2px;float:left;width:11px;height:15px;margin-right:8px;" src="assets/images/order/dingwei.png"> </span>
+	   <span >所在城市</span> <span style="color:#d43c33">{{item.place}}</span>
+	   </div>
+	   <img *ngIf=item.is_designated src="assets/images/order/zhiding.png" style="position:absolute;top:0;right:0;width:35px;height:35px">
+	   </ion-row>
+  	   <ion-row  *ngIf="item.type1=='1'" > <div  style="margin-left:13px;width:93%;height:2px;border-bottom:1px solid #e2e2e2">&nbsp;</div>
+	   </ion-row>
+	  <ion-row style="position:relative;padding-top:3px !important">
+		  <ion-col col-auto style="padding-left:8px !important;">
+			<img style="width:35px;height:35px" src="assets/images/order/{{apiSev.pjtypeimg(item.type1,item.order_type)}}.png">
+		  </ion-col>
+		  <ion-col col-6  style="padding-top:11px !important;">
+			<h2 style="font-size:15px;">到期日<span>{{item.endtime}}</span></h2>
+		  </ion-col>
+		  <ion-col col-4 ion-end *ngIf="item.state==1"    style="padding-right:18px !important;padding-top:11px !important;" text-right>
+		  <span style="display:none" id="ph{{item.dist_id}}"></span>
+			<span   style="font-size:14px;color:#888;">剩余 </span><span style="font-size:16px;color:#e84c3d;" id="p{{item.dist_id}}">{{item.difDate}}</span>
+		  </ion-col>
+	  <img  *ngIf="(item.is_designated&&item.type1=='2')"  src="assets/images/order/zhiding.png" style="position:absolute;top:0;right:0;width:35px;height:35px">
+
+	  </ion-row>
+	   <ion-row >
+	   	  <ion-col col-4 style="padding-left:13px !important;padding-top:3px !important;padding-bottom:3px !important;">
+			<h3>金额{{item.allmoney}}万</h3>
+		  </ion-col>
+
+		  <ion-col col-8 text-right ion-end  style="padding-left:3px !important;padding-top:3px !important;padding-bottom:3px !important;">
+
+			<span style="float:left"><h3>{{apiSev.pjtypeP(item.order_type,item.type1,item.type2,item.accept_time)}}</h3></span>
+			<span  *ngIf="item.endorse>-1" style="float:left;margin-left:15px;"><h3>背书{{item.endorse}}手</h3></span>
+			<span *ngIf=apiSev.qiehuan(item.flaw_ticket)  style="float:right;margin-right:10px"><h3>&nbsp;瑕疵票</h3></span>
+			<span *ngIf=apiSev.qiehuan(item.flaw_ticket)  style="float:right;"><img  src="assets/images/order/xiacipiao.png" style="margin-top:2px;width:15px;height:15px"></span>
+
+		  </ion-col>
+       </ion-row>
+	   <ion-row>
+		  <ion-col col-12 style="padding-left:13px !important;padding-top:3px !important;padding-bottom:6px !important;">
+        <h3 *ngIf="item.order_type=='DISCOUNTRECORDSP'">承兑方:{{item.bank}}</h3>
+        <h3 *ngIf="item.order_type=='DISCOUNTRECORD'&&item.type1=='2'">承兑行:{{item.bank}}</h3>
+		  </ion-col>
+       </ion-row>
+	   <ion-row >
+		  <ion-col col-6 style="padding-left:13px !important;padding-top:3px !important;padding-bottom:6px !important;">
+			<span style="float:left"><img src="assets/images/order/riqi.png" style="margin-top:2px;width:15px;height:15px"></span>
+			<h3 style="color:#888;">&nbsp;计息天数{{item.jxts}}天</h3>
+		  </ion-col>
+		  <ion-col col-6 style="padding-left:8px !important;padding-top:3px !important;padding-bottom:6px !important;">
+			<span *ngIf=apiSev.shangmen(item.need_todoor,item.type1)   style="float:left"><img src="assets/images/order/shangmen.png" style="margin-top:2px;width:15px;height:15px"></span>
+			<h3 *ngIf=apiSev.shangmen(item.need_todoor,item.type1)  style="color:#888;">&nbsp;不需要上门</h3>
+		  </ion-col>
+       </ion-row>
+	   <ion-row > <div  style="margin-left:13px;width:94%;height:2px;border-bottom:1px solid #e2e2e2">&nbsp;</div>
+	   </ion-row>
+
+	   	<ion-row >
+
+	   	  <ion-col col-7 text-left style="padding-top:10px !important;">
+		      <span  *ngIf="item.state==1"  style="font-size:14px;color:#e84c3d;margin-left:13px;">等待票方选择</span>
+			  <span  *ngIf="item.state==4"  style="font-size:14px;color:#e84c3d;margin-left:13px;">待付款</span>
+			  <span  *ngIf="item.state==5"  style="font-size:14px;color:#e84c3d;margin-left:13px;">待票方确认收款</span>
+			  <span  *ngIf="item.state==2"  style="font-size:14px;color:#e84c3d;margin-left:13px;">出票方背书中</span>
+			  <span  *ngIf="item.state==7"  style="font-size:14px;color:#e84c3d;margin-left:13px;">待签收背书</span>
+			  <span  *ngIf="item.cib_cancel!=null"  style="font-size:14px;color:#e84c3d;margin-left:13px;">[订单取消中]</span>
+		  </ion-col>
+		  <ion-col col-5 text-right>
+			  <button ion-button  *ngIf="item.state==4"  style="height:22px;font-size:14px  !important;" outline>打款信息</button>
+			  <button ion-button   *ngIf="item.state==7"  style="height:22px;font-size:14px  !important;" outline>签收背书</button>
+			  <button ion-button   *ngIf="item.state==5||item.state==1||item.state==2"  style="height:22px;font-size:14px  !important;" clear></button>
+		  </ion-col>
+       </ion-row>
+    </div>
+  </ion-card>
+
+   <ion-infinite-scroll (ionInfinite)="doInfinite2($event)">
+          <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="加载更多...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+
+</ion-list>
+</div>
+
+</ion-content>
+<!--//弹窗-->
+<div *ngIf="maskDiv" (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="maskCon">
+      <!--认证验证-->
+      <div class="Authentications" *ngIf="Authentication">
+        <ion-row>
+          <ion-col>
+            <img src="assets/images/home/tongzhi.png">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col (tap)="ToAuthentication()" *ngIf="jdrz==0&&cibrz==0">为保障用户交易中的资金安全。请先开户，开户通过之后方可体验新版交易功能。</ion-col>
+          <ion-col *ngIf="jdrz==0&&cibrz==1" (tap)="cibkaihu()">此票仅可通过京东平台交易，如有意向收票，请开通京东户。</ion-col>
+          <ion-col (tap)="ToAuthentication()" *ngIf="jdrz==1&&cibrz==0">此票仅可通过兴业平台交易，如有意向收票，请开通兴业户。</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-8 offset-2>
+            <button *ngIf="jdrz==0&&cibrz==0" ion-button md="ios" block round (tap)="ToAuthentication()">去开户</button>
+            <button *ngIf="jdrz==0&&cibrz==1" ion-button md="ios" block round (tap)="ToAuthentication()">去开京东户</button>
+            <button *ngIf="jdrz==1&&cibrz==0" ion-button md="ios" block round (tap)="cibkaihu()">去开兴业户</button>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+  </ion-backdrop>
+</div>

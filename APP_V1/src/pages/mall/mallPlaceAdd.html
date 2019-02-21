@@ -1,0 +1,45 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >{{headTetile}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label fixed>收货人</ion-label>
+      <ion-input type="text"  maxlength="6" [(ngModel)]="place.consignee" ngControl="title" text-right placeholder="请输入姓名"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>联系电话</ion-label>
+      <ion-input type="tel" maxlength="11" [(ngModel)]="place.tel" ngControl="title" text-right placeholder="请输入手机号"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>所在地区</ion-label>
+      <city-picker item-content [cancelText]="'取消'" [doneText]="'完成'" [separator]="'-'" [citiesData]="cityData" [(ngModel)]="cityName" (ionChange)="cityChange($event)">
+      </city-picker>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>详细地址</ion-label>
+      <ion-input type="text" maxlength="40" [(ngModel)]="place.detailAddress" ngControl="title" text-right
+                 placeholder="例如门牌号等"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <!--<ion-list>
+    <ion-item mode="md">
+      <ion-checkbox color="primary" mode="md" item-start [checked]="ischecked"></ion-checkbox>
+      <ion-label>默认地址</ion-label>
+    </ion-item>
+  </ion-list>-->
+
+  <p margin>
+    <button mode="ios" ion-button block (tap)="save($event)">确定</button>
+  </p>
+
+</ion-content>

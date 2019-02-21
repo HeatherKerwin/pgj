@@ -1,0 +1,54 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >票据提醒</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list padding *ngIf="remindNo">
+    暂无提醒！
+  </ion-list>
+  <ion-list *ngIf="remindList">
+    <ion-item margin-top ion-item-options *ngFor="let value of values" (click)="Selected(value.id)">
+      <ion-grid>
+        <ion-row>
+          <ion-col><h3>{{apiSev.transformdate(value.tiexiandate)}}</h3></ion-col>
+          <ion-col col-auto *ngIf="value.istiexian=='1'"><p>{{value.tiexianType}}</p></ion-col>
+          <ion-col col-auto *ngIf="value.istiexian=='0'"><p>{{value.orderStatue}}</p></ion-col>
+        </ion-row>
+        <ion-row text-center>
+          <ion-col col-2>
+            <h3>承兑行</h3>
+            <h3>{{apiSev.pjtype(value.type1)}}</h3>
+          </ion-col>
+          <ion-col col-3>
+            <h3>票据金额</h3>
+            <h3>{{value.allprice}}万元</h3>
+          </ion-col>
+          <ion-col col-4 class="red" *ngIf="value.istiexian=='1'">
+            <h3>贴现利息</h3>
+            <h3>{{value.tiexianlixi}}元</h3>
+          </ion-col>
+          <ion-col col-3 *ngIf="value.istiexian=='1'">
+            <h3>贴现金额</h3>
+            <h3>{{value.txje}}万元</h3>
+          </ion-col>
+          <ion-col col-4 class="red" *ngIf="value.istiexian=='0'">
+            <h3>参考贴现利息</h3>
+            <h3>{{value.txlx}}元</h3>
+          </ion-col>
+          <ion-col col-3 *ngIf="value.istiexian=='0'">
+            <h3>到期日期</h3>
+            <h3>{{value.daoqidate}}</h3>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

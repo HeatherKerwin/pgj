@@ -1,0 +1,138 @@
+page-vipaggregate {
+  ion-content {
+    background-color:#F5F5F5 !important;
+    .scroll-content{
+      bottom: 4.4rem !important;
+    }
+    ion-list {
+      .vipgroup{
+        height: 140px;
+        width: 100%;
+        background: url(../assets/images/account/jiaruhuiyuan.png) center no-repeat;
+        background-size: 100% 100%;
+        .vipcolA{
+          font-size: 1.8rem;
+          margin-top: 15px;
+          padding-left: 5%;
+          color: #FFFFFF;
+          .vipspanA{
+            padding-left: 3px;
+            padding-right: 3px;
+          }
+          .vipspanC{
+            padding-right: 5px;
+          }
+        }
+        .vipcolC{
+          font-size: 1.8rem;
+          margin-top: 15px;
+          color: #FFFFFF;
+        }
+        .vipdivA{
+          background: url(../assets/images/account/xiaotu.png) left no-repeat;
+          background-size: 15px 15px;
+          margin-left: 30%;
+          margin-top: 20px;
+          .vipspanB{
+            padding-left: 20px;
+            color: #A1835F;
+            font-size: 1.5rem;
+          }
+        }
+        .vipcolB {
+          font-size: 1.5rem;
+          margin-top: 40px;
+          padding-left: 5%;
+          color: #FFFFFF;
+        }
+      }
+      .nianka{
+        margin-left: 10px;
+        margin-right: 10px;
+        border: 0.5px solid rgba(163, 163, 157, 0.28);
+        border-radius: 10px;
+        margin-bottom: 10px;
+        .niankadiv{
+          font-size: 1.8rem;
+        }
+        .niankadivB{
+          color: #a3a3a3;
+        }
+        .niankadivC{
+          font-size: 2.8rem;
+          color: #C1A36B;
+          padding-left: 30%;
+          .niankaspan{
+            font-size: 2.3rem !important;
+            margin-right: 1px;
+          }
+        }
+      }
+      .niankaB{
+        margin-left: 10px;
+        margin-right: 10px;
+        border: 0.5px solid #d43c33;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        .niankadiv{
+          font-size: 1.8rem;
+        }
+        .niankadivB{
+          color: #a3a3a3;
+        }
+        .niankadivC{
+          font-size: 2.8rem;
+          color: #C1A36B;
+          padding-left: 30%;
+          .niankaspan{
+            font-size: 2.3rem !important;
+            margin-right: 1px;
+          }
+        }
+      }
+      .servicefee{
+        background: url(../assets/images/account/feiyong.png) left no-repeat;
+        background-size: 100% 100%;
+        height: 23px;
+        width: 24px;
+        margin-right: 0 !important;
+      }
+    }
+  }
+  ion-footer{
+    ion-list{
+      margin-bottom: 0 !important;
+      border: none !important;
+      ion-item{
+        border: none !important;
+        ion-label{
+          font-size: 1.7rem;
+          span{
+            padding-left: 2px;
+            color: #d43c33;
+          }
+        }
+        .item-inner{
+          padding-right: 0 !important;
+          button{
+            height: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            font-size: 1.8rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

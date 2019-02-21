@@ -1,0 +1,113 @@
+page-jdLicense2 {
+  ion-content {
+    //上传营业执照说明
+    .hlep_txt{
+      padding: 10px 15px 10px 15px;
+      border-top: 1px solid #FDC473;
+      border-bottom: 1px solid #FDC473;
+      background-color: #FFF6E7;
+      color: #FFA627;
+    }
+
+  }
+
+  .maskConB{
+    position:fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    overflow: scroll;
+
+    div.costItem .close ,.offer .close{
+      position: absolute;
+      top: -50px;
+      right: -10px;
+      width: 50px;
+      height: 50px;
+      background: url("../../assets/images/account/close.png") center no-repeat;
+      background-size: 100%;
+    }
+    .gridTitle{
+      font-size: 1.5rem;
+      color: #a3a3a3;
+    }
+
+    p.maskBtn{
+      margin: 20px 0;
+      input{
+        color: #fff;
+        padding: 5px 15px;
+        border: 1px $Red solid;
+        border-radius: 5px;
+        background: $Red;
+      }
+      input.frame{
+        color: $Red;
+        padding: 5px 15px;
+        border: 1px $Red solid;
+        border-radius: 5px;
+        background: #fff;
+      }
+    }
+    .offer{
+      position: absolute;
+      top: 160px;
+      left: 4%;
+      width: 92%;
+      //height: auto;
+      background: #ffffff;
+      padding: 0 5px !important;
+      border-radius: 10px;
+      height: 200px;
+    }
+    .buttxt{
+      font-size: 1.6rem;
+      height: 25px;
+      border-radius: 2px;
+      background-color: #F3F3F3;
+    }
+    .buttxtB{
+      font-size: 1.4rem;
+      height: 25px;
+      background-color: #F3F3F3;
+    }
+    .butgird{
+      height: 130px;
+      background-color: #F3F3F3;
+      margin-top: 8px;
+      display: block;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      -webkit-overflow-scrolling: touch;
+      will-change: scroll-position;
+      contain: size style layout;
+    }
+    .butinput{
+      background-color: #ffffff;
+      margin-left: 5%;
+      width: 82%;
+      height: 30px;
+      padding-right: 30px;
+      margin-top: 15px;
+      border-radius: 2px;
+      position: absolute;
+      z-index: 98;
+      padding-left: 5px;
+      input{
+        margin-top: 5px;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

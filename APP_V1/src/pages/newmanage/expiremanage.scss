@@ -1,0 +1,92 @@
+page-expiremanage {
+  ion-content {
+    .segment-md .segment-button {
+      border-bottom-color: #f5f5f500;
+    }
+    ion-segment-button {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+
+    ion-list {
+      //到期提醒背景
+      .manage1butbj {
+        height: 35px;
+        background-color: #ffffff;
+        margin-top: 10px;
+        box-shadow: -1px 3px 5px #e0e0e0, 2px 2px 5px #f5f5f5;
+        margin-bottom: 5px;
+      }
+      //到期提醒
+      .manage1dqtx {
+        float: left;
+        font-size: 1.6rem;
+        height: 20px;
+        /* line-height: 43px; */
+        margin-left: 10px;
+        padding-left: 5px;
+        border-left: 2px solid #d43c33;
+        margin-top: 11px;
+      }
+      //查看更多
+      .manage1ckgd {
+        height: 20px;
+        background-color: #ffffff;
+        color: #c3bfbf;
+        font-size: 1.5rem;
+        float: right;
+        margin-top: 14px;
+        padding-right: 10px;
+      }
+      //快
+      .manage1card {
+        background: url(../assets/images/manage/backgroup.png) center no-repeat;
+        background-size: 100%;
+        height: 80px;
+        padding-top: 13px;
+        padding-bottom: 20px;
+        padding-right: 10px;
+      }
+      //图片高
+      .manage1img1 {
+        height: 40px;
+        margin-left: 20%;
+      }
+      //长度隐藏
+      .yingc {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      //提醒文字
+      .mabage1text {
+        color: #bfbfbf;
+        font-size: 1.3rem;
+        margin-top: 5px;
+      }
+      //金额红色展示
+      .manage1mony {
+        color: #d43c33;
+        font-size: 1.6rem;
+      }
+      //图标加减
+      .manage2img {
+        height: 18px;
+        position: absolute;
+        right: 7px;
+        margin-top: -9px;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

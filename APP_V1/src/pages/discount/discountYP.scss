@@ -1,0 +1,175 @@
+page-discountYP {
+  .redbutton{
+    span.button-inner{
+      color:$Red;
+    }
+  }
+	ion-content{
+    background-color: #eeeeee !important;
+    //通知滚动
+    .marqueeDiv{
+      //height: 50px;
+      background: white;
+      padding: 10px 10px;
+      color: #d43c33;
+      .noticeIcon{
+        width: 20px;
+        height: 18px;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        z-index: 2;
+        padding-right: 10px;
+        background-size: 20px 18px;
+        background: #ffffff url("../assets/images/discount/noticeIcon.png") center no-repeat;
+      }
+    }
+
+    //地址
+    ion-list.placeNot ion-item ,ion-list.placeShow button{
+      border-image-width:1px !important;
+      border-image-source:url(../assets/images/discount/bottomIcon.png)!important;
+      border-image-repeat:round;
+      border-image-slice: 0 0 10 0;
+    }
+    //无地址
+    ion-list.placeNot{
+
+      button{
+        font-size: 1.6rem !important;
+        color: #2d2d2d !important;
+        height: 50px !important;
+        border: #a3a3a3 dotted 0.55px !important;
+        ion-icon.placeIcon{
+          width: 20px;
+          height: 20px;
+          margin-right: 5px;
+          background: url("../assets/images/discount/placeIcon.png") center no-repeat;
+          background-size: 100%;
+        }
+      }
+    }
+    //有地址
+    ion-list.placeShow{
+      button{
+        ion-avatar{
+          margin-right: 5px !important;
+        }
+        ion-row ion-col{
+          padding: 2px 0;
+        }
+        h3{
+          color: #85878a;
+        }
+      }
+    }
+	}
+
+  .maskCon{
+    z-index: 99;
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    color: #2d2d2d;
+    background: rgba(255,255,255,1) !important;
+    opacity: 1.0 !important;
+    ion-row:first-child{
+      padding: 16px 0 5px;
+      border-bottom: 1px solid #d9d9d9;
+      img{
+        width: 70px;
+        height: 70px;
+      }
+      p{
+        color: #a3a3a3;
+        font-size: 1.4rem;
+        margin: 5px 0;
+      }
+    }
+    ion-row:last-child{
+      button{
+        background: white;
+        color: #2d2d2d;
+        font-size: 1.7rem;
+      }
+    }
+  }
+
+  .maskConB{
+    position:fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    overflow: scroll;
+
+    div.costItem .close ,.offer .close{
+      position: absolute;
+      top: -50px;
+      right: -10px;
+      width: 50px;
+      height: 50px;
+      background: url("../assets/images/account/close.png") center no-repeat;
+      background-size: 100%;
+    }
+    .gridTitle{
+      font-size: 1.5rem;
+      color: #a3a3a3;
+    }
+
+    p.maskBtn{
+      margin: 20px 0;
+      input{
+        color: #fff;
+        padding: 5px 15px;
+        border: 1px $Red solid;
+        border-radius: 5px;
+        background: $Red;
+      }
+      input.frame{
+        color: $Red;
+        padding: 5px 15px;
+        border: 1px $Red solid;
+        border-radius: 5px;
+        background: #fff;
+      }
+    }
+    .offer{
+      position: absolute;
+      top: 160px;
+      left: 4%;
+      width: 92%;
+      height: 260px;
+      background: #ffffff;
+      padding: 0 5px !important;
+      border-radius: 10px;
+      text-align: center;
+      //上传图片
+      .uploadDivB{
+        padding: 5px 16px;
+        background: white;
+        .upload{//上传按钮
+          text-align: center;
+          margin-top: 30px;
+          max-width: 90%;
+          max-height: 220px;
+          background: url("../assets/images/discount/uploaddiv.png") center no-repeat;
+          background-size: 100%;
+        }
+        img.picpath{//图片展示
+          text-align: center;
+          margin-top: 30px;
+          max-width: 90%;
+          max-height: 220px;
+        }
+      }
+    }
+    .offer img{
+      margin-top: 20px;
+      max-width: 90%;
+      max-height: 220px;
+    }
+  }
+
+}

@@ -1,0 +1,76 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >请选择出票地址</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="placeList" radio-group >
+
+    <!--已有地址-->
+    <ion-list margin no-lines *ngFor="let placeMap of placeMaps">
+<!--      <ion-item margin-top class="bottom" (tap)="myColumn(placeMap.id)">
+          <ion-row no-padding text-left>
+            <ion-col col-4 no-padding>
+              {{placeMap.name}}
+            </ion-col>
+            <ion-col text-center col-3 no-padding text-right>
+              {{sexShow(placeMap.sex)}}
+            </ion-col>
+            <ion-col col-5 no-padding text-right>
+              {{placeMap.mobile}}
+            </ion-col>
+          </ion-row>
+          <h3> {{placeMap.address}} </h3>
+      </ion-item>-->
+
+      <div margin-top class="bottom" (click)="myColumn(placeMap.id)">
+        <ion-item style="min-height:35px;height:35px;">
+          <ion-label>{{placeMap.name}}</ion-label>
+          <ion-note item-end style="color:#000000;">{{sexShow(placeMap.sex)}} {{placeMap.mobile}}</ion-note>
+        </ion-item>
+        <div margin-left text-warp style="color:#a3a3a3;">{{placeMap.address}}</div>
+      </div>
+
+      <ion-item mode="md">
+        <ion-radio color="primary" mode="md" item-start (click)="setDefault(placeMap.id)" [value]="placeMap.id" [checked]="placeMap.state==0"></ion-radio>
+        <ion-label>默认地址</ion-label>
+        <button ion-button mode="ios" item-end (click)="placeEdit(placeMap.id,placeMap.state)" class="EditBtn">
+          <ion-icon class="EditIcon"></ion-icon>
+          编辑
+        </button>
+        <button ion-button mode="ios" item-end (click)="deleteById(placeMap.id)" class="delBtn">
+          <ion-icon class="delIcon"></ion-icon>
+          删除
+        </button>
+      </ion-item>
+    </ion-list>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="加载更多...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <p class="underscore" *ngIf="!isOk"></p>
+
+  </ion-list>
+
+
+
+  <!--暂无地址-->
+  <p margin>
+    <img margin-bottom src="assets/images/discount/noplace.png" alt="暂无地址" *ngIf="placeNo" class="placeNoImg">
+
+    <button ion-button mode="ios" block (click)="placeAdd()">
+      <ion-icon class="addIcon"></ion-icon>
+      新增地址
+    </button>
+  </p>
+
+</ion-content>

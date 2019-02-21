@@ -1,0 +1,45 @@
+page-myInquiryReply {
+  span.button-inner{
+    color: $Red;
+  }
+  ion-content {
+    .scroll-content {
+      background-color: #eeeeee;
+    }
+    ion-list{
+      background-color: transparent;
+      ion-grid ion-row ion-col button{
+        ion-avatar{
+          min-width:20px !important;min-height:20px !important;
+          img {width:20px !important;height:20px !important;border-radius:0% !important;}
+        }
+      }
+      ion-label.label{
+        margin: 0;
+      }
+      ion-item-divider.item-divider{
+        background-color: white;
+      }
+      ion-item{
+        div{
+          display: inline;
+          font-size: 14px;
+        }
+      }
+      ion-item.item.item-block{
+        .item-inner{
+          padding-right: 0px !important;
+        }
+        padding-left: 0px;
+        min-height: 0px;
+      }
+      ion-grid.grid{
+        padding:0px !important;
+        border-top: 1px solid $boderBlue;
+        ion-col.col{
+          padding:0px !important;
+        }
+      }
+    }
+  }
+}

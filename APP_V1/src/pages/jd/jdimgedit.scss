@@ -1,0 +1,97 @@
+page-jdimgedit {
+  ion-content {
+  }
+
+
+  .maskCon{
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    color: #2d2d2d;
+    background: rgba(255,255,255,1) !important;
+    opacity: 1.0 !important;
+    ion-row:first-child{
+      padding: 16px 0 5px;
+      border-bottom: 1px solid #d9d9d9;
+      img{
+        width: 70px;
+        height: 70px;
+      }
+      p{
+        color: #a3a3a3;
+        font-size: 1.4rem;
+        margin: 5px 0;
+      }
+    }
+    ion-row:last-child{
+      button{
+        background: white;
+        color: #2d2d2d;
+        font-size: 1.7rem;
+      }
+    }
+  }
+
+  .maskConB{
+    position:fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    overflow: scroll;
+
+    div.costItem .close ,.offer .close{
+      position: absolute;
+      top: -50px;
+      right: -10px;
+      width: 50px;
+      height: 50px;
+      background: url("../../assets/images/account/close.png") center no-repeat;
+      background-size: 100%;
+    }
+    .gridTitle{
+      font-size: 1.5rem;
+      color: #a3a3a3;
+    }
+
+    p.maskBtn{
+      margin: 20px 0;
+      input{
+        color: #fff;
+        padding: 5px 15px;
+        border: 1px $Red solid;
+        border-radius: 5px;
+        background: $Red;
+      }
+      input.frame{
+        color: $Red;
+        padding: 5px 15px;
+        border: 1px $Red solid;
+        border-radius: 5px;
+        background: #fff;
+      }
+    }
+    .offer{
+      position: absolute;
+      top: 160px;
+      left: 4%;
+      width: 92%;
+      height: auto;
+      background: #ffffff;
+      padding: 0 5px !important;
+      border-radius: 10px;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

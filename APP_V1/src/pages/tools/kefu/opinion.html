@@ -1,0 +1,30 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      意见反馈
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <ion-list>
+    <ion-item class="opinitem">
+      <ion-textarea class="textareaop" rows="10" type="text" maxlength="300" text-left placeholder="请输入您的宝贵意见和建议，我们将不断完善" [(ngModel)]="messagecontent"> </ion-textarea>
+    </ion-item>
+
+    <div class="cn-all">
+      <div style="text-align:center;" (tap)="opinioninfor()">
+        <button ion-button block class="loginBtn">
+          提交
+        </button>
+      </div>
+    </div>
+  </ion-list>
+
+</ion-content>

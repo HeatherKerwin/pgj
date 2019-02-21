@@ -1,0 +1,98 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      京东户管理
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <!-- 切换 -->
+  <div class="segment-heard">
+    <ion-toolbar no-border-top>
+      <ion-segment [(ngModel)]="pet" mode="md">
+        <ion-segment-button value="manage1" tappable (click)="queryUserBindAccounts()">
+          全部
+        </ion-segment-button>
+        <ion-segment-button value="manage2" tappable (click)="queryUserBindAccountsA()">
+          可收票
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+  </div>
+
+
+  <ion-list *ngIf="pet=='manage1'">
+    <ion-card *ngIf="Mebank">
+      <div class="card_text">
+        <img src="assets/images/authentication/ka.png" class="card_icon" />
+        <span>{{jdkhbank.bankName}}</span>
+        <div style="float: right;margin-top: -1px;font-weight: 600;">
+          <span>正常</span>
+        </div>
+        <!--
+                <span class="lvstart">可收票</span>
+        -->
+      </div>
+      <div text-center class="banknum">{{apiSev.checkbank(jdkhbank.accountNo)}}</div>
+      <div text-center class="card_name">{{accName}}</div>
+    </ion-card>
+
+    <ion-card *ngFor="let item of accountList" (tap)="cardxuanz(item)">
+      <div class="card_text">
+        <img src="assets/images/authentication/ka.png" class="card_icon" />
+        <span>{{item.bankName}}</span>
+        <div style="float: right;margin-top: -1px;font-weight: 600;">
+          <span *ngIf="item.status==1">正常</span>
+          <span *ngIf="item.status==0">待鉴定</span>
+        </div>
+<!--
+        <span class="lvstart">可收票</span>
+-->
+      </div>
+      <div text-center class="banknum">{{apiSev.checkbank(item.bankAccountNo)}}</div>
+      <div text-center class="card_name">{{item.bankAccountName}}</div>
+    </ion-card>
+
+    <ion-card text-center (tap)="jdbangd()">
+      <div text-center>
+        <img src="assets/images/jd/addbank.png" style="width: auto;height: 32px;margin-top: 10px;display: inline;"/>
+      </div>
+      <div class="add_card_bank" text-center>绑定对公账户</div>
+    </ion-card>
+  </ion-list>
+
+  <ion-list *ngIf="pet=='manage2'">
+    <ion-card *ngFor="let item of accountListB">
+      <div class="card_text">
+        <img src="assets/images/authentication/ka.png" class="card_icon" />
+        <span>{{item.bankName}}</span>
+        <div style="float: right;margin-top: -1px;font-weight: 600;">
+          <span *ngIf="item.status==1">正常</span>
+          <span *ngIf="item.status==0">待鉴定</span>
+        </div>
+                <span class="lvstart">可收票</span>
+      </div>
+      <div text-center class="banknum">{{apiSev.checkbank(item.accountNo)}}</div>
+      <div text-center class="card_name">{{accName}}</div>
+    </ion-card>
+
+    <ion-card text-center (tap)="jdbangd()">
+      <div text-center>
+        <img src="assets/images/jd/addbank.png" style="width: auto;height: 32px;margin-top: 10px;display: inline;"/>
+      </div>
+      <div class="add_card_bank" text-center>绑定对公账户</div>
+    </ion-card>
+  </ion-list>
+
+
+  <div style="color: #666666;font-size: 1.2rem;" padding>
+    请添加常用账户，绑定对公银行账户不限个数。每次出票时，需要选择该票据的最后一手背书银行账号，该账户同时也是本次交易的收款账号！
+  </div>
+</ion-content>

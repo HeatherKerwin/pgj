@@ -1,0 +1,83 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      完成开户
+    </ion-title>
+    <ion-buttons  style="float:right">
+      <button ion-button (click)='apiSev.Call("400-067-0002");'> 联系客服</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <ion-grid style="background-color:#FFFFFF;border-bottom: 15px solid #F5F5F5;text-align:center;">
+    <ion-row style="text-align:center">
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/duihao.png" style="height: 25px;"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/hongxian.png"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/duihao.png" style="height:25px;"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/hongxian.png"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/four.png" style="height:25px;"/></div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 text-left>
+        <div style="color: #d43c33;">开户申请</div>
+      </ion-col>
+      <ion-col col-4>
+        <div>审核</div>
+      </ion-col>
+      <ion-col col-4 text-right style="color: #d43c33;">
+        <div>完成开户</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list>
+    <ion-item style="border-top:0">
+      <ion-label>
+        户名
+      </ion-label>
+      <ion-input type="text" maxlength="100" text-right disabled [(ngModel)]="openaccount.bankAcctAcctName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        账号
+      </ion-label>
+      <ion-input type="text" maxlength="18" text-right disabled [(ngModel)]="openaccount.bankAcctAcctNo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        金额
+      </ion-label>
+      <ion-input type="text" maxlength="5" text-right placeholder="请输入金额" [(ngModel)]="openaccount.allprice" (keyup)="switching()" (keyup)='apiSev.check2($event);'></ion-input>
+      <ion-note item-end>元</ion-note>
+    </ion-item>
+  </ion-list>
+
+  <div padding-left padding-right>
+    <div text-wrap style="color: #d43c33;font-size:1rem;">
+      <p>*客服已帮您提交开户申请,关联银行账号里会收到一笔小额款项,将收到金额填写上,最后点击“开户完成”,即可完成开户。</p>
+      <p>如果长时间为收到银行小额鉴定的打款,请联系客服！</p>
+    </div>
+    <button ion-button mode="ios" block color="primary" disabled *ngIf="Tonosuccess">完成开户</button>
+    <button ion-button mode="ios" block color="primary" *ngIf="Tosuccess" (tap)="iframesigture()">完成开户</button>
+  </div>
+
+</ion-content>

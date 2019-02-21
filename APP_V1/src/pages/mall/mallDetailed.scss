@@ -1,0 +1,17 @@
+page-mallDetailed {
+	ion-content{
+    ion-list{
+      ion-item{
+        p{
+          color: #bfbfbf;
+        }
+        ion-note{
+          color: #3ad45a !important;
+        }
+        .red{
+          color: #d43c33 !important;
+        }
+      }
+    }
+	}
+}

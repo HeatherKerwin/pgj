@@ -1,0 +1,64 @@
+page-meMessage {
+	ion-content {
+    ion-segment{
+      background-color: white;
+    }
+    .scroll-content {
+      background-color: #eeeeee;
+    }
+    ion-list.Sys{//系统消息
+      ion-item.Gray{
+        background-color: transparent;
+        .Box2{//消息框
+          background-color: white;
+          border-left:2px solid #e84c3d;
+        }
+        ion-label{
+          margin: 2px 8px 0px 0;
+        }
+      }
+      ion-item{//公共ion-item
+        p{
+          height: 40px;
+          text-align: center;
+          line-height: 40px;
+          background-color: #eeeeee;
+        }
+
+      }
+    }
+    ion-list.Discounts{
+      background-color: #eeeeee;
+      ion-item.Gray{
+        background-color: transparent;
+        .Box1{//消息框
+          background-color: white;
+        }
+        ion-label{
+          margin: 2px 8px 0px 0;
+        }
+      }
+      .Box1{
+        font-size: 14px;
+      }
+      .Icon{//消息框Icon
+        height:20px;
+        width:20px;
+        height: 20px;
+        background: url("../assets/images/me/tixing.png") center no-repeat;
+        background-size: 100% auto;
+        position: relative;
+        top: 5px;
+        left: 2px;
+      }
+      ion-icon.Icon.icon.item-icon{
+        margin: 0;
+      }
+      .Time{
+        line-height: 40px;
+      }
+    }
+
+
+  }
+}

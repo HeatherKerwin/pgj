@@ -1,0 +1,54 @@
+page-account {
+	ion-content{
+    background: #eeeeee !important;
+    ion-segment{
+      background: #ffffff;
+      .segment-md .segment-button{
+        color: $textBlack !important;
+      }
+      .segment-md .segment-button.segment-activated {
+        color: $Red !important;
+      }
+
+      ion-list > ion-item:first-child {
+        border-top: 0 !important;
+      }
+    }
+
+
+		ion-list{
+      ion-grid{
+        padding:0 !important;
+        background: #ffffff;
+        ion-row:first-child{
+          padding: 6px 0;
+        }
+        ion-row{
+          margin: 0 3px;
+          border-bottom: 0.55px solid #e2e2e2 !important;
+          ion-col{
+            vertical-align: middle;
+          }
+        }
+        ion-row:nth-child(1){
+          margin: 0;
+        }
+      }
+		}
+
+    .red{
+      color: #d43c33;
+    }
+    .green{
+      color: #3ad45a;
+    }
+    .blue{
+      color: #7790fe;
+    }
+    .blueSky{
+      color: #2cafec;
+    }
+
+	}
+
+}

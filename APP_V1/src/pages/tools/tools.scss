@@ -1,0 +1,63 @@
+page-tools {
+	ion-content{
+    .tab-all{
+      margin-top: 0 !important;
+      ion-list {
+        .toolsliest{
+          padding-top:3px;
+          padding-right:10px;
+          padding-left:10px;
+          height:130px;
+          background: #fff;
+        }
+      }
+    }
+	}
+  .tools-content{
+    .plotnew {
+      float:left;
+      width:33.3%;
+      text-align:center
+    }
+    .iconlist{
+      .ionitemw{
+        margin:0 auto;
+        margin-top:4px;
+        button{
+          padding:0;
+          height:20px;
+          color:#2d2d2d;
+          font-size:1.60rem
+        }
+      }
+      .icontool{
+        margin:0 auto;
+        margin-top:15px;
+      }
+      .iconitem{
+        button{
+          width:58px;
+          height:58px;
+          border-radius:20px;
+          .button-inner{
+            width:50px;
+            margin-left:-12px}
+        }
+      }
+    }
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+

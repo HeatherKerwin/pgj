@@ -1,0 +1,53 @@
+page-addhs {
+  ion-content {
+    //快
+    .manage1card {
+      background: url(../assets/images/manage/backgroup.png) center no-repeat;
+      background-size: 100%;
+      height: 80px;
+      padding-top: 13px;
+      padding-bottom: 20px;
+      padding-right: 10px;
+    }
+    //图片高
+    .manage1img1 {
+      height: 40px;
+      margin-left: 20%;
+    }
+    //长度隐藏
+    .yingc {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    //提醒文字
+    .mabage1text {
+      color: #bfbfbf;
+      font-size: 1.3rem;
+      margin-top: 5px;
+    }
+    //金额红色展示
+    .manage1mony {
+      color: #d43c33;
+      font-size: 1.6rem;
+    }
+    //图标加减
+    .manage2img {
+      height: 18px;
+      position: absolute;
+      right: 8px;
+      margin-top: -8px;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

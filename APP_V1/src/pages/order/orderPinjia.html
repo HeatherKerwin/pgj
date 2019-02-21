@@ -1,0 +1,111 @@
+﻿<ion-header mode="ios">
+    <ion-navbar mode="ios" style="border-bottom:0.65px solid #ccc">
+        <ion-buttons  style="margin-left:-26px;float:left">
+	    <button ion-button icon-only (tap)="close()">
+            <ion-icon  color="dark"  name="ios-arrow-back"></ion-icon>
+        </button>
+	    </ion-buttons>
+
+	<ion-title  mode="ios" >发表评价</ion-title>
+
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+
+ <ion-list>
+ <ion-item>
+ <h2>{{item.company}}</h2>
+ </ion-item>
+ </ion-list>
+
+  <ion-card  mode="ios"  >
+
+      <ion-row >
+	  <textarea padding maxlength="200" placeholder="请畅所欲言吧" style="width:100%;height:200px;border:0px"  [(ngModel)]="memo" ></textarea>
+	  </ion-row>
+
+
+  </ion-card>
+
+   <ion-card  mode="ios"  >
+
+      <ion-row >
+	  <h2 padding style="padding-bottom:2px !important"><strong>评价</strong></h2>
+	  </ion-row>
+	  <ion-row >
+	    <ion-col col-auto  style="height:30px !important;padding-top:2px !important;padding-bottom:2px !important">
+	    <h2 padding style="padding-top:2px !important;padding-bottom:2px !important">价格真实</h2>
+	    </ion-col>
+		<ion-col col-7  style="height:30px !important;padding-top:2px !important;padding-bottom:2px !important">
+		<div class="star-div" (tap)="chooseStar($event)">
+		  <div *ngFor="let scoreMap of score.starMap; let indx = index">
+			<ion-icon name="star" color="primary" *ngIf="score.star>=indx+1;" style="padding-right: .5em" [attr.data-index]="indx+1"></ion-icon>
+			<ion-icon name="star-outline" color="primary" *ngIf="score.star<indx+1;" style="padding-right: .5em" [attr.data-index]="indx+1"></ion-icon>
+		  </div>
+		  <!--<span>{{score.starMap[score.star-1]}}</span>-->
+		</div>
+	    </ion-col>
+
+	  </ion-row>
+
+
+	  	  <ion-row >
+	    <ion-col col-auto  style="height:30px !important;padding-top:2px !important;padding-bottom:2px !important">
+	    <h2 padding style="padding-top:2px !important;padding-bottom:2px !important">服务态度</h2>
+	    </ion-col>
+		<ion-col col-7  style="height:30px !important;padding-top:2px !important;padding-bottom:2px !important">
+		<div class="star-div" (tap)="chooseStar1($event)">
+		  <div *ngFor="let scoreMap of score1.starMap; let indx = index">
+			<ion-icon name="star" color="primary" *ngIf="score1.star>=indx+1;" style="padding-right: .5em" [attr.data-index]="indx+1"></ion-icon>
+			<ion-icon name="star-outline" color="primary" *ngIf="score1.star<indx+1;" style="padding-right: .5em" [attr.data-index]="indx+1"></ion-icon>
+		  </div>
+		  <!--<span>{{score.starMap[score.star-1]}}</span>-->
+		</div>
+	    </ion-col>
+
+	  </ion-row>
+
+	  	  <ion-row  style="padding-bottom:12px !important">
+	    <ion-col col-auto  style="height:30px !important;padding-top:2px !important;">
+	    <h2 padding style="padding-top:2px !important;">确认效率</h2>
+	    </ion-col>
+		<ion-col col-7  style="height:30px !important;padding-top:2px !important;">
+		<div class="star-div" (tap)="chooseStar2($event)">
+		  <div *ngFor="let scoreMap of score2.starMap; let indx = index">
+			<ion-icon name="star" color="primary" *ngIf="score2.star>=indx+1;" style="padding-right: .5em" [attr.data-index]="indx+1"></ion-icon>
+			<ion-icon name="star-outline" color="primary" *ngIf="score2.star<indx+1;" style="padding-right: .5em" [attr.data-index]="indx+1"></ion-icon>
+		  </div>
+		  <!--<span>{{score.starMap[score.star-1]}}</span>-->
+		</div>
+	    </ion-col>
+
+	  </ion-row>
+
+
+
+  </ion-card>
+
+
+    <button  ion-button mode="ios"  (tap)="Save()" margin  style="margin-bottom:11px !important;height:40px;width:90%;text-align:center;"  >发表评价</button>
+
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

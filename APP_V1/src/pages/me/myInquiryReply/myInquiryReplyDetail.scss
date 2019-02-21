@@ -1,0 +1,68 @@
+page-myInquiryReplyDetail{
+  ion-content{
+    .scroll-content {
+      background-color: #eeeeee;
+    }
+    ion-list{
+      margin-bottom: 0 !important;
+    }
+    .item.item-block {
+      min-height: 10px;
+      height: 35px;
+      line-height: 30px;
+    }
+    .item-block:first-child{
+      border-top:0 !important;
+    }
+    ion-label{
+      font-size: 14px;
+    }
+    .Btn{
+      border:1px solid rgba(255,255,255,0.32);
+      //box-shadow:0 3px 0 0 #d43c33, 0 2px 6px 0 rgba(0,0,0,0.50);
+      border-radius:8px;
+      width:90%;
+      height:40px;
+      margin:0 auto
+    }
+  }
+  .mask{
+    ion-grid.pay{
+      position: absolute;
+      top: 30%;
+      left: 10%;
+      width: 80%;
+      border-radius: 10px;
+      height: auto;
+      background: #ffffff;
+      ion-row:nth-child(1){
+        width: 120px;
+        height: 120px;
+        border-radius: 120px;
+        margin: -50px auto 0;
+        background: #ffffff;
+        img{
+          width: 95px;
+          height: 95px;
+          margin: 10px;
+        }
+      }
+      ion-row:nth-child(2){
+        padding: 0 16px;
+        font-size: 1.8rem;
+      }
+    }
+  }
+  //验票结果
+  .inspectticket{
+    max-height: 100px !important;
+    height: 80px !important;
+    line-height: 20px !important;
+    .item.item-block{
+      height: inherit !important;
+    }
+    ion-label{
+      white-space: initial !important;
+    }
+  }
+}

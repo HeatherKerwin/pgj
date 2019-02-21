@@ -1,0 +1,116 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title mode="ios">交易记录</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div>
+    <ion-segment [(ngModel)]="segmentModel" mode="md">
+      <ion-segment-button value="account1">
+        充值记录
+      </ion-segment-button>
+      <ion-segment-button value="account2">
+        提现记录
+      </ion-segment-button>
+      <ion-segment-button value="account3">
+        交易记录
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div (swipe)="swipeEvent($event)" margin-top>
+
+    <div [ngSwitch]="segmentModel">
+
+      <!--充值记录-->
+      <ion-list *ngSwitchCase="'account1'">
+        <ion-grid text-center>
+          <ion-row>
+            <ion-col>充值金额</ion-col>
+            <ion-col>充值方式</ion-col>
+            <ion-col>充值结果</ion-col>
+            <ion-col>充值时间</ion-col>
+          </ion-row>
+          <ion-row *ngFor="let account1 of account1s">
+            <ion-col col-3><span class="blueSky">{{account1.money}}</span>元</ion-col>
+            <ion-col col-3 *ngIf="account1.way=='CZ_BAOFOO'">宝付支付</ion-col>
+            <ion-col col-3 *ngIf="account1.way=='CZ_BILL99'">快钱支付</ion-col>
+            <ion-col col-3 *ngIf="account1.way=='CZ_ALIPAY'">支付宝支付</ion-col>
+            <ion-col col-3 *ngIf="account1.accountLogState=='SUCCESS'" class="red">成功</ion-col>
+            <ion-col col-3 *ngIf="account1.accountLogState=='FAILED'" class="green">失败</ion-col>
+            <ion-col col-3 *ngIf="account1.accountLogState=='WAITIN'" class="blue">待入账</ion-col>
+            <ion-col col-3>{{account1.createTime}}</ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </ion-list>
+
+      <!--提现记录-->
+      <ion-list *ngSwitchCase="'account2'">
+        <ion-grid text-center>
+          <ion-row>
+            <ion-col>提现金额</ion-col>
+            <ion-col>提现方式</ion-col>
+            <ion-col>提现结果</ion-col>
+            <ion-col>提现时间</ion-col>
+          </ion-row>
+          <ion-row *ngFor="let account2 of account2s">
+            <ion-col col-3><span class="blueSky">{{account2.money}}</span>元</ion-col>
+            <ion-col col-3>线下支付</ion-col>
+            <ion-col col-3 *ngIf="account2.accountLogState=='SUCCESS'" class="red">成功</ion-col>
+            <ion-col col-3 *ngIf="account2.accountLogState=='FAILED'" class="green">失败</ion-col>
+            <ion-col col-3 *ngIf="account2.accountLogState=='PENDING'" class="blue">提现中</ion-col>
+            <ion-col col-3>{{account2.createTime}}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-list>
+
+      <!--保证金记录-->
+      <ion-list *ngSwitchCase="'account3'">
+        <ion-grid text-center>
+          <ion-row>
+            <ion-col>订单号</ion-col>
+            <ion-col>金额</ion-col>
+            <ion-col>用途</ion-col>
+            <ion-col>交易时间</ion-col>
+          </ion-row>
+          <ion-row *ngFor="let account3 of account3s">
+            <ion-col col-3>{{account3.no}}</ion-col>
+            <ion-col col-3>
+              <span *ngIf="account3.accountLogType=='ORDERIN'" class="red">+{{account3.money}}</span>
+              <span *ngIf="account3.accountLogType=='ORDEROUT'" class="blueSky">-{{account3.money}}</span>
+              <span *ngIf="account3.accountLogType=='INQUIRYREPLYOUT'" class="red">+{{account3.money}}</span>
+              <span *ngIf="account3.accountLogType=='INQUIRYREPLYBACK'" class="blueSky">-{{account3.money}}</span>
+              <span *ngIf="account3.accountLogType=='SERVER_IN'" class="red">+{{account3.money}}</span>
+              <span *ngIf="account3.accountLogType=='SERVER_OUT'" class="blueSky">-{{account3.money}}</span>
+              <span *ngIf="account3.accountLogType=='ECONTRACT_IN'" class="red">+{{account3.money}}</span>
+              <span *ngIf="account3.accountLogType=='ECONTRACT_OUT'" class="blueSky">-{{account3.money}}</span>
+              <span *ngIf="account3.accountLogType=='VIP'" class="blueSky">-{{account3.money}}</span>
+              元
+            </ion-col>
+            <ion-col col-3 *ngIf="account3.accountLogType=='ORDERIN'" class="red">保证金（退还）</ion-col>
+            <ion-col col-3 *ngIf="account3.accountLogType=='ORDEROUT'" class="green">保证金（支出）</ion-col>
+            <ion-col col-3 *ngIf="account3.accountLogType=='INQUIRYREPLYOUT'" class="red">查询查复（支出）</ion-col>
+            <ion-col col-3 *ngIf="account3.accountLogType=='INQUIRYREPLYBACK'" class="green">查询查复（退还）</ion-col>
+            <ion-col col-3 *ngIf="account3.accountLogType=='SERVER_IN'" class="red">服务费（退还）</ion-col>
+            <ion-col col-3 *ngIf="account3.accountLogType=='SERVER_OUT'" class="green">服务费（支出）</ion-col>
+            <ion-col col-3 *ngIf="account3.accountLogType=='ECONTRACT_IN'" class="red">电子签章费（退还）</ion-col>
+            <ion-col col-3 *ngIf="account3.accountLogType=='ECONTRACT_OUT'" class="green">电子签章费（支出）</ion-col>
+            <ion-col col-3 *ngIf="account3.accountLogType=='VIP'" class="green">购买会员</ion-col>
+            <ion-col col-3>{{account3.createTime}}</ion-col>
+          </ion-row>
+        </ion-grid>
+        <p class="red" margin-left margin-right>*若交易中发生违约行为，您的保证金将返还给达成交易意向的对方。</p>
+      </ion-list>
+
+    </div>
+  </div>
+
+</ion-content>

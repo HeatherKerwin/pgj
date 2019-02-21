@@ -1,0 +1,41 @@
+page-myOffer{
+  ion-content{
+    .WhiteB{
+      background-color: white;
+    }
+    .GrayB{
+      background-color: #eeeeee;
+    }
+    .yinSmallDian{
+      width: 94%;
+      margin: 0 auto;
+    }
+    .lines .item-inner{
+      border-bottom: 1px solid #eeeeee !important;
+    }
+    .scroll-content {
+      background-color: #eeeeee;
+    }
+    ion-list{
+      h5{
+        color:$Red;
+      }
+      ion-item{
+        ion-note{
+          span{
+            color:$Red;
+          }
+        }
+      }
+      ion-row{
+        ion-col{
+          border:1px solid $boderBlue;
+          border-bottom: 0;
+        }
+      }
+      .last{
+        border-bottom:1px solid $boderBlue;
+      }
+    }
+  }
+}

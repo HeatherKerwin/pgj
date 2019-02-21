@@ -1,0 +1,150 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons  end class="redbutton">
+      <button ion-button icon-only (tap)="ToAccountPage()">
+        交易记录
+      </button>
+    </ion-buttons>
+    <ion-title mode="ios">我的钱包</ion-title>
+<!-- <ion-buttons float-end>
+
+      <span style="color:#d43c33;padding-top: 14px;font-size:1.5rem" (tap)="ToAccountPage()">
+        充值记录
+      </span>
+    </ion-buttons>-->
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list margin-top>
+    <ion-item>
+      <ion-label fixed >钱包余额</ion-label>
+      <ion-note item-end><span class="blueSky">{{account.money}}</span>元</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed >出票保证金</ion-label>
+      <ion-note item-end><span class="red">{{account.disc_deposit}}</span>元</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed >资方保证金</ion-label>
+      <ion-note item-end><span class="red">{{account.dist_deposit}}</span>元</ion-note>
+    </ion-item>
+  </ion-list>
+
+  <ion-list margin-top>
+    <ion-item>
+      <ion-label fixed>充值金额</ion-label>
+      <ion-input type="tel" maxlength="6" (keyup)="this.apiSev.check1($event)" [(ngModel)]="recharge.addmoney"  ngControl="number" text-right placeholder="请输入充值金额"></ion-input>
+      <ion-note item-end>元</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label>充值方式</ion-label>
+      <ion-select [(ngModel)]="recharge.type" interface="popover">
+        <ion-option value="3">支付宝</ion-option>
+        <ion-option value="2">快钱支付</ion-option>
+        <ion-option value="1">宝付支付</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <p margin>
+    <button ion-button mode="ios" block color="primary" (tap)="pay()">充值</button>
+    <button ion-button mode="ios" block style="background-color: #F5F5F5;color: #d43c33 !important;border: 1px solid #d43c33;" tappable (click)="cashBtn('ALIPAY');"><span style="color: #d43c33 !important;">提现到支付宝</span></button>
+    <button ion-button mode="ios" block style="background-color: #F5F5F5;color: #d43c33 !important;border: 1px solid #d43c33;"  tappable (click)="cashBtn('BANKPAY');" ><span style="color: #d43c33 !important;">提现到银行卡</span></button>
+  </p>
+
+  <div padding>
+    <div text-wrap style="font-size:1rem;text-indent:1em;color: #d43c33">
+      <p>
+        注意：提现不包括第三方支付收取的手续费
+      </p>
+      <div>
+        1、各渠道充值的资金，提现时通过原渠道退回<span style="color: #5B96EB;border-bottom: 1px solid #5B96EB;" (tap)="examplespage()">（查看示例）。</span></div>
+      <div>2、各渠道退款时间如下（票管家两个工作日内审核）：
+        <div>支付宝：余额支付，当天返还。银行卡支付，1-2个工作日返还。</div>
+        <div>宝付：3个工作日内返还。</div>
+        <div>快钱：7-15个工作日返还。</div>
+      </div>
+    </div>
+    </div>
+
+</ion-content>
+
+<!--弹出层-->
+<div *ngIf="isMask" (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="maskCon">
+      <!--提现-->
+      <ion-grid class="cash" *ngIf="isCash">
+        <button mode="ios" class="close" (tap)="isMask = false;isCash = false;isPay = false;"></button>
+        <ion-row text-center>
+          <ion-col><h4>押金余额</h4></ion-col>
+          <ion-col><h4>{{account.money}}元</h4></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input type="text" maxlength="30" (keyup)='apiSev.check2B($event);' placeholder="请输入提现金额" [(ngModel)]="cashmoney"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="txtype=='BANKPAY'">
+          <ion-col>
+            <ion-input type="text" maxlength="50" placeholder="请输入银行卡号" (keyup)='apiSev.check1($event);' [(ngModel)]="cardNumber"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="txtype=='ALIPAY'">
+          <ion-col>
+            <ion-input type="text" maxlength="50" placeholder="请输入支付宝账号" [(ngModel)]="cardNumber"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="txtype=='BANKPAY'">
+          <ion-col>
+            <ion-input type="text" maxlength="50" placeholder="请输入开户行名称" [(ngModel)]="cardBank"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="txtype=='BANKPAY'">
+          <ion-col>
+            <ion-input type="text" maxlength="50" placeholder="请输入账户名" [(ngModel)]="cardUserName"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="txtype=='ALIPAY'">
+          <ion-col>
+            <ion-input type="text" maxlength="50" placeholder="请输入姓名" [(ngModel)]="cardUserName"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>手机号码：{{mobile}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-7><ion-input type="number" [(ngModel)]="card.code" placeholder="验证码"></ion-input></ion-col>
+          <ion-col col-5><button ion-button mode="ios" (tap)="getCode()" [disabled]="isCodeDisabled" small>{{btnText}}</button></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4 offset-4 text-center>
+            <button data-tap-disabled="true" (click)="cash()" ion-button mode="ios" block color="primary" small>提现</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <!--去支付-->
+      <ion-grid class="pay" *ngIf="isPay" text-center>
+        <ion-row text-center>
+          <ion-col><img src="assets/images/account/tishi.png"></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>请您在新打开的支付页面上支付，支付完成前请不要关闭该窗口</ion-col>
+        </ion-row>
+        <ion-row margin-bottom>
+          <ion-col><button ion-button mode="ios" class="red1" color="primary" (tap)="ToAccountPage()">支付完成</button></ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </div>
+  </ion-backdrop>
+</div>

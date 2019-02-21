@@ -1,0 +1,62 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title mode="ios">我的消息</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <ion-segment [(ngModel)]="pet" mode="md">
+      <ion-segment-button value="sysMessage">
+        系统消息
+      </ion-segment-button>
+      <ion-segment-button value="discountsMessage">
+        优惠消息
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div (swipe)="swipeEvent($event)">
+    <div [ngSwitch]="pet">
+      <!--优惠消息-->
+      <ion-list *ngSwitchCase="'discountsMessage'" class="Discounts" no-lines>
+        <ion-item class="Gray"  *ngFor="let d of discountsMessageList" >
+          <p text-center class="Time">{{d.createTime}}</p>
+          <div class="Box1" padding>
+            <ion-icon class="Icon" padding-left item-start></ion-icon>
+            {{d.title}}
+            <p margin-top><img width="85%" height="100" style="margin-left: 30px" src="{{apiSev.getImgUrl+d.imgPath}}"></p>
+          </div>
+        </ion-item>
+        <ion-infinite-scroll (ionInfinite)="doInfinite1($event)">
+          <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="加载更多...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </ion-list>
+
+      <!--系统消息-->
+      <ion-list *ngSwitchCase="'sysMessage'" class="Sys" no-lines>
+        <ion-item class="Gray" ion-item-options *ngFor="let d of sysMessageList">
+          <p>{{d.createTime}}</p>
+          <div class="Box2" padding>
+            <!--<h3 class="title">{{d.alert}}</h3>-->
+            <h3 class="content" text-wrap style="color: #2d2d2d">{{d.content}}</h3>
+          </div>
+        </ion-item>
+        <ion-infinite-scroll (ionInfinite)="doInfinite2($event)">
+          <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="加载更多...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,268 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios" hideBackButton="true">
+    <ion-buttons>
+      <button ion-button icon-only (click)="closeme()">
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      票据管理
+    </ion-title>
+    <ion-buttons right style="margin-left:-26px;">
+      <button ion-button mode="ios" icon-only *ngIf="isShow1" (click)="remind()">
+        <ion-icon color="dark" *ngIf="notifications==0" name="notifications-outline"></ion-icon>
+        <ion-icon color="yinpiao" *ngIf="notifications==1" name="notifications-outline"></ion-icon>
+      </button>
+      <button ion-button mode="ios" icon-only *ngIf="isShow2" (click)="searchIcon(1)">
+        <ion-icon color="dark" name="search"></ion-icon>
+      </button>
+      <button ion-button mode="ios" icon-only *ngIf="isShow3" (click)="searchIcon(0)">
+        <ion-icon color="dark" name="search"></ion-icon>
+      </button>
+      <button ion-button mode="ios" icon-only *ngIf="isShow4" (click)="ToExportPage()" style="font-size: 12px;height: 24px;padding: 0 10px;border-radius: 3px;background: #d43c33">
+        导出
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content color="dark" id="aboutContent">
+
+  <!-- 切换 -->
+  <div class="segment-heard">
+    <ion-toolbar no-border-top>
+      <ion-segment [(ngModel)]="pet" mode="md">
+        <ion-segment-button value="manage1" (click)="btnIcon()">
+          账簿
+        </ion-segment-button>
+        <ion-segment-button value="manage2" (click)="btnIcon()">
+          已贴现
+        </ion-segment-button>
+        <ion-segment-button value="manage3" (click)="btnIcon()">
+          未贴现
+        </ion-segment-button>
+        <ion-segment-button value="manage4" (click)="btnIcon()">
+          统计分析
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+  </div>
+
+  <!--切换内容-->
+  <div (swipe)="swipeEvent($event)">
+    <div class="toolbar-con" [ngSwitch]="pet">
+      <!-- 账簿 -->
+      <ion-list *ngSwitchCase="'manage1'" class="manage1">
+        <!-- 今天 -->
+        <ion-list margin-top>
+          <ion-item>
+            <ion-datetime disabled displayFormat="YYYY年M月D日" [(ngModel)]="myDate"></ion-datetime>
+          </ion-item>
+          <button mode="ios" ion-item (click)="dayPage()">
+            <ion-avatar item-start>
+              <img src="assets/images/manage/dayIcon.png">
+            </ion-avatar>
+            <h3>已出票总金额 {{daydiscounted}}（万元）</h3>
+            <h3>未出票总金额 {{dayundiscount}}（万元）</h3>
+          </button>
+        </ion-list>
+
+        <!-- 本周 -->
+        <ion-list margin-top>
+          <ion-item class="weekTime">
+            <h3>{{weekTime}}</h3>
+          </ion-item>
+          <button mode="ios" ion-item (click)="weekPage()">
+            <ion-avatar item-start>
+              <img src="assets/images/manage/weekIcon.png">
+            </ion-avatar>
+            <h3>已出票总金额 {{weekdiscounted}}（万元）</h3>
+            <h3>未出票总金额 {{weekundiscount}}（万元）</h3>
+          </button>
+        </ion-list>
+
+        <!-- 本月 -->
+        <ion-list margin-top>
+          <ion-item>
+            <ion-datetime disabled displayFormat="YYYY年M月" [(ngModel)]="myDate"></ion-datetime>
+          </ion-item>
+          <button mode="ios" ion-item (click)="monthPage()">
+            <ion-avatar item-start>
+              <img src="assets/images/manage/monthIcon.png">
+            </ion-avatar>
+            <h3>已出票总金额 {{monthdiscounted}}（万元）</h3>
+            <h3>未出票总金额 {{monthundiscount}}（万元）</h3>
+          </button>
+        </ion-list>
+
+        <!-- 本年 -->
+        <ion-list margin-top>
+          <ion-item>
+            <ion-datetime disabled displayFormat="YYYY年" [(ngModel)]="myDate"></ion-datetime>
+          </ion-item>
+          <button mode="ios" ion-item (click)="yearPage()">
+            <ion-avatar item-start margin-right>
+              <img src="assets/images/manage/yearIcon.png">
+            </ion-avatar>
+            <h3>已出票总金额 {{yeardiscounted}}（万元）</h3>
+            <h3>未出票总金额 {{yearundiscount}}（万元）</h3>
+          </button>
+        </ion-list>
+        <!--记一笔票据-->
+        <div padding>
+          <button ion-button mode="ios" block color="primary" (click)="recordPage()">记一笔票据</button>
+        </div>
+      </ion-list>
+
+      <!-- 已贴现 -->
+      <ion-list *ngSwitchCase="'manage2'" class="manage2">
+        <ion-item margin-top *ngFor="let value of value1s" (click)="openEdit(value.id,1)" >
+          <ion-grid>
+            <ion-row>
+              <ion-col><h3>{{apiSev.transformdate(value.tiexiandate)}}</h3></ion-col>
+              <ion-col col-auto><p>{{value.tiexianType}}</p></ion-col>
+            </ion-row>
+            <ion-row text-center>
+              <ion-col col-2>
+                <h3>承兑行</h3>
+                <h3>{{apiSev.pjtype(value.type1)}}</h3>
+              </ion-col>
+              <ion-col col-3>
+                <h3>票据金额</h3>
+                <h3>{{value.allprice}}万元</h3>
+              </ion-col>
+              <ion-col col-3>
+                <h3>贴现利息</h3>
+                <h3>{{value.tiexianlixi}}元</h3>
+              </ion-col>
+              <ion-col col-4>
+                <h3>贴现金额</h3>
+                <h3>{{value.tiexianjine}}万元</h3>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </ion-list>
+
+      <!-- 未贴现 -->
+      <ion-list *ngSwitchCase="'manage3'" class="manage3">
+        <ion-item margin-top *ngFor="let value of value2s" (click)="openEdit(value.id,2)" >
+          <ion-grid>
+            <ion-row>
+              <ion-col><h3>{{apiSev.transformdate(value.tiexiandate)}}</h3></ion-col>
+              <ion-col col-auto><p>{{value.orderStatue}}</p></ion-col>
+            </ion-row>
+            <ion-row text-center>
+              <ion-col col-2>
+                <h3>承兑行</h3>
+                <h3>{{apiSev.pjtype(value.type1)}}</h3>
+              </ion-col>
+              <ion-col col-3>
+                <h3>票据金额</h3>
+                <h3>{{value.allprice}}万元</h3>
+              </ion-col>
+              <ion-col col-4>
+                <h3>参考贴现利息</h3>
+                <h3>{{value.txlx}}<span>(足月)</span></h3>
+              </ion-col>
+              <ion-col col-3>
+                <h3>到期日期</h3>
+                <h3>{{apiSev.transformdate(value.daoqidate)}}</h3>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </ion-list>
+
+      <!-- 统计分析 -->
+      <ion-list *ngSwitchCase="'manage4'" class="">
+        <ion-list class="discount" mode="ios">
+          <ion-item>
+            <ion-label>统计时间段</ion-label>
+            <ion-select (ionChange)="typeChange();" [(ngModel)]="Statistics.type" interface="popover">
+              <ion-option value="1">一个月</ion-option>
+              <ion-option value="2">三个月</ion-option>
+              <ion-option value="3">六个月</ion-option>
+              <ion-option value="4">自定义</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item [hidden]="Statistics.type=='4'">
+            <ion-label>具体日期</ion-label>
+            <ion-note item-end>{{Statistics.startDate | date:"yyyy年MM月dd日"}}-{{Statistics.endDate | date:"yyyy年MM月dd日"}}</ion-note>
+          </ion-item>
+          <ion-item *ngIf="Statistics.type=='4'">
+            <ion-label>开始日期</ion-label>
+            <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="Statistics.diyStartDate"  [max]="Statistics.maxDate" doneText="确定" cancelText="取消" margin-right class="tjfxInput" (ionChange)="minChange();"></ion-datetime>
+            <ion-note item-end class="calendarIcon"></ion-note>
+          </ion-item>
+          <ion-item *ngIf="Statistics.type=='4'">
+            <ion-label>结束日期</ion-label>
+            <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="Statistics.diyEndDate" [min]="Statistics.minDate" [max]="Statistics.maxDate" doneText="确定" cancelText="取消" margin-left margin-right class="tjfxInput"></ion-datetime>
+            <ion-note item-end class="calendarIcon"></ion-note>
+          </ion-item>
+          <iframe style=" width: 100%; height: 100%;position: absolute;overflow: auto;border: none;"  id="iframe" sandbox="allow-scripts allow-top-navigation allow-pointer-lock allow-same-origin allow-popups allow-forms" [src]="browser.secUrl"  ></iframe>
+        </ion-list>
+      </ion-list>
+
+
+    </div>
+  </div>
+</ion-content>
+
+
+<div *ngIf="isShow2con" (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="isShow2conDiv">
+      <ion-list mode="ios">
+        <ion-item style="margin-top: 64px;">
+          <ion-label>票据属性</ion-label>
+          <ion-select [(ngModel)]="search.type1" interface="popover" (ionChange)="searchLimit()" >
+            <ion-option value="0">纸票</ion-option>
+            <ion-option value="1">电票</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="search.limitShow">
+          <ion-label>承兑期限</ion-label>
+          <ion-select [(ngModel)]="search.limit" interface="popover" >
+            <ion-option value="0">半年期</ion-option>
+            <ion-option value="1">一年期</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>承兑行类型</ion-label>
+          <ion-select [(ngModel)]="search.type" interface="popover">
+            <ion-option value="1">国股</ion-option>
+            <ion-option value="8">大商</ion-option>
+            <ion-option value="2">小商</ion-option>
+            <ion-option value="3">外资</ion-option>
+            <ion-option value="4">农商</ion-option>
+            <ion-option value="5">农合</ion-option>
+            <ion-option value="6">农信</ion-option>
+            <ion-option value="7">村镇</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label>起始日期</ion-label>
+          <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="search.start" doneText="确定" cancelText="取消" (ionChange)="changeStart()"></ion-datetime>
+          <ion-note item-end class="calendarIcon"></ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>截止日期</ion-label>
+          <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="search.end" [min]="search.min" [max]="2999-12-31" doneText="确定" cancelText="取消"></ion-datetime>
+          <ion-note item-end class="calendarIcon"></ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label fixed>票据金额</ion-label>
+          <ion-input>
+            <ion-input type="number" value="" [(ngModel)]="search.allprice" text-right placeholder="请输入金额"></ion-input>
+          </ion-input>
+          <ion-note item-end>万元</ion-note>
+        </ion-item>
+        <p padding-left padding-right>
+          <button ion-button mode="ios" block (click)="searchBtn(search.isTiexian)">确认</button>
+        </p>
+      </ion-list>
+    </div>
+  </ion-backdrop>
+</div>

@@ -1,0 +1,74 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      商票下单
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <!--通知信息循环-->
+  <div class="marqueeDiv">
+    <span icon-start class="noticeIcon"></span>
+    <marquee direction="left" hspace="0">{{note.content}}</marquee>
+  </div>
+
+  <div class="cn-all" style="background-color: white;height: 100%; ">
+
+    <div style="text-align:center;">
+
+      <div style="margin:0 auto;text-align:center;width:240px;padding-top:33px;">
+        <div style="width:70px;margin:0 auto;float:left">
+          <hr/>
+        </div>
+        <div style="width:100px;margin:0 auto;float:left;color:#cccccc;font-size:1.18rem">票据属性</div>
+        <div style="width:70px;margin:0 auto;float:left">
+          <hr/>
+        </div>
+      </div>
+
+      <div style="width: 100%;padding-top: 20px;">
+        <img src="assets/images/discount/dianpiao.png" style="border:0px;margin-top:30px;width:120px;height:120px; "
+             (tap)="dianpiao(type1=2)"/>
+      </div>
+
+
+
+      <div style="width: 100%">
+        <img src="assets/images/discount/zhipiao.png" style="border:0px;width:120px;height:120px;margin: 30px 30% 0;"
+             (tap)="zhipiao(type1=1)"/>
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>
+
+<div *ngIf="maskDiv" (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="maskCon">
+      <!--认证验证-->
+      <div class="Authentications" *ngIf="Authentication">
+        <ion-row>
+          <ion-col>
+            <img src="assets/images/home/tongzhi.png">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col (tap)="ToAuthentication()">为保障用户交易中的资金安全。请先开户，开户通过之后方可体验新版交易功能。</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-8 offset-2>
+            <button ion-button md="ios" block round (tap)="ToAuthentication()">去开户</button>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+  </ion-backdrop>
+</div>

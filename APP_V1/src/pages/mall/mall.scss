@@ -1,0 +1,149 @@
+page-mall {
+  color: #ffffff !important;
+  ion-header{
+    .toolbar-background{
+      background: #f8625c !important;
+    }
+    .toolbar-title{
+      color: #ffffff !important;
+    }
+    ion-navbar{
+      border-bottom: 0 !important;
+    }
+  }
+	ion-content{
+    background: #eeeeee !important;
+    ion-card{
+      margin: 0 0 12px !important;
+      width: 100% !important;
+      box-shadow:none !important;
+    }
+    //上方
+    ion-card.mall-top{
+      height: auto;
+      background: url("../assets/images/mall/mallTopBG.png") top center no-repeat;
+      background-size: 100% auto;
+      color: #ffffff;
+      h3{
+        margin: 15px 0 10px;
+      }
+      h2{
+        font-size: 2rem;
+        font-weight: normal;
+      }
+      //签到按钮
+      button.qiandao{
+        color: #ffffff;
+        border-color: white;
+        padding: 3px 25px;
+        border-radius: 12px;
+        height: auto !important;
+        margin-top:10px;
+      }
+      //积分攻略+收支攻略
+      ion-row.gonglue{
+        ion-col{
+          padding: 0 !important;
+          margin-top: 15px;
+          button{
+            padding: 0 !important;
+            height: 1.8rem;
+            margin: 0;
+          }
+        }
+        ion-col:first-child{
+          border-right: solid #ffffff 1px;
+        }
+      }
+      //兑换记录+收货地址
+      .tuchu{
+        background: #ffffff;
+        margin: 15px 16px 5px;
+        box-shadow: 1px 1px rgba(245 , 96 , 89 , 0.9);
+        border-radius: 5px;
+        button{
+          color: #2d2d2d;
+        }
+      }
+      //小图标按钮
+      button{
+        background: none !important;
+        ion-icon{
+          width: 1.5rem;
+          height: 1.5rem;
+          margin-right: 5px;
+        }
+        //积分攻略
+        .jifen{
+          background: url("../assets/images/mall/jifen.png") center no-repeat;
+          background-size: 100%;
+        }
+        //收支攻略
+        .shouzhi{
+          background: url("../assets/images/mall/shouzhi.png") center no-repeat;
+          background-size: 100%;
+        }
+        //兑换记录
+        .duihuan{
+          background: url("../assets/images/mall/duihuan.png") center no-repeat;
+          background-size: 100%;
+        }
+        //收货地址
+        .dizhi{
+          background: url("../assets/images/mall/shouhuo.png") center no-repeat;
+          background-size: 100%;
+        }
+      }
+    }
+
+    //下方列表
+    .mall-list button:first-child{
+      border-bottom: 1px solid #d9d9d9;
+    }
+    ion-card.mall-list{
+      //热门商品图标
+      .hot{
+        min-width: 20px;
+        width: 1.4rem;
+        height: 1.4rem;
+        margin-top: 0px;
+        background: url("../assets/images/mall/hot.png") center no-repeat;
+        background-size: 100%;
+      }
+      //商品图片
+      img{
+        width: 80%;
+        margin: 5px 10%;
+      }
+      .button-clear-ios{
+        color: #e84c3d !important;
+      }
+      //积分小图标
+      .jifenIcon{
+        width: 1.2rem;
+        height: 1.2rem;
+        margin-right: 5px;
+        background: url("../assets/images/mall/dajifen.png") center no-repeat;
+        background-size: 100%;
+      }
+    }
+	}
+  //签到弹窗
+  .maskCon{
+    .close{
+      position: absolute;
+      top: 25%;
+      right: 40px;
+      width: 40px;
+      height: 40px;
+      background: url("../assets/images/common/close.png") center no-repeat;
+      background-size: 100%;
+      z-index: 100;
+    }
+    img{
+      position: absolute;
+      top:20%;
+      left: 0;
+    }
+  }
+}

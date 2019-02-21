@@ -1,0 +1,43 @@
+page-myGradeBns{
+  ion-content {
+    .scroll-content {
+      background-color: #eeeeee;
+    }
+    ion-list.Grade {
+      .list {
+        margin: 10px 0 16px;
+      }
+      div {
+        font-size: 14px;
+        color: $Black;
+        [item-end] {
+          line-height: 14px;
+          color: $OrangeRed;
+          display: inline;
+        }
+      }
+      .item.item-block {
+        min-height: 10px;
+        height: 30px;
+        line-height: 30px;
+      }
+    }
+    ion-list.Content {
+      .label-md {
+        margin-top: 0px;
+      }
+      h3 {
+        margin: 2px 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+        line-height: normal;
+      }
+      div {
+        font-size: 14px;
+      }
+      ion-item.Grade {
+        height: 30px;
+      }
+    }
+  }
+}

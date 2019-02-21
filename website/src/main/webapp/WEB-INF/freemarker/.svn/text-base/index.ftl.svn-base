@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="https://static.utiexian.com/css/common/webBase.css" />
     <link rel="stylesheet" type="text/css" href="https://static.utiexian.com/css/common/swiper.min.css" />
     <link rel="stylesheet" type="text/css" href="https://static.utiexian.com/css/website/home-1114.css">
+    <link href="https://static.utiexian.com/css/yonyou/mask.css" rel="stylesheet">
     <script type="text/javascript" src="https://static.utiexian.com/js/common/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="https://static.utiexian.com/js/common/swiper.min.js"></script>
     <script type="text/javascript" src="https://static.utiexian.com/js/website/home-1114.js"></script>
@@ -19,7 +20,7 @@
         <header>
             <!-- 顶部 -->
             <div class="headTop">
-                <div class="rowCenter">
+                <div class="rowCenter none">
                 [#if member??]
                     <div class="user">您好，${member.username?default(hideMobile(member.mobile))} 欢迎来到票据管家</div>
                     <a href="${basePath}/member/logout" class="exitLogin">退出</a>
@@ -31,6 +32,29 @@
                     <div class="tel">客服热线：400-067-0002（接听时间：工作日09：00-17：30 )</div>
                 	<div class="myPJGJ"><a href="${basePath}/bisicmessage/information">我的票据管家</a></div>
                 </div>
+                <div class="rowCenter">
+                	<div class="workTime">工作日09：00-17：30</div>
+                	<div class="topAbout">
+                		<div class="WeChat">
+               				<img class="aboutIcon" src="https://img.utiexian.com/website/newhome/190219/WeChat.png">
+	               			<div class="topMa">
+	               				<img src="https://img.utiexian.com//website/newhome/guanzhu.png" width="70" height="70" alt="微信公众号">
+	               			</div>
+               			</div>
+                		
+                		<div class="mApp">
+                			<img class="aboutIcon" src="https://img.utiexian.com/website/newhome/190219/APP.png">
+                			<div  class="topMa">
+                				<img src="https://img.utiexian.com//website/newhome/xaizai.png" width="70" height="70" alt="下载app">
+                			</div>
+                		</div>
+                		
+                		<div class="tel"><img class="aboutIcon" src="https://img.utiexian.com/website/newhome/190219/Tel.png">联系客服</div>
+                		
+                		
+                	</div>
+                </div>
+                
             </div>
             <!-- 顶部 end -->
 
@@ -38,19 +62,11 @@
             <div class="headMenu">
                 <div class="rowCenter">
                     <a href="${basePath}/" class="logo"><img src="${imagePath}/website/newhome/logo.png" width="173" height="44" alt="票据管家" title="票据管家"></a>
+                    <div class="menuTel">400-067-0002</div>
                     <div class="menuCon">
                         <ul class="menuList">
                             <li class="menuItem"><a href="${basePath}/" class="menuItemTitle">首页</a></li>
-                            <li class="menuItem SubmenuChose">
-                                <a href="javascript:void(0)" class="menuItemTitle">我的账户</a>
-                                <div class="ItemSubmenu menuInUp">
-                                    <ul>
-                                        <li class="menuDetailItem openCib none"><a href="" id="openCib">登录执剑人</a></li>
-                                        <li class="menuDetailItem"><a href="${basePath}/bisicmessage/deposit">我的钱包</a></li>
-                                        <li class="menuDetailItem"><a href="${basePath}/bisicmessage/information">账户信息</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                            
                             <li class="menuItem SubmenuChose">
                                 <a href="javascript:void(0)" class="menuItemTitle">出票业务</a>
                                 <div class="ItemSubmenu menuInUp">
@@ -100,6 +116,24 @@
                             </li>
                             <li class="menuItem"><a href="${basePath}/help" class="menuItemTitle">常见问题</a></li>
                             <li class="menuItem"><a href="https://bbs.utiexian.com/" class="menuItemTitle">社区</a></li>
+                            
+                            
+                            <li class="menuItem SubmenuChose">
+	                            [#if member??]
+				                    <a href="javascript:void(0)" class="menuItemTitle">我的账户</a>
+	                                <div class="ItemSubmenu menuInUp">
+	                                    <ul>
+	                                        <li class="menuDetailItem openCib none"><a href="" id="openCib">登录执剑人</a></li>
+	                                        <li class="menuDetailItem"><a href="${basePath}/bisicmessage/deposit">我的钱包</a></li>
+	                                        <li class="menuDetailItem"><a href="${basePath}/bisicmessage/information">账户信息</a></li>
+	                                        <li class="menuDetailItem"><a href="${basePath}/member/logout" class="exitLogin">退出</a></li>
+	                                    </ul>
+	                                </div>
+				                [#else]
+					            	<a href="${basePath}/login" class="login">登录</a>
+				                    <a href="${basePath}/login" class="register">注册</a>
+				                [/#if]
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -138,6 +172,37 @@
 		        </div>
             </div>
             <!-- 秒贴交易 end -->
+            
+            <div class="module-jy">
+            	<div>
+            		<!-- 票据询价 -->
+	            	<div class="sjxj">
+	            		<div class="jy-label">票据询价</div>
+	            		<div>
+	            			<input placeholder="票面金额">
+	            			<select>
+	            				<option value="承兑行类型">承兑行类型</option>
+	            			</select>
+	            			<button>询价</button>
+	            		</div>
+	            	</div>
+	            	<!-- 票据询价 end -->
+	            	
+	            	<!-- 实时交易 -->
+	            	<div class="ssjy">
+	            		<div class="jy-label">实时交易</div>
+	            		<div class="marquee">
+	            			<marquee direction="up" scrollamount="4" onmouseover="this.stop()" onmouseout="this.start()">
+							    <p><span>票管家公司</span><span>100万</span><span>虚假票据</span><span>倒闭银行</span><span>点背</span></p>
+							    <p><span>票管家公司</span><span>100万</span><span>虚假票据</span><span>倒闭银行</span><span>点背</span></p>
+							    <p><span>票管家公司</span><span>100万</span><span>虚假票据</span><span>倒闭银行</span><span>点背</span></p>
+							</marquee>
+	            		</div>
+	            	</div>
+	            	<!-- 实时交易 end -->
+            	</div>
+            	
+            </div>
 
             <!-- 功能模块 -->
             <div class="module-gnmk">
@@ -602,8 +667,46 @@
     </div>
     <!-- 侧边悬浮 end -->
 
+	
+	<!-- mask -->
+ 	<div class="maskWindow" style="display: block;">
+	    <div class="maskBg"></div>
+	    <div class="maskWrap maskWrapSmall">
+	      <!-- maskTop -->
+	      <div class="maskTop">
+	        <div class="maskTitle">手机号验证</div>
+	        <button class="maskCloseIcon" onclick="closeMask()">×</button>
+	      </div>
+	      <!-- maskTop -->
+	
+	      <!-- maskCon -->
+	      <div class="maskCon">
+	        <div class="maskDiv">
+	        
+	        <!-- 注册弹窗 -->
+	        <div>
+	        	<div>
+	        		<span>价格</span>
+	        		<span>属性</span>
+	        	</div>
+	        	<div><input></div>
+	        	<div><button>提交</button></div>
+	        </div>
+	        
+	        <div>
+	        	<div>
+	        		<img src="https://img.utiexian.com/website/newhome/190219/xunjia.png">
+	        	</div>
+	        	<p>
+	        </div>
+	        <!-- 注册弹窗 end -->
+	        </div>
+	       </div>	
+	      </div>
+      </div>	
+	<!-- mask end -->
 
-    <!-- 弹窗 -->
+    <!-- 意见弹窗 -->
     <div class="popupWindow">
         <div class="popup">
             <button id="closePopup" class="close"></button>
@@ -618,7 +721,7 @@
             </div>
         </div>
     </div>
-    <!-- 弹窗 end -->
+    <!-- 意见弹窗 end -->
 </div>
 </body>
 <script type="text/javascript" src="${pluPath}/data/laydate.js"></script>

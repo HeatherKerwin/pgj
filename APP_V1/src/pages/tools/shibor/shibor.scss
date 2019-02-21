@@ -1,0 +1,85 @@
+page-shibor {
+  ion-content {
+    .listheight {
+      height: 85px;
+      .listgrid {
+        padding-top: 12px;
+        height: 60px;
+        width: 95%;
+        .listrow {
+          border: 1px solid #BFBFBF;
+          border-radius: 5px;
+          .listcol2{
+            padding: 0;
+            margin: 0;
+            height:36px;
+            .listdatatime{
+              padding:0;
+              padding-top:6px;
+              opacity:1;
+              font-size:20px;
+            }
+          }
+          .listcol {
+            padding: 0;
+            margin: 0;
+            border-radius: 10px;
+            height:36px;
+            .listdiv {
+              text-align: left;
+            }
+          }
+        }
+      }
+      .listgrid2{
+        background-color:#d43c33;
+        height:40px;
+        .listdiv3{
+          text-align:center;
+          font-size:1.70rem;
+          color:#fff;
+        }
+      }
+    }
+  .listshibor{
+    .shiborgrid{
+      border-bottom:0.9px solid #eeeeee;
+      .shibordiv3{
+        margin-top:8px;
+        text-align:center;
+        font-size:1.90rem;
+        .shiborimg2{
+          height:16px;
+          width:20px;
+        }
+      }
+      .shibordiv2{
+        text-align:center;
+        margin-top:8px;
+        margin-right:8px;
+        font-size:1.90rem
+      }
+      .shibordiv {
+        font-size:1.90rem;
+        .shiborimg{
+          margin-top:12px;
+          margin-left:20px;
+          height:13px;
+          width:20px;
+        }
+    }
+    }
+  }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

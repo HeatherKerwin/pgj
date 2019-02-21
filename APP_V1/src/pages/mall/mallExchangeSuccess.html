@@ -1,0 +1,43 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios" hideBackButton="true">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >兑换成功</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid text-center class="success">
+    <ion-row>
+      <ion-col><img src="assets/images/mall/successIcon.png" class="successIcon"/><span>恭喜您，兑换成功</span></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>您兑换的商品将在一周左右送到，请耐心等待收货</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>您可以 <span class="red" (tap)="mall($event)">返回积分商城首页</span></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card class="mall-list" margin-top>
+    <button ion-item>
+      <ion-icon class="hot" item-start></ion-icon>
+      热门兑换
+      <ion-note item-end (tap)="mallAll($event)">全部商品</ion-note>
+    </button>
+    <ion-row text-center >
+      <ion-col col-6 *ngFor="let mall of malls" (click)="details(mall.id)">
+        <img src="{{this.apiSev.getImgUrl+mall.banner1}}">
+        <p text-left>{{mall.goodsName}}</p>
+        <button ion-button  mode="ios"  clear small>
+          <ion-icon class="jifenIcon"></ion-icon>
+          <div>{{mall.integral}}</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+</ion-content>

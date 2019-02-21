@@ -1,0 +1,37 @@
+page-notice {
+	ion-content{
+		.segment-md .segment-button{
+			color: $textBlack !important;
+		}
+		.segment-md .segment-button.segment-activated {
+		  color: $Red !important;
+		}
+
+		ion-list > ion-item:first-child {
+    		border-top: 0 !important;
+		}
+
+		ion-list{
+			ion-item{
+				border-bottom: 0.55px solid #d9d9d9 !important;
+				ion-thumbnail{
+					img{//设置图片大小
+						width:110px !important;
+						height:80px !important;
+					}
+				}
+				h2{//强制换行显示
+					white-space: pre-line !important;
+				}
+				p{
+					color: $textActive !important;
+				}
+			}
+			.item-inner {
+				border-bottom: 0 !important;
+			}
+		}
+
+	}
+
+}

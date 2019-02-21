@@ -1,0 +1,35 @@
+<ion-header mode="ios">
+  <ion-navbar mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title mode="ios">
+      推荐好友
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div>
+    <img style="margin-bottom: -25px" src="assets/images/me/tutu.png"/>
+    <h3 style="text-align: center;width: 100%;font-size: 1.6rem;">邀请您的好友跟您一起使用<span style="color: #e84c3d">票据管家</span>吧</h3>
+  </div>
+  <div style="width: 85%;margin: 25px auto">
+    <img src="assets/images/me/fenxiang.png">
+  </div>
+  <div>
+    <div class="share" style="text-align: center" (tap)="shareWxTimeLine($event)">
+      <img style="display: block;" src="assets/images/me/weixinhong.png">
+      <span>微信好友</span>
+    </div>
+    <div class="share" style="text-align: center" (tap)="shareWxSession($event)">
+      <img style="display: block;" src="assets/images/me/pengyouquanhong.png">
+      <span>朋友圈</span>
+    </div>
+    <div class="share" style="text-align: center" *ngIf="false">
+      <img style="display: block;" src="assets/images/me/lianjie.png">
+      <span>复制链接</span>
+    </div>
+  </div>
+</ion-content>

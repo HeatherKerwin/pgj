@@ -1,0 +1,208 @@
+page-homeB {
+	ion-content{
+		background: #f5f5f5 !important;
+    .indexH{
+      width: 100%;
+      height: 250px;
+      max-height: 250px !important;
+      background:#FFFFFF !important;
+    }
+    .div-charts {
+      width: 100%;
+      height: 250px;
+    }
+		.me-header{
+			width: 100%;
+      margin-bottom: -5px;
+      height: 150px
+		}
+
+		.home-content{
+			.iconlist{
+				.iconitem{
+					button{
+						.button-inner{width:30px;margin-left:-6px}
+					}
+				}
+			}
+		}
+    ion-segment{
+      margin-top: 20px;
+      height: 30px !important;
+      background: #FFFFFF !important;
+      margin-bottom: 1px;
+      ion-segment-button{
+        height: 42px !important;
+        background:#FFFFFF !important;
+        margin-bottom: 10px;
+      }
+    }
+
+		.busy{
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 995;
+			width: 100%;
+			height: 100%;
+			transition: opacity 500ms ease-in-out;
+			-webkit-transition: opacity 500ms ease-in-out;
+			background-color: #000;
+			opacity: 0.4;
+		}
+
+		.update{
+			position: fixed;
+			left: 10%;
+			top: calc(30% - 75px);
+			opacity:0.95;
+			z-index: 998;
+			background:#f3f4f6;
+			border-radius:8px;
+			width:80%;
+			height:260px;
+			.des{
+				overflow-y:scroll;
+				width: 100%;
+				height: 213px;
+				font-size: 15px;
+				padding-top: 20px;
+				color: #222;
+				text-align: center;
+				padding-left: 20px;
+				padding-right: 20px;
+			}
+
+			.updateIt{
+				margin-top:0px;
+				width: 100%;
+				height: 50px;
+				border-top-width: 1px;
+				border-top-style: solid;
+				border-top-color: #dfdfdf;
+				line-height: 50px;
+				font-size: 15px;
+				color: #d43c33;
+				text-align: center;
+				// background: #4D9B25;
+			}
+		}
+
+	}
+
+
+  //弹窗
+  .maskCon{
+    .red{
+      color: #d43c33;
+    }
+    //认证信息不全
+    .Authentications{
+      position: absolute;
+      top: 37%;
+      left: 15%;
+      color: #2d2d2d;
+      opacity: 1.0 !important;
+      width: 70%;
+      height: auto;
+      background: #ffffff;
+      border-radius: 10px;
+      padding-bottom:8px;
+      ion-row ion-col{
+        font-size: 1.5rem;
+      }
+      ion-row:nth-child(1) {
+        width: 120px;
+        height: 120px;
+        border-radius: 120px;
+        margin: -50px auto 0;
+        background: #ffffff;
+        img {
+          width: 95px;
+          height: 95px;
+          margin: 10px;
+        }
+      }
+      ion-row:nth-child(2) {
+        padding: 0 16px;
+        font-size: 1.8rem;
+        margin-top: -1.6rem;
+      }
+      button{
+        height: 2.5rem;
+      }
+    }
+    //贴现协议
+    .Agreement{
+      position: absolute;
+      top: 30%;
+      left: 15%;
+      color: #2d2d2d;
+      opacity: 1.0 !important;
+      width: 70%;
+      height: auto;
+      background: #ffffff;
+      border-radius: 10px;
+      ion-row:nth-child(1) {
+        height: auto;
+        border-radius: 10px 10px 0 0;
+        background: linear-gradient(to bottom,rgba(235,108,96,1), rgba(232,76,61,1)) !important; /* 标准的语法 */
+        img {
+          width: 90px;
+          height: 90px;
+        }
+      }
+      ion-row:nth-child(2) {
+        font-size: 2rem !important;
+      }
+      button{
+        height: 2.5rem;
+      }
+    }
+
+  }
+
+  .mask {
+    background: rgba(0, 0, 0, 0.6) !important;
+    .Newupdate {
+      position: fixed;
+      left: 10%;
+      top: calc(30% - 75px);
+      opacity: 0.95;
+      z-index: 998;
+      background: url(../assets/images/home/NewRed.png) center no-repeat;
+      background-size: 70%;
+      width: 80%;
+      height: 260px;
+      .NewupdateIt {
+        margin-top: 83%;
+        width: 40%;
+        height: 30px;
+        font-size: 1.8rem;
+        color: #d43c33;
+        text-align: center;
+        position: initial;
+        letter-spacing: 1px;
+        border: 1px solid #d43c33;
+        border-radius: 10px;
+        margin-left: 28%;
+      }
+    }
+    .Guidedate{
+      position: absolute;
+      background: url(../assets/images/home/QY1.png) center no-repeat;
+      background-size: 100% auto;
+      width: 150px;
+      height: 180px;
+      min-height: 180px;
+    }
+    .GuidedateB{
+      position: absolute;
+      background: url(../assets/images/home/QY2.png) center no-repeat;
+      background-size: 100% auto;
+      width: 170px;
+      height: 180px;
+      min-height: 180px;
+    }
+  }
+}

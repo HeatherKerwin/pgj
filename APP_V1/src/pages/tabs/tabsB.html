@@ -1,0 +1,9 @@
+﻿<ion-tabs selectedIndex = "{{index}}">
+  <ion-tab [root]="tab1Root" tabTitle="首页" tabIcon="custom-home"></ion-tab>
+  <ion-tab [root]="tab2Root" tabTitle="资讯" tabIcon="custom-notice"></ion-tab>
+  <ion-tab [root]="tab5Root" tabTitle="订单" tabIcon="custom-dindan" tabBadge={{apiSev.SingularB}} tabBadgeStyle="$Red"></ion-tab>
+  <ion-tab [root]="tab3Root" tabTitle="工具" tabIcon="custom-tools"></ion-tab>
+  <ion-tab [root]="tab4Root" tabTitle="我"   tabIcon="custom-me" tabBadge={{apiSev.systeminfo}} tabBadgeStyle="$Red"></ion-tab>
+
+
+</ion-tabs>

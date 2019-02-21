@@ -1,0 +1,132 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      银行卡信息
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <ion-grid style="background-color:#FFFFFF;text-align:center;">
+    <ion-row style="text-align:center">
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/one.png" style="height: 25px;"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/huixian.png"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/hui.png" style="height:25px;"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/huixian.png"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/hui.png" style="height:25px;"/></div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 text-left>
+        <div style="color: #d43c33;">申请开户</div>
+      </ion-col>
+      <ion-col col-4>
+        <div>审核</div>
+      </ion-col>
+      <ion-col col-4 text-right>
+        <div>完成开户</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list style="background: #ffffff">
+    <ion-item style="border-top: 0;">
+      <ion-label>
+        户名
+      </ion-label>
+      <ion-input disabled type="text" maxlength="50" text-right placeholder="请输入银行卡的户名" [(ngModel)]="jdData.blicCompanyName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        开户行
+      </ion-label>
+      <ion-select [(ngModel)]="bankinfo" interface="popover" doneText="确定" cancelText="取消">
+        <ion-option value="请选择开户行">请选择开户行</ion-option>
+        <ion-option *ngFor="let item of bankinfolist" value="{{item.bankCode}}">{{item.bankName}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>开户支行信息</ion-label>
+      <ion-note item-end tappable (click)="xuanz1()" style="color: #333;margin-right: 0;width: 50%;display: -webkit-box !important;-webkit-box-orient: vertical !important;-webkit-line-clamp: 2 !important;overflow: hidden !important;text-align: right;">{{jd.occBankChildCode}} {{jd.occBankChildName}}</ion-note>
+      <ion-note mode="ios" class="Noteicon" item-end tappable (click)="xuanz1()"><ion-icon name="md-arrow-dropdown"></ion-icon></ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        账号
+      </ion-label>
+      <ion-input type="tel" maxlength="27" text-right placeholder="请输入绑定的银行卡" [(ngModel)]="occBankAccount"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <div padding>
+    <div style="font-size: 10px;">
+      点击申请鉴定按钮，关联银行账号里会收到一笔小额款项，将收到的金额填写上，最后点击“完成开户”，即可完成开户。
+    </div>
+    <button ion-button mode="ios" block color="primary" (tap)="jdlicense3()">申请开户</button>
+  </div>
+</ion-content>
+
+
+<!--上传图片弹出层-->
+<div *ngIf="isMask" (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <!--确认-->
+    <div class="maskConB">
+      <div class="offer">
+        <button mode="ios" class="close" data-tap-disabled="true" (click)="Distinguish =false;isMask = false;"></button>
+        <ion-list style="padding: 10px" text-center no-lines>
+          <ion-row>
+            <ion-col col-4>
+              <button class="buttxt"  data-tap-disabled="true" (click)="xz=1">{{xz1}}</button>
+            </ion-col>
+            <ion-col col-4>
+              <button class="buttxt"  data-tap-disabled="true" (click)="xuanz2()">{{xz2}}</button>
+            </ion-col>
+            <ion-col col-4>
+              <button class="buttxt"  data-tap-disabled="true" (click)="xuanz3()">{{xz3}}</button>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="xz==1" class="butgird">
+              <ion-col style="padding-top: 0;" *ngFor="let item of provincelist" data-tap-disabled="true" (click)="querycity(item.provinceCode);xz1=item.provinceName;" col-auto>
+                <button class="buttxtB" >{{item.provinceName}}</button>
+              </ion-col>
+          </ion-row>
+
+          <ion-row *ngIf="xz==2" class="butgird">
+            <ion-col style="padding-top: 0;" *ngFor="let item of citylist" data-tap-disabled="true" (click)="xz2=item.cityName;cityCode=item.cityCode;xz=3;querybankcnapsinfo();" col-auto>
+              <button class="buttxtB" >{{item.cityName}}</button>
+            </ion-col>
+          </ion-row>
+
+          <ion-input *ngIf="xz==3" type="text" maxlength="50" class="butinput" placeholder="请输入支行关键字" text-left [(ngModel)]="banktxt"></ion-input>
+          <img (tap)="draftcalculatesave()" src="assets/images/manage/sousuo.png" style="height: 18px;position: absolute;right: 11%;margin-top: 20px;z-index: 99"/>
+          <ion-row *ngIf="xz==3" class="butgird">
+            <div style="height: 35px"></div>
+            <ion-col style="padding-top: 0;" *ngFor="let item of banklist" tappable (click)="jd.occBankChildName=item.bankCnapsName;jd.occBankChildCode=item.bankCnapsCode;isMask=false;" col-auto>
+              <button class="buttxtB" >{{item.bankCnapsName}}</button>
+            </ion-col>
+          </ion-row>
+        </ion-list>
+      </div>
+    </div>
+  </ion-backdrop>
+</div>

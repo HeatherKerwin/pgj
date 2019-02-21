@@ -1,0 +1,89 @@
+page-mallExchangeOrder {
+	ion-content{
+    background: #eeeeee !important;
+
+    .city {
+      ion-list ion-item{
+        border: none !important;
+        padding: 5px !important;
+      }
+      //地址
+      ion-list.placeNot ion-item, ion-list.placeShow button {
+        border-image-width: 1px !important;
+        border-image-source: url(../assets/images/discount/bottomIcon.png) !important;
+        border-image-repeat: round;
+        border-image-slice: 0 0 10 0;
+      }
+      //无地址
+      ion-list.placeNot {
+        button {
+          font-size: 1.6rem !important;
+          color: #2d2d2d !important;
+          height: 50px !important;
+          border: #a3a3a3 dotted 0.55px !important;
+          ion-icon.placeIcon {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            background: url("../assets/images/discount/placeIcon.png") center no-repeat;
+            background-size: 100%;
+          }
+        }
+      }
+      //有地址
+      ion-list.placeShow {
+        button {
+          ion-avatar {
+            margin-right: 5px !important;
+          }
+          ion-row ion-col {
+            padding: 2px 0;
+          }
+          h3 {
+            color: #85878a;
+          }
+        }
+      }
+    }
+
+    ion-item:first-child{
+      border-bottom: 0.55px solid #c8c7cc;
+      .item-inner{
+        border-bottom: none !important;
+      }
+    }
+    //积分小图标
+    .jifenIcon{
+      width: 1.2rem;
+      height: 1.2rem;
+      min-width: 16px !important;
+      margin-right: 5px !important;
+      margin-top: 5px;
+      background: url("../assets/images/mall/dajifen.png") center no-repeat;
+      background-size: 100%;
+    }
+    .red{
+      color: #d43c33 !important;
+    }
+	}
+
+  ion-footer{
+    ion-list{
+      margin-bottom: 0 !important;
+      border: none !important;
+      ion-item{
+        border: none !important;
+        .item-inner{
+          padding-right: 0 !important;
+          button{
+            height: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+          }
+        }
+      }
+
+
+    }
+  }
+}

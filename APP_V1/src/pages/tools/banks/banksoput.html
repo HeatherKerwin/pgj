@@ -1,0 +1,41 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only (tap)="(tools)">
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      联行号查询
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <div style="padding-top:3px;padding-right:10px;padding-left:10px;height:50px;background: #fff;">
+    <ion-label  style="font-size:1.70rem; margin-left:6px;">
+      查询结果:
+    </ion-label>
+  </div>
+
+  <div class="banklist" *ngFor="let item of items">
+    <div class="textlist">
+      {{item.yinhangdesc}}
+    </div>
+    <div class="textlist">
+      支付联行号:{{item.id}}
+    </div>
+    <div class="textlist" text-warp>
+      地址: {{item.address}}
+    </div>
+    <button (click)='apiSev.Call(item.phone);' style="background-color:#ffffff;padding:0">
+      <div class="textlist" style="color:#B14C52;">
+        电话: {{item.phone}}
+      </div>
+    </button>
+  </div>
+  <div padding *ngIf=downall>暂无数据</div>
+
+
+</ion-content>

@@ -1,0 +1,77 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >确认订单</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <!--贴现地址-->
+  <div margin-top class="city">
+    <!--没有地址信息-->
+    <ion-list *ngIf="placeNot" class="placeNot">
+      <ion-item>
+        <button ion-button  mode="ios"  outline block item-end icon-left color="light" (tap)="chosePlace($event)">
+          <ion-icon class="placeIcon"></ion-icon>
+          请选择收货地址
+        </button>
+      </ion-item>
+    </ion-list>
+
+    <!--已有地址信息-->
+    <ion-list *ngIf="placeShow" class="placeShow" mode="ios">
+      <button ion-item (tap)="chosePlace($event)">
+        <ion-avatar item-start>
+          <img src="assets/images/discount/placeIcon.png" width="30" height="43">
+        </ion-avatar>
+        <ion-row no-padding>
+          <ion-col col-4>
+            {{place.consignee}}
+          </ion-col>
+          <ion-col col-6>
+            {{place.tel}}
+          </ion-col>
+        </ion-row>
+        <h3 text-wrap> {{place.address}} </h3>
+      </button>
+    </ion-list>
+  </div>
+
+  <ion-list>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img [src]="this.apiSev.getImgUrl+order.banner1">
+      </ion-thumbnail>
+      <h2 text-wrap>{{order.goodsName}}</h2>
+      <p text-right>库存{{order.stock}}</p>
+    </ion-item>
+    <ion-item>
+      <ion-icon class="jifenIcon"></ion-icon>
+      <span class="red">{{order.integral}}积分</span>
+      <button ion-button  mode="ios"  outline  item-end color="danger" (tap)="decr($event)">-</button>
+      <ion-note item-end>{{order.count}}</ion-note>
+      <button ion-button  mode="ios"  outline item-end color="danger" (tap)="incr($event)">+</button>
+    </ion-item>
+    <ion-item>
+      <ion-label>配送费</ion-label>
+      <ion-note item-end>包邮</ion-note>
+    </ion-item>
+    <ion-item class="itme-noborder textarea">
+      <ion-textarea name="description" id="" rows="6" maxlength="100" [(ngModel)]="order.remark" placeholder="请填写一个备注，100字以内！"></ion-textarea>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-list>
+    <ion-item>
+      <ion-label item-start>扣除 <span class="red">{{order.sumprice}}积分</span></ion-label>
+      <button ion-button full item-end class="black" [disabled]="isSave" (tap)="save($event)">提交订单</button>
+    </ion-item>
+  </ion-list>
+</ion-footer>

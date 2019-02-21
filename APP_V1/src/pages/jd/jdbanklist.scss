@@ -1,0 +1,67 @@
+page-jdbanklist {
+  ion-content {
+    ion-card {
+      padding: 10px 15px 10px 15px;
+      height: 100px;
+      box-shadow:3px 6px 42px 7px rgba(91,42,37,0.1) !important;
+      //icon
+      .card_icon {
+        width: auto;
+        height: 22px;
+        float: left;
+        margin-right: 8px;
+        margin-left: 10px;
+      }
+      //银行名称
+      .card_text{
+        height: 25px;
+        line-height: 23px;
+        font-size: 1.4rem;
+        color: #2D2D2D;
+      }
+      //可收票
+      .lvstart{
+        color: #8DCF76;
+        border: 1px solid #C5D2B3;
+        padding: 1px;
+        font-size: 1.2rem;
+        margin-left: 8px;
+      }
+      //银行卡卡号
+      .banknum{
+        font-weight: 600;
+        font-size: 1.6rem;
+        letter-spacing: 2px;
+        height: 25px;
+        line-height: 25px;
+        color: #666666;
+        margin-top: 5px;
+      }
+      //公司名称
+      .card_name {
+        color: #8B8A8A;
+        height: 25px;
+        line-height: 24px;
+        margin-top: 2px;
+        font-size: 1.5rem;
+      }
+
+      //添加对公
+      .add_card_bank {
+        color: #979797;
+        font-size: 1.6rem;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

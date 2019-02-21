@@ -1,0 +1,49 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      到期日提醒
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <ion-list>
+    <div text-center style="margin-top: 30%" *ngIf="guoqiLists.length<1">
+      <img src="assets/images/manage/nullData.png" style="width: 40%;">
+    </div>
+    <div class="manage1card" *ngFor="let item of guoqiLists; let i = index;" [attr.data-index]="i">
+      <ion-row>
+        <ion-col col-2>
+          <img *ngIf="item.draftType=='YZ'" src="assets/images/manage/yinzhi.png"  class="manage1img1" />
+          <img *ngIf="item.draftType=='YD'" src="assets/images/manage/yindian.png"  class="manage1img1" />
+          <img *ngIf="item.draftType=='SZ'" src="assets/images/manage/shangzhi.png"  class="manage1img1" />
+          <img *ngIf="item.draftType=='SD'" src="assets/images/manage/shangdian.png"  class="manage1img1" />
+        </ion-col>
+        <ion-col text-center col-3>
+          <div class="yingc"><span class="manage1mony">{{apiSev.dhpl(item.allmoney)}} </span>元</div>
+          <div class="mabage1text">票面金额</div>
+        </ion-col>
+        <ion-col text-center col-3>
+          <div class="yingc" style="margin-top: 2px;min-height: 19px">{{item.expiryDate | date:"yyyy-MM-dd"}}</div>
+          <div class="mabage1text">到期日期</div>
+        </ion-col>
+        <ion-col text-center col-4>
+          <div class="yingc" style="margin-top: 2px;min-height: 19px">{{item.bank}}</div>
+          <div class="mabage1text">承兑行</div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite1($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="加载更多...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

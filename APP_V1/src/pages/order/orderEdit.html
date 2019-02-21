@@ -1,0 +1,307 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios" style="border-bottom:0.65px solid #ccc">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only (tap)="close()">
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title mode="ios">修改报价</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <ion-card  mode="ios"  (tap)=bigpic()>
+    <ion-row  *ngIf="item.type1=='1'"  style="position:relative;">
+      <div  style="margin-left:13px;margin-top:11px;margin-bottom:11px;" >
+        <span ><img style="margin-top:2px;float:left;width:11px;height:15px;margin-right:8px;" src="assets/images/order/dingwei.png"> </span>
+        <span >所在城市</span> <span style="color:#d43c33">{{item.place}}</span>
+      </div>
+      <img *ngIf=item.is_designated src="assets/images/order/zhiding.png" style="position:absolute;top:0;right:0;width:35px;height:35px">
+    </ion-row>
+    <ion-row  *ngIf="item.type1=='1'" > <div  style="margin-left:13px;width:93%;height:2px;border-bottom:1px solid #e2e2e2">&nbsp;</div>
+    </ion-row>
+
+    <ion-row style="position:relative;padding-top:3px !important">
+      <ion-col col-auto style="padding-left:8px !important;">
+        <img style="width:35px;height:35px"
+             src="assets/images/order/{{apiSev.pjtypeimg(item.type1,item.order_type)}}.png">
+      </ion-col>
+      <ion-col col-6 style="padding-top:10px !important;">
+        <h2 style="font-size:15px;">到期日期<span>{{item.endtime}}</span></h2>
+      </ion-col>
+      <ion-col col-4 ion-end style="padding-right:18px !important;padding-top:11px !important;" text-right>
+        <span style="display:none" id="hdid"></span>
+        <span style="font-size:14px;color:#888;">剩余 </span><span style="font-size:16px;color:#e84c3d;" id="did">{{item.difDate}}</span>
+      </ion-col>
+      <img *ngIf="(item.is_designated&&item.type1=='2')" src="assets/images/order/zhiding.png" style="position:absolute;top:0;right:0;width:35px;height:35px">
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 style="padding-left:13px !important;padding-top:3px !important;padding-bottom:3px !important;">
+        <h3>金额{{item.allmoney}}万</h3>
+      </ion-col>
+      <ion-col col-8 text-right ion-end style="padding-left:3px !important;padding-top:3px !important;padding-bottom:3px !important;">
+        <span style="float:left"><h3>{{apiSev.pjtypeP(item.order_type,item.type1,item.type2,item.accept_time)}}</h3></span>
+        <span *ngIf="item.endorse>-1" style="float:left;margin-left:15px;"><h3>背书{{item.endorse}}手</h3></span>
+        <span *ngIf=apiSev.qiehuan(item.flaw_ticket) style="float:right;margin-right:10px"><h3>&nbsp;瑕疵票</h3></span>
+        <span *ngIf=apiSev.qiehuan(item.flaw_ticket) style="float:right;"><img src="assets/images/order/xiacipiao.png" style="margin-top:2px;width:15px;height:15px"></span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 style="padding-left:13px !important;padding-top:3px !important;padding-bottom:6px !important;">
+        <h3 *ngIf="item.order_type=='DISCOUNTRECORDSP'">承兑方:{{item.bank}}</h3>
+        <h3 *ngIf="item.order_type=='DISCOUNTRECORD'&&item.type1=='2'">承兑行:{{item.bank}}</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6 style="padding-left:13px !important;padding-top:3px !important;padding-bottom:6px !important;">
+        <span style="float:left"><img src="assets/images/order/riqi.png" style="margin-top:2px;width:15px;height:15px"></span>
+        <h3 style="color:#888;">&nbsp;计息天数{{item.jxts}}天</h3>
+      </ion-col>
+      <ion-col col-6 style="padding-left:8px !important;padding-top:3px !important;padding-bottom:6px !important;">
+          <span *ngIf=apiSev.shangmen(item.need_todoor,item.type1) style="float:left"><img
+            src="assets/images/order/shangmen.png" style="margin-top:2px;width:15px;height:15px"></span>
+        <h3 *ngIf=apiSev.shangmen(item.need_todoor,item.type1) style="color:#888;">&nbsp;不需要上门</h3>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <div  style="margin-left:13px;width:94%;height:2px;border-bottom:1px solid #e2e2e2">&nbsp;</div>
+    </ion-row>
+    <ion-row>
+      <ion-col style="padding-left: 13px" col-6>
+        <img style="height: 60px;max-width: 80px" src="{{apiSev.getOrderImgUrl+item.picpath}}">
+      </ion-col>
+
+      <ion-col class="card_pad" col-6>
+        <h3 *ngIf="itemPinfen.singleRate>0">成单率:{{apiSev.toFix(itemPinfen.singleRate*100,2)}}%</h3>
+        <h3 *ngIf="!(itemPinfen.singleRate>0)">成单率:&#45;&#45;</h3>
+        <h3>背书时间:{{itemPinfen.endorseTime}}</h3>
+        <h3>违约率:0%</h3>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+
+  <ion-card mode="ios">
+    <ion-row>
+      <ion-col col-8 style="padding-left:13px !important;padding-top:8px !important;">
+        <img id="hp1" src="assets/images/order/baojia.png" style="width:15px;height:16px;float:left;margin-top:4px">
+        <h2><span style="margin-left:3px;font-size:16px;color:#e84c3d;"><strong>我的报价</strong></span></h2>
+      </ion-col>
+      <ion-col col-4 text-right style="padding-left:8px !important;">
+        <button ion-button mode="ios" (tap)="Call()"
+                style="font-size:12px;margin:0px !important;padding:0px !important;height:20px;width:50px;text-align:center;">
+          计算器
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <div style="margin-left:13px;width:94%;height:2px;border-bottom:1px solid #e2e2e2">&nbsp;</div>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 style="padding-top:8px !important;padding-bottom:1px !important;">
+        <h3 style="font-size:15px;">共扣息(元)</h3>
+      </ion-col>
+      <ion-col col-4 style="padding-left:13px !important;padding-top:8px !important;padding-bottom:1px !important;">
+        <h3 style="font-size:15px;">每十万扣息</h3>
+      </ion-col>
+      <ion-col col-4 style="padding-right:13px !important;padding-top:8px !important;padding-bottom:1px !important;">
+        <h3 style="font-size:15px;">票款</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 style="padding-bottom:10px !important;padding-right:30px !important;" id="textCss">
+        <ion-input class="onbutter h7"  placeholder="请输入" (blur)="cibpay()" (ionChange)="Chage();" (keyup)="apiSev.check1($event)" type="tel" maxlength="8" [(ngModel)]="chgemoney"></ion-input>
+      </ion-col>
+      <ion-col col-4 style="padding-left:13px !important;padding-bottom:1px !important;">
+        <h3 style="font-size:15px;">{{apiSev.toFix(swjx,2)}}元</h3>
+      </ion-col>
+      <ion-col col-4 style="padding-right:13px !important;padding-bottom:1px !important;">
+        <h3 style="font-size:15px;">{{apiSev.toFix(discountpay,0)}}元</h3>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-item style="height: 35px;min-height: 35px;border-bottom: 1px solid #E2E2E2;" *ngIf="item.type1=='2'&&item.dist_v_acct_acct_no!=''&&item.dist_v_acct_acct_no!='undefined'&&item.dist_v_acct_acct_no!=null">
+    <ion-label fixed data-tap-disabled="true" (click)="payservice()" style="min-width: 200px !important;"><u class="blue">兴业数金服务费</u></ion-label>
+    <ion-note item-end><span style="color:#2cafec;">{{discounttxtys}}</span>元</ion-note>
+  </ion-item>
+
+  <ion-item style="height: 35px;min-height: 35px;border-bottom: 1px solid #E2E2E2;" *ngIf="item.type1=='2'&&item.dist_bind_id!=''&&item.dist_bind_id!='undefined'&&item.dist_bind_id!=null">
+    <ion-label fixed data-tap-disabled="true" (click)="payservice_jd()" style="min-width: 200px !important;"><u class="blue">鉴证服务费(含电子签章):</u></ion-label>
+    <ion-note item-end><span style="color:#2cafec;">{{discounttxtys}}</span>元</ion-note>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed style="min-width: 200px !important;">实际支付金额</ion-label>
+    <ion-note item-end ><span class="red">{{Actual}}</span>元</ion-note>
+  </ion-item>
+
+
+  <div padding-top style="width:100%;text-align:center;">
+    <div style="margin:0 auto;font-size:12px;color:#e84c3d">票方的票面金额-扣息金额=票方实际收到的票款</div>
+    <div style="margin:0 auto;font-size:12px;color:#e84c3d" *ngIf="item.dist_bind_id==null||item.dist_bind_id==''||item.dist_bind_id=='undefined'">票款+兴业数金服务费=您的实际支付金额</div>
+
+  </div>
+
+
+  <button ion-button mode="ios" *ngIf="item.cib_cancel==null" data-tap-disabled="true" (click)="SaveAlert()" margin
+          style="height:40px;width:90%;text-align:center;">修改报价
+  </button>
+  <button *ngIf="apiSev.getOrgTime(item.cib_cancel)" ion-button mode="ios" margin clear
+          style="margin-bottom:11px !important;height:40px;width:90%;text-align:center;">【资方已经申请取消订单】
+  </button>
+  <button *ngIf="apiSev.getBnsTime(item.cib_cancel)" ion-button mode="ios" margin clear
+          style="margin-bottom:11px !important;height:40px;width:90%;text-align:center;">【票方已经申请取消订单】
+  </button>
+
+
+</ion-content>
+
+<div *ngIf="isMask" (click)="backdropclick($event);isMask=false;isCostItem=false;isOffer=false;Guide=false;" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="maskCon">
+      <!--费用分项表-->
+      <div class="costItem" *ngIf="isCostItem">
+        <button mode="ios" class="close" (tap)="isMask = false;isCostItem = false;"></button>
+        <p text-center class="gridTitle">
+          费用分项表
+        </p>
+        <ion-row class="gridTop">
+          <ion-col>收费方：兴业数字金融股份有限公司
+          </ion-col>
+          <ion-col col-auto>单位：人民币（元）
+          </ion-col>
+        </ion-row>
+        <!--表格-->
+        <ion-grid>
+          <ion-row text-center>
+            <ion-col>
+              <div>项目</div>
+            </ion-col>
+            <ion-col class="lBorder rBorder">
+              <div>内容</div>
+            </ion-col>
+            <ion-col>
+              <div>费用</div>
+            </ion-col>
+          </ion-row>
+          <ion-row text-center align-items-center>
+            <ion-col>
+              <div>签证费用</div>
+            </ion-col>
+            <ion-col class="lBorder rBorder">
+              <div>根据交易金额按比例收取</div>
+            </ion-col>
+            <ion-col>
+              <div>0.6BP<br>(最低6元最高300元封顶)</div>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+        <p padding-right text-right class="red">
+          1BP=0.01%
+        </p>
+        <p class="maskBtn" text-center><input type="button" value="知道了" (tap)="isMask = false;isCostItem = false;"></p>
+
+      </div>
+
+      <div class="costItem" *ngIf="isCostItem_jd">
+        <button mode="ios" class="close" tappable (click)="newCancel()"></button>
+        <p text-center class="gridTitle">
+          费用分项表
+        </p>
+        <ion-row class="gridTop">
+          <ion-col>收费方：大同京东
+          </ion-col>
+          <ion-col col-auto>单位：人民币（元）
+          </ion-col>
+        </ion-row>
+        <!--表格-->
+        <ion-grid>
+          <ion-row text-center>
+            <ion-col>
+              <div>项目</div>
+            </ion-col>
+            <ion-col class="lBorder rBorder">
+              <div>内容</div>
+            </ion-col>
+            <ion-col>
+              <div>费用</div>
+            </ion-col>
+          </ion-row>
+          <ion-row text-center align-items-center>
+            <ion-col>
+              <div>银行承兑汇票</div>
+            </ion-col>
+            <ion-col class="lBorder rBorder">
+              <div>票面金额 200 万元以内，包括 200 万</div>
+            </ion-col>
+            <ion-col>
+              <div>免费</div>
+            </ion-col>
+          </ion-row>
+          <ion-row text-center align-items-center>
+            <ion-col>
+              <div>银行承兑汇票</div>
+            </ion-col>
+            <ion-col class="lBorder rBorder">
+              <div>票面金额 200 万以上</div>
+            </ion-col>
+            <ion-col>
+              <div>交易金额的 0.0025%，(单张收费最高 200 元封顶)</div>
+            </ion-col>
+          </ion-row>
+          <ion-row text-center align-items-center>
+            <ion-col>
+              <div>商业承兑汇票</div>
+            </ion-col>
+            <ion-col class="lBorder rBorder">
+              <div>不区分票面金额</div>
+            </ion-col>
+            <ion-col>
+              <div>交易金额的 0.02%，(单张收费最低 50 元，最高 300 元封顶)</div>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+        <p padding-right text-right class="red">
+          电子签章费用：5元
+        </p>
+        <p padding-right text-right class="red">
+          1BP=0.01%
+        </p>
+        <p class="maskBtn" text-center><input type="button" value="知道了" tappable (click)="newCancel()"></p>
+
+      </div>
+
+      <!--确认报价-->
+      <div class="offer" *ngIf="isOffer">
+        <button mode="ios" class="close" (tap)="isMask = false;isOffer = false;"></button>
+        <p text-center class="gridTitle">
+          确认报价
+        </p>
+        <ion-list no-lines>
+          <ion-item>
+            <ion-label>票方将收到的票款为：</ion-label>
+            <ion-note item-end margin-right><span class="red" margin-right>{{discountpayB}}</span>元</ion-note>
+          </ion-item>
+          <ion-item>
+            <ion-label>您的实际支付金额为：</ion-label>
+            <ion-note item-end margin-right><span class="blue" margin-right>{{Actual}}</span>元</ion-note>
+          </ion-item>
+        </ion-list>
+        <p text-center margin-top> 是否确定此次报价？</p>
+        <p text-center  class="maskBtn">
+          <input margin-right type="button" value="取消修改" (tap)="isMask = false;isOffer = false;" class="frame">
+          <input type="button" value="确认修改" (tap)="Save();isMask = false;isOffer = false;">
+        </p>
+      </div>
+
+      <div *ngIf="Guide">
+        <div class="Guidedate" (click)="isMask=false;isOffer=false;Guide=false;isCostItem = false;" [(ngStyle)]="guideDate">
+        </div>
+      </div>
+    </div>
+  </ion-backdrop>
+</div>

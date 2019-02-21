@@ -1,0 +1,80 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios" hideBackButton="true">
+    <ion-buttons>
+      <button ion-button icon-only (tap)="closeme()">
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      京东开户
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <ion-grid style="background-color:#FFFFFF;border-bottom: 15px solid #F5F5F5;text-align:center;">
+    <ion-row style="text-align:center">
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/duihao.png" style="height: 25px;"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/hongxian.png"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/two.png" style="height:25px;"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/huixian.png"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/hui.png" style="height:25px;"/></div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 text-left>
+        <div style="padding-left:6%;color: #d43c33;">申请绑定</div>
+      </ion-col>
+      <ion-col col-4>
+        <div style="color: #d43c33;">绑定审核</div>
+      </ion-col>
+      <ion-col col-4 text-right>
+        <div style="padding-right: 4%;">绑定完成</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list>
+    <div padding-top text-center *ngIf="bingDing" style="background-color:#FFF6E7;font-size: 1.6rem;border-bottom:1px solid #EFA02B;border-top:1px solid #EFA02B;height: 40px;">
+      <div style="color:#EFA02B;margin-top: -8px;">
+        审核失败
+      </div>
+    </div>
+    <ion-item style="border-top:0">
+      <ion-label>
+        公司名称
+      </ion-label>
+      <ion-input type="text" maxlength="100" text-right disabled [(ngModel)]="jdData.blicCompanyName"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="jdData.blicUscc!=''&&jdData.blicUscc!=null&&jdData.blicUscc!='undefined'">
+      <ion-label>
+        统一信用代码
+      </ion-label>
+      <ion-input type="text" maxlength="18" text-right disabled [(ngModel)]="jdData.blicUscc"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="jdData.blicCardNo!=''&&jdData.blicCardNo!=null&&jdData.blicCardNo!='undefined'">
+      <ion-label>
+        注册号
+      </ion-label>
+      <ion-input type="text" maxlength="18" text-right disabled [(ngModel)]="jdData.blicCardNo"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div text-center style="font-size: 1.5rem;color:#d43c33" *ngIf="bingDing">审核失败,请重新开户!</div>
+  <div padding>
+    <button ion-button mode="ios" block color="primary" disabled *ngIf="bingDings"><img src="assets/images/openaccount/shenhe.png" style="height:20px;padding-right: 5px;"/>审核中</button>
+    <button ion-button mode="ios" block color="primary"  *ngIf="bingDing" (tap)="Toopenaccount()" >重新开户</button>
+  </div>
+
+</ion-content>
+

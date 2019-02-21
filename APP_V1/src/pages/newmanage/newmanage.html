@@ -1,0 +1,389 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      票据管理
+    </ion-title>
+    <ion-buttons right style="margin-left:-26px;">
+      <button ion-button mode="ios" icon-only *ngIf="pet=='manage3'" tappable (click)="ToExportPage()" style="font-size: 12px;height: 24px;padding: 0 10px;border-radius: 3px;background: #d43c33">
+        导出
+      </button>
+      <button ion-button mode="ios" icon-only *ngIf="pet=='manage1'" tappable (click)="maskDiv=true;cdhtype=1;" style="font-size: 12px;height: 24px;padding: 0 10px;border-radius: 3px;background: #d43c33">
+        筛选
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-list *ngIf="zy1" (tap)="zy1=false;" style="position: absolute;z-index: 999;margin-top: -20px;height: 100%">
+  <img src="assets/images/manage/111@2x.png" style="height: 100%;" />
+</ion-list>
+
+<ion-list *ngIf="zy3" (tap)="zy3=false;" style="position: absolute;z-index: 999;margin-top: -20px;height: 100%">
+  <img src="assets/images/manage/8296@2x.png" style="height: 100%;" />
+</ion-list>
+
+<ion-list *ngIf="zy2" (tap)="zy2=false;" style="position: absolute;z-index: 999;margin-top: -20px;height: 100%">
+  <img src="assets/images/manage/888888@2x.png" style="height: 100%;" />
+</ion-list>
+
+<ion-list *ngIf="zy4" (tap)="zy4=false;" style="position: absolute;z-index: 999;margin-top: -20px;height: 100%">
+  <img src="assets/images/manage/8297@2x.png" style="height: 100%;" />
+</ion-list>
+
+<ion-list *ngIf="zy5" (tap)="zy5=false;" style="position: absolute;z-index: 999;margin-top: -20px;height: 100%">
+  <img src="assets/images/manage/15_2x.png" style="height: 100%;" />
+</ion-list>
+
+<ion-content style="background-color:#F5F5F5;">
+
+
+  <ion-fab style="z-index: 20;" *ngIf="pet=='manage4'||pet=='manage1'" bottom right>
+    <button (tap)="add()" style="height: 80px;width: 100px;margin: 0;padding: 0;background-color: rgba(0, 0, 0, 0);border-radius: 50px;bottom: 55px;" mode="ios">
+      <img src="assets/images/manage/souzuo.png" />
+    </button>
+  </ion-fab>
+
+  <!-- 切换 -->
+  <div class="segment-heard">
+    <ion-toolbar no-border-top>
+      <ion-segment [(ngModel)]="pet" mode="md">
+        <ion-segment-button value="manage1" (tap)="newsLists=[];pageNo1=1;initData1(1,'OUT')">
+          账簿
+        </ion-segment-button>
+        <ion-segment-button value="manage2" (tap)="draftcalculateget()">
+          预出货款票核算
+        </ion-segment-button>
+        <ion-segment-button value="manage3">
+          统计分析
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+  </div>
+  <div (swipe)="swipeEvent($event)">
+    <div class="toolbar-con" [ngSwitch]="pet">
+      <!-- 账簿 -->
+      <ion-list *ngSwitchCase="'manage4'">
+        <div class="manage1butbj">
+          <!--到期提醒-->
+          <div class="manage1dqtx">到期提醒</div>
+          <button ion-button mode="ios" class="manage1ckgd" (tap)="expireData()">查看更多 >></button>
+        </div>
+
+        <div class="manage1card" *ngFor="let item of guoqiLists; let i = index;" [attr.data-index]="i">
+          <ion-row>
+            <ion-col col-2>
+              <img *ngIf="item.draftType=='YZ'" src="assets/images/manage/yinzhi.png"  class="manage1img1" />
+              <img *ngIf="item.draftType=='YD'" src="assets/images/manage/yindian.png"  class="manage1img1" />
+              <img *ngIf="item.draftType=='SZ'" src="assets/images/manage/shangzhi.png"  class="manage1img1" />
+              <img *ngIf="item.draftType=='SD'" src="assets/images/manage/shangdian.png"  class="manage1img1" />
+            </ion-col>
+            <ion-col text-center col-3>
+              <div class="yingc"><span class="manage1mony">{{apiSev.dhpl(item.allmoney)}} </span>元</div>
+              <div class="mabage1text">票面金额</div>
+            </ion-col>
+            <ion-col text-center col-3>
+              <div class="yingc" style="margin-top: 2px;min-width: 19px;">{{item.expiryDate | date:"yyyy-MM-dd"}}</div>
+              <div class="mabage1text">到期日期</div>
+            </ion-col>
+            <ion-col text-center col-4>
+              <div class="yingc" style="margin-top: 2px;">{{item.bank}}</div>
+              <div class="mabage1text">承兑行</div>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div *ngIf="guoqiLists.length==[]" style="text-align: center;line-height: 49px;font-size: 1.6rem;color: #bfbfbf;" class="manage1card">
+          暂无提醒
+        </div>
+
+        <div class="manage1butbj">
+          <!--到期提醒-->
+          <div class="manage1dqtx">待入账提醒</div>
+          <button ion-button mode="ios" class="manage1ckgd" (tap)="admissionData()">查看更多 >></button>
+        </div>
+
+        <div class="manage1card" *ngFor="let item of drzLists; let i = index;" [attr.data-index]="i">
+          <ion-row>
+            <ion-col text-center col-4>
+              <div class="yingc"><span class="manage1mony">{{apiSev.dhpl(item.allmoney)}} </span>元</div>
+              <div class="mabage1text">票面金额</div>
+            </ion-col>
+            <ion-col text-center col-4>
+              <div class="yingc" style="margin-top: 2px;min-height: 19px;">{{item.inData | date:"yyyy-MM-dd"}}</div>
+              <div class="mabage1text">入账日期</div>
+            </ion-col>
+            <ion-col text-center col-4>
+              <div class="yingc" style="margin-top: 2px;min-height: 19px;">{{item.draftFrom}}</div>
+              <div class="mabage1text">来票公司</div>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div *ngIf="drzLists.length==[]" style="text-align: center;line-height: 49px;font-size: 1.6rem;color: #bfbfbf;" class="manage1card">
+          暂无提醒
+        </div>
+
+        <div class="manage1butbj">
+          <!--到期提醒-->
+          <div class="manage1dqtx">赎回提醒</div>
+          <button ion-button mode="ios" class="manage1ckgd" (tap)="pledgeData()">查看更多 >></button>
+        </div>
+
+        <div class="manage1card" *ngFor="let item of pledgeLists; let i = index;" [attr.data-index]="i">
+          <ion-row>
+            <ion-col text-center col-4>
+              <div class="yingc"><span class="manage1mony">{{apiSev.dhpl(item.allmoney)}} </span>元</div>
+              <div class="mabage1text">票面金额</div>
+            </ion-col>
+            <ion-col text-center col-4>
+              <div class="yingc"><span class="manage1mony">{{apiSev.dhpl(item.pledgeMoney)}} </span>元</div>
+              <div class="mabage1text">质押金额</div>
+            </ion-col>
+            <ion-col text-center col-4>
+              <div class="yingc" style="margin-top: 2px;min-height: 19px;">{{item.draftFrom}}</div>
+              <div class="mabage1text">来票公司</div>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div *ngIf="pledgeLists.length==[]" style="text-align: center;line-height: 49px;font-size: 1.6rem;color: #bfbfbf;" class="manage1card">
+          暂无提醒
+        </div>
+      </ion-list>
+
+      <ion-list *ngSwitchCase="'manage1'">
+        <div class="segment-heard" style="background-color: #ffffff;margin-top: 10px;height: 35px;">
+          <ion-toolbar style="height: 30px;line-height: 30px;" no-border-top>
+            <ion-segment [(ngModel)]="pet1" mode="md">
+              <ion-segment-button style="height: 30px !important;line-height: 30px !important;" value="me1" (tap)="newsLists=[];cdhtype='clean';pageNo1=1;initData1(1,'OUT')">
+                已出库
+              </ion-segment-button>
+              <ion-segment-button style="height: 30px !important;line-height: 30px !important;" value="me2" (tap)="newsLists=[];cdhtype='clean';pageNo1=1;initData1(1,'HOLD')">
+                持有中
+              </ion-segment-button>
+              <ion-segment-button style="height: 30px !important;line-height: 30px !important;" value="me4" (tap)="newsLists=[];cdhtype='clean';pageNo1=1;initData1(1,'PLEDGE')">
+                质押中
+              </ion-segment-button>
+              <ion-segment-button style="height: 30px !important;line-height: 30px !important;" value="me3" (tap)="newsLists=[];cdhtype='clean';pageNo1=1;initData1(1,'IN')">
+                待入账
+              </ion-segment-button>
+            </ion-segment>
+          </ion-toolbar>
+        </div>
+
+          <ion-list>
+            <ion-card *ngFor="let item of newsLists; let i = index;" [attr.data-index]="i">
+              <ion-row>
+                <ion-col text-left col-7>
+                  <img *ngIf="item.recordWay=='MEMBER'&&pet1=='me1'" src="assets/images/manage/shoudong.png" style="height: 17px;width: auto;float: left;margin-left: 7px;margin-right: 6px;" />
+                  <img *ngIf="item.recordWay=='SYSTEM'&&pet1=='me1'" src="assets/images/manage/xitong.png" style="height: 17px;width: auto;float: left;margin-left: 7px;margin-right: 6px;" />
+                  <div style="font-size: 1.3rem;color: #a3a3a3;">添加时间 {{item.createTime | date:"yyyy-MM-dd"}}</div>
+                </ion-col>
+                <ion-col text-right col-5>
+                  <!--编辑删除-->
+                  <button class="mepjbt" style="border-right: 1px solid #d9d9d9;padding-right: 10px;" (tap)="editmanage1Data(item)"><img src="assets/images/manage/bianji.png" /></button>
+                  <button class="mepjbt" (tap)="delData(item,i)"><img src="assets/images/manage/shanchu.png" /></button>
+                </ion-col>
+              </ion-row>
+              <div class="manage1cardB">
+                <ion-row *ngIf="pet1=='me1'||pet1=='me2'||pet1=='me4'">
+                  <ion-col style="height: 50px;border-right: 1px solid #d9d9d9;" text-center col-5>
+                    <div style="float: left">
+                      <img *ngIf="item.draftType=='YZ'" src="assets/images/manage/yinzhi.png" style="margin: 0;" class="manage1img1" />
+                      <img *ngIf="item.draftType=='YD'" src="assets/images/manage/yindian.png" style="margin: 0;" class="manage1img1" />
+                      <img *ngIf="item.draftType=='SZ'" src="assets/images/manage/shangzhi.png" style="margin: 0;" class="manage1img1" />
+                      <img *ngIf="item.draftType=='SD'" src="assets/images/manage/shangdian.png" style="margin: 0;" class="manage1img1" />
+                    </div>
+                    <div class="yingc"><span class="manage1mony">{{apiSev.dhpl(item.allmoney)}}</span></div>
+                    <div class="mabage1text">票面金额(元)</div>
+                  </ion-col>
+                  <ion-col *ngIf="pet1!='me4'" style="height: 50px;border-right: 1px solid #d9d9d9;" text-center col-3>
+                    <div class="yingc" style="margin-top: 2px;min-width: 19px;">{{item.expiryDate | date:"yyyy-MM-dd"}}</div>
+                    <div class="mabage1text">到期日期</div>
+                  </ion-col>
+                  <ion-col *ngIf="pet1=='me4'" style="height: 50px;border-right: 1px solid #d9d9d9;" text-center col-3>
+                    <div class="yingc" style="margin-top: 2px;min-width: 19px;">{{apiSev.dhpl(item.pledgeMoney)}}</div>
+                    <div class="mabage1text">质押金额(元)</div>
+                  </ion-col>
+                  <ion-col text-center col-4>
+                    <div class="yingc" style="margin-top: 2px;">{{item.bank}}</div>
+                    <div class="mabage1text">承兑行</div>
+                  </ion-col>
+                </ion-row>
+
+                <ion-row *ngIf="pet1=='me3'">
+                  <ion-col style="height: 50px;border-right: 1px solid #d9d9d9;" text-center col-6>
+                    <div class="yingc"><span class="manage1mony">{{apiSev.dhpl(item.allmoney)}}</span></div>
+                    <div class="mabage1text">票面金额(元)</div>
+                  </ion-col>
+                  <ion-col text-center col-6>
+                    <div class="yingc" style="margin-top: 2px;">{{item.inData | date:"yyyy-MM-dd"}}</div>
+                    <div class="mabage1text">入账日期</div>
+                  </ion-col>
+                </ion-row>
+
+              </div>
+
+              <div class="lptxt"><span style="margin-right: 5px;font-size: 1.2rem;color: #a3a3a3;width: 48px;">来票公司</span>{{item.draftFrom}}</div>
+              <div *ngIf="pet1=='me1'" class="lptxt" style="border-bottom: 0;border-top: 0"><span style="margin-right: 5px;font-size: 1.2rem;color: #a3a3a3;width: 48px;float: left;">去处</span>{{item.draftTo}}</div>
+              <ion-row *ngIf="pet1=='me2'">
+                <ion-col text-right col-12>
+                  <button ion-button mode="ios" class="chupiaobt" (tap)="outData(item)">去出票</button>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+          </ion-list>
+
+        <ion-infinite-scroll (ionInfinite)="doInfinite1($event)">
+          <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="加载更多...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+
+      </ion-list>
+
+
+
+
+      <ion-list *ngSwitchCase="'manage2'">
+        <div style="background-color: #FFFFFF;margin-top: 12px;height: 45px;">
+          <button class="managetxtbut" (tap)="hsmanageData()">
+            手动选择
+          </button>
+          <div style="text-align: left;margin-left: 10px;width: 75%;padding-top: 1px">
+            <ion-input class="manageinput" type="number" maxlength="13" placeholder="请输入预收货款总额  元" [(ngModel)]="manage2_allmoney"></ion-input>
+            <img (tap)="draftcalculatesave()" src="assets/images/manage/sousuo.png" style="height: 18px;position: absolute;margin-top: -25px;margin-left: 67%;"/>
+          </div>
+        </div>
+
+        <div *ngFor="let item of hsLists; let i = index;" [attr.data-index]="i" class="manage1card">
+          <ion-row>
+            <ion-col col-2>
+              <img *ngIf="item.draftType=='YZ'||item.draft_type=='YZ'" src="assets/images/manage/yinzhi.png" class="manage1img1" />
+              <img *ngIf="item.draftType=='YD'||item.draft_type=='YD'" src="assets/images/manage/yindian.png" class="manage1img1" />
+              <img *ngIf="item.draftType=='SZ'||item.draft_type=='SZ'" src="assets/images/manage/shangzhi.png" class="manage1img1" />
+              <img *ngIf="item.draftType=='SD'||item.draft_type=='SD'" src="assets/images/manage/shangdian.png" class="manage1img1" />
+            </ion-col>
+            <ion-col text-center col-3>
+              <div class="yingc"><span class="manage1mony">{{apiSev.dhpl(item.allmoney)}}</span></div>
+              <div class="mabage1text">票面金额(元)</div>
+            </ion-col>
+            <ion-col text-center col-3>
+              <div class="yingc" style="margin-top: 2px;min-height: 19px;">{{item.expiryDate | date:"yyyy-MM-dd"}}{{item.expiry_date | date:"yyyy-MM-dd"}}</div>
+              <div class="mabage1text">到期日期</div>
+            </ion-col>
+            <ion-col text-center col-4>
+              <div class="yingc" style="margin-top: 2px;min-height: 19px">{{item.bank}}</div>
+              <div class="mabage1text">承兑行</div>
+            </ion-col>
+          </ion-row>
+        </div>
+
+        <div class="manage1butbj">
+          <!--总计-->
+          <div style="border-left: 0;line-height: 15px;font-size: 1.5rem;" class="manage1dqtx">总计</div>
+          <div style="padding-right: 20px;line-height: 10px;font-size: 1.6rem;color: #d43c33;font-weight: 500;" class="manage1ckgd">{{apiSev.dhpl(hslistmoney)}} <span style="font-size: 1.2rem;color: #333;">元</span></div>
+        </div>
+
+        <div *ngIf="hsallmoney<hslistmoney" class="tishi">
+          <span>票据金额超出货款金额，您可以选择将以上票据的其中一张贴现（即出票、卖票），将收到的票款补足剩余货款。</span>
+          <button style="color: #7790fe;background-color: #F5F5F5;padding: 0;" (tap)="outCp()">去出票>></button>
+        </div>
+
+        <div *ngIf="hsallmoney>hslistmoney" class="tishi">
+          <span>票据金额不足以支付货款，您可以选择支付{{apiSev.dhpl(hsallmoney-hslistmoney)}}元现金，或者收一张票面{{apiSev.dhpl(hsallmoney-hslistmoney)}}元的票据支付。</span>
+          <button style="color: #7790fe;background-color: #F5F5F5;padding: 0;" (tap)="outCp()">去收票>></button>
+        </div>
+
+        <div style="height: 30px;line-height: 30px;text-align: right;margin-right: 5px;color: #7790fe;" (tap)="draftcalculatesave()">换一批</div>
+
+      </ion-list>
+
+
+      <ion-list *ngSwitchCase="'manage3'" class="discount" mode="ios">
+        <iframe style=" width: 100%; height: 100%;position: absolute;overflow: auto;border: none;"  id="iframe" sandbox="allow-scripts allow-top-navigation allow-pointer-lock allow-same-origin allow-popups allow-forms" [src]="browser.secUrl"  ></iframe>
+      </ion-list>
+
+    </div>
+  </div>
+</ion-content>
+
+
+<!--分享弹出层-->
+<div *ngIf="maskDiv" (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop style="z-index: 20" disable-activated role="presentation" tappable class="mask">
+    <div class="maskCon">
+      <ion-list>
+        <ion-list-header style="margin-top: 30px">
+          承兑行类型
+        </ion-list-header>
+        <ion-row>
+          <ion-col text-center col-4>
+            <button [ngClass]="{'activeCard': cdhtype==1}" tappable (click)="cdhtype=1">国股</button>
+          </ion-col>
+          <ion-col text-center col-4>
+            <button [ngClass]="{'activeCard': cdhtype==2}" tappable (click)="cdhtype=2">大商</button>
+          </ion-col>
+          <ion-col text-center col-4>
+            <button [ngClass]="{'activeCard': cdhtype==3}" tappable (click)="cdhtype=3">小商</button>
+          </ion-col>
+
+          <ion-col text-center col-4>
+            <button [ngClass]="{'activeCard': cdhtype==4}" tappable (click)="cdhtype=4">农商</button>
+          </ion-col>
+          <ion-col text-center col-4>
+            <button [ngClass]="{'activeCard': cdhtype==5}" tappable (click)="cdhtype=5">农信</button>
+          </ion-col>
+          <ion-col text-center col-4>
+            <button [ngClass]="{'activeCard': cdhtype==6}" tappable (click)="cdhtype=6">农合</button>
+          </ion-col>
+
+          <ion-col text-center col-4>
+            <button [ngClass]="{'activeCard': cdhtype==7}" tappable (click)="cdhtype=7">外资</button>
+          </ion-col>
+          <ion-col text-center col-4>
+            <button [ngClass]="{'activeCard': cdhtype==8}" tappable (click)="cdhtype=8">村镇</button>
+          </ion-col>
+        </ion-row>
+
+        <ion-list-header>
+          开始时间
+        </ion-list-header>
+        <ion-item
+          style="border: 1px solid #aaaaaa;border-radius: 5px;width: 90%;margin-left: 5%;min-height: 30px;height: 38px;">
+          <ion-datetime style="padding: 0;" displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" [max]="2100-12-31" [(ngModel)]="startTime"
+                        doneText="确定" cancelText="取消"></ion-datetime>
+          <ion-note item-end class="calendarIcon"></ion-note>
+        </ion-item>
+
+        <ion-list-header>
+          结束时间
+        </ion-list-header>
+        <ion-item
+          style="border: 1px solid #aaaaaa;border-radius: 5px;width: 90%;margin-left: 5%;min-height: 30px;height: 38px;">
+          <ion-datetime style="padding: 0;" displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" [max]="2100-12-31" [(ngModel)]="endTime"
+                        doneText="确定" cancelText="取消"></ion-datetime>
+          <ion-note item-end class="calendarIcon"></ion-note>
+        </ion-item>
+      </ion-list>
+
+      <ion-footer>
+        <ion-list>
+          <ion-row>
+            <ion-col text-center col-6>
+              <button class="checkbutton" tappable (click)="cleanData()">清空</button>
+            </ion-col>
+
+            <ion-col text-center col-6>
+              <button  class="checkbutton" tappable (click)="newsLists=[];pageNo1=1;initData1(1,recordType);maskDiv=false">确认</button>
+            </ion-col>
+          </ion-row>
+        </ion-list>
+      </ion-footer>
+    </div>
+  </ion-backdrop>
+</div>

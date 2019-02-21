@@ -1,0 +1,104 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      预出货款核算
+    </ion-title>
+    <ion-buttons right style="margin-left:-26px;">
+      <button ion-button mode="ios" icon-only  style="font-size: 14px;height: 24px;padding: 0 10px;color: #d43c33 !important;" (tap)="popData()">系统核算
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <ion-list>
+    <div (tap)="item.xuanz=1;countData(); backgroundchager=i" class="manage1card" [ngClass]="{'colorChange': backgroundchager==i}" *ngFor="let item of apiSev.hsLists; let i = index;" [attr.data-index]="i">
+      <img *ngIf="item.xuanz==0;" src="assets/images/manage/555_03.png" class="manage2img"/>
+      <img *ngIf="item.xuanz==1" src="assets/images/manage/863_03.png" class="manage2img"/>
+      <ion-row>
+        <ion-col col-2>
+          <img *ngIf="item.draftType=='YZ'" src="assets/images/manage/yinzhi.png" class="manage1img1"/>
+          <img *ngIf="item.draftType=='YD'" src="assets/images/manage/yindian.png" class="manage1img1"/>
+          <img *ngIf="item.draftType=='SZ'" src="assets/images/manage/shangzhi.png" class="manage1img1"/>
+          <img *ngIf="item.draftType=='SD'" src="assets/images/manage/shangdian.png" class="manage1img1"/>
+        </ion-col>
+        <ion-col text-center col-3>
+          <div class="yingc"><span class="manage1mony">{{apiSev.dhpl(item.allmoney)}} </span>元</div>
+          <div class="mabage1text">票面金额</div>
+        </ion-col>
+        <ion-col text-center col-3>
+          <div class="yingc" style="margin-top: 2px;min-height: 19px">{{item.expiryDate | date:"yyyy-MM-dd"}}</div>
+          <div class="mabage1text">到期日期</div>
+        </ion-col>
+        <ion-col text-center col-4>
+          <div class="yingc" style="margin-top: 2px;min-height: 19px">{{item.bank}}</div>
+          <div class="mabage1text">承兑行</div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite1($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="加载更多...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+
+<ion-footer style="z-index: 22">
+  <button *ngIf="!maskDiv" ion-button mode="ios" text-center (tap)="addHsData()" class="manage2xuanzhong">
+    已选中{{count}}张票据
+  </button>
+  <ion-list>
+    <ion-item style="min-height: 35px;border-top: 0.5px solid #d43c33 !important;">
+      <ion-label item-start>总计 <span class="red">{{apiSev.dhpl(countmoeny)}}元</span></ion-label>
+      <button ion-button full item-end class="black" (tap)="draftcalculatesave()">保存方案</button>
+    </ion-item>
+  </ion-list>
+</ion-footer>
+
+
+
+<!--分享弹出层-->
+<div *ngIf="maskDiv" (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop style="z-index: 20" disable-activated role="presentation" tappable class="mask">
+    <div class="maskCon">
+      <ion-list style="background-color: #FFFFFF">
+        <div>
+          <button ion-button mode="ios" class="buttonclick"><ion-icon style="margin-right: 4px" name="ios-trash-outline"></ion-icon>清空</button>
+          <div text-center style="height: 30px;line-height: 31px;font-size: 1.6rem;">已选中3张票据</div>
+        </div>
+
+        <div class="manage1card" *ngFor="let item of apiSev.hsLists; let i = index;" [attr.data-index]="i">
+          <img src="assets/images/manage/8689_03.png" class="manage2img"/>
+          <ion-row>
+            <ion-col col-2>
+              <img *ngIf="item.draftType=='YZ'" src="assets/images/manage/yinzhi.png"  class="manage1img1" />
+              <img *ngIf="item.draftType=='YD'" src="assets/images/manage/yindian.png"  class="manage1img1" />
+              <img *ngIf="item.draftType=='SZ'" src="assets/images/manage/shangzhi.png"  class="manage1img1" />
+              <img *ngIf="item.draftType=='SD'" src="assets/images/manage/shangdian.png"  class="manage1img1" />
+            </ion-col>
+            <ion-col text-center col-3>
+              <div class="yingc"><span class="manage1mony">{{apiSev.dhpl(item.allmoney)}} </span>元</div>
+              <div class="mabage1text">票面金额</div>
+            </ion-col>
+            <ion-col text-center col-3>
+              <div class="yingc" style="margin-top: 2px;min-height: 19px;">{{item.expiryDate | date:"yyyy-MM-dd"}}</div>
+              <div class="mabage1text">到期日期</div>
+            </ion-col>
+            <ion-col text-center col-4>
+              <div class="yingc" style="margin-top: 2px;">{{item.bank}}</div>
+              <div class="mabage1text">承兑行</div>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-list>
+    </div>
+  </ion-backdrop>
+</div>

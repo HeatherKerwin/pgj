@@ -1,0 +1,41 @@
+page-opinion {
+  ion-content {
+    ion-list {
+      .opinitem {
+        margin:0 auto;
+        width:90%;
+        margin-top:12px;
+        border:1px solid #F5F5F5;
+        padding-left:10px;
+        border-top:0 !important;
+        .textareaop{
+          height:220px;
+          width:100%;
+          overflow:auto;
+          word-break:break-all;
+        }
+      }
+    }
+  }
+  .cn-all {
+    .loginBtn {
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      border-radius:8px;
+      margin:0 auto;
+      width:91%;
+      height:48px;
+      margin-top:12px;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,39 @@
+page-signature {
+  .divlist{
+    margin-top: 15px;
+  }
+  ion-footer{
+    height: 75px !important;
+    min-height: 75px;
+    max-height: 75px;
+    background: #E6E6E6;
+    .offbutter{
+      border: 1px solid #d43c33;
+      width: 50%;
+      height: 25px;
+      float: right;
+      border-radius: 6px;
+      background: #f5f5f5;
+      color: #d43c33;
+    }
+    .onbutter{
+      width: 50%;
+      height: 25px;
+      border: 1px solid #d43c33;
+      border-radius: 6px;
+      background: #d43c33;
+      color: #fff;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

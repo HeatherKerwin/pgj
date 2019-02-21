@@ -1,0 +1,238 @@
+[
+  {
+    "file": "assets/fonts/ionicons.eot",
+    "hash": "bdf1d30681cf87986c385eea78e8de9a"
+  },
+  {
+    "file": "assets/fonts/ionicons.scss",
+    "hash": "c1fdfabf9cbd412b444f064d27641f10"
+  },
+  {
+    "file": "assets/fonts/ionicons.svg",
+    "hash": "d9496a234c81179afbca6bf5959cc30a"
+  },
+  {
+    "file": "assets/fonts/ionicons.ttf",
+    "hash": "74c652671225d6ded874a648502e5f0a"
+  },
+  {
+    "file": "assets/fonts/ionicons.woff",
+    "hash": "81414686e99c00d2921e03dd53c0ab04"
+  },
+  {
+    "file": "assets/fonts/ionicons.woff2",
+    "hash": "311d81961c5880647fec7eaca1221b2a"
+  },
+  {
+    "file": "assets/fonts/noto-sans-bold.ttf",
+    "hash": "a165a42685795361b25593effb32fdb1"
+  },
+  {
+    "file": "assets/fonts/noto-sans-bold.woff",
+    "hash": "ce3d777f2c41cca1494021cfa3fcd72c"
+  },
+  {
+    "file": "assets/fonts/noto-sans-regular.ttf",
+    "hash": "2fd9c16b805724d590c0cff96da070a4"
+  },
+  {
+    "file": "assets/fonts/noto-sans-regular.woff",
+    "hash": "ce8ba1a4ff970db896192c41fc3c96b1"
+  },
+  {
+    "file": "assets/fonts/noto-sans.scss",
+    "hash": "47d5f7264952ccee8cead7b6dcb6d1bd"
+  },
+  {
+    "file": "assets/fonts/roboto-bold.ttf",
+    "hash": "1f4fd7e4df65487f07ba9148f7ca095d"
+  },
+  {
+    "file": "assets/fonts/roboto-bold.woff",
+    "hash": "43183beef21370d8a4b0d64152287eba"
+  },
+  {
+    "file": "assets/fonts/roboto-bold.woff2",
+    "hash": "28d80f43ae4cc35f19e1f1a6ab670f25"
+  },
+  {
+    "file": "assets/fonts/roboto-light.ttf",
+    "hash": "9ff15bd34ea83e4dd3f23c20c7f5090e"
+  },
+  {
+    "file": "assets/fonts/roboto-light.woff",
+    "hash": "7e2d32e7141050d758a38b4ec96390c0"
+  },
+  {
+    "file": "assets/fonts/roboto-light.woff2",
+    "hash": "a826ff848e9f52b1732fed7d154afa97"
+  },
+  {
+    "file": "assets/fonts/roboto-medium.ttf",
+    "hash": "a937e2cae14e68262a45aa91204c2fdf"
+  },
+  {
+    "file": "assets/fonts/roboto-medium.woff",
+    "hash": "0f3b7101a8adc1afe1fbe89775553c32"
+  },
+  {
+    "file": "assets/fonts/roboto-medium.woff2",
+    "hash": "b2c9c262e089411e20689ed393c00796"
+  },
+  {
+    "file": "assets/fonts/roboto-regular.ttf",
+    "hash": "07f8fb6acbabeb10d3fad9ab02d65e0b"
+  },
+  {
+    "file": "assets/fonts/roboto-regular.woff",
+    "hash": "f94d5e5102359961c44a1da1b58d37c9"
+  },
+  {
+    "file": "assets/fonts/roboto-regular.woff2",
+    "hash": "e6b9d54811307f98da62eae992ae05ba"
+  },
+  {
+    "file": "assets/fonts/roboto.scss",
+    "hash": "e7c30075bc0f0b11422bfbdb2236f9e7"
+  },
+  {
+    "file": "assets/icon/favicon.ico",
+    "hash": "0350f4b3a2067110b1e642ee5931a38a"
+  },
+  {
+    "file": "assets/images/background.png",
+    "hash": "1bb98cca034609a88dbd94836c46d8db"
+  },
+  {
+    "file": "assets/images/benjin.svg",
+    "hash": "6047d42a008303ee86468a5452a1d756"
+  },
+  {
+    "file": "assets/images/dakuan.svg",
+    "hash": "249772f7e29b7c763941638a58625b80"
+  },
+  {
+    "file": "assets/images/dakuanpipei.svg",
+    "hash": "3b7155d63b431f2d6be0f933b4ee40af"
+  },
+  {
+    "file": "assets/images/home.svg",
+    "hash": "90489f79c4216800eb632bb76d08e838"
+  },
+  {
+    "file": "assets/images/huxiang.svg",
+    "hash": "bd7a83fcba919c71fdbd5f6d35fd04e1"
+  },
+  {
+    "file": "assets/images/jiangjin.svg",
+    "hash": "4188b87db484fa20a8687a4e31108622"
+  },
+  {
+    "file": "assets/images/level0@2x.png",
+    "hash": "43ad050b636a06bbd337888aa368fcb1"
+  },
+  {
+    "file": "assets/images/level1@2x.png",
+    "hash": "57fc59f9622468402fd3e8bd03f2ea7d"
+  },
+  {
+    "file": "assets/images/level2@2x.png",
+    "hash": "b75cc793d8850f621ffb680ee2bee7f0"
+  },
+  {
+    "file": "assets/images/logo.svg",
+    "hash": "c4848a6e68580b1208cd66c3701257d9"
+  },
+  {
+    "file": "assets/images/me.svg",
+    "hash": "c43b3111a9b64e42fc57b4c9e9bce5b3"
+  },
+  {
+    "file": "assets/images/melogo.png",
+    "hash": "cdd083485c8350a0d54ac2cc3c1b208e"
+  },
+  {
+    "file": "assets/images/noData.png",
+    "hash": "31b5d0b19b30c147546cdaa5f076fde6"
+  },
+  {
+    "file": "assets/images/notice.svg",
+    "hash": "6d9ef83543629cc738f89ebb0f0a9871"
+  },
+  {
+    "file": "assets/images/paidan.png",
+    "hash": "524f70a0026e251a58c15b50f6ff6e29"
+  },
+  {
+    "file": "assets/images/password.svg",
+    "hash": "e7a99a41b706a2e75110419c2166184e"
+  },
+  {
+    "file": "assets/images/phone.svg",
+    "hash": "1b1432414bfe3dc71682374846c01e5b"
+  },
+  {
+    "file": "assets/images/pipei.svg",
+    "hash": "3b7155d63b431f2d6be0f933b4ee40af"
+  },
+  {
+    "file": "assets/images/pocket.svg",
+    "hash": "cd241949ab42f8426823466ce58ed26c"
+  },
+  {
+    "file": "assets/images/shoukuan.svg",
+    "hash": "3073ab83e6efed26f52acc37ccce71ac"
+  },
+  {
+    "file": "assets/images/shoukuanpipei.svg",
+    "hash": "942557bd4e8d6bdd72a876f83d08b70d"
+  },
+  {
+    "file": "assets/images/signed.svg",
+    "hash": "fcd1216dbdf5d1cd075d0de4ceaaf223"
+  },
+  {
+    "file": "assets/images/signin.svg",
+    "hash": "e4d3023e9be5136b04e47e5de5145a10"
+  },
+  {
+    "file": "assets/images/team.svg",
+    "hash": "6aa5a5e0bda17050b61c5a9bfab34687"
+  },
+  {
+    "file": "assets/images/unsign.svg",
+    "hash": "fcd1216dbdf5d1cd075d0de4ceaaf223"
+  },
+  {
+    "file": "assets/images/yuanshigu.svg",
+    "hash": "0af85d85f5fea5e15d374d288b4bddb0"
+  },
+  {
+    "file": "build/main.css",
+    "hash": "389630945e82536aeb52536c1babd896"
+  },
+  {
+    "file": "build/main.js",
+    "hash": "8cb34415028de80fe6a3028d1d931850"
+  },
+  {
+    "file": "build/polyfills.js",
+    "hash": "52790b2b7cffe55df912cfe9301a6b68"
+  },
+  {
+    "file": "build/sw-toolbox.js",
+    "hash": "2770efb889cc10c4de88d0b746c2a13c"
+  },
+  {
+    "file": "index.html",
+    "hash": "dc41a38a51080220c08a6f08a5fdf8d5"
+  },
+  {
+    "file": "manifest.json",
+    "hash": "df9b99468d4bd4cf2fee5d24ed9badbf"
+  },
+  {
+    "file": "service-worker.js",
+    "hash": "03a7c709333c4ab0450b0fc2a244ff07"
+  }
+]

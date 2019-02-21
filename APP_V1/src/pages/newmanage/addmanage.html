@@ -1,0 +1,187 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      新增票据
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-list *ngIf="zy6" (tap)="zy6=false;" style="position: absolute;z-index: 999;margin-top: -20px;height: 100%">
+  <img src="assets/images/manage/8295@2x.png" style="height: 100%;" />
+</ion-list>
+
+<ion-content style="background-color:#F5F5F5;">
+  <div class="segment-heard">
+    <ion-toolbar no-border-top>
+      <ion-segment [(ngModel)]="pet" mode="md">
+        <ion-segment-button value="manage1" (tap)="discounttype='YD'">
+          已出库
+        </ion-segment-button>
+        <ion-segment-button value="manage2" (tap)="discounttype='YD'">
+          持有中
+        </ion-segment-button>
+        <ion-segment-button value="manage4" (tap)="discounttype='YD'">
+          质押中
+        </ion-segment-button>
+        <ion-segment-button value="manage3" (tap)="discounttype='YD'">
+          待入账
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+  </div>
+
+  <!--票类型-->
+  <ion-list style="margin-top: 10px;background-color: #ffffff;height: 100%;">
+    <ion-row class="addrow" *ngIf="pet=='manage1'||pet=='manage2'||pet=='manage4'">
+      <ion-col text-center col-3>
+        <button class="colbutton" [ngClass]=" {'activedBtn': discounttype=='YD'}" (tap)="discounttype='YD'">银电</button>
+      </ion-col>
+      <ion-col text-center col-3>
+        <button class="colbutton" [ngClass]=" {'activedBtn': discounttype=='YZ'}" (tap)="discounttype='YZ'">银纸</button>
+      </ion-col>
+      <ion-col text-center col-3>
+        <button class="colbutton" [ngClass]=" {'activedBtn': discounttype=='SD'}" (tap)="discounttype='SD'">商电</button>
+      </ion-col>
+      <ion-col text-center col-3>
+        <button class="colbutton" [ngClass]=" {'activedBtn': discounttype=='SZ'}" (tap)="discounttype='SZ'">商纸</button>
+      </ion-col>
+    </ion-row>
+    <!--选择时间-->
+    <ion-row class="newion_col">
+      <ion-col col-6 *ngIf="pet=='manage1'">
+        <ion-item style="min-height: 30px;height: 30px;">
+          <ion-label>
+            贴现日期
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6 *ngIf="pet=='manage1'||pet=='manage2'||pet=='manage4'">
+        <ion-item style="min-height: 30px;height: 30px;">
+          <ion-label>
+            到期日期
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6 *ngIf="pet=='manage2'||pet=='manage4'">
+        <ion-item style="min-height: 30px;height: 30px;">
+          <ion-label *ngIf="pet!='manage4'">
+            提醒日期
+          </ion-label>
+          <ion-label *ngIf="pet=='manage4'">
+            赎回提醒
+          </ion-label>
+        </ion-item>
+      </ion-col>
+
+
+      <ion-col col-6 *ngIf="pet=='manage1'">
+        <ion-item style="border: 1px solid #aaaaaa;border-radius: 5px;width: 90%;margin-left: 5%;min-height: 30px;height: 38px;">
+          <ion-datetime style="padding: 0;" displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="manage.tiexianDate" [max]="2100-12-31"
+                        doneText="确定" cancelText="取消"></ion-datetime>
+          <ion-note item-end class="calendarIcon"></ion-note>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6 *ngIf="pet=='manage1'||pet=='manage2'||pet=='manage4'">
+        <ion-item style="border: 1px solid #aaaaaa !important;border-radius: 5px;width: 90%;margin-left: 5%;min-height: 30px;height: 38px;">
+          <ion-datetime style="padding: 0;" displayFormat="YYYY-MM-DD" [(ngModel)]="manage.expiryDate" (ionChange)="timechanger()" [min]="manage.tiexianDate" [max]="2100-12-31"
+                        doneText="确定" cancelText="取消"></ion-datetime>
+          <ion-note item-end class="calendarIcon"></ion-note>
+        </ion-item>
+      </ion-col>
+
+      <!--质押到期日期-->
+      <ion-col col-6 *ngIf="pet=='manage4'">
+        <ion-item style="border: 1px solid #aaaaaa;border-radius: 5px;width: 90%;margin-left: 5%;min-height: 30px;height: 38px;">
+          <ion-datetime style="padding: 0;" displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="manage.expirySDate" [min]="manage.tiexianDate" [max]="2100-12-31"
+                        doneText="确定" cancelText="取消"></ion-datetime>
+          <ion-note item-end class="calendarIcon"></ion-note>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-6 *ngIf="pet=='manage2'">
+        <ion-item style="border: 1px solid #aaaaaa !important;border-radius: 5px;width: 90%;margin-left: 5%;min-height: 30px;height: 38px;">
+          <ion-datetime style="padding: 0;" displayFormat="YYYY-MM-DD" [(ngModel)]="manage.noticeDate" [min]="manage.min" [max]="2100-12-31"
+                        doneText="确定" cancelText="取消"></ion-datetime>
+          <ion-note item-end class="calendarIcon"></ion-note>
+        </ion-item>
+      </ion-col>
+      <ion-col style="margin-top: 5px;" *ngIf="pet=='manage4'" col-12>
+        <div style="margin-left: 3%;font-size: 1.5rem;">质押日期</div>
+        <ion-item style="border: 1px solid #aaaaaa !important;border-radius: 5px;width: 65%;margin-left: 2.5%;min-height: 30px;height: 38px;margin-top: 5px;margin-bottom: 5px;">
+          <ion-datetime style="padding: 0;" displayFormat="YYYY-MM-DD" [(ngModel)]="manage.tiexianDate" [max]="2100-12-31" doneText="确定" cancelText="取消"></ion-datetime>
+          <ion-note item-end class="calendarIcon"></ion-note>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12 *ngIf="pet=='manage1'||pet=='manage2'||pet=='manage4'">
+        <ion-item style="border: 1px solid #aaaaaa !important;border-radius: 5px;width: 65%;margin-left: 2.5%;min-height: 30px;height: 38px;margin-top: 10px;margin-bottom: 5px;">
+          <ion-input type="text" maxlength="50" placeholder="承兑行" [(ngModel)]="manage.bank"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col *ngIf="pet=='manage3'" col-12>
+        <div style="margin-left: 3%;font-size: 1.5rem;">入账日期</div>
+        <ion-item style="border: 1px solid #aaaaaa !important;border-radius: 5px;width: 65%;margin-left: 2.5%;min-height: 30px;height: 38px;margin-top: 5px;margin-bottom: 5px;">
+          <ion-datetime style="padding: 0;" displayFormat="YYYY-MM-DD" [(ngModel)]="manage.inData" [min]="manage.min"
+                        [max]="2100-12-31"
+                        doneText="确定" cancelText="取消"></ion-datetime>
+          <ion-note item-end class="calendarIcon"></ion-note>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12 *ngIf="pet=='manage1'||pet=='manage2'||pet=='manage4'">
+        <ion-item style="border: 1px solid #aaaaaa !important;border-radius: 5px;width: 65%;margin-left: 2.5%;min-height: 30px;height: 38px;margin-top: 5px;margin-bottom: 5px;">
+          <ion-input type="number" maxlength="30" placeholder="票号（选填）" [(ngModel)]="manage.draftNo"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12>
+        <!--清空-->
+        <button style="position: absolute;left: 73%;background-color: #ffffff;padding: 0;height: 75px;width: 75px;margin-top: -30px;z-index: 5" ion-button mode="ios" (tap)="cleraData()">
+          <img src="assets/images/manage/qingkong.png" />
+        </button>
+        <!--保存-->
+        <button (tap)="draftrecordsave()" style="position: absolute;left: 72.5%;background-color: #ffffff;padding: 0;height: 80px;width: 80px;margin-top: 46px;z-index: 5;" ion-button mode="ios">
+          <img src="assets/images/manage/baocun.png" />
+        </button>
+        <ion-item style="border: 1px solid #aaaaaa !important;border-radius: 5px;width: 65%;margin-left: 2.5%;min-height: 30px;height: 38px;margin-top: 5px;margin-bottom: 5px;">
+          <ion-input type="number" maxlength="13" placeholder="票面金额" [(ngModel)]="manage.allmoney"></ion-input>
+          <ion-note style="color: #333;" item-end>万元</ion-note>
+        </ion-item>
+      </ion-col>
+
+      <ion-item style="border: 1px solid #aaaaaa !important;border-radius: 5px;width: 65%;margin-left: 2.5%;min-height: 30px;height: 38px;margin-top: 5px;margin-bottom: 5px;" *ngIf="pet=='manage4'">
+        <ion-input type="number" maxlength="13" placeholder="质押金额" [(ngModel)]="manage.pledgemoney"></ion-input>
+        <ion-note style="color: #333;" item-end>元</ion-note>
+      </ion-item>
+
+      <ion-col *ngIf="pet=='manage1'" style="margin-top: 5px;" col-12>
+        <div *ngIf="manage.allmoney!=null&&manage.allmoney!=''&&manage.allmoney!='undefined'&&manage.txje!=null&&manage.txje!=''&&manage.txje!='undefined'" style="position: absolute;left: 45%;margin-top: -1px">
+          <div>总扣息</div>
+          <div class="yingc" style="color: #d43c33;width: 100%;">{{((manage.allmoney*10000)-manage.txje).toFixed(2)}}元</div>
+        </div>
+        <ion-item style="border: 1px solid #aaaaaa !important;border-radius: 5px;width: 40%;margin-left: 2.5%;min-height: 30px;height: 38px;margin-bottom: 5px;">
+          <ion-input type="text" maxlength="13" placeholder="实收票款" [(ngModel)]="manage.txje"></ion-input>
+          <ion-note style="color: #333;" item-end>元</ion-note>
+        </ion-item>
+      </ion-col>
+      <ion-col *ngIf="pet=='manage3'||pet=='manage4'" col-12>
+        <ion-item style="border: 1px solid #aaaaaa !important;border-radius: 5px;width: 65%;margin-left: 2.5%;min-height: 100px;height: 100px;margin-top: 5px;margin-bottom: 5px;">
+          <ion-textarea class="textareaop" rows="10" type="text" maxlength="300" [(ngModel)]="manage.draftFrom" text-left placeholder="预收票据 来票公司（选填）"> </ion-textarea>
+        </ion-item>
+      </ion-col>
+      <ion-col *ngIf="pet=='manage1'||pet=='manage2'" col-12>
+        <ion-item style="border: 1px solid #aaaaaa !important;border-radius: 5px;width: 65%;margin-left: 2.5%;min-height: 100px;height: 100px;margin-top: 5px;margin-bottom: 5px;">
+          <ion-textarea class="textareaop" rows="10" type="text" maxlength="300" [(ngModel)]="manage.draftFrom" text-left placeholder="来票公司（选填）"> </ion-textarea>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12 *ngIf="pet=='manage1'||pet=='manage2'||pet=='manage4'">
+        <ion-item style="border: 1px solid #aaaaaa !important;border-radius: 5px;width: 65%;margin-left: 2.5%;min-height: 100px;height: 100px;margin-top: 5px;margin-bottom: 5px;">
+          <ion-textarea class="textareaop" rows="10" type="text" maxlength="300" [(ngModel)]="manage.draftTo" text-left placeholder="票据去处（选填）"> </ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,19 @@
+<ion-header mode="ios">
+  <ion-navbar mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title mode="ios">重置密码</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-input type="tel" value="{{mobile}}" [(ngModel)]="mobile" placeholder="请输入手机号码"></ion-input>
+    </ion-item>
+    <div style="color: #e84c3d;font-size: 12px;line-height: 30px;margin-left: 5px;">*请输入与票据管家绑定的手机号码</div>
+    <button ion-button block style="margin-top:20px" mode="ios" class="nextBtn" (tap)="nextStep($event)">下一步</button>
+  </ion-list>
+</ion-content>

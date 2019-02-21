@@ -1,0 +1,99 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      我的红包
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <ion-list>
+    <ion-segment mode="ios"  [(ngModel)]="st" (ngModelChange)='Changed($event)' color="primary" >
+      <ion-segment-button value="s1">
+        我的红包（<span>{{totalred}}</span>个）
+      </ion-segment-button>
+      <ion-segment-button value="s2">
+        无效红包
+      </ion-segment-button>
+    </ion-segment>
+  </ion-list>
+
+  <ion-list *ngIf="guideA">
+    <div *ngFor="let d of myred">
+      <div class="groundback" *ngIf="d.couponState=='UNUSED'">
+        <ion-row>
+          <ion-col text-left col-6 class="groundbackcol">
+            <div *ngIf="d.couponType=='GENERAL'" class="groundbackcoldiv">通用红包</div>
+            <div *ngIf="d.couponType=='DISC'" class="groundbackcoldiv">交易红包</div>
+            <div *ngIf="d.couponType=='DIST'" class="groundbackcoldiv">接单红包</div>
+            <div *ngIf="d.couponType=='INQUIRYREPLY'" class="groundbackcoldiv">查询查复红包</div>
+          </ion-col>
+          <ion-col text-right col-6 class="groundbackcolB">
+            <div class="groundbackcolBdiv">¥{{d.money}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col text-left col-8 class="groundbackcolC">
+            <div>有效期至<span style="padding-left: 3px">{{this.apiSev.transformdateC(d.endDate)}}</span></div>
+          </ion-col>
+          <!-- 暂未使用-->
+          <ion-col text-right col-4 class="groundbackcolD">
+            <div></div>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="加载更多...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-list>
+
+  <ion-list *ngIf="guideB">
+    <div *ngFor="let C of myredB">
+      <div class="groundback" *ngIf="C.couponState=='INVALID'||C.couponState=='USED'" style="color: #a3a3a3 !important;">
+        <ion-row>
+          <ion-col text-left col-6 class="groundbackcol">
+            <div *ngIf="C.couponType=='GENERAL'" class="groundbackcoldiv">通用红包</div>
+            <div *ngIf="C.couponType=='DISC'" class="groundbackcoldiv">交易红包</div>
+            <div *ngIf="C.couponType=='DIST'" class="groundbackcoldiv">接单红包</div>
+            <div *ngIf="C.couponType=='INQUIRYREPLY'" class="groundbackcoldiv">查询查复红包</div>
+          </ion-col>
+          <ion-col text-right col-6 class="groundbackcolB">
+            <div class="groundbackcolBdiv" style="color: #a3a3a3 !important;">¥{{C.money}}</div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col text-left col-8 class="groundbackcolC">
+            <div>有效期至<span style="padding-left: 3px">{{this.apiSev.transformdateC(C.endDate)}}</span></div>
+          </ion-col>
+          <!-- 暂未使用-->
+          <ion-col text-right col-4 class="groundbackcolD">
+            <div></div>
+          </ion-col>
+        </ion-row>
+        <div class="imgguoqi"></div>
+      </div>
+    </div>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="加载更多...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-list>
+  <ion-list *ngIf="guideC">
+    <div class="backgoupimg">
+    </div>
+    <div class="backgoupimgtext" *ngIf="guideD">您目前没有可用红包</div>
+    <div class="backgoupimgtext" *ngIf="guideE">暂无失效红包</div>
+  </ion-list>
+</ion-content>

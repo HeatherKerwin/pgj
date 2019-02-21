@@ -1,0 +1,33 @@
+<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >推荐人</ion-title>
+    <ion-buttons *ngIf="show" right style="margin-left:-26px;">
+      <button ion-button mode="ios" icon-only (tap)="saveInfo()" style="font-size: 12px;height: 24px;padding: 0 10px;border-radius: 3px;background: #d43c33">
+        保存
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-list mode="md">
+      <ion-item>
+        <ion-label >推荐码</ion-label>
+        <ion-input type="number" readonly="{{isReadonly}}" [(ngModel)]="code" value="{{code}}"></ion-input>
+      </ion-item>
+      <ion-item>
+        <h3><div>我的推荐码</div><span>{{myCode}}</span></h3>
+        <h3><div>我已推荐人数</div><span>{{myCount}}</span></h3>
+      </ion-item>
+    </ion-list>
+  <ion-list *ngIf="isWeChatflag">
+    <div style="text-align:center;">
+      <button ion-button block style="margin-top:20px" (tap)="ToShareFriendPage()" mode="ios"  class="recommendBtn"  >推荐好友得福利</button>
+    </div>
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,144 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      质押票编辑
+    </ion-title>
+  </ion-navbar>
+
+  <ion-list *ngIf="zy9" (tap)="zy9=false;" style="position: absolute;z-index: 999;margin-top: -20px;height: 100%">
+    <img src="assets/images/manage/8293@2x.png" style="height: 100%;" />
+  </ion-list>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <ion-row class="addrow">
+    <ion-col text-center col-3>
+      <button class="colbutton" [ngClass]=" {'activedBtn': discounttype=='YD'}" (tap)="discounttype='YD'">银电</button>
+    </ion-col>
+    <ion-col text-center col-3>
+      <button class="colbutton" [ngClass]=" {'activedBtn': discounttype=='YZ'}" (tap)="discounttype='YZ'">银纸</button>
+    </ion-col>
+    <ion-col text-center col-3>
+      <button class="colbutton" [ngClass]=" {'activedBtn': discounttype=='SD'}" (tap)="discounttype='SD'">商电</button>
+    </ion-col>
+    <ion-col text-center col-3>
+      <button class="colbutton" [ngClass]=" {'activedBtn': discounttype=='SZ'}" (tap)="discounttype='SZ'">商纸</button>
+    </ion-col>
+  </ion-row>
+
+  <!--票类型-->
+  <ion-list style="margin-top: 10px;background-color: #ffffff;height: 100%;">
+    <!--选择时间-->
+    <ion-row class="newion_col">
+      <ion-col col-6>
+        <ion-item style="min-height: 30px;height: 30px;" >
+          <ion-label>
+            到期日期
+          </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item style="min-height: 30px;height: 30px;">
+          <ion-label>
+            赎回提醒
+          </ion-label>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-6>
+        <ion-item style="border: 1px solid #aaaaaa !important;border-radius: 5px;width: 90%;margin-left: 5%;min-height: 30px;height: 38px;">
+          <ion-datetime style="padding: 0;" displayFormat="YYYY-MM-DD" [(ngModel)]="manage.expiryDate" [min]="manage.pledgeOutDate" [max]="2100-12-31"
+                        doneText="确定" cancelText="取消"></ion-datetime>
+          <ion-note item-end class="calendarIcon"></ion-note>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-6>
+        <ion-item style="border: 1px solid #aaaaaa !important;border-radius: 5px;width: 90%;margin-left: 5%;min-height: 30px;height: 38px;">
+          <ion-datetime style="padding: 0;" displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="manage.pledgeInDate" [min]="manage.pledgeOutDate" [max]="2100-12-31"
+                        doneText="确定" cancelText="取消"></ion-datetime>
+          <ion-note item-end class="calendarIcon"></ion-note>
+        </ion-item>
+      </ion-col>
+
+      <ion-col style="margin-top: 5px;" *ngIf="pet=='manage4'" col-12>
+        <div style="margin-left: 3%;font-size: 1.5rem;">质押日期</div>
+        <ion-item style="border: 1px solid #aaaaaa !important;border-radius: 5px;width: 65%;margin-left: 2.5%;min-height: 30px;height: 38px;margin-top: 5px;margin-bottom: 5px;">
+          <ion-datetime style="padding: 0;" displayFormat="YYYY-MM-DD" [(ngModel)]="manage.pledgeOutDate" [max]="2100-12-31" doneText="确定" cancelText="取消"></ion-datetime>
+          <ion-note item-end class="calendarIcon"></ion-note>
+        </ion-item>
+      </ion-col>
+
+      <ion-col col-12>
+        <ion-item style="border: 1px solid #aaaaaa !important;border-radius: 5px;width: 65%;margin-left: 2.5%;min-height: 30px;height: 38px;margin-top: 10px;margin-bottom: 5px;">
+          <ion-input type="text" maxlength="50" placeholder="承兑人" [(ngModel)]="manage.bank"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12>
+        <ion-item style="border: 1px solid #aaaaaa !important;border-radius: 5px;width: 65%;margin-left: 2.5%;min-height: 30px;height: 38px;margin-top: 5px;margin-bottom: 5px;">
+          <ion-input type="number" maxlength="30" placeholder="票号（选填）" [(ngModel)]="manage.draftNo"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12>
+        <button (tap)="draftrecordsave()" style="position: absolute;left: 72.5%;background-color: #ffffff;padding: 0;height: 80px;width: 80px;z-index: 5;" ion-button mode="ios">
+          <img src="assets/images/manage/baocun.png" />
+        </button>
+        <button tappable (click)="maskDiv=true" style="position: absolute;left: 72.5%;background-color: #ffffff;padding: 0;height: 80px;width: 80px;margin-top: 100px;z-index: 5;" ion-button mode="ios">
+          <img src="assets/images/manage/ruku.png" />
+        </button>
+        <ion-item style="border: 1px solid #aaaaaa !important;border-radius: 5px;width: 65%;margin-left: 2.5%;min-height: 30px;height: 38px;margin-top: 5px;margin-bottom: 5px;">
+          <ion-input type="number" maxlength="13" placeholder="票面金额" [(ngModel)]="manage.allmoney"></ion-input>
+          <ion-note style="color: #333;" item-end>万元</ion-note>
+        </ion-item>
+      </ion-col>
+      <ion-item style="border: 1px solid #aaaaaa !important;border-radius: 5px;width: 65%;margin-left: 2.5%;min-height: 30px;height: 38px;margin-top: 5px;margin-bottom: 5px;">
+        <ion-input type="number" maxlength="13" placeholder="质押金额" [(ngModel)]="manage.pledgeMoney"></ion-input>
+        <ion-note style="color: #333;" item-end>元</ion-note>
+      </ion-item>
+      <ion-col col-12>
+        <ion-item style="border: 1px solid #aaaaaa !important;border-radius: 5px;width: 65%;margin-left: 2.5%;min-height: 100px;height: 100px;margin-top: 5px;margin-bottom: 5px;">
+          <ion-textarea class="textareaop" rows="10" type="text" maxlength="300" [(ngModel)]="manage.draftFrom" text-left placeholder="来票公司（选填）"> </ion-textarea>
+        </ion-item>
+      </ion-col>
+      <ion-col col-12>
+        <ion-item style="border: 1px solid #aaaaaa !important;border-radius: 5px;width: 65%;margin-left: 2.5%;min-height: 100px;height: 100px;margin-top: 5px;margin-bottom: 5px;">
+          <ion-textarea class="textareaop" rows="10" type="text" maxlength="300" [(ngModel)]="manage.draftTo" text-left placeholder="票据去处（选填）"> </ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+</ion-content>
+
+
+<!--分享弹出层-->
+<div *ngIf="maskDiv" (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop style="z-index: 20" disable-activated role="presentation" tappable class="mask">
+    <div class="maskCon">
+      <ion-list>
+        <div style="text-align: center;font-size: 1.5rem;color: #d43c33;font-weight: 600;margin-top: 20px;">补充信息</div>
+        <ion-item style="border: 1px solid #aaaaaa !important;border-radius: 5px;margin-top: 20px;min-height: 30px;height: 38px;margin-left: 5%;width: 90%">
+          <ion-label>到期日期</ion-label>
+          <ion-datetime style="padding: 0;padding-right: 10px" displayFormat="YYYY-MM-DD" [(ngModel)]="manage.expiryDate" [min]="manage.min" [max]="2100-12-31"
+                        doneText="确定" cancelText="取消"></ion-datetime>
+          <ion-note item-end class="calendarIcon"></ion-note>
+        </ion-item>
+        <ion-item style="border: 1px solid #aaaaaa !important;border-radius: 5px;margin-top: 20px;margin-bottom: 40px;min-height: 30px;height: 38px;margin-left: 5%;width: 90%">
+          <ion-label>提醒日期</ion-label>
+          <ion-datetime style="padding: 0;padding-right: 10px" displayFormat="YYYY-MM-DD" [(ngModel)]="manage.noticeDate" [min]="manage.min" [max]="2100-12-31"
+                        doneText="确定" cancelText="取消"></ion-datetime>
+          <ion-note item-end class="calendarIcon"></ion-note>
+        </ion-item>
+      </ion-list>
+      <p text-center  class="maskBtn">
+        <input margin-right type="button" value="  取消  " tappable (click)="closeMask()" class="frame">
+        <input type="button" value="确认入库" tappable (click)="inchange();closeMask()">
+      </p>
+    </div>
+  </ion-backdrop>
+</div>

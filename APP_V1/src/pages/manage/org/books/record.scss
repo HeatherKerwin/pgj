@@ -1,0 +1,26 @@
+page-record {
+  ion-content{
+    background: #eeeeee !important;
+    ion-toolbar{
+      padding-top: 0px !important;
+      .segment-button{
+        max-width: 50% !important;
+      }
+    }
+    ion-item.textarea{
+      border-top: 0.55px solid #d9d9d9 !important;
+      textarea{
+        width: 100%;
+        border: none;
+      }
+
+    }
+    .active{
+      background: #d43c33 !important;
+    }
+    .inactive{
+      background: #5aa713 !important;
+    }
+
+  }
+}

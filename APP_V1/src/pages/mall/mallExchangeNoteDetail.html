@@ -1,0 +1,124 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons style="margin-left:-26px;float:left">
+      <button ion-button icon-only >
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title  mode="ios" >确认订单</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <!--贴现地址-->
+  <div margin-top class="city">
+    <!--没有地址信息-->
+    <ion-list *ngIf="placeNot" class="placeNot">
+      <ion-item>
+        <button  mode="ios"  ion-button outline block item-end icon-left color="light" (tap)="chosePlace($event)">
+          <ion-icon class="placeIcon"></ion-icon>
+          请选择出票地址
+        </button>
+      </ion-item>
+    </ion-list>
+
+    <!--已有地址信息-->
+    <ion-list *ngIf="placeShow" class="placeShow" mode="ios">
+      <button ion-item (tap)="chosePlace($event)">
+        <ion-avatar item-start>
+          <img src="images/discount/placeIcon.png" width="30" height="43">
+        </ion-avatar>
+        <ion-row no-padding>
+          <ion-col col-3>
+            {{address.consignee}}
+          </ion-col>
+          <ion-col col-6>
+            {{address.tel}}
+          </ion-col>
+        </ion-row>
+        <h3> {{address.address}} </h3>
+      </button>
+    </ion-list>
+  </div>
+
+  <ion-list margin-top>
+    <ion-item>
+      <ion-label *ngIf="integralOrders.state == 0" class="red">待发货</ion-label>
+      <ion-label *ngIf="integralOrders.state == 1" class="red">已发货</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="{{this.apiSev.getImgUrl+goods.banner1}}">
+      </ion-avatar>
+      <h3>{{goods.goods_name}}</h3>
+      <ion-row>
+        <ion-col class="red"><img src="assets/images/mall/dajifen.png" class="jifenIcon" />{{goods.integral}}积分</ion-col>
+        <ion-col text-center class="gray">X {{goods.count}}</ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-item>
+      <ion-label>配送费</ion-label>
+      <ion-note item-end>包邮</ion-note>
+    </ion-item>
+    <ion-item>
+      <ion-label>订单号</ion-label>
+      <ion-note item-end>{{integralOrders.no}}</ion-note>
+    </ion-item>
+    <ion-item class="itme-noborder textarea">
+      <ion-textarea name="description" id="" rows="6" maxlength="100" [(ngModel)]="integralOrders.remark" placeholder="请填写一个备注，100字以内！"></ion-textarea>
+    </ion-item>
+    <ion-item *ngIf="integralOrders.state == 1">
+      <button ion-button  mode="ios"  outline item-end color="dark" (tap)="isMask=true;isEedit=true;isDelete=false;">查看快递</button>
+      <button ion-button  mode="ios"  outline item-end color="primary" (tap)="isMask=true;isEedit=false;isDelete=true;">删除</button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<!--弹出层-->
+<div *ngIf="isMask" (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="maskCon">
+
+      <ion-grid class="edit" *ngIf="isEedit">
+        <button class="close" (tap)="isMask=false;isEedit=false;isDelete=false;"></button>
+        <ion-row text-center>
+          <ion-col><img src="assets/images/mall/edit.png"></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>承兑公司</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>{{integralOrders.expressCompany}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>快递单号</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>{{integralOrders.expressNo}}</ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid class="delete" *ngIf="isDelete">
+        <ion-row text-center>
+          <ion-col >
+            <img src="assets/images/mall/deleteIcon.png">
+          </ion-col>
+        </ion-row>
+        <ion-row text-center>
+          <ion-col><h4>是否删除订单？</h4></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-5 offset-1>
+            <button (tap)="isMask=false;isEedit=false;isDelete=false;" ion-button block color="primary" >暂不删除</button>
+          </ion-col>
+          <ion-col col-5 >
+            <button (tap)="delete($event,integralOrders.id)" ion-button block outline color="danger" small>删除订单</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </div>
+  </ion-backdrop>
+</div>

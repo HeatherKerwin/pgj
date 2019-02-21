@@ -1,0 +1,142 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      会员中心
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-list *ngIf="YESVIP">
+    <div class="vipgroup">
+      <ion-row>
+        <ion-col col-5 class="vipcolA">
+          <div><span class="vipspanC">VIP</span>会员</div>
+        </ion-col>
+        <ion-col col-5 class="vipcolC">
+          <div>{{iPhoneqs()}}</div>
+        </ion-col>
+        <ion-col col-2 class="vipcolC">
+          <div (tap)="vipupgradeData()">会员升级</div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="vipcolB">
+          <div>您的会员将<span style="letter-spacing:2px">于{{enDat}}日</span>到期</div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-list>
+
+  <ion-list *ngIf="YESVIP">
+    <ion-item style="border: 0">
+      <ion-label fixed>会员特权</ion-label>
+      <ion-note item-end class="servicefee"></ion-note>
+      <ion-note item-end style="color: #C1A36B;">免服务费</ion-note>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="NoVIP">
+    <div class="vipgroup">
+      <ion-row>
+        <ion-col col-7 class="vipcolA">
+          <div>加入即享<span class="vipspanA">VIP</span>会员</div>
+        </ion-col>
+        <ion-col col-5>
+          <div class="vipdivA"><span class="vipspanB">加入会员</span></div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="vipcolB">
+          <div *ngIf="orgType==1">会员特权：收票免服务费</div>
+          <div *ngIf="orgType==0">会员特权：出票免服务费</div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-list>
+
+  <ion-list style="background-color:#FFFFFF;margin-top: 20px;height: 260px;" *ngIf="NoVIP">
+    <ion-list-header style="border: 0;font-size: 1.8rem;">
+      VIP会员套餐
+    </ion-list-header>
+    <ion-row class="nianka" *ngIf="yearvip" (tap)="yearVip()">
+      <ion-col col-7 style="padding-left: 4%;">
+        <div class="niankadiv">年卡会员</div>
+        <div class="niankadivB">12个月会员</div>
+      </ion-col>
+      <ion-col col-5>
+        <div class="niankadivC"><span class="niankaspan">¥</span>{{yearmony}}</div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="niankaB" *ngIf="!yearvip" (tap)="yearVip()">
+      <ion-col col-7 style="padding-left: 4%;">
+        <div class="niankadiv">年卡会员</div>
+        <div class="niankadivB">12个月会员</div>
+      </ion-col>
+      <ion-col col-5>
+        <div class="niankadivC"><span class="niankaspan">¥</span>{{yearmony}}</div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="nianka" *ngIf="seasonvip" (tap)="seasonVip()">
+      <ion-col col-7 style="padding-left: 4%;">
+        <div class="niankadiv">季卡会员</div>
+        <div class="niankadivB">3个月会员</div>
+      </ion-col>
+      <ion-col col-5>
+        <div class="niankadivC"><span class="niankaspan">¥</span>{{seasonmony}}</div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="niankaB" *ngIf="!seasonvip" (tap)="seasonVip()">
+      <ion-col col-7 style="padding-left: 4%;">
+        <div class="niankadiv">季卡会员</div>
+        <div class="niankadivB">3个月会员</div>
+      </ion-col>
+      <ion-col col-5>
+        <div class="niankadivC"><span class="niankaspan">¥</span>{{seasonmony}}</div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="nianka" *ngIf="monthvip" (tap)="monthVip()">
+      <ion-col col-7 style="padding-left: 4%;">
+        <div class="niankadiv">月卡会员</div>
+        <div class="niankadivB">1个月会员</div>
+      </ion-col>
+      <ion-col col-5>
+        <div class="niankadivC"><span class="niankaspan">¥</span>{{monthmony}}</div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="niankaB" *ngIf="!monthvip" (tap)="monthVip()">
+      <ion-col col-7 style="padding-left: 4%;">
+        <div class="niankadiv">月卡会员</div>
+        <div class="niankadivB">1个月会员</div>
+      </ion-col>
+      <ion-col col-5>
+        <div class="niankadivC"><span class="niankaspan">¥</span>{{monthmony}}</div>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+
+  <ion-list style="background-color:#FFFFFF;" *ngIf="NoVIP">
+    <ion-item style="border: 0">
+      <ion-label fixed>钱包余额</ion-label>
+      <ion-note item-end>¥{{money}}</ion-note>
+      <button ion-button mode="ios" outline item-end (tap)="addDeposit()">去充值</button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer *ngIf="NoVIP">
+  <ion-list>
+    <ion-item>
+      <ion-label item-start>总计 <span class="red">¥{{VIPmoney}}</span></ion-label>
+      <button ion-button full item-end class="black" (tap)="savepay()">确认支付</button>
+    </ion-item>
+  </ion-list>
+</ion-footer>

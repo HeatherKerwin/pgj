@@ -1,0 +1,73 @@
+﻿<ion-content padding scroll="false">
+  <ion-fab *ngIf="false" margin-top>
+    <button ion-fab color="primary">操作<br>指南</button>
+  </ion-fab>
+  <div class="logo" style="margin-bottom:10px;">
+      <img src="assets/images/login/logo.png" style="width:33%;height:33%" />
+  </div>
+
+
+<div padding>
+  <ion-segment [(ngModel)]="pet" mode="ios">
+    <ion-segment-button value="kittens">
+      快速登录
+    </ion-segment-button>
+    <ion-segment-button value="puppies">
+      账号登录
+    </ion-segment-button>
+  </ion-segment>
+</div>
+
+<div class="tab-all" [ngSwitch]="pet">
+  <ion-list *ngSwitchCase="'kittens'">
+      <ion-item style="border:0px;">
+        <ion-label style="margin-bottom:10px;"><ion-icon style="width:20px;height:22px;background: url('assets/images/login/phone.svg')no-repeat center;" class="user"></ion-icon> </ion-label>
+        <ion-input  type="tel" [(ngModel)]="user.mobile"  (ionChange)="checkPhone()"  placeholder="请输入手机号码" ></ion-input>
+	</ion-item>
+
+      <ion-item style="border:0px;">
+        <ion-label style="margin-top:12px;" ><ion-icon style="width:20px;height:22px;background: url('assets/images/login/password.svg')no-repeat center;" class="pass"></ion-icon></ion-label>
+	<ion-input type="tel" [(ngModel)]="user.code" style="padding-right: 120px;" placeholder="手机验证码"></ion-input>
+      </ion-item>
+	<button ion-button style="margin-top: -43px;position: absolute;right: 6%;font-size:1.26rem;height: 35px;" class="phoneCode" (tap)="getCode($event)" [disabled]="isCodeDisabled">{{btnText}}</button>
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'puppies'">
+    <ion-item style="border:0px;">
+      <ion-label style="margin-bottom:10px;max-width: 80px;"><ion-icon style="width:20px;height:22px;background: url('assets/images/login/phone.svg')no-repeat center;" class="user"></ion-icon></ion-label>
+      <ion-input  type="tel" [(ngModel)]="user.mobile" placeholder="请输入手机号码"></ion-input>
+	  </ion-item>
+      <ion-item style="border:0px;">
+        <ion-label style="margin-top:12px;max-width: 80px;" ><ion-icon style="width:20px;height:22px;background: url('assets/images/login/password.svg')no-repeat center;" class="pass"></ion-icon></ion-label>
+        <ion-input type="password" [(ngModel)]="user.password" placeholder="请输入登录密码" ></ion-input>
+      </ion-item>
+    <button ion-button mode="ios" style="position: absolute;right: 6%;font-size:1.26rem;height: 35px;background-color:#FFFFFF;"></button>
+
+  </ion-list>
+
+
+<div style="float:left;margin-left:14px;"><ion-checkbox (ionChange)="checkInfo()" [checked]="infomemo"></ion-checkbox></div>
+<div style="margin-left:9px;margin-top:0px;float:left">
+ 已阅读并同意<span class="fontred" (tap)="showinfomemo($event)">《票管家用户协议》</span></div>
+
+</div>
+
+  <div class="cn-all">
+
+    <div style="text-align:center;">
+      <button ion-button block style="margin-top:80px" mode="ios" class="loginBtn" (tap)="login($event)" >登录</button>
+      <button ion-button block outline style="margin-top:15px"  class="registerBtn" (tap)="register($event)"  >注册</button>
+      <div class="passwordBtn" (tap)="getpass($event)">忘记密码？</div>
+      <div style="margin:0 auto;text-align:center;width:240px;margin-top:50px;">
+	<div style="width:70px;margin:0 auto;float:left"><hr/></div>
+	<div style="width:100px;margin:0 auto;float:left;color:#cccccc;font-size:1.18rem">第三方登录</div>
+	<div style="width:70px;margin:0 auto;float:left"><hr/></div>
+      </div>
+      <div style="margin:0 auto;text-align:center;width:100px;margin-top:10px;">
+        <!--<div style="width:50px;margin:0 auto;" *ngIf="isQQflag" (tap)="QQLogin()"><img style="margin-top:10px;width:66%;height:66%" src="assets/images/login/qq.png"></div>-->
+        <div style="width:50px;margin:0 auto;float:left" *ngIf="isQQflag" (tap)="QQLogin($event)"><img style="margin-top:10px;width:66%;height:66%" src="assets/images/login/qq.png"></div>
+        <div style="width:50px;margin:0 auto;float:left;" *ngIf="isWeChatflag" (tap)="WeChatLogin($event)"><img style="margin-top:10px;width:66%;height:66%"  src="assets/images/login/weixin.png"></div>
+        </div>
+      </div>
+  </div>
+</ion-content>

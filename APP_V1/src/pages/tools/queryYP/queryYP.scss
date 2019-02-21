@@ -1,0 +1,76 @@
+page-queryYP {
+  ion-content {
+    ion-list {
+
+      ion-item {
+        .inputore{
+          .text-input-md{
+            margin:0 !important;
+          }
+        }
+      }
+      //按钮
+      .cn-all {
+        .loginBtn {
+          border: 1px solid rgba(255, 255, 255, 0.32);
+          border-radius: 8px;
+          margin: 0 auto;
+          width: 95%;
+          height: 43px;
+          margin-top: 12px;
+        }
+      }
+    }
+  }
+  //弹窗
+  .mask{
+    .Confirm {
+      background-color: white;
+      position: absolute;
+      top: 30%;
+      left: 15%;
+      color: #2d2d2d;
+      opacity: 1.0 !important;
+      width: 70%;
+      height: 30%;
+      .tishi{
+        width: 35%;
+        height: 35%;
+        background: url("../assets/images/offer/tishi.png") no-repeat center;
+        background-size: auto 100%;
+        position: absolute;
+        top: 10%;
+        left: 35%;
+      }
+      h5{
+        position: absolute;
+        top: 40%;
+        left: 3% !important;
+        left: 0;
+        width: 100%;
+        text-align: center;
+      }
+      .button{
+        button{
+          line-height: 16px;
+        }
+        position: absolute;
+        top: 65%;
+        left:0%;
+      }
+      ion-row{
+        border-top: 1px solid #dddddd;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+

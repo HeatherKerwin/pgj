@@ -1,0 +1,45 @@
+page-mallList {
+	ion-content{
+    ion-list{
+      ion-item{
+        border-bottom: 0.55px solid #c8c7cc !important;
+        .nomall{
+          position: absolute;
+          top: 0px;
+          left: 50px;
+          width: 70px !important;
+          height: 70px !important;
+        }
+        .item-inner {
+          border-bottom: none !important;
+        }
+        ion-thumbnail{
+          img{
+            width: 100px !important;
+            height: 100px !important;
+          }
+        }
+        h2{
+          word-wrap:break-word ;
+          white-space: normal;
+        }
+        p{
+          font-size: 1.6rem;
+          color: #d43c33 !important;
+          //积分小图标
+          .jifenIcon{
+            width: 1.2rem;
+            height: 1.2rem;
+            margin-right: 5px;
+            margin-top: 5px;
+          }
+        }
+        button{
+          border-radius: 15px !important;
+        }
+      }
+    }
+
+
+	}
+}

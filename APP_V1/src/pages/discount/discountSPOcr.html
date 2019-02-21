@@ -1,0 +1,79 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      商票电票下单
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <!--通知信息循环-->
+  <div class="marqueeDiv">
+    <span icon-start class="noticeIcon"></span>
+    <marquee direction="left" hspace="0">{{note.content}}</marquee>
+  </div>
+
+  <div class="ocrDiv">
+    <div class="txtDiv">请上传正面的清晰图片，电子汇票请使用电脑截图，不可遮挡右上角票号。<span>(上传图片3-4秒后，系统会自动识别您的相关信息。)</span></div>
+    <div class="photo">
+      <div class="uploadDiv">
+        <button ion-button mode="ios" class="upload" *ngIf="isUpload" data-tap-disabled="true" (click)="uploadBtn()"></button>
+        <img class="picpath" src="{{discount.picpath}}" *ngIf="isPicpath" data-tap-disabled="true" (click)="uploadBtn()">
+      </div>
+    </div>
+  </div>
+
+  <div class="updats" *ngIf="Ocrgif">
+    <div class="des">
+    </div>
+  </div>
+
+
+</ion-content>
+
+<!--上传图片弹出层-->
+<div *ngIf="isMask" (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="maskCon" *ngIf="CameraRoll">
+      <ion-row text-center>
+        <ion-col col-4 offset-2 (click)="cameraPic()">
+          <img src="assets/images/discount/camera.png" alt="相机">
+          <p>相机</p>
+        </ion-col>
+        <ion-col col-4 (click)="albumPic()">
+          <img src="assets/images/discount/album.png" alt="相册">
+          <p>相册</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <button ion-button mode="ios" block color="danger" data-tap-disabled="true" (click)="closeMask()">取消</button>
+      </ion-row>
+    </div>
+
+
+    <!--确认-->
+    <div class="maskConB" *ngIf="Distinguish">
+      <div class="offer">
+        <button mode="ios" class="close" data-tap-disabled="true" (click)="Distinguish =false;isMask = false;"></button>
+        <p text-center class="gridTitle">
+          提示
+        </p>
+        <ion-list no-lines>
+          <div>
+            <div style="text-indent: 2em;">图片不清晰,<span *ngIf="discount.bankName==null||discount.bankName==''||bankNameAccuracy==0">承兑行全称、</span><span *ngIf="discount.bankNo==null||discount.bankNo==''||bankNoAccuracy==0">承兑行行号、</span><span *ngIf="discount.no==null||discount.no==''||noAccuracy==0">票号、</span><span *ngIf="discount.money==null||discount.money==''||moneyAccuracy==0">票面金额、</span><span *ngIf="discount.beginDate==null||discount.beginDate==''||beginDateAccuracy==0">贴票日期、</span><span *ngIf="discount.endDate==null||discount.endDate==''||endDateAccuracy==0">到期日期、</span>识别度较低，是否更换图片，更新识别？</div>
+          </div>
+        </ion-list>
+        <p text-center  class="maskBtn">
+          <input margin-right type="button" value="使用原图" data-tap-disabled="true" (click)="discountsp()" class="frame">
+          <input type="button" value="重新上传" data-tap-disabled="true" (click)="isMask = false;Distinguish =false;isUpload=true;isPicpath=false;">
+        </p>
+      </div>
+    </div>
+  </ion-backdrop>
+</div>

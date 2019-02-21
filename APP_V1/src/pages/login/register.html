@@ -1,0 +1,66 @@
+﻿<ion-header mode="ios">
+    <ion-navbar mode="ios">
+        <ion-buttons  style="margin-left:1px;float:left">
+	    <button ion-button icon-only (tap)="close($event)">
+            <ion-icon  color="dark"  name="ios-arrow-back"></ion-icon>
+        </button>
+	</ion-buttons>
+	<ion-title  mode="ios" >注册</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content >
+
+  <div class="logo" style="text-align:center;margin-bottom:15px;margin-top:15px;">
+      <img src="assets/images/login/logo.png" style="margin:0 auto;width:33%;height:33%" />
+  </div>
+
+<div class="tab-all" >
+  <ion-list >
+
+
+      <ion-item style="border-top:0.06rem solid #cccccc">
+        <ion-label style="margin-top:14px;margin-bottom:10px;"><ion-icon style="width:20px;height:22px;background: url('assets/images/login/phone.svg')no-repeat center;" class="user"></ion-icon> </ion-label>
+        <ion-input  type="tel" [(ngModel)]="reqister.mobile"  (ionChange)="checkPhone()"  placeholder="请输入手机号码" ></ion-input>
+	</ion-item>
+
+      <ion-item style="border:0px;">
+        <ion-label style="margin-top:12px;" ><ion-icon style="width:20px;height:22px;background: url('assets/images/login/password.svg')no-repeat center;" class="pass"></ion-icon></ion-label>
+	<ion-input type="tel" [(ngModel)]="reqister.code" style="padding-right: 120px;" placeholder="手机验证码"></ion-input>
+      </ion-item>
+	<button ion-button style="margin-top: -43px;position: absolute;right: 6%;font-size:1.26rem;height: 35px;" class="phoneCode" (tap)="getCode($event)" [disabled]="isCodeDisabled">{{btnText}}</button>
+
+      <ion-item style="border:0px;">
+        <ion-label style="margin-top:12px;" ><ion-icon style="width:20px;height:22px;background: url('assets/images/login/password.svg')no-repeat center;" class="pass"></ion-icon></ion-label>
+        <ion-input type="password" [(ngModel)]="reqister.pwd" placeholder="请输入6-11位数字字母组成的新密码" ></ion-input>
+      </ion-item>
+
+      <ion-item style="border:0px;">
+        <ion-label style="margin-top:12px;" ><ion-icon style="width:20px;height:22px;background: url('assets/images/login/password.svg')no-repeat center;" class="pass"></ion-icon></ion-label>
+        <ion-input type="password" [(ngModel)]="reqister.confirmpwd" placeholder="请再次输入新的登录密码" ></ion-input>
+      </ion-item>
+
+      <ion-item >
+        <ion-label style="margin-top:12px;"><ion-icon style="width:20px;height:22px;background: url('assets/images/login/phone.svg')no-repeat center;" class="user"></ion-icon> </ion-label>
+        <ion-input  type="tel" [(ngModel)]="reqister.recommendpeople"  (ionChange)="checkPhone()"  placeholder="推荐人(选填)" ></ion-input>
+	</ion-item>
+
+  </ion-list>
+</div>
+
+
+  <div class="cn-all">
+
+<div style="float:left;margin-left:23px;margin-top:8px;margin-bottom:28px;"><ion-checkbox (ionChange)="checkInfo()" [checked]="infomemo"></ion-checkbox></div>
+<div style="float:left;margin-left:19px;margin-top:7px;">
+ 我已经阅读并同意<span class="fontred" (tap)="showinfomemo()">《票管家用户协议》</span>
+</div>
+
+    <div style="text-align:center;">
+      <button ion-button block style="margin-top:80px;margin-bottom:10px" mode="ios" class="loginBtn" (tap)="login()" >提交注册</button>
+    </div>
+
+  </div>
+
+
+</ion-content>

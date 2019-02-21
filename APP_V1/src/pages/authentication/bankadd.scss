@@ -1,0 +1,28 @@
+page-bankadd {
+  ion-navbar{
+    span.button-inner{
+      color:$Red;
+    }
+  }
+  ion-content {
+    ion-item{
+      .notocol{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 70%;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

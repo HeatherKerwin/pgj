@@ -1,0 +1,109 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      库存清单
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <ion-list>
+
+    <ion-card *ngFor="let item of List">
+      <div class="carddiv">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-10>
+              <img src="assets/images/Inventory/qixian.png" style="height: 15px;width: auto;float: left;margin-right: 10px"/>
+              <div class="cradtxt">出票日-到期日:{{item.printtime | date:"yyyy/MM/dd"}} — {{item.endtime | date:"yyyy/MM/dd"}}</div>
+            </ion-col>
+            <ion-col text-right col-2>
+              <!--删除-->
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-1>
+
+            </ion-col>
+            <ion-col col-3>
+              <div *ngIf="item.allmoney!=null&&item.allmoney!=''&&item.allmoney!='undefined'"><span class="cradmony">{{item.allmoney}}</span>   万元</div>
+              <div *ngIf="item.allmoney==null||item.allmoney==''||item.allmoney=='undefined'"><span class="cradmony">--</span>   万元</div>
+            </ion-col>
+            <ion-col style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;line-height: 20px" col-4>
+              {{item.bank}}
+            </ion-col>
+            <ion-col text-right col-4>
+              <div *ngIf="item.price!=null&&item.price!=''&&item.price!='undefined'"><span class="cradmony">{{item.price}}</span><span *ngIf="item.price!=null&&item.price!=''&&item.price!='undefined'" class="cradtext cradtxt"> (带价)</span></div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12>
+              <img src="assets/images/Inventory/beizhu.png" style="height: 15px;width: auto;float: left;margin-right: 10px;"/>
+              <div class="cradtxt" *ngIf="item.remarks!=null&&item.remarks!=''&&item.remarks!='undefined'">备注：{{item.remarks}}</div>
+              <div class="cradtxt" *ngIf="item.remarks==null||item.remarks==''||item.remarks=='undefined'">备注：无</div>
+            </ion-col>
+          </ion-row>
+          <ion-row style="height: 40px;border-top: 1px solid #D5D5D5;border-top-style: dotted;">
+            <ion-col col-4>
+              <img src="assets/images/Inventory/pai.png" style="height: 15px;width: auto;float: left;margin-right: 10px;margin-top: 7px;"/>
+              <div *ngIf="item.amount!=null&&item.amount!=''&&item.amount!='undefined'" style="margin-top: 7px" class="cradtxt"><span>{{item.amount}}</span><span style="color: #D5D5D5">人拍票</span></div>
+              <div *ngIf="item.amount==null||item.amount==''||item.amount=='undefined'" style="margin-top: 7px" class="cradtxt"><span>0</span><span style="color: #D5D5D5">人拍票</span></div>
+            </ion-col>
+            <ion-col col-8>
+              <p text-right class="maskBtnB">
+                <input *ngIf="item.intent!='LIKE'" margin-right style="width: 80px;" type="button" value="  拍  " data-tap-disabled="true" (click)="inventory.i=i;getinventory(item.member_id,item.id,item.allmoney,item.bank,item.printtime,item.endtime,item.remarks,item.price,item.amount,item);" class="frame">
+                <input *ngIf="item.intent=='LIKE'" margin-right style="width: 80px;color: #85878a;border: 1px #85878a solid;" type="button" value="  已拍  " class="frame">
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-card>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="加载更多...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-list>
+</ion-content>
+
+
+<!--上传图片弹出层-->
+<div *ngIf="isMask" (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <!--确认-->
+    <div class="maskConB" *ngIf="Distinguish">
+      <div class="offer">
+        <button mode="ios" class="close" data-tap-disabled="true" (click)="Distinguish =false;isMask = false;delP=false;XdP=false"></button>
+        <p class="butdimg" *ngIf="editP"></p>
+
+        <ion-list *ngIf="delP">
+          <p text-center style="font-size: 2rem;" >确认删除？</p>
+        </ion-list>
+
+        <p text-center *ngIf="delP">
+          <input margin-right type="button" value="取消" data-tap-disabled="true" (click)="footer=true;isMask=false;Distinguish=false;inventorydel()" style="color: #169BD5;padding: 5px 15px;border: 1px solid #169BD5;border-radius: 5px;background: #fff;">
+          <input type="button" value="确认" data-tap-disabled="true" style="color: #f5f5f5;padding: 5px 15px;border: 1px solid #169BD5;border-radius: 5px;background: #0099FF;">
+        </p>
+
+        <p class="butdimg" *ngIf="XdP"></p>
+        <ion-list *ngIf="XdP" style="margin-top: 30px;width: 90%;margin-left: 5%;">
+          <p>点击拍票后表示您对该票感兴趣，票方收到拍票信息后，会尽快将对应的票据上传并生成订单，请留意交易大厅的订单。</p>
+        </ion-list>
+
+        <div padding  *ngIf="XdP">
+          <button ion-button mode="ios" block color="primary" data-tap-disabled="true" (click)="inventoryintentsave()">确定拍票</button>
+        </div>
+
+      </div>
+    </div>
+  </ion-backdrop>
+</div>

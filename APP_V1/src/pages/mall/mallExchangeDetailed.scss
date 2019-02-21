@@ -1,0 +1,56 @@
+page-mallExchangeDetailed {
+	ion-content{
+    background: #eeeeee !important;
+    ion-slides{
+      width: 100%;
+      height: auto;
+      background: #ffffff !important;
+    }
+    ion-list{
+      background: #ffffff !important;
+      padding: 0 16px;
+      ion-list-header{
+        padding-left: 0 !important;
+        font-size: 1.5rem !important;
+      }
+      p{
+        margin: 0px;
+        padding: 5px 0px;
+      }
+    }
+    ion-list.title{
+      h3{
+        padding-top: 5px;
+        margin: 0;
+      }
+      ion-item{
+        padding-left: 0 !important;
+        border-bottom: none !important;
+        .label{
+          color: #d43c33 !important;
+        }
+        //积分小图标
+        .jifenIcon{
+          width: 1.2rem;
+          height: 1.2rem;
+          min-width: 20px !important;
+          margin-right: 5px !important;
+          margin-top: 5px;
+          background: url("../assets/images/mall/dajifen.png") center no-repeat;
+          background-size: 100%;
+        }
+      }
+    }
+
+    p{
+      word-wrap:break-word ;
+      white-space: normal;
+    }
+    .red{
+      color: #d43c33 !important;
+    }
+    .black{
+      color: #2d2d2d !important;
+    }
+	}
+}

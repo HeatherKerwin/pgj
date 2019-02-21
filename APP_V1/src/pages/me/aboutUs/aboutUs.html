@@ -1,0 +1,43 @@
+<ion-header mode="ios">
+  <ion-navbar mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title mode="ios">关于我们</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item mode="ios">
+      <h3>票据管家是上海票管家金融服务有限公司开发的一款专业票据管理手机软件。</h3>
+      <h3>本软件专业、全面的整理和收录了央行以及全国范围内的法院汇票挂失公示催告信息，各大银行联行号查询，汇票出票计算，Shibor数据查询等服务；并向用户提供更加专业完整的票据信息管理，票据的出票记录、成本计算、到期票据提醒等各项功能和服务。</h3>
+      <img src="assets/images/me/erweima.png" style="width: 100px;height: 100px;margin-left: 110px;">
+      <h4 style="margin-left: 110px;color: #aaaaaa;">扫一扫下载App</h4>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <button ion-item mode="md">
+      联系我们
+    </button>
+    <div ion-item mode="md">
+      <ion-avatar item-start >
+        <img src="assets/images/me/call.png"  >
+      </ion-avatar>
+      电话：<a (tap)='apiSev.Call("400-067-0002");'>400-067-0002</a>
+    </div>
+    <button ion-item mode="md">
+      <ion-avatar item-start >
+        <img src="assets/images/me/email.png"  >
+      </ion-avatar>
+      邮箱：ryfinance@ryfinance.com
+    </button>
+    <button ion-item mode="ios" (tap)="presentActionSheet($event)">
+      <ion-avatar item-start >
+        <img src="assets/images/me/share.png"  >
+      </ion-avatar>
+      分享：分享应用给朋友
+    </button>
+  </ion-list>
+</ion-content>

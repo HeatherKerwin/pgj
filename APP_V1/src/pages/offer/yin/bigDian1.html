@@ -1,0 +1,82 @@
+﻿<ion-header mode="ios">
+    <ion-navbar mode="ios">
+        <ion-buttons  style="margin-left:-26px;float:left">
+	    <button ion-button icon-only>
+            <ion-icon  color="dark"  name="ios-arrow-back"></ion-icon>
+        </button>
+	</ion-buttons>
+  <ion-buttons  end>
+    <button ion-button icon-only (tap)="ContrastPrice()">
+      对比价格
+    </button>
+  </ion-buttons>
+	<ion-title  mode="ios" >银票大电票报价</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="warn" padding-left margin-top>请填写各个承兑行对应的价格：</div>
+  <div class="red-12" padding-left>*请注意电票请填写足年息、即年利率</div>
+  <ion-list>
+    <ion-item>
+      <ion-label>国股(%)</ion-label>
+      <ion-input type="number" placeholder="请输入年利率" [(ngModel)]="guogu"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>大商(%)</ion-label>
+      <ion-input type="number" placeholder="请输入年利率" [(ngModel)]="dashang"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>小商(%)</ion-label>
+      <ion-input type="number" placeholder="请输入年利率" [(ngModel)]="xiaoshang"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>外资(%)</ion-label>
+      <ion-input type="number" placeholder="请输入年利率" [(ngModel)]="waizi"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>农商(%)</ion-label>
+      <ion-input type="number" placeholder="请输入年利率" [(ngModel)]="nongshang"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>农合(%)</ion-label>
+      <ion-input type="number" placeholder="请输入年利率" [(ngModel)]="nonghe"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>农信(%)</ion-label>
+      <ion-input type="number" placeholder="请输入年利率" [(ngModel)]="nongxin"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>村镇(%)</ion-label>
+      <ion-input type="number" placeholder="请输入年利率" [(ngModel)]="cunzhen"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div style="text-align:center;" margin-top>
+    <button ion-button block  mode="ios" class="Btn" (tap)='submit()'>确认提交</button>
+  </div>
+
+  <div style="text-align:center;" margin-top>
+    <button ion-button block  mode="ios" class="Btn1" (tap)="clear()">一键清空</button>
+  </div>
+</ion-content>
+<!--弹窗提示-->
+<div *ngIf="maskDiv" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="PlatformPrice" *ngIf="PlatformPrice" padding>
+      <h5>平台价格</h5>
+      <div class="Price" padding>
+        <div><span>国股：</span><span margin-left>年利率{{bigDianGuoGu}}%</span></div>
+        <div><span>大商：</span><span margin-left>年利率{{bigDianDaShang}}%</span></div>
+        <div><span>小商：</span><span margin-left>年利率{{bigDianXiaoShang}}%</span></div>
+        <div><span>外资：</span><span margin-left>年利率{{bigDianWaiZi}}%</span></div>
+        <div><span>农商：</span><span margin-left>年利率{{bigDianNongShang}}%</span></div>
+        <div><span>农合：</span><span margin-left>年利率{{bigDianNongHe}}%</span></div>
+        <div><span>农信：</span><span margin-left>年利率{{bigDianNongXin}}%</span></div>
+        <div><span>村镇：</span><span margin-left>年利率{{bigDianCunZhen}}%</span></div>
+        <p>
+          <button ion-button round (tap)="closeMask()">知道了</button>
+        </p>
+      </div>
+    </div>
+  </ion-backdrop>
+</div>

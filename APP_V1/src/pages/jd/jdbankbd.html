@@ -1,0 +1,54 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      绑定银行卡
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+
+  <ion-list style="background: #ffffff">
+    <ion-item style="border-top: 0;">
+      <ion-label>
+        户名
+      </ion-label>
+      <ion-input type="text" maxlength="50" text-right placeholder="请输入银行卡的户名" disabled [(ngModel)]="jd.blicCompanyName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        开户行
+      </ion-label>
+      <ion-select [(ngModel)]="banks" (ionChange)="xuanz2()" interface="popover" doneText="确定" cancelText="取消">
+        <ion-option value="请选择开户行">请选择开户行</ion-option>
+        <ion-option  *ngFor="let item of bankListResult" value="{{item.cnapBankCode}}" >{{item.bankName}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>开户支行信息</ion-label>
+      <ion-note item-end tappable (click)="xuanz1()" style="color: #333;margin-right: 0;width: 50%;display: -webkit-box !important;-webkit-box-orient: vertical !important;-webkit-line-clamp: 2 !important;overflow: hidden !important;text-align: right;">{{jdData.bankCnaps}} {{jdData.bankChildName}}</ion-note>
+      <ion-note mode="ios" class="Noteicon" item-end tappable (click)="xuanz1()"><ion-icon name="md-arrow-dropdown"></ion-icon></ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        账号
+      </ion-label>
+      <ion-input type="tel" maxlength="27" text-right placeholder="请输入绑定的银行卡" [(ngModel)]="jdData.legalendTime"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <div padding>
+    <div style="font-size: 10px;margin-bottom: 5px">收票方需关联指定银行对公账户，京东目前已经达成合作的指定银行有：平安银行、中信银行。</div>
+    <button ion-button mode="ios" block color="primary" (tap)="sava()">申请绑卡</button>
+  </div>
+</ion-content>

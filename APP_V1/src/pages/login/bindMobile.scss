@@ -1,0 +1,38 @@
+page-bindMobile {
+  ion-content{
+    .tab-all{
+      background-color:#fff;
+      margin-top: 12px;
+      ion-list{
+        .item{
+          background:transparent;
+          ion-icon{
+            color: #C59B4D;
+            font-size: 20px;
+            width: 20px;
+            height: 20px;
+          }
+          .user{
+            background: url('../assets/images/phone.svg')no-repeat center;
+            background-size: 100% 100%;
+          }
+          .pass{
+            background: url('../assets/images/password.svg')no-repeat center;
+            background-size: 100% 100%;
+          }
+        }
+      }
+    }
+    .cn-all{
+      .loginBtn{
+        border:1px solid rgba(255,255,255,0.32);
+        border-radius:8px;
+        border-radius:8px;
+        width:85%;
+        height:40px;
+        margin:0 auto
+      }
+    }
+  }
+
+}

@@ -1,0 +1,131 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      银票查询查复
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+<ion-list>
+  <ion-item>
+    <ion-label><span class="spot">*</span>票号:</ion-label>
+    <ion-input type="number" maxlength="30" text-right placeholder="请输入汇票票号" [(ngModel)]="Query.draftNo">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label><span class="spot">*</span>金额:</ion-label>
+    <ion-input type="number" maxlength="10" (keyup)="apiSev.check1($event)" text-right placeholder="请输入金额" [(ngModel)]="Query.money">
+    </ion-input>
+    <ion-note item-end >万元</ion-note>
+  </ion-item>
+
+  <ion-item>
+    <ion-label><span class="spot">*</span>出票人:</ion-label>
+    <ion-input type="text" maxlength="30" text-right placeholder="请输入出票人全称" [(ngModel)]="Query.drawer">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label><span class="spot">*</span>收款人:</ion-label>
+    <ion-input type="text" maxlength="30" text-right placeholder="请输入收款人全称" [(ngModel)]="Query.payee">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label><span class="spot">*</span>承兑行全称:</ion-label>
+    <ion-input type="text" maxlength="30" text-right placeholder="请输入承兑行全称" [(ngModel)]="Query.bank">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label><span class="spot">*</span>承兑行号:</ion-label>
+    <ion-input type="number" maxlength="12" text-right placeholder="请输入承兑行号"  [(ngModel)]="Query.bankNo">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>出票日期:</ion-label>
+    <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" [(ngModel)]="Query.startDate" doneText="确定" cancelText="取消"></ion-datetime>
+    <ion-note item-end class="calendarIcon"></ion-note>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>到期日期:</ion-label>
+    <ion-datetime displayFormat="YYYY-MM-DD" [(ngModel)]="Query.endDate" [min]="Query.min" [max]="2999-12-31" doneText="确定" cancelText="取消"></ion-datetime>
+    <ion-note item-end class="calendarIcon"></ion-note>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>付款金额:</ion-label>
+    <ion-input type="hidden" disabled [(ngModel)]="Query.payMoney" text-right>
+    </ion-input>
+    <ion-note item-end>¥{{payFree}}</ion-note>
+  </ion-item>
+
+  <div style="margin-left:15px;margin-top:5px; font-size:0.8em; padding-top:5px;">
+    <img src="assets/images/tool/tishi.png" style="height:14px;width:15px;margin-right:5px;"/>
+    请注意，每次查票过程都会在大额支付系统中留下查询记录
+  </div>
+
+  <div style="margin-left:15px;margin-top:5px; font-size:0.8em; padding-top:5px;margin-bottom:15px">
+    <img src="assets/images/tool/tishi.png" style="height:14px;width:15px;margin-right:5px;"/>
+    您可以直接使用票据管家钱包支付查询查付费用
+  </div>
+
+
+  <ion-item style="padding-top:10px;">
+    <ion-label>钱包余额</ion-label>
+    <ion-input type="number" disabled text-right>
+    </ion-input>
+    <ion-input type="hidden" disabled text-right [(ngModel)]="Query.payWay"></ion-input>
+    <ion-note item-end style="color:#2d2d2d">{{money}}元</ion-note>
+    <ion-note item-end>	<button ion-button style="font-size:1.26rem;height: 30px;" class="phoneCode" (tap)="ToTransactionPage()">钱包充值</button></ion-note>
+  </ion-item>
+
+  <ion-item style="border:0px;height:52.8px;">
+    <ion-input class="inputore" type="tel" maxlength="4" (keyup)="this.apiSev.check1($event)" placeholder="请输入手机验证码" [(ngModel)]="Query.code"></ion-input>
+    <ion-note item-end>	<button ion-button style="font-size:1.26rem;height: 30px;" class="phoneCode" (tap)="getCode()" [disabled]="isCodeDisabled">{{btnText}}</button></ion-note>
+  </ion-item>
+
+  <div class="cn-all">
+    <div style="text-align:center;">
+      <button ion-button block class="loginBtn" (tap)="queryPay($event)">
+        确认支付
+      </button>
+    </div>
+  </div>
+
+</ion-list>
+</ion-content>
+
+<!--弹窗提示-->
+<div *ngIf="maskDiv" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="Confirm" *ngIf="Confirm" padding>
+      <div class="tishi"></div>
+      <h5 text-center>您已下单成功</h5>
+      <ion-grid class="button" margin-top>
+        <ion-row>
+          <ion-col col-6>
+            <button mode="md" ion-item style="text-align:center;min-height:30px;height: 30px;border-right: 1px solid #d9d9d9;" (tap)="ionViewDidEnter()">
+              再查一笔
+            </button>
+          </ion-col>
+          <ion-col col-6>
+            <button mode="md" ion-item style="text-align:center;min-height:30px;height: 30px;color: #d43c33" (tap)="ToMyInquiryPage()">
+              交易跟踪
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-backdrop>
+</div>

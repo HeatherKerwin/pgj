@@ -1,0 +1,59 @@
+<ion-header mode="ios">
+  <ion-navbar mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title mode="ios">查询查复详情</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list padding>
+    <ion-item class="first">票号：{{draftNo}}</ion-item>
+    <ion-item>金额：{{money}}</ion-item>
+    <ion-item>出票人：{{drawer}}</ion-item>
+    <ion-item>收款人：{{payee}}</ion-item>
+    <ion-item>承兑行全称：{{bank}}</ion-item>
+    <ion-item>承兑行号：{{bankNo}}</ion-item>
+    <ion-item>出票日期：{{startDate}}</ion-item>
+    <ion-item>到期日期：{{endDate}}</ion-item>
+    <ion-item>查询查复：{{no}}</ion-item>
+    <ion-item>下单日期：{{createTime}}</ion-item>
+    <ion-item>订单状态：{{payState}}</ion-item>
+    <ion-item>付款金额：{{payMoney}}</ion-item>
+    <ion-item>付款方式：{{payWay}}</ion-item>
+    <ion-item class="inspectticket">验票结果：{{result}}</ion-item>
+  </ion-list>
+<!--  <div style="text-align:center;">
+    <button ion-button block  mode="ios" class="Btn" (tap)="again($event)">再查一笔</button>
+  </div>-->
+
+<!--  <div *ngIf="isShow" style="text-align:center;" margin-top>
+    <button ion-button block  mode="ios" class="Btn" (tap)="ToMyInquiryReplyEditPage($event)">修改</button>
+  </div>-->
+
+</ion-content>
+
+<!--弹出层-->
+<div *ngIf="isMask" (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="maskCon">
+      <!--去支付-->
+      <ion-grid class="pay" *ngIf="isPay" text-center>
+        <ion-row text-center>
+          <ion-col><img src="../../assets/images/account/tishi.png"></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>请您在新打开的支付页面上支付，支付完成前请不要关闭该窗口</ion-col>
+        </ion-row>
+        <ion-row margin-bottom>
+          <ion-col><button ion-button color="primary">交易跟踪</button></ion-col>
+        </ion-row>
+      </ion-grid>
+
+
+
+    </div>
+  </ion-backdrop>
+</div>

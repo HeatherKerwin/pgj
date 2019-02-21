@@ -1,0 +1,77 @@
+page-discountYPAttribute {
+  //通知滚动
+  ion-content{
+    background-color: #f5f5f5 !important;
+    .marqueeDiv{
+      height: 40px;
+      background: white;
+      padding: 10px 10px;
+      color: #d43c33;
+      margin-bottom: 10px;
+      .noticeIcon{
+        width: 20px;
+        height: 18px;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        z-index: 2;
+        padding-right: 10px;
+        background-size: 20px 18px;
+        background: #ffffff url("../assets/images/discount/noticeIcon.png") center no-repeat;
+      }
+    }
+  }
+  //弹窗
+  .maskCon {
+    .red {
+      color: #d43c33;
+    }
+    //认证信息不全
+    .Authentications {
+      position: absolute;
+      top: 37%;
+      left: 15%;
+      color: #2d2d2d;
+      opacity: 1.0 !important;
+      width: 70%;
+      height: auto;
+      background: #ffffff;
+      border-radius: 10px;
+      padding-bottom: 8px;
+      ion-row ion-col {
+        font-size: 1.5rem;
+      }
+      ion-row:nth-child(1) {
+        width: 120px;
+        height: 120px;
+        border-radius: 120px;
+        margin: -50px auto 0;
+        background: #ffffff;
+        img {
+          width: 95px;
+          height: 95px;
+          margin: 10px;
+        }
+      }
+      ion-row:nth-child(2) {
+        padding: 0 16px;
+        font-size: 1.8rem;
+        margin-top: -1.6rem;
+      }
+      button {
+        height: 2.5rem;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+

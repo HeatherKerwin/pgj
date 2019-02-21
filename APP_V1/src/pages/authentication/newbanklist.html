@@ -1,0 +1,82 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      选择银行卡
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+
+  <ion-list margin-bottom>
+
+    <div *ngIf="orgType==0">
+    <ion-card style="height: 85px" *ngFor="let bank of banklist" tappable (click)="bankchanger(bank)">
+      <div class="card_text">
+        <img src="assets/images/authentication/ka.png" class="card_icon" />
+        <span>{{bank.bankName}}</span>
+        <div style="float: right;margin-top: -1px;font-weight: 600;">
+          <span *ngIf="bank.status==1">正常</span>
+        </div>
+      </div>
+      <div text-center class="banknum">{{apiSev.checkbank(bank.accountNo)}}</div>
+    </ion-card>
+    </div>
+
+
+    <div *ngIf="orgType==1">
+      <div *ngFor="let bank of banklist">
+        <ion-card *ngIf="apiSev.cibrz==1&&apiSev.jdrz==0&&bank.vAcctAcctNo!=null&&bank.vAcctAcctNo!=''&&bank.vAcctAcctNo!='undefined'" style="height: 85px" tappable (click)="bankchanger(bank)">
+          <div class="card_text">
+            <img src="assets/images/authentication/ka.png" class="card_icon"/>
+            <span>{{bank.bankName}}</span>
+            <div style="float: right;margin-top: -1px;font-weight: 600;">
+              <span *ngIf="bank.status==1">正常</span>
+            </div>
+          </div>
+          <div text-center class="banknum">{{apiSev.checkbank(bank.accountNo)}}</div>
+        </ion-card>
+
+        <ion-card *ngIf="((apiSev.cibrz==0&&apiSev.jdrz==1)||(apiSev.cibrz==1&&apiSev.jdrz==1))&&bank.bindId!=null&&bank.bindId!=''&&bank.bindId!='undefined'" style="height: 85px" tappable (click)="bankchanger(bank)">
+          <div class="card_text">
+            <img src="assets/images/authentication/ka.png" class="card_icon"/>
+            <span>{{bank.bankName}}</span>
+            <div style="float: right;margin-top: -1px;font-weight: 600;">
+              <span *ngIf="bank.status==1">正常</span>
+            </div>
+          </div>
+          <div text-center class="banknum">{{apiSev.checkbank(bank.accountNo)}}</div>
+        </ion-card>
+
+<!--        <ion-card *ngIf="DD.v_acct_acct_no!=null&&DD.v_acct_acct_no!=''&&DD.v_acct_acct_no!='undefined'&&bank.vAcctAcctNo!=null&&bank.vAcctAcctNo!=''&&bank.vAcctAcctNo!='undefined'&&bank.bindId!=null&&bank.bindId!=''&&bank.bindId!='undefined'" style="height: 85px" tappable (click)="bankchanger(bank)">
+          <div class="card_text">
+            <img src="assets/images/authentication/ka.png" class="card_icon"/>
+            <span>{{bank.bankName}}</span>
+            <div style="float: right;margin-top: -1px;font-weight: 600;">
+              <span *ngIf="bank.status==1">正常</span>
+            </div>
+          </div>
+          <div text-center class="banknum">{{apiSev.checkbank(bank.accountNo)}}</div>
+        </ion-card>-->
+      </div>
+    </div>
+
+    <ion-card text-center (tap)="bankpay()">
+      <div text-center>
+        <img src="assets/images/jd/addbank.png" style="width: auto;height: 32px;margin-top: 10px;display: inline;"/>
+      </div>
+      <div class="add_card_bank" text-center>绑定对公账户</div>
+    </ion-card>
+
+  </ion-list>
+
+  <div margin text-wrap style="color: #d43c33;font-size:1rem;text-indent:1em">
+    <p>*请选择选择该票据的最后一手背书银行账号，该账号同时也是本次交易的收款账号！</p>
+    <p *ngIf="orgType==1">*收票必须绑定中信银行或平安银行对公账户!</p>
+  </div>
+</ion-content>

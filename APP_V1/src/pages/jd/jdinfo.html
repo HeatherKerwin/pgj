@@ -1,0 +1,48 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      开户声明
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <ion-list class="list_card">
+    <div>
+      <p>开户之前，需要准备什么资料？</p>
+      <p>1、营业执照正本扫描件</p>
+      <p>2、法定代表人的身份证正、反面扫描件（若开户主体为经办人，则还需提供经办人身份证正、反面扫描件）</p>
+      <p style="margin-bottom: 0 !important;">3、对公银行账号</p>
+      <div style="font-size: 1.5rem;margin: 0 8px 0 8px;">收票方需关联指定银行对公账户<span style="color: #d43c33 !important;">（须开通电票功能）。</span>
+      </div>
+      <div style="font-size: 1.5rem;margin: 0 8px 10px 8px;">
+        京东目前已经达成合作的指定银行有：平安银行、中信银行。
+      </div>
+    </div>
+
+    <p style="color: #d43c33 !important;border-bottom: 1px solid #d9d9d9;height: 26px;">
+      *扫描件必须为彩色原件的扫描件。
+    </p>
+
+    <p>
+      <ion-icon class="icon_iphonB">
+        <img src="assets/images/jd/weixuanz.png" *ngIf="!term" (tap)="term=!term" />
+        <img src="assets/images/jd/xuanz.png"  *ngIf="term" (tap)="term=!term" />
+      </ion-icon>我已阅读并同意<button style="background: #ffffff;color: #d43c33" (tap)="jdsigna()">《京东钱包服务协议》</button>
+    </p>
+
+    <p>
+      <ion-icon class="icon_iphon"></ion-icon> 如有问题请联系客服：<button style="background: #ffffff;font-size: 1.5rem;" (tap)='apiSev.Call("400-067-0002");'>400-067-0002</button>
+    </p>
+  </ion-list>
+
+  <div padding>
+    <button ion-button mode="ios" block color="primary" (tap)="OpenaccountPage($event)">知道了</button>
+  </div>
+</ion-content>

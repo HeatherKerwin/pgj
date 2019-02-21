@@ -1,0 +1,91 @@
+﻿<ion-header mode="ios">
+    <ion-navbar mode="ios">
+        <ion-buttons  style="margin-left:-26px;float:left">
+	    <button ion-button icon-only>
+            <ion-icon  color="dark"  name="ios-arrow-back"></ion-icon>
+        </button>
+	</ion-buttons>
+  <ion-buttons  end>
+    <button ion-button icon-only (tap)="ContrastPrice()">
+      对比价格
+    </button>
+  </ion-buttons>
+	<ion-title  mode="ios" >确认价格</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+  <div padding-left class="red-12" padding-top>*当日价格一小时可更改一次，请确认您所填的信息</div>
+  <ion-list padding no-lines class="h35">
+    <div ion-item>
+      <div>国股</div><div item-end>年利率{{guogu}}%</div>
+    </div>
+    <div ion-item>
+      <div>大商</div><div item-end>年利率{{dashang}}%</div>
+    </div>
+    <div ion-item>
+      <div>小商</div><div item-end>年利率{{xiaoshang}}%</div>
+    </div>
+    <div ion-item>
+      <div>外资</div><div item-end>年利率{{waizi}}%</div>
+    </div>
+    <div ion-item>
+      <div>农商</div><div item-end>年利率{{nongshang}}%</div>
+    </div>
+    <div ion-item>
+      <div>农合</div><div item-end>年利率{{nonghe}}%</div>
+    </div>
+    <div ion-item>
+      <div>农信</div><div item-end>年利率{{nongxin}}%</div>
+    </div>
+    <div ion-item>
+      <div>村镇</div><div item-end>年利率{{cunzhen}}%</div>
+    </div>
+  </ion-list>
+  <p margin>
+    <button ion-button block mode="ios" (tap)="save()">确认价格</button>
+  </p>
+
+  <p margin>
+    <button ion-button block mode="ios" (tap)="back()">返回修改</button>
+  </p>
+</ion-content>
+
+<!--弹窗提示-->
+<div *ngIf="maskDiv" (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="Confirm" *ngIf="Confirm">
+      <div class="tishi"></div>
+      <h5 text-center>保存成功</h5>
+      <ion-grid class="button" margin-top>
+        <ion-row>
+          <ion-col col-6>
+            <button mode="md" ion-item (tap)="queryPrice()" style="min-height:30px;height: 30px;border-right: 1px solid #d9d9d9;">
+              查看报价
+            </button>
+          </ion-col>
+          <ion-col col-6>
+            <button mode="md" ion-item style="min-height:30px;height: 30px;color: #d43c33" (tap)="ContinuePrice()">
+              继续报价
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div class="PlatformPrice" *ngIf="PlatformPrice" padding>
+      <h5>平台均价</h5>
+      <div class="Price" padding>
+        <div><span>国股：</span><span margin-left>年利率{{bigDianGuoGu}}%</span></div>
+        <div><span>大商：</span><span margin-left>年利率{{bigDianDaShang}}%</span></div>
+        <div><span>小商：</span><span margin-left>年利率{{bigDianXiaoShang}}%</span></div>
+        <div><span>外资：</span><span margin-left>年利率{{bigDianWaiZi}}%</span></div>
+        <div><span>农商：</span><span margin-left>年利率{{bigDianNongShang}}%</span></div>
+        <div><span>农合：</span><span margin-left>年利率{{bigDianNongHe}}%</span></div>
+        <div><span>农信：</span><span margin-left>年利率{{bigDianNongXin}}%</span></div>
+        <div><span>村镇：</span><span margin-left>年利率{{bigDianCunZhen}}%</span></div>
+        <p>
+          <button ion-button round (tap)="closeMask()">知道了</button>
+        </p>
+      </div>
+    </div>
+  </ion-backdrop>
+</div>

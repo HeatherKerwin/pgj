@@ -1,0 +1,192 @@
+﻿<ion-header mode="ios">
+  <ion-navbar color="saapp" mode="ios" style="padding-top: 4px;min-height: 56px">
+    <ion-buttons style="margin-left:-25px;float:left">
+      <button ion-button icon-only>
+        <ion-icon color="dark" name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      营业执照上传
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content style="background-color:#F5F5F5;">
+  <ion-grid style="background-color:#FFFFFF;text-align:center;">
+    <ion-row style="text-align:center">
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/one.png" style="height: 25px;"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/huixian.png"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/hui.png" style="height:25px;"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/huixian.png"/></div>
+      </ion-col>
+      <ion-col style="padding:0;margin:0;">
+        <div><img src="assets/images/openaccount/hui.png" style="height:25px;"/></div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 text-left>
+        <div style="color: #d43c33;">申请开户</div>
+      </ion-col>
+      <ion-col col-4>
+        <div>审核</div>
+      </ion-col>
+      <ion-col col-4 text-right>
+        <div>完成开户</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="hlep_txt">
+    请上传营业执照正面的清晰图片，不可遮挡关键信息。上传图片3-4秒后，系统会自动识别您的相关信息。
+  </div>
+  <div style="padding-top: 10px;padding-bottom: 10px;background: #ffffff">
+    <ion-icon style="width: 3px;height: 20px;background: #d43c33;float: left;margin-right: 8px;"></ion-icon>
+    <span style="height: 20px;line-height: 20px">营业执照</span>
+    <button style="float: right;height: 20px;line-height: 20px;background: #ffffff;color: #91C4F3;" tappable (click)="uploadBtninfo()">
+      查看示例
+    </button>
+  </div>
+
+  <div text-center style="background: #ffffff;padding-top: 10px;padding-bottom: 15px;">
+    <img *ngIf="isUpload" src="assets/images/jd/yyzz.png" tappable (click)="uploadBtnType();" style="height: 120px;"/>
+    <img *ngIf="isPicpath" src="{{jd.picpath}}" tappable (click)="uploadBtn()" style="height: 120px;"/>
+    <div>营业执照</div>
+  </div>
+
+  <ion-list style="background: #ffffff" *ngIf="jd.picpath!=null&&jd.picpath!=''&&jd.picpath!='undefined'">
+    <ion-item style="border-top: 0;">
+      <ion-label>
+        公司名称
+      </ion-label>
+      <ion-input type="text" maxlength="100" text-right placeholder="请输入公司名称" [(ngModel)]="blicCompanyName"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="blicCardType=='USC'">
+      <ion-label>
+        统一社会信用代码
+      </ion-label>
+      <ion-input type="text" maxlength="18" text-right placeholder="请输入统一社会信用代码" [(ngModel)]="blicUscc"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="blicCardType=='OCI'">
+      <ion-label>
+        注册号
+      </ion-label>
+      <ion-input type="text" maxlength="50" text-right placeholder="请输入注册号" [(ngModel)]="blicCardNo"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="blicCardType=='OCI'">
+      <ion-label>
+        税字号
+      </ion-label>
+      <ion-input type="text" maxlength="64" text-right placeholder="请输入税字号" [(ngModel)]="blicObaCardNo"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="blicCardType=='OCI'">
+      <ion-label>
+        组织机构代码
+      </ion-label>
+      <ion-input type="text" maxlength="10" text-right placeholder="请输入组织机构代码" [(ngModel)]="blicTrcCardNo"></ion-input>
+    </ion-item>
+
+    <ion-item class="border0">
+      <ion-label>住所</ion-label>
+      <ion-select [(ngModel)]="province" (ionChange)="querycity()" interface="popover" doneText="确定" cancelText="取消">
+        <ion-option value="请选择省">请选择省</ion-option>
+        <ion-option  *ngFor="let item of provincelist" value="{{item.name}}" >{{item.name}}</ion-option>
+      </ion-select>
+      <ion-select [(ngModel)]="city" interface="popover" doneText="确定" cancelText="取消">
+        <ion-option value="请选择市">请选择市</ion-option>
+        <ion-option *ngFor="let item of citylist" value="{{item.name}}">{{item.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label></ion-label>
+      <ion-input type="text" maxlength="500" text-right placeholder="请输入具体门牌号" [(ngModel)]="blicAddress"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        经营范围
+      </ion-label>
+      <ion-input type="text" maxlength="800" text-right placeholder="请输入经营范围" [(ngModel)]="blicScope"></ion-input>
+    </ion-item>
+
+    <ion-item class="border0">
+      <ion-label>
+        经营期限
+      </ion-label>
+      <ion-note style="color: #333;margin-right: 13px" item-end>
+        <ion-icon style="float: left;margin-top: 2px;margin-right: 6px;">
+          <img src="assets/images/jd/weixuanz.png" *ngIf="!cqterm"  (tap)="cqterm=!cqterm;gdterm=false;blicLongTerm=true;" style="height: 16px" />
+          <img src="assets/images/jd/xuanz.png" *ngIf="cqterm"  (tap)="cqterm=!cqterm;gdterm=false;blicLongTerm=true;" style="height: 16px" />
+        </ion-icon>长期
+      </ion-note>
+      <ion-note style="color: #333;" item-end>
+        <ion-note style="color: #333;margin: 0;" item-end>
+          <ion-icon style="float: left;margin-top: 2px;margin-right: 6px;">
+            <img src="assets/images/jd/weixuanz.png" *ngIf="!gdterm" (tap)="gdterm=!gdterm;cqterm=false;blicLongTerm=false;" style="height: 16px"/>
+            <img src="assets/images/jd/xuanz.png" *ngIf="gdterm" (tap)="gdterm=!gdterm;cqterm=false;blicLongTerm=false;" style="height: 16px"/>
+          </ion-icon>固定期限</ion-note>
+      </ion-note>
+    </ion-item>
+    <ion-item *ngIf="!blicLongTerm">
+      <ion-label></ion-label>
+      <ion-datetime displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD" placeholder="请输入营业执照上的截止日期" [min]="blicTrcValidityEndmin" [max]="blicTrcValidityEndmax" [(ngModel)]="blicValidityEnd" doneText="确定"
+                    cancelText="取消"></ion-datetime>
+<!--
+      <ion-note item-end class="calendarIcon"></ion-note>
+-->
+    </ion-item>
+
+  </ion-list>
+
+  <div padding *ngIf="isimg">
+    <button ion-button mode="ios" block color="primary" (tap)="jdLincese1()">下一步</button>
+  </div>
+</ion-content>
+
+<!--上传图片弹出层-->
+<div *ngIf="isMask" (click)="backdropclick($event)" ontouchmove="event.preventDefault();event.stopPropagation();">
+  <ion-backdrop disable-activated role="presentation" tappable class="mask">
+    <div class="maskCon" *ngIf="CameraRoll">
+      <ion-row text-center>
+        <ion-col col-4 offset-2 (click)="cameraPic()">
+          <img src="assets/images/discount/camera.png" alt="相机">
+          <p>相机</p>
+        </ion-col>
+        <ion-col col-4 (click)="albumPic()">
+          <img src="assets/images/discount/album.png" alt="相册">
+          <p>相册</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <button ion-button mode="ios" block color="danger" data-tap-disabled="true" (click)="closeMask()">取消</button>
+      </ion-row>
+    </div>
+
+
+    <!--确认-->
+    <div class="maskConB" *ngIf="Distinguish">
+      <div class="offer">
+        <button mode="ios" class="close" data-tap-disabled="true" (click)="Distinguish =false;isMask = false;"></button>
+        <p text-center class="gridTitle">
+          示例
+        </p>
+        <ion-list text-center no-lines>
+          <img src="assets/images/jd/66@3x.png" style="padding: 5px 30% 5px 30%;" />
+        </ion-list>
+        <div padding>
+          <button ion-button mode="ios" block color="primary" (tap)="closeMask()">知道了</button>
+        </div>
+      </div>
+    </div>
+  </ion-backdrop>
+</div>

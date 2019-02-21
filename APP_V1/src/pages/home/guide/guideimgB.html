@@ -1,0 +1,70 @@
+﻿<ion-header mode="ios">
+  <ion-navbar mode="ios">
+    <ion-buttons left>
+      <button ion-button icon-only (tap)="close($event)">
+        <ion-icon  color="dark"  name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-segment mode="ios"  [(ngModel)]="st" (ngModelChange)='Changed($event)' color="primary" >
+      <ion-segment-button value="s1">
+        下单
+      </ion-segment-button>
+      <ion-segment-button value="s2">
+        出票
+      </ion-segment-button>
+      <ion-segment-button value="s3">
+        订单
+      </ion-segment-button>
+    </ion-segment>
+  </ion-navbar>
+</ion-header>
+
+<ion-content color="dark" id="aboutContent">
+  <!-- 切换 -->
+  <ion-slides pager *ngIf="guideA">
+    <ion-slide>
+      <img src="assets/images/home/ruhexiadan1.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/ruhexiadan2.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/ruhexiadan3.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/ruhexiadan4.jpg"/>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-slides pager *ngIf="guideB">
+    <ion-slide>
+      <img src="assets/images/home/tianxian1.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/tianxian2.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/tianxian3.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/tianxian4.jpg"/>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-slides pager *ngIf="guideC">
+    <ion-slide>
+      <img src="assets/images/home/chakandingdan1.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/chakandingdan2.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/chakandingdan3.jpg"/>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/home/chakandingdan4.jpg"/>
+    </ion-slide>
+  </ion-slides>
+
+</ion-content>
+

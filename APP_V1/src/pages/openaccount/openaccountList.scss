@@ -1,0 +1,55 @@
+page-openaccountList {
+  ion-content {
+    //上传图片
+    .uploadDiv{
+      padding: 5px 26px;
+      background: white;
+      .upload{//上传按钮
+        width: 100px;
+        height: 100px;
+        background: url("../assets/images/discount/upload.png") center no-repeat;
+        background-size: 100%;
+      }
+      img.picpath{//图片展示
+        text-align: center;
+        width: auto;
+        height: 160px;
+        margin: 0 auto;
+      }
+    }
+  }
+  .maskCon{
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    color: #2d2d2d;
+    background: rgba(255,255,255,1) !important;
+    opacity: 1.0 !important;
+    ion-row:first-child{
+      padding: 16px 0 5px;
+      border-bottom: 1px solid #d9d9d9;
+      img{
+        width: 70px;
+        height: 70px;
+      }
+      p{
+        color: #a3a3a3;
+        font-size: 1.4rem;
+        margin: 5px 0;
+      }
+    }
+    ion-row:last-child{
+      button{
+        background: white;
+        color: #2d2d2d;
+        font-size: 1.7rem;
+      }
+    }
+  }
+}
+
+
+
+
+
