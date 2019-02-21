@@ -11985,3 +11985,5 @@ org.eclipse.core.runtime.CoreException: Launch configuration Application (2) ref
 2019-01-08 17:06:35,478 [Worker-183] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2019-01-08 17:06:35,479 [Worker-183] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2019-01-08 17:06:35,480 [Worker-183] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspacs\website\src\test\resources
+2019-02-19 10:36:34,958 [Worker-23] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.ry:rymobile:0.0.1-SNAPSHOT @ D:\workspacs\rymobile\pom.xml.
+2019-02-19 10:36:38,487 [Worker-23] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact javax.xml:jaxrpc:jar:1.1 has been relocated to javax.xml:jaxrpc-api:jar:1.1
